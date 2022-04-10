@@ -6,11 +6,28 @@
 
 FakeNOS created to simulate Network Operating Systems interactions.
 
+## Installation
+
+Install [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git), next
+install from master:
+
+`python3 -m pip install git+https://github.com/dmulyalin/fakenos`
+
+## Sample Usage
+
+This code starts two devices listening for SSH connections on 127.0.0.1 address 
+ports 10001 and 10002 named router1 and router2 respectively:
+
+```
+from fakenos import FakeNOS
+
+network = FakeNOS()
+```
+
 ## How to Generate SSH private key
 
-By default FakeNOS uses default private key embedded with the package, making that
-key publicly available, which is insecure. Instead of default key FakeNos can locally
-generate SSH key located at 
+By default FakeNOS uses SSH private key embedded with the package, making that key 
+publicly available, which is insecure. Instead, FakeNos can use locally generated SSH key.
 
 **Linux**
 
