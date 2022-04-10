@@ -1,9 +1,9 @@
 import time
 
-prompt = "{base_prompt}> "
+initial_prompt = "{base_prompt}> "
 
 
-def make_show_clock(current_prompt, command):
+def make_show_clock(base_prompt, current_prompt, command):
     return time.time()
 
 
@@ -222,7 +222,7 @@ end
 commands = {
     "enable": {
         "output": None,
-        "new_prompt": "{prompt}# ",
+        "new_prompt": "{base_prompt}# ",
         "help": "enter exec prompt",
     },
     "show clock": {

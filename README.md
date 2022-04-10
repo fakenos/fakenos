@@ -16,12 +16,18 @@ install from master:
 ## Sample Usage
 
 This code starts two devices listening for SSH connections on 127.0.0.1 address 
-ports 10001 and 10002 named router1 and router2 respectively:
+ports 6001 and 6002 named `router1` and `router2` respectively:
 
 ```
 from fakenos import FakeNOS
 
 network = FakeNOS()
+```
+
+Initiate SSH connection using default username `user` and password `user`:
+
+```
+ssh 127.0.0.1 -l user -p 6001
 ```
 
 ## How to Generate SSH private key

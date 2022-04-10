@@ -20,7 +20,7 @@ default_shell = {"plugin": "CMDShell", "configuration": {"intro": "Custom SSH Sh
 default_hosts = {
     "router1": {"nos": "cisco_ios", "port": 6001},
     "router2": {"nos": "cisco_ios", "port": 6002},
-    "router-x": {"nos": "cisco_ios", "count": 5, "port": [10001, 10005]},
+    # "router-x": {"nos": "cisco_ios", "count": 5, "port": [10001, 10005]},
 }
 
 

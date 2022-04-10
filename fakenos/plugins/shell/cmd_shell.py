@@ -32,7 +32,7 @@ class CMDShell(Cmd):
         self.ruler = ruler
         self.intro = intro
         self.base_prompt = base_prompt
-        self.prompt = nos.prompt.format(base_prompt=base_prompt)
+        self.prompt = nos.initial_prompt.format(base_prompt=base_prompt)
         self.commands.update(nos.commands or {})
 
         # call the base constructor of cmd.Cmd, with our own stdin and stdout
@@ -68,15 +68,23 @@ class CMDShell(Cmd):
             cmd_data = self.commands[command]
             ret = cmd_data["output"]
             if callable(ret):
-                ret = ret(str(self.prompt), str(command))
+                ret = ret(
+                    base_prompt=self.base_prompt, 
+                    current_prompt=self.prompt, 
+                    command=command,
+                )
             if "new_prompt" in cmd_data:
-                self.prompt = cmd_data["new_prompt"].format(prompt=self.base_prompt)
+                self.prompt = cmd_data["new_prompt"].format(base_prompt=self.base_prompt)
         except KeyError:
             try:
                 if self.commands.get("default"):
                     ret = self.commands["default"]["output"]
                     if callable(ret):
-                        ret = ret(str(self.prompt), str(command))
+                        ret = ret(
+                            base_prompt=self.base_prompt, 
+                            current_prompt=self.prompt, 
+                            command=command,
+                        )
                 else:
                     ret = "Undefined command"
             except:
