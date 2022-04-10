@@ -9,6 +9,34 @@ from fakenos.core.servers import TCPServerBase
 
 log = logging.getLogger(__name__)
 
+DEFAULT_SSH_KEY = """-----BEGIN RSA PRIVATE KEY-----
+MIIEogIBAAKCAQEAnahBtR7uxtHmk5UwlFfpC/zxdxjUKPD8UpNOOtIJwpei7gaZ
++Jgub5GFJtTG6CK+DIZiR4tE9JxMjTEFDCGA3U4C36shHB15Pl3bLx+UxdyFylpc
+c7XYp4fpQjhFUoHOAIl5ZaA223kIxi7sFXtM1Gjy6g49u+G5teVfMbeZnks2xjjy
+F84qVADFBXCsfjrY5m4R+Wnfups/jP1agOpnOvqHlX/bpvzEZRcwJ0A8CylBZzQP
+D1Y4EXy1B4QLyLJKFIMRkWnr0f8rK5Q/obCLTjl+IMmZrkItbfC/hYCy6TDi+Efn
+cgGw02L93Mf6QGDNc21BsRELPYMME22MmpLphQIBIwKCAQEAmScbQjtOWr1GY3r7
+/dG90SGaG+w70AALDmM2DUEQy6k/MF4vLAGMMd3RzfNE4YDV4EgHszbVRWSiIsHn
+pWJf7OyyVZ7s9r2LuO111gFr82iB98V+YcaX8zOSIxIXdLicOwk0GZRSjA8tGErW
+tcg8AYqFkulDSMylxqRN2IZ3+NnTROxh4uUFH57roSYoCvzjM2v1Xa+S42BLpBD1
+3mLAJD36JhOhMTgYUgHAROx9+YUUUzYk3jpkTGWnAYSumnJXQYphLE9zadXxh94N
+HZJdvXajuP5N2M3Q2b4Gbyt2wNFlNcHGA+Zwk8wHIBnY9Sb9Gz0QALsOAwUoRY8T
+rCysSwKBgQDPVjFdSgM3jScmFV9fVnx3iNIlM6Ea7+UCrOOCvcGtzDo5vuTPktw7
+8abHEFHw7VrtxI3lRQ41rlmK3B//Q7b+ZJ0HdZaRdyCqW1u91tq1tQe7yiJBm0c5
+hZ3F0Vr6HAXoBVOux5wUq55jvUJ8dCVYNYfctZducVmOos3toDkSzQKBgQDCqRQ/
+GO5AU3nKfuJ+SZvv8/gV1ki8pGmyxkSebUqZSXFx+rQEQ1e6tZvIz/rYftRkXAyL
+XfzXX8mU1wEci6O1oSLiUBgnT82PtUxlO3Peg1W/cpKAaIFvvOIvUMRGFbzWhuj7
+4p4KJjZWjYkAV2YlZZ8Br23DFFjjCuawX7NhmQKBgHCN4EiV5H09/08wLHWVWYK3
+/Qzhg1fEDpsNZZAd3isluTVKXvRXCddl7NJ2kuHf74hjYvjNt0G2ax9+z4qSeUhF
+P00xNHraRO7D4VhtUiggcemZnZFUSzx7vAxNFCFfq29TWVBAeU0MtRGSoG9yQCiS
+Fo3BqfogRo9Cb8ojxzYXAoGBAIV7QRVS7IPheBXTWXsrKRmRWaiS8AxTe63JyKcm
+XwoGea0+MkwQ67M6s/dqCxgcdGITO81Hw1HbSGYPxj91shYlWb/B5K0+CUyZk3id
+y8vHxcUbXSTZ8ls/sQqAhpZ1Tkn2HBpvglAaM+OUQK/G5vUSe6liWeTawJuvtCEr
+rjRLAoGAUNNY4/7vyYFX6HkX4O2yL/LZiEeR6reI9lrK/rSA0OCg9wvbIpq+0xPG
+jCrc8nTlA0K0LtEnE+4g0an76nSWUNiP4kALROfZpXajRRaWdwFRAO17c9T7Uxc0
+Eez9wYRqHiuvU0rryYvGyokr62w1MtJO0tttnxe1Of6wzb1WeCU=
+-----END RSA PRIVATE KEY-----"""
+
 
 class ParamikoSshServerInterface(paramiko.ServerInterface):
     def __init__(
@@ -21,44 +49,41 @@ class ParamikoSshServerInterface(paramiko.ServerInterface):
         self.username = username
         self.password = password
 
-    # This will allow the SSH server to provide a
-    # channel for the client to communicate over.
-    # By default, this will return OPEN_FAILED_ADMINISTRATIVELY_PROHIBITED,
-    # so  we have to override it to return OPEN_SUCCEEDED
-    # when the kind of channel requested is "session".
     def check_channel_request(self, kind, chanid):
+        """
+        This will allow the SSH server to provide a channel for the client 
+        to communicate over. By default, this will return 
+        OPEN_FAILED_ADMINISTRATIVELY_PROHIBITED, so  we have to override it 
+        to return OPEN_SUCCEEDED when the kind of channel requested is "session".
+        """
         if kind == "session":
             return paramiko.OPEN_SUCCEEDED
         return paramiko.OPEN_FAILED_ADMINISTRATIVELY_PROHIBITED
 
-    # AFAIK, pty (pseudo-tty (TeleTYpewriter)) will allow our
-    # client to interact with our shell.
     def check_channel_pty_request(
         self, channel, term, width, height, pixelwidth, pixelheight, modes
     ):
+        """
+        AFAIK, pty (pseudo-tty (TeleTYpewriter)) will allow our client to interact 
+        with our shell.
+        """
         return True
 
-    # This allows us to provide the channel with a shell we can connect to it.
     def check_channel_shell_request(self, channel):
+        """This allows us to provide the channel with a shell we can connect to it."""
         return True
 
-    # This let's us setup password authentication.
-    # There are better ways to do this than using plain text,
-    # but for ease of development for me and this tutorial
-    # I think plain text is acceptable.
-    #
-    # For posterity, you could setup a database that encrypts
-    # passwords and will grab them to decrypt here.
     def check_auth_password(self, username, password):
         if (username == self.username) and (password == self.password):
             return paramiko.AUTH_SUCCESSFUL
         return paramiko.AUTH_FAILED
 
-    # String that will display when a client connects,
-    # before authentication has happened. This is different
-    # than the shell's intro property, which is displayed
-    # after the authentication.
     def get_banner(self):
+        """
+        String that will display when a client connects, before authentication has 
+        happened. This is different than the shell's intro property, which is displayed
+        after the authentication.
+        """
         return (self.ssh_banner + "\r\n", "en-US")
 
 
@@ -122,13 +147,13 @@ class ParamikoSshServer(TCPServerBase):
         self,
         shell,
         nos,
-        ssh_key_file,
         port,
+        username,
+        password,
+        ssh_key_file=None,
         ssh_key_file_password=None,
         ssh_banner="My SSH Server",
         shell_configuration=None,
-        username="user",
-        password="user",
         address="127.0.0.1",
         timeout=1,
     ):
@@ -144,9 +169,12 @@ class ParamikoSshServer(TCPServerBase):
         self.address = address
         self.timeout = timeout
 
-        self._ssh_server_key = paramiko.RSAKey.from_private_key_file(
-            ssh_key_file, ssh_key_file_password
-        )
+        if ssh_key_file:
+            self._ssh_server_key = paramiko.RSAKey.from_private_key_file(
+                ssh_key_file, ssh_key_file_password
+            )
+        else:
+            self._ssh_server_key = paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY))
 
     def connection_function(self, client):
         # create the SSH transport object
@@ -168,16 +196,15 @@ class ParamikoSshServer(TCPServerBase):
         channel_stdio = channel.makefile("rw")
 
         # create stdio for the shell
-        shell_stdin = TapIO()
-        shell_stdout = TapIO()
+        shell_stdin, shell_stdout = TapIO(), TapIO()
 
-        # start intermidiate thread to tap into the channel_stdio->shell_stdin bytes stream
+        # start intermediate thread to tap into the channel_stdio->shell_stdin bytes stream
         channel_to_shell_tapper = threading.Thread(
             target=channel_to_shell_tap, args=(channel_stdio, shell_stdin)
         )
         channel_to_shell_tapper.start()
 
-        # start intermidiate thread to tap into the shell_stdout->channel_stdio bytes stream
+        # start intermediate thread to tap into the shell_stdout->channel_stdio bytes stream
         shell_to_channel_tapper = threading.Thread(
             target=shell_to_channel_tap, args=(channel_stdio, shell_stdout)
         )
@@ -193,7 +220,4 @@ class ParamikoSshServer(TCPServerBase):
         self.client_shell.start()
 
         # After execution continues, we can close the session
-        # since the only way execution will continue from
-        # cmdloop() is if we explicitly return True from it,
-        # which we do with the exit command.
         session.close()
