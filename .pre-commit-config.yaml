@@ -1,0 +1,60 @@
+# to run pre-commit on demand using below configuration:
+# pre-commit run --all-files
+
+default_language_version:
+    python: python3.7
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.3.0
+    hooks:
+      - id: check-ast
+      - id: end-of-file-fixer
+        exclude: ^tests
+      - id: requirements-txt-fixer
+      - id: trailing-whitespace
+        exclude: ^tests
+      - id: check-added-large-files
+        args: ['--maxkb=1000']
+  # black
+  - repo: local
+    hooks:
+      - id: black
+        name: black
+        exclude: ^docs/|gitignore|LICENSE|requirements|pre-commit-config|pylintrc|.*\.png$|README.md|pyproject.toml|poetry.lock|\.github/.*
+        entry: black fakenos
+        language: system
+        args:
+          - "--line-length=88"
+  # flake8
+  - repo: local
+    hooks:
+      - id: flake8
+        name: flake8
+        language: system
+        entry: flake8
+        exclude: ^tests/|^docs/|gitignore|LICENSE|requirements|pre-commit-config|pylintrc|.*\.png$|README.md|pyproject.toml|poetry.lock|\.github/.*
+        args:
+          - "--max-line-length=88"
+          - "--max-complexity=19"
+          - "--select=B,C,E,F,W,T4,B9"
+          - "--ignore=F403,E402,E722,E203,W503,C901,E501"
+  # bandit security checks
+  - repo: local
+    hooks:
+      - id: bandit
+        name: bandit
+        language: system
+        entry: bandit
+        exclude: ^tests/|^docs/
+  # pylint, to run it directly use: python3 -m pylint . --rcfile=pylintrc
+  # enabled only spelling checks for docstrings
+  - repo: local
+    hooks:
+      - id: pylint
+        name: pylint
+        language: system
+        entry: pylint .
+        args:
+          - "--rcfile=pylintrc"
+        exclude: ^tests/|gitignore|LICENSE|requirements|pre-commit-config|pylintrc|.*\.png$
