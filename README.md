@@ -13,7 +13,7 @@ install from master:
 
 `python3 -m pip install git+https://github.com/dmulyalin/fakenos`
 
-## Sample Usage
+## Basic Usage
 
 This code starts two devices listening for SSH connections on 127.0.0.1 address
 ports 6001 and 6002 named `router1` and `router2` respectively:
@@ -22,12 +22,63 @@ ports 6001 and 6002 named `router1` and `router2` respectively:
 from fakenos import FakeNOS
 
 network = FakeNOS()
+network.start()
 ```
 
 Initiate SSH connection using default username `user` and password `user`:
 
 ```
 ssh 127.0.0.1 -l user -p 6001
+```
+
+## Using Inventory
+
+FakeNOS uses Inventory dictionary to define a set of SSH servers to start.
+
+Sample inventory data and code to start the servers:
+
+```
+from fakenos import FakeNOS
+
+fake_network = {
+    "default": {
+        "username": "user",
+        "password": "user",
+        "port": [5000, 6000],
+        "server": {
+            "plugin": "ParamikoSshServer",
+            "configuration": {
+                "ssh_key_file": "./ssh-keys/ssh_host_rsa_key",
+                "timeout": 1,
+                "address": "127.0.0.1",
+            },
+        },
+        "shell": {"plugin": "CMDShell", "configuration": {}},
+        "nos": {"plugin": "cisco_ios", "configuration": {}},
+    },
+    "hosts": {
+        "R1": {
+            "port": 5001,
+            "username": "fakenos",
+            "password": "fakenos",
+            "server": {
+                "plugin": "ParamikoSshServer",
+                "configuration": {"address": "0.0.0.0"},
+            },
+            "shell": {
+                "plugin": "CMDShell",
+                "configuration": {"intro": "Custom SSH Shell"},
+            },
+        },
+        "R2": {},
+        "core-router": {"count": 2, "port": [5000, 6000]},
+    },
+}
+
+network = FakeNOS(inventory=fake_network)
+network.starts()
+
+print(network.list_hosts())
 ```
 
 ## How to Generate SSH private key
@@ -58,3 +109,4 @@ server configuration. If you put a password, include it as the `ssh_key_file_pas
 - [fake-switches](https://github.com/internap/fake-switches) - pluggable switch/router command-line simulator
 - [ncs-netsim](https://developer.cisco.com/docs/nso/guides/#!the-network-simulator) - tool to simulate a network of devices
 - [cisshgo](https://github.com/tbotnz/cisshgo) - concurrent SSH server to emulate network equipment for testing purposes
+- [scrapli-replay](https://pypi.org/project/scrapli-replay/) - tools to enable easy testing of SSH programs and to create semi-interactive SSH servers
