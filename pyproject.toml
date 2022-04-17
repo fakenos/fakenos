@@ -6,7 +6,7 @@ authors = ["Denis Mulyalin <d.mulyalin@gmail.com>"]
 maintainers = ["Denis Mulyalin <d.mulyalin@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-keywords = ["NetworkAutomation", "Testing"]
+keywords = ["NetworkAutomation", "Testing", "SSH"]
 classifiers = [
     "Topic :: Utilities",
     "Programming Language :: Python :: 3.6",
@@ -23,13 +23,17 @@ paramiko = "^2.10.3"
 
 [tool.poetry.dev-dependencies]
 pytest = { version = "^7.1.1", markers = "python_version >= '3.7'" }
-bandit = "1.7.*"
-black = "22.3.*"
-flake8 = "4.0.*"
-pre-commit = "2.15.*"
+bandit = { version = "1.7.*", markers = "python_version >= '3.7'" }
+black = { version = "22.3.*", markers = "python_version >= '3.7'" }
+flake8 = { version = "4.0.*", markers = "python_version >= '3.7'" }
+pre-commit = { version = "2.15.*", markers = "python_version >= '3.7'" }
 pyenchant = "3.2.*"
-pylint = "2.12.*"
+pylint = { version = "2.12.*", markers = "python_version >= '3.7'" }
+netmiko = "^3.4.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+fakenos = 'fakenos.plugins.utils.cli:run_cli'

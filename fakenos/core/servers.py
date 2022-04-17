@@ -3,6 +3,7 @@ from sys import platform
 import socket, threading
 import logging
 import traceback
+import time
 
 log = logging.getLogger(__name__)
 
@@ -24,6 +25,9 @@ class TCPServerBase(ABC):
         # this will contain the thread that will listen for incoming
         # connections and data.
         self._listen_thread = None
+
+        # list of active connections maintained by this server
+        self._connection_threads = []
 
     # To start the server, we open the socket and create
     # the listening thread.
@@ -55,6 +59,8 @@ class TCPServerBase(ABC):
             self._is_running.clear()
             self._listen_thread.join()
             self._socket.close()
+            for connection_thread in self._connection_threads:
+                connection_thread.join()
 
     # The listen function will constantly run if the server is running.
     # We wait for a connection, if a connection is made, we will call
@@ -64,9 +70,14 @@ class TCPServerBase(ABC):
             try:
                 self._socket.listen()
                 client, addr = self._socket.accept()
-                self.connection_function(client)
+                connection_thread = threading.Thread(
+                    target=self.connection_function, args=(client,)
+                )
+                connection_thread.start()
+                self._connection_threads.append(connection_thread)
             except socket.timeout:
                 pass
+            time.sleep(0.01)
 
     @abstractmethod
     def connection_function(self, client):

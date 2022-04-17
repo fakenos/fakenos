@@ -1,7 +1,7 @@
 # Fake Network Operating Systems - FakeNOS
 
 > "Reality is merely an illusion, albeit a very persistent one."
-> 
+>
 > ~ Albert Einstein
 
 FakeNOS created to simulate Network Operating Systems interactions.
@@ -15,7 +15,7 @@ install from master:
 
 ## Sample Usage
 
-This code starts two devices listening for SSH connections on 127.0.0.1 address 
+This code starts two devices listening for SSH connections on 127.0.0.1 address
 ports 6001 and 6002 named `router1` and `router2` respectively:
 
 ```
@@ -32,8 +32,8 @@ ssh 127.0.0.1 -l user -p 6001
 
 ## How to Generate SSH private key
 
-By default FakeNOS uses SSH private key embedded with the package, making that key 
-publicly available, which is insecure. Instead, FakeNos can use locally generated SSH key.
+By default FakeNOS uses SSH private key embedded with the package, making that key
+publicly available, which is insecure. Instead, FakeNOS can use locally generated SSH key.
 
 **Linux**
 
@@ -41,7 +41,7 @@ Use the command `ssh-keygen -A` in terminal to generate all of your SSH keys. On
 you can find the RSA key in the following location: `~/.ssh/id_rsa` a.k.a. `/home/username/.ssh/id_rsa`.
 Supply above path as `ssh_key_file` argument to FakeNOS server configuration.
 
-Alternatively can use `ckeygen -t rsa -f ssh-keys/ssh_host_rsa_key` command to generate private key. 
+Alternatively can use `ckeygen -t rsa -f ssh-keys/ssh_host_rsa_key` command to generate private key.
 
 **Windows 10**
 

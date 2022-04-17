@@ -10,10 +10,8 @@ repos:
     hooks:
       - id: check-ast
       - id: end-of-file-fixer
-        exclude: ^tests
       - id: requirements-txt-fixer
       - id: trailing-whitespace
-        exclude: ^tests
       - id: check-added-large-files
         args: ['--maxkb=1000']
   # black
