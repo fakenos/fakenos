@@ -11,10 +11,18 @@ theme:
   name: material
   features:
     - navigation.tabs
+    - content.tabs.link
   palette:
     accent: teal
     primary: blue
-
+    
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - pymdownx.superfences
+  - toc:
+      permalink: true
+    
 plugins:
   - search
   - mkdocstrings:

@@ -135,3 +135,21 @@ def test_custom_inventory_network():
 
 
 # test_custom_inventory()
+
+
+def test_list_hosts_pattern_filter():
+    net = FakeNOS(inventory=fake_network)
+    all_hosts = net.list_hosts()
+    all_hosts_with_filter = net.list_hosts(hosts="*")
+    subset_one = net.list_hosts(hosts="*router[12]")
+
+    print("all_hosts_with_filter:")
+    pprint.pprint(all_hosts_with_filter)
+    
+    print("subset_one:")
+    pprint.pprint(subset_one)
+    
+    assert all("router" in i["name"] for i in subset_one)
+    assert all_hosts == all_hosts_with_filter != []
+    
+# test_list_hosts_pattern_filter()

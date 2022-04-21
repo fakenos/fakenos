@@ -40,13 +40,21 @@ default_inventory = {
 
 class FakeNOS:
     """    
-    FakeNOS core class is a main entry point to interact with fake NOS
-    servers - start, stop, list.
+    FakeNOS class is a main entry point to interact with fake NOS servers - start, stop, list.
 
     :param inventory: FakeNOS inventory dictionary or OS path to .yaml file with inventory data
     :param log_level: logging level to use    
+    
+    Sample usage:
+    
+    ```python
+    from fakenos import FakeNOS
+    
+    net = FakeNOS()
+    net.start()
+    ```    
     """
-    def __init__(self, inventory: dict=None, log_level:str = "DEBUG"):
+    def __init__(self, inventory: dict=None, log_level:str = "DEBUG")-> None:
         self.inventory = inventory or default_inventory
         self.hosts = {}
         self.allocated_ports = set()
@@ -59,11 +67,11 @@ class FakeNOS:
         self._load_inventory()
         self.init()
 
-    def _configure_logging(self):
+    def _configure_logging(self)-> None:
         """Helper method to setup logging"""
         logging.basicConfig(level=self.log_level.upper())
         
-    def _load_inventory(self):
+    def _load_inventory(self)-> None:
         """Helper method to load FakeNOS inventory"""
         # load yaml inventory
         if isinstance(self.inventory, str) and self.inventory.endswith(".yaml"):
@@ -76,8 +84,11 @@ class FakeNOS:
             **self.inventory.get("default", {}),
         }
         
-    def init(self):
-        """Helper method to initiate host objects and store them in self.hosts"""
+    def init(self)-> None:
+        """
+        Helper method to initiate host objects and store them in self.hosts, this
+        method called automatically on FakeNOS object instantiation.        
+        """
         for host, host_config in self.inventory["hosts"].items():
             params = {
                 **copy.deepcopy(self.inventory["default"]),
@@ -96,7 +107,7 @@ class FakeNOS:
                 port_ = self._allocate_port(port)
                 self.hosts[host] = Host(name=host, port=port_, fakenos=self, **params)
         
-    def _allocate_port(self, port):
+    def _allocate_port(self, port: int)-> None:
         """
         Method to allocate port for host
 
@@ -122,22 +133,22 @@ class FakeNOS:
 
         return allocated_port
 
-    def start(self):
+    def start(self)-> None:
         """Function to start NOS servers instances"""
         for host in self.hosts.values():
             host.start()
 
-    def stop(self):
+    def stop(self)-> None:
         """Function to stop NOS servers instances"""
         for host in self.hosts.values():
             host.stop()
 
-    def register_nos_plugin(self, plugin: Union[str, Dict, Nos]):
+    def register_nos_plugin(self, plugin: Union[str, Dict, Nos])-> None:
         """
         Method to register NOS plugin with FakeNOS object, all plugins
         must be registered before calling start method.
 
-        :param plugin: OS path string to NOS plugin .yaml/.yml or .py file, 
+        :param plugin: OS path string to NOS plugin `.yaml/.yml` or `.py` file, 
           dictionary or instance if Nos class
         """
         if isinstance(plugin, Nos):
@@ -154,14 +165,16 @@ class FakeNOS:
                 )
         self.nos_plugins[nos_instance.name] = nos_instance
     
-    def list_hosts(self, hosts: str = "*"):
+    def list_hosts(self, hosts: str = "*")-> list:
         """
         Method to produce a list of hosts wit inventory and status information
 
-        :param hosts: glob pattern to match hosts by name
+        :param hosts: glob pattern to match hosts to return by their name
         """
         ret = []
         for h in self.hosts.values():
+            if not fnmatch.fnmatchcase(h.name, hosts):
+                continue
             ret.append(
                 {
                     "name": h.name,
