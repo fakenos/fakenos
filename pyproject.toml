@@ -33,7 +33,7 @@ bandit = { version = "1.7.*", markers = "python_version >= '3.7'" }
 black = { version = "22.3.*", markers = "python_version >= '3.7'" }
 flake8 = { version = "^4.0.1", markers = "python_version >= '3.7'" }
 pre-commit = { version = "2.15.*", markers = "python_version >= '3.7'" }
-pyenchant = { version = "3.2.*", markers = "python_version >= '3.7'" } 
+pyenchant = { version = "3.2.*", markers = "python_version >= '3.7'" }
 pylint = { version = "2.12.*", markers = "python_version >= '3.7'" }
 
 [build-system]

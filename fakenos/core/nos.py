@@ -6,7 +6,10 @@ class Nos:
     """
     Base class to build NOS plugins instances to use with FakeNOS.
     """
-    def __init__(self, name:str=None, commands:dict=None, initial_prompt:str=None)-> None:
+
+    def __init__(
+        self, name: str = None, commands: dict = None, initial_prompt: str = None
+    ) -> None:
         """
         Method to instantiate Nos Instance
 
@@ -17,72 +20,63 @@ class Nos:
         self.name = name or "noname"
         self.commands = commands or {}
         self.initial_prompt = initial_prompt or "noprompt"
-        
-        
-    def from_dict(self, data: dict)-> None:
+
+    def from_dict(self, data: dict) -> None:
         """
         Method to build NOS from dictionary data.
-        
+
+        Sample NOS dictionary::
+
+            nos_plugin_dict = {
+                "name": "MyFakeNOSPlugin",
+                "initial_prompt": "{base_prompt}>",
+                "commands": {
+                    "terminal width 511": {"output": "", "help": "Set terminal width to 511"},
+                    "terminal length 0": {"output": "", "help": "Set terminal length to 0"},
+                    "show clock": {"output": "MyFakeNOSPlugin system time is 00:00:00"},
+                },
+            }
+
         :param data: NOS dictionary
-        
-        Sample NOS dictionary:
-        
-        ```python
-        nos_plugin_dict = {
-            "name": "MyFakeNOSPlugin",
-            "initial_prompt": "{base_prompt}>",
-            "commands": {
-                "terminal width 511": {"output": "", "help": "Set terminal width to 511"},
-                "terminal length 0": {"output": "", "help": "Set terminal length to 0"},
-                "show clock": {"output": "MyFakeNOSPlugin system time is 00:00:00"},
-            },
-        }        
-        ```
         """
         self.name = data.get("name", self.name)
         self.commands = data.get("commands", self.commands)
         self.initial_prompt = data.get("initial_prompt", self.initial_prompt)
-        
-        
-    def from_yaml(self, data: str)-> None:
+
+    def from_yaml(self, data: str) -> None:
         """
         Method to build NOS from YAML data.
-        
-        :param data: YAML structured text
-        
-        Sample NOS YAML file content:
 
-        ```yaml
-        name: "MyFakeNOSPlugin"
-        initial_prompt: "{base_prompt}>"
-        commands:
-          terminal width 511: {"output": "", "help": "Set terminal width to 511"}
-          terminal length 0: {"output": "", "help": "Set terminal length to 0"}
-          show clock: {"output": "MyFakeNOSPlugin system time is 00:00:00"}
-        ```
+        Sample NOS YAML file content::
+
+            name: "MyFakeNOSPlugin"
+            initial_prompt: "{base_prompt}>"
+            commands:
+              terminal width 511: {"output": "", "help": "Set terminal width to 511"}
+              terminal length 0: {"output": "", "help": "Set terminal length to 0"}
+              show clock: {"output": "MyFakeNOSPlugin system time is 00:00:00"}
+
+        :param data: YAML structured text
         """
         self.from_dict(yaml.safe_load(data))
-        
-        
-    def from_module(self, data: str)-> None:
+
+    def from_module(self, data: str) -> None:
         """
         Method to import NOS data from python file.
-        
-        :param data: OS path string to Python .py file
-        
-        Sample Python NOS plugin file:
 
-        ```python
-        name = "MyFakeNOSPlugin"
-        
-        initial_prompt = "{base_prompt}>"
-        
-        commands = {
-            "terminal width 511": {"output": "", "help": "Set terminal width to 511"},
-            "terminal length 0": {"output": "", "help": "Set terminal length to 0"},
-            "show clock": {"output": "MyFakeNOSPlugin system time is 00:00:00"},
-        }
-        ```
+        Sample Python NOS plugin file::
+
+            name = "MyFakeNOSPlugin"
+
+            initial_prompt = "{base_prompt}>"
+
+            commands = {
+                "terminal width 511": {"output": "", "help": "Set terminal width to 511"},
+                "terminal length 0": {"output": "", "help": "Set terminal length to 0"},
+                "show clock": {"output": "MyFakeNOSPlugin system time is 00:00:00"},
+            }
+
+        :param data: OS path string to Python .py file
         """
         # load .py file using this recipe
         # https://docs.python.org/3/library/importlib.html#importing-a-source-file-directly
@@ -93,12 +87,11 @@ class Nos:
         self.name = getattr(module, "name", self.name)
         self.commands = getattr(module, "commands", self.commands)
         self.initial_prompt = getattr(module, "initial_prompt", self.initial_prompt)
-        
-        
-    def from_file(self, data: str)-> None:
+
+    def from_file(self, data: str) -> None:
         """
         Method to load NOS from YAML or Python file
-        
+
         :param data: OS path string to `.yaml/.yml` or `.py` file with NOS data
         """
         if data.endswith(".yaml") or data.endswith(".yml"):
@@ -107,7 +100,6 @@ class Nos:
         elif data.endswith(".py"):
             self.from_module(data)
         else:
-            raise ValueError(f"Unsupported '{data}' file extension, supported .py, .yml, .yaml")
-            
-            
-        
+            raise ValueError(
+                f"Unsupported '{data}' file extension, supported .py, .yml, .yaml"
+            )

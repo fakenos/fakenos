@@ -4,9 +4,11 @@ name = "foobar_py"
 
 initial_prompt = "{base_prompt}>"
 
+
 def make_show_clock(base_prompt, current_prompt, command):
     "Return String in format '*11:54:03.018 UTC Sat Apr 16 2022'"
     return time.strftime("*%H:%M:%S.000 %Z %a %b %d %Y")
+
 
 running_configuration = """
 service timestamps debug datetime msec

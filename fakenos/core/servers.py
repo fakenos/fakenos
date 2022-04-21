@@ -12,6 +12,7 @@ class TCPServerBase(ABC):
     """
     Base class to host common TCP server methods.
     """
+
     def __init__(self):
         # create a multithreaded event, which is basically a
         # thread-safe boolean

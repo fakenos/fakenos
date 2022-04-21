@@ -15,14 +15,14 @@ theme:
   palette:
     accent: teal
     primary: blue
-    
+
 markdown_extensions:
   - attr_list
   - md_in_html
   - pymdownx.superfences
   - toc:
       permalink: true
-    
+
 plugins:
   - search
   - mkdocstrings:
@@ -40,7 +40,7 @@ plugins:
             merge_init_into_class: true
 nav:
   - Overview: README.md
-  - Usage: 
+  - Usage:
     - Installation: installation.md
     - Getting Started: getting_started.md
     - FakeNOS Inventory: fakenos_inventory.md
@@ -48,6 +48,6 @@ nav:
   - Plugins:
     - Plugins Overview: plugins_overview.md
     - Creating NOS Plugin: creating_nos_plugin.md
-  - API Reference: 
+  - API Reference:
     - Core API: core_api_reference.md
     - Built-in Plugins API: builtin_plugins_api_reference.md

@@ -39,22 +39,23 @@ default_inventory = {
 
 
 class FakeNOS:
-    """    
+    """
     FakeNOS class is a main entry point to interact with fake NOS servers - start, stop, list.
 
     :param inventory: FakeNOS inventory dictionary or OS path to .yaml file with inventory data
-    :param log_level: logging level to use    
-    
+    :param log_level: logging level to use
+
     Sample usage:
-    
+
     ```python
     from fakenos import FakeNOS
-    
+
     net = FakeNOS()
     net.start()
-    ```    
+    ```
     """
-    def __init__(self, inventory: dict=None, log_level:str = "DEBUG")-> None:
+
+    def __init__(self, inventory: dict = None, log_level: str = "DEBUG") -> None:
         self.inventory = inventory or default_inventory
         self.hosts = {}
         self.allocated_ports = set()
@@ -67,27 +68,27 @@ class FakeNOS:
         self._load_inventory()
         self.init()
 
-    def _configure_logging(self)-> None:
+    def _configure_logging(self) -> None:
         """Helper method to setup logging"""
         logging.basicConfig(level=self.log_level.upper())
-        
-    def _load_inventory(self)-> None:
+
+    def _load_inventory(self) -> None:
         """Helper method to load FakeNOS inventory"""
         # load yaml inventory
         if isinstance(self.inventory, str) and self.inventory.endswith(".yaml"):
             with open(self.inventory, "r", encoding="utf-8") as f:
                 self.inventory = yaml.safe_load(f.read())
-        
+
         # make sure we have defaults
         self.inventory["default"] = {
             **default_inventory["default"],
             **self.inventory.get("default", {}),
         }
-        
-    def init(self)-> None:
+
+    def init(self) -> None:
         """
         Helper method to initiate host objects and store them in self.hosts, this
-        method called automatically on FakeNOS object instantiation.        
+        method called automatically on FakeNOS object instantiation.
         """
         for host, host_config in self.inventory["hosts"].items():
             params = {
@@ -106,8 +107,8 @@ class FakeNOS:
             else:
                 port_ = self._allocate_port(port)
                 self.hosts[host] = Host(name=host, port=port_, fakenos=self, **params)
-        
-    def _allocate_port(self, port: int)-> None:
+
+    def _allocate_port(self, port: int) -> None:
         """
         Method to allocate port for host
 
@@ -133,22 +134,22 @@ class FakeNOS:
 
         return allocated_port
 
-    def start(self)-> None:
+    def start(self) -> None:
         """Function to start NOS servers instances"""
         for host in self.hosts.values():
             host.start()
 
-    def stop(self)-> None:
+    def stop(self) -> None:
         """Function to stop NOS servers instances"""
         for host in self.hosts.values():
             host.stop()
 
-    def register_nos_plugin(self, plugin: Union[str, Dict, Nos])-> None:
+    def register_nos_plugin(self, plugin: Union[str, Dict, Nos]) -> None:
         """
         Method to register NOS plugin with FakeNOS object, all plugins
         must be registered before calling start method.
 
-        :param plugin: OS path string to NOS plugin `.yaml/.yml` or `.py` file, 
+        :param plugin: OS path string to NOS plugin `.yaml/.yml` or `.py` file,
           dictionary or instance if Nos class
         """
         if isinstance(plugin, Nos):
@@ -161,11 +162,13 @@ class FakeNOS:
                 nos_instance.from_file(plugin)
             else:
                 raise TypeError(
-                    "Unsupported NOS type {}, supported str, dict or Nos".format(type(plugin))
+                    "Unsupported NOS type {}, supported str, dict or Nos".format(
+                        type(plugin)
+                    )
                 )
         self.nos_plugins[nos_instance.name] = nos_instance
-    
-    def list_hosts(self, hosts: str = "*")-> list:
+
+    def list_hosts(self, hosts: str = "*") -> list:
         """
         Method to produce a list of hosts wit inventory and status information
 

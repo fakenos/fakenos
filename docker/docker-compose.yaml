@@ -16,8 +16,8 @@ services:
       # bind FakeNOS packages to Python3.9 for development/debugging
       - type: bind
         source: ../fakenos/
-        target: /usr/local/lib/python3.9/site-packages/fakenos/        
-        
+        target: /usr/local/lib/python3.9/site-packages/fakenos/
+
 networks:
   fakenosnet0:
     ipam:

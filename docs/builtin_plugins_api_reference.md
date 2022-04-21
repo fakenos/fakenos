@@ -7,7 +7,7 @@
       show_if_no_docstring: true
 	  heading_level: 4
 	  show_object_full_path: false
-			
+
 ## Servers Plugins
 
 ::: fakenos.plugins.servers.ssh_server_paramiko.ParamikoSshServer

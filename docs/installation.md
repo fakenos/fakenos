@@ -13,7 +13,7 @@ install from GitHub master branch:
 
 # Using Poetry
 
-FakeNOS uses Python [Poetry](https://python-poetry.org/) to manage dependencies and 
+FakeNOS uses Python [Poetry](https://python-poetry.org/) to manage dependencies and
 virtual environments. Follow steps below to install FakeNOS using Poetry:
 
 ``` { .bash .annotate }

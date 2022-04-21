@@ -78,5 +78,6 @@ def test_container_cisco_ios_netmiko_multiple_connections():
     assert len(outputs["device2"]) == connections_count * times_to_collect
     assert all("Traceback" not in i for i in outputs["device2"])
     assert all(isinstance(i, str) for i in outputs["device2"])
-    
+
+
 # test_cisco_ios_multiple_connections()

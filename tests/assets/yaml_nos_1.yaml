@@ -2,8 +2,8 @@ name: Custom Nos 0.1.0
 
 initial_prompt: "{base_prompt}>"
 
-commands: 
-  enable: 
+commands:
+  enable:
     output: null
     new_prompt: "{base_prompt}#"
     help: enter exec prompt
@@ -12,7 +12,7 @@ commands:
     output: "*21:01:33.000 AET 01 01 01 2022"
     help: "Display the system clock"
     prompt: ["{base_prompt}#"]
-  show running-config: 
+  show running-config:
     output: |
       service timestamps debug datetime msec
       service timestamps log datetime msec
@@ -21,7 +21,7 @@ commands:
       hostname {base_prompt}
       !
       boot-start-marker
-      boot-end-marker        
+      boot-end-marker
     help: "Current operating configuration"
     prompt: "{base_prompt}#"
   show version:
@@ -29,11 +29,11 @@ commands:
       Version: 0.1.0
       {base_prompt} uptime is 1 day, 17 hours, 32 minutes
       Uptime for this control processor is 1 day, 17 hours, 33 minutes
-      
-      Configuration register is 0x2102      
+
+      Configuration register is 0x2102
     help: System hardware and software status
     prompt": "{base_prompt}#"
-  _default_: 
+  _default_:
     output: "% Invalid input detected at '^' marker."
     help: "Output to print for unknown commands"
   terminal width 511: {"output": "", "help": "Set terminal width to 511"}

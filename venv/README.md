@@ -22,7 +22,7 @@ Resolving dependencies...
       243│         results = dict(
       244│             depth_first_search(
       245│                 PackageNode(self._package, packages), aggregate_package_nodes
-	  
+
 In other owrjds - mkdocs (>=1.3.0,<2.0.0) is incompatible with flake8 (>=4.0.1,<5.0.0), where flake8 is part of dev dependencies,
 was not able to resolve it using poetry extras or using optional keyword in dependency specifications, even if specify optional
 for noth flake8 and mkdocs - poetry still tries to resolve them both. Tried moving all to extras under main dependencies - still the same error.
@@ -42,12 +42,12 @@ python3 -m pip install pip --upgrade
 cd ../../
 poetry install --no-dev
 
-## Install mkdoc requirements 
+## Install mkdoc requirements
 python3 -m pip install mkdocs==1.3.0 mkdocstrings==0.18.1 mkdocs-material mkdocstrings[python]>=0.18
 
 ## Useful resources
 
 https://squidfunk.github.io/mkdocs-material/creating-your-site/#minimal-configuration
-https://www.mkdocs.org/getting-started/ 
+https://www.mkdocs.org/getting-started/
 https://mkdocstrings.github.io/ - main mkdocstring website
 https://mkdocstrings.github.io/python/usage/#handler-options - mkdocstring python handler usage
