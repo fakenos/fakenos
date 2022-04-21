@@ -42,7 +42,7 @@ fake_network = {
 }
 
 
-def test_fakenos_base():
+def test_fakenos_base_inventory():
     """Base test to test start stop net opearions using default inventory"""
     net = FakeNOS()
     before_start = net.list_hosts()
@@ -95,7 +95,8 @@ def test_custom_inventory_network():
     for item in after_start:
         device_data = {
             "device_type": item["nos"],
-            "host": item["address"],
+            # "host": item["address"],
+            "host": "127.0.0.1",
             "username": fake_network["hosts"]
             .get(item["name"], {})
             .get("username", default_username),

@@ -1,0 +1,10 @@
+router1: {groups: [lab], port: 6001}
+router2: {groups: [lab], port: 6002}
+router3: {groups: [lab], port: 6003}
+router4: {groups: [lab], port: 6004}
+router5: {groups: [lab], port: 6005}
+router6: {groups: [lab], port: 6006}
+router7: {groups: [lab], port: 6007}
+router8: {groups: [lab], port: 6008}
+router9: {groups: [lab], port: 6009}
+router10: {groups: [lab], port: 6010}

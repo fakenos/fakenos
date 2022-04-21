@@ -1,7 +1,4 @@
 """
-FakeNOS CLI
-===========
-
 FakeNOS Command Line Tool for running fake servers.
 """
 
@@ -40,7 +37,7 @@ INVENTORY = args.INVENTORY
 
 def run_cli():
     """Function to start FakeNOS CLI """
-    net = FakeNOS()
+    net = FakeNOS(inventory=INVENTORY)
     net.start()
     print("Started servers:")
     print(net.list_hosts())

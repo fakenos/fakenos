@@ -9,6 +9,9 @@ log = logging.getLogger(__name__)
 
 
 class TCPServerBase(ABC):
+    """
+    Base class to host common TCP server methods.
+    """
     def __init__(self):
         # create a multithreaded event, which is basically a
         # thread-safe boolean
@@ -32,6 +35,7 @@ class TCPServerBase(ABC):
     # To start the server, we open the socket and create
     # the listening thread.
     def start(self, address=None, port=None, timeout=None):
+        """Start Server"""
         address = address or self.address
         port = port or self.port
         timeout = timeout or self.timeout
@@ -55,6 +59,7 @@ class TCPServerBase(ABC):
     # To stop the server, we must join the listen thread
     # and close the socket.
     def stop(self):
+        """Stop Server"""
         if self._is_running.is_set():
             self._is_running.clear()
             self._listen_thread.join()

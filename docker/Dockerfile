@@ -10,4 +10,6 @@ RUN python3 -m pip install pip setuptools wheel --upgrade
 COPY . /tmp/fakenos/
 RUN python3 -m pip install /tmp/fakenos/ --upgrade
 
-ENTRYPOINT ["fakenos"]
+COPY ./docker/fakenos_inventory.yaml /tmp/fakenos_inventory/fakenos_inventory.yaml
+
+ENTRYPOINT fakenos -i /tmp/fakenos_inventory/fakenos_inventory.yaml

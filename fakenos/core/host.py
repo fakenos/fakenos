@@ -2,7 +2,9 @@
 Host classes
 """
 from typing import Union, Callable, Dict, List
+import logging
 
+log = logging.getLogger(__name__)
 
 class Host:
     def __init__(

@@ -4,6 +4,7 @@ import time
 
 sys.path.insert(0, "..")
 
+from netmiko import ConnectHandler
 from fakenos import FakeNOS
 
 xesandbox_data = {
@@ -32,8 +33,6 @@ fakerouter2 = {
 
 
 def test_container_cisco_ios_netmiko_send_show_clock_100_times():
-    from netmiko import ConnectHandler
-
     times_to_collect = 100
     outputs = []
 
@@ -54,8 +53,6 @@ def test_container_cisco_ios_netmiko_send_show_clock_100_times():
 
 def test_container_cisco_ios_netmiko_multiple_connections():
     """ Method to run multiple connection establishment and teardown """
-    from netmiko import ConnectHandler
-
     connections_count = 10
     times_to_collect = 5
 

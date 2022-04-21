@@ -1,5 +1,5 @@
 from fakenos.plugins.servers import servers_plugins
-from fakenos.plugins.nos import nos_plugins, nos_builders
+from fakenos.plugins.nos import nos_plugins
 from fakenos.plugins.shell import shell_plugins
 from fakenos.core.host import Host
 from fakenos.core.nos import Nos
@@ -12,6 +12,7 @@ from typing import (
 import logging
 import fnmatch
 import copy
+import yaml
 
 log = logging.getLogger(__name__)
 
@@ -38,7 +39,14 @@ default_inventory = {
 
 
 class FakeNOS:
-    def __init__(self, inventory=None, log_level="DEBUG"):
+    """    
+    FakeNOS core class is a main entry point to interact with fake NOS
+    servers - start, stop, list.
+
+    :param inventory: FakeNOS inventory dictionary or OS path to .yaml file with inventory data
+    :param log_level: logging level to use    
+    """
+    def __init__(self, inventory: dict=None, log_level:str = "DEBUG"):
         self.inventory = inventory or default_inventory
         self.hosts = {}
         self.allocated_ports = set()
@@ -47,16 +55,29 @@ class FakeNOS:
         self.servers_plugins = servers_plugins
         self.log_level = log_level
 
-        # set logging
-        logging.basicConfig(level=self.log_level.upper())
+        self._configure_logging()
+        self._load_inventory()
+        self.init()
 
+    def _configure_logging(self):
+        """Helper method to setup logging"""
+        logging.basicConfig(level=self.log_level.upper())
+        
+    def _load_inventory(self):
+        """Helper method to load FakeNOS inventory"""
+        # load yaml inventory
+        if isinstance(self.inventory, str) and self.inventory.endswith(".yaml"):
+            with open(self.inventory, "r", encoding="utf-8") as f:
+                self.inventory = yaml.safe_load(f.read())
+        
         # make sure we have defaults
         self.inventory["default"] = {
             **default_inventory["default"],
             **self.inventory.get("default", {}),
         }
-
-        # initiate host objects
+        
+    def init(self):
+        """Helper method to initiate host objects and store them in self.hosts"""
         for host, host_config in self.inventory["hosts"].items():
             params = {
                 **copy.deepcopy(self.inventory["default"]),
@@ -74,7 +95,7 @@ class FakeNOS:
             else:
                 port_ = self._allocate_port(port)
                 self.hosts[host] = Host(name=host, port=port_, fakenos=self, **params)
-
+        
     def _allocate_port(self, port):
         """
         Method to allocate port for host
@@ -111,25 +132,28 @@ class FakeNOS:
         for host in self.hosts.values():
             host.stop()
 
-    def register_nos_plugin(self, name: str, nos: Union[str, Dict, Nos]):
+    def register_nos_plugin(self, plugin: Union[str, Dict, Nos]):
         """
         Method to register NOS plugin with FakeNOS object, all plugins
         must be registered before calling start method.
 
-        :param name: Name of NOS plugin
-        :param nos: OS path string to plugin .yaml file, dictionary or instance if Nos
+        :param plugin: OS path string to NOS plugin .yaml/.yml or .py file, 
+          dictionary or instance if Nos class
         """
-        if isinstance(nos, Nos):
-            self.nos_plugins[name] = nos
-        elif isinstance(nos, dict):
-            self.nos_plugins[name] = nos_builders["dict_builder"](nos)
-        elif isinstance(nos, str):
-            self.nos_plugins[name] = nos_builders["yaml_builder"](nos)
+        if isinstance(plugin, Nos):
+            nos_instance = plugin
         else:
-            raise TypeError(
-                "Unsupported NOS type {}, supported str, dict or Nos".format(type(nos))
-            )
-
+            nos_instance = Nos()
+            if isinstance(plugin, dict):
+                nos_instance.from_dict(plugin)
+            elif isinstance(plugin, str):
+                nos_instance.from_file(plugin)
+            else:
+                raise TypeError(
+                    "Unsupported NOS type {}, supported str, dict or Nos".format(type(plugin))
+                )
+        self.nos_plugins[nos_instance.name] = nos_instance
+    
     def list_hosts(self, hosts: str = "*"):
         """
         Method to produce a list of hosts wit inventory and status information

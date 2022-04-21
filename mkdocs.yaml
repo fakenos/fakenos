@@ -1,0 +1,45 @@
+repo_name: dmulyalin/fakenos
+repo_url: https://github.com/dmulyalin/fakenos
+site_author: Denis Mulyalin
+site_description: FakeNOS, Network, SSH
+site_name: FakeNOS
+site_url: https://fakenos.github.io/
+docs_dir: docs/
+theme:
+  icon:
+    repo: fontawesome/brands/github-alt
+  name: material
+  features:
+    - navigation.tabs
+  palette:
+    accent: teal
+    primary: blue
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          selection:
+            docstring_style: sphinx
+          rendering:
+            show_root_heading: false
+            show_root_toc_entry: false
+            heading_level: 3
+            show_object_full_path: true
+            show_signature_annotations: true
+            docstring_section_style: list
+            merge_init_into_class: true
+nav:
+  - Overview: README.md
+  - Usage: 
+    - Installation: installation.md
+    - Getting Started: getting_started.md
+    - FakeNOS Inventory: fakenos_inventory.md
+    - Running in Docker Container: running_in_docker_md.md
+  - Plugins:
+    - Plugins Overview: plugins_overview.md
+    - Creating NOS Plugin: creating_nos_plugin.md
+  - API Reference: 
+    - Core API: core_api_reference.md
+    - Built-in Plugins API: builtin_plugins_api_reference.md
