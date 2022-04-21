@@ -6,6 +6,8 @@
 
 FakeNOS created to simulate Network Operating Systems interactions.
 
+[Documentation](https://dmulyalin.github.io/fakenos/)
+
 ## Installation
 
 Install [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git), next
