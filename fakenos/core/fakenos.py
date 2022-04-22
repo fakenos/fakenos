@@ -139,15 +139,31 @@ class FakeNOS:
 
         return allocated_port
 
-    def start(self) -> None:
-        """Function to start NOS servers instances"""
-        for host in self.hosts.values():
-            host.start()
+    def start(self, hosts="*") -> None:
+        """
+        Function to start NOS servers instances
+        
+        :param hosts: glob pattern to match hosts to start by their name
+        """
+        for h in self.hosts.values():
+            if (
+                not h.running and 
+                fnmatch.fnmatchcase(h.name, hosts)                
+            ):
+                h.start()
 
-    def stop(self) -> None:
-        """Function to stop NOS servers instances"""
-        for host in self.hosts.values():
-            host.stop()
+    def stop(self, hosts="*") -> None:
+        """
+        Function to stop NOS servers instances
+        
+        :param hosts: glob pattern to match hosts to stop by their name
+        """
+        for h in self.hosts.values():
+            if (
+                h.running and 
+                fnmatch.fnmatchcase(h.name, hosts)
+            ):
+                h.stop()
 
     def register_nos_plugin(self, plugin: Union[str, Dict, Nos]) -> None:
         """

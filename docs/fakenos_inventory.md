@@ -340,7 +340,7 @@ like this:
 
 ## Default Inventory
 
-If not inventory data provided on FakeNOS object instantiation, FakeNOS falls back 
+If no inventory data provided on FakeNOS object instantiation, FakeNOS falls back 
 on using default inventory configuration:
 
 ```python

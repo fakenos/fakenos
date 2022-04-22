@@ -1,7 +1,7 @@
 """
 File to contain pydantic models for plugins input/output data validation
 """
-from pydantic import BaseModel, StrictBool, StrictInt, StrictFloat, StrictStr, conlist, IPvAnyAddress, conint, root_validator, validate
+from pydantic import BaseModel, StrictBool, StrictInt, StrictFloat, StrictStr, conlist, IPvAnyAddress, conint, root_validator
 from typing import Union, Optional, List, Any, Dict, Callable, Tuple
 
 try:

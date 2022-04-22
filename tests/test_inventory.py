@@ -198,3 +198,9 @@ def test_inventory_validation_cmdshell_plugin():
     net = FakeNOS(inventory=invcp)
     
 # test_inventory_validation_cmdshell_plugin()
+
+def test_fakenos_start_hosts_with_glob_pattern()
+    ...
+    
+def test_fakenos_stop_hosts_with_glob_pattern()
+    ...

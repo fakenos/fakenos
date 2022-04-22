@@ -1,17 +1,17 @@
-# From PyPI using PIP
+# Install From PyPI using PIP
 
 FakeNOS published to PyPI, to install it using PIP run:
 
 `python3 -m pip install fakenos`
 
-# From GitHub master branch
+# Install From GitHub master branch
 
 Install [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git), next
 install from GitHub master branch:
 
 `python3 -m pip install git+https://github.com/dmulyalin/fakenos`
 
-# Using Poetry
+# Install Using Poetry
 
 FakeNOS uses Python [Poetry](https://python-poetry.org/) to manage dependencies and
 virtual environments. Follow steps below to install FakeNOS using Poetry:
