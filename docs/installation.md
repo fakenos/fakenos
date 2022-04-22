@@ -16,11 +16,11 @@ install from GitHub master branch:
 FakeNOS uses Python [Poetry](https://python-poetry.org/) to manage dependencies and
 virtual environments. Follow steps below to install FakeNOS using Poetry:
 
-``` { .bash .annotate }
-python3 -m pip install poetry # (1)
+```{ .bash .annotate }
+python3 -m pip install poetry                  # (1)
 git clone https://github.com/dmulyalin/fakenos # (2)
-cd fakenos # (3)
-poetry install # (4)
+cd fakenos                                     # (3)
+poetry install                                 # (4)
 ```
 
 1.  Install Poetry

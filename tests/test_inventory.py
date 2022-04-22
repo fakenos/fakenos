@@ -1,6 +1,9 @@
 import sys
 import pprint
 import time
+import copy
+import pytest
+from pydantic import ValidationError
 
 sys.path.insert(0, "..")
 
@@ -76,8 +79,13 @@ def test_fakenos_base_inventory():
     assert after_stop[1]["running"] == False
 
 
-# test_fakenos_base()
+# test_fakenos_base_inventory()
 
+def test_validate_inventory_custom():
+    # this should not raise any errors
+    net = FakeNOS(inventory=fake_network)
+
+# test_validate_inventory_custom()
 
 def test_custom_inventory_network():
     from netmiko import ConnectHandler
@@ -152,5 +160,41 @@ def test_list_hosts_pattern_filter():
     assert all("router" in i["name"] for i in subset_one)
     assert all_hosts == all_hosts_with_filter != []
 
-
 # test_list_hosts_pattern_filter()
+
+
+def test_inventory_validation_host_port():
+    # test inventory host has no count and port is list
+    invcp = copy.deepcopy(fake_network)
+    invcp["hosts"]["R1"]["port"] = [5001]
+    with pytest.raises(ValidationError):
+        net = FakeNOS(inventory=invcp)
+    
+    # test host has count but port is int
+    invcp = copy.deepcopy(fake_network)
+    invcp["hosts"]["core-router"]["port"] = 6000
+    with pytest.raises(ValidationError):
+        net = FakeNOS(inventory=invcp)
+        
+# test_inventory_validation_host_port()
+
+
+def test_inventory_validation_shell_plugin_name():
+    # test inventory wrong shell plugin name
+    invcp = copy.deepcopy(fake_network)
+    invcp["hosts"]["R1"]["shell"]["plugin"] = "undefined"
+    with pytest.raises(ValidationError):
+        net = FakeNOS(inventory=invcp)    
+
+def test_inventory_validation_cmdshell_plugin():
+    # test inventory CMDShell plugin params
+    invcp = copy.deepcopy(fake_network)
+    invcp["hosts"]["R1"]["shell"]["configuration"] = {
+        "intro": "Custom SSH Shell",
+        "ruler": "=",
+        "completekey": "tab",
+        "newline": "\r\n",
+    }
+    net = FakeNOS(inventory=invcp)
+    
+# test_inventory_validation_cmdshell_plugin()

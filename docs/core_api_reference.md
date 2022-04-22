@@ -1,15 +1,15 @@
-## FakeNOS Core Class
+## FakeNOS Class
 
 ::: fakenos.core.fakenos.FakeNOS
 
-## Host Core Class
+## Host Class
 
 ::: fakenos.core.host.Host
 
-## Nos Core Class
+## Nos Class
 
 ::: fakenos.core.nos.Nos
 
-## TCPServerBase Core Class
+## TCPServerBase Class
 
 ::: fakenos.core.servers.TCPServerBase

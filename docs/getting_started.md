@@ -14,6 +14,7 @@ Initiate SSH connection using default username `user` and password `user`:
 
 ```
 ssh 127.0.0.1 -l user -p 6001
+ssh 127.0.0.1 -l user -p 6002
 ```
 
 # Using Custom Inventory
@@ -22,11 +23,11 @@ FakeNOS uses Inventory dictionary to define a set of SSH servers to start.
 
 Sample inventory data and code to start the servers:
 
-```
+```{ .python .annotate }
 from fakenos import FakeNOS
 
 fake_network = {
-    "default": {
+    "default": { # (4)
         "username": "user",
         "password": "user",
         "port": [5000, 6000],
@@ -44,11 +45,11 @@ fake_network = {
     "hosts": {
         "R1": {
             "port": 5001,
-            "username": "fakenos",
+            "username": "fakenos", # (2)
             "password": "fakenos",
             "server": {
                 "plugin": "ParamikoSshServer",
-                "configuration": {"address": "0.0.0.0"},
+                "configuration": {"address": "0.0.0.0"},  # (1)
             },
             "shell": {
                 "plugin": "CMDShell",
@@ -56,7 +57,7 @@ fake_network = {
             },
         },
         "R2": {},
-        "core-router": {"count": 2, "port": [5000, 6000]},
+        "core-router": {"count": 2, "port": [5000, 6000]}, # (3)
     },
 }
 
@@ -65,6 +66,12 @@ network.starts()
 
 print(network.list_hosts())
 ```
+
+1. `0.0.0.0` - Listen for connections on all interfaces
+2. Override `username` and `password` defined in `default` section
+3. Start two hosts `core-router1` and `core-router2` using next available
+   ports from provided range
+4. Settings used by all hosts by default 
 
 # Generating SSH private key
 

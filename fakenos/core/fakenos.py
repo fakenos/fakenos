@@ -3,6 +3,7 @@ from fakenos.plugins.nos import nos_plugins
 from fakenos.plugins.shell import shell_plugins
 from fakenos.core.host import Host
 from fakenos.core.nos import Nos
+from fakenos.core.pydantic_models import model_fakenos_inventory
 
 from typing import (
     Union,
@@ -84,6 +85,10 @@ class FakeNOS:
             **default_inventory["default"],
             **self.inventory.get("default", {}),
         }
+        
+        # validate inventory data
+        inventory_model_instance = model_fakenos_inventory(**self.inventory)
+        log.debug(str(inventory_model_instance.schema_json(indent=4)))
 
     def init(self) -> None:
         """

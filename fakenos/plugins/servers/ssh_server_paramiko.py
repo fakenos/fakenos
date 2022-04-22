@@ -176,7 +176,7 @@ class ParamikoSshServer(TCPServerBase):
         password,
         ssh_key_file=None,
         ssh_key_file_password=None,
-        ssh_banner="My SSH Server",
+        ssh_banner="FakeNOS Paramiko SSH Server",
         shell_configuration=None,
         address="127.0.0.1",
         timeout=1,
