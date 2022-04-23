@@ -89,6 +89,7 @@ class FakeNOS:
 
         # validate inventory data
         inventory_model_instance = model_fakenos_inventory(**self.inventory)
+        log.debug("FakeNOS inventory validation succeeded")
         # log.debug(str(inventory_model_instance.schema_json(indent=4)))
 
     def init(self) -> None:

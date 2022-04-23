@@ -1,5 +1,10 @@
 import yaml
 import importlib.util
+import logging
+
+from fakenos.core.pydantic_models import model_nos_attributes
+
+log = logging.getLogger(__name__)
 
 
 class Nos:
@@ -20,7 +25,23 @@ class Nos:
         self.name = name or "noname"
         self.commands = commands or {}
         self.initial_prompt = initial_prompt or "noprompt"
-
+        
+        # make sure to validate NOS attributes if Nos class instantiated with them
+        if commands or name or initial_prompt:
+            self.validate()
+        
+    def validate(self) -> None:
+        """
+        Method to validate NOS attributes: commands, name, initial prompt - using 
+        Pydantic models, raises ValidationError on failure.
+        """
+        _ = model_nos_attributes(
+            name=self.name,
+            initial_prompt=self.initial_prompt,
+            commands=self.commands,
+        )
+        log.debug(f"{self.name} NOS attributes validation succeeded")
+        
     def from_dict(self, data: dict) -> None:
         """
         Method to build NOS from dictionary data.
@@ -42,7 +63,8 @@ class Nos:
         self.name = data.get("name", self.name)
         self.commands = data.get("commands", self.commands)
         self.initial_prompt = data.get("initial_prompt", self.initial_prompt)
-
+        self.validate()
+        
     def from_yaml(self, data: str) -> None:
         """
         Method to build NOS from YAML data.
@@ -59,7 +81,8 @@ class Nos:
         :param data: YAML structured text
         """
         self.from_dict(yaml.safe_load(data))
-
+        self.validate()
+        
     def from_module(self, data: str) -> None:
         """
         Method to import NOS data from python file.
@@ -87,7 +110,8 @@ class Nos:
         self.name = getattr(module, "name", self.name)
         self.commands = getattr(module, "commands", self.commands)
         self.initial_prompt = getattr(module, "initial_prompt", self.initial_prompt)
-
+        self.validate()
+        
     def from_file(self, data: str) -> None:
         """
         Method to load NOS from YAML or Python file

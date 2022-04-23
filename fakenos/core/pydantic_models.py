@@ -97,3 +97,14 @@ class model_fakenos_inventory(BaseModel):
 # ---------------------------------------------------------------------------------------
 # NOS plugin commands model
 # ---------------------------------------------------------------------------------------
+
+class model_nos_command(BaseModel):
+    output: Union[StrictStr, None, Callable]
+    help: Optional[StrictStr]
+    prompt: Optional[Union[StrictStr, List[StrictStr]]]
+    new_prompt: Optional[StrictStr]
+    
+class model_nos_attributes(BaseModel):
+    commands: Dict[StrictStr, model_nos_command]
+    name: StrictStr
+    initial_prompt: StrictStr

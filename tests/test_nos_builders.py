@@ -2,6 +2,9 @@ import sys
 import pprint
 import time
 import yaml
+import pytest
+from pydantic import ValidationError
+
 
 sys.path.insert(0, "..")
 
@@ -409,3 +412,46 @@ def test_fakenos_register_nos_plugin_from_py_file():
 
 
 # test_fakenos_register_nos_plugin_from_py_file()
+
+
+def test_fakenos_register_nos_plugin_class_validation():
+    with pytest.raises(ValidationError):
+        nos = Nos(
+            name="MyFakeNOSPlugin",
+            initial_prompt="{base_prompt}>",
+            commands={
+                "show clock": {"output": True},
+            },
+        )
+        
+    with pytest.raises(ValidationError):
+        nos = Nos(
+            name=42,
+            initial_prompt="{base_prompt}>",
+            commands={
+                "show clock": {"output": "foo"},
+            },
+        )
+        
+    with pytest.raises(ValidationError):
+        nos = Nos(
+            commands={
+                "show clock": {"output": 42},
+            },
+        )
+        
+    with pytest.raises(ValidationError):
+        nos = Nos(
+            commands={
+                "show clock": {"output": "foo", "new_prompt": 42},
+            },
+        )
+        
+    with pytest.raises(ValidationError):
+        nos = Nos(
+            commands={
+                "show clock": {"output": "foo", "new_prompt": 42},
+            },
+        )
+
+# test_fakenos_register_nos_plugin_class_validation_error()
