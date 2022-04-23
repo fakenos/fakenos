@@ -58,7 +58,7 @@ class CMDShell(Cmd):
             self.stdout.write(line + self.newline)
 
     def emptyline(self):
-        """ This method to do nothing if empty line entered """
+        """This method to do nothing if empty line entered"""
         pass
 
     def precmd(self, line):
@@ -106,7 +106,7 @@ class CMDShell(Cmd):
             )
 
     def default(self, command):
-        """ Method called if no do_xyz methods found """
+        """Method called if no do_xyz methods found"""
         log.debug("shell.run_command running command '{}'".format(command))
         ret = self.commands["_default_"]["output"]
         try:

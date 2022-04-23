@@ -1,4 +1,4 @@
-FakeNOS uses inventory data to control its behavior. 
+FakeNOS uses inventory data to control its behavior.
 
 Code example demonstrating how to use FakeNOS inventory dictionary:
 
@@ -50,18 +50,18 @@ print(network.list_hosts())
 2. Override `username` and `password` defined in `default` section
 3. Start two hosts `core-router1` and `core-router2` using next available
    ports from provided range
-4. Settings used by all hosts by default 
+4. Settings used by all hosts by default
 
 ## FakeNOS Inventory Explained
 
-FakeNOS inventory consists of two top sections - `default` and `hosts` - 
-comprising two levels of inventory hierarchy. 
+FakeNOS inventory consists of two top sections - `default` and `hosts` -
+comprising two levels of inventory hierarchy.
 
 Inventory `default` section contains parameters and configuration that FakeNOS
 uses by default for each host.
 
 Inventory `hosts` section is a dictionary keyed by hosts' names containing host
-definition. Any parameter defined per-host overrides parameters defined in 
+definition. Any parameter defined per-host overrides parameters defined in
 `default` section.
 
 Host definition can contain `count` parameter to define hosts in bulk, e.g.
@@ -73,23 +73,23 @@ inventory_data = {
         "router": {"count": 10, "port": [5001, 6000]}
     }
 }
-``` 
+```
 
 will result in FakeNOS running 10 instances of hosts servers named `router1`
-to `router10` using ports 5001 to 5010 respectively. That makes it very easy to 
+to `router10` using ports 5001 to 5010 respectively. That makes it very easy to
 define sets of hosts that use same configuration to scale the setup out.
 
 !!! warning
-    
-    If host inventory data contains `count` parameter, `port` parameter must be a list 
+
+    If host inventory data contains `count` parameter, `port` parameter must be a list
     of two integers representing range to allocate ports from. If host does not contains
     `count` parameter, `port` must be a positive integer from 1 - 65535 range.
 
 ## Inventory JSON Schema
 
-FakeNOS internally uses [Pydantic](https://pydantic-docs.helpmanual.io/usage/models/) 
-models to validate inventory data and raise `ValidationError` if inventory does 
-not comply with defined schema. 
+FakeNOS internally uses [Pydantic](https://pydantic-docs.helpmanual.io/usage/models/)
+models to validate inventory data and raise `ValidationError` if inventory does
+not comply with defined schema.
 
 While inventory modeled using Pydantic models, equivalent JSON Schema looks
 like this:
@@ -340,7 +340,7 @@ like this:
 
 ## Default Inventory
 
-If no inventory data provided on FakeNOS object instantiation, FakeNOS falls back 
+If no inventory data provided on FakeNOS object instantiation, FakeNOS falls back
 on using default inventory configuration:
 
 ```python

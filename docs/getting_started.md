@@ -71,7 +71,7 @@ print(network.list_hosts())
 2. Override `username` and `password` defined in `default` section
 3. Start two hosts `core-router1` and `core-router2` using next available
    ports from provided range
-4. Settings used by all hosts by default 
+4. Settings used by all hosts by default
 
 # Generating SSH private key
 

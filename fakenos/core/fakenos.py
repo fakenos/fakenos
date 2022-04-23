@@ -9,6 +9,7 @@ from typing import (
     Union,
     Callable,
     Dict,
+    List,
 )
 import logging
 import fnmatch
@@ -85,10 +86,10 @@ class FakeNOS:
             **default_inventory["default"],
             **self.inventory.get("default", {}),
         }
-        
+
         # validate inventory data
         inventory_model_instance = model_fakenos_inventory(**self.inventory)
-        log.debug(str(inventory_model_instance.schema_json(indent=4)))
+        # log.debug(str(inventory_model_instance.schema_json(indent=4)))
 
     def init(self) -> None:
         """
@@ -139,30 +140,41 @@ class FakeNOS:
 
         return allocated_port
 
-    def start(self, hosts="*") -> None:
+    def _split_pattern(self, pattern: Union[str, List[str]]) -> List[str]:
+        """
+        Helper method to split pattern into a list of patterns.
+
+        :param pattern: glob pattern or list or comma separated list of patterns
+        :return: list of patterns
+        """
+        return (
+            pattern
+            if isinstance(pattern, list)
+            else [i.strip() for i in pattern.split(",")]
+        )
+
+    def start(self, hosts: Union[str, List[str]] = "*") -> None:
         """
         Function to start NOS servers instances
-        
-        :param hosts: glob pattern to match hosts to start by their name
+
+        :param hosts: glob pattern to match hosts to start by their name or
+            list or comma separated list of patterns
         """
+        hosts = self._split_pattern(hosts)
         for h in self.hosts.values():
-            if (
-                not h.running and 
-                fnmatch.fnmatchcase(h.name, hosts)                
-            ):
+            if not h.running and any(fnmatch.fnmatchcase(h.name, p) for p in hosts):
                 h.start()
 
-    def stop(self, hosts="*") -> None:
+    def stop(self, hosts: Union[str, List[str]] = "*") -> None:
         """
         Function to stop NOS servers instances
-        
-        :param hosts: glob pattern to match hosts to stop by their name
+
+        :param hosts: glob pattern to match hosts to stop by their name or
+            list or comma separated list of patterns
         """
+        hosts = self._split_pattern(hosts)
         for h in self.hosts.values():
-            if (
-                h.running and 
-                fnmatch.fnmatchcase(h.name, hosts)
-            ):
+            if h.running and any(fnmatch.fnmatchcase(h.name, p) for p in hosts):
                 h.stop()
 
     def register_nos_plugin(self, plugin: Union[str, Dict, Nos]) -> None:
@@ -189,26 +201,27 @@ class FakeNOS:
                 )
         self.nos_plugins[nos_instance.name] = nos_instance
 
-    def list_hosts(self, hosts: str = "*") -> list:
+    def list_hosts(self, hosts: Union[str, List[str]] = "*") -> list:
         """
         Method to produce a list of hosts wit inventory and status information
 
-        :param hosts: glob pattern to match hosts to return by their name
+        :param hosts: glob pattern to match hosts to return by their name or
+            list or comma separated list of patterns
         """
         ret = []
+        hosts = self._split_pattern(hosts)
         for h in self.hosts.values():
-            if not fnmatch.fnmatchcase(h.name, hosts):
-                continue
-            ret.append(
-                {
-                    "name": h.name,
-                    "nos": h.nos_params["plugin"],
-                    "shell": h.shell_params["plugin"],
-                    "server": h.server_params["plugin"],
-                    "port": h.server.port if h.server else h.port,
-                    "address": h.server.address if h.server else None,
-                    "base_prompt": h.shell_params["configuration"]["base_prompt"],
-                    "running": h.running,
-                }
-            )
+            if any(fnmatch.fnmatchcase(h.name, p) for p in hosts):
+                ret.append(
+                    {
+                        "name": h.name,
+                        "nos": h.nos_params["plugin"],
+                        "shell": h.shell_params["plugin"],
+                        "server": h.server_params["plugin"],
+                        "port": h.server.port if h.server else h.port,
+                        "address": h.server.address if h.server else None,
+                        "base_prompt": h.shell_params["configuration"]["base_prompt"],
+                        "running": h.running,
+                    }
+                )
         return ret

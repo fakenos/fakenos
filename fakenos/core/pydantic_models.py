@@ -1,22 +1,34 @@
 """
 File to contain pydantic models for plugins input/output data validation
 """
-from pydantic import BaseModel, StrictBool, StrictInt, StrictFloat, StrictStr, conlist, IPvAnyAddress, conint, root_validator
+from pydantic import (
+    BaseModel,
+    StrictBool,
+    StrictInt,
+    StrictFloat,
+    StrictStr,
+    conlist,
+    IPvAnyAddress,
+    conint,
+    root_validator,
+)
 from typing import Union, Optional, List, Any, Dict, Callable, Tuple
 
 try:
-    from typing import Literal # works with >=py3.8
+    from typing import Literal  # works with >=py3.8
 except ImportError:
-    from typing_extensions import Literal # works with <py3.8
+    from typing_extensions import Literal  # works with <py3.8
 
 
 # ---------------------------------------------------------------------------------------
 # FakeNOS inventory data model components
 # ---------------------------------------------------------------------------------------
 
+
 class NosPlugin(BaseModel):
     plugin: StrictStr
     configuration: Optional[Dict]
+
 
 class ParamikoSshServerConfig(BaseModel):
     ssh_key_file: Optional[StrictStr] = None
@@ -26,20 +38,24 @@ class ParamikoSshServerConfig(BaseModel):
     address: Optional[Union[Literal["localhost"], IPvAnyAddress]]
     watchdog_interval: Optional[StrictInt] = 1
 
+
 class ParamikoSshServerPlugin(BaseModel):
     plugin: Literal["ParamikoSshServer"]
     configuration: Optional[ParamikoSshServerConfig]
-    
+
+
 class CMDShellConfig(BaseModel):
     intro: Optional[StrictStr] = "Custom SSH Shell"
     ruler: Optional[StrictStr] = ""
     completekey: Optional[StrictStr] = "tab"
     newline: Optional[StrictStr] = "\r\n"
-    
+
+
 class CMDShellPlugin(BaseModel):
     plugin: Literal["CMDShell"]
     configuration: Optional[CMDShellConfig]
-    
+
+
 class InventoryDefaultSection(BaseModel):
     username: Optional[StrictStr]
     password: Optional[StrictStr]
@@ -49,30 +65,35 @@ class InventoryDefaultSection(BaseModel):
     server: Optional[Union[ParamikoSshServerPlugin]]
     shell: Optional[Union[CMDShellPlugin]]
     nos: Optional[NosPlugin]
-    
+
+
 class HostConfig(InventoryDefaultSection):
     # count: Optional[conint(strict=True, gt=0)]
     # use this for now, mkdocstring having issue with pydantic - https://github.com/mkdocstrings/griffe/issues/66
     count: Optional[StrictInt]
-    
+
     @root_validator(pre=True)
     def check_port_value(cls, values):
         port = values.get("port")
         if "count" not in values and port:
-            assert isinstance(port, int), "If no host 'count' given, port must be an integer"
+            assert isinstance(
+                port, int
+            ), "If no host 'count' given, port must be an integer"
         elif "count" in values and port:
             assert isinstance(port, list), "If host 'count' given, port must be a list"
         return values
-        
+
+
 class model_fakenos_inventory(BaseModel):
     """FakeNOS inventory data schema"""
+
     default: Optional[InventoryDefaultSection]
     hosts: Dict[StrictStr, HostConfig]
 
     class Config:
         extra = "forbid"
 
+
 # ---------------------------------------------------------------------------------------
 # NOS plugin commands model
 # ---------------------------------------------------------------------------------------
-

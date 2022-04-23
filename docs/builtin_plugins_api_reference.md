@@ -21,7 +21,7 @@ Servers Plugins acts as an access layer, simulating device connections.
     rendering:
 	  heading_level: 4
 	  show_object_full_path: false
-	  
+
 ## Shell Plugins
 
 Shell Plugins act as a plumbing between servers plugins and NOS plugins,
@@ -33,7 +33,7 @@ gluing, connecting them together.
     rendering:
 	  heading_level: 4
 	  show_object_full_path: false
-	  
+
 ## Tape Plugins
 
 Idea - Tape Plugins will allow to record interactions with real devices and build

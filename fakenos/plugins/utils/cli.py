@@ -36,7 +36,7 @@ INVENTORY = args.INVENTORY
 
 
 def run_cli():
-    """Function to start FakeNOS CLI """
+    """Function to start FakeNOS CLI"""
     net = FakeNOS(inventory=INVENTORY)
     net.start()
     print("Started servers:")

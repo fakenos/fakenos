@@ -52,7 +52,7 @@ def test_container_cisco_ios_netmiko_send_show_clock_100_times():
 
 
 def test_container_cisco_ios_netmiko_multiple_connections():
-    """ Method to run multiple connection establishment and teardown """
+    """Method to run multiple connection establishment and teardown"""
     connections_count = 10
     times_to_collect = 5
 

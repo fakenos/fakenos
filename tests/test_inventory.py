@@ -81,11 +81,14 @@ def test_fakenos_base_inventory():
 
 # test_fakenos_base_inventory()
 
+
 def test_validate_inventory_custom():
     # this should not raise any errors
     net = FakeNOS(inventory=fake_network)
 
+
 # test_validate_inventory_custom()
+
 
 def test_custom_inventory_network():
     from netmiko import ConnectHandler
@@ -160,6 +163,7 @@ def test_list_hosts_pattern_filter():
     assert all("router" in i["name"] for i in subset_one)
     assert all_hosts == all_hosts_with_filter != []
 
+
 # test_list_hosts_pattern_filter()
 
 
@@ -169,13 +173,14 @@ def test_inventory_validation_host_port():
     invcp["hosts"]["R1"]["port"] = [5001]
     with pytest.raises(ValidationError):
         net = FakeNOS(inventory=invcp)
-    
+
     # test host has count but port is int
     invcp = copy.deepcopy(fake_network)
     invcp["hosts"]["core-router"]["port"] = 6000
     with pytest.raises(ValidationError):
         net = FakeNOS(inventory=invcp)
-        
+
+
 # test_inventory_validation_host_port()
 
 
@@ -184,7 +189,8 @@ def test_inventory_validation_shell_plugin_name():
     invcp = copy.deepcopy(fake_network)
     invcp["hosts"]["R1"]["shell"]["plugin"] = "undefined"
     with pytest.raises(ValidationError):
-        net = FakeNOS(inventory=invcp)    
+        net = FakeNOS(inventory=invcp)
+
 
 def test_inventory_validation_cmdshell_plugin():
     # test inventory CMDShell plugin params
@@ -196,11 +202,42 @@ def test_inventory_validation_cmdshell_plugin():
         "newline": "\r\n",
     }
     net = FakeNOS(inventory=invcp)
-    
+
+
 # test_inventory_validation_cmdshell_plugin()
 
-def test_fakenos_start_hosts_with_glob_pattern()
-    ...
-    
-def test_fakenos_stop_hosts_with_glob_pattern()
-    ...
+
+def test_fakenos_start_stop_hosts_with_glob_pattern():
+    net = FakeNOS(inventory=fake_network)
+    before_start = net.list_hosts()
+
+    net.start(hosts="R[12], core-router1")
+    after_start = net.list_hosts()
+
+    net.stop(hosts=["R1", "core-router1"])
+    after_stop = net.list_hosts()
+
+    net.stop(hosts=["*"])
+    after_stop_all = net.list_hosts()
+
+    print("after_start R[12], core-router1")
+    pprint.pprint(after_start)
+    print("after stop R1, core-router1")
+    pprint.pprint(after_stop)
+    print("after stop all ['*']")
+    pprint.pprint(after_stop_all)
+
+    for i in after_start:
+        if i["name"] in ["R1", "R2", "core-router1"]:
+            assert i["running"] == True, f"{i['name']} should be running"
+        else:
+            assert i["running"] == False, f"{i['name']} should not be running"
+    for i in after_stop:
+        if i["name"] in ["R2"]:
+            assert i["running"] == True, f"{i['name']} should be running"
+        else:
+            assert i["running"] == False, f"{i['name']} should not be running"
+    assert all(i["running"] == False for i in after_stop_all), "Not all hosts stopped"
+
+
+# test_fakenos_start_stop_hosts_with_glob_pattern()

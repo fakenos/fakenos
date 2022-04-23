@@ -99,7 +99,7 @@ class TapIO(io.StringIO):
         super(TapIO, self).__init__(initial_value, newline)
 
     def readline(self, size=-1):
-        """ method to readline in indefinite block mode """
+        """method to readline in indefinite block mode"""
         while self.run_srv.is_set():
             if self.lines:
                 return self.lines.pop(-1)
