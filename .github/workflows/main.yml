@@ -56,4 +56,4 @@ jobs:
           python -m pip install poetry
           python -m poetry install
       - name: Run pytest
-        run: python -m poetry run pytest -vv test_inventory.py test_nornir_connections.py test_nos_builders.py
+        run: python -m poetry run pytest -vv test_inventory.py test_nos_builders.py
