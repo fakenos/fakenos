@@ -134,4 +134,7 @@ class CMDShell(Cmd):
             return True
         # if not None, write output to stdout
         elif ret is not None:
+            ret = ret.format(
+                base_prompt=self.base_prompt
+            )
             self.writeline(ret)

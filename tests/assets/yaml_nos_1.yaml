@@ -32,7 +32,7 @@ commands:
 
       Configuration register is 0x2102
     help: System hardware and software status
-    prompt": "{base_prompt}#"
+    prompt: "{base_prompt}#"
   _default_:
     output: "% Invalid input detected at '^' marker."
     help: "Output to print for unknown commands"

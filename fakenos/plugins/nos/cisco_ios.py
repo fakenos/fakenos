@@ -13,7 +13,7 @@ service timestamps debug datetime msec
 service timestamps log datetime msec
 no service password-encryption
 !
-hostname IOL1
+hostname {base_prompt}
 !
 boot-start-marker
 boot-end-marker
@@ -240,7 +240,7 @@ software.
 
 
 ROM: IOS-XE ROMMON
-csr1000v-1 uptime is 1 day, 17 hours, 32 minutes
+{base_prompt} uptime is 1 day, 17 hours, 32 minutes
 Uptime for this control processor is 1 day, 17 hours, 33 minutes
 System returned to ROM by reload
 System image file is "bootflash:packages.conf"

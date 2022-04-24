@@ -3,7 +3,7 @@
 This code starts two devices listening for SSH connections on 127.0.0.1 address
 ports 6001 and 6002 named `router1` and `router2` respectively:
 
-```
+```python
 from fakenos import FakeNOS
 
 network = FakeNOS()
@@ -12,9 +12,16 @@ network.start()
 
 Initiate SSH connection using default username `user` and password `user`:
 
-```
+```bash
 ssh 127.0.0.1 -l user -p 6001
 ssh 127.0.0.1 -l user -p 6002
+```
+
+The equivalent to running above code would be to run FakeNOS CLI without
+any arguments:
+
+```bash
+fakenos
 ```
 
 # Using Custom Inventory
@@ -72,6 +79,68 @@ print(network.list_hosts())
 3. Start two hosts `core-router1` and `core-router2` using next available
    ports from provided range
 4. Settings used by all hosts by default
+
+Alternative to running above code is to supply custom inventory to
+FakeNOS CLI tool:
+
+```bash
+fakenos -i path/to/my_inventory.yaml
+```
+
+Where `my_inventory.yaml` could contain equivalent to above Python code 
+YAML structured inventory:
+
+```yaml
+default:
+  password: user
+  username: user
+  port: [5000, 6000]
+  server:
+    plugin: ParamikoSshServer
+    configuration:
+      address: 127.0.0.1
+      ssh_key_file: ./ssh-keys/ssh_host_rsa_key
+      timeout: 1
+  shell:
+    configuration: {}
+    plugin: CMDShell
+  nos:
+    configuration: {}
+    plugin: cisco_ios
+hosts:
+  R1:
+    password: fakenos
+    port: 5001
+    username: fakenos
+    server:
+      plugin: ParamikoSshServer
+      configuration:
+        address: 0.0.0.0
+    shell:
+      plugin: CMDShell
+      configuration:
+        intro: Custom SSH Shell
+  R2: {}
+  core-router:
+    count: 2
+    port: [5000, 6000]
+```
+
+Or could contain this simplified inventory:
+
+```yaml
+default:
+  password: user
+  username: user
+  port: [5000, 6000]
+  server:
+    plugin: ParamikoSshServer
+    configuration:
+      address: 0.0.0.0
+hosts:
+  router:
+    count: 10
+```
 
 # Generating SSH private key
 
