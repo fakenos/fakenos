@@ -2,6 +2,7 @@ from cmd import Cmd
 import logging
 import time
 import traceback
+import copy
 
 log = logging.getLogger(__name__)
 
@@ -24,6 +25,7 @@ class CMDShell(Cmd):
         stdin,
         stdout,
         nos,
+        nos_inventory_config,
         base_prompt,
         is_running,
         intro="Custom SSH Shell",
@@ -35,10 +37,16 @@ class CMDShell(Cmd):
         self.ruler = ruler
         self.intro = intro
         self.base_prompt = base_prompt
-        self.commands.update(nos.commands or {})
         self.newline = newline
         self.prompt = nos.initial_prompt.format(base_prompt=base_prompt)
         self.is_running = is_running
+
+        # form commands
+        self.commands = {
+            **copy.deepcopy(self.commands),
+            **copy.deepcopy(nos.commands or {}),
+            **copy.deepcopy(nos_inventory_config.get("commands", {})),
+        }
 
         # call the base constructor of cmd.Cmd, with our own stdin and stdout
         super(CMDShell, self).__init__(
@@ -107,10 +115,14 @@ class CMDShell(Cmd):
 
     def default(self, command):
         """Method called if no do_xyz methods found"""
-        log.debug("shell.run_command running command '{}'".format(command))
+        log.debug("shell.default '{}' running command '{}'".format(self.base_prompt, [command]))
         ret = self.commands["_default_"]["output"]
         try:
             cmd_data = self.commands[command]
+            # check of command is alis to other command definition
+            if "alias" in cmd_data:
+                cmd_data = {**self.commands[cmd_data.pop("alias")], **cmd_data}
+            # check current prompt and work with command output
             if self._check_prompt(cmd_data.get("prompt")):
                 ret = cmd_data["output"]
                 if callable(ret):
@@ -119,11 +131,19 @@ class CMDShell(Cmd):
                         current_prompt=self.prompt,
                         command=command,
                     )
+                    # handle the case when callable return dictionary
+                    if isinstance(ret, dict):
+                        if "new_prompt" in ret:
+                            self.prompt = ret["new_prompt"].format(
+                                base_prompt=self.base_prompt
+                            )
+                        ret = ret["output"]
                 if "new_prompt" in cmd_data:
                     self.prompt = cmd_data["new_prompt"].format(
                         base_prompt=self.base_prompt
                     )
         except KeyError:
+            log.error("shell.default '{}' command '{}' not found".format(self.base_prompt, [command]))
             pass
         except:
             ret = traceback.format_exc()

@@ -1,6 +1,6 @@
 # docsbuilder venv
 
-Detailes steps on how to setup docsbuilder virtual envoronment. Why we need it, because of this error that Poetry gives on dependency resoultion:
+Detailed steps on how to setup docsbuilder virtual envoronment. Why we need it, because of this error that Poetry gives on dependency resoultion:
 
 Resolving dependencies...
 

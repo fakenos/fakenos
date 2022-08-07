@@ -15,6 +15,7 @@ import logging
 import fnmatch
 import copy
 import yaml
+import os
 
 log = logging.getLogger(__name__)
 
@@ -46,7 +47,8 @@ class FakeNOS:
 
     :param inventory: FakeNOS inventory dictionary or OS path to .yaml file with inventory data
     :param log_level: logging level to use
-
+    :param inventory_dir: Inventory Directory to search for files, such as commands content
+    
     Sample usage:
 
     ```python
@@ -57,8 +59,14 @@ class FakeNOS:
     ```
     """
 
-    def __init__(self, inventory: dict = None, log_level: str = "DEBUG") -> None:
+    def __init__(
+        self, 
+        inventory: Union[Dict, str] = None, 
+        log_level: str = "DEBUG", 
+        inventory_dir: str = None
+    ) -> None:
         self.inventory = inventory or default_inventory
+        self.inventory_dir = inventory_dir
         self.hosts = {}
         self.allocated_ports = set()
         self.shell_plugins = shell_plugins
@@ -78,9 +86,13 @@ class FakeNOS:
         """Helper method to load FakeNOS inventory"""
         # load yaml inventory
         if isinstance(self.inventory, str) and self.inventory.endswith(".yaml"):
+            # record inventory location directory
+            if self.inventory_dir is None:
+                self.inventory_dir = os.path.dirname(self.inventory)
+            # open and read inventory file
             with open(self.inventory, "r", encoding="utf-8") as f:
                 self.inventory = yaml.safe_load(f.read())
-
+                
         # make sure we have defaults
         self.inventory["default"] = {
             **default_inventory["default"],
@@ -91,7 +103,32 @@ class FakeNOS:
         inventory_model_instance = model_fakenos_inventory(**self.inventory)
         log.debug("FakeNOS inventory validation succeeded")
         # log.debug(str(inventory_model_instance.schema_json(indent=4)))
-
+        
+    def _load_commands_content(self, host_inventory: Dict) -> None:
+        """
+        Method to load commands content from files
+        
+        :param host_inventory: Dictionary of host's inventory data
+        """
+        # if no inventory_dir provided/detected - do nothing
+        if self.inventory_dir is None:
+            return
+        # load commands content
+        commands = host_inventory.get("nos", {}).get("configuration", {}).get("commands", {})
+        for cmd_name, cmd_data in commands.items():
+            # form path to command file
+            if os.path.isfile(cmd_data.get("output", "")[:100]):
+                path_to_cmd_file = cmd_data["output"]
+            else:
+                path_to_cmd_file = os.path.join(
+                    self.inventory_dir,
+                    cmd_data.get("output", "")[:100]
+                )
+            # load file content
+            if os.path.isfile(path_to_cmd_file):
+                with open(path_to_cmd_file, encoding="utf-8", mode="r") as f:
+                    cmd_data["output"] = f.read()
+        
     def init(self) -> None:
         """
         Helper method to initiate host objects and store them in self.hosts, this
@@ -104,6 +141,9 @@ class FakeNOS:
             }
             port = params.pop("port")
             count = params.pop("count", None)
+            # load commands content from files if any
+            self._load_commands_content(params)
+            # instantiate host(s) object(s)
             if count:
                 for i in range(0, count):
                     name = f"{host}{i+1}"

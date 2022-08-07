@@ -5,7 +5,7 @@ There are several ways to create NOS plugin:
 
 1. [Create NOS plugin from YAML file](creating_nos_plugin.md#create-nos-plugin-from-yaml-file)
 2. [Create NOS plugin from Python file](creating_nos_plugin.md#create-nos-plugin-from-python-file)
-3. [Create NOS plugin from FakeNOS Nos class](creating_nos_plugin.md#create-nos-plugin-from-fakenos-nos-class)
+3. [Create NOS plugin from Nos class](creating_nos_plugin.md#create-nos-plugin-from-nos-class)
 
 None of above ways better than the other, all of them have their own use cases. But 
 they listed in a sequence from simplest to create/less flexible to more involved/most
@@ -320,7 +320,7 @@ net.start()
 1. Refer to name attribute defined in `path/to/my_nos.py` file
 2. Supply absolute or relative path to YAML file with NOS definition
 
-## Create NOS plugin from FakeNOS Nos class
+## Create NOS plugin from Nos class
 
 FakeNOS package comes with base Nos class that can be used to create
 NOS plugins to register them with FakeNOS instance.

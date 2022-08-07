@@ -104,6 +104,8 @@ celerybeat.pid
 # Environments
 .env
 .venv
+.venv/*
+venv/README.md
 env/
 venv/docsbuilder
 ENV/

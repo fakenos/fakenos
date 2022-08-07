@@ -116,14 +116,22 @@ def channel_to_shell_tap(channel_stdio, shell_stdin, shell_replied_event, run_sr
     buffer = io.BytesIO()
     while run_srv.is_set():
         byte = channel_stdio.read(1)
+        log.debug(
+            "ssh_server.channel_to_shell_tap received from channel: {}".format(
+                [byte]
+            )
+        )
         if byte in (b"\r", b"\n"):
             # in case several \n received from channel need to
             # make sure to wait for shell to process replies
             shell_replied_event.wait(10)
             # echo input back to the client
-            channel_stdio.write("\r\n")
+            log.debug(
+                "ssh_server.channel_to_shell_tap echoing new line to channel: {}".format([b'\r\n'])
+            )
+            channel_stdio.write(b"\r\n")
             # read line from buffer, clear buffer, send line to cmd shell
-            buffer.write(b"\r\n")
+            buffer.write(byte)
             buffer.seek(0)
             line = buffer.read().decode(encoding="utf-8")
             buffer.seek(0)
@@ -146,8 +154,9 @@ def channel_to_shell_tap(channel_stdio, shell_stdin, shell_replied_event, run_sr
                 )
                 # do nothing, exit, watcdog will handle termination
                 break
-            # safe received character to buffer
-            buffer.write(byte)
+            # save received character in buffer except for special chars
+            if byte not in [b"\x00", b'']:
+                buffer.write(byte)
         time.sleep(0.01)
 
 
@@ -171,6 +180,7 @@ class ParamikoSshServer(TCPServerBase):
         self,
         shell,
         nos,
+        nos_inventory_config,
         port,
         username,
         password,
@@ -185,6 +195,7 @@ class ParamikoSshServer(TCPServerBase):
         super(ParamikoSshServer, self).__init__()
 
         self.nos = nos
+        self.nos_inventory_config = nos_inventory_config
         self.shell = shell
         self.shell_configuration = shell_configuration or {}
         self.ssh_banner = ssh_banner
@@ -264,6 +275,7 @@ class ParamikoSshServer(TCPServerBase):
             stdin=shell_stdin,
             stdout=shell_stdout,
             nos=self.nos,
+            nos_inventory_config=self.nos_inventory_config,
             is_running=self._is_running,
             **self.shell_configuration,
         )

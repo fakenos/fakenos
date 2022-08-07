@@ -19,16 +19,32 @@ try:
 except ImportError:
     from typing_extensions import Literal  # works with <py3.8
 
+# ---------------------------------------------------------------------------------------
+# NOS plugin commands model
+# ---------------------------------------------------------------------------------------
 
+class model_nos_command(BaseModel):
+    output: Optional[Union[StrictStr, None, Callable]]
+    help: Optional[StrictStr]
+    prompt: Optional[Union[StrictStr, List[StrictStr]]]
+    new_prompt: Optional[StrictStr]
+    alias: Optional[StrictStr]
+        
+class model_nos_attributes(BaseModel):
+    commands: Dict[StrictStr, model_nos_command]
+    name: StrictStr
+    initial_prompt: StrictStr
+        
 # ---------------------------------------------------------------------------------------
 # FakeNOS inventory data model components
 # ---------------------------------------------------------------------------------------
 
-
+class NosPluginConfig(BaseModel):
+    commands: Optional[Dict[StrictStr, model_nos_command]]
+        
 class NosPlugin(BaseModel):
     plugin: StrictStr
-    configuration: Optional[Dict]
-
+    configuration: Optional[NosPluginConfig]
 
 class ParamikoSshServerConfig(BaseModel):
     ssh_key_file: Optional[StrictStr] = None
@@ -71,7 +87,7 @@ class HostConfig(InventoryDefaultSection):
     # count: Optional[conint(strict=True, gt=0)]
     # use this for now, mkdocstring having issue with pydantic - https://github.com/mkdocstrings/griffe/issues/66
     count: Optional[StrictInt]
-
+        
     @root_validator(pre=True)
     def check_port_value(cls, values):
         port = values.get("port")
@@ -94,17 +110,3 @@ class model_fakenos_inventory(BaseModel):
         extra = "forbid"
 
 
-# ---------------------------------------------------------------------------------------
-# NOS plugin commands model
-# ---------------------------------------------------------------------------------------
-
-class model_nos_command(BaseModel):
-    output: Union[StrictStr, None, Callable]
-    help: Optional[StrictStr]
-    prompt: Optional[Union[StrictStr, List[StrictStr]]]
-    new_prompt: Optional[StrictStr]
-    
-class model_nos_attributes(BaseModel):
-    commands: Dict[StrictStr, model_nos_command]
-    name: StrictStr
-    initial_prompt: StrictStr

@@ -1,3 +1,13 @@
+Running FakeNOS in a container enables numerous integrations use cases.
+
+## Running with Docker
+
+Pre-built FakeNOS docker container published to 
+[DockerHUB repository](https://hub.docker.com/r/dmulyalin/fakenos) 
+
+
+## Build and Run with Docker-Compose
+
 FakeNOS GitHub repository contains `docker-compose` and `Docker` files to build
 and start FakeNOS in a container. To use it, providing that you already installed
 [Docker](https://docs.docker.com/engine/install/),
