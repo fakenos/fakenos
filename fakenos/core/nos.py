@@ -118,12 +118,18 @@ class Nos:
 
         :param data: OS path string to `.yaml/.yml` or `.py` file with NOS data
         """
-        if data.endswith(".yaml") or data.endswith(".yml"):
-            with open(data, "r", encoding="utf-8") as f:
-                self.from_yaml(f.read())
+        if self.is_file_ending_correct(data):
+            raise ValueError(
+                f'Unsupported "{data}" file extension. Supported: .py, .yml, .yaml'
+            )
+        if data.endswith((".yaml", ".yml")):
+            self.from_yaml(data)
         elif data.endswith(".py"):
             self.from_module(data)
-        else:
-            raise ValueError(
-                f"Unsupported '{data}' file extension, supported .py, .yml, .yaml"
-            )
+        
+    def is_file_ending_correct(self, data: str) -> None:
+        """
+        Method to check if file extension is correct and load NOS data.
+        Correct types are: .yaml, .yml and .py
+        """
+        return data.endswith((".yaml", ".yml", ".py"))

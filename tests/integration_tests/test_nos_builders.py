@@ -6,8 +6,6 @@ import pytest
 from pydantic import ValidationError
 
 
-sys.path.insert(0, "..")
-
 from netmiko import ConnectHandler
 from fakenos import FakeNOS
 from fakenos import Nos
@@ -69,7 +67,7 @@ commands = {
     "terminal length 0": {"output": "", "help": "Set terminal length to 0"},
 }
 
-with open("./assets/yaml_nos_1.yaml", "r", encoding="utf-8") as f:
+with open("tests/integration_tests/assets/yaml_nos_1.yaml", "r", encoding="utf-8") as f:
     yaml_nos = f.read()
 
 

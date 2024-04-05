@@ -18,24 +18,27 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.6.5,<3.10"
-paramiko = "^2.10.3"
-pyyaml = "6.*"
-pydantic = "^1.9.0"
+python = ">=3.6.5,<3.11"
+paramiko = "<4.0"
+pyyaml = "<7.0"
+pydantic = "<3.0"
 
 [tool.poetry.dev-dependencies]
-pytest = { version = "^7.1.1", markers = "python_version >= '3.7'" }
-netmiko = { version = "^3.4.*" }
-nornir = { version = "^3.2.*" }
-nornir-netmiko = { version = "^0.1.*" }
+bandit = "*"
+black = "*"
+coverage = "*"
+invoke = "*"
+flake8 = "*"
+pylint = "*"
+pytest = "*"
+toml = "*"
+yamllint = "*"
+pre-commit = "2.15.*"
+pyenchant = "3.2.*"
+netmiko = "*"
+nornir = "*"
+nornir-netmiko = "*"
 
-# linters
-bandit = { version = "1.7.*", markers = "python_version >= '3.7'" }
-black = { version = "22.3.*", markers = "python_version >= '3.7'" }
-flake8 = { version = "^4.0.1", markers = "python_version >= '3.7'" }
-pre-commit = { version = "2.15.*", markers = "python_version >= '3.7'" }
-pyenchant = { version = "3.2.*", markers = "python_version >= '3.7'" }
-pylint = { version = "2.12.*", markers = "python_version >= '3.7'" }
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
