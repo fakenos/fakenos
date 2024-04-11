@@ -1,7 +1,6 @@
 """
 Host classes
 """
-from typing import Union, Callable, Dict, List
 import logging
 
 log = logging.getLogger(__name__)
@@ -32,8 +31,8 @@ class Host:
         self.server = None
         self.server_plugin = None
         self.shell_plugin = None
-        self.nos_plugin = None            
-        
+        self.nos_plugin = None
+
     def start(self):
         """Method to start server instance for this hosts"""
         self.server_plugin = self.fakenos.servers_plugins[self.server_inventory["plugin"]]

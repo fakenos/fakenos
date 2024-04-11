@@ -6,15 +6,19 @@ initial_prompt = "{base_prompt}>"
 def make_show_clock(base_prompt, current_prompt, command):
     return """{current_time}
 Timezone: UTC
-Clock source: local""".format(current_time=time.strftime("%a %b %d %H:%M:%S %Y"))
+Clock source: local""".format(
+        current_time=time.strftime("%a %b %d %H:%M:%S %Y")
+    )
+
 
 def make_exit(base_prompt, current_prompt, command):
     if current_prompt in [f"{base_prompt}>", f"{base_prompt}#"]:
-        return True # close session
+        return True  # close session
     elif current_prompt in [f"{base_prompt}(config)#"]:
-        return {"output": "", "new_prompt": "{base_prompt}#"} # return to exec prompt
+        return {"output": "", "new_prompt": "{base_prompt}#"}  # return to exec prompt
     else:
         raise RuntimeError(f"make_exit does not know how to handle '{current_prompt}' prompt")
+
 
 running_configuration = """! Command: show running-config
 ! device: {base_prompt} (cEOSLab, EOS-4.26.0F-21792469.4260F (engineering build))
@@ -174,17 +178,13 @@ commands = {
     "show hostname": {
         "output": """Hostname: {base_prompt}
 FQDN:     {base_prompt}""",
-        "help": "Show the system hostname"
+        "help": "Show the system hostname",
     },
-    "no logging console": {
-        "output": "", 
-        "help": "Set console logging parameters", 
-        "prompt": "{base_prompt}(config)#"
-    },
+    "no logging console": {"output": "", "help": "Set console logging parameters", "prompt": "{base_prompt}(config)#"},
     "end": {
-        "output": "", 
-        "help": "Leave config mode", 
-        "new_prompt": "{base_prompt}#", 
-        "prompt": "{base_prompt}(config)#"
+        "output": "",
+        "help": "Leave config mode",
+        "new_prompt": "{base_prompt}#",
+        "prompt": "{base_prompt}(config)#",
     },
 }

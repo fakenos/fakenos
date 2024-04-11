@@ -1,4 +1,3 @@
-import sys
 import pprint
 import time
 import yaml
@@ -302,9 +301,7 @@ def test_fakenos_register_nos_plugin_from_yaml_file():
         }
     }
     net = FakeNOS(inventory)
-    net.register_nos_plugin(
-        plugin="./assets/test_fakenos_register_nos_plugin_from_yaml_file.yaml"
-    )
+    net.register_nos_plugin(plugin="./assets/test_fakenos_register_nos_plugin_from_yaml_file.yaml")
     net.start()
 
     after_start_hosts = net.list_hosts()
@@ -368,9 +365,7 @@ def test_fakenos_register_nos_plugin_from_py_file():
         }
     }
     net = FakeNOS(inventory)
-    net.register_nos_plugin(
-        plugin="./assets/test_fakenos_register_nos_plugin_from_yaml_file.py"
-    )
+    net.register_nos_plugin(plugin="./assets/test_fakenos_register_nos_plugin_from_yaml_file.py")
     net.start()
 
     after_start_hosts = net.list_hosts()
@@ -421,7 +416,7 @@ def test_fakenos_register_nos_plugin_class_validation():
                 "show clock": {"output": True},
             },
         )
-        
+
     with pytest.raises(ValidationError):
         nos = Nos(
             name=42,
@@ -430,26 +425,27 @@ def test_fakenos_register_nos_plugin_class_validation():
                 "show clock": {"output": "foo"},
             },
         )
-        
+
     with pytest.raises(ValidationError):
         nos = Nos(
             commands={
                 "show clock": {"output": 42},
             },
         )
-        
+
     with pytest.raises(ValidationError):
         nos = Nos(
             commands={
                 "show clock": {"output": "foo", "new_prompt": 42},
             },
         )
-        
+
     with pytest.raises(ValidationError):
         nos = Nos(
             commands={
                 "show clock": {"output": "foo", "new_prompt": 42},
             },
         )
+
 
 # test_fakenos_register_nos_plugin_class_validation_error()

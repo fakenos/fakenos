@@ -108,12 +108,8 @@ def test_custom_inventory_network():
             "device_type": item["nos"],
             # "host": item["address"],
             "host": "127.0.0.1",
-            "username": fake_network["hosts"]
-            .get(item["name"], {})
-            .get("username", default_username),
-            "password": fake_network["hosts"]
-            .get(item["name"], {})
-            .get("password", default_password),
+            "username": fake_network["hosts"].get(item["name"], {}).get("username", default_username),
+            "password": fake_network["hosts"].get(item["name"], {}).get("password", default_password),
             "port": item["port"],
         }
         pprint.pprint(device_data)
@@ -136,12 +132,8 @@ def test_custom_inventory_network():
     assert len(before_start) == 4, "Was expecting 4 devices"
     assert all(i["running"] == True for i in after_start), "Not all hosts started"
     assert len(outputs) == 4, "Not all 4 hosts produced outputs"
-    assert all(
-        isinstance(i, str) for i in outputs.values()
-    ), "Not all hosts output is a string"
-    assert all(
-        "Traceback" not in i for i in outputs.values()
-    ), "Some hosts output contains traceback"
+    assert all(isinstance(i, str) for i in outputs.values()), "Not all hosts output is a string"
+    assert all("Traceback" not in i for i in outputs.values()), "Some hosts output contains traceback"
     assert all(i["running"] == False for i in after_stop), "Not all hosts stopped"
 
 

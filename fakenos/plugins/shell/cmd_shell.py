@@ -109,9 +109,7 @@ class CMDShell(Cmd):
         if isinstance(prompt_, str):
             return self.prompt == prompt_.format(base_prompt=self.base_prompt)
         if isinstance(prompt_, list):
-            return any(
-                self.prompt == i.format(base_prompt=self.base_prompt) for i in prompt_
-            )
+            return any(self.prompt == i.format(base_prompt=self.base_prompt) for i in prompt_)
 
     def default(self, command):
         """Method called if no do_xyz methods found"""
@@ -134,14 +132,10 @@ class CMDShell(Cmd):
                     # handle the case when callable return dictionary
                     if isinstance(ret, dict):
                         if "new_prompt" in ret:
-                            self.prompt = ret["new_prompt"].format(
-                                base_prompt=self.base_prompt
-                            )
+                            self.prompt = ret["new_prompt"].format(base_prompt=self.base_prompt)
                         ret = ret["output"]
                 if "new_prompt" in cmd_data:
-                    self.prompt = cmd_data["new_prompt"].format(
-                        base_prompt=self.base_prompt
-                    )
+                    self.prompt = cmd_data["new_prompt"].format(base_prompt=self.base_prompt)
         except KeyError:
             log.error("shell.default '{}' command '{}' not found".format(self.base_prompt, [command]))
             pass
@@ -154,7 +148,5 @@ class CMDShell(Cmd):
             return True
         # if not None, write output to stdout
         elif ret is not None:
-            ret = ret.format(
-                base_prompt=self.base_prompt
-            )
+            ret = ret.format(base_prompt=self.base_prompt)
             self.writeline(ret)

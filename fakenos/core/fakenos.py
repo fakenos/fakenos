@@ -7,7 +7,6 @@ from fakenos.core.pydantic_models import model_fakenos_inventory
 
 from typing import (
     Union,
-    Callable,
     Dict,
     List,
 )
@@ -48,7 +47,7 @@ class FakeNOS:
     :param inventory: FakeNOS inventory dictionary or OS path to .yaml file with inventory data
     :param log_level: logging level to use
     :param inventory_dir: Inventory Directory to search for files, such as commands content
-    
+
     Sample usage:
 
     ```python
@@ -59,12 +58,7 @@ class FakeNOS:
     ```
     """
 
-    def __init__(
-        self, 
-        inventory: Union[Dict, str] = None, 
-        log_level: str = "DEBUG", 
-        inventory_dir: str = None
-    ) -> None:
+    def __init__(self, inventory: Union[Dict, str] = None, log_level: str = "DEBUG", inventory_dir: str = None) -> None:
         self.inventory = inventory or default_inventory
         self.inventory_dir = inventory_dir
         self.hosts = {}
@@ -92,7 +86,7 @@ class FakeNOS:
             # open and read inventory file
             with open(self.inventory, "r", encoding="utf-8") as f:
                 self.inventory = yaml.safe_load(f.read())
-                
+
         # make sure we have defaults
         self.inventory["default"] = {
             **default_inventory["default"],
@@ -103,11 +97,11 @@ class FakeNOS:
         inventory_model_instance = model_fakenos_inventory(**self.inventory)
         log.debug("FakeNOS inventory validation succeeded")
         # log.debug(str(inventory_model_instance.schema_json(indent=4)))
-        
+
     def _load_commands_content(self, host_inventory: Dict) -> None:
         """
         Method to load commands content from files
-        
+
         :param host_inventory: Dictionary of host's inventory data
         """
         # if no inventory_dir provided/detected - do nothing
@@ -120,15 +114,12 @@ class FakeNOS:
             if os.path.isfile(cmd_data.get("output", "")[:100]):
                 path_to_cmd_file = cmd_data["output"]
             else:
-                path_to_cmd_file = os.path.join(
-                    self.inventory_dir,
-                    cmd_data.get("output", "")[:100]
-                )
+                path_to_cmd_file = os.path.join(self.inventory_dir, cmd_data.get("output", "")[:100])
             # load file content
             if os.path.isfile(path_to_cmd_file):
                 with open(path_to_cmd_file, encoding="utf-8", mode="r") as f:
                     cmd_data["output"] = f.read()
-        
+
     def init(self) -> None:
         """
         Helper method to initiate host objects and store them in self.hosts, this
@@ -148,9 +139,7 @@ class FakeNOS:
                 for i in range(0, count):
                     name = f"{host}{i+1}"
                     port_ = self._allocate_port(port)
-                    self.hosts[name] = Host(
-                        name=name, port=port_, fakenos=self, **copy.deepcopy(params)
-                    )
+                    self.hosts[name] = Host(name=name, port=port_, fakenos=self, **copy.deepcopy(params))
             else:
                 port_ = self._allocate_port(port)
                 self.hosts[host] = Host(name=host, port=port_, fakenos=self, **params)
@@ -173,9 +162,7 @@ class FakeNOS:
             else:
                 raise RuntimeError("Port allocation failed")
         else:
-            raise TypeError(
-                "Unsupported port type {}, supported int or list".format(type(port))
-            )
+            raise TypeError("Unsupported port type {}, supported int or list".format(type(port)))
 
         self.allocated_ports.add(allocated_port)
 
@@ -188,11 +175,7 @@ class FakeNOS:
         :param pattern: glob pattern or list or comma separated list of patterns
         :return: list of patterns
         """
-        return (
-            pattern
-            if isinstance(pattern, list)
-            else [i.strip() for i in pattern.split(",")]
-        )
+        return pattern if isinstance(pattern, list) else [i.strip() for i in pattern.split(",")]
 
     def start(self, hosts: Union[str, List[str]] = "*") -> None:
         """
@@ -235,11 +218,7 @@ class FakeNOS:
             elif isinstance(plugin, str):
                 nos_instance.from_file(plugin)
             else:
-                raise TypeError(
-                    "Unsupported NOS type {}, supported str, dict or Nos".format(
-                        type(plugin)
-                    )
-                )
+                raise TypeError("Unsupported NOS type {}, supported str, dict or Nos".format(type(plugin)))
         self.nos_plugins[nos_instance.name] = nos_instance
 
     def list_hosts(self, hosts: Union[str, List[str]] = "*") -> list:

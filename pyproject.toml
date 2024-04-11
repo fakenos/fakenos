@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fakenos"
-version = "0.1.1"
+version = "0.1.2"
 description = "Fake Network Operating System"
 authors = ["Denis Mulyalin <d.mulyalin@gmail.com>"]
 maintainers = ["Denis Mulyalin <d.mulyalin@gmail.com>"]
@@ -13,12 +13,18 @@ classifiers = [
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
     "License :: OSI Approved :: MIT License",
     "Operating System :: POSIX :: Linux",
 ]
+include = [
+    "LICENSE",
+    "README.md",
+]
 
 [tool.poetry.dependencies]
-python = ">=3.6.5,<3.11"
+python = ">=3.6.5,<3.12"
 paramiko = "<4.0"
 pyyaml = "<7.0"
 pydantic = "<3.0"
@@ -34,11 +40,79 @@ pytest = "*"
 toml = "*"
 yamllint = "*"
 pre-commit = "2.15.*"
-pyenchant = "3.2.*"
+pyenchant = "*"
 netmiko = "*"
 nornir = "*"
 nornir-netmiko = "*"
 
+[tool.black]
+line-length = 120
+target-version = ['py38']
+include = '\.pyi?$'
+exclude = '''
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+  | settings.py     # This is where you define files that should not be stylized by black
+                     # the root of the project
+)
+'''
+
+[tool.pylint.master]
+ignore = ".venv"
+
+[bandit]
+exclude_dirs = ['tests', './.venv']
+tests = ["B201", "B301"]
+skips = ["B101", "B601"]
+
+[tool.poetry.extras]
+test = ["pytest"]
+
+[tool.pylint.basic]
+# No docstrings required for private methods (Pylint default), or for test_ functions, or for inner Meta classes.
+no-docstring-rgx = "^(_|test_|Meta$)"
+min-public-methods = 1
+
+[tool.pylint.messages_control]
+# Line length is enforced by Black, so pylint doesn't need to check it.
+# Pylint and Black disagree about how to format multi-line arrays; Black wins.
+disable = """,
+    line-too-long,
+    redefined-outer-name
+    """
+
+[tool.bandit]
+exclude_dirs = ["./tests", "./.venv"]
+
+[tool.coverage.run]
+branch = true
+omit = [".*", ".venv"]
+command_line = "-m pytest"
+
+[tools.coverage.report]
+fail_under = 80
+show_missing = true
+
+[tools.coverage.html]
+directory = "coverage_html_report"
+
+[tool.flake8]
+extend-ignore = ["E501", "W503"]
+exclude = ".venv"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -47,4 +121,3 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry.scripts]
 fakenos = 'fakenos.plugins.utils.cli:run_cli'
 
-[tool.poetry.extras]

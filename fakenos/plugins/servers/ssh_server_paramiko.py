@@ -1,9 +1,13 @@
+"""
+This module implements an SSH server done using
+paramiko as the SSH connection library.
+"""
+
 import logging
 import paramiko
 import io
 import threading
 import time
-import traceback
 
 from fakenos.core.servers import TCPServerBase
 
