@@ -2,6 +2,7 @@
 Host classes
 """
 import logging
+from typing import Optional
 
 log = logging.getLogger(__name__)
 
@@ -16,8 +17,8 @@ class Host:
         server: dict,
         shell: dict,
         nos: dict,
-        platform: str,
         fakenos,
+        platform: str = None,
     ) -> None:
         self.name = name
         self.server_inventory = server

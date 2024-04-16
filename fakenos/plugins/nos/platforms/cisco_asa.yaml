@@ -464,11 +464,11 @@ commands:
       remote crypto endpt.: 172.20.0.21\n       path mtu 1500, ipsec overhead 60,
       media mtu 1500\n       current outbound spi: DC15BF68\n     inbound esp sas:\n\
       \       spi: 0x1E8246FC (511854332)\n          transform: esp-3des esp-md5-hmac\n\
-      \          in use settings ={RA, Tunnel, }\n          slot: 0, conn_id: 3, crypto-map:
+      \          in use settings ={{RA, Tunnel, }}\n          slot: 0, conn_id: 3, crypto-map:
       def\n          sa timing: remaining key lifetime (sec): 548\n          IV size:
       8 bytes\n          replay detection support: Y\n     outbound esp sas:\n   \
       \    spi: 0xDC15BF68 (3692412776)\n          transform: esp-3des esp-md5-hmac\n\
-      \          in use settings ={RA, Tunnel, }\n          slot: 0, conn_id: 3, crypto-map:
+      \          in use settings ={{RA, Tunnel, }}\n          slot: 0, conn_id: 3, crypto-map:
       def\n          sa timing: remaining key lifetime (sec): 548\n          IV size:
       8 bytes\n          replay detection support: Y\n\ninterface: COLO\n    Crypto
       map tag: COLO-MAP, seq num: 2, local addr: 172.16.248.119\n\n      access-list
@@ -489,13 +489,13 @@ commands:
       \      current outbound spi: 50023DDC\n      current inbound spi : 32F752FF\n\
       \n    inbound esp sas:\n      spi: 0x32F752FF (855069439)\n         SA State:
       active\n         transform: esp-aes-256 esp-md5-hmac no compression\n      \
-      \   in use settings ={L2L, Tunnel,  NAT-T-Encaps, IKEv1, }\n         slot: 0,
+      \   in use settings ={{L2L, Tunnel,  NAT-T-Encaps, IKEv1, }}\n         slot: 0,
       conn_id: 159694848, crypto-map: COLO-MAP\n         sa timing: remaining key
       lifetime (kB/sec): (2699423/25461)\n         IV size: 16 bytes\n         replay
       detection support: Y\n         Anti replay bitmap:\n          0xFFFFFFFF 0xFFFFFFFF\n\
       \    outbound esp sas:\n      spi: 0x50023DDC (1342324188)\n         SA State:
       active\n         transform: esp-aes-256 esp-md5-hmac no compression\n      \
-      \   in use settings ={L2L, Tunnel,  NAT-T-Encaps, IKEv1, }\n         slot: 0,
+      \   in use settings ={{L2L, Tunnel,  NAT-T-Encaps, IKEv1, }}\n         slot: 0,
       conn_id: 159694848, crypto-map: COLO-MAP\n         sa timing: remaining key
       lifetime (kB/sec): (3892153/25461)\n         IV size: 16 bytes\n         replay
       detection support: Y\n         Anti replay bitmap:\n          0x00000000 0x00000001\n\
@@ -517,13 +517,13 @@ commands:
       outbound spi: EA40155F\n      current inbound spi : 6A7391E0\n\n    inbound
       esp sas:\n      spi: 0x6A7391E0 (1785958880)\n         SA State: active\n  \
       \       transform: esp-aes-256 esp-md5-hmac no compression\n         in use
-      settings ={L2L, Tunnel, IKEv1, }\n         slot: 0, conn_id: 14376960, crypto-map:
+      settings ={{L2L, Tunnel, IKEv1, }}\n         slot: 0, conn_id: 14376960, crypto-map:
       COLO-MAP\n         sa timing: remaining key lifetime (kB/sec): (2038431743/70749)\n\
       \         IV size: 16 bytes\n         replay detection support: Y\n        \
       \ Anti replay bitmap:\n          0x00000000 0x00000001\n    outbound esp sas:\n\
       \      spi: 0xEA40155F (3930068319)\n         SA State: active\n         transform:
-      esp-aes-256 esp-md5-hmac no compression\n         in use settings ={L2L, Tunnel,
-      IKEv1, }\n         slot: 0, conn_id: 14376960, crypto-map: COLO-MAP\n      \
+      esp-aes-256 esp-md5-hmac no compression\n         in use settings ={{L2L, Tunnel,
+      IKEv1, }}\n         slot: 0, conn_id: 14376960, crypto-map: COLO-MAP\n      \
       \   sa timing: remaining key lifetime (kB/sec): (2038431743/70749)\n       \
       \  IV size: 16 bytes\n         replay detection support: Y\n         Anti replay
       bitmap:\n          0x00000000 0x00000001\n"

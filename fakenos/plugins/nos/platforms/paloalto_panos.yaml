@@ -39,11 +39,11 @@ commands:
     - paloalto_panos>
     - paloalto_panos#
   show running nat-policy:
-    output: "\"DMZ-PROXY-NAT; index: 1\" {\n        nat-type ipv4;\n        from DMZ-APPS;\n\
+    output: "\"DMZ-PROXY-NAT; index: 1\" {{\n        nat-type ipv4;\n        from DMZ-APPS;\n\
       \        source [ 10.1.1.1 10.1.1.2 ];\n        to UNTRUSTED;\n        to-interface
       ethernet1/5 ;\n        destination any;\n        service 0:any/any/any;\n  \
       \      translate-to \"src: 2.2.2.2 (dynamic-ip-and-port) (pool idx: 1)\";\n\
-      \        terminal no;\n}\n"
+      \        terminal no;\n}}\n"
     help: execute the command "show running nat-policy"
     prompt:
     - paloalto_panos>
@@ -230,63 +230,63 @@ commands:
     - paloalto_panos>
     - paloalto_panos#
   show running security-policy:
-    output: "\"Outside Web Server\" {\n        from Trust;\n        source 10.1.1.0/24;\n\
+    output: "\"Outside Web Server\" {{\n        from Trust;\n        source 10.1.1.0/24;\n\
       \        source-region none;\n        to Untrust;\n        destination 200.10.10.10;\n\
       \        destination-region none;\n        user any;\n        category any;\n\
       \        application/service [ any/tcp/any/8000 any/tcp/any/80 any/tcp/any/8080
       ];\n        action allow;\n        icmp-unreachable: no\n        terminal yes;\n\
-      }\n\n\"ICMP Any\" {\n        from Trust;\n        source any;\n        source-region
+      }}\n\n\"ICMP Any\" {{\n        from Trust;\n        source any;\n        source-region
       none;\n        to Untrust;\n        destination any;\n        destination-region
       none;\n        user any;\n        category any;\n        application/service
       [ icmp/icmp/any/any ping/icmp/any/any ];\n        action allow;\n        icmp-unreachable:
-      no\n        terminal yes;\n}\n\n\"DNS Outbound\" {\n        from Trust;\n  \
+      no\n        terminal yes;\n}}\n\n\"DNS Outbound\" {{\n        from Trust;\n  \
       \      source 10.1.1.0/24;\n        source-region none;\n        to Untrust;\n\
       \        destination [ 8.8.8.8 8.8.4.4 ];\n        destination-region none;\n\
       \        user any;\n        category any;\n        application/service  dns/udp/any/53;\n\
       \        action allow;\n        icmp-unreachable: no\n        terminal yes;\n\
-      }\n\n\"Inbound to DMZ Web\" {\n        from Untrust;\n        source any;\n\
+      }}\n\n\"Inbound to DMZ Web\" {{\n        from Untrust;\n        source any;\n\
       \        source-region none;\n        to DMZ;\n        destination 200.10.10.100;\n\
       \        destination-region none;\n        user any;\n        category any;\n\
       \        application/service [ any/tcp/any/8000 any/tcp/any/80 any/tcp/any/8080
       ];\n        action allow;\n        icmp-unreachable: no\n        terminal yes;\n\
-      }\n\n\"Inbound to DMZ Deny\" {\n        from Untrust;\n        source any;\n\
+      }}\n\n\"Inbound to DMZ Deny\" {{\n        from Untrust;\n        source any;\n\
       \        source-region none;\n        to DMZ;\n        destination any;\n  \
       \      destination-region none;\n        user any;\n        category any;\n\
       \        application/service  any/any/any/any;\n        action deny;\n     \
-      \   icmp-unreachable: no\n        terminal no;\n}\n\nintrazone-default {\n \
+      \   icmp-unreachable: no\n        terminal no;\n}}\n\nintrazone-default {{\n \
       \       from any;\n        source any;\n        source-region none;\n      \
       \  to any;\n        destination any;\n        destination-region none;\n   \
       \     category any;\n        application/service  any/any/any/any;\n       \
       \ action allow;\n        icmp-unreachable: no\n        terminal yes;\n     \
-      \   type intrazone;\n}\n\ninterzone-default {\n        from any;\n        source
+      \   type intrazone;\n}}\n\ninterzone-default {{\n        from any;\n        source
       any;\n        source-region none;\n        to any;\n        destination any;\n\
       \        destination-region none;\n        category any;\n        application/service\
       \  any/any/any/any;\n        action deny;\n        icmp-unreachable: no\n  \
-      \      terminal yes;\n        type interzone;\n}\n\ndynamic url: no\npol objs
+      \      terminal yes;\n        type interzone;\n}}\n\ndynamic url: no\npol objs
       matched\n\n"
     help: execute the command "show running security-policy"
     prompt:
     - paloalto_panos>
     - paloalto_panos#
   test security-policy-match:
-    output: "\"Allow 10.125.100.58-To-Google DNS; index: 1\" {\n        from Internal;\n\
+    output: "\"Allow 10.125.100.58-To-Google DNS; index: 1\" {{\n        from Internal;\n\
       \        source 10.125.100.58;\n        source-region none;\n        to External;\n\
       \        destination 8.8.8.8;\n        destination-region none;\n        user
       any;\n        source-device any;\n        destinataion-device any;\n       \
       \ category any;\n        application/service 0:any/tcp/any/59;\n        action
-      allow;\n        icmp-unreachable: no\n        terminal yes;\n}\n\n\"Allow 10.125.100.58-To-1.1.1.1;
-      index: 2\" {\n        from Internal;\n        source 10.125.100.58;\n      \
+      allow;\n        icmp-unreachable: no\n        terminal yes;\n}}\n\n\"Allow 10.125.100.58-To-1.1.1.1;
+      index: 2\" {{\n        from Internal;\n        source 10.125.100.58;\n      \
       \  source-region none;\n        to External;\n        destination 1.1.1.1;\n\
       \        destination-region none;\n        user any;\n        source-device
       any;\n        destinataion-device any;\n        category any;\n        application/service
       0:any/tcp/any/53;\n        action allow;\n        icmp-unreachable: no\n   \
-      \     terminal yes;\n}\n\n\"Allow DNS_Objects-To-192.0.2.10; index: 4\" {\n\
+      \     terminal yes;\n}}\n\n\"Allow DNS_Objects-To-192.0.2.10; index: 4\" {{\n\
       \        from Internal;\n        source [ 1.1.1.1 8.8.8.8 ];\n        source-region
       none;\n        to External;\n        destination 192.0.2.10;\n        destination-region
       none;\n        user any;\n        source-device any;\n        destinataion-device
       any;\n        category any;\n        application/service [0:any/tcp/any/53 1:any/tcp/any/54
       ];\n        action allow;\n        icmp-unreachable: no\n        terminal yes;\n\
-      }"
+      }}"
     help: execute the command "test security-policy-match"
     prompt:
     - paloalto_panos>

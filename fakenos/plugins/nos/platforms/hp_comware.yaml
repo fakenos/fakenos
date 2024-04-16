@@ -132,11 +132,11 @@ commands:
       \        G -- Defaulted, H -- Expired\n\nAggregation Interface: Route-Aggregation1\n
       Aggregation Mode: Dynamic\nLoadsharing Type: Shar\nSystem ID: 0x8000, aaaa-bbbb-75bc\n\
       Local:\n  Port             Status  Priority Oper-Key  Flag\n--------------------------------------------------------------------------------\n\
-      \  GE0/0/0          S       32768    1         {ACDEF}\n  GE0/0/1          S\
-      \       32768    1         {ACDEF}\nRemote:\n  Actor            Partner Priority
+      \  GE0/0/0          S       32768    1         {{ACDEF}}\n  GE0/0/1          S\
+      \       32768    1         {{ACDEF}}\nRemote:\n  Actor            Partner Priority
       Oper-Key  SystemID               Flag\n--------------------------------------------------------------------------------\n\
-      \  GE0/0/0          21      32768    7         0x8000, aaaa-bbbb-6485 {ACDEF}\n\
-      \  GE0/0/1          23      32768    7         0x8000, aaaa-bbbb-6485 {ACDEF}\n"
+      \  GE0/0/0          21      32768    7         0x8000, aaaa-bbbb-6485 {{ACDEF}}\n\
+      \  GE0/0/1          23      32768    7         0x8000, aaaa-bbbb-6485 {{ACDEF}}\n"
     help: execute the command "display link-aggregation verbose"
     prompt:
     - hp_comware>

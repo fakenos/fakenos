@@ -136,3 +136,17 @@ tests/tofile_outputs/
 
 # Visual Studio Code
 .vscode/
+
+# Ignore all .py files in the root folder
+*.py
+
+# Exclude the underlying folders
+!/*/*.py
+!update_platforms.py
+
+# Ignore all .yaml files in the root folder
+*.yaml
+
+# Exclude the underlying folders
+!/*/*.yaml
+!mkdocs.yaml

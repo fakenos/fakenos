@@ -1,5 +1,4 @@
 import pytest
-from unittest.mock import Mock
 from fakenos.core.fakenos import FakeNOS
 
 class TestFakeNOS:
@@ -127,5 +126,6 @@ class TestFakeNOS:
         net = FakeNOS()
         net.inventory = "tests/assets/inventory.txt"
         assert net._load_inventory_yaml() == None
-        
 
+    
+        

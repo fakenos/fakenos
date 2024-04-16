@@ -867,12 +867,12 @@ commands:
       \      Origin INCOMPLETE, metric 0, localpref 100, IGP metric 1, weight 0, received
       21:13:51 ago, valid, internal\n      Community: 10050:200 10222:10010 3223:0
       1000:17055\n      Rx SAFI: Unicast\nBGP routing table entry for 10.104.1.0/24\n
-      Paths: 1 available\n  6333 623566 42669611124 {432556}\n    10.10.11.2 from
+      Paths: 1 available\n  6333 623566 42669611124 {{432556}}\n    10.10.11.2 from
       10.10.11.2 (10.10.11.1)\n      Origin IGP, metric 0, localpref 200, IGP metric
       1, weight 0, received 19:13:51 ago, valid, internal, best\n      Community:
       10050:300 10222:10010 3223:0 1000:17066\n      Extended Community: Route-Target-AS:1234:12\n\
       \      Rx SAFI: Unicast\nBGP routing table entry for 10.105.1.0/24\n Paths:
-      2 available\n  6333 623566 42669611124 {432556}\n    10.10.11.2 from 10.10.11.2
+      2 available\n  6333 623566 42669611124 {{432556}}\n    10.10.11.2 from 10.10.11.2
       (10.10.11.1)\n      Origin IGP, metric 0, localpref 300, IGP metric 1, weight
       0, received 13:43:11 ago, valid, internal, best, atomic-aggregate\n      Community:
       10050:300 10222:10010 3223:0 1000:17077\n      Rx SAFI: Unicast\n      4 Contributing
@@ -886,7 +886,7 @@ commands:
       \      Origin IGP, metric 0, localpref 200, IGP metric 1, weight 0, received
       19:34:12 ago, valid, internal, atomic-aggregate\n      Community: 10050:300
       10222:10010 3223:0 1000:17088\n      Rx SAFI: Unicast\nBGP routing table entry
-      for 10.105.100.0\n Paths: 2 available\n  6333 623566 42669611124 {432556}\n\
+      for 10.105.100.0\n Paths: 2 available\n  6333 623566 42669611124 {{432556}}\n\
       \    10.10.11.2 from 10.10.11.2 (10.10.11.1)\n      Origin IGP, metric 0, localpref
       300, IGP metric 1, weight 0, received 13:43:11 ago, valid, internal, best, atomic-aggregate\n\
       \      Community: 10050:300 10222:10010 3223:0 1000:17077\n      Rx SAFI: Unicast\n\

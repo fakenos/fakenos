@@ -31,7 +31,7 @@ commands:
       \           xe-0/0/15.0*\n                                                 \
       \          xe-0/0/17.0*\n                                                  \
       \         xe-0/0/22.0\n                                                    \
-      \       xe-0/0/9.0*\n\n{master:0}"
+      \       xe-0/0/9.0*\n\n{{master:0}}"
     help: execute the command "show vlans"
     prompt:
     - juniper_junos>
@@ -81,7 +81,7 @@ commands:
       sp-0/0/0, Enabled, Physical link is Up\n  Interface index: 138, SNMP ifIndex:
       515\n  Type: Adaptive-Services, Link-level type: Adaptive-Services, MTU: 9192,
       Speed: 800mbps\n  Device Flags   : Present Running\n  Interface flags: Point-To-Point
-      SNMP-Traps Internal: 0x4000\n\n{master:0}\n"
+      SNMP-Traps Internal: 0x4000\n\n{{master:0}}\n"
     help: execute the command "show interfaces"
     prompt:
     - juniper_junos>
@@ -139,7 +139,7 @@ commands:
       \        none\n00:00:00:00:00:0b 10.1.100.75     vlan.20        none\n00:00:00:00:00:0c
       10.1.100.76     vlan.20        none\n00:00:00:00:11:11 10.1.111.11     vlan.20\
       \        none\n00:00:00:00:13:13 10.1.13.13      vlan.20        none\nTotal
-      entries: 9\n\n{master:0}\n"
+      entries: 9\n\n{{master:0}}\n"
     help: execute the command "show arp no-resolve"
     prompt:
     - juniper_junos>
@@ -176,7 +176,7 @@ commands:
       \    No    No   Yes  Yes  Yes   Yes     Fast    Active\n    LACP protocol: \
       \       Receive State  Transmit State          Mux State\n      et-0/0/25  \
       \               Current   Fast periodic Collecting distributing\n      et-0/0/29\
-      \                 Current   Fast periodic Collecting distributing\n\n{master:0}\n"
+      \                 Current   Fast periodic Collecting distributing\n\n{{master:0}}\n"
     help: execute the command "show lacp interfaces"
     prompt:
     - juniper_junos>
@@ -345,7 +345,7 @@ commands:
       0                   ROM        Juniper ROM Monitor Version 6.4b18         \n\
       \                         O/S        Version 7.0-20040804.0 by builder on 2004-0\n\
       \                         O/S        Version 7.0-20040804.0 by builder on 2004-0\n\
-      \n{master:0}\n"
+      \n{{master:0}}\n"
     help: execute the command "show chassis firmware"
     prompt:
     - juniper_junos>
@@ -389,7 +389,7 @@ commands:
       ge-0/0/2.0            CSR2           2  Up                   25  50:0:0:2:0:1\n\
       ge-0/0/2.0            XRv3           1  Up                    8  50:0:0:3:0:2\n\
       ge-0/0/2.0            XRv3           2  Up                    8  50:0:0:3:0:2\n\
-      ge-0/0/3.0            XRv3           3  Up                   25\n\n{master:0}\n"
+      ge-0/0/3.0            XRv3           3  Up                   25\n\n{{master:0}}\n"
     help: execute the command "show isis adjacency"
     prompt:
     - juniper_junos>
@@ -412,7 +412,7 @@ commands:
       \               MAC         Age    Logical\n    name                address\
       \             flags              interface\n    Vlan100             2c:5a:0f:bc:a3:cd\
       \   DL            -   ae112.0\n    Vlan100             ca:fe:ca:fe:00:07   DL\
-      \            -   ae112.0\n\n{master:0}\n"
+      \            -   ae112.0\n\n{{master:0}}\n"
     help: execute the command "show ethernet-switching table"
     prompt:
     - juniper_junos>
@@ -421,7 +421,7 @@ commands:
     output: "Address          Interface              State     ID               Pri\
       \  Dead\n10.1.2.2         ge-0/0/2.0             Full      2.2.2.2         \
       \   1    37\n10.1.3.3         ge-0/0/3.0             Full      3.3.3.3     \
-      \       1    31\n\n{master:0}\n"
+      \       1    31\n\n{{master:0}}\n"
     help: execute the command "show ospf neighbor"
     prompt:
     - juniper_junos>
@@ -444,7 +444,7 @@ commands:
       Hostname: lab\nModel: ex4550-32f\nJUNOS EX  Software Suite [13.2X51-D35.3]\n
       JUNOS FIPS mode utilities [13.2X51-D35.3]\nJUNOS Online Documentation [13.2X51-D35.3]\n
       JUNOS EX 4500 Software Suite [13.2X51-D35.3]\nJUNOS Web Management [13.2X51-D35.3]\n\
-      \n{master:0}\n"
+      \n{{master:0}}\n"
     help: execute the command "show version"
     prompt:
     - juniper_junos>
