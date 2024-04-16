@@ -133,3 +133,6 @@ dmypy.json
 # mine
 private/
 tests/tofile_outputs/
+
+# Visual Studio Code
+.vscode/

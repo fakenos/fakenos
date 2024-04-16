@@ -4,7 +4,7 @@ server implemented as a plugin. To see an example
 look for fakenos/plugins/servers/ssh_server_paramiko.py
 """
 
-#pylint: disable=no-name-in-module
+# pylint: disable=no-name-in-module
 from abc import ABC, abstractmethod
 import sys
 import socket
@@ -40,12 +40,7 @@ class TCPServerBase(ABC):
         self._listen_thread = None
         self._connection_threads: list = []
 
-    def start(
-            self,
-            address: str = '127.0.0.1',
-            port: int = 6000,
-            timeout: int = 1
-        ):
+    def start(self, address: str = "127.0.0.1", port: int = 6000, timeout: int = 1):
         """
         Start Server which distributes the connections.
         It handles the creation of the socket, binding to the address and port,
@@ -57,7 +52,7 @@ class TCPServerBase(ABC):
 
         if self._is_running.is_set():
             return
-        
+
         self._is_running.set()
 
         self._bind_sockets()
@@ -74,7 +69,6 @@ class TCPServerBase(ABC):
         self._socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self._socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, True)
 
-        print(sys.platform)
         if sys.platform in ["linux", "darwin"]:
             self._socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, True)
 
@@ -102,14 +96,11 @@ class TCPServerBase(ABC):
         It waits for a connection, and if a connection is made, it will
         call the connection function.
         """
-        while result:= self._is_running.is_set():
+        while self._is_running.is_set():
             try:
                 self._socket.listen()
                 client, _ = self._socket.accept()
-                connection_thread = threading.Thread(
-                    target=self.connection_function, 
-                    args=(client,)
-                )
+                connection_thread = threading.Thread(target=self.connection_function, args=(client,))
                 connection_thread.start()
                 self._connection_threads.append(connection_thread)
             except socket.timeout:

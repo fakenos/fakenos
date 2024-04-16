@@ -1,10 +1,10 @@
 import logging
-from typing import Dict, Optional
+from typing import Optional
 
 import yaml
 import importlib.util
 
-from fakenos.core.pydantic_models import model_nos_attributes
+from fakenos.core.pydantic_models import ModelNosAttributes
 
 log = logging.getLogger(__name__)
 
@@ -20,7 +20,7 @@ class Nos:
         commands: dict = {},
         initial_prompt: str = "FakeNOS>",
         filename: Optional[str] = None,
-        dict_args: Optional[Dict] = None,
+        dict_args: Optional[dict] = None,
     ) -> None:
         """
         Method to instantiate Nos Instance
@@ -45,7 +45,7 @@ class Nos:
         Method to validate NOS attributes: commands, name, initial prompt - using
         Pydantic models, raises ValidationError on failure.
         """
-        model_nos_attributes(**self.__dict__)
+        ModelNosAttributes(**self.__dict__)
         log.debug(f"{self.name} NOS attributes validation succeeded")
 
     def from_dict(self, data: dict) -> None:
@@ -124,8 +124,10 @@ class Nos:
         :param data: OS path string to `.yaml/.yml` or `.py` file with NOS data
         """
         if not self.is_file_ending_correct(data):
-            raise ValueError(f'Unsupported "{data}" file extension.\
-                              Supported: .py, .yml, .yaml')
+            raise ValueError(
+                f'Unsupported "{data}" file extension.\
+                              Supported: .py, .yml, .yaml'
+            )
         if data.endswith((".yaml", ".yml")):
             self.from_yaml(data)
         elif data.endswith(".py"):

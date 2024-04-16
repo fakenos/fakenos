@@ -1,0 +1,131 @@
+name: dell_force10
+initial_prompt: dell_force10>
+commands:
+  enable:
+    output: 'null'
+    new_prompt: dell_force10#
+    help: enter enable mode
+    prompt: dell_force10>
+  show arp:
+    output: "Protocol    Address         Age(min)  Hardware Address    Interface \
+      \ VLAN             CPU\n-----------------------------------------------------------------------------------------\n\
+      Internet    192.168.168.5        34   fc:93:ee:c6:73:b2   Ma 0/0      -    \
+      \           CP\nInternet    192.168.168.11        0   e5:97:c1:0e:cb:b7   Ma
+      0/0      -               CP\nInternet    192.168.168.130       0   8a:72:f4:ef:fe:e3\
+      \   Ma 0/0      -               CP\nInternet    192.168.186.99        6   5d:7c:2f:d5:62:57\
+      \   Te 0/22    Vl 10            CP\nInternet    192.168.186.254       -   5d:7c:2f:d5:62:58\
+      \      -       Vl 10            CP\n"
+    help: execute the command "show arp"
+    prompt:
+    - dell_force10>
+    - dell_force10#
+  show vlan:
+    output: "\nCodes: * - Default VLAN, G - GVRP VLANs, P - Primary, C - Community,
+      I - Isolated\nQ: U - Untagged, T - Tagged\n   x - Dot1x untagged, X - Dot1x
+      tagged\n   G - GVRP tagged, M - Vlan-stack, H - Hyperpull tagged\n\n    NUM\
+      \    Status    Description                     Q Ports\n*   1      Inactive\
+      \                                  U Te 0/42-43\n                          \
+      \                           U Fo 0/48,56,60\n    12     Inactive           \
+      \                       U Te 0/0-9,45-47\n    13     Inactive  myvlan13    \
+      \                    \n    14     Inactive                                 \
+      \ \n    100    Inactive  pixelrebel is awesome           T Te 0/30\n       \
+      \                                              U Te 0/40-41,44\n           \
+      \                                          U Fo 0/52\n    200    Inactive  \
+      \                                \n    330    Inactive  tagged example     \
+      \             T Te 0/30,35-37\n                                            \
+      \         U Te 0/31-34,38-39\n    351    Inactive  dev 351 vlan            \
+      \        U Te 0/10-19\n    380    Active    dev-VLAN 380                   \
+      \ U Te 0/20-29\n"
+    help: execute the command "show vlan"
+    prompt:
+    - dell_force10>
+    - dell_force10#
+  show ip interface brief:
+    output: "Interface                     IP-Address      OK  Method Status     \
+      \           Protocol\nTenGigabitEthernet 0/1        unassigned      NO  None\
+      \   up                    down\nTenGigabitEthernet 0/2        unassigned   \
+      \   NO  None   up                    down\nTenGigabitEthernet 0/3        unassigned\
+      \      YES None   up                    up\nTenGigabitEthernet 0/4        unassigned\
+      \      YES None   up                    up\nTenGigabitEthernet 0/5        unassigned\
+      \      YES None   up                    up\nTenGigabitEthernet 0/6        unassigned\
+      \      NO  None   up                    down\nTenGigabitEthernet 0/7       \
+      \ unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/8        unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/9        unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/10       unassigned      YES None   up                    up\nTenGigabitEthernet
+      0/11       unassigned      YES None   up                    up\nTenGigabitEthernet
+      0/12       unassigned      YES None   up                    up\nTenGigabitEthernet
+      0/13       unassigned      YES None   up                    up\nTenGigabitEthernet
+      0/14       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/15       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/16       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/17       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/18       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/19       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/20       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/21       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/22       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/23       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/24       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/25       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/26       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/27       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/28       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/29       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/30       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/31       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/32       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/33       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/34       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/35       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/36       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/37       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/38       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/39       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/40       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/41       unassigned      YES None   up                    up\nTenGigabitEthernet
+      0/42       unassigned      YES None   up                    up\nTenGigabitEthernet
+      0/43       unassigned      YES None   up                    up\nTenGigabitEthernet
+      0/44       unassigned      YES None   up                    up\nTenGigabitEthernet
+      0/49       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/50       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/51       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/52       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/53       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/54       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/55       unassigned      NO  None   up                    down\nTenGigabitEthernet
+      0/56       unassigned      NO  None   up                    down\nManagementEthernet
+      0/0        10.151.5.208    YES Manual up                    up\nPort-channel
+      128              unassigned      YES None   up                    up"
+    help: execute the command "show ip interface brief"
+    prompt:
+    - dell_force10>
+    - dell_force10#
+  show vlan brief:
+    output: "VLAN Name                             STG   MAC Aging IP Address    \
+      \     \n---- -------------------------------- ----  --------- ------------------
+      \n1                                     0     1800      unassigned         \n\
+      12                                    0     1800      10.10.10.254/24    \n\
+      13   thirteen                         0     1800      192.168.100.0/22     \
+      \    \n14   fourteen                         0     1800      unassigned    \
+      \     \n15   fifteen                          0     1800      unassigned   \
+      \      \n67   sixty seven                      0     1800      unassigned  \
+      \       \n"
+    help: execute the command "show vlan brief"
+    prompt:
+    - dell_force10>
+    - dell_force10#
+  show version:
+    output: "Dell Real Time Operating System Software\nDell Operating System Version:\
+      \  2.0\nDell Application Software Version:  9.9(0.0)\nCopyright (c) 1999-2015
+      by Dell Inc. All Rights Reserved.\nBuild Time: Tue Sep  8 03:51:15 2015\nBuild
+      Path: /sites/eqx/work/swbuild01_1/patch02/E9-9-0/SW/SRC\nDell Networking OS
+      uptime is 1 week(s), 2 day(s), 9 hour(s), 5 minute(s)\n\nSystem image file is
+      \"system://A\"\n\nSystem Type: S4820T\nControl Processor: Freescale QorIQ P2020
+      with 2 Gbytes (2147483648 bytes) of memory, core(s) 1.\n\n128M bytes of boot
+      flash memory.\n\n  1 52-port GE/TE/FG (SE)\n 48 Ten GigabitEthernet/IEEE 802.3
+      interface(s)\n  4 Forty GigabitEthernet/IEEE 802.3 interface(s)"
+    help: execute the command "show version"
+    prompt:
+    - dell_force10>
+    - dell_force10#

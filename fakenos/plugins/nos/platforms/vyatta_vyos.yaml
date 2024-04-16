@@ -1,0 +1,55 @@
+name: vyatta_vyos
+initial_prompt: vyatta_vyos>
+commands:
+  enable:
+    output: 'null'
+    new_prompt: vyatta_vyos#
+    help: enter enable mode
+    prompt: vyatta_vyos>
+  show interfaces:
+    output: "Codes: S - State, L - Link, u - Up, D - Down, A - Admin Down\nInterface\
+      \        IP Address                        S/L  Description\n---------     \
+      \   ----------                        ---  -----------\neth0             - \
+      \                                u/u  \neth0.40          123.123.120.123/27\
+      \                u/u  OUTSIDE \neth1             -                         \
+      \        u/u  \neth1.204         123.123.123.81/28                 u/u  CUST-DS-LAN
+      \neth1.269         172.18.32.14/28                   u/u  CUST-COM \n      \
+      \           123.123.123.123/32\neth1.437         123.123.116.169/29        \
+      \        u/u  CUST-VIDEO \neth1.1753        172.18.161.196/29              \
+      \   u/u  SERVICE-LINK \neth2             -                                 u/u\
+      \  \nlo               127.0.0.1/8                       u/u  \n            \
+      \     172.18.255.110/32\n                 ::1/128\nvtun0            192.168.80.2\
+      \                      u/u  \nvtun1            192.168.80.4                \
+      \      u/u   OpenVPN-TUNNEL1\nvtun2            192.168.80.6                \
+      \      u/u  \n\n"
+    help: execute the command "show interfaces"
+    prompt:
+    - vyatta_vyos>
+    - vyatta_vyos#
+  show arp:
+    output: "Address                  HWtype  HWaddress           Flags Mask     \
+      \       Iface\n10.123.254.20            ether   9c:8e:99:fa:15:0a   C      \
+      \               eth1.1230\n123.12.120.44            ether   11:22:33:aa:02:90\
+      \   C                     eth0.42\n123.12.120.218                   (incomplete)\
+      \                              eth1.1234\n10.123.254.21            ether   00:0c:29:59:94:56\
+      \   C                     eth1.1230\n123.12.120.219                   (incomplete)\
+      \                              eth1.1234\n123.12.120.57            ether   11:22:33:aa:65:bb\
+      \   C                     eth0.42\n"
+    help: execute the command "show arp"
+    prompt:
+    - vyatta_vyos>
+    - vyatta_vyos#
+  show ip bgp summary:
+    output: "IPv4 Unicast Summary:\nBGP router identifier 10.10.10.1, local AS number
+      123456 vrf-id 0\nBGP table version 50711224\nRIB entries 1537189, using 270
+      MiB of memory\nPeers 3, using 593 KiB of memory\nPeer groups 4, using 256 bytes
+      of memory\n\nNeighbor        V         AS MsgRcvd MsgSent   TblVer  InQ OutQ\
+      \  Up/Down State/PfxRcd\n10.10.10.10     4       1234   71460   69353      \
+      \  0    0    0 5d13h10m            0\n123.123.123.123 4     345612  450590 \
+      \  34688        0    0    0 1d00h18m            0\n193.189.82.105  4     12365\
+      \        0       0        0    0    0    never       Active\n\nTotal number
+      of neighbors 3\n"
+    help: execute the command "show ip bgp summary"
+    prompt:
+    - vyatta_vyos>
+    - vyatta_vyos#

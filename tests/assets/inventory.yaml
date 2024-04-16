@@ -1,0 +1,9 @@
+hosts:
+  R1:
+    username: fakenos
+    password: fakenos
+    port: 5001
+  R2:
+    username: fakenos
+    password: fakenos
+    port: 6000

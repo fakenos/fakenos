@@ -1,0 +1,22 @@
+name: alcatel_aos
+initial_prompt: alcatel_aos>
+commands:
+  enable:
+    output: 'null'
+    new_prompt: alcatel_aos#
+    help: enter enable mode
+    prompt: alcatel_aos>
+  show vlan:
+    output: "                              stree                 mble   src      \
+      \  \n vlan  type  admin   oper   1x1   flat   auth   ip   tag   lrn   name\n\
+      -----+-----+------+------+------+------+----+-----+-----+------+----------\n\
+      \   1    std   on     on     on    on     off   off   off     on   VLAN 1  \
+      \                        \n  10    std   on    off     on    on     off   off\
+      \   off     on   name with spaces                \n 100    std   on     on \
+      \    on    on     off    on   off     on   name-with-dashes                \
+      \  \n1000   gvrp   on     on     on    on     off    on   off     on   namewithoutnothing\
+      \                  \n"
+    help: execute the command "show vlan"
+    prompt:
+    - alcatel_aos>
+    - alcatel_aos#

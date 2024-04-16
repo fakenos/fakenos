@@ -96,7 +96,7 @@ like this:
 
 ```json
 {
-    "title": "model_fakenos_inventory",
+    "title": "ModelFakenosInventory",
     "description": "FakeNOS inventory data schema",
     "type": "object",
     "properties": {

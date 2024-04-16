@@ -1,0 +1,189 @@
+name: ciena_saos
+initial_prompt: ciena_saos>
+commands:
+  enable:
+    output: 'null'
+    new_prompt: ciena_saos#
+    help: enter enable mode
+    prompt: ciena_saos>
+  rstp show:
+    output: "+---------------------Bridge-------------------+BridgeTimer+-------Bridge------+\n\
+      |Rstp|    |            |  Root  |  Root  |Force|Fwd|Hlo|Max|T Chg|    Time \
+      \    |\n|Adm |Prio|   MacAdd   |  Cost  |  Port  |Versn|Dly|Tim|Age|Count| \
+      \ Since TC   |\n+----+----+------------+--------+--------+-----+---+---+---+-----+-------------+\n
+      | ENA|8000|C4836F193CC0|       0|  ----  | RSTP| 15|  2| 20|    0|0000D00:00:00|\n
+      +----+------------Designated-------------+-----+-RootTimer-+-----Enhancement---+\n
+      |Rstp| Designated Root |Designated Bridge|Hops2|Fwd|Hlo|Max| Standards  |Debug
+      |\n|Mode|Prio|   MacAdd   |Prio|   MacAdd   |RootB|Dly|Tim|Age| Compliance |Events|\n\
+      +----+----+------------+----+------------+-----+---+---+---+------------+------+\n\
+      |RSTP|8000|C4836F193CC0|8000|C4836F193CC0|   0 | 15|  2| 20|CienaEnhance|  more|\n
+      +----+----+------------+----+------------+-----+---+---+---+------------+------+\n
+      +------------------------------ RSTP  Port  Info ------------------------------+\n\
+      |        Port       |RSTP| STP|  |Path Cost |EdgeP|P2P_Mac|Domain|     Port\
+      \    |\n| Name  |Op|STP|Role| ST | ST |Pr|  Oper  |D|Ad|Op|Adm |Op|Adm|Ef| \
+      \   UpTime   |\n+-------+--+---+----+----+----+--+--------+-+--+--+----+--+---+--+-------------+\n\
+      |1      |--|Ena| DIS|DISC| DIS| 8|   20000|T| F| F|AUTO| F|  0| 0|0000D00:00:00|\n\
+      |2      |--|Ena| DIS|DISC| DIS| 8|    2000|T| F| F|AUTO| F|  0| 0|0000D00:00:00|\n\
+      |3      |--|Ena| DIS|DISC| DIS| 8|   20000|T| F| F|AUTO| F|  0| 0|0000D00:00:00|\n\
+      |4      |--|Ena| DIS|DISC| DIS| 8|    2000|T| F| F|AUTO| F|  0| 0|0000D00:00:00|\n\
+      |5      |--|Ena| DIS|DISC| DIS| 8|    2000|T| F| F|AUTO| F|  0| 0|0000D00:00:00|\n\
+      |6      |--|Ena| DIS|DISC| DIS| 8|    2000|T| F| F|AUTO| F|  0| 0|0000D00:00:00|\n\
+      |7      |--|Ena| DIS|DISC| DIS| 8|    2000|T| F| F|AUTO| F|  0| 0|0000D00:00:00|\n\
+      |8      |--|Ena| DIS|DISC| DIS| 8|    2000|T| F| F|AUTO| F|  0| 0|0000D00:00:00|\n\
+      |9      |--|Ena| DIS|DISC| DIS| 8|    2000|T| F| F|AUTO| F|  0| 0|0000D00:00:00|\n\
+      |10     |--|Ena| DIS|DISC| DIS| 8|    2000|T| F| F|AUTO| F|  0| 0|0000D00:00:00|\n\
+      |11     |--|Ena| DIS|DISC| DIS| 8|    2000|T| F| F|AUTO| F|  0| 0|0000D00:00:00|\n\
+      |12     |--|Ena| DIS|DISC| DIS| 8|    2000|T| F| F|AUTO| F|  0| 0|0000D00:00:00|\n\
+      |13     |--|Ena| DIS|DISC| DIS| 8|    2000|T| F| F|AUTO| F|  0| 0|0000D00:00:00|\n\
+      |14     |--|Ena| DIS|DISC| DIS| 8|    2000|T| F| F|AUTO| F|  0| 0|0000D00:00:00|\n\
+      |15     |--|Ena| DIS|DISC| DIS| 8|    2000|T| F| F|AUTO| F|  0| 0|0000D00:00:00|\n\
+      |16     |--|Ena| DIS|DISC| DIS| 8|    2000|T| F| F|AUTO| F|  0| 0|0000D00:00:00|\n\
+      |17     |--|Ena| DIS|DISC| DIS| 8|    2000|T| F| F|AUTO| F|  0| 0|0000D00:00:00|\n\
+      |18     |--|Dis| DIS|DISC| DIS| 8|    2000|T| F| F|AUTO| F|  0| 0|0000D00:00:00|\n\
+      |19     |--|Dis| DIS|DISC| DIS| 8|    2000|T| F| F|AUTO| F|  0| 0|0000D00:00:00|\n\
+      |20     |--|Ena| DIS|DISC| DIS| 8|    2000|T| F| F|AUTO| F|  0| 0|0000D00:00:00|\n\
+      |21     |--|Dis| DIS|DISC| DIS| 8|    2000|T| F| F|AUTO| F|  0| 0|0000D00:00:00|\n\
+      |22     |--|Dis| DIS|DISC| DIS| 8|    2000|T| F| F|AUTO| F|  0| 0|0000D00:00:00|\n\
+      |23     |--|Ena| DIS|DISC| DIS| 8|    2000|T| F| F|AUTO| F|  0| 0|0000D00:00:00|\n\
+      |24     |--|Ena| DIS|DISC| DIS| 8|    2000|T| F| F|AUTO| F|  0| 0|0000D00:00:00|\n\
+      |LAG1   |Up|Dis| DIS|FWD |FWD | 8|   20000|T| F| F|AUTO|T |  0| 0|0030D04:51:46|\n\
+      |LAG2   |Up|Dis| DIS|FWD |FWD | 8|   20000|T| F| F|AUTO|T |  0| 0|0030D04:22:36|\n
+      |LATERAL|--|Ena| DIS|DISC| DIS| 8| ------ |T| F| F|AUTO| F|  0| 0|0000D00:00:00|\n\
+      +-------+--+---+----+----+----+--+--------+-+--+--+----+--+---+--+-------------+\n"
+    help: execute the command "rstp show"
+    prompt:
+    - ciena_saos>
+    - ciena_saos#
+  traffic-profiling standard-profile show:
+    output: "+---------------------------------------- STANDARD PROFILE TABLE -----------------------------------------+\n\
+      |  Port |      Profile       |    |Parent|        BW (Kbps)    |   Max Burst
+      KB  |       CLASSIFIERS      |\n|       | ID | Name          |Role|#Child| \
+      \   CIR   |    EIR   |   CBS  |   EBS  |                        |\n+-------+----+---------------+----+------+----------+----------+--------+--------+------------------------+\n\
+      |21     |1   |V4096          | N  |    0 |    10000 |        0 |   2000 |  \
+      \    0 | VS | TestA             |\n+-------+----+---------------+----+------+----------+----------+--------+--------+------------------------+\n\
+      |22     |1   |V4096          | N  |    0 |   100000 |        0 |   2000 |  \
+      \    0 | VS | TestB             |\n+-------+----+---------------+----+------+----------+----------+--------+--------+------------------------+\n\
+      |24     |1   |V4096          | N  |    0 |       32 |        0 |   3000 |  \
+      \    0 | VS | TestC             |\n+-------+----+---------------+----+------+----------+----------+--------+--------+------------------------+"
+    help: execute the command "traffic-profiling standard-profile show"
+    prompt:
+    - ciena_saos>
+    - ciena_saos#
+  vlan show:
+    output: "+------------ VLAN GLOBAL CONFIGURATION ------------+\n| Parameter  \
+      \       | Value                         |\n+-------------------+---------------+---------------+\n
+      | Inner TPID State  | Disabled                      |\n|                   |\
+      \                               |\n| Field             | Admin         | Oper\
+      \          |\n+-------------------+---------------+---------------+\n| Inner
+      TPID        | 8100          | 8100          |\n+-------------------+---------------+---------------+\n\
+      \n+----+--------------------------------+------------------------+\n|VLAN| \
+      \                               |         111111111122222|\n| ID | VLAN Name\
+      \                Ports |123456789012345678901234|\n+----+--------------------------------+------------------------+\n\
+      |   1|Default                         |           x           x|\n| 127|VLAN#127\
+      \                        |x                      x|\n| 666|Blackhole       \
+      \                | xxxxxxxxxx xxxxxxxxxxx |\n| 800|Mgmt                    \
+      \        |x                      x|\n|1001|RVID_1001                       |x\
+      \                      x|\n+----+--------------------------------+------------------------+\n
+      \n+----------------------------- CROSS CONNECTION TABLE ------------------------------+\n
+      | OVID | IVID |                           Port-A |                         \
+      \  Port-B |\n+------+------+----------------------------------+----------------------------------+\n
+      | No Entry Found                                                           \
+      \         |\n+------+------+----------------------------------+----------------------------------+"
+    help: execute the command "vlan show"
+    prompt:
+    - ciena_saos>
+    - ciena_saos#
+  chassis show temperature:
+    output: "+- TEMPERATURE THRESHOLD -+\n| Low        | High       |\n+------------+------------+\n
+      | -40 C      | 65  C      |\n+------------+------------+\n\n+--- TEMPERATURE
+      STATUS --+\n| Current | Low   | High  |\n+---------+-------+-------+\n| 19 \
+      \ C   | 17  C | 20  C |\n+---------+-------+-------+"
+    help: execute the command "chassis show temperature"
+    prompt:
+    - ciena_saos>
+    - ciena_saos#
+  software show:
+    output: "+------------------------------------------------------------------------------+\n
+      | Installed Package   : saos-06-18-00-1848                                 \
+      \    |\n| Running Package     : saos-06-18-00-1848                         \
+      \            |\n| Application Build   : 17704                              \
+      \                    |\n| Package Build Info  : Thu Feb 21 04:19:00 2019 autouser
+      onxvpnjk02           |\n| Running Kernel      : 3.10.54-grsec              \
+      \                            |\n| Running MIB Version : 04-18-00-0028      \
+      \                                    |\n| Release Status      : GA         \
+      \                                            |\n+------------------------------------------------------------------------------+\n
+      | Running bank        : B                                                  \
+      \    |\n| Bank package version: saos-06-18-00-1848                         \
+      \            |\n| Bootloader version  : 17704                              \
+      \                    |\n| Bootloader status   : valid                      \
+      \                            |\n| Bank status         : valid (validated   \
+      \ 17hr  7min 15sec ago)              |\n| Standby bank        : A          \
+      \                                            |\n| Bank package version: saos-06-15-00-0242\
+      \                                     |\n| Bootloader version  : 12760     \
+      \                                             |\n| Bootloader status   : valid\
+      \                                                  |\n| Bank status        \
+      \ : valid (validated    17hr  6min 51sec ago)              |\n+------------------------------------------------------------------------------+\n
+      | Last command file: unknown                                               \
+      \    |\n| Last configuration file: unknown                                 \
+      \            |\n+------------------------------------------------------------------------------+\n"
+    help: execute the command "software show"
+    prompt:
+    - ciena_saos>
+    - ciena_saos#
+  port show:
+    output: "+--------------- PORT GLOBAL CONFIGURATION ----------------+\n|     \
+      \       Parameter             |       Value           |\n+----------------------------------+-----------------------+\n
+      | Rx Low Power Detect Admin State  | Disabled              |\n+----------------------------------+-----------------------+\n
+      +-------------------------------------------------------------------------------+\n
+      | Port Table        |           Operational Status            |  Admin Config\
+      \   |\n|---------+---------+----+--------------+----+---+-------+----+----+-------+----|\n
+      | Port    | Port    |    |  Link State  |    |   |       |Auto|    |       |Auto|\n
+      | Name    | Type    |Link|   Duration   |XCVR|STP| Mode  |Neg |Link| Mode  |Neg
+      |\n|---------+---------+----+--------------+----+---+-------+----+----+-------+----|\n
+      | 1.11    |100/G    | Up |  30d 2h24m21s|Ena |Dis|1000/FD| On |Ena |Auto/FD|
+      On |\n| 2.1     |100G/Gig |Down|   0d 0h 0m 0s|UCTF|Dis|       |    |Ena |Auto/FD|
+      On |\n| 3       |10/100/G | Up |  30d 1h55m12s|Ena |Dis|1000/FD| On |Ena |Auto/FD|
+      On |\n| 4       | G/10Gig |Down|   0d 0h 0m 0s|    |Dis|       |    |Ena |Auto/FD|
+      On |\n| 5       | G/10Gig |Down|   0d 0h 0m 0s|    |Dis|       |    |Ena |Auto/FD|
+      On |\n| 6       | G/10Gig |Down|   0d 0h 0m 0s|    |Dis|       |    |Ena |Auto/FD|
+      On |\n| 7       | G/10Gig |Down|   0d 0h 0m 0s|    |Dis|       |    |Ena |Auto/FD|
+      On |\n| 8       | G/10Gig |Down|   0d 0h 0m 0s|    |Dis|       |    |Ena |Auto/FD|
+      On |\n| 9       | G/10Gig |Down|   0d 0h 0m 0s|    |Dis|       |    |Ena |Auto/FD|
+      On |\n| 10      | G/10Gig |Down|   0d 0h 0m 0s|    |Dis|       |    |Ena |Auto/FD|
+      On |\n| 11      | G/10Gig |Down|   0d 0h 0m 0s|    |Dis|       |    |Ena |Auto/FD|
+      On |\n| 12      | G/10Gig |Down|   0d 0h 0m 0s|    |Dis|       |    |Ena |Auto/FD|
+      On |\n| 13      | G/10Gig |Down|   0d 0h 0m 0s|    |Dis|       |    |Ena |Auto/FD|
+      On |\n| 14      | G/10Gig |Down|   0d 0h 0m 0s|    |Dis|       |    |Ena |Auto/FD|
+      On |\n| 15      | G/10Gig |Down|   0d 0h 0m 0s|    |Dis|       |    |Ena |Auto/FD|
+      On |\n| 16      | G/10Gig |Down|   0d 0h 0m 0s|    |Dis|       |    |Ena |Auto/FD|
+      On |\n| 17      | G/10Gig |Down|   0d 0h 0m 0s|    |Dis|       |    |Ena |Auto/FD|
+      On |\n| 18      | G/10Gig |Down|   0d 0h 0m 0s|    |Dis|       |    |Ena |Auto/FD|
+      On |\n| 19      | G/10Gig |Down|   0d 0h 0m 0s|    |Dis|       |    |Ena |Auto/FD|
+      On |\n| 20      | G/10Gig |Down|   0d 0h 0m 0s|    |Dis|       |    |Ena |Auto/FD|
+      On |\n| 21      | G/10Gig |Down|   0d 0h 0m 0s|    |Dis|       |    |Ena |Auto/FD|
+      On |\n| 22      | G/10Gig |Down|   0d 0h 0m 0s|    |Dis|       |    |Ena |Auto/FD|
+      On |\n| 23      | G/10Gig |Down|   0d 0h 0m 0s|    |Dis|       |    |Ena |Auto/FD|
+      On |\n| 24      | G/10Gig |Down|   0d 0h 0m 0s|    |Dis|       |    |Ena |Auto/FD|
+      On |\n| LAG1    | LAG     | Up |  30d 2h24m21s|    |FWD|       |    |Ena | \
+      \      |    |\n| LAG2    | LAG     | Up |  30d 1h55m11s|    |FWD|       |  \
+      \  |Ena |       |    |\n| LATERAL | LAG     |Down|   0d 0h 0m 0s|    |Dis| \
+      \      |    |Ena |       |    |\n+---------+---------+----+--------------+----+---+-------+----+----+-------+----+"
+    help: execute the command "port show"
+    prompt:
+    - ciena_saos>
+    - ciena_saos#
+  ssh server show key:
+    output: "+---------------------------- SSH SERVER KEY --------------------------------+\n
+      | Key Status              | Generated                                      \
+      \  |\n| Key Fingerprint [MD5]   | 1a:1d:1c:1e:da:11:1d:1d:11:aa:11:11:11:a1:11:1c\
+      \  |\n+-------------------------+--------------------------------------------------+\n
+      \n+------------------------ SSH PUBLIC KEY AUTHENTICATION USERS ------------------------+\n
+      | Username                         | Key Status                            \
+      \           |\n+----------------------------------+--------------------------------------------------+\n
+      | abc1                             | installed                             \
+      \           |\n| abc2                             | installed              \
+      \                          |\n+----------------------------------+--------------------------------------------------+\n"
+    help: execute the command "ssh server show key"
+    prompt:
+    - ciena_saos>
+    - ciena_saos#

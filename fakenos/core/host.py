@@ -16,6 +16,7 @@ class Host:
         server: dict,
         shell: dict,
         nos: dict,
+        platform: str,
         fakenos,
     ) -> None:
         self.name = name
@@ -25,6 +26,7 @@ class Host:
         self.username = username
         self.password = password
         self.port = port
+        self.platform = platform
         self.fakenos = fakenos
         self.shell_inventory["configuration"].setdefault("base_prompt", self.name)
         self.running = False
@@ -37,6 +39,8 @@ class Host:
         """Method to start server instance for this hosts"""
         self.server_plugin = self.fakenos.servers_plugins[self.server_inventory["plugin"]]
         self.shell_plugin = self.fakenos.shell_plugins[self.shell_inventory["plugin"]]
+        if self.platform:
+            self.nos_inventory["plugin"] = self.platform
         self.nos_plugin = self.fakenos.nos_plugins[self.nos_inventory["plugin"]]
 
         self.server = self.server_plugin(

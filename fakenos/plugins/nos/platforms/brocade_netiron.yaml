@@ -1,0 +1,548 @@
+name: brocade_netiron
+initial_prompt: brocade_netiron>
+commands:
+  enable:
+    output: 'null'
+    new_prompt: brocade_netiron#
+    help: enter enable mode
+    prompt: brocade_netiron>
+  show interfaces:
+    output: "GigabitEthernet1/1 is up, line protocol is up \n  STP Root Guard is disabled,
+      STP BPDU Guard is disabled\n  Hardware is GigabitEthernet, address is 0024.38a5.1c00
+      (bia 0024.38a5.1c00)\n  Configured speed auto, actual 1Gbit, configured duplex
+      fdx, actual fdx\n  Member of Control VLAN 4095, 36 L2 VLAN(S) (tagged), port
+      is in tagged mode, port state is Forwarding\n  STP configured to ON, Priority
+      is level0, flow control enabled\n  Priority force disabled, Drop precedence
+      level 0, Drop precedence force disabled\n  dhcp-snooping-trust configured to
+      OFF\n  mirror disabled, monitor disabled\n  LACP BPDU Forwarding:Disabled \n\
+      \  LLDP BPDU Forwarding:Disabled \n  Not member of any active trunks\n  Not
+      member of any configured trunks\n  Port name is ATM1-G0-1\n  Port is not enabled
+      to receive all vlan packets for pbr\n  MTU 9216 bytes, encapsulation ethernet\n\
+      \  Openflow: Disabled, Openflow Index 1\n  Cluster L2 protocol forwarding enabled\n\
+      \  300 second input rate: 235649647 bits/sec, 27522 packets/sec, 24.00% utilization\n\
+      \  300 second output rate: 140641094 bits/sec, 31382 packets/sec, 14.56% utilization\n\
+      \  74818592872 packets input, 72400348503374 bytes, 0 no buffer\n  Received
+      3639493 broadcasts, 2736343 multicasts, 74812217036 unicasts\n  0 input errors,
+      0 CRC, 0 frame, 0 ignored\n  0 runts, 16192705827 giants                   \
+      \                  \n  NP received 74819287581 packets, Sent to TM 74819282240
+      packets\n  NP Ingress dropped 5369 packets\n  95864830955 packets output, 54017992924883
+      bytes, 0 underruns\n  Transmitted 2406581209 broadcasts, 82143416 multicasts,
+      93376106330 unicasts\n  0 output errors, 0 collisions\n  NP transmitted 95865699894
+      packets, Received from TM 95872239709 packets\nGigabitEthernet1/2 is disabled,
+      line protocol is down \n  STP Root Guard is disabled, STP BPDU Guard is disabled\n\
+      \  Hardware is GigabitEthernet, address is 0024.38a5.1c01 (bia 0024.38a5.1c01)\n\
+      \  Configured speed auto, actual unknown, configured duplex fdx, actual unknown\n\
+      \  Member of Control VLAN 4095, VLAN 1 (untagged), port is in untagged mode,
+      port state is Disabled\n  STP configured to ON, Priority is level0, flow control
+      enabled\n  Priority force disabled, Drop precedence level 0, Drop precedence
+      force disabled\n  dhcp-snooping-trust configured to OFF\n  mirror disabled,
+      monitor disabled\n  LACP BPDU Forwarding:Disabled \n  LLDP BPDU Forwarding:Disabled
+      \n  Not member of any active trunks\n  Not member of any configured trunks\n\
+      \  No port name\n  Port is not enabled to receive all vlan packets for pbr\n\
+      \  MTU 9216 bytes, encapsulation ethernet\n  Openflow: Disabled, Openflow Index
+      2                            \n  Cluster L2 protocol forwarding enabled\n  300
+      second input rate: 0 bits/sec, 0 packets/sec, 0.00% utilization\n  300 second
+      output rate: 0 bits/sec, 0 packets/sec, 0.00% utilization\n  0 packets input,
+      0 bytes, 0 no buffer\n  Received 0 broadcasts, 0 multicasts, 0 unicasts\n  0
+      input errors, 0 CRC, 0 frame, 0 ignored\n  0 runts, 0 giants\n  NP received
+      0 packets, Sent to TM 0 packets\n  NP Ingress dropped 0 packets\n  0 packets
+      output, 0 bytes, 0 underruns\n  Transmitted 0 broadcasts, 0 multicasts, 0 unicasts\n\
+      \  0 output errors, 0 collisions\n  NP transmitted 0 packets, Received from
+      TM 0 packets\n10GigabitEthernet3/4 is up, line protocol is up \n  STP Root Guard
+      is disabled, STP BPDU Guard is disabled\n  Hardware is 10GigabitEthernet, address
+      is 0024.38a5.1c00 (bia 0024.38a5.1c63)\n  Configured speed 10Gbit, actual 10Gbit,
+      configured duplex fdx, actual fdx\n  Member of Control VLAN 4095, 77 L2 VLAN(S)
+      (tagged), port is in tagged mode, port state is Forwarding\n  STP configured
+      to ON, Priority is level0, flow control enabled\n  Priority force disabled,
+      Drop precedence level 0, Drop precedence force disabled\n  dhcp-snooping-trust
+      configured to OFF\n  mirror disabled, monitor disabled\n  LACP BPDU Forwarding:Disabled
+      \n  LLDP BPDU Forwarding:Disabled \n  Not member of any active trunks\n  Not
+      member of any configured trunks\n  Port name is OL2.CLMAMO-ten3/0/0\n  Port
+      is not enabled to receive all vlan packets for pbr\n  MTU 9216 bytes, encapsulation
+      ethernet\n  Openflow: Disabled, Openflow Index 100\n  Cluster L2 protocol forwarding
+      enabled\n  30 second input rate: 300338645 bits/sec, 41100 packets/sec, 3.07%
+      utilization\n  30 second output rate: 190540328 bits/sec, 39304 packets/sec,
+      1.97% utilization\n  121863253313 packets input, 99644389312061 bytes, 0 no
+      buffer\n  Received 44852728 broadcasts, 9170942 multicasts, 121809229643 unicasts\n\
+      \  0 input errors, 0 CRC, 0 frame, 0 ignored\n  0 runts, 26930828870 giants\n\
+      \  NP received 121864501462 packets, Sent to TM 121862218321 packets\n  NP Ingress
+      dropped 5 packets\n  145158405355 packets output, 102580338487220 bytes, 0 underruns\n\
+      \  Transmitted 9556629 broadcasts, 65490504 multicasts, 145083358222 unicasts\n\
+      \  0 output errors, 0 collisions\n  NP transmitted 145159557118 packets, Received
+      from TM 145218386173 packets\n10GigabitEthernet3/5 is up, line protocol is up
+      \n  STP Root Guard is disabled, STP BPDU Guard is disabled\n  Hardware is 10GigabitEthernet,
+      address is 0024.38a5.1c00 (bia 0024.38a5.1c64)\n  Configured speed 10Gbit, actual
+      10Gbit, configured duplex fdx, actual fdx\n  Member of Control VLAN 4095, 9
+      L2 VLAN(S) (tagged), port is in tagged mode, port state is Forwarding\n  STP
+      configured to ON, Priority is level0, flow control enabled\n  Priority force
+      disabled, Drop precedence level 0, Drop precedence force disabled\n  dhcp-snooping-trust
+      configured to OFF\n  mirror disabled, monitor disabled\n  LACP BPDU Forwarding:Disabled
+      \n  LLDP BPDU Forwarding:Disabled \n  Member of active trunk ports 3/5, primary
+      port\n  Member of configured trunk ports 3/5, primary port\n  Port name is CLMA-STLS
+      10G-Centurylink\n  Port is not enabled to receive all vlan packets for pbr \
+      \        \n  MTU 9216 bytes, encapsulation ethernet\n  Openflow: Disabled, Openflow
+      Index 101\n  Cluster L2 protocol forwarding enabled\n  30 second input rate:
+      2602741516 bits/sec, 269941 packets/sec, 26.46% utilization\n  30 second output
+      rate: 262142094 bits/sec, 111277 packets/sec, 2.79% utilization\n  924970842630
+      packets input, 1088460975408035 bytes, 0 no buffer\n  Received 4575649 broadcasts,
+      102909425 multicasts, 924863357556 unicasts\n  0 input errors, 0 CRC, 0 frame,
+      0 ignored\n  0 runts, 321137547437 giants\n  NP received 924979272212 packets,
+      Sent to TM 924677624613 packets\n  NP Ingress dropped 213578234 packets\n  526574341236
+      packets output, 159588031939808 bytes, 0 underruns\n  Transmitted 121307096
+      broadcasts, 317528800 multicasts, 526135505340 unicasts\n  0 output errors,
+      0 collisions\n  NP transmitted 526580335261 packets, Received from TM 526680374565
+      packets\n10GigabitEthernet3/6 is disabled, line protocol is down \n  STP Root
+      Guard is disabled, STP BPDU Guard is disabled\n  Hardware is 10GigabitEthernet,
+      address is 0024.38a5.1c65 (bia 0024.38a5.1c65)\n  Configured speed 10Gbit, actual
+      unknown, configured duplex fdx, actual unknown\n  Member of Control VLAN 4095,
+      VLAN 1 (untagged), port is in untagged mode, port state is Disabled\n  STP configured
+      to ON, Priority is level0, flow control enabled\n  Priority force disabled,
+      Drop precedence level 0, Drop precedence force disabled\n  dhcp-snooping-trust
+      configured to OFF                           \n  mirror disabled, monitor disabled\n\
+      \  LACP BPDU Forwarding:Disabled \n  LLDP BPDU Forwarding:Disabled \n  Not member
+      of any active trunks\n  Not member of any configured trunks\n  No port name\n\
+      \  Port is not enabled to receive all vlan packets for pbr\n  MTU 9216 bytes,
+      encapsulation ethernet\n  Openflow: Disabled, Openflow Index 102\n  Cluster
+      L2 protocol forwarding enabled\n  300 second input rate: 0 bits/sec, 0 packets/sec,
+      0.00% utilization\n  300 second output rate: 0 bits/sec, 0 packets/sec, 0.00%
+      utilization\n  0 packets input, 0 bytes, 0 no buffer\n  Received 0 broadcasts,
+      0 multicasts, 0 unicasts\n  0 input errors, 0 CRC, 0 frame, 0 ignored\n  0 runts,
+      0 giants\n  NP received 0 packets, Sent to TM 0 packets\n  NP Ingress dropped
+      0 packets\n  0 packets output, 0 bytes, 0 underruns\n  Transmitted 0 broadcasts,
+      0 multicasts, 0 unicasts\n  0 output errors, 0 collisions\n  NP transmitted
+      0 packets, Received from TM 0 packets\nVe1395 is up, line protocol is up \n\
+      \  Type is Vlan (Vlan Id: 1395)\n  Hardware is Virtual Ethernet, address is
+      0024.38a5.1c00 (bia 0024.38a5.1c00)\n  Port name is TA5000A.CLMAMOXI-PON-VOICE
+      \n  Vlan id: 1395\n  Internet address is 172.24.18.1/24, IP MTU 1500 bytes,
+      encapsulation ethernet\nVe1400 is up, line protocol is down \n  Type is Vlan
+      (Vlan Id: 1400)\n  Hardware is Virtual Ethernet, address is 0024.38a5.1c00 (bia
+      0024.38a5.1c00)\n  No port name\n  Vlan id: 1400\n  Internet address is 0.0.0.0/0,
+      IP MTU 1500 bytes, encapsulation ethernet\nLoopback1 is up, line protocol is
+      up \n  Hardware is Loopback\n  Port name is MPLS Loopback\n  Internet address
+      is 174.34.31.29/32, IP MTU 1500 bytes, encapsulation LOOPBACK\nLoopback6 is
+      up, line protocol is up \n  Hardware is Loopback\n  No port name\n  IP MTU 1500
+      bytes, encapsulation LOOPBACK"
+    help: execute the command "show interfaces"
+    prompt:
+    - brocade_netiron>
+    - brocade_netiron#
+  show lldp neighbors detail:
+    output: "Total number of LLDP neighbors on all ports: 38\nLocal port: 1/1\n  Neighbor:
+      0012.f2f0.2377, TTL 101 seconds\n    + Chassis ID (MAC address): 0012.f2f0.2360\n\
+      \    + Port ID (MAC address): 0012.f2f0.2377\n    + Time to live: 120 seconds\n\
+      \    + System name         : \"switch1d.clmamofw\"\n    + Port description \
+      \   : \"GigabitEthernet24\"\n    + System capabilities : bridge\n      Enabled
+      capabilities: bridge\n    + 802.3 MAC/PHY          : auto-negotiation enabled\n\
+      \      Advertised capabilities: 10BaseT-HD, 10BaseT-FD, 100BaseTX-HD,\n    \
+      \                           100BaseTX-FD, fdxSPause, fdxBPause,\n          \
+      \                     1000BaseT-HD, 1000BaseT-FD\n      Operational MAU type\
+      \   : 1000BaseT-FD\n    + Link aggregation: aggregated (aggregated port ifIndex:
+      0)\n    + Maximum frame size: 10240 octets\n    + Port VLAN ID: 1\n    + Management
+      address (IPv4): 10.255.1.49\n\nLocal port: 1/5\n  Neighbor: 001b.ed6b.6304,
+      TTL 97 seconds\n    + Chassis ID (MAC address): 001b.ed6b.6300\n    + Port ID
+      (MAC address): 001b.ed6b.6304                       \n    + Time to live: 120
+      seconds\n    + System name         : \"switch1e.clmamofw\"\n    + Port description\
+      \    : \"GigabitEthernet5\"\n    + System capabilities : bridge\n      Enabled
+      capabilities: bridge\n    + 802.3 MAC/PHY          : auto-negotiation enabled\n\
+      \      Advertised capabilities: 10BaseT-HD, 10BaseT-FD, 100BaseTX-HD,\n    \
+      \                           100BaseTX-FD, fdxSPause, fdxBPause,\n          \
+      \                     1000BaseT-HD, 1000BaseT-FD\n      Operational MAU type\
+      \   : 1000BaseT-FD\n    + Link aggregation: aggregated (aggregated port ifIndex:
+      5)\n    + Maximum frame size: 10240 octets\n    + Port VLAN ID: none\n    +
+      Management address (IPv4): 10.255.5.32\n\nLocal port: 1/6\n  Neighbor: e8e7.32cd.b14e,
+      TTL 114 seconds\n    + Chassis ID (MAC address): e8e7.32cd.b9e8\n    + Port
+      ID (locally assigned): \"3045\"\n    + Time to live: 120 seconds\n\nLocal port:
+      1/10\n  Neighbor: 001b.edae.fe09, TTL 106 seconds                       \n \
+      \   + Chassis ID (MAC address): 001b.edae.fe00\n    + Port ID (MAC address):
+      001b.edae.fe09\n    + Time to live: 120 seconds\n    + System name         :
+      \"fw1.clmamofw\"\n    + Port description    : \"GigabitEthernet1/10\"\n    +
+      System capabilities : bridge, router\n      Enabled capabilities: bridge, router\n\
+      \    + 802.3 MAC/PHY          : auto-negotiation enabled\n      Advertised capabilities:
+      10BaseT-HD, 10BaseT-FD, 100BaseTX-HD,\n                               100BaseTX-FD,
+      1000BaseT-HD, 1000BaseT-FD\n      Operational MAU type   : 1000BaseT-FD\n  \
+      \  + Link aggregation: aggregated (aggregated port ifIndex: 10)\n    + Maximum
+      frame size: 9216 octets\n    + Port VLAN ID: none\n    + Management address
+      (IPv4): 216.106.21.252\n\nLocal port: 1/13\n  Neighbor: 0026.f13c.85a9, TTL
+      102 seconds\n    + Chassis ID (MAC address): 0026.f13c.8580\n    + Port ID (locally
+      assigned): \"23\"\n    + Time to live: 120 seconds\n    + Port description \
+      \   : \"23\"\n    + System name         : \"FEBE1.SOCKET-COU\"             \
+      \       \n    + System description  : \"ProCurve J9145A 2910al-24G Switch, revision
+      W.14.\\\n                             72, ROM W.14.06 (/ws/swbuildm/W_titan4_v14_a_qaof\\\
+      \n                             f/code/build/sbm(W_titan4_v14_a_qaoff))\"\n \
+      \   + System capabilities : bridge, router\n      Enabled capabilities: bridge\n\
+      \    + Management address (IPv4): 192.168.11.1\n    + 802.3 MAC/PHY        \
+      \  : auto-negotiation enabled\n      Advertised capabilities: 10BaseT-HD, 10BaseT-FD,
+      100BaseTX-HD,\n                               100BaseTX-FD, 1000BaseT-FD\n \
+      \     Operational MAU type   : 1000BaseT-FD\n    + 802.3 Power via MDI: PSE
+      port, power not supported\n"
+    help: execute the command "show lldp neighbors detail"
+    prompt:
+    - brocade_netiron>
+    - brocade_netiron#
+  show running-config vlan:
+    output: "no spanning-tree\n!\nno dual-mode-default-vlan\n!\n!\nvlan 1 name DEFAULT-VLAN
+      \n no untagged e 1/1 e 1/4 to 1/8 e 1/12 e 1/17 e 2/1 e 2/4 to 2/8 e 2/12 e
+      2/15 to 2/17 e 3/1 to 3/5 e 4/1 to 4/4 \n!\nvlan 2 \n tagged e 1/1 e 1/6 e 1/17
+      e 2/1 e 2/6 e 2/17 \n router-interface ve 2\n spanning-tree\n!\nvlan 10 name
+      CLMAMO-RING-1 \n untagged e 1/14 \n tagged e 1/1 e 1/4 e 1/7 e 2/1 e 2/4 e 2/7
+      e 3/2 e 3/4 e 4/2 e 4/4 \n router-interface ve 10\n metro-ring 10\n  ring-interfaces
+      ethe 1/4 ethe 2/4\n  enable\n!\nvlan 11 name CLMAMOXA-JFCYMOXA-RING \n tagged
+      e 1/5 e 2/5 \n!                                                            \
+      \     \nvlan 14 name CLMAMOXA-RING \n tagged e 1/4 e 1/7 e 2/4 e 2/7 \n metro-ring
+      14\n  ring-interfaces ethe 2/4 ethe 1/4\n  enable\n!\nvlan 22 name KMIZ \n tagged
+      e 1/8 e 2/8 e 3/2 e 3/4 e 4/2 \n!\nvlan 60 name CLMA-JFCY-FLTN_Master \n tagged
+      e 3/1 e 3/3 e 3/5 e 4/1 e 4/3 \n metro-ring 60\n  ring-interfaces ethe 3/1 ethe
+      4/1\n  enable\n metro-ring 58\n  ring-interfaces ethe 4/1 ethe 3/5\n  enable\n
+      !\nvlan 94 name HermannHospital_18thSt \n tagged e 1/12 e 2/12 e 2/15 e 3/1
+      e 3/3 to 3/4 e 4/1 e 4/3 \n!\nvlan 100 \n tagged e 3/1 e 3/3 e 4/1 e 4/3   \
+      \                                \n!\nvlan 144 name VOIPstate-External \n tagged
+      e 3/1 e 3/3 e 4/1 e 4/3 \n router-interface ve 144\n!\nvlan 145 name VOIPstate-Internal
+      \n tagged e 3/1 e 3/3 e 4/1 e 4/3 \n router-interface ve 145\n!\nvlan 146 name
+      LabSBC-External \n tagged e 1/4 e 1/7 e 2/4 e 2/7 \n router-interface ve 146\n
+      !\nvlan 149 name SBC-External \n tagged e 1/4 e 1/7 e 2/4 e 2/7 \n router-interface
+      ve 149\n!\nvlan 151 name LabSBC-internal \n tagged e 1/4 e 1/7 e 2/4 e 2/7 \n
+      router-interface ve 151\n!\nvlan 152 name SBC-Inside \n tagged e 1/4 e 1/7 e
+      2/4 e 2/7                                   \n router-interface ve 152\n!\n
+      vlan 154 name SocketVoIP-Svr \n tagged e 1/4 e 1/7 e 2/4 e 2/7 \n router-interface
+      ve 154\n!\nvlan 156 name VoIP-Signaling \n untagged e 1/11 e 2/11 \n tagged
+      e 1/6 e 1/17 e 2/6 e 2/17 \n router-interface ve 156\n!\nvlan 158 name VoIP-Bearer
+      \n untagged e 1/10 e 2/10 \n router-interface ve 158\n"
+    help: execute the command "show running-config vlan"
+    prompt:
+    - brocade_netiron>
+    - brocade_netiron#
+  show lag brief:
+    output: "Total number of LAGs\t: 12, 100/40g : 0\nTotal number of deployed LAGs\t
+      : 12, 100/40g : 0\nTotal number of trunks created\t: 12 (116 available), 100/40g
+      : 0 (8 available)\nLACP System Priority / ID\t:1 / 0024.38a5.5f00\nLACP Long
+      timeout\t:90, default: 90\nLACP Short timeout\t:3, default: 3\n\nLAG       \
+      \         Type      Deploy Trunk Primary        Port List\nAkamai Uplink   \
+      \  dynamic      Y     11     1/13        e 1/13 e 2/13\nCLMAMOFW-FLTNHT   dynamic\
+      \      Y     7      4/2         e 3/2 e 4/2\nLAG5              dynamic     \
+      \ Y     5      3/3         e 3/3 to 3/4\nLAG6              dynamic      Y  \
+      \   6      4/3         e 4/3 to 4/4\nMLX-1a            dynamic      Y     4\
+      \      2/2         e 2/2\nMLX-CLMAMOXE      dynamic      Y     3      2/1  \
+      \       e 2/1\nSwitch1e.clmamofw dynamic      Y     10     1/5         e 1/5
+      e 2/21\nfw1-inside        dynamic      Y     12     1/24        e 1/24 e 2/24\n\
+      fw1-outside       dynamic      Y     13     1/10        e 1/10 e 2/10\nspeedtest\
+      \         dynamic      Y     9      2/23        e 1/11 e 2/23\nswitch1c-MLX-FW\
+      \   dynamic      Y     2      1/1         e 1/1\nvideouplink       static  \
+      \     Y     8      2/15        e 1/15 to 1/18 e 2/15 t\n                   \
+      \                                     o 2/18\n"
+    help: execute the command "show lag brief"
+    prompt:
+    - brocade_netiron>
+    - brocade_netiron#
+  show interfaces brief:
+    output: "\nPort   Link     Port-State   Dupl Speed Trunk Tag Priori MAC      \
+      \      Name           Type              \n1/1    Up       Forward      Full
+      1G    None  Yes level0 0024.38a5.1c00 ATM1-G0-1      default-port      \n1/2\
+      \    Disabled None         None None  None  No  level0 0024.38a5.1c01      \
+      \          default-port      \n1/3    Disabled None         None None  None\
+      \  No  level0 0024.38a5.1c02                default-port      \n1/4    Up  \
+      \     Forward      Full 1G    5     Yes level0 0024.38a5.1c00 switch1a.clmamodefault-port\
+      \      \n1/5    Up       LACP-BLOCKED Full 1G    1     Yes level0 0024.38a5.1c00
+      CLMA-JFCY LAG #default-port      \n1/16   Down     None         None None  None\
+      \  No  level0 0024.38a5.1c00 InstallerDHCP  default-port\n      \nPort   Link\
+      \     Port-State   Dupl Speed Trunk Tag Priori MAC            Name         \
+      \  Type              \nve2    Up       N/A          N/A  N/A   None  N/A N/A\
+      \    0024.38a5.1c00 Main Ethernet Vdefault-port      \nve10   Up       N/A \
+      \         N/A  N/A   None  N/A N/A    0024.38a5.1c00 Admin VLAN 10  default-port\
+      \      \nve144  Up       N/A          N/A  N/A   None  N/A N/A    0024.38a5.1c00
+      VOIPstate-Exterdefault-port      \nve145  Up       N/A          N/A  N/A   None\
+      \  N/A N/A    0024.38a5.1c00 VOIPstate-Interdefault-port    \n\nPort   Link\
+      \     Port-State   Dupl Speed Trunk Tag Priori MAC            Name         \
+      \  Type              \nlb1    Up       N/A          N/A  N/A   None  N/A N/A\
+      \    N/A            MPLS Loopback  default-port      \nlb6    Up       N/A \
+      \         N/A  N/A   None  N/A N/A    N/A                           default-port\
+      \      "
+    help: execute the command "show interfaces brief"
+    prompt:
+    - brocade_netiron>
+    - brocade_netiron#
+  show topo:
+    output: "VLAN 2 - STP instance 0\n--------------------------------------------------------------------\n
+      STP Bridge Parameters:\n\nBridge           Bridge Bridge Bridge Hold  LastTopology
+      Topology\nIdentifier       MaxAge Hello  FwdDly Time  Change       Change\n\
+      hex              sec    sec    sec    sec   sec          cnt\n8000002438a51c00
+      20     2      15     1     2456092      8       \n\nRootBridge       RootPath\
+      \  DesignatedBridge Root  Max Hel Fwd\nIdentifier       Cost      Identifier\
+      \       Port  Age lo  Dly\nhex                        hex                  \
+      \  sec sec sec\n8000002438a51c00 0         8000002438a51c00 Root  20  2   15\
+      \  \n\nSTP Port Parameters:\n\nPort  Prio Path      State      Designat- Designated\
+      \       Designated\nNum   rity Cost                 ed Cost   Root         \
+      \    Bridge\n1/1   128  4         FORWARDING 0         8000002438a51c00 8000002438a51c00
+      \n1/6   128  4         FORWARDING 0         8000002438a51c00 8000002438a51c00
+      \n1/17  128  4         FORWARDING 0         8000002438a51c00 8000002438a51c00
+      \n2/1   128  4         FORWARDING 0         8000002438a51c00 8000002438a51c00
+      \n2/6   128  4         FORWARDING 0         8000002438a51c00 8000002438a51c00
+      \n2/17  128  4         FORWARDING 0         8000002438a51c00 8000002438a51c00
+      \ntelnet@mlx1.clmamoxa#  \ntelnet@mlx1.clmamoxa#show topo\nTopology Group 10\n
+      Topo HW Index  2\n==================\nMaster VLAN   : 10\nL2 Protocol   : MRP\n
+      VPLS VLAN exist : FALSE\nMember VLAN   : 146 149 151 to 152 154 200 300 to 303
+      350 400 453 1280 to 1283 1295 1335 1395 2005 2022 2024 2030 2033 2035 2039 2049
+      to 2050 2054 2069 to 2070 2086 2091 to 2092 2096 to 2097 2099 to 2100 2129 2184
+      2188 to 2189 2204 2215 2226 2241 to 2242 2250 2253 2277 2325 to 2326 2340 2342
+      2349 to 2351 2360 2367 2414 to 2415 2442 2895 3008 3840 4001 \nMember Group\
+      \  : None\nControl Ports : e 1/4 e 1/7 e 2/4 e 2/7 \nFree Ports :\nVLAN: 10\
+      \  - e 1/1 e 1/14 e 2/1 e 3/2 e 3/4 e 4/2 e 4/4 \nVLAN: 200  - e 1/6 e 1/17
+      e 2/1 e 2/6 e 2/17 \nVLAN: 300  - e 1/1 e 1/8 e 1/16 e 2/1 e 2/8 e 2/19 e 3/2
+      e 4/2 \nVLAN: 301  - e 1/1 e 1/8 e 2/1 e 2/8 \nVLAN: 302  - e 1/1 e 1/8 e 2/1
+      e 2/8 \nVLAN: 303  - e 1/1 e 1/8 e 2/1 e 2/8 \nVLAN: 350  - e 1/1 e 2/1 \nVLAN:
+      400  - e 1/8 e 2/8 e 3/2 e 4/2 \nVLAN: 453  - e 2/12 \nVLAN: 1282  - e 1/1 \n
+      VLAN: 1335  - e 1/8 e 2/8 e 3/2 e 4/2 \nVLAN: 2022  - e 1/12 \nVLAN: 2024  -
+      e 3/4 \nVLAN: 2030  - e 1/8 e 2/8 e 3/2 e 4/2                             \n
+      VLAN: 2033  - e 3/4 \nVLAN: 2035  - e 3/4 \nVLAN: 2039  - e 3/4 \nVLAN: 2049\
+      \  - e 3/4 \nVLAN: 2050  - e 2/12 e 3/4 \nVLAN: 2054  - e 1/8 e 2/8 \nVLAN:
+      2070  - e 3/4 \nVLAN: 2086  - e 2/12 e 2/15 \nVLAN: 2091  - e 1/8 e 1/12 e 2/8
+      \nVLAN: 2092  - e 2/12 e 2/15 \nVLAN: 2097  - e 3/4 \nVLAN: 2100  - e 2/12 \n
+      VLAN: 2129  - e 1/8 e 2/8 e 2/12 e 2/15 e 3/2 e 4/2 \nVLAN: 2184  - e 1/12 \n
+      VLAN: 2188  - e 2/12 e 2/15 \nVLAN: 2189  - e 3/4 \nVLAN: 2204  - e 3/4 \nVLAN:
+      2215  - e 3/4 \nVLAN: 2226  - e 1/1 e 3/4 \nVLAN: 2241  - e 3/4 \nVLAN: 2250\
+      \  - e 3/4 \nVLAN: 2253  - e 1/12 \nVLAN: 2277  - e 3/4                    \
+      \                           \nVLAN: 2326  - e 3/4 \nVLAN: 2340  - e 1/12 e 2/12
+      e 2/16 \nVLAN: 2342  - e 1/1 e 1/8 e 2/8 e 2/12 e 2/16 e 3/2 e 3/4 e 4/2 \n
+      VLAN: 2349  - e 3/4 \nVLAN: 2350  - e 1/12 \nVLAN: 2351  - e 2/12 e 2/15 \n
+      VLAN: 2360  - e 2/12 e 2/16 \nVLAN: 2367  - e 1/8 e 1/12 e 2/8 e 2/12 e 2/16
+      e 3/2 e 4/2 \nVLAN: 2414  - e 2/12 \nVLAN: 2415  - e 2/12 e 2/15 \nVLAN: 2442\
+      \  - e 2/15 \nVLAN: 2895  - e 3/4 \nVLAN: 3840  - e 1/8 e 2/8 \nVLAN: 4001 \
+      \ - e 1/6 e 1/17 e 2/6 e 2/17 \n\nTopology Group 11\nTopo HW Index  65535\n
+      ==================\nMaster VLAN   : 11\nL2 Protocol   : NONE\nVPLS VLAN exist
+      : FALSE\nMember VLAN   : 201 501 1400 \nMember Group  : None               \
+      \                               \nControl Ports : None\nFree Ports :\nVLAN:
+      11  - e 1/5 e 2/5 \nVLAN: 201  - e 1/5 to 1/6 e 1/17 e 2/5 to 2/6 e 2/17 \n
+      VLAN: 501  - e 1/5 e 2/5 \nVLAN: 1400  - e 1/5 e 2/5 \nTopology Group 13\nTopo
+      HW Index  8\n==================\nMaster VLAN   : 513\nL2 Protocol   : MRP\n
+      VPLS VLAN exist : FALSE\nMember VLAN   : 94 207 223 to 224 280 to 282 290 310
+      to 311 320 to 321 330 to 331 340 345 355 360 365 375 380 385 390 401 517 to
+      518 619 623 999 1290 1345 1355 to 1356 1380 1385 1390 2004 2006 2011 2018 2043
+      2045 to 2046 2058 to 2059 2063 to 2065 2072 2075 2102 2104 to 2107 2133 2137
+      2173 2180 to 2181 2190 2195 2197 2199 to 2200 2235 2257 2261 2265 2267 2270
+      to 2272 2274 2278 2282 2284 to 2287 2293 to 2296 2298 2301 to 2302 2305 to 2306
+      2314 to 2317 2320 2323 to 2324 2329 2332 2343 to 2345 2352 to 2353 2355 2357
+      2359 2362 to 2363 2366 2368 to 2369 2372 2374 to 2376 2379 2381 2384 2386 to
+      2387 2393 2395 2399 to 2401 2403 2408 2412 2416 2418 to 2420 2435 to 2440 2443
+      to 2446 2449 to 2451 2453 to 2456 2460 2466 to 2470 2472 2475 2483 2571 2575
+      to 2576 2718 2766 3004 3006 to 3007 \nMember Group  : None\nControl Ports :
+      e 3/1 e 3/3 e 4/1 e 4/3 \nFree Ports :\nVLAN: 94  - e 1/12 e 2/12 e 2/15 e 3/4
+      \nVLAN: 223  - e 1/6 e 1/17 e 2/6 e 2/17 \nVLAN: 224  - e 1/6 e 1/17 e 2/6 e
+      2/17 \nVLAN: 280  - e 1/1 \nVLAN: 281  - e 1/1 \nVLAN: 282  - e 1/1 \nVLAN:
+      290  - e 1/1 e 2/1                                          \nVLAN: 310  - e
+      1/1 e 2/1 \nVLAN: 311  - e 1/1 e 2/1 \nVLAN: 320  - e 1/1 e 2/1 \nVLAN: 321\
+      \  - e 1/1 e 2/1 \nVLAN: 330  - e 1/1 e 2/1 \nVLAN: 331  - e 1/1 e 2/1 \nVLAN:
+      340  - e 1/1 e 2/1 \nVLAN: 345  - e 1/1 e 2/1 \nVLAN: 355  - e 1/1 e 2/1 \n
+      VLAN: 360  - e 1/1 e 2/1 \nVLAN: 365  - e 1/1 e 2/1 \nVLAN: 375  - e 1/1 e 2/1
+      \nVLAN: 380  - e 1/1 e 2/1 \nVLAN: 385  - e 1/1 e 2/1 \nVLAN: 390  - e 1/1 e
+      2/1 \nVLAN: 1380  - e 1/1 e 2/1 \nVLAN: 1390  - e 1/1 e 2/1 \nVLAN: 2004  -
+      e 1/8 e 2/8 e 3/4 \nVLAN: 2006  - e 2/12 \nVLAN: 2011  - e 1/8 e 1/12 e 2/8
+      e 2/15 e 3/4 \nVLAN: 2018  - e 1/12 \nVLAN: 2043  - e 1/8 e 2/8 e 3/4 \nVLAN:
+      2045  - e 2/12 e 3/4                                        \nVLAN: 2046  -
+      e 1/12 e 3/4 \nVLAN: 2058  - e 1/12 \nVLAN: 2059  - e 3/4 \nVLAN: 2063  - e
+      3/4 \nVLAN: 2064  - e 3/4 \nVLAN: 2072  - e 3/4 \nVLAN: 2075  - e 1/12 e 2/12
+      \nVLAN: 2102  - e 1/12 \nVLAN: 2104  - e 1/12 e 2/12 \nVLAN: 2105  - e 1/12
+      \nVLAN: 2106  - e 1/12 \nVLAN: 2107  - e 1/12 e 2/12 \nVLAN: 2133  - e 1/12
+      \nVLAN: 2137  - e 3/4 \nVLAN: 2173  - e 2/12 \nVLAN: 2180  - e 1/12 \nVLAN:
+      2181  - e 3/4 \nVLAN: 2190  - e 3/4 \nVLAN: 2195  - e 3/4 \nVLAN: 2197  - e
+      1/12 \nVLAN: 2199  - e 1/8 e 2/8 e 3/4 \nVLAN: 2200  - e 1/4 e 1/7 e 2/4 e 2/7
+      \nVLAN: 2235  - e 2/12 e 2/15                                       \nVLAN:
+      2257  - e 3/4 \nVLAN: 2261  - e 1/12 e 2/12 e 2/15 \nVLAN: 2265  - e 3/4 \n
+      VLAN: 2267  - e 3/4 \nVLAN: 2270  - e 1/12 \nVLAN: 2271  - e 1/12 \nVLAN: 2272\
+      \  - e 1/12 \nVLAN: 2274  - e 1/12 \nVLAN: 2278  - e 3/4 \nVLAN: 2282  - e 2/12
+      e 2/15 to 2/16 \nVLAN: 2284  - e 2/16 \nVLAN: 2286  - e 3/4 \nVLAN: 2287  -
+      e 1/12 \nVLAN: 2293  - e 3/4 \nVLAN: 2294  - e 3/4 \nVLAN: 2295  - e 2/12 e
+      2/16 \nVLAN: 2296  - e 3/4 \nVLAN: 2298  - e 3/4 \nVLAN: 2301  - e 2/12 e 2/16
+      \nVLAN: 2302  - e 1/12 \nVLAN: 2306  - e 3/4 \nVLAN: 2314  - e 1/12 e 2/12 e
+      2/16 \nVLAN: 2315  - e 1/12 e 2/15                                       \n
+      VLAN: 2316  - e 1/12 \nVLAN: 2317  - e 1/12 \nVLAN: 2320  - e 3/4 \nVLAN: 2323\
+      \  - e 1/12 \nVLAN: 2324  - e 1/12 \nVLAN: 2329  - e 1/12 \nVLAN: 2332  - e
+      3/4 \nVLAN: 2343  - e 1/12 \nVLAN: 2344  - e 1/1 e 2/12 e 2/16 e 3/2 e 3/4 e
+      4/2 \nVLAN: 2345  - e 3/4 \nVLAN: 2352  - e 2/12 e 2/16 \nVLAN: 2353  - e 1/12
+      \nVLAN: 2355  - e 3/4 \nVLAN: 2357  - e 1/12 \nVLAN: 2359  - e 1/4 e 1/7 e 1/12
+      e 2/4 e 2/7 \nVLAN: 2362  - e 1/12 e 2/15 \nVLAN: 2363  - e 1/4 e 1/7 e 2/4
+      e 2/7 \nVLAN: 2366  - e 1/4 e 1/7 e 2/4 e 2/7 e 3/4 \nVLAN: 2368  - e 2/12 e
+      2/16 \nVLAN: 2369  - e 1/4 e 1/7 e 2/4 e 2/7 e 2/12 e 2/16 e 3/4 \nVLAN: 2372\
+      \  - e 2/12 e 2/16 \nVLAN: 2374  - e 1/8 e 2/8 e 2/12 e 2/16 e 3/2 e 4/2 \n
+      VLAN: 2375  - e 2/12 e 2/15                                       \nVLAN: 2376\
+      \  - e 1/12 \nVLAN: 2379  - e 1/12 \nVLAN: 2381  - e 1/12 \nVLAN: 2384  - e
+      1/12 e 2/12 e 2/16 \nVLAN: 2386  - e 1/12 e 2/12 \nVLAN: 2387  - e 2/12 e 2/15
+      e 3/4 \nVLAN: 2393  - e 2/12 e 2/16 \nVLAN: 2395  - e 2/12 e 2/16 \nVLAN: 2399\
+      \  - e 2/12 \nVLAN: 2400  - e 2/12 e 2/16 \nVLAN: 2401  - e 2/12 e 2/16 \nVLAN:
+      2403  - e 2/12 \nVLAN: 2412  - e 2/12 \nVLAN: 2416  - e 2/12 \nVLAN: 2418  -
+      e 2/12 \nVLAN: 2419  - e 2/12 \nVLAN: 2420  - e 2/12 \nVLAN: 2435  - e 1/12
+      e 2/12 \nVLAN: 2436  - e 1/12 \nVLAN: 2437  - e 2/12 \nVLAN: 2438  - e 1/12
+      e 2/12 \nVLAN: 2439  - e 1/12 e 2/12 \nVLAN: 2440  - e 1/12 e 2/12 e 3/4   \
+      \                              \nVLAN: 2443  - e 2/15 \nVLAN: 2444  - e 2/15
+      e 3/4 \nVLAN: 2445  - e 2/12 e 2/15 \nVLAN: 2446  - e 2/16 e 3/4 \nVLAN: 2449\
+      \  - e 2/12 e 3/4 \nVLAN: 2450  - e 2/15 \nVLAN: 2451  - e 2/15 \nVLAN: 2453\
+      \  - e 2/16 \nVLAN: 2454  - e 2/15 \nVLAN: 2455  - e 2/16 \nVLAN: 2456  - e
+      2/15 \nVLAN: 2460  - e 2/15 \nVLAN: 2466  - e 1/12 \nVLAN: 2467  - e 1/12 \n
+      VLAN: 2468  - e 2/16 \nVLAN: 2469  - e 3/4 \nVLAN: 2470  - e 3/4 \nVLAN: 2472\
+      \  - e 3/4 \nVLAN: 2475  - e 3/4 \nVLAN: 2483  - e 3/4 \nVLAN: 2571  - e 3/4
+      \nVLAN: 2575  - e 1/12 \nVLAN: 2576  - e 3/4                               \
+      \                \nVLAN: 2718  - e 1/12 \nVLAN: 2766  - e 3/4 \nVLAN: 3004 \
+      \ - e 1/8 e 2/8 e 2/16 e 3/4 \nVLAN: 3006  - e 3/4 \nVLAN: 3007  - e 1/12 e
+      2/12 e 3/4 \n\nTopology Group 14\nTopo HW Index  3\n==================\nMaster
+      VLAN   : 14\nL2 Protocol   : MRP\nVPLS VLAN exist : FALSE\nMember VLAN   : 370
+      1370 2025 2031 2057 2134 2138 2210 2256 2263 2356 2404 2506 2896 \nMember Group\
+      \  : None\nControl Ports : e 1/4 e 1/7 e 2/4 e 2/7 \nFree Ports :\nTopology
+      Group 60\nTopo HW Index  7\n==================\nMaster VLAN   : 60\nL2 Protocol\
+      \   : MRP\nVPLS VLAN exist : FALSE\nMember VLAN   : 2371                   \
+      \                           \nMember Group  : None\nControl Ports : e 3/1 e
+      3/3 e 3/5 e 4/1 e 4/3 \nFree Ports :\nVLAN: 2371  - e 1/4 e 1/7 e 2/4 e 2/7
+      \n\nTopology Group 170\nTopo HW Index  4\n==================\nMaster VLAN  \
+      \ : 170\nL2 Protocol   : MRP\nVPLS VLAN exist : FALSE\nMember VLAN   : 144 to
+      145 220 454 2040 2191 2422 2459 \nMember Group  : None\nControl Ports : e 3/1
+      e 3/3 e 4/1 e 4/3 \nFree Ports :\n"
+    help: execute the command "show topo"
+    prompt:
+    - brocade_netiron>
+    - brocade_netiron#
+  show monitor actual:
+    output: "Monitored Port 1/10\n  Input traffic mirrored to:  1/13\n  Output traffic
+      mirrored to:  1/13\nMonitored Port 1/11\n  Input traffic mirrored to:  1/13\n\
+      \  Output traffic mirrored to:  1/13\nMonitored Port 2/10\n  Input traffic mirrored
+      to:  1/13\n  Output traffic mirrored to:  1/13\nMonitored Port 2/11\n  Input
+      traffic mirrored to:  1/13\n  Output traffic mirrored to:  1/13\n"
+    help: execute the command "show monitor actual"
+    prompt:
+    - brocade_netiron>
+    - brocade_netiron#
+  show span:
+    output: "\nVLAN 2 - STP instance 0\n--------------------------------------------------------------------\n
+      STP Bridge Parameters:\n\nBridge           Bridge Bridge Bridge Hold  LastTopology
+      Topology\nIdentifier       MaxAge Hello  FwdDly Time  Change       Change\n\
+      hex              sec    sec    sec    sec   sec          cnt\n8000002438a51c00
+      20     2      15     1     2456092      8       \n\nRootBridge       RootPath\
+      \  DesignatedBridge Root  Max Hel Fwd\nIdentifier       Cost      Identifier\
+      \       Port  Age lo  Dly\nhex                        hex                  \
+      \  sec sec sec\n8000002438a51c00 0         8000002438a51c00 Root  20  2   15\
+      \  \n\nSTP Port Parameters:\n\nPort  Prio Path      State      Designat- Designated\
+      \       Designated\nNum   rity Cost                 ed Cost   Root         \
+      \    Bridge\n1/1   128  4         FORWARDING 0         8000002438a51c00 8000002438a51c00
+      \n1/6   128  4         FORWARDING 0         8000002438a51c00 8000002438a51c00
+      \n1/17  128  4         FORWARDING 0         8000002438a51c00 8000002438a51c00
+      \n2/1   128  4         FORWARDING 0         8000002438a51c00 8000002438a51c00
+      \n2/6   128  4         FORWARDING 0         8000002438a51c00 8000002438a51c00
+      \n2/17  128  4         FORWARDING 0         8000002438a51c00 8000002438a51c00 "
+    help: execute the command "show span"
+    prompt:
+    - brocade_netiron>
+    - brocade_netiron#
+  show metro:
+    output: "\nMetro Ring 10 - VLAN Type REGULAR\n==============\nRing       State\
+      \      Ring       Master     Topo       Hello      Prefwing\nid            \
+      \        role       vlan       group      time(ms)   time(ms)\n10         enabled\
+      \    member     10         10         100        300\n\nRing interfaces Interface
+      role  Interface state interface type \nethernet 1/1    primary         forwarding\
+      \      regular        \nethernet 2/1    secondary       forwarding      regular\
+      \        \n\nRHPs sent       RHPs rcvd       TC rcvd    TC sent    State changes\n\
+      10              0               126        0          30\n\nMetro Ring 14 -
+      VLAN Type REGULAR\n==============\nRing       State      Ring       Master \
+      \    Topo       Hello      Prefwing\nid                    role       vlan \
+      \      group      time(ms)   time(ms)\n14         enabled    member     14 \
+      \        14         100        300\n\nRing interfaces Interface role  Interface
+      state interface type \nethernet 1/1    primary         forwarding      regular\
+      \        \nethernet 2/2    secondary       forwarding      regular        \n\
+      \                                                                  \nRHPs sent\
+      \       RHPs rcvd       TC rcvd    TC sent    State changes\n0             \
+      \  0               0          0          0\n\nMetro Ring 215 - VLAN Type REGULAR
+      - CLMAMOFW-Backbone\n==============\nRing       State      Ring       Master\
+      \     Topo       Hello      Prefwing\nid                    role       vlan\
+      \       group      time(ms)   time(ms)\n215        enabled    master     215\
+      \        215        100        300\n\nRing interfaces Interface role  Interface
+      state interface type \nethernet 4/3    primary         forwarding      regular\
+      \        \nethernet 3/3    secondary       blocking        regular        \n
+      \nRHPs sent       RHPs rcvd       TC rcvd    TC sent    State changes\n18288470\
+      \        18195932        0          259        148\n\nMetro Ring 13 - VLAN Type
+      REGULAR - CLMAXA-FW-Telecom\n==============\nRing       State      Ring    \
+      \   Master     Topo       Hello      Prefwing\nid                    role  \
+      \     vlan       group      time(ms)   time(ms)\n13         enabled    member\
+      \     513        13         100        300\n\nRing interfaces Interface role\
+      \  Interface state interface type    \nethernet 3/3    primary         forwarding\
+      \      regular        \nethernet 4/3    secondary       forwarding      regular\
+      \        \n\nRHPs sent       RHPs rcvd       TC rcvd    TC sent    State changes\n\
+      4               0               16         0          33\n\nMetro Ring 171 -
+      VLAN Type REGULAR - CLMA-KSCY-STLS-10G-C\n==============\nRing       State \
+      \     Ring       Master     Topo       Hello      Prefwing\nid             \
+      \       role       vlan       group      time(ms)   time(ms)\n171        enabled\
+      \    member     170        170        100        300\n\nRing interfaces Interface
+      role  Interface state interface type \nethernet 3/3    primary         forwarding\
+      \      regular        \nethernet 4/3    secondary       forwarding      regular\
+      \        \n\nRHPs sent       RHPs rcvd       TC rcvd    TC sent    State changes\n\
+      4               0               22         0          33\n\nMetro Ring 175 -
+      VLAN Type REGULAR - CLMAMO10G-to-FW\n==============\nRing       State      Ring\
+      \       Master     Topo       Hello      Prefwing\nid                    role\
+      \       vlan       group      time(ms)   time(ms)\n175        enabled    member\
+      \     175        175        100        300\n\nRing interfaces Interface role\
+      \  Interface state interface type \nethernet 3/3    primary         forwarding\
+      \      regular        \nethernet 4/3    secondary       forwarding      regular\
+      \        \n\nRHPs sent       RHPs rcvd       TC rcvd    TC sent    State changes\n\
+      4               0               20         0          33\n\nMetro Ring 176 -
+      VLAN Type REGULAR - FW-to-CLMAMO10G\n==============\nRing       State      Ring\
+      \       Master     Topo       Hello      Prefwing\nid                    role\
+      \       vlan       group      time(ms)   time(ms)\n176        enabled    member\
+      \     175        175        100        300\n\nRing interfaces Interface role\
+      \  Interface state interface type \nethernet 1/1    primary         forwarding\
+      \      regular        \nethernet 2/2    secondary       forwarding      regular\
+      \        \n\nRHPs sent       RHPs rcvd       TC rcvd    TC sent    State changes\n\
+      0               0               3          0          0\n\nMetro Ring 60 - VLAN
+      Type REGULAR                                 \n==============\nRing       State\
+      \      Ring       Master     Topo       Hello      Prefwing\nid            \
+      \        role       vlan       group      time(ms)   time(ms)\n60         enabled\
+      \    member     60         60         100        300\n\nRing interfaces Interface
+      role  Interface state interface type \nethernet 3/3    primary         forwarding\
+      \      tunnel         \nethernet 4/3    secondary       forwarding      tunnel\
+      \         \n\nRHPs sent       RHPs rcvd       TC rcvd    TC sent    State changes\n\
+      0               0               9          0          33\n\nMetro Ring 61 -
+      VLAN Type REGULAR\n==============\nRing       State      Ring       Master \
+      \    Topo       Hello      Prefwing\nid                    role       vlan \
+      \      group      time(ms)   time(ms)\n61         enabled    member     60 \
+      \        60         100        300\n\nRing interfaces Interface role  Interface
+      state interface type \nethernet 4/3    primary         forwarding      tunnel\
+      \         \nethernet 4/2    secondary       forwarding      regular        \n
+      \nRHPs sent       RHPs rcvd       TC rcvd    TC sent    State changes\n0   \
+      \            0               42         0          12\n\nMetro Ring 63 - VLAN
+      Type REGULAR\n==============\nRing       State      Ring       Master     Topo\
+      \       Hello      Prefwing\nid                    role       vlan       group\
+      \      time(ms)   time(ms)\n63         enabled    member     62         62 \
+      \        100        300\n\nRing interfaces Interface role  Interface state interface
+      type \nethernet 4/3    primary         forwarding      regular        \nethernet
+      4/2    secondary       forwarding      regular        \n\nRHPs sent       RHPs
+      rcvd       TC rcvd    TC sent    State changes\n0               0          \
+      \     122        0          12\n\nMetro Ring 58 - VLAN Type REGULAR\n==============\n\
+      Ring       State      Ring       Master     Topo       Hello      Prefwing\n\
+      id                    role       vlan       group      time(ms)   time(ms)\n\
+      58         enabled    member     60         60         100        300\n\nRing
+      interfaces Interface role  Interface state interface type \nethernet 4/3   \
+      \ primary         forwarding      regular           \nethernet 3/3    secondary\
+      \       forwarding      regular        \n\nRHPs sent       RHPs rcvd       TC
+      rcvd    TC sent    State changes\n7               0               0        \
+      \  0          33\n"
+    help: execute the command "show metro"
+    prompt:
+    - brocade_netiron>
+    - brocade_netiron#
+  show running-config interface:
+    output: "interface ve 2801\n ip address 10.92.176.219/29\n ip address 10.92.191.67/26\n
+      ip address 10.201.214.35/28\n ip address 10.231.184.211/28\n ip address 10.251.229.83/28\n
+      ip helper-address 10.0.113.10\n ip helper-address 10.0.113.20\n ipv6 address
+      2001:2aaf:14:8::3/120\n ipv6 nd suppress-ra\n disable\n ip vrrp-extended auth-type
+      simple-text-auth VLAN2801\n ip vrrp-extended vrid 1\n  backup priority 90 track-priority
+      50\n  ip-address 10.92.176.217\n  advertise backup\n  dead-interval 12\n  hello-interval
+      4\n  track-port ethernet 1/1\n  activate\n ip vrrp-extended vrid 2\n  backup
+      priority 90 track-priority 50\n  ip-address 10.251.229.81\n  advertise backup\n\
+      \  dead-interval 12\n  hello-interval 4\n  track-port ethernet 1/1\n  activate\n
+      ip vrrp-extended vrid 3\n  backup priority 90 track-priority 50\n  ip-address
+      10.231.184.209\n  advertise backup\n  dead-interval 12\n  hello-interval 4\n\
+      \  track-port ethernet 1/1\n  activate\n ip vrrp-extended vrid 4\n  backup priority
+      90 track-priority 50\n  ip-address 10.201.214.33\n  advertise backup\n  dead-interval
+      12\n  hello-interval 4\n  track-port ethernet 1/1\n  activate\n ip vrrp-extended
+      vrid 5\n  backup priority 90 track-priority 50\n  ip-address 10.92.191.65\n\
+      \  advertise backup\n  dead-interval 12\n  hello-interval 4\n  track-port ethernet
+      1/1\n  activate\n ipv6 vrrp-extended vrid 6\n  backup priority 90 track-priority
+      50\n  ipv6-address 2001:2aaf:14:8::1\n  advertise backup\n  hello-interval 4\n\
+      \  track-port ethernet 1/1\n  activate\n!\ninterface ve 2802\n"
+    help: execute the command "show running-config interface"
+    prompt:
+    - brocade_netiron>
+    - brocade_netiron#

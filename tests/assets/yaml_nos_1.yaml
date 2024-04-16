@@ -11,7 +11,7 @@ commands:
   show clock:
     output: "*21:01:33.000 AET 01 01 01 2022"
     help: "Display the system clock"
-    prompt: ["{base_prompt}#"]
+    prompt: ["{base_prompt}#", "{base_prompt}>"]
   show running-config:
     output: |
       service timestamps debug datetime msec

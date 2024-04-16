@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fakenos"
-version = "0.1.2"
+version = "0.2.0"
 description = "Fake Network Operating System"
 authors = ["Denis Mulyalin <d.mulyalin@gmail.com>"]
 maintainers = ["Denis Mulyalin <d.mulyalin@gmail.com>"]
@@ -44,6 +44,7 @@ pyenchant = "*"
 netmiko = "*"
 nornir = "*"
 nornir-netmiko = "*"
+requests = "*"
 
 [tool.black]
 line-length = 120

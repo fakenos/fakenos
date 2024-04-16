@@ -1,0 +1,163 @@
+name: checkpoint_gaia
+initial_prompt: checkpoint_gaia>
+commands:
+  enable:
+    output: 'null'
+    new_prompt: checkpoint_gaia#
+    help: enter enable mode
+    prompt: checkpoint_gaia>
+  show domainname:
+    output: "Domain name  example.com\n"
+    help: execute the command "show domainname"
+    prompt:
+    - checkpoint_gaia>
+    - checkpoint_gaia#
+  show version all:
+    output: "Product version Check Point Gaia R77.30\nOS build 204\nOS kernel version
+      2.6.18-92cp\nOS edition 32-bit\n"
+    help: execute the command "show version all"
+    prompt:
+    - checkpoint_gaia>
+    - checkpoint_gaia#
+  show asset all:
+    output: "Platform: T-180-00\nModel: Check Point 4800\nSerial Number: 0000000000\n
+      CPU Frequency: 2660.283\nDisk Model: XXX NNNNNNNNNN-XXXXXXX\nDisk Capacity:
+      251 GB\nMemory Slot 1 Size: 4096 MB\nNumber of line cards: 1\nLine card 1 model:
+      AAA-00000-111\nLine card 1 type: 8 port0 1GbE Copper\nPower supply 1 name: Power
+      Supply #1\nPower supply 1 status: Up\nPower supply 2 name: Power Supply #2\n
+      Power supply 2 status: Up\n\n\n"
+    help: execute the command "show asset all"
+    prompt:
+    - checkpoint_gaia>
+    - checkpoint_gaia#
+  show virtual-system all:
+    output: "Virtual systems list\nVS ID       VS NAME\n0           0\n1         \
+      \  gandalf_VR01\n2           gandalf_SRCXT-VS01"
+    help: execute the command "show virtual-system all"
+    prompt:
+    - checkpoint_gaia>
+    - checkpoint_gaia#
+  show interfaces all:
+    output: "Interface Mgmt\n    state on\n    mac-addr 00:1c:7f:43:08:28\n    type
+      ethernet\n    link-state link up\n    instance 0\n    mtu 1500\n    auto-negotiation
+      on\n    speed 1000M\n    ipv6-autoconfig Not configured\n    monitor-mode Not
+      configured\n    duplex full\n    link-speed 1000M/full\n    comments\n    ipv4-address
+      2.2.2.2/29\n    ipv6-address Not Configured\n    ipv6-local-link-address Not
+      Configured\n\nStatistics:\n    TX bytes:65587685757 packets:135150363 errors:0
+      dropped:0 overruns:0 carrier:0\n    RX bytes:8575369842 packets:80348499 errors:0
+      dropped:0 overruns:0 frame:0\n\n\nInterface Sync\n    state on\n    mac-addr
+      00:1c:7f:43:08:29\n    type ethernet\n    link-state link up\n    instance 0\n\
+      \    mtu 1500\n    auto-negotiation Not configured\n    speed 1000M\n    ipv6-autoconfig
+      Not configured\n    monitor-mode Not configured\n    duplex full\n    link-speed
+      Not configured\n    comments\n    ipv4-address 192.168.0.1/30\n    ipv6-address
+      Not Configured\n    ipv6-local-link-address Not Configured\n\nStatistics:\n\
+      \    TX bytes:259664923573 packets:2251872598 errors:0 dropped:0 overruns:0
+      carrier:0\n    RX bytes:259266301613 packets:2251102479 errors:0 dropped:0 overruns:0
+      frame:0\n\n\nInterface bond18\n    state on\n    mac-addr 00:1c:7f:64:10:9e\n\
+      \    type bond\n    link-state not available\n    instance 0\n    mtu 1500\n\
+      \    auto-negotiation Not configured\n    speed N/A\n    ipv6-autoconfig Not
+      configured\n    monitor-mode Not configured\n    duplex N/A\n    link-speed
+      Not configured\n    comments\n    ipv4-address Not Configured\n    ipv6-address
+      Not Configured\n    ipv6-local-link-address Not Configured\n\nStatistics:\n\
+      \    TX bytes:488671526784 packets:6484144830 errors:0 dropped:0 overruns:0
+      carrier:0\n    RX bytes:30726434732106 packets:22116800051 errors:0 dropped:0
+      overruns:0 frame:0\n\n\nInterface bond18.51\n    state on\n    mac-addr 00:1c:7f:64:10:9e\n\
+      \    type vlan\n    link-state not available\n    instance 2\n    mtu 1500\n\
+      \    auto-negotiation Not configured\n    speed N/A (bond18)\n    ipv6-autoconfig
+      Not configured\n    monitor-mode Not configured\n    duplex N/A (bond18)\n \
+      \   link-speed Not configured\n    comments\n    ipv4-address 1.1.1.1/27\n \
+      \   ipv6-address Not Configured\n    ipv6-local-link-address Not Configured\n\
+      \nStatistics:\n    TX bytes:4378789096 packets:35892004 errors:0 dropped:0 overruns:0
+      carrier:0\n    RX bytes:3878961582 packets:35887605 errors:0 dropped:0 overruns:0
+      frame:0\n\n\nInterface eth1-01\n    state on\n    mac-addr 00:1c:7f:64:10:9e\n\
+      \    type ethernet\n    link-state link up\n    instance 0\n    mtu 1500\n \
+      \   auto-negotiation Not configured\n    speed 10G\n    ipv6-autoconfig Not
+      configured\n    monitor-mode Not configured\n    duplex full\n    link-speed
+      Not configured\n    comments\n    ipv4-address Not Configured\n    ipv6-address
+      Not Configured\n    ipv6-local-link-address Not Configured\n\nStatistics:\n\
+      \    TX bytes:250113820171 packets:3347079150 errors:0 dropped:0 overruns:0
+      carrier:0\n    RX bytes:15432889269477 packets:11081410222 errors:0 dropped:0
+      overruns:0 frame:0\n\n\nInterface lo\n    state on\n    mac-addr Not configured\n\
+      \    type loopback\n    link-state not available\n    instance 0\n    mtu 65536\n\
+      \    auto-negotiation Not configured\n    speed N/A\n    ipv6-autoconfig Not
+      configured\n    monitor-mode Not configured\n    duplex N/A\n    link-speed
+      Not configured\n    comments\n    ipv4-address 127.0.0.1/8\n    ipv6-address
+      Not Configured\n    ipv6-local-link-address Not Configured\n\nStatistics:\n\
+      \    TX bytes:16669231829 packets:78838857 errors:0 dropped:0 overruns:0 carrier:0\n\
+      \    RX bytes:16669231829 packets:78838857 errors:0 dropped:0 overruns:0 frame:0\n
+      \n\nInterface wrp128\n    state on\n    mac-addr 00:00:00:00:00:00\n    type
+      wrp\n    link-state not available\n    instance 2\n    mtu 1500\n    auto-negotiation
+      Not configured\n    speed N/A\n    ipv6-autoconfig Not configured\n    monitor-mode
+      Not configured\n    duplex N/A\n    link-speed Not configured\n    comments\n\
+      \    ipv4-address 1.1.1.1/32\n    ipv6-address Not Configured\n    ipv6-local-link-address
+      Not Configured\n\nStatistics:\n    TX bytes:9367255 packets:222957 errors:0
+      dropped:0 overruns:0 carrier:0\n    RX bytes:6242740 packets:222940 errors:0
+      dropped:0 overruns:0 frame:0"
+    help: execute the command "show interfaces all"
+    prompt:
+    - checkpoint_gaia>
+    - checkpoint_gaia#
+  show arp dynamic all:
+    output: "Dynamic Arp Parameters\n\nIP Address                 Mac Address\n192.168.13.233\
+      \                  BC:30:5B:B5:76:DB\n10.19.252.42                    74:8E:F8:A4:59:60\n\
+      172.31.254.101                  60:9C:9F:3B:7E:40\n172.19.4.144            \
+      \        00:50:56:9A:41:8A\n10.200.12.61                    A0:D3:C1:FB:61:31\n\
+      192.168.13.146                  A4:5D:36:2B:58:7C\n"
+    help: execute the command "show arp dynamic all"
+    prompt:
+    - checkpoint_gaia>
+    - checkpoint_gaia#
+  show route:
+    output: "Codes: C - Connected, S - Static, R - RIP, B - BGP (D - Default),\n \
+      \      O - OSPF IntraArea (IA - InterArea, E - External, N - NSSA)\n       A
+      - Aggregate, K - Kernel Remnant, H - Hidden, P - Suppressed,\n       U - Unreachable,
+      i - Inactive\n\nS         0.0.0.0/0           via 10.10.10.1, eth1-02.122, cost
+      0, age 4238351\n                                  default\nS         10.0.0.0/24\
+      \        via 10.1.1.254, eth1-01.100, cost 0, age 4238351\n                \
+      \                  Comment-static-Route-1\nC         10.1.1.0/24      is directly
+      connected, eth1.111\n                                  Comment-Network-1\n"
+    help: execute the command "show route"
+    prompt:
+    - checkpoint_gaia>
+    - checkpoint_gaia#
+  show ntp servers:
+    output: "IP Address               Type              Version  \n1.1.1.1       \
+      \           Primary           3        \n2.2.2.2                  Secondary\
+      \         3   \n"
+    help: execute the command "show ntp servers"
+    prompt:
+    - checkpoint_gaia>
+    - checkpoint_gaia#
+  show ipv6 route:
+    output: "Codes: C - Connected, S - Static, B - BGP, A - Aggregate,\n       O -
+      OSPFv3 IntraArea (IA - InterArea, E - External),\n       K - Kernel Remnant,
+      H - Hidden, P - Suppressed,\n       U - Unreachable, i - Inactive\n\nC     \
+      \    ::1/128                  is directly connected, lo\nC         2001:db8:a::/64\
+      \  is directly connected, eth1-02.100\n                                    \
+      \   Comment-Network-1\nS         2001:db8:b::/64  via fe80::aaa:65:111, eth1-01.100,
+      cost 0, age 4237508\n                                       Comment-static-Route-1\n"
+    help: execute the command "show ipv6 route"
+    prompt:
+    - checkpoint_gaia>
+    - checkpoint_gaia#
+  fw stat:
+    output: "HOST      POLICY     DATE\nlocalhost Example-Policy 19Oct2017 16:34:20
+      :  [>Mgmt] [<Mgmt] [>eth1-01.100] [<eth1-01.100] [>eth1-01] [<eth1-01]\n"
+    help: execute the command "fw stat"
+    prompt:
+    - checkpoint_gaia>
+    - checkpoint_gaia#
+  show dns:
+    output: "DNS setup\nName                  Value                 \n\nDomain   \
+      \             test.com            \nDNS server            1.1.1.1\nDNS server\
+      \            2.2.2.2\nDNS server              \n"
+    help: execute the command "show dns"
+    prompt:
+    - checkpoint_gaia>
+    - checkpoint_gaia#
+  show lom:
+    output: "Firmware Revision : 2.2\nIP Address : 192.168.0.100\n"
+    help: execute the command "show lom"
+    prompt:
+    - checkpoint_gaia>
+    - checkpoint_gaia#
