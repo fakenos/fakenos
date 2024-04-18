@@ -93,7 +93,7 @@ class FakeNOS:
             **self.inventory.get("default", {}),
         }
 
-        # ModelFakenosInventory(**self.inventory)
+        ModelFakenosInventory(**self.inventory)
         log.debug("FakeNOS inventory validation succeeded")
 
     def _init(self) -> None:

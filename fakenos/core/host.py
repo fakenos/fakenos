@@ -70,7 +70,7 @@ class Host:
     def _validate(self):
         """Validate that the host has the required attributes using pydantic"""
         self._check_if_platform_is_supported(self.platform)
-        # ModelHost(**self.__dict__)
+        ModelHost(**self.__dict__)
 
     def _check_if_platform_is_supported(self, platform: str):
         """Check if the platform is supported"""

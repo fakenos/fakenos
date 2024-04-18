@@ -48,11 +48,13 @@ class TestFakeNOS:
                     "port": 5001,
                     "username": "fakenos",
                     "password": "fakenos",
+                    "platform": FakeNOS().supported_platforms[0],
                 },
                 "R2": {
                     "port": 6000,
                     "username": "fakenos",
                     "password": "fakenos",
+                    "platform": FakeNOS().supported_platforms[0],
                 }
             }
         }
@@ -178,8 +180,7 @@ class TestFakeNOS:
         Test that the function _init creates the hosts.
         """
         inventory = {
-            "default": {"port": 5001},
-            "hosts": {"R1": {}}
+            "hosts": {"R1": {"port": 5001, "platform": "cisco_ios"}}
         }
         net = FakeNOS(inventory)
         assert len(net.hosts) == 1
@@ -201,7 +202,7 @@ class TestFakeNOS:
         Test that the function _allocate_port allocates the port.
         """
         inventory = {
-            "hosts": {"R1": {"port": 5000}}
+            "hosts": {"R1": {"port": 5000, "platform": "cisco_ios"}}
         }
         net = FakeNOS(inventory=inventory)
         assert 5000 in net.allocated_ports
@@ -212,8 +213,7 @@ class TestFakeNOS:
         Test that the function _allocate_port allocates the port.
         """
         inventory = {
-            "default": {"port": [5000, 5001], "replicas": 2},
-            "hosts": {"R1": {}}
+            "hosts": {"R1": {"port": [5000, 5001], "replicas": 2, "platform": "cisco_ios"}}
         }
         net = FakeNOS(inventory=inventory)
         assert net.allocated_ports == {5000, 5001}

@@ -1,6 +1,7 @@
 import pytest
 from unittest.mock import MagicMock, Mock, patch
 from fakenos.core.host import Host
+from fakenos import FakeNOS
 
 class TestHost:
     @pytest.fixture
@@ -12,10 +13,15 @@ class TestHost:
         fakenos.servers_plugins = {'server_plugin': Mock()}
         fakenos.shell_plugins = {'shell_plugin': Mock()}
         fakenos.nos_plugins = {'nos_plugin': Mock()}
-        host = Host('name', 'username', 'password', 22, server, shell, nos, fakenos)
+        with patch.object(Host, '_check_if_platform_is_supported') as mock_check_platform:
+            mock_check_platform.return_value = None
+            host = Host('name', 'username', 'password', 22, server, shell, nos, fakenos)
         return host
-
+    
     def test_init(self, host):
+        """
+        The test passes if the host is correctly initialized.
+        """
         assert host.name == 'name'
         assert host.username == 'username'
         assert host.password == 'password'
@@ -34,6 +40,11 @@ class TestHost:
         host.server.start.assert_called_once()
 
     def test_stop(self, host):
+        """
+        It test that when the host is called the stop,
+        the server is correctly stoped and called
+        its stop function.
+        """
         host.start()
         mock_server = MagicMock()
         host.server = mock_server
@@ -41,4 +52,21 @@ class TestHost:
         assert not host.running
         mock_server.stop.assert_called_once()
         assert host.server is None
+
+    def test_platform_is_wrong(self, host):
+        """
+        The test passes if the ValueError is raised when the platform is not supported.
+        """
+        platform = 'wrong_platform'
+        host.fakenos = FakeNOS()
+        with pytest.raises(ValueError) as e:
+            host._check_if_platform_is_supported(platform)
+
+    def test_platform_is_supported(self, host):
+        """
+        The test passes if the platform is supported.
+        """
+        host.fakenos = FakeNOS()
+        platform = host.fakenos.supported_platforms[0]
+        host._check_if_platform_is_supported(platform)
     

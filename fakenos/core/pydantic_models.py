@@ -50,9 +50,6 @@ class ModelHost(BaseModel):
     username: StrictStr
     password: StrictStr
     port: StrictInt
-    server: Dict[StrictStr, Union[StrictStr, Dict[StrictStr, Optional[StrictStr]]]]
-    shell: Dict[StrictStr, Union[StrictStr, Dict[StrictStr, Optional[StrictStr]]]]
-    nos: Dict[StrictStr, Union[StrictStr, Dict[StrictStr, Optional[StrictStr]]]]
     platform: Optional[StrictStr]
 
 
