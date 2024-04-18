@@ -7,170 +7,179 @@ commands:
     help: enter enable mode
     prompt: allied_telesis_awplus>
   show lldp neighbors detail:
-    output: "LLDP Detailed Neighbor Information:\n\nLocal port1.0.1:\n  Neighbors
-      table last updated 1233 hrs 56 mins 19 secs ago\n\n  Chassis ID Type ..................
-      MAC address\n  Chassis ID ....................... 0050.56a6.9a73\n  Port ID
-      Type ..................... MAC address\n  Port ID ..........................
-      0050.56a6.9a73\n  TTL .............................. 3601 (secs)\n  Port Description
-      ................. [not advertised]\n  System Name ...................... [not
-      advertised]\n  System Description ............... [not advertised]\n  System
-      Capabilities .............. [not advertised]\n  Management Addresses .............
-      [not advertised]\n  Port VLAN ID (PVID) .............. [not advertised]\n  Port
-      & Protocol VLAN ............. [not advertised]\n  VLAN Names .......................
-      [not advertised]\n  Protocol IDs ..................... [not advertised]\n  MAC/PHY
-      Auto-negotiation ......... Supported, Enabled\n       Advertised Capability
-      ....... 1000BaseTFD\n       Operational MAU Type ........ Unknown (0)\n  Power
-      Via MDI (PoE) .............. [not advertised]\n  Link Aggregation .................
-      [not advertised]\n  Maximum Frame Size ............... [not advertised]\n  LLDP-MED
-      Device Type ............. Endpoint Class I\n  LLDP-MED Capabilities ............
-      LLDP-MED Capabilities\n  Network Policy ................... [not advertised]\n\
-      \  Location Identification .......... [not advertised]\n  Extended Power Via
-      MDI (PoE) ..... [not advertised]\n  Inventory Management:\n       Hardware Revision
-      ........... [not advertised]\n       Firmware Revision ........... [not advertised]\n\
-      \       Software Revision ........... [not advertised]\n       Serial Number
-      ............... [not advertised]\n       Manufacturer Name ........... [not
-      advertised]\n       Model Name .................. [not advertised]\n       Asset
-      ID .................... [not advertised]\n\nLocal port1.0.23:\n  Neighbors table
-      last updated 4393 hrs 26 mins 21 secs ago\n\n  Chassis ID Type ..................
-      MAC address\n  Chassis ID ....................... 001a.eb96.25f4\n  Port ID
-      Type ..................... Interface name\n  Port ID ..........................
-      port1.0.15\n  TTL .............................. 120 (secs)\n  Port Description
-      ................. ===== 6F-SH210-5 port1.0.23/port1.0.24 ====\n  System Name
-      ...................... 6F-SH210-1\n  System Description ............... Allied
-      Telesis router/switch, AW+\n                                     v5.4.5-1.3\n\
-      \  System Capabilities - Supported .. Bridge, Router\n                     \
-      \ - Enabled .... Bridge\n  Management Addresses ............. 192.168.254.201\n\
-      \  Port VLAN ID (PVID) .............. 0\n  Port & Protocol VLAN - Supported
-      . Yes\n                       - Enabled ... No\n                       - VIDs
-      ...... 0\n  VLAN Names ....................... KIT-NET, ISW-NET, StorageMGT,
-      Storage-A,\n                                     Storage-B, CL-Osaka-Common,
-      R10-4, BASE,\n                                     A-NET2, A-NET3, O-NET, O3-NET,
-      V-NET,\n                                     B2-NET, SS, sw-base, MH-HONSHA,
-      COMMON,\n                                     SV-common, BKUP\n  Protocol IDs
-      ..................... 9000, 0026424203000000, 0027424203000002,\n          \
-      \                           0069424203000003, 888e01, aaaa0300e02b00bb,\n  \
-      \                                   88090101, 00540000e302, 0800, 0806, 86dd\n\
-      \  MAC/PHY Auto-negotiation ......... Supported, Enabled\n       Advertised
-      Capability ....... 1000BaseTFD, 100BaseTXFD, 100BaseTX,\n                  \
-      \                   10BaseTFD, 10BaseT\n       Operational MAU Type ........
-      1000BaseTFD (30)\n  Power Via MDI (PoE) .............. Not Supported\n     \
-      \  Port Class .................. PSE\n       Pair Control Ability ........ Disabled\n\
-      \       Power Class ................. Unknown\n  Link Aggregation .................
-      Supported, Enabled\n       Aggregated Port-ID .......... 4502\n  Maximum Frame
-      Size ............... 1500 (Octets)\n  LLDP-MED Capabilities ............ [not
-      advertised]\n  Network Policy ................... [not advertised]\n  Location
-      Identification .......... [not advertised]\n  Extended Power Via MDI (PoE) .....
-      [not advertised]\n  Inventory Management:\n       Hardware Revision ...........
-      [not advertised]\n       Firmware Revision ........... [not advertised]\n  \
-      \     Software Revision ........... [not advertised]\n       Serial Number ...............
-      [not advertised]\n       Manufacturer Name ........... [not advertised]\n  \
-      \     Model Name .................. [not advertised]\n       Asset ID ....................
-      [not advertised]\n\nLocal port1.0.24:\n  Neighbors table last updated 4393 hrs
-      26 mins 21 secs ago\n\n  Chassis ID Type .................. MAC address\n  Chassis
-      ID ....................... 001a.eb96.25f4\n  Port ID Type .....................
-      Interface name\n  Port ID .......................... port1.0.16\n  TTL ..............................
-      120 (secs)\n  Port Description ................. ===== 6F-SH210-5 port1.0.23/port1.0.24
-      ====\n  System Name ...................... 6F-SH210-1\n  System Description
-      ............... Allied Telesis router/switch, AW+\n                        \
-      \             v5.4.5-1.3\n  System Capabilities - Supported .. Bridge, Router\n\
-      \                      - Enabled .... Bridge\n  Management Addresses .............
-      192.168.254.201\n  Port VLAN ID (PVID) .............. 0\n  Port & Protocol VLAN
-      - Supported . Yes\n                       - Enabled ... No\n               \
-      \        - VIDs ...... 0\n  VLAN Names ....................... KIT-NET, ISW-NET,
-      StorageMGT, Storage-A,\n                                     Storage-B, CL-Osaka-Common,
-      R10-4, BASE,\n                                     A-NET2, A-NET3, O-NET, O3-NET,
-      V-NET,\n                                     B2-NET, SS, sw-base, MH-HONSHA,
-      COMMON,\n                                     SV-common, BKUP\n  Protocol IDs
-      ..................... 9000, 0026424203000000, 0027424203000002,\n          \
-      \                           0069424203000003, 888e01, aaaa0300e02b00bb,\n  \
-      \                                   88090101, 00540000e302, 0800, 0806, 86dd\n\
-      \  MAC/PHY Auto-negotiation ......... Supported, Enabled\n       Advertised
-      Capability ....... 1000BaseTFD, 100BaseTXFD, 100BaseTX,\n                  \
-      \                   10BaseTFD, 10BaseT\n       Operational MAU Type ........
-      1000BaseTFD (30)\n  Power Via MDI (PoE) .............. Not Supported\n     \
-      \  Port Class .................. PSE\n       Pair Control Ability ........ Disabled\n\
-      \       Power Class ................. Unknown\n  Link Aggregation .................
-      Supported, Enabled\n       Aggregated Port-ID .......... 4502\n  Maximum Frame
-      Size ............... 1500 (Octets)\n  LLDP-MED Capabilities ............ [not
-      advertised]\n  Network Policy ................... [not advertised]\n  Location
-      Identification .......... [not advertised]\n  Extended Power Via MDI (PoE) .....
-      [not advertised]\n  Inventory Management:\n       Hardware Revision ...........
-      [not advertised]\n       Firmware Revision ........... [not advertised]\n  \
-      \     Software Revision ........... [not advertised]\n       Serial Number ...............
-      [not advertised]\n       Manufacturer Name ........... [not advertised]\n  \
-      \     Model Name .................. [not advertised]\n       Asset ID ....................
-      [not advertised]"
+    output: "LLDP Detailed Neighbor Information:\n\nLocal port1.0.1:\n  Neighbors\
+      \ table last updated 1233 hrs 56 mins 19 secs ago\n\n  Chassis ID Type ..................\
+      \ MAC address\n  Chassis ID ....................... 0050.56a6.9a73\n  Port ID\
+      \ Type ..................... MAC address\n  Port ID ..........................\
+      \ 0050.56a6.9a73\n  TTL .............................. 3601 (secs)\n  Port Description\
+      \ ................. [not advertised]\n  System Name ...................... [not\
+      \ advertised]\n  System Description ............... [not advertised]\n  System\
+      \ Capabilities .............. [not advertised]\n  Management Addresses .............\
+      \ [not advertised]\n  Port VLAN ID (PVID) .............. [not advertised]\n\
+      \  Port & Protocol VLAN ............. [not advertised]\n  VLAN Names .......................\
+      \ [not advertised]\n  Protocol IDs ..................... [not advertised]\n\
+      \  MAC/PHY Auto-negotiation ......... Supported, Enabled\n       Advertised\
+      \ Capability ....... 1000BaseTFD\n       Operational MAU Type ........ Unknown\
+      \ (0)\n  Power Via MDI (PoE) .............. [not advertised]\n  Link Aggregation\
+      \ ................. [not advertised]\n  Maximum Frame Size ............... [not\
+      \ advertised]\n  LLDP-MED Device Type ............. Endpoint Class I\n  LLDP-MED\
+      \ Capabilities ............ LLDP-MED Capabilities\n  Network Policy ...................\
+      \ [not advertised]\n  Location Identification .......... [not advertised]\n\
+      \  Extended Power Via MDI (PoE) ..... [not advertised]\n  Inventory Management:\n\
+      \       Hardware Revision ........... [not advertised]\n       Firmware Revision\
+      \ ........... [not advertised]\n       Software Revision ........... [not advertised]\n\
+      \       Serial Number ............... [not advertised]\n       Manufacturer\
+      \ Name ........... [not advertised]\n       Model Name .................. [not\
+      \ advertised]\n       Asset ID .................... [not advertised]\n\nLocal\
+      \ port1.0.23:\n  Neighbors table last updated 4393 hrs 26 mins 21 secs ago\n\
+      \n  Chassis ID Type .................. MAC address\n  Chassis ID .......................\
+      \ 001a.eb96.25f4\n  Port ID Type ..................... Interface name\n  Port\
+      \ ID .......................... port1.0.15\n  TTL ..............................\
+      \ 120 (secs)\n  Port Description ................. ===== 6F-SH210-5 port1.0.23/port1.0.24\
+      \ ====\n  System Name ...................... 6F-SH210-1\n  System Description\
+      \ ............... Allied Telesis router/switch, AW+\n                      \
+      \               v5.4.5-1.3\n  System Capabilities - Supported .. Bridge, Router\n\
+      \                      - Enabled .... Bridge\n  Management Addresses .............\
+      \ 192.168.254.201\n  Port VLAN ID (PVID) .............. 0\n  Port & Protocol\
+      \ VLAN - Supported . Yes\n                       - Enabled ... No\n        \
+      \               - VIDs ...... 0\n  VLAN Names ....................... KIT-NET,\
+      \ ISW-NET, StorageMGT, Storage-A,\n                                     Storage-B,\
+      \ CL-Osaka-Common, R10-4, BASE,\n                                     A-NET2,\
+      \ A-NET3, O-NET, O3-NET, V-NET,\n                                     B2-NET,\
+      \ SS, sw-base, MH-HONSHA, COMMON,\n                                     SV-common,\
+      \ BKUP\n  Protocol IDs ..................... 9000, 0026424203000000, 0027424203000002,\n\
+      \                                     0069424203000003, 888e01, aaaa0300e02b00bb,\n\
+      \                                     88090101, 00540000e302, 0800, 0806, 86dd\n\
+      \  MAC/PHY Auto-negotiation ......... Supported, Enabled\n       Advertised\
+      \ Capability ....... 1000BaseTFD, 100BaseTXFD, 100BaseTX,\n                \
+      \                     10BaseTFD, 10BaseT\n       Operational MAU Type ........\
+      \ 1000BaseTFD (30)\n  Power Via MDI (PoE) .............. Not Supported\n   \
+      \    Port Class .................. PSE\n       Pair Control Ability ........\
+      \ Disabled\n       Power Class ................. Unknown\n  Link Aggregation\
+      \ ................. Supported, Enabled\n       Aggregated Port-ID ..........\
+      \ 4502\n  Maximum Frame Size ............... 1500 (Octets)\n  LLDP-MED Capabilities\
+      \ ............ [not advertised]\n  Network Policy ................... [not advertised]\n\
+      \  Location Identification .......... [not advertised]\n  Extended Power Via\
+      \ MDI (PoE) ..... [not advertised]\n  Inventory Management:\n       Hardware\
+      \ Revision ........... [not advertised]\n       Firmware Revision ...........\
+      \ [not advertised]\n       Software Revision ........... [not advertised]\n\
+      \       Serial Number ............... [not advertised]\n       Manufacturer\
+      \ Name ........... [not advertised]\n       Model Name .................. [not\
+      \ advertised]\n       Asset ID .................... [not advertised]\n\nLocal\
+      \ port1.0.24:\n  Neighbors table last updated 4393 hrs 26 mins 21 secs ago\n\
+      \n  Chassis ID Type .................. MAC address\n  Chassis ID .......................\
+      \ 001a.eb96.25f4\n  Port ID Type ..................... Interface name\n  Port\
+      \ ID .......................... port1.0.16\n  TTL ..............................\
+      \ 120 (secs)\n  Port Description ................. ===== 6F-SH210-5 port1.0.23/port1.0.24\
+      \ ====\n  System Name ...................... 6F-SH210-1\n  System Description\
+      \ ............... Allied Telesis router/switch, AW+\n                      \
+      \               v5.4.5-1.3\n  System Capabilities - Supported .. Bridge, Router\n\
+      \                      - Enabled .... Bridge\n  Management Addresses .............\
+      \ 192.168.254.201\n  Port VLAN ID (PVID) .............. 0\n  Port & Protocol\
+      \ VLAN - Supported . Yes\n                       - Enabled ... No\n        \
+      \               - VIDs ...... 0\n  VLAN Names ....................... KIT-NET,\
+      \ ISW-NET, StorageMGT, Storage-A,\n                                     Storage-B,\
+      \ CL-Osaka-Common, R10-4, BASE,\n                                     A-NET2,\
+      \ A-NET3, O-NET, O3-NET, V-NET,\n                                     B2-NET,\
+      \ SS, sw-base, MH-HONSHA, COMMON,\n                                     SV-common,\
+      \ BKUP\n  Protocol IDs ..................... 9000, 0026424203000000, 0027424203000002,\n\
+      \                                     0069424203000003, 888e01, aaaa0300e02b00bb,\n\
+      \                                     88090101, 00540000e302, 0800, 0806, 86dd\n\
+      \  MAC/PHY Auto-negotiation ......... Supported, Enabled\n       Advertised\
+      \ Capability ....... 1000BaseTFD, 100BaseTXFD, 100BaseTX,\n                \
+      \                     10BaseTFD, 10BaseT\n       Operational MAU Type ........\
+      \ 1000BaseTFD (30)\n  Power Via MDI (PoE) .............. Not Supported\n   \
+      \    Port Class .................. PSE\n       Pair Control Ability ........\
+      \ Disabled\n       Power Class ................. Unknown\n  Link Aggregation\
+      \ ................. Supported, Enabled\n       Aggregated Port-ID ..........\
+      \ 4502\n  Maximum Frame Size ............... 1500 (Octets)\n  LLDP-MED Capabilities\
+      \ ............ [not advertised]\n  Network Policy ................... [not advertised]\n\
+      \  Location Identification .......... [not advertised]\n  Extended Power Via\
+      \ MDI (PoE) ..... [not advertised]\n  Inventory Management:\n       Hardware\
+      \ Revision ........... [not advertised]\n       Firmware Revision ...........\
+      \ [not advertised]\n       Software Revision ........... [not advertised]\n\
+      \       Serial Number ............... [not advertised]\n       Manufacturer\
+      \ Name ........... [not advertised]\n       Model Name .................. [not\
+      \ advertised]\n       Asset ID .................... [not advertised]"
     help: execute the command "show lldp neighbors detail"
     prompt:
     - allied_telesis_awplus>
     - allied_telesis_awplus#
   show arp:
-    output: " IP Address      MAC Address     Interface    Port        Type\n192.168.254.251
-      0000.cd37.06aa  vlan954      sa1         dynamic\n192.168.254.250 0000.cd37.06bb\
-      \  vlan954      sa1         dynamic"
+    output: ' IP Address      MAC Address     Interface    Port        Type
+
+      192.168.254.251 0000.cd37.06aa  vlan954      sa1         dynamic
+
+      192.168.254.250 0000.cd37.06bb  vlan954      sa1         dynamic'
     help: execute the command "show arp"
     prompt:
     - allied_telesis_awplus>
     - allied_telesis_awplus#
   show mac address-table:
-    output: "VLAN port             mac            fwd\n900  sa1          0009.0f09.0000\
-      \   forward   dynamic\n900  sa1          0015.5d00.ab14   forward   dynamic\n\
-      900  sa1          0015.5d00.ab15   forward   dynamic\n989  port1.0.19   0050.566a.1aca\
-      \   forward   dynamic"
+    output: 'VLAN port             mac            fwd
+
+      900  sa1          0009.0f09.0000   forward   dynamic
+
+      900  sa1          0015.5d00.ab14   forward   dynamic
+
+      900  sa1          0015.5d00.ab15   forward   dynamic
+
+      989  port1.0.19   0050.566a.1aca   forward   dynamic'
     help: execute the command "show mac address-table"
     prompt:
     - allied_telesis_awplus>
     - allied_telesis_awplus#
   show interface switchport:
-    output: " Interface name         : port1.0.1\n Switchport mode        : trunk\n
-      Ingress filter          : enable\n Acceptable frame types  : vlan-tagged only\n
-      Default Vlan            : None\n Configured Vlans        :   767  793  794 \
-      \ 811  900  964  973\n                             989 1111 2222\n Dynamic Vlans\
-      \           :\n Interface name         : port1.0.2\n Switchport mode       \
-      \ : trunk\n Ingress filter          : enable\n Acceptable frame types  : vlan-tagged
-      only\n Default Vlan            : None\n Configured Vlans        :   767  793\
-      \  794  811  900  964  973\n                             989 1111 2222\n Dynamic
-      Vlans           :\n Interface name         : port1.0.3\n Switchport mode   \
-      \     : trunk\n Ingress filter          : enable\n Acceptable frame types  :
-      vlan-tagged only\n Default Vlan            : None\n Configured Vlans       \
-      \ :   795\n Dynamic Vlans           :\n Interface name         : port1.0.4\n
-      Switchport mode        : trunk\n Ingress filter          : enable\n Acceptable
-      frame types  : vlan-tagged only\n Default Vlan            : None\n Configured
-      Vlans        :   793\n Dynamic Vlans           :\n Interface name         :
-      port1.0.5\n Switchport mode        : trunk\n Ingress filter          : enable\n
-      Acceptable frame types  : vlan-tagged only\n Default Vlan            : None\n
-      Configured Vlans        :   794\n Dynamic Vlans           :\n Interface name\
-      \         : port1.0.6\n Switchport mode        : trunk\n Ingress filter    \
+    output: " Interface name         : port1.0.1\n Switchport mode        : trunk\n\
+      \ Ingress filter          : enable\n Acceptable frame types  : vlan-tagged only\n\
+      \ Default Vlan            : None\n Configured Vlans        :   767  793  794\
+      \  811  900  964  973\n                             989 1111 2222\n Dynamic\
+      \ Vlans           :\n Interface name         : port1.0.2\n Switchport mode \
+      \       : trunk\n Ingress filter          : enable\n Acceptable frame types\
+      \  : vlan-tagged only\n Default Vlan            : None\n Configured Vlans  \
+      \      :   767  793  794  811  900  964  973\n                             989\
+      \ 1111 2222\n Dynamic Vlans           :\n Interface name         : port1.0.3\n\
+      \ Switchport mode        : trunk\n Ingress filter          : enable\n Acceptable\
+      \ frame types  : vlan-tagged only\n Default Vlan            : None\n Configured\
+      \ Vlans        :   795\n Dynamic Vlans           :\n Interface name        \
+      \ : port1.0.4\n Switchport mode        : trunk\n Ingress filter          : enable\n\
+      \ Acceptable frame types  : vlan-tagged only\n Default Vlan            : None\n\
+      \ Configured Vlans        :   793\n Dynamic Vlans           :\n Interface name\
+      \         : port1.0.5\n Switchport mode        : trunk\n Ingress filter    \
       \      : enable\n Acceptable frame types  : vlan-tagged only\n Default Vlan\
-      \            : None\n Configured Vlans        :   989\n Dynamic Vlans      \
-      \     :\n Interface name         : port1.0.7\n Switchport mode        : access\n
-      Ingress filter          : enable\n Acceptable frame types  : all\n Default Vlan\
-      \            : 989\n Configured Vlans        :   989\n Dynamic Vlans       \
-      \    :\n Interface name         : port1.0.8\n Switchport mode        : access\n
-      Ingress filter          : enable\n Acceptable frame types  : all\n Default Vlan\
-      \            : 989\n Configured Vlans        :   989\n Dynamic Vlans       \
-      \    :\n Interface name         : port1.0.9\n Switchport mode        : access\n
-      Ingress filter          : enable\n Acceptable frame types  : all\n Default Vlan\
-      \            : 989\n Configured Vlans        :   989\n Dynamic Vlans       \
-      \    :\n Interface name         : port1.0.10\n Switchport mode        : access\n
-      Ingress filter          : enable\n Acceptable frame types  : all\n Default Vlan\
-      \            : 900\n Configured Vlans        :   900\n Dynamic Vlans       \
-      \    :\n Interface name         : port1.0.11\n Switchport mode        : trunk\n
-      Ingress filter          : enable\n Acceptable frame types  : vlan-tagged only\n
-      Default Vlan            : None\n Configured Vlans        :   989\n Dynamic Vlans\
-      \           :\n Interface name         : port1.0.12\n Switchport mode      \
-      \  : trunk\n Ingress filter          : enable\n Acceptable frame types  : vlan-tagged
-      only\n Default Vlan            : None\n Configured Vlans        :   795\n Dynamic
-      Vlans           :\n Interface name         : port1.0.13\n Switchport mode  \
-      \      : trunk\n Ingress filter          : enable\n Acceptable frame types \
-      \ : vlan-tagged only\n Default Vlan            : None\n Configured Vlans   \
-      \     :   479  767  793  794  811  900  964\n                             973\
-      \  989 1111 2222\n Dynamic Vlans           :\n Interface name         : port1.0.23\n
-      Switchport mode        : trunk\n Ingress filter          : enable\n Acceptable
-      frame types  : vlan-tagged only\n Default Vlan            : None\n Configured
-      Vlans        :   504  508  767  793  794  811  883\n                       \
-      \      900  909  910  914  915  929  931\n                             952 \
-      \ 954  955  964  973  989\n Dynamic Vlans           :"
+      \            : None\n Configured Vlans        :   794\n Dynamic Vlans      \
+      \     :\n Interface name         : port1.0.6\n Switchport mode        : trunk\n\
+      \ Ingress filter          : enable\n Acceptable frame types  : vlan-tagged only\n\
+      \ Default Vlan            : None\n Configured Vlans        :   989\n Dynamic\
+      \ Vlans           :\n Interface name         : port1.0.7\n Switchport mode \
+      \       : access\n Ingress filter          : enable\n Acceptable frame types\
+      \  : all\n Default Vlan            : 989\n Configured Vlans        :   989\n\
+      \ Dynamic Vlans           :\n Interface name         : port1.0.8\n Switchport\
+      \ mode        : access\n Ingress filter          : enable\n Acceptable frame\
+      \ types  : all\n Default Vlan            : 989\n Configured Vlans        : \
+      \  989\n Dynamic Vlans           :\n Interface name         : port1.0.9\n Switchport\
+      \ mode        : access\n Ingress filter          : enable\n Acceptable frame\
+      \ types  : all\n Default Vlan            : 989\n Configured Vlans        : \
+      \  989\n Dynamic Vlans           :\n Interface name         : port1.0.10\n Switchport\
+      \ mode        : access\n Ingress filter          : enable\n Acceptable frame\
+      \ types  : all\n Default Vlan            : 900\n Configured Vlans        : \
+      \  900\n Dynamic Vlans           :\n Interface name         : port1.0.11\n Switchport\
+      \ mode        : trunk\n Ingress filter          : enable\n Acceptable frame\
+      \ types  : vlan-tagged only\n Default Vlan            : None\n Configured Vlans\
+      \        :   989\n Dynamic Vlans           :\n Interface name         : port1.0.12\n\
+      \ Switchport mode        : trunk\n Ingress filter          : enable\n Acceptable\
+      \ frame types  : vlan-tagged only\n Default Vlan            : None\n Configured\
+      \ Vlans        :   795\n Dynamic Vlans           :\n Interface name        \
+      \ : port1.0.13\n Switchport mode        : trunk\n Ingress filter          :\
+      \ enable\n Acceptable frame types  : vlan-tagged only\n Default Vlan       \
+      \     : None\n Configured Vlans        :   479  767  793  794  811  900  964\n\
+      \                             973  989 1111 2222\n Dynamic Vlans           :\n\
+      \ Interface name         : port1.0.23\n Switchport mode        : trunk\n Ingress\
+      \ filter          : enable\n Acceptable frame types  : vlan-tagged only\n Default\
+      \ Vlan            : None\n Configured Vlans        :   504  508  767  793  794\
+      \  811  883\n                             900  909  910  914  915  929  931\n\
+      \                             952  954  955  964  973  989\n Dynamic Vlans \
+      \          :"
     help: execute the command "show interface switchport"
     prompt:
     - allied_telesis_awplus>
@@ -180,13 +189,13 @@ commands:
       \nBoard       ID  Bay   Board Name                         Rev   Serial number\n\
       --------------------------------------------------------------------------------\n\
       Base       467        AT-SH210-24GT                      B-0   G22TG6001\n--------------------------------------------------------------------------------\n\
-      RAM:  Total: 123860 kB Free: 47472 kB\nFlash: 63.0MB Used: 20.5MB Available:
-      42.5MB\n--------------------------------------------------------------------------------\n
-      Environment Status : Normal\nUptime             : 1425 days 19:42:12\nBootloader
-      version : 2.0.25\n\n\nCurrent software   : SH210-5.4.5-1.3.rel\nSoftware version\
-      \   : 5.4.5-1.3\nBuild date         : Fri Sep 11 00:34:15 UTC 2015\n\nCurrent
-      boot config: flash:/default.cfg (file exists)\n\nSystem Name\n 6F-SH210-5\n
-      System Contact\n\nSystem Location"
+      RAM:  Total: 123860 kB Free: 47472 kB\nFlash: 63.0MB Used: 20.5MB Available:\
+      \ 42.5MB\n--------------------------------------------------------------------------------\n\
+      \ Environment Status : Normal\nUptime             : 1425 days 19:42:12\nBootloader\
+      \ version : 2.0.25\n\n\nCurrent software   : SH210-5.4.5-1.3.rel\nSoftware version\
+      \   : 5.4.5-1.3\nBuild date         : Fri Sep 11 00:34:15 UTC 2015\n\nCurrent\
+      \ boot config: flash:/default.cfg (file exists)\n\nSystem Name\n 6F-SH210-5\n\
+      \ System Contact\n\nSystem Location"
     help: execute the command "show system"
     prompt:
     - allied_telesis_awplus>
@@ -200,120 +209,129 @@ commands:
     - allied_telesis_awplus>
     - allied_telesis_awplus#
   show interface:
-    output: "Interface port1.1.1\n  Scope: both\n  Link is UP, administrative state
-      is UP\n  Thrash-limiting\n    Status Not Detected, Action learn-disable, Timeout
-      1(s)\n  Hardware is Ethernet, address is 0000.cd37.0fcf\n  Description: To XXXXXXXXXXXX\n\
-      \  index 5101 metric 1 mru 1500\n  current duplex full, current speed 10000,
-      current polarity mdi\n  configured duplex auto, configured speed auto, configured
-      polarity auto\n  <UP,BROADCAST,RUNNING,MULTICAST>\n  SNMP link-status traps:
-      Sending (suppressed after 20 traps in 60 sec)\n    Link-status trap delay: 0
-      sec\n    input packets 9455362865, bytes 11289114945786, dropped 0, multicast
-      packets 3410881\n    output packets 17173058785, bytes 12752872494347, multicast
-      packets 513043665, broadcast packets 830156481\n    input average rate : 30
-      seconds 1.05 Mbps, 5 minutes 590.97 Kbps\n    output average rate: 30 seconds
-      1.64 Mbps, 5 minutes 919.28 Kbps\n    input peak rate 806.73 Mbps at 2023/01/12
-      23:32:30\n    output peak rate 806.80 Mbps at 2023/01/12 23:32:30\n  Time since
-      last state change: 0 days 01:14:20\nInterface vlan1\n  Scope: both\n  Link is
-      UP, administrative state is UP\n  Hardware is VLAN, address is 0000.cd37.0fcf\n\
-      \  IPv4 address 192.168.1.1/24 broadcast 192.168.1.255\n  index 301 metric 1
-      mtu 1500\n  arp ageing timeout 300\n  <UP,BROADCAST,RUNNING,MULTICAST>\n  VRF
-      Binding: Associated with VRF01\n  SNMP link-status traps: Disabled\n  Router
-      Advertisement is disabled\n  Router Advertisement default routes are accepted\n\
-      \  Router Advertisement prefix info is accepted\n    input packets 30729674,
-      bytes 2331109561, dropped 206, multicast packets 1014964\n    output packets
-      117039344, bytes 5218779216, multicast packets 0, broadcast packets 0\n  Time
-      since last state change: 134 days 01:22:08\nInterface vlan2\n  Scope: both\n\
-      \  Link is UP, administrative state is UP\n  Hardware is VLAN, address is 0000.cd37.0fcf\n\
-      \  index 302 metric 1 mtu 1500\n  arp ageing timeout 300\n  <UP,BROADCAST,RUNNING,MULTICAST>\n\
-      \  VRF Binding: Not bound\n  SNMP link-status traps: Disabled\n  Router Advertisement
-      is disabled\n  Router Advertisement default routes are accepted\n  Router Advertisement
-      prefix info is accepted\n    input packets 0, bytes 0, dropped 0, multicast
-      packets 0\n    output packets 0, bytes 0, multicast packets 0, broadcast packets
-      0\n  Time since last state change: 134 days 01:22:08\nInterface vlan3\n  Scope:
-      both\n  Link is UP, administrative state is UP\n  Hardware is VLAN, address
-      is 0000.cd37.0fcf\n  IPv4 address 192.168.3.1/24 broadcast 192.168.3.255\n \
-      \ index 303 metric 1 mtu 1500\n  arp ageing timeout 300\n  <UP,BROADCAST,RUNNING,MULTICAST>\n\
+    output: "Interface port1.1.1\n  Scope: both\n  Link is UP, administrative state\
+      \ is UP\n  Thrash-limiting\n    Status Not Detected, Action learn-disable, Timeout\
+      \ 1(s)\n  Hardware is Ethernet, address is 0000.cd37.0fcf\n  Description: To\
+      \ XXXXXXXXXXXX\n  index 5101 metric 1 mru 1500\n  current duplex full, current\
+      \ speed 10000, current polarity mdi\n  configured duplex auto, configured speed\
+      \ auto, configured polarity auto\n  <UP,BROADCAST,RUNNING,MULTICAST>\n  SNMP\
+      \ link-status traps: Sending (suppressed after 20 traps in 60 sec)\n    Link-status\
+      \ trap delay: 0 sec\n    input packets 9455362865, bytes 11289114945786, dropped\
+      \ 0, multicast packets 3410881\n    output packets 17173058785, bytes 12752872494347,\
+      \ multicast packets 513043665, broadcast packets 830156481\n    input average\
+      \ rate : 30 seconds 1.05 Mbps, 5 minutes 590.97 Kbps\n    output average rate:\
+      \ 30 seconds 1.64 Mbps, 5 minutes 919.28 Kbps\n    input peak rate 806.73 Mbps\
+      \ at 2023/01/12 23:32:30\n    output peak rate 806.80 Mbps at 2023/01/12 23:32:30\n\
+      \  Time since last state change: 0 days 01:14:20\nInterface vlan1\n  Scope:\
+      \ both\n  Link is UP, administrative state is UP\n  Hardware is VLAN, address\
+      \ is 0000.cd37.0fcf\n  IPv4 address 192.168.1.1/24 broadcast 192.168.1.255\n\
+      \  index 301 metric 1 mtu 1500\n  arp ageing timeout 300\n  <UP,BROADCAST,RUNNING,MULTICAST>\n\
       \  VRF Binding: Associated with VRF01\n  SNMP link-status traps: Disabled\n\
-      \  Router Advertisement is disabled\n  Router Advertisement default routes are
-      accepted\n  Router Advertisement prefix info is accepted\n    input packets
-      35361512, bytes 2570082989, dropped 0, multicast packets 360213\n    output
-      packets 24669070, bytes 1441930633, multicast packets 0, broadcast packets 0\n\
-      \  Time since last state change: 134 days 01:22:08\nInterface lo\n  Scope: both\n\
-      \  Link is UP, administrative state is UP\n  Hardware is Loopback\n  index 1
-      metric 1\n  <UP,LOOPBACK,RUNNING>\n  VRF Binding: Not bound\n  SNMP link-status
-      traps: Disabled\n  Router Advertisement is disabled\n  Router Advertisement
-      default routes are accepted\n  Router Advertisement prefix info is accepted\n\
-      \  Time since last state change: 134 days 01:59:44\nInterface lo1\n  Scope:
-      both\n  Link is UP, administrative state is UP\n  Hardware is Loopback\n  index
-      5 metric 1\n  <UP,RUNNING,NOARP>\n  VRF Binding: Associated with VRF01\n  SNMP
-      link-status traps: Disabled\n  Router Advertisement is disabled\n  Router Advertisement
-      default routes are accepted\n  Router Advertisement prefix info is accepted\n\
-      \  Time since last state change: 134 days 01:59:44\nInterface lo2\n  Scope:
-      both\n  Link is UP, administrative state is UP\n  Hardware is Loopback\n  index
-      6 metric 1\n  <UP,RUNNING,NOARP>\n  VRF Binding: Associated with VRF02\n  SNMP
-      link-status traps: Disabled\n  Router Advertisement is disabled\n  Router Advertisement
-      default routes are accepted\n  Router Advertisement prefix info is accepted\n\
-      \  Time since last state change: 134 days 01:59:44\nInterface lo3\n  Scope:
-      both\n  Link is UP, administrative state is UP\n  Hardware is Loopback\n  index
-      7 metric 1\n  <UP,RUNNING,NOARP>\n  VRF Binding: Associated with VRF03\n  SNMP
-      link-status traps: Disabled\n  Router Advertisement is disabled\n  Router Advertisement
-      default routes are accepted\n  Router Advertisement prefix info is accepted\n\
-      \  Time since last state change: 134 days 01:59:44\nInterface lo4\n  Scope:
-      both\n  Link is UP, administrative state is UP\n  Hardware is Loopback\n  index
-      8 metric 1\n  <UP,RUNNING,NOARP>\n  VRF Binding: Associated with VRF04\n  SNMP
-      link-status traps: Disabled\n  Router Advertisement is disabled\n  Router Advertisement
-      default routes are accepted\n  Router Advertisement prefix info is accepted\n\
-      \  Time since last state change: 134 days 01:59:44"
+      \  Router Advertisement is disabled\n  Router Advertisement default routes are\
+      \ accepted\n  Router Advertisement prefix info is accepted\n    input packets\
+      \ 30729674, bytes 2331109561, dropped 206, multicast packets 1014964\n    output\
+      \ packets 117039344, bytes 5218779216, multicast packets 0, broadcast packets\
+      \ 0\n  Time since last state change: 134 days 01:22:08\nInterface vlan2\n  Scope:\
+      \ both\n  Link is UP, administrative state is UP\n  Hardware is VLAN, address\
+      \ is 0000.cd37.0fcf\n  index 302 metric 1 mtu 1500\n  arp ageing timeout 300\n\
+      \  <UP,BROADCAST,RUNNING,MULTICAST>\n  VRF Binding: Not bound\n  SNMP link-status\
+      \ traps: Disabled\n  Router Advertisement is disabled\n  Router Advertisement\
+      \ default routes are accepted\n  Router Advertisement prefix info is accepted\n\
+      \    input packets 0, bytes 0, dropped 0, multicast packets 0\n    output packets\
+      \ 0, bytes 0, multicast packets 0, broadcast packets 0\n  Time since last state\
+      \ change: 134 days 01:22:08\nInterface vlan3\n  Scope: both\n  Link is UP, administrative\
+      \ state is UP\n  Hardware is VLAN, address is 0000.cd37.0fcf\n  IPv4 address\
+      \ 192.168.3.1/24 broadcast 192.168.3.255\n  index 303 metric 1 mtu 1500\n  arp\
+      \ ageing timeout 300\n  <UP,BROADCAST,RUNNING,MULTICAST>\n  VRF Binding: Associated\
+      \ with VRF01\n  SNMP link-status traps: Disabled\n  Router Advertisement is\
+      \ disabled\n  Router Advertisement default routes are accepted\n  Router Advertisement\
+      \ prefix info is accepted\n    input packets 35361512, bytes 2570082989, dropped\
+      \ 0, multicast packets 360213\n    output packets 24669070, bytes 1441930633,\
+      \ multicast packets 0, broadcast packets 0\n  Time since last state change:\
+      \ 134 days 01:22:08\nInterface lo\n  Scope: both\n  Link is UP, administrative\
+      \ state is UP\n  Hardware is Loopback\n  index 1 metric 1\n  <UP,LOOPBACK,RUNNING>\n\
+      \  VRF Binding: Not bound\n  SNMP link-status traps: Disabled\n  Router Advertisement\
+      \ is disabled\n  Router Advertisement default routes are accepted\n  Router\
+      \ Advertisement prefix info is accepted\n  Time since last state change: 134\
+      \ days 01:59:44\nInterface lo1\n  Scope: both\n  Link is UP, administrative\
+      \ state is UP\n  Hardware is Loopback\n  index 5 metric 1\n  <UP,RUNNING,NOARP>\n\
+      \  VRF Binding: Associated with VRF01\n  SNMP link-status traps: Disabled\n\
+      \  Router Advertisement is disabled\n  Router Advertisement default routes are\
+      \ accepted\n  Router Advertisement prefix info is accepted\n  Time since last\
+      \ state change: 134 days 01:59:44\nInterface lo2\n  Scope: both\n  Link is UP,\
+      \ administrative state is UP\n  Hardware is Loopback\n  index 6 metric 1\n \
+      \ <UP,RUNNING,NOARP>\n  VRF Binding: Associated with VRF02\n  SNMP link-status\
+      \ traps: Disabled\n  Router Advertisement is disabled\n  Router Advertisement\
+      \ default routes are accepted\n  Router Advertisement prefix info is accepted\n\
+      \  Time since last state change: 134 days 01:59:44\nInterface lo3\n  Scope:\
+      \ both\n  Link is UP, administrative state is UP\n  Hardware is Loopback\n \
+      \ index 7 metric 1\n  <UP,RUNNING,NOARP>\n  VRF Binding: Associated with VRF03\n\
+      \  SNMP link-status traps: Disabled\n  Router Advertisement is disabled\n  Router\
+      \ Advertisement default routes are accepted\n  Router Advertisement prefix info\
+      \ is accepted\n  Time since last state change: 134 days 01:59:44\nInterface\
+      \ lo4\n  Scope: both\n  Link is UP, administrative state is UP\n  Hardware is\
+      \ Loopback\n  index 8 metric 1\n  <UP,RUNNING,NOARP>\n  VRF Binding: Associated\
+      \ with VRF04\n  SNMP link-status traps: Disabled\n  Router Advertisement is\
+      \ disabled\n  Router Advertisement default routes are accepted\n  Router Advertisement\
+      \ prefix info is accepted\n  Time since last state change: 134 days 01:59:44"
     help: execute the command "show interface"
     prompt:
     - allied_telesis_awplus>
     - allied_telesis_awplus#
   show vlan all:
     output: "VLAN ID  Name            Type    State   Member ports\n             \
-      \                            (u)-Untagged, (t)-Tagged\n======= ================
-      ======= ======= ====================================\n1       default      \
-      \    STATIC  ACTIVE\n479     VLAN0479         STATIC  ACTIVE  port1.0.13(t)
-      port1.0.14(t)\n504     VLAN0504         STATIC  ACTIVE  sa1(t) port1.0.23(t)
-      port1.0.24(t)\n508     VLAN0508         STATIC  ACTIVE  sa1(t) port1.0.25(t)
-      port1.0.26(t)\n511     DMZ-G            STATIC  ACTIVE\n767     VLAN0767   \
-      \      STATIC  ACTIVE  sa1(t) port1.0.1(t) port1.0.2(t)\n                  \
-      \                       port1.0.13(t) port1.0.14(t)\n                      \
-      \                   port1.0.21(t) port1.0.22(t)\n                          \
-      \               port1.0.23(t) port1.0.24(t)\n793     VLAN0793         STATIC\
+      \                            (u)-Untagged, (t)-Tagged\n======= ================\
+      \ ======= ======= ====================================\n1       default    \
+      \      STATIC  ACTIVE\n479     VLAN0479         STATIC  ACTIVE  port1.0.13(t)\
+      \ port1.0.14(t)\n504     VLAN0504         STATIC  ACTIVE  sa1(t) port1.0.23(t)\
+      \ port1.0.24(t)\n508     VLAN0508         STATIC  ACTIVE  sa1(t) port1.0.25(t)\
+      \ port1.0.26(t)\n511     DMZ-G            STATIC  ACTIVE\n767     VLAN0767 \
+      \        STATIC  ACTIVE  sa1(t) port1.0.1(t) port1.0.2(t)\n                \
+      \                         port1.0.13(t) port1.0.14(t)\n                    \
+      \                     port1.0.21(t) port1.0.22(t)\n                        \
+      \                 port1.0.23(t) port1.0.24(t)\n793     VLAN0793         STATIC\
       \  ACTIVE  sa1(t) port1.0.1(t) port1.0.2(t)\n                              \
       \           port1.0.4(t) port1.0.13(t)\n                                   \
       \      port1.0.14(t) port1.0.17(t)\n                                       \
-      \  port1.0.24(t) port1.0.25(t)\n                                         port1.0.26(t)
-      port1.0.28(t)\n795     VLAN0795         STATIC  ACTIVE  port1.0.3(t) port1.0.12(t)\n\
+      \  port1.0.24(t) port1.0.25(t)\n                                         port1.0.26(t)\
+      \ port1.0.28(t)\n795     VLAN0795         STATIC  ACTIVE  port1.0.3(t) port1.0.12(t)\n\
       \                                         port1.0.29(t)"
     help: execute the command "show vlan all"
     prompt:
     - allied_telesis_awplus>
     - allied_telesis_awplus#
   show ip route:
-    output: "Codes: C - connected, S - static, R - RIP, B - BGP\n       O - OSPF,
-      D - DHCP, IA - OSPF inter area\n       N1 - OSPF NSSA external type 1, N2 -
-      OSPF NSSA external type 2\n       E1 - OSPF external type 1, E2 - OSPF external
-      type 2\n       * - candidate default\n\nGateway of last resort is 192.168.254.251
-      to network 0.0.0.0\n\nS*      0.0.0.0/0 [1/0] via 192.168.254.251, vlan954\n\
-      C       10.255.255.0/24 is directly connected, vlan795\nC       192.168.254.0/24
-      is directly connected, vlan954\nO       10.0.0.0/8 [110/20] via 192.168.254.251,
-      vlan954\nO E1    172.16.23.0/24 [110/30] via 192.168.254.251, vlan954\n\n[VRF:
-      DMZ]\nGateway of last resort is 20.0.0.254 to network 0.0.0.0\n\nS*      0.0.0.0/0
-      [1/0] via 20.0.0.254, vlan511\nC       20.0.0.0/24 is directly connected, vlan511\n
-      \n[VRF: AAA]\nGateway of last resort is 2.0.0.254 to network 0.0.0.0\n\nS* \
-      \     0.0.0.0/0 [1/0] via 2.0.0.254, vlan51\nC       2.0.0.0/24 is directly
-      connected, vlan51"
+    output: "Codes: C - connected, S - static, R - RIP, B - BGP\n       O - OSPF,\
+      \ D - DHCP, IA - OSPF inter area\n       N1 - OSPF NSSA external type 1, N2\
+      \ - OSPF NSSA external type 2\n       E1 - OSPF external type 1, E2 - OSPF external\
+      \ type 2\n       * - candidate default\n\nGateway of last resort is 192.168.254.251\
+      \ to network 0.0.0.0\n\nS*      0.0.0.0/0 [1/0] via 192.168.254.251, vlan954\n\
+      C       10.255.255.0/24 is directly connected, vlan795\nC       192.168.254.0/24\
+      \ is directly connected, vlan954\nO       10.0.0.0/8 [110/20] via 192.168.254.251,\
+      \ vlan954\nO E1    172.16.23.0/24 [110/30] via 192.168.254.251, vlan954\n\n\
+      [VRF: DMZ]\nGateway of last resort is 20.0.0.254 to network 0.0.0.0\n\nS*  \
+      \    0.0.0.0/0 [1/0] via 20.0.0.254, vlan511\nC       20.0.0.0/24 is directly\
+      \ connected, vlan511\n \n[VRF: AAA]\nGateway of last resort is 2.0.0.254 to\
+      \ network 0.0.0.0\n\nS*      0.0.0.0/0 [1/0] via 2.0.0.254, vlan51\nC      \
+      \ 2.0.0.0/24 is directly connected, vlan51"
     help: execute the command "show ip route"
     prompt:
     - allied_telesis_awplus>
     - allied_telesis_awplus#
   show etherchannel summary:
-    output: "Aggregator po7 (IfIndex: 4607)\n Admin Key: 0007 - Oper Key 0007\n  Link:
-      port1.0.7 (IfIndex: 5007) synchronized\n  Link: port1.0.8 (IfIndex: 5008) synchronized\n
-      Aggregator po8 (IfIndex: 4607)\n Admin Key: 0008 - Oper Key 0008\n  Link: port1.0.9
-      (IfIndex: 5009) synchronized\n  Link: port1.0.10 (IfIndex: 5010) synchronized"
+    output: "Aggregator po7 (IfIndex: 4607)\n Admin Key: 0007 - Oper Key 0007\n  Link:\
+      \ port1.0.7 (IfIndex: 5007) synchronized\n  Link: port1.0.8 (IfIndex: 5008)\
+      \ synchronized\n Aggregator po8 (IfIndex: 4607)\n Admin Key: 0008 - Oper Key\
+      \ 0008\n  Link: port1.0.9 (IfIndex: 5009) synchronized\n  Link: port1.0.10 (IfIndex:\
+      \ 5010) synchronized"
     help: execute the command "show etherchannel summary"
+    prompt:
+    - allied_telesis_awplus>
+    - allied_telesis_awplus#
+  terminal length 0:
+    output: null
+    help: Execute the command terminal length 0. This automatically generated. Feel
+      free to change it!
     prompt:
     - allied_telesis_awplus>
     - allied_telesis_awplus#

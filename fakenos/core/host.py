@@ -2,7 +2,8 @@
 Host classes
 """
 import logging
-from typing import Optional
+
+from fakenos.core.pydantic_models import ModelHost
 
 log = logging.getLogger(__name__)
 
@@ -20,21 +21,26 @@ class Host:
         fakenos,
         platform: str = None,
     ) -> None:
-        self.name = name
-        self.server_inventory = server
-        self.shell_inventory = shell
-        self.nos_inventory = nos
-        self.username = username
-        self.password = password
-        self.port = port
-        self.platform = platform
-        self.fakenos = fakenos
+        self.name: str = name
+        self.server_inventory: dict = server
+        self.shell_inventory: dict = shell
+        self.nos_inventory: dict = nos
+        self.username:str = username
+        self.password:str = password
+        self.port: int = port
+        self.fakenos = fakenos # FakeNOS object
         self.shell_inventory["configuration"].setdefault("base_prompt", self.name)
         self.running = False
         self.server = None
         self.server_plugin = None
         self.shell_plugin = None
         self.nos_plugin = None
+        self.platform: str = platform
+
+        if self.platform:
+            self.nos_inventory["plugin"] = self.platform
+        
+        self._validate()
 
     def start(self):
         """Method to start server instance for this hosts"""
@@ -43,7 +49,6 @@ class Host:
         if self.platform:
             self.nos_inventory["plugin"] = self.platform
         self.nos_plugin = self.fakenos.nos_plugins[self.nos_inventory["plugin"]]
-
         self.server = self.server_plugin(
             shell=self.shell_plugin,
             shell_configuration=self.shell_inventory["configuration"],
@@ -62,3 +67,13 @@ class Host:
         self.server.stop()
         self.server = None
         self.running = False
+    def _validate(self):
+        """Validate that the host has the required attributes using pydantic"""
+        self._check_if_platform_is_supported(self.platform)
+        # ModelHost(**self.__dict__)
+
+    def _check_if_platform_is_supported(self, platform: str):
+        """Check if the platform is supported"""
+        if platform not in self.fakenos.supported_platforms:
+            raise ValueError(f"Platform {platform} is not supported by FakeNOS. Supported platforms are: {self.fakenos.supported_platforms}")
+        

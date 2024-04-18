@@ -2,10 +2,16 @@ name: brocade_fastiron
 initial_prompt: brocade_fastiron>
 commands:
   enable:
-    output: 'null'
+    output: null
     new_prompt: brocade_fastiron#
     help: enter enable mode
     prompt: brocade_fastiron>
+  configure terminal:
+    output: null
+    new_prompt: brocade_fastiron(config)#
+    help: enter the config mode
+    promtp:
+    - brocade_fastiron#
   show monitor:
     output: "Monitored Port 10\n  Input mirrored by\t:  18\n  Output mirrored by\t\
       :  18\nMonitored Port 16\n  Input mirrored by\t:  18\n  Output mirrored by\t\
@@ -14,6 +20,7 @@ commands:
     prompt:
     - brocade_fastiron>
     - brocade_fastiron#
+    - brocade_fastiron(config)#
   show interfaces:
     output: "GigabitEthernet1 is up, line protocol is up \n  Hardware is GigabitEthernet,
       address is 001b.ed6b.2000 (bia 001b.ed6b.2000)\n  Configured speed auto, actual
@@ -422,6 +429,7 @@ commands:
     prompt:
     - brocade_fastiron>
     - brocade_fastiron#
+    - brocade_fastiron(config)#
   show lldp neighbors detail:
     output: "Local port: 1/1/2\n  Neighbor: 00a0.c85a.a3dd, TTL 118 seconds\n    +
       Chassis ID (MAC address): 00a0.c836.37c8\n    + Port ID (locally assigned):
@@ -486,6 +494,7 @@ commands:
     prompt:
     - brocade_fastiron>
     - brocade_fastiron#
+    - brocade_fastiron(config)#
   show arp:
     output: "Protocol  Address          Age (min)  Hardware Addr   Type   Interface\n\
       Internet  10.51.250.70           94   64f6.9d1e.a4bf  ARPA   Vlan10\nInternet\
@@ -497,6 +506,7 @@ commands:
     prompt:
     - brocade_fastiron>
     - brocade_fastiron#
+    - brocade_fastiron(config)#
   show running-config vlan:
     output: "vlan 1 name DEFAULT-VLAN by port\n no spanning-tree\n!\nvlan 10 name
       CLMAMO-RING-1 by port\n tagged ethe 2 ethe 11 \n no spanning-tree\n metro-ring
@@ -519,6 +529,7 @@ commands:
     prompt:
     - brocade_fastiron>
     - brocade_fastiron#
+    - brocade_fastiron(config)#
   show lag brief:
     output: "Total number of LAGs:          4\nTotal number of deployed LAGs: 4\n
       Total number of trunks created:4 (116 available)\nLACP System Priority / ID:\
@@ -532,6 +543,7 @@ commands:
     prompt:
     - brocade_fastiron>
     - brocade_fastiron#
+    - brocade_fastiron(config)#
   show trunk:
     output: "\nConfigured trunks:\n\nTrunk ID: 5\nHw Trunk ID: 1\nPorts_Configured:
       2\nPrimary Port Monitored: Jointly\n\nPorts         5       23      \nPort Names\
@@ -546,6 +558,7 @@ commands:
     prompt:
     - brocade_fastiron>
     - brocade_fastiron#
+    - brocade_fastiron(config)#
   show interfaces brief:
     output: "\nPort    Link    State   Dupl Speed Trunk Tag Pvid Pri MAC         \
       \   Name      \n1       Up      Forward Full 1G    None  Yes N/A  0   001b.ed6b.2000\
@@ -577,6 +590,7 @@ commands:
     prompt:
     - brocade_fastiron>
     - brocade_fastiron#
+    - brocade_fastiron(config)#
   show topo:
     output: "Topology Group 10\n=================\n master-vlan 10\n member-vlan 146
       149 151 to 152 154 200 300 to 303 350 400 453 1280 to 1283\n member-vlan 1295
@@ -654,6 +668,7 @@ commands:
     prompt:
     - brocade_fastiron>
     - brocade_fastiron#
+    - brocade_fastiron(config)#
   show span:
     output: "\nSTP instance owned by VLAN 1\n\nGlobal STP (IEEE 802.1D) Parameters:\n
       \nVLAN Root             Root Root   Prio Max He- Ho- Fwd Last    Chg Bridge\
@@ -726,6 +741,7 @@ commands:
     prompt:
     - brocade_fastiron>
     - brocade_fastiron#
+    - brocade_fastiron(config)#
   show mac-address:
     output: "Total active entries from all ports = 236\nMAC Address     Port     \
       \ Age      VLAN    Type\n\n6cae.8b2d.c979   2/1        0      1000\n3440.b5be.e3ac\
@@ -734,6 +750,7 @@ commands:
     prompt:
     - brocade_fastiron>
     - brocade_fastiron#
+    - brocade_fastiron(config)#
   show metro:
     output: "Metro Ring 10\n=============\nRing       State      Ring       Master\
       \     Topo       Hello      Prefwing\nid                    role       vlan\
@@ -766,6 +783,7 @@ commands:
     prompt:
     - brocade_fastiron>
     - brocade_fastiron#
+    - brocade_fastiron(config)#
   show lldp neighbors:
     output: "Capability codes:\n    (R) Router, (B) Bridge, (T) Telephone, (C) DOCSIS
       Cable Device\n    (W) WLAN Access Point, (P) Repeater, (S) Station, (O) Other\n
@@ -776,6 +794,7 @@ commands:
     prompt:
     - brocade_fastiron>
     - brocade_fastiron#
+    - brocade_fastiron(config)#
   show version:
     output: "show version\n\n  Copyright (c) 1996-2016 Brocade Communications Systems,
       Inc. All rights reserved.\n    UNIT 1: compiled on May 19 2016 at 01:15:45 labeled
@@ -829,3 +848,4 @@ commands:
     prompt:
     - brocade_fastiron>
     - brocade_fastiron#
+    - brocade_fastiron(config)#

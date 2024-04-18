@@ -1,8 +1,6 @@
 import logging
 import copy
-import os
-import fnmatch
-from typing import Union
+import time
 
 import yaml
 
@@ -32,8 +30,8 @@ default_inventory = {
         "nos": {"plugin": "cisco_ios", "configuration": {}},
     },
     "hosts": {
-        "router0": {"port": 6000},
-        "router1": {"port": 6001}
+        "router0": {"port": 6000, "platform":"cisco_ios"},
+        "router1": {"port": 6001, "platform": "huawei_smartax"}
     }
 }
 
@@ -64,7 +62,7 @@ class FakeNOS:
         self.inventory: dict = inventory
         self.plugins: list = plugins
 
-        self.hosts: dict = {}
+        self.hosts: dict[str, Host] = {}
         self.allocated_ports: set[str] = set()
 
         self.shell_plugins = shell_plugins
@@ -98,113 +96,176 @@ class FakeNOS:
         ModelFakenosInventory(**self.inventory)
         log.debug("FakeNOS inventory validation succeeded")
 
-    def _load_commands_from_inventory_dir(self, host_inventory: dict) -> None:
-        """
-        Method to load commands content from the inventory dir
-
-        :param host_inventory: dictionary of host's inventory data
-        """
-        return
-        # load commands content
-        commands = host_inventory.get("nos", {}).get("configuration", {}).get("commands", {})
-        for _, cmd_data in commands.items():
-            # form path to command file
-            if os.path.isfile(cmd_data.get("output", "")[:100]):
-                path_to_cmd_file = cmd_data["output"]
-            else:
-                path_to_cmd_file = os.path.join(self.inventory_dir, cmd_data.get("output", "")[:100])
-            # load file content
-            if os.path.isfile(path_to_cmd_file):
-                with open(path_to_cmd_file, encoding="utf-8", mode="r") as f:
-                    cmd_data["output"] = f.read()
-
     def _init(self) -> None:
         """
         Helper method to initiate host objects and store them in self.hosts, this
         method called automatically on FakeNOS object instantiation.
         """
-        for host, host_config in self.inventory["hosts"].items():
+        for host_name, host_config in self.inventory["hosts"].items():
             params = {
                 **copy.deepcopy(self.inventory["default"]),
                 **copy.deepcopy(host_config),
             }
-            port = params.pop("port")
-            count = params.pop("count", None)
-            self._load_commands_from_inventory_dir(params)
-            self._instantiate_host_object(host, port, count, params)
+            port: int|list = params.pop("port")
+            replicas: int = params.pop("replicas", None)
+            self._check_ports_and_replicas_are_okey(port, replicas)
+            self._instantiate_host_object(host_name, port, replicas, params)
 
+    def _check_ports_and_replicas_are_okey(self, port, replicas):
+        """
+        Method to check if the port and replicas are okey
 
-    def _instantiate_host_object(self, host, port, count, params):
+        :param port: integer or list of two integers - port to allocate
+        :param replicas: integer - number of hosts to create
+        """
+        if not replicas and isinstance(port, list):
+            raise ValueError("If replicas is not set, port must be an integer.")
+        if replicas and not isinstance(port, list):
+            raise ValueError("If replicas is set, port must be a list of two integers.")
+        if replicas and len(port) != 2:
+            raise ValueError("If replicas is set, port must be a list of two integers.")
+        if replicas and port[0] >= port[1]:
+            raise ValueError("If replicas is set, port[0] must be less than port[1].")
+        if replicas and replicas < 1:
+            raise ValueError("If replicas is set, replicas must be greater than 0.")
+        if replicas and port[1] - port[0] +1 != replicas:
+            raise ValueError("If replicas is set, port range must be equal to the number of replicas.")
+         
+
+    def _instantiate_host_object(
+            self, 
+            host_name: str, 
+            port: int|list[int], 
+            replicas: int, 
+            params: dict
+        ):
         """
         Method that instantiate the host objects. It initializes the hosts
         with the corresponding name, port and network operating system
-        """
-        if count:
-            for i in range(0, count):
-                name = f"{host}{i+1}"
-                port_ = self._allocate_port(port)
-                self.hosts[name] = Host(name=name, port=port_, fakenos=self, **copy.deepcopy(params))
-        else:
-            port_ = self._allocate_port(port)
-            self.hosts[host] = Host(name=host, port=port_, fakenos=self, **params)
 
-    def _allocate_port(self, port: int) -> None:
+        :param host: string - name of the host
+        :param port: integer or list of two integers - port to allocate
+        :param count: integer - number of hosts to create
+        :param params: dictionary - parameters to pass to the host like configurations
+        """
+        hosts_name, ports = self._get_hosts_and_ports(host_name, port, replicas)
+        for host_name, port in zip(hosts_name, ports):
+            self._instantiate_single_host_object(host_name, port, params)
+        
+    def _get_hosts_and_ports(
+            self,
+            host_name: str,
+            port: int|list[int], 
+            replicas: int = None
+        ):
+        """
+        Method to get hosts and ports correctly
+        depending on the number of replicas (if exists).
+        
+        :param host_name: string - name of the host
+        :param port: integer or list of two integers - port to allocate
+        :param replicas: integer - number of hosts to create
+        """
+        hosts_name: set[str] = {}
+        ports: set[int] = {}
+
+        if replicas:
+            hosts_name = {f"{host_name}{i}" for i in range(replicas)}
+            ports = {port for port in range(port[0], port[1]+1)}
+        else:
+            hosts_name = {host_name}
+            ports = {port}
+        return hosts_name, ports
+    
+    def _instantiate_single_host_object(self, host, port, params):
+        """
+        Method that instantiate the host objects. It initializes the hosts
+
+        :param host: string - name of the host
+        :param port: integer or list of two integers - port to allocate
+        :param params: dictionary - parameters to pass to the host like configurations
+        """
+        self._allocate_port(port)
+        self.hosts[host] = Host(name=host, port=port, fakenos=self, **params)
+
+    def _allocate_port(self, port: int | list[int]) -> None:
         """
         Method to allocate port for host
 
         :param port: integer or list of two integers - range to allocate port from
         """
         if isinstance(port, int):
-            if port in self.allocated_ports:
-                raise ValueError(f"Port {port} already in use")
-            allocated_port = port
+            port: list[int] = [port]
 
-        elif isinstance(port, list):
-            for p in range(port[0], port[1] + 1):
-                if p not in self.allocated_ports:
-                    allocated_port = p
-                    break
-            else:
-                raise RuntimeError("Port allocation failed")
-        else:
-            raise TypeError("Unsupported port type {}, supported int or list".format(type(port)))
+        for p in port:
+            allocated_port = self._allocate_port_single(p)
+            self.allocated_ports.add(allocated_port)
 
-        self.allocated_ports.add(allocated_port)
-
-        return allocated_port
-
-    def _split_pattern(self, pattern: Union[str, list[str]]) -> list[str]:
+    def _allocate_port_single(self, port: int) -> int:
         """
-        Helper method to split pattern into a list of patterns.
-
-        :param pattern: glob pattern or list or comma separated list of patterns
-        :return: list of patterns
+        Method to allocate single port for host.
+        
+        :param port: integer - port to allocate
         """
-        return pattern if isinstance(pattern, list) else [i.strip() for i in pattern.split(",")]
+        if port in self.allocated_ports:
+            raise ValueError(f"Port {port} already in use")
+        self.allocated_ports.add(port)
+        return port
 
-    def start(self, hosts: Union[str, list[str]] = "*") -> None:
+    def _get_hosts_as_list(self, hosts: str|list = None) -> list[Host]:
+        """
+        Helper method to get hosts as list
+
+        :param hosts: string or list of strings
+        :return: list of strings
+        """
+        hosts_list: list[Host] = []
+        if not hosts:
+            hosts = list(self.hosts.keys())
+        if isinstance(hosts, str):
+            hosts = [hosts]
+        hosts_list = [self.hosts[host] for host in hosts]
+        return hosts_list
+
+    def start(self, hosts: str|list = None) -> None:
         """
         Function to start NOS servers instances
 
-        :param hosts: glob pattern to match hosts to start by their name or
-            list or comma separated list of patterns
+        :param hosts: single or list of hosts to start by their name.
         """
-        hosts = self._split_pattern(hosts)
-        for h in self.hosts.values():
-            if not h.running and any(fnmatch.fnmatchcase(h.name, p) for p in hosts):
-                h.start()
+        hosts: list[str] = self._get_hosts_as_list(hosts)
+        self._execute_function_over_hosts(hosts, "start", host_running=False)
 
-    def stop(self, hosts: Union[str, list[str]] = "*") -> None:
+    def stop(self, hosts: str|list = None) -> None:
         """
-        Function to stop NOS servers instances
+        Function to stop NOS servers instances. It waits 2 seconds
+        just in case that there is any thread doing something.
 
-        :param hosts: glob pattern to match hosts to stop by their name or
-            list or comma separated list of patterns
+        :param hosts: single or list of hosts to stop by their name.
         """
-        hosts = self._split_pattern(hosts)
-        for h in self.hosts.values():
-            if h.running and any(fnmatch.fnmatchcase(h.name, p) for p in hosts):
-                h.stop()
+        hosts: list[str] = self._get_hosts_as_list(hosts)
+        self._execute_function_over_hosts(hosts, "stop", host_running=True)
+        time.sleep(2)
+
+    
+    def _execute_function_over_hosts(
+            self, 
+            hosts: list[Host], 
+            func: str, 
+            host_running: bool = True
+        ):
+        """
+        Function that executes a function like start or stop over
+        the selected hosts.
+
+        :param hosts: list of Hosts objects in which the function will
+        be executed.
+        """
+        for host in hosts:
+            if host not in self.hosts.values():
+                raise ValueError(f"Host {host} not found")
+            if host.running == host_running:
+                getattr(host, func)()
 
     def _register_nos_plugins(self) -> None:
         """
@@ -224,5 +285,13 @@ class FakeNOS:
                 elif isinstance(plugin, str):
                     nos_instance.from_file(plugin)
                 else:
-                    raise TypeError("Unsupported NOS type {}, supported str, dict or Nos".format(type(plugin)))
+                    raise TypeError("Unsupported NOS type {}, \
+                                    supported str, dict or Nos".format(type(plugin)))
             self.nos_plugins[nos_instance.name] = nos_instance
+
+    @property
+    def supported_platforms(self) -> list[str]:
+        """
+        Method to get the supported platforms
+        """
+        return list(self.nos_plugins.keys())

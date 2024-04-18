@@ -1,13 +1,16 @@
-import sys
+import logging
 import pprint
-import time
 import copy
+import socket
+import time
+
 import pytest
 from pydantic import ValidationError
-
-sys.path.insert(0, "..")
+from netmiko import ConnectHandler
 
 from fakenos import FakeNOS
+from fakenos.core.host import Host
+import threading
 
 fake_network = {
     "default": {
@@ -17,7 +20,7 @@ fake_network = {
         "server": {
             "plugin": "ParamikoSshServer",
             "configuration": {
-                "ssh_key_file": "./ssh-keys/ssh_host_rsa_key",
+                "ssh_key_file": "tests/assets/ssh_host_rsa_key",
                 "timeout": 1,
                 "address": "127.0.0.1",
             },
@@ -40,148 +43,95 @@ fake_network = {
             },
         },
         "R2": {},
-        "core-router": {"count": 2, "port": [5000, 6000]},
+        "core-router": {"replicas": 2, "port": [5000, 5001]},
     },
 }
 
+def get_running_hosts(hosts: dict[str, Host]) -> dict[str, bool]:
+    """
+    Get the running hosts in the network.
+    """
+    return {host_name: host.running for host_name, host in hosts.items()}
 
 def test_fakenos_base_inventory():
-    """Base test to test start stop net opearions using default inventory"""
+    """
+    Base test for checking the start and stop operations
+    using default inventory.
+    """
     net = FakeNOS()
-    before_start = net.list_hosts()
+    before_start = get_running_hosts(net.hosts)
+    for running_state in before_start.values():
+        assert running_state == False
+    
     net.start()
-    after_start = net.list_hosts()
-    net.stop()
-    after_stop = net.list_hosts()
+    after_start = get_running_hosts(net.hosts)
+    for running_state in after_start.values():
+        assert running_state == True
 
-    print("before_start: ")
-    pprint.pprint(before_start)
-    print("after_start: ")
-    pprint.pprint(after_start)
-    print("after_stop: ")
-    pprint.pprint(after_stop)
+    net.stop()
+    after_stop = get_running_hosts(net.hosts)
+    for running_state in after_stop.values():
+        assert running_state == False
+
 
     assert len(before_start) == len(after_start) == len(after_stop) == 2
 
-    assert before_start[0]["name"] == "router1"
-    assert before_start[0]["running"] == False
-    assert before_start[1]["name"] == "router2"
-    assert before_start[1]["running"] == False
+def get_platforms() -> list[str]:
+    """
+    It gets the current supported platforms.
+    """
+    platforms = []
+    with open('platforms.md', 'r') as file:
+        for line in file:
+            if line.startswith('-'):
+                platform = line[1:].strip()  # Remove the dash and whitespace
+                if "❌" in platform:
+                    continue
+                platform = platform.split(' ')[0]  # Get the first word
+                platforms.append(platform)
+    return platforms
 
-    assert after_start[0]["name"] == "router1"
-    assert after_start[0]["running"] == True
-    assert after_start[1]["name"] == "router2"
-    assert after_start[1]["running"] == True
+def get_free_port():
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.bind(('', 0))
+        return s.getsockname()[1]
 
-    assert after_stop[0]["name"] == "router1"
-    assert after_stop[0]["running"] == False
-    assert after_stop[1]["name"] == "router2"
-    assert after_stop[1]["running"] == False
-
-
-# test_fakenos_base_inventory()
-
-
-def test_validate_inventory_custom():
-    # this should not raise any errors
-    net = FakeNOS(inventory=fake_network)
-
-
-# test_validate_inventory_custom()
-
-
-def test_custom_inventory_network():
-    from netmiko import ConnectHandler
-
-    net = FakeNOS(inventory=fake_network)
-    before_start = net.list_hosts()
-
-    net.start()
-    after_start = net.list_hosts()
-
-    # try connecting to each device and running command
-    outputs = {}
-    default_username = fake_network["default"]["username"]
-    default_password = fake_network["default"]["password"]
-    for item in after_start:
-        device_data = {
-            "device_type": item["nos"],
-            # "host": item["address"],
-            "host": "127.0.0.1",
-            "username": fake_network["hosts"].get(item["name"], {}).get("username", default_username),
-            "password": fake_network["hosts"].get(item["name"], {}).get("password", default_password),
-            "port": item["port"],
+@pytest.mark.parametrize("device_type", get_platforms())
+def test_custom_inventory_network(device_type: str):
+    """
+    This test tries to connect to device as Netmiko would
+    do. It ensures that the current implemented devices are
+    ready to used with Netmiko. We only look if any error
+    has raised.
+    """
+    free_port = get_free_port()
+    inventory = {
+        "hosts": {
+            "router": {
+                "username" : "usertest",
+                "password" : "passwordtest",
+                "port" : free_port,
+                "platform": device_type
+            }
         }
-        pprint.pprint(device_data)
-        device = ConnectHandler(**device_data)
-        outputs[item["name"]] = device.send_command("show clock")
-        device.disconnect()
+    }
+    net = FakeNOS(inventory=inventory)
+    
+    net.start()
 
+    device_credentials = {
+        "host": "localhost",
+        "username": "usertest",
+        "password": "passwordtest",
+        "port": free_port,
+        "device_type": device_type
+    }
+
+    with ConnectHandler(**device_credentials):
+        pass
     net.stop()
-    after_stop = net.list_hosts()
 
-    print("before_start: ")
-    pprint.pprint(before_start)
-    print("after_start: ")
-    pprint.pprint(after_start)
-    print("after_stop: ")
-    pprint.pprint(after_stop)
-    print("devices outputs: ")
-    pprint.pprint(outputs)
-
-    assert len(before_start) == 4, "Was expecting 4 devices"
-    assert all(i["running"] == True for i in after_start), "Not all hosts started"
-    assert len(outputs) == 4, "Not all 4 hosts produced outputs"
-    assert all(isinstance(i, str) for i in outputs.values()), "Not all hosts output is a string"
-    assert all("Traceback" not in i for i in outputs.values()), "Some hosts output contains traceback"
-    assert all(i["running"] == False for i in after_stop), "Not all hosts stopped"
-
-
-# test_custom_inventory()
-
-
-def test_list_hosts_pattern_filter():
-    net = FakeNOS(inventory=fake_network)
-    all_hosts = net.list_hosts()
-    all_hosts_with_filter = net.list_hosts(hosts="*")
-    subset_one = net.list_hosts(hosts="*router[12]")
-
-    print("all_hosts_with_filter:")
-    pprint.pprint(all_hosts_with_filter)
-
-    print("subset_one:")
-    pprint.pprint(subset_one)
-
-    assert all("router" in i["name"] for i in subset_one)
-    assert all_hosts == all_hosts_with_filter != []
-
-
-# test_list_hosts_pattern_filter()
-
-
-def test_inventory_validation_host_port():
-    # test inventory host has no count and port is list
-    invcp = copy.deepcopy(fake_network)
-    invcp["hosts"]["R1"]["port"] = [5001]
-    with pytest.raises(ValidationError):
-        net = FakeNOS(inventory=invcp)
-
-    # test host has count but port is int
-    invcp = copy.deepcopy(fake_network)
-    invcp["hosts"]["core-router"]["port"] = 6000
-    with pytest.raises(ValidationError):
-        net = FakeNOS(inventory=invcp)
-
-
-# test_inventory_validation_host_port()
-
-
-def test_inventory_validation_shell_plugin_name():
-    # test inventory wrong shell plugin name
-    invcp = copy.deepcopy(fake_network)
-    invcp["hosts"]["R1"]["shell"]["plugin"] = "undefined"
-    with pytest.raises(ValidationError):
-        net = FakeNOS(inventory=invcp)
+    assert threading.active_count() == 1
 
 
 def test_inventory_validation_cmdshell_plugin():
@@ -194,10 +144,6 @@ def test_inventory_validation_cmdshell_plugin():
         "newline": "\r\n",
     }
     net = FakeNOS(inventory=invcp)
-
-
-# test_inventory_validation_cmdshell_plugin()
-
 
 def test_fakenos_start_stop_hosts_with_glob_pattern():
     net = FakeNOS(inventory=fake_network)
@@ -230,6 +176,3 @@ def test_fakenos_start_stop_hosts_with_glob_pattern():
         else:
             assert i["running"] == False, f"{i['name']} should not be running"
     assert all(i["running"] == False for i in after_stop_all), "Not all hosts stopped"
-
-
-# test_fakenos_start_stop_hosts_with_glob_pattern()

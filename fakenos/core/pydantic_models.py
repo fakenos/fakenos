@@ -7,10 +7,10 @@ from typing import Union, Optional, List, Dict, Callable
 
 from pydantic import (
     BaseModel,
-    StrictInt,
     StrictStr,
+    StrictInt,
     IPvAnyAddress,
-    root_validator,
+    root_validator
 )
 
 if sys.version_info >= (3, 8):
@@ -41,6 +41,19 @@ class ModelNosAttributes(BaseModel):
     commands: Dict[StrictStr, ModelNosCommand]
     name: StrictStr
     initial_prompt: StrictStr
+
+class ModelHost(BaseModel):
+    """
+    Pydantic model for Host Attributes
+    """
+    name: StrictStr
+    username: StrictStr
+    password: StrictStr
+    port: StrictInt
+    server: Dict[StrictStr, Union[StrictStr, Dict[StrictStr, Optional[StrictStr]]]]
+    shell: Dict[StrictStr, Union[StrictStr, Dict[StrictStr, Optional[StrictStr]]]]
+    nos: Dict[StrictStr, Union[StrictStr, Dict[StrictStr, Optional[StrictStr]]]]
+    platform: Optional[StrictStr]
 
 
 # ---------------------------------------------------------------------------------------
@@ -121,18 +134,18 @@ class HostConfig(InventoryDefaultSection):
     """
     # count: Optional[conint(strict=True, gt=0)]
     # use this for now, mkdocstring having issue with pydantic - https://github.com/mkdocstrings/griffe/issues/66
-    count: Optional[StrictInt]
+    replicas: Optional[StrictInt]
 
     @root_validator(pre=True)
     def check_port_value(cls, values):
         """
-        Method to validate port value based on 'count' value.
+        Method to validate port value based on 'replicas' value.
         """
         port = values.get("port")
-        if "count" not in values and port:
-            assert isinstance(port, int), "If no host 'count' given, port must be an integer"
-        elif "count" in values and port:
-            assert isinstance(port, list), "If host 'count' given, port must be a list"
+        if "replicas" not in values and port:
+            assert isinstance(port, int), "If no host 'replicas' given, port must be an integer"
+        elif "replicas" in values and port:
+            assert isinstance(port, list), "If host 'replicas' given, port must be a list"
         return values
 
 

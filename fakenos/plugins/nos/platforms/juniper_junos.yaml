@@ -6,6 +6,12 @@ commands:
     new_prompt: juniper_junos#
     help: enter enable mode
     prompt: juniper_junos>
+  set cli screen-width 511:
+    output: Screen width set to 511
+    help: Sets the terminal width to maximum
+    prompt:
+    - juniper_junos>
+    - juniper_junos#
   show vlans:
     output: "Routing instance        VLAN name             Tag          Interfaces\n\
       default-switch          v100-Control           100\n                       \
@@ -37,51 +43,52 @@ commands:
     - juniper_junos>
     - juniper_junos#
   show interfaces:
-    output: "Physical interface: ge-0/0/0, Enabled, Physical link is Up\n  Interface
-      index: 134, SNMP ifIndex: 502\n  Description: Test\n  Link-level type: Ethernet,
-      MTU: 1514, MRU: 0, LAN-PHY mode,\n  Link-mode: Half-duplex, Speed: 1000mbps,
-      BPDU Error: None,\n  MAC-REWRITE Error: None, Loopback: Disabled, Source filtering:
-      Disabled,\n  Flow control: Enabled, Auto-negotiation: Enabled, Remote fault:
-      Online\n  Device flags   : Present Running\n  Interface flags: SNMP-Traps Internal:
-      0x4000\n  Link flags     : None\n  CoS queues     : 8 supported, 8 maximum usable
-      queues\n  Current address: 00:0c:29:5e:2c:1a, Hardware address: 00:0c:29:5e:2c:1a\n\
-      \  Last flapped   : 2016-02-09 13:37:59 UTC (23:39:35 ago)\n  Input rate   \
-      \  : 0 bps (0 pps)\n  Output rate    : 0 bps (0 pps)\n  Active alarms  : None\n\
-      \  Active defects : None\n  Interface transmit statistics: Disabled\n\n  Logical
-      interface ge-0/0/0.2036 (Index 74) (SNMP ifIndex 535)\n    Flags: Up SNMP-Traps
-      0x0 VLAN-Tag [ 0x8100.2036 ]  Encapsulation: ENET2\n    Input packets : 12439041\n\
-      \    Output packets: 2552075\n    Security: Zone: Null\n    Protocol inet, MTU:
-      1500\n      Flags: Sendbcast-pkt-to-re, Sample-input, Sample-output\n      Addresses,
-      Flags: Is-Preferred Is-Primary\n        Destination: 10.10.199.176/29, Local:
-      10.10.199.180, Broadcast: 10.10.199.183\n\nPhysical interface: gr-0/0/0, Enabled,
-      Physical link is Up\n  Interface index: 139, SNMP ifIndex: 506\n  Type: GRE,
-      Link-level type: GRE, MTU: Unlimited, Speed: 800mbps\n  Link flags     : Scheduler
-      Keepalives DTE\n  Device flags   : Present Running\n  Interface flags: Point-To-Point\n\
-      \  Input rate     : 0 bps (0 pps)\n  Output rate    : 0 bps (0 pps)\n\nPhysical
-      interface: ip-0/0/0, Enabled, Physical link is Up\n  Interface index: 140, SNMP
-      ifIndex: 507\n  Type: IPIP, Link-level type: IP-over-IP, MTU: Unlimited, Speed:
-      800mbps\n  Link flags     : Scheduler Keepalives DTE\n  Device flags   : Present
-      Running\n  Input rate     : 0 bps (0 pps)\n  Output rate    : 0 bps (0 pps)\n
-      \nPhysical interface: lsq-0/0/0, Enabled, Physical link is Up\n  Interface index:
-      141, SNMP ifIndex: 509\n  Link-level type: LinkService, MTU: 1504\n  Device
-      flags   : Present Running\n  Interface flags: Point-To-Point SNMP-Traps Internal:
-      0x4000\n  Last flapped   : 2016-02-09 13:37:59 UTC (22:25:23 ago)\n  Input rate\
-      \     : 0 bps (0 pps)\n  Output rate    : 0 bps (0 pps)\n\nPhysical interface:
-      lt-0/0/0, Enabled, Physical link is Up\n  Interface index: 143, SNMP ifIndex:
-      510\n  Type: Logical-tunnel, Link-level type: Logical-tunnel, MTU: Unlimited,
-      Speed: 800mbps\n  Device flags   : Present Running\n  Interface flags: Point-To-Point
-      SNMP-Traps Internal: 0x4000\n  Link flags     : None\n  Physical info  : 13\n\
+    output: "Physical interface: ge-0/0/0, Enabled, Physical link is Up\n  Interface\
+      \ index: 134, SNMP ifIndex: 502\n  Description: Test\n  Link-level type: Ethernet,\
+      \ MTU: 1514, MRU: 0, LAN-PHY mode,\n  Link-mode: Half-duplex, Speed: 1000mbps,\
+      \ BPDU Error: None,\n  MAC-REWRITE Error: None, Loopback: Disabled, Source filtering:\
+      \ Disabled,\n  Flow control: Enabled, Auto-negotiation: Enabled, Remote fault:\
+      \ Online\n  Device flags   : Present Running\n  Interface flags: SNMP-Traps\
+      \ Internal: 0x4000\n  Link flags     : None\n  CoS queues     : 8 supported,\
+      \ 8 maximum usable queues\n  Current address: 00:0c:29:5e:2c:1a, Hardware address:\
+      \ 00:0c:29:5e:2c:1a\n  Last flapped   : 2016-02-09 13:37:59 UTC (23:39:35 ago)\n\
+      \  Input rate     : 0 bps (0 pps)\n  Output rate    : 0 bps (0 pps)\n  Active\
+      \ alarms  : None\n  Active defects : None\n  Interface transmit statistics:\
+      \ Disabled\n\n  Logical interface ge-0/0/0.2036 (Index 74) (SNMP ifIndex 535)\n\
+      \    Flags: Up SNMP-Traps 0x0 VLAN-Tag [ 0x8100.2036 ]  Encapsulation: ENET2\n\
+      \    Input packets : 12439041\n    Output packets: 2552075\n    Security: Zone:\
+      \ Null\n    Protocol inet, MTU: 1500\n      Flags: Sendbcast-pkt-to-re, Sample-input,\
+      \ Sample-output\n      Addresses, Flags: Is-Preferred Is-Primary\n        Destination:\
+      \ 10.10.199.176/29, Local: 10.10.199.180, Broadcast: 10.10.199.183\n\nPhysical\
+      \ interface: gr-0/0/0, Enabled, Physical link is Up\n  Interface index: 139,\
+      \ SNMP ifIndex: 506\n  Type: GRE, Link-level type: GRE, MTU: Unlimited, Speed:\
+      \ 800mbps\n  Link flags     : Scheduler Keepalives DTE\n  Device flags   : Present\
+      \ Running\n  Interface flags: Point-To-Point\n  Input rate     : 0 bps (0 pps)\n\
+      \  Output rate    : 0 bps (0 pps)\n\nPhysical interface: ip-0/0/0, Enabled,\
+      \ Physical link is Up\n  Interface index: 140, SNMP ifIndex: 507\n  Type: IPIP,\
+      \ Link-level type: IP-over-IP, MTU: Unlimited, Speed: 800mbps\n  Link flags\
+      \     : Scheduler Keepalives DTE\n  Device flags   : Present Running\n  Input\
+      \ rate     : 0 bps (0 pps)\n  Output rate    : 0 bps (0 pps)\n \nPhysical interface:\
+      \ lsq-0/0/0, Enabled, Physical link is Up\n  Interface index: 141, SNMP ifIndex:\
+      \ 509\n  Link-level type: LinkService, MTU: 1504\n  Device flags   : Present\
+      \ Running\n  Interface flags: Point-To-Point SNMP-Traps Internal: 0x4000\n \
+      \ Last flapped   : 2016-02-09 13:37:59 UTC (22:25:23 ago)\n  Input rate    \
+      \ : 0 bps (0 pps)\n  Output rate    : 0 bps (0 pps)\n\nPhysical interface: lt-0/0/0,\
+      \ Enabled, Physical link is Up\n  Interface index: 143, SNMP ifIndex: 510\n\
+      \  Type: Logical-tunnel, Link-level type: Logical-tunnel, MTU: Unlimited, Speed:\
+      \ 800mbps\n  Device flags   : Present Running\n  Interface flags: Point-To-Point\
+      \ SNMP-Traps Internal: 0x4000\n  Link flags     : None\n  Physical info  : 13\n\
       \  Current address: 02:96:14:57:ee:b3, Hardware address: 02:96:14:57:ee:b3\n\
       \  Last flapped   : Never\n  Input rate     : 0 bps (0 pps)\n  Output rate \
-      \   : 0 bps (0 pps)\n\nPhysical interface: mt-0/0/0, Enabled, Physical link
-      is Up\n  Interface index: 142, SNMP ifIndex: 511\n  Type: Multicast-GRE, Link-level
-      type: GRE, MTU: Unlimited, Speed: 800mbps\n  Link flags     : Keepalives DTE\n\
-      \  Device flags   : Present Running\n  Interface flags: SNMP-Traps\n  Input
-      rate     : 0 bps (0 pps)\n  Output rate    : 0 bps (0 pps)\n\nPhysical interface:
-      sp-0/0/0, Enabled, Physical link is Up\n  Interface index: 138, SNMP ifIndex:
-      515\n  Type: Adaptive-Services, Link-level type: Adaptive-Services, MTU: 9192,
-      Speed: 800mbps\n  Device Flags   : Present Running\n  Interface flags: Point-To-Point
-      SNMP-Traps Internal: 0x4000\n\n{{master:0}}\n"
+      \   : 0 bps (0 pps)\n\nPhysical interface: mt-0/0/0, Enabled, Physical link\
+      \ is Up\n  Interface index: 142, SNMP ifIndex: 511\n  Type: Multicast-GRE, Link-level\
+      \ type: GRE, MTU: Unlimited, Speed: 800mbps\n  Link flags     : Keepalives DTE\n\
+      \  Device flags   : Present Running\n  Interface flags: SNMP-Traps\n  Input\
+      \ rate     : 0 bps (0 pps)\n  Output rate    : 0 bps (0 pps)\n\nPhysical interface:\
+      \ sp-0/0/0, Enabled, Physical link is Up\n  Interface index: 138, SNMP ifIndex:\
+      \ 515\n  Type: Adaptive-Services, Link-level type: Adaptive-Services, MTU: 9192,\
+      \ Speed: 800mbps\n  Device Flags   : Present Running\n  Interface flags: Point-To-Point\
+      \ SNMP-Traps Internal: 0x4000\n\n{{master:0}}\n"
     help: execute the command "show interfaces"
     prompt:
     - juniper_junos>
@@ -89,57 +96,75 @@ commands:
   show chassis hardware:
     output: "Hardware inventory:\nItem             Version  Part number  Serial number\
       \     Description\nChassis                                A0000            \
-      \ MX104\nMidplane         REV 49   750-000000   XXXXXX04          MX104\nPEM
-      0            REV 04   740-000000   XXXXXX20039       AC Power Entry Module\n
-      PEM 1            REV 04   740-000000   XXXXXX20125       AC Power Entry Module\n
-      Routing Engine 0 REV 07   750-000000   XXXXXX28          RE-MX-104\nAFEB 0 \
-      \                   BUILTIN      BUILTIN           Forwarding Engine Processor\n
-      FPC 0                     BUILTIN      BUILTIN           MPC BUILTIN\n  MIC
-      0          REV 25   750-000000   XXXXXX26          3D 2x 10GE XFP\n    PIC 0\
-      \                 BUILTIN      BUILTIN           1x 10GE XFP\n      Xcvr 0 \
-      \    REV 01   740-000000   XXXXXXXX0001      XFP-10G-LR\n    PIC 1         \
-      \        BUILTIN      BUILTIN           1x 10GE XFP\n      Xcvr 0     REV 01\
+      \ MX104\nMidplane         REV 49   750-000000   XXXXXX04          MX104\nPEM\
+      \ 0            REV 04   740-000000   XXXXXX20039       AC Power Entry Module\n\
+      \ PEM 1            REV 04   740-000000   XXXXXX20125       AC Power Entry Module\n\
+      \ Routing Engine 0 REV 07   750-000000   XXXXXX28          RE-MX-104\nAFEB 0\
+      \                    BUILTIN      BUILTIN           Forwarding Engine Processor\n\
+      \ FPC 0                     BUILTIN      BUILTIN           MPC BUILTIN\n  MIC\
+      \ 0          REV 25   750-000000   XXXXXX26          3D 2x 10GE XFP\n    PIC\
+      \ 0                 BUILTIN      BUILTIN           1x 10GE XFP\n      Xcvr 0\
+      \     REV 01   740-000000   XXXXXXXX0001      XFP-10G-LR\n    PIC 1        \
+      \         BUILTIN      BUILTIN           1x 10GE XFP\n      Xcvr 0     REV 01\
       \   740-000000   XXXXXXXX0001      XFP-10G-LR\n  MIC 1          REV 25   750-000000\
       \   ABCV0000          3D 2x 10GE XFP\n    PIC 2                 BUILTIN    \
       \  BUILTIN           1x 10GE XFP\n      Xcvr 0     REV 01   740-000000   XXXXXXXX0001\
       \      XFP-10G-LR\n    PIC 3                 BUILTIN      BUILTIN          \
-      \ 1x 10GE XFP\n      Xcvr 0              NON-JNPR     AAAA0000A         XFP-10G-SR\n
-      FPC 1                     BUILTIN      BUILTIN           MPC BUILTIN\n  MIC
-      0          REV 30   750-000000   AAAA000A          3D 20x 1GE(LAN) SFP\n   \
-      \ PIC 0                 BUILTIN      BUILTIN           10x 1GE(LAN) SFP\n  \
-      \    Xcvr 0     REV 02   740-000000   XXXXX1G22474      SFP-T\n      Xcvr 1\
-      \     REV 02   740-000000   XXXXX1G22472      SFP-T\n      Xcvr 2     REV 01\
-      \   740-000000   XXXXX23           SFP-T\n      Xcvr 3     REV 01   740-000000\
+      \ 1x 10GE XFP\n      Xcvr 0              NON-JNPR     AAAA0000A         XFP-10G-SR\n\
+      \ FPC 1                     BUILTIN      BUILTIN           MPC BUILTIN\n  MIC\
+      \ 0          REV 30   750-000000   AAAA000A          3D 20x 1GE(LAN) SFP\n \
+      \   PIC 0                 BUILTIN      BUILTIN           10x 1GE(LAN) SFP\n\
+      \      Xcvr 0     REV 02   740-000000   XXXXX1G22474      SFP-T\n      Xcvr\
+      \ 1     REV 02   740-000000   XXXXX1G22472      SFP-T\n      Xcvr 2     REV\
+      \ 01   740-000000   XXXXX23           SFP-T\n      Xcvr 3     REV 01   740-000000\
       \   XXXXX01           SFP-T\n      Xcvr 4     REV 02   740-000000   XXXXX1G22481\
       \      SFP-T\n      Xcvr 5     REV 02   740-000000   XXXXX1G22479      SFP-T\n\
       \    PIC 1                 BUILTIN      BUILTIN           10x 1GE(LAN) SFP\n\
-      \      Xcvr 0     REV 01   740-000000   XXXXXX20000       SFP-T\n      Xcvr
-      1     REV 02   740-000000   XXXXX1G20000      SFP-T\n  MIC 1          REV 26\
-      \   750-000000   XXXXX000          3D 2x 10GE XFP\n    PIC 2               \
-      \  BUILTIN      BUILTIN           1x 10GE XFP\n      Xcvr 0     REV 01   740-000000\
-      \   A00098A           XFP-10G-LR\n    PIC 3                 BUILTIN      BUILTIN\
-      \           1x 10GE XFP\n      Xcvr 0     REV 01   740-000000   XXXXX00000 \
-      \       XFP-10G-LR\nFPC 2                     BUILTIN      BUILTIN         \
-      \  MPC BUILTIN\n  MIC 0                   BUILTIN      BUILTIN           4x
-      10GE(LAN) SFP+\n    PIC 0                 BUILTIN      BUILTIN           4x
-      10GE(LAN) SFP+\n      Xcvr 0     REV      740-000000   XXXXX00000        SFP+-10G-LR\n\
-      \      Xcvr 1     REV 01   740-000000   XXXXX00000        SFP+-10G-SR\n    \
-      \  Xcvr 2     REV      740-000000   XXXXX00000        SFP+-10G-LR\n      Xcvr
-      3     REV      740-000000   XXXXX00000        SFP+-10G-LR\nFan Tray 0      \
-      \ REV 03   711-000000   ABCD0000          Fan Tray\n"
+      \      Xcvr 0     REV 01   740-000000   XXXXXX20000       SFP-T\n      Xcvr\
+      \ 1     REV 02   740-000000   XXXXX1G20000      SFP-T\n  MIC 1          REV\
+      \ 26   750-000000   XXXXX000          3D 2x 10GE XFP\n    PIC 2            \
+      \     BUILTIN      BUILTIN           1x 10GE XFP\n      Xcvr 0     REV 01  \
+      \ 740-000000   A00098A           XFP-10G-LR\n    PIC 3                 BUILTIN\
+      \      BUILTIN           1x 10GE XFP\n      Xcvr 0     REV 01   740-000000 \
+      \  XXXXX00000        XFP-10G-LR\nFPC 2                     BUILTIN      BUILTIN\
+      \           MPC BUILTIN\n  MIC 0                   BUILTIN      BUILTIN    \
+      \       4x 10GE(LAN) SFP+\n    PIC 0                 BUILTIN      BUILTIN  \
+      \         4x 10GE(LAN) SFP+\n      Xcvr 0     REV      740-000000   XXXXX00000\
+      \        SFP+-10G-LR\n      Xcvr 1     REV 01   740-000000   XXXXX00000    \
+      \    SFP+-10G-SR\n      Xcvr 2     REV      740-000000   XXXXX00000        SFP+-10G-LR\n\
+      \      Xcvr 3     REV      740-000000   XXXXX00000        SFP+-10G-LR\nFan Tray\
+      \ 0       REV 03   711-000000   ABCD0000          Fan Tray\n"
     help: execute the command "show chassis hardware"
     prompt:
     - juniper_junos>
     - juniper_junos#
   show arp no-resolve:
-    output: "MAC Address       Address         Interface     Flags\n00:00:00:00:00:04
-      10.1.100.130    vlan.20        none\n00:00:00:00:00:05 10.1.100.132    vlan.20\
-      \        none\n00:00:00:00:00:08 10.1.100.72     vlan.20        none\n00:00:00:00:00:09
-      10.1.100.73     vlan.20        none\n00:00:00:00:00:0a 10.1.100.74     vlan.20\
-      \        none\n00:00:00:00:00:0b 10.1.100.75     vlan.20        none\n00:00:00:00:00:0c
-      10.1.100.76     vlan.20        none\n00:00:00:00:11:11 10.1.111.11     vlan.20\
-      \        none\n00:00:00:00:13:13 10.1.13.13      vlan.20        none\nTotal
-      entries: 9\n\n{{master:0}}\n"
+    output: 'MAC Address       Address         Interface     Flags
+
+      00:00:00:00:00:04 10.1.100.130    vlan.20        none
+
+      00:00:00:00:00:05 10.1.100.132    vlan.20        none
+
+      00:00:00:00:00:08 10.1.100.72     vlan.20        none
+
+      00:00:00:00:00:09 10.1.100.73     vlan.20        none
+
+      00:00:00:00:00:0a 10.1.100.74     vlan.20        none
+
+      00:00:00:00:00:0b 10.1.100.75     vlan.20        none
+
+      00:00:00:00:00:0c 10.1.100.76     vlan.20        none
+
+      00:00:00:00:11:11 10.1.111.11     vlan.20        none
+
+      00:00:00:00:13:13 10.1.13.13      vlan.20        none
+
+      Total entries: 9
+
+
+      {{master:0}}
+
+      '
     help: execute the command "show arp no-resolve"
     prompt:
     - juniper_junos>
@@ -150,8 +175,8 @@ commands:
       \   Yes  Yes  Yes   Yes     Fast    Active\n      xe-0/0/0:0   Partner    No\
       \    No   Yes  Yes  Yes   Yes     Slow    Active\n    LACP protocol:       \
       \ Receive State  Transmit State          Mux State\n      xe-0/0/0:0       \
-      \         Current   Slow periodic Collecting distributing\n\nAggregated interface:
-      ae111\n    LACP state:       Role   Exp   Def  Dist  Col  Syn  Aggr  Timeout\
+      \         Current   Slow periodic Collecting distributing\n\nAggregated interface:\
+      \ ae111\n    LACP state:       Role   Exp   Def  Dist  Col  Syn  Aggr  Timeout\
       \  Activity\n      et-0/0/32      Actor    No    No   Yes  Yes  Yes   Yes  \
       \   Fast    Active\n      et-0/0/32    Partner    No    No   Yes  Yes  Yes \
       \  Yes     Fast    Active\n      et-0/0/33      Actor    No    No   Yes  Yes\
@@ -167,8 +192,8 @@ commands:
       \      et-0/0/35    Partner    No    No   Yes  Yes  Yes   Yes     Fast    Active\n\
       \    LACP protocol:        Receive State  Transmit State          Mux State\n\
       \      et-0/0/34                 Current   Fast periodic Collecting distributing\n\
-      \      et-0/0/35                 Current   Fast periodic Collecting distributing\n
-      \nAggregated interface: ae115\n    LACP state:       Role   Exp   Def  Dist\
+      \      et-0/0/35                 Current   Fast periodic Collecting distributing\n\
+      \ \nAggregated interface: ae115\n    LACP state:       Role   Exp   Def  Dist\
       \  Col  Syn  Aggr  Timeout  Activity\n      et-0/0/25      Actor    No    No\
       \   Yes  Yes  Yes   Yes     Fast    Active\n      et-0/0/25    Partner    No\
       \    No   Yes  Yes  Yes   Yes     Fast    Active\n      et-0/0/29      Actor\
@@ -183,91 +208,92 @@ commands:
     - juniper_junos#
   show chassis firmware:
     output: "Part                     Type       Version\nFPC                    \
-      \  ROM        PC Bios\n                         O/S        Version 15.1F4.15
-      by builder on 2015-12-23 18:14:32 UTC\n\nPart                     Type     \
-      \  Version\nFPC                      O/S        Version 15.1X49-D15 by ssd-builder
-      on 2015-07-31 06:28:30 UTC\nFWDD                     O/S        Version 15.1X49-D15
-      by ssd-builder on 2015-07-31 06:28:30 UTC\n\nPart                     Type \
-      \      Version\nForwarding engine board  ROM        Juniper ROM Monitor Version
-      4.1b2\n                         O/S        Version 4.1I1 by tlim on 2000-04-24
-      11:27\n\nPart                     Type       Version\nSystem switch board  \
-      \    ROM        Juniper ROM Monitor Version 3.4b26\n                       \
-      \  O/S        Version 3.4I16 by smackie on 2000-02-29 2\nFPC 1             \
-      \       ROM        Juniper ROM Monitor Version 3.0b1\n                     \
-      \    O/S        Version 3.4I4 by smackie on 2000-02-25 21\nFPC 2           \
+      \  ROM        PC Bios\n                         O/S        Version 15.1F4.15\
+      \ by builder on 2015-12-23 18:14:32 UTC\n\nPart                     Type   \
+      \    Version\nFPC                      O/S        Version 15.1X49-D15 by ssd-builder\
+      \ on 2015-07-31 06:28:30 UTC\nFWDD                     O/S        Version 15.1X49-D15\
+      \ by ssd-builder on 2015-07-31 06:28:30 UTC\n\nPart                     Type\
+      \       Version\nForwarding engine board  ROM        Juniper ROM Monitor Version\
+      \ 4.1b2\n                         O/S        Version 4.1I1 by tlim on 2000-04-24\
+      \ 11:27\n\nPart                     Type       Version\nSystem switch board\
+      \      ROM        Juniper ROM Monitor Version 3.4b26\n                     \
+      \    O/S        Version 3.4I16 by smackie on 2000-02-29 2\nFPC 1           \
       \         ROM        Juniper ROM Monitor Version 3.0b1\n                   \
-      \      O/S        Version 3.4I4 by smackie on 2000-02-25 21\n\nPart        \
-      \             Type       Version\nSystem control board     ROM        Juniper
-      ROM Monitor Version 2.0i126Copyri\n                         O/S        Version
-      2.0i1 by root on Thu Jul 23 00:51\nFPC 5                    ROM        Juniper
-      ROM Monitor Version 2.0i49Copyrig\n                         O/S        Version
-      2.0i1 by root on Thu Jul 23 00:59\n\nFPC 2                    ROM        Juniper
-      ROM Monitor Version 8.0b29         \n                         O/S        Version
-      8.2B1 by builder on 2006-10-18 16:2\nFPC 3                    ROM        Juniper
-      ROM Monitor Version 8.0b29         \n                         O/S        Version
-      8.2B1 by builder on 2006-10-18 16:2\nFPC 4                    ROM        Juniper
-      ROM Monitor Version 8.0b29         \n                         O/S        Version
-      8.2B1 by builder on 2006-10-18 16:2\nFEB 3                    ROM        Juniper
-      ROM Monitor Version 8.0b29         \n                         O/S        Version
-      8.2B1 by builder on 2006-10-18 16:1\nFEB 4                    ROM        Juniper
-      ROM Monitor Version 8.0b29         \n                         O/S        Version
-      8.2B1 by builder on 2006-10-18 16:1\n\nPart                     Type       Version\n
-      SFM 0                    ROM        Juniper ROM Monitor Version 4.0b2\n    \
-      \                     O/S        Version 4.0I1 by tlim on 2000-02-29 11:50\n
-      SFM 1                    ROM        Juniper ROM Monitor Version 4.0b2\n    \
-      \                     O/S        Version 4.0I1 by tlim on 2000-02-29 11:50\n
-      FPC 0                    ROM        Juniper ROM Monitor Version 4.0b2\n    \
-      \                     O/S        Version 4.0I1 by tlim on 2000-02-29 11:56\n
-      FPC 1                    ROM        Juniper ROM Monitor Version 4.0b2\n    \
-      \                     O/S        Version 4.0I1 by tlim on 2000-02-29 11:56\n
-      FPC 2                    ROM        Juniper ROM Monitor Version 4.0b3\n    \
-      \                     O/S        Version 4.0I1 by tlim on 2000-02-29 11:56\n\
+      \      O/S        Version 3.4I4 by smackie on 2000-02-25 21\nFPC 2         \
+      \           ROM        Juniper ROM Monitor Version 3.0b1\n                 \
+      \        O/S        Version 3.4I4 by smackie on 2000-02-25 21\n\nPart      \
+      \               Type       Version\nSystem control board     ROM        Juniper\
+      \ ROM Monitor Version 2.0i126Copyri\n                         O/S        Version\
+      \ 2.0i1 by root on Thu Jul 23 00:51\nFPC 5                    ROM        Juniper\
+      \ ROM Monitor Version 2.0i49Copyrig\n                         O/S        Version\
+      \ 2.0i1 by root on Thu Jul 23 00:59\n\nFPC 2                    ROM        Juniper\
+      \ ROM Monitor Version 8.0b29         \n                         O/S        Version\
+      \ 8.2B1 by builder on 2006-10-18 16:2\nFPC 3                    ROM        Juniper\
+      \ ROM Monitor Version 8.0b29         \n                         O/S        Version\
+      \ 8.2B1 by builder on 2006-10-18 16:2\nFPC 4                    ROM        Juniper\
+      \ ROM Monitor Version 8.0b29         \n                         O/S        Version\
+      \ 8.2B1 by builder on 2006-10-18 16:2\nFEB 3                    ROM        Juniper\
+      \ ROM Monitor Version 8.0b29         \n                         O/S        Version\
+      \ 8.2B1 by builder on 2006-10-18 16:1\nFEB 4                    ROM        Juniper\
+      \ ROM Monitor Version 8.0b29         \n                         O/S        Version\
+      \ 8.2B1 by builder on 2006-10-18 16:1\n\nPart                     Type     \
+      \  Version\n SFM 0                    ROM        Juniper ROM Monitor Version\
+      \ 4.0b2\n                         O/S        Version 4.0I1 by tlim on 2000-02-29\
+      \ 11:50\n SFM 1                    ROM        Juniper ROM Monitor Version 4.0b2\n\
+      \                         O/S        Version 4.0I1 by tlim on 2000-02-29 11:50\n\
+      \ FPC 0                    ROM        Juniper ROM Monitor Version 4.0b2\n  \
+      \                       O/S        Version 4.0I1 by tlim on 2000-02-29 11:56\n\
+      \ FPC 1                    ROM        Juniper ROM Monitor Version 4.0b2\n  \
+      \                       O/S        Version 4.0I1 by tlim on 2000-02-29 11:56\n\
+      \ FPC 2                    ROM        Juniper ROM Monitor Version 4.0b3\n  \
+      \                       O/S        Version 4.0I1 by tlim on 2000-02-29 11:56\n\
       \nPart                     Type       Version\nFPC 0                    ROM\
       \        Juniper ROM Monitor Version 13.1b24       \n                      \
       \   O/S        Version 13.2-20130514.1 by builder on 2013-\nFPC 1          \
       \          ROM        Juniper ROM Monitor Version 13.1b24       \n         \
-      \                O/S        Version 13.2-20130514.1 by builder on 2013-\nFPC
-      2                    ROM        Juniper ROM Monitor Version 13.1b24       \n\
-      \                         O/S        Version 13.2-20130514.1 by builder on 2013-\n\
-      AFEB                     ROM        Juniper ROM Monitor Version 13.1b24    \
-      \   \n                         O/S        Version 13.2-20130514.1 by builder
-      on 2013-\n\nPart                     Type       Version\nFPC 1             \
+      \                O/S        Version 13.2-20130514.1 by builder on 2013-\nFPC\
+      \ 2                    ROM        Juniper ROM Monitor Version 13.1b24      \
+      \ \n                         O/S        Version 13.2-20130514.1 by builder on\
+      \ 2013-\nAFEB                     ROM        Juniper ROM Monitor Version 13.1b24\
+      \       \n                         O/S        Version 13.2-20130514.1 by builder\
+      \ on 2013-\n\nPart                     Type       Version\nFPC 1           \
+      \         ROM        Juniper ROM Monitor Version 8.3b1          \n         \
+      \                O/S        Version 9.0-20080103.0 by builder on 2008-0\nFPC\
+      \ 2                    ROM        Juniper ROM Monitor Version 8.3b1        \
+      \  \n                         O/S        Version 9.0-20080103.0 by builder on\
+      \ 2008-0\n\nPart                     Type       Version\nFPC 1             \
       \       ROM        Juniper ROM Monitor Version 8.3b1          \n           \
-      \              O/S        Version 9.0-20080103.0 by builder on 2008-0\nFPC 2\
-      \                    ROM        Juniper ROM Monitor Version 8.3b1          \n\
-      \                         O/S        Version 9.0-20080103.0 by builder on 2008-0\n\
-      \nPart                     Type       Version\nFPC 1                    ROM\
-      \        Juniper ROM Monitor Version 8.3b1          \n                     \
-      \    O/S        Version 9.0-20070916.3 by builder on 2007-0\n\nPart        \
-      \             Type       Version\nFPC 4                    ROM        Juniper
-      ROM Monitor Version 8.0b8          \n                         O/S        Version
-      8.2I59 by artem on 2006-10-31 19:22\nFPC 7                    ROM        Juniper
-      ROM Monitor Version 8.2b1          \n                         O/S        Version
-      8.2-20061026.1 by builder on 2006-1\n\nPart                     Type       Version\n
-      FPC 0                    ROM        Juniper ROM Monitor Version 12.3b1\n   \
-      \                      O/S        Version 12.3-20121220.0 by builder on 2012-\n
-      FPC 1                    ROM        Juniper ROM Monitor Version 10.1b3\n   \
-      \                      O/S        Version 12.3-20121220.0 by builder on 2012-\n
-      FPC 2                    ROM        Juniper ROM Monitor Version 10.1b3\n   \
-      \                      O/S        Version 12.3-20121220.0 by builder on 2012-\n
-      FPC 3                    ROM        Juniper ROM Monitor Version 10.1b3\n   \
-      \                      O/S        Version 12.3-20121220.0 by builder on 2012-\n
-      FPC 4                    ROM        Juniper ROM Monitor Version 10.0b39\n  \
-      \                       O/S        Version 12.3-20121220.0 by builder on 2012-\n
-      FPC 5                    ROM        Juniper ROM Monitor Version 10.0b39\n  \
-      \                       O/S        Version 12.3-20121220.0 by builder on 2012-\n
-      FPC 6                    ROM        Juniper ROM Monitor Version 10.4b1\n   \
-      \                      O/S        Version 12.3-20121220.0 by builder on 2012-\n
-      FPC 7                    ROM        Juniper ROM Monitor Version 10.1b3\n   \
-      \                      O/S        Version 12.3-20121220.0 by builder on 2012-\n
-      FPC 8                    ROM        Juniper ROM Monitor Version 10.4b1\n   \
-      \                      O/S        Version 12.3-20121220.0 by builder on 2012-\n
-      FPC 9                    ROM        Juniper ROM Monitor Version 10.4b1\n   \
-      \                      O/S        Version 12.3-20121220.0 by builder on 2012-\n
-      SPMB 0                   ROM        Juniper ROM Monitor Version 12.1b1\n   \
-      \                      O/S        Version 12.3-20121220.0 by builder on 2012-\n
-      SPMB 1                   ROM        Juniper ROM Monitor Version 12.1b1\n   \
-      \                      O/S        Version 12.3-20121220.0 by builder on 2012-\n\
+      \              O/S        Version 9.0-20070916.3 by builder on 2007-0\n\nPart\
+      \                     Type       Version\nFPC 4                    ROM     \
+      \   Juniper ROM Monitor Version 8.0b8          \n                         O/S\
+      \        Version 8.2I59 by artem on 2006-10-31 19:22\nFPC 7                \
+      \    ROM        Juniper ROM Monitor Version 8.2b1          \n              \
+      \           O/S        Version 8.2-20061026.1 by builder on 2006-1\n\nPart \
+      \                    Type       Version\n FPC 0                    ROM     \
+      \   Juniper ROM Monitor Version 12.3b1\n                         O/S       \
+      \ Version 12.3-20121220.0 by builder on 2012-\n FPC 1                    ROM\
+      \        Juniper ROM Monitor Version 10.1b3\n                         O/S  \
+      \      Version 12.3-20121220.0 by builder on 2012-\n FPC 2                 \
+      \   ROM        Juniper ROM Monitor Version 10.1b3\n                        \
+      \ O/S        Version 12.3-20121220.0 by builder on 2012-\n FPC 3           \
+      \         ROM        Juniper ROM Monitor Version 10.1b3\n                  \
+      \       O/S        Version 12.3-20121220.0 by builder on 2012-\n FPC 4     \
+      \               ROM        Juniper ROM Monitor Version 10.0b39\n           \
+      \              O/S        Version 12.3-20121220.0 by builder on 2012-\n FPC\
+      \ 5                    ROM        Juniper ROM Monitor Version 10.0b39\n    \
+      \                     O/S        Version 12.3-20121220.0 by builder on 2012-\n\
+      \ FPC 6                    ROM        Juniper ROM Monitor Version 10.4b1\n \
+      \                        O/S        Version 12.3-20121220.0 by builder on 2012-\n\
+      \ FPC 7                    ROM        Juniper ROM Monitor Version 10.1b3\n \
+      \                        O/S        Version 12.3-20121220.0 by builder on 2012-\n\
+      \ FPC 8                    ROM        Juniper ROM Monitor Version 10.4b1\n \
+      \                        O/S        Version 12.3-20121220.0 by builder on 2012-\n\
+      \ FPC 9                    ROM        Juniper ROM Monitor Version 10.4b1\n \
+      \                        O/S        Version 12.3-20121220.0 by builder on 2012-\n\
+      \ SPMB 0                   ROM        Juniper ROM Monitor Version 12.1b1\n \
+      \                        O/S        Version 12.3-20121220.0 by builder on 2012-\n\
+      \ SPMB 1                   ROM        Juniper ROM Monitor Version 12.1b1\n \
+      \                        O/S        Version 12.3-20121220.0 by builder on 2012-\n\
       \nPart                     Type       Version\nFPC 0                    ROM\
       \        Juniper ROM Monitor Version 10.0b39\n                         O/S \
       \       Version 12.3-20130415.0 by builder on 2013-\nFPC 1                 \
@@ -278,138 +304,183 @@ commands:
       \               ROM        Juniper ROM Monitor Version 10.0b39\n           \
       \              O/S        Version 12.3-20130415.0 by builder on 2013-\nFPC 4\
       \                    ROM        Juniper ROM Monitor Version 10.0b39\n      \
-      \                   O/S        Version 12.3-20130415.0 by builder on 2013-\n
-      FPC 5                    ROM        Juniper ROM Monitor Version 10.0b39\n  \
-      \                       O/S        Version 12.3-20130415.0 by builder on 2013-\n
-      FPC 6                    ROM        Juniper ROM Monitor Version 10.0b39\n  \
-      \                       O/S        Version 12.3-20130415.0 by builder on 2013-\n
-      FPC 7                    ROM        Juniper ROM Monitor Version 10.0b39\n  \
-      \                       O/S        Version 12.3-20130415.0 by builder on 2013-\n
-      FPC 8                    ROM        Juniper ROM Monitor Version 10.0b39\n  \
-      \                       O/S        Version 12.3-20130415.0 by builder on 2013-\n
-      FPC 9                    ROM        Juniper ROM Monitor Version 10.0b39\n  \
-      \                       O/S        Version 12.3-20130415.0 by builder on 2013-\n
-      FPC 10                   ROM        Juniper ROM Monitor Version 10.0b39\n  \
-      \                       O/S        Version 12.3-20130415.0 by builder on 2013-\n
-      FPC 11                   ROM        Juniper ROM Monitor Version 10.0b39\n  \
-      \                       O/S        Version 12.3-20130415.0 by builder on 2013-\n
-      FPC 12                   ROM        Juniper ROM Monitor Version 10.0b39\n  \
-      \                       O/S        Version 12.3-20130415.0 by builder on 2013-\n
-      FPC 13                   ROM        Juniper ROM Monitor Version 10.0b39\n  \
-      \                       O/S        Version 12.3-20130415.0 by builder on 2013-\n
-      FPC 14                   ROM        Juniper ROM Monitor Version 10.0b39\n  \
-      \                       O/S        Version 12.3-20130415.0 by builder on 2013-\n
-      FPC 15                   ROM        Juniper ROM Monitor Version 10.0b39\n  \
-      \                       O/S        Version 12.3-20130415.0 by builder on 2013-\n
-      FPC 16                   ROM        Juniper ROM Monitor Version 10.0b39\n  \
-      \                       O/S        Version 12.3-20130415.0 by builder on 2013-\n
-      FPC 17                   ROM        Juniper ROM Monitor Version 10.0b39\n  \
-      \                       O/S        Version 12.3-20130415.0 by builder on 2013-\n
-      FPC 18                   ROM        Juniper ROM Monitor Version 10.0b39\n  \
-      \                       O/S        Version 12.3-20130415.0 by builder on 2013-\n
-      FPC 19                   ROM        Juniper ROM Monitor Version 10.0b39\n  \
-      \                       O/S        Version 12.3-20130415.0 by builder on 2013-\n
-      SPMB 0                   ROM        Juniper ROM Monitor Version 12.1b1\n   \
-      \                      O/S        Version 12.3-20130415.0 by builder on 2013-\n
-      SPMB 1                   ROM        Juniper ROM Monitor Version 12.1b1\n   \
-      \                      O/S        Version 12.3-20130415.0 by builder on 2013-\n\
+      \                   O/S        Version 12.3-20130415.0 by builder on 2013-\n\
+      \ FPC 5                    ROM        Juniper ROM Monitor Version 10.0b39\n\
+      \                         O/S        Version 12.3-20130415.0 by builder on 2013-\n\
+      \ FPC 6                    ROM        Juniper ROM Monitor Version 10.0b39\n\
+      \                         O/S        Version 12.3-20130415.0 by builder on 2013-\n\
+      \ FPC 7                    ROM        Juniper ROM Monitor Version 10.0b39\n\
+      \                         O/S        Version 12.3-20130415.0 by builder on 2013-\n\
+      \ FPC 8                    ROM        Juniper ROM Monitor Version 10.0b39\n\
+      \                         O/S        Version 12.3-20130415.0 by builder on 2013-\n\
+      \ FPC 9                    ROM        Juniper ROM Monitor Version 10.0b39\n\
+      \                         O/S        Version 12.3-20130415.0 by builder on 2013-\n\
+      \ FPC 10                   ROM        Juniper ROM Monitor Version 10.0b39\n\
+      \                         O/S        Version 12.3-20130415.0 by builder on 2013-\n\
+      \ FPC 11                   ROM        Juniper ROM Monitor Version 10.0b39\n\
+      \                         O/S        Version 12.3-20130415.0 by builder on 2013-\n\
+      \ FPC 12                   ROM        Juniper ROM Monitor Version 10.0b39\n\
+      \                         O/S        Version 12.3-20130415.0 by builder on 2013-\n\
+      \ FPC 13                   ROM        Juniper ROM Monitor Version 10.0b39\n\
+      \                         O/S        Version 12.3-20130415.0 by builder on 2013-\n\
+      \ FPC 14                   ROM        Juniper ROM Monitor Version 10.0b39\n\
+      \                         O/S        Version 12.3-20130415.0 by builder on 2013-\n\
+      \ FPC 15                   ROM        Juniper ROM Monitor Version 10.0b39\n\
+      \                         O/S        Version 12.3-20130415.0 by builder on 2013-\n\
+      \ FPC 16                   ROM        Juniper ROM Monitor Version 10.0b39\n\
+      \                         O/S        Version 12.3-20130415.0 by builder on 2013-\n\
+      \ FPC 17                   ROM        Juniper ROM Monitor Version 10.0b39\n\
+      \                         O/S        Version 12.3-20130415.0 by builder on 2013-\n\
+      \ FPC 18                   ROM        Juniper ROM Monitor Version 10.0b39\n\
+      \                         O/S        Version 12.3-20130415.0 by builder on 2013-\n\
+      \ FPC 19                   ROM        Juniper ROM Monitor Version 10.0b39\n\
+      \                         O/S        Version 12.3-20130415.0 by builder on 2013-\n\
+      \ SPMB 0                   ROM        Juniper ROM Monitor Version 12.1b1\n \
+      \                        O/S        Version 12.3-20130415.0 by builder on 2013-\n\
+      \ SPMB 1                   ROM        Juniper ROM Monitor Version 12.1b1\n \
+      \                        O/S        Version 12.3-20130415.0 by builder on 2013-\n\
       \nPart                     Type       Version\nFPC 1                    ROM\
       \        Juniper ROM Monitor Version 12.1b1\n                         O/S  \
       \      Version 12.2I21 by manish on 2012-06-19 17:\n\nPart                 \
       \  Type       Version\nFPC 0                  uboot      U-Boot 1.1.6 (Feb \
-      \ 6 2008 - 11:27:42)\n                       loader     FreeBSD/PowerPC U-Boot
-      bootstrap loader 2.1\nFPC 1                  uboot      U-Boot 1.1.6 (Feb  6
-      2008 - 11:27:42)\n                       loader     FreeBSD/PowerPC U-Boot bootstrap
-      loader 2.1\nFPC 2                  uboot      U-Boot 1.1.6 (Feb  6 2008 - 11:27:42)\n\
-      \                       loader     FreeBSD/PowerPC U-Boot bootstrap loader 2.1\n\
-      \nPart                     Type       Version\nFPC 0                    U-Boot\
-      \     U-Boot 1.1.6 (Mar 25 2009 - 06:13:12) 2.4.0\n                        \
-      \ loader     FreeBSD/PowerPC U-Boot bootstrap loader 2.2\nFPC 3            \
-      \        U-Boot     U-Boot 1.1.6 (Dec  4 2009 - 13:17:34) 3.1.0\n          \
-      \               loader     FreeBSD/PowerPC U-Boot bootstrap loader 2.2\nFPC
-      5                    U-Boot     U-Boot 1.1.6 (Mar 25 2009 - 06:13:12) 2.4.0\n\
-      \                         loader     FreeBSD/PowerPC U-Boot bootstrap loader
-      2.2\nFPC 7                    U-Boot     U-Boot 1.1.6 (Feb  6 2009 - 05:31:46)
-      2.4.0\n                         loader     FreeBSD/PowerPC U-Boot bootstrap
-      loader 2.2\nRouting Engine 0         U-Boot     U-Boot 1.1.6 (Mar 25 2009 -
-      06:13:12) 2.4.0\n                         loader     FreeBSD/PowerPC U-Boot
-      bootstrap loader 2.2                                                \nRouting
-      Engine 1         U-Boot     U-Boot 1.1.6 (Mar 25 2009 - 06:13:12) 2.4.0\n  \
-      \                       loader     FreeBSD/PowerPC U-Boot bootstrap loader 2.2\n\
-      \nlcc0-re0:\n--------------------------------------------------------------------------\n\
+      \ 6 2008 - 11:27:42)\n                       loader     FreeBSD/PowerPC U-Boot\
+      \ bootstrap loader 2.1\nFPC 1                  uboot      U-Boot 1.1.6 (Feb\
+      \  6 2008 - 11:27:42)\n                       loader     FreeBSD/PowerPC U-Boot\
+      \ bootstrap loader 2.1\nFPC 2                  uboot      U-Boot 1.1.6 (Feb\
+      \  6 2008 - 11:27:42)\n                       loader     FreeBSD/PowerPC U-Boot\
+      \ bootstrap loader 2.1\n\nPart                     Type       Version\nFPC 0\
+      \                    U-Boot     U-Boot 1.1.6 (Mar 25 2009 - 06:13:12) 2.4.0\n\
+      \                         loader     FreeBSD/PowerPC U-Boot bootstrap loader\
+      \ 2.2\nFPC 3                    U-Boot     U-Boot 1.1.6 (Dec  4 2009 - 13:17:34)\
+      \ 3.1.0\n                         loader     FreeBSD/PowerPC U-Boot bootstrap\
+      \ loader 2.2\nFPC 5                    U-Boot     U-Boot 1.1.6 (Mar 25 2009\
+      \ - 06:13:12) 2.4.0\n                         loader     FreeBSD/PowerPC U-Boot\
+      \ bootstrap loader 2.2\nFPC 7                    U-Boot     U-Boot 1.1.6 (Feb\
+      \  6 2009 - 05:31:46) 2.4.0\n                         loader     FreeBSD/PowerPC\
+      \ U-Boot bootstrap loader 2.2\nRouting Engine 0         U-Boot     U-Boot 1.1.6\
+      \ (Mar 25 2009 - 06:13:12) 2.4.0\n                         loader     FreeBSD/PowerPC\
+      \ U-Boot bootstrap loader 2.2                                              \
+      \  \nRouting Engine 1         U-Boot     U-Boot 1.1.6 (Mar 25 2009 - 06:13:12)\
+      \ 2.4.0\n                         loader     FreeBSD/PowerPC U-Boot bootstrap\
+      \ loader 2.2\n\nlcc0-re0:\n--------------------------------------------------------------------------\n\
       Part                     Type       Version\nFPC 1                    ROM  \
       \      Juniper ROM Monitor Version 6.4b18         \n                       \
       \  O/S        Version 7.0-20040804.0 by builder on 2004-0\nFPC 2           \
       \         ROM        Juniper ROM Monitor Version 6.4b20         \n         \
-      \                O/S        Version 7.0-20040804.0 by builder on 2004-0\nSPMB
-      0                   ROM        Juniper ROM Monitor Version 6.4b18         \n\
-      \                         O/S        Version 7.0-20040804.0 by builder on 2004-0\n\
-      \                         O/S        Version 7.0-20040804.0 by builder on 2004-0\n\
-      \n{{master:0}}\n"
+      \                O/S        Version 7.0-20040804.0 by builder on 2004-0\nSPMB\
+      \ 0                   ROM        Juniper ROM Monitor Version 6.4b18        \
+      \ \n                         O/S        Version 7.0-20040804.0 by builder on\
+      \ 2004-0\n                         O/S        Version 7.0-20040804.0 by builder\
+      \ on 2004-0\n\n{{master:0}}\n"
     help: execute the command "show chassis firmware"
     prompt:
     - juniper_junos>
     - juniper_junos#
   show chassis cluster interfaces:
     output: "Control link status: Down\n\nControl interfaces:\nIndex   Interface \
-      \       Status   Internal-SA\n0       fxp1             Down     Disabled\n\n
-      Fabric link status: Down\n\nFabric interfaces:\nName    Child-interface    Status\n\
-      (Physical/Monitored)\nfab0    ge-0/0/2           Down / Down\nfab0\n\nRedundant-ethernet
-      Information:\nName         Status      Redundancy-group\nreth0        Up   \
-      \       1\nreth1        Up          3\nreth2        Down        Not configured\n\
-      reth3        Down        Not configured\nreth4        Down        Not configured\n
-      \nRedundant-pseudo-interface Information:\nName         Status      Redundancy-group\n\
-      lo0          Up          0\n\nInterface Monitoring:\nInterface         Weight\
-      \    Status    Redundancy-group\nge-11/0/0         255       Down      1\nge-2/0/0\
-      \          255       Up        1\n"
+      \       Status   Internal-SA\n0       fxp1             Down     Disabled\n\n\
+      \ Fabric link status: Down\n\nFabric interfaces:\nName    Child-interface  \
+      \  Status\n(Physical/Monitored)\nfab0    ge-0/0/2           Down / Down\nfab0\n\
+      \nRedundant-ethernet Information:\nName         Status      Redundancy-group\n\
+      reth0        Up          1\nreth1        Up          3\nreth2        Down  \
+      \      Not configured\nreth3        Down        Not configured\nreth4      \
+      \  Down        Not configured\n \nRedundant-pseudo-interface Information:\n\
+      Name         Status      Redundancy-group\nlo0          Up          0\n\nInterface\
+      \ Monitoring:\nInterface         Weight    Status    Redundancy-group\nge-11/0/0\
+      \         255       Down      1\nge-2/0/0          255       Up        1\n"
     help: execute the command "show chassis cluster interfaces"
     prompt:
     - juniper_junos>
     - juniper_junos#
   show chassis cluster status:
-    output: "Monitor Failure codes:\nCS  Cold Sync monitoring        FL  Fabric Connection
-      monitoring\nGR  GRES monitoring             HW  Hardware monitoring\nIF  Interface
-      monitoring        IP  IP monitoring\nLB  Loopback monitoring         MB  Mbuf
-      monitoring\nNH  Nexthop monitoring          NP  NPC monitoring\nSP  SPU monitoring\
-      \              SM  Schedule monitoring\n\nCluster ID: 1\nNode   Priority Status\
-      \         Preempt Manual   Monitor-failures\n\nRedundancy group: 0 , Failover
-      count: 1\nnode0  100      primary        no      no       None\nnode1  0   \
-      \     lost           n/a     n/a      n/a\n\nRedundancy group: 1 , Failover
-      count: 1\nnode0  0        primary        no      no       CS\nnode1  0     \
-      \   lost           n/a     n/a      n/a\n\nRedundancy group: 3 , Failover count:
-      1\nnode0  0        primary        no      no       CS\nnode1  0        lost\
-      \           n/a     n/a      n/a\n"
+    output: 'Monitor Failure codes:
+
+      CS  Cold Sync monitoring        FL  Fabric Connection monitoring
+
+      GR  GRES monitoring             HW  Hardware monitoring
+
+      IF  Interface monitoring        IP  IP monitoring
+
+      LB  Loopback monitoring         MB  Mbuf monitoring
+
+      NH  Nexthop monitoring          NP  NPC monitoring
+
+      SP  SPU monitoring              SM  Schedule monitoring
+
+
+      Cluster ID: 1
+
+      Node   Priority Status         Preempt Manual   Monitor-failures
+
+
+      Redundancy group: 0 , Failover count: 1
+
+      node0  100      primary        no      no       None
+
+      node1  0        lost           n/a     n/a      n/a
+
+
+      Redundancy group: 1 , Failover count: 1
+
+      node0  0        primary        no      no       CS
+
+      node1  0        lost           n/a     n/a      n/a
+
+
+      Redundancy group: 3 , Failover count: 1
+
+      node0  0        primary        no      no       CS
+
+      node1  0        lost           n/a     n/a      n/a
+
+      '
     help: execute the command "show chassis cluster status"
     prompt:
     - juniper_junos>
     - juniper_junos#
   show isis adjacency:
-    output: "Interface             System         L State        Hold (secs) SNPA\n\
-      ge-0/0/2.0            CSR2           1  Up                   22  50:0:0:2:0:1\n\
-      ge-0/0/2.0            CSR2           2  Up                   25  50:0:0:2:0:1\n\
-      ge-0/0/2.0            XRv3           1  Up                    8  50:0:0:3:0:2\n\
-      ge-0/0/2.0            XRv3           2  Up                    8  50:0:0:3:0:2\n\
-      ge-0/0/3.0            XRv3           3  Up                   25\n\n{{master:0}}\n"
+    output: 'Interface             System         L State        Hold (secs) SNPA
+
+      ge-0/0/2.0            CSR2           1  Up                   22  50:0:0:2:0:1
+
+      ge-0/0/2.0            CSR2           2  Up                   25  50:0:0:2:0:1
+
+      ge-0/0/2.0            XRv3           1  Up                    8  50:0:0:3:0:2
+
+      ge-0/0/2.0            XRv3           2  Up                    8  50:0:0:3:0:2
+
+      ge-0/0/3.0            XRv3           3  Up                   25
+
+
+      {{master:0}}
+
+      '
     help: execute the command "show isis adjacency"
     prompt:
     - juniper_junos>
     - juniper_junos#
   show system uptime:
-    output: "Current time: 2021-08-31 12:29:34 MSK\nTime Source:  NTP CLOCK\nSystem
-      booted: 2021-02-26 18:30:12 MSK (26w3d 17:59 ago)\nProtocols started: 2021-02-26
-      18:34:06 MSK (26w3d 17:55 ago)\nLast configured: 2021-07-13 16:35:18 MSK (6w6d
-      19:54 ago) by admin\n12:29PM  up 185 days, 17:59, 1 user, load averages: 0.11,
-      0.05, 0.01"
+    output: 'Current time: 2021-08-31 12:29:34 MSK
+
+      Time Source:  NTP CLOCK
+
+      System booted: 2021-02-26 18:30:12 MSK (26w3d 17:59 ago)
+
+      Protocols started: 2021-02-26 18:34:06 MSK (26w3d 17:55 ago)
+
+      Last configured: 2021-07-13 16:35:18 MSK (6w6d 19:54 ago) by admin
+
+      12:29PM  up 185 days, 17:59, 1 user, load averages: 0.11, 0.05, 0.01'
     help: execute the command "show system uptime"
     prompt:
     - juniper_junos>
     - juniper_junos#
   show ethernet-switching table:
-    output: "\nMAC flags (S - static MAC, D - dynamic MAC, L - locally learned, P
-      - Persistent static\n           SE - statistics enabled, NM - non configured
-      MAC, R - remote PE MAC, O - ovsdb MAC)\n\n\nEthernet switching table : 2 entries,
-      2 learned\nRouting instance : default-switch\n    Vlan                MAC  \
-      \               MAC         Age    Logical\n    name                address\
+    output: "\nMAC flags (S - static MAC, D - dynamic MAC, L - locally learned, P\
+      \ - Persistent static\n           SE - statistics enabled, NM - non configured\
+      \ MAC, R - remote PE MAC, O - ovsdb MAC)\n\n\nEthernet switching table : 2 entries,\
+      \ 2 learned\nRouting instance : default-switch\n    Vlan                MAC\
+      \                 MAC         Age    Logical\n    name                address\
       \             flags              interface\n    Vlan100             2c:5a:0f:bc:a3:cd\
       \   DL            -   ae112.0\n    Vlan100             ca:fe:ca:fe:00:07   DL\
       \            -   ae112.0\n\n{{master:0}}\n"
@@ -418,34 +489,56 @@ commands:
     - juniper_junos>
     - juniper_junos#
   show ospf neighbor:
-    output: "Address          Interface              State     ID               Pri\
-      \  Dead\n10.1.2.2         ge-0/0/2.0             Full      2.2.2.2         \
-      \   1    37\n10.1.3.3         ge-0/0/3.0             Full      3.3.3.3     \
-      \       1    31\n\n{{master:0}}\n"
+    output: 'Address          Interface              State     ID               Pri  Dead
+
+      10.1.2.2         ge-0/0/2.0             Full      2.2.2.2            1    37
+
+      10.1.3.3         ge-0/0/3.0             Full      3.3.3.3            1    31
+
+
+      {{master:0}}
+
+      '
     help: execute the command "show ospf neighbor"
     prompt:
     - juniper_junos>
     - juniper_junos#
   show lldp neighbors:
-    output: "Local Interface    Parent Interface    Chassis Id          Port info\
-      \          System Name\nge-0/0/1           -                   2c:6b:f5:a1:c2:c0\
-      \   ge-0/0/1           vmx2\nge-0/0/0           -                   2c:6b:f5:a2:08:c0\
-      \   ge-0/0/0           vmx3"
+    output: 'Local Interface    Parent Interface    Chassis Id          Port info          System
+      Name
+
+      ge-0/0/1           -                   2c:6b:f5:a1:c2:c0   ge-0/0/1           vmx2
+
+      ge-0/0/0           -                   2c:6b:f5:a2:08:c0   ge-0/0/0           vmx3'
     help: execute the command "show lldp neighbors"
     prompt:
     - juniper_junos>
     - juniper_junos#
   show version:
-    output: "fpc0:\n--------------------------------------------------------------------------\n
-      Hostname: lab\nModel: ex4550-32f\nJUNOS EX  Software Suite [13.2X51-D35.3]\n
-      JUNOS FIPS mode utilities [13.2X51-D35.3]\nJUNOS Online Documentation [13.2X51-D35.3]\n
-      JUNOS EX 4500 Software Suite [13.2X51-D35.3]\nJUNOS Web Management [13.2X51-D35.3]\n
-      \nfpc1:\n--------------------------------------------------------------------------\n
-      Hostname: lab\nModel: ex4550-32f\nJUNOS EX  Software Suite [13.2X51-D35.3]\n
-      JUNOS FIPS mode utilities [13.2X51-D35.3]\nJUNOS Online Documentation [13.2X51-D35.3]\n
-      JUNOS EX 4500 Software Suite [13.2X51-D35.3]\nJUNOS Web Management [13.2X51-D35.3]\n\
+    output: "fpc0:\n--------------------------------------------------------------------------\n\
+      \ Hostname: lab\nModel: ex4550-32f\nJUNOS EX  Software Suite [13.2X51-D35.3]\n\
+      \ JUNOS FIPS mode utilities [13.2X51-D35.3]\nJUNOS Online Documentation [13.2X51-D35.3]\n\
+      \ JUNOS EX 4500 Software Suite [13.2X51-D35.3]\nJUNOS Web Management [13.2X51-D35.3]\n\
+      \ \nfpc1:\n--------------------------------------------------------------------------\n\
+      \ Hostname: lab\nModel: ex4550-32f\nJUNOS EX  Software Suite [13.2X51-D35.3]\n\
+      \ JUNOS FIPS mode utilities [13.2X51-D35.3]\nJUNOS Online Documentation [13.2X51-D35.3]\n\
+      \ JUNOS EX 4500 Software Suite [13.2X51-D35.3]\nJUNOS Web Management [13.2X51-D35.3]\n\
       \n{{master:0}}\n"
     help: execute the command "show version"
+    prompt:
+    - juniper_junos>
+    - juniper_junos#
+  set cli screen-length 0:
+    output: null
+    help: Execute the command set cli screen-length 0. This automatically generated.
+      Feel free to change it!
+    prompt:
+    - juniper_junos>
+    - juniper_junos#
+  set cli complete-on-space off:
+    output: null
+    help: Execute the command set cli complete-on-space off. This automatically generated.
+      Feel free to change it!
     prompt:
     - juniper_junos>
     - juniper_junos#

@@ -7,18 +7,60 @@ commands:
     help: enter enable mode
     prompt: ipinfusion_ocnos>
   show lldp table:
-    output: "Capability codes: (R) Router, (B) Bridge, (O) Other\nLocalPort    RemoteDevice\
-      \     RemotePortID    Capability    RemotePortDescr\n-----------  ---------------\
-      \  --------------  ------------  -----------------\nEthernet0    spine01   \
-      \       fortyGigE0/20   BR            Ethernet20\nEthernet4    spine02     \
-      \     fortyGigE0/20   BR            Ethernet20\nEthernet8    leaf01        \
-      \   fortyGigE0/20   BR            Ethernet20\nEthernet12   leaf02          \
-      \ fortyGigE0/20   BR            Ethernet20\nEthernet16   leaf03           fortyGigE0/24\
-      \   BR            Ethernet24\nEthernet20   leaf04           fortyGigE0/24  \
-      \ BR            Ethernet24\neth0         mgmt-switch      swp14           BR\
-      \            swp14\n--------------------------------------------------\nTotal
-      entries displayed:  7\n"
+    output: 'Capability codes: (R) Router, (B) Bridge, (O) Other
+
+      LocalPort    RemoteDevice     RemotePortID    Capability    RemotePortDescr
+
+      -----------  ---------------  --------------  ------------  -----------------
+
+      Ethernet0    spine01          fortyGigE0/20   BR            Ethernet20
+
+      Ethernet4    spine02          fortyGigE0/20   BR            Ethernet20
+
+      Ethernet8    leaf01           fortyGigE0/20   BR            Ethernet20
+
+      Ethernet12   leaf02           fortyGigE0/20   BR            Ethernet20
+
+      Ethernet16   leaf03           fortyGigE0/24   BR            Ethernet24
+
+      Ethernet20   leaf04           fortyGigE0/24   BR            Ethernet24
+
+      eth0         mgmt-switch      swp14           BR            swp14
+
+      --------------------------------------------------
+
+      Total entries displayed:  7
+
+      '
     help: execute the command "show lldp table"
+    prompt:
+    - ipinfusion_ocnos>
+    - ipinfusion_ocnos#
+  terminal width 511:
+    output: null
+    help: Execute the command terminal width 511. This automatically generated. Feel
+      free to change it!
+    prompt:
+    - ipinfusion_ocnos>
+    - ipinfusion_ocnos#
+  show curpriv:
+    output: null
+    help: Execute the command show curpriv. This automatically generated. Feel free
+      to change it!
+    prompt:
+    - ipinfusion_ocnos>
+    - ipinfusion_ocnos#
+  login:
+    output: null
+    help: Execute the command login. This automatically generated. Feel free to change
+      it!
+    prompt:
+    - ipinfusion_ocnos>
+    - ipinfusion_ocnos#
+  set cli screen-width 511:
+    output: null
+    help: Execute the command set cli screen-width 511. This automatically generated.
+      Feel free to change it!
     prompt:
     - ipinfusion_ocnos>
     - ipinfusion_ocnos#

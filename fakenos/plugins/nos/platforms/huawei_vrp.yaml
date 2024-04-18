@@ -19,43 +19,43 @@ commands:
     - huawei_vrp>
     - huawei_vrp#
   display ip vpn-instance interface:
-    output: " Total VPN-Instances configured      : 3\n\n VPN-Instance Name and ID
-      : cftv, 1\n  Interface Number : 3 \n  Interface list : Vlanif1823, \n      \
-      \             Vlanif1847, \n                   LoopBack5\n\n VPN-Instance Name
-      and ID : met, 2\n  Interface Number : 5 \n  Interface list : 40GE0/0/3, \n \
-      \                  Vlanif1774, \n                   Vlanif1797, \n         \
-      \          LoopBack2, \n                   Vlanif1769\n\n VPN-Instance Name
-      and ID : tel, 3\n  Interface Number : 4 \n  Interface list : Vlanif755, \n \
-      \                  Vlanif773, \n                   Vlanif797, \n           \
-      \        LoopBack1\n"
+    output: " Total VPN-Instances configured      : 3\n\n VPN-Instance Name and ID\
+      \ : cftv, 1\n  Interface Number : 3 \n  Interface list : Vlanif1823, \n    \
+      \               Vlanif1847, \n                   LoopBack5\n\n VPN-Instance\
+      \ Name and ID : met, 2\n  Interface Number : 5 \n  Interface list : 40GE0/0/3,\
+      \ \n                   Vlanif1774, \n                   Vlanif1797, \n     \
+      \              LoopBack2, \n                   Vlanif1769\n\n VPN-Instance Name\
+      \ and ID : tel, 3\n  Interface Number : 4 \n  Interface list : Vlanif755, \n\
+      \                   Vlanif773, \n                   Vlanif797, \n          \
+      \         LoopBack1\n"
     help: execute the command "display ip vpn-instance interface"
     prompt:
     - huawei_vrp>
     - huawei_vrp#
   display version:
-    output: "Huawei Versatile Routing Platform Software\nVRP (R) software, Version
-      8.180 (ATN 910C-B V300R003C10SPC500)\nCopyright (C) 2012-2018 Huawei Technologies
-      Co., Ltd.\nHUAWEI ATN 910C-B uptime is 358 days, 16 hours, 59 minutes\n\nATN
-      910C-B version information:\n- - - - - - - - - - - - - - - - - - - - - - - -
-      - - - - - - - - -\nCXP version information:\n\nCXP (Master) 2  : uptime is 358
-      days, 16 hours, 58 minutes\n  StartupTime   2019/02/24   17:20:13\n  SDRAM Memory
-      Size   : 4096M bytes\n  FLASH Memory Size   : 64M bytes\n  CFCARD Memory Size\
-      \  : 800M bytes\n  CFCARD2 Memory Size : 800M bytes\n  ANGMHSTA0211 version
-      information\n  PCB         Version : ANG1CXPH REV A\n  EPLD        Version :
-      V120\n  FPGA1       Version : V110\n  PE          Version : 000\n  BootROM \
-      \    Version : 08.84\n  BootLoad    Version : 08.84\n  Software    Version :
-      Version 8.180 RELEASE 0001\n- - - - - - - - - - - - - - - - - - - - - - - -
-      - - - - - - - - -\nPWR version information:\n\nPWR5's  version information:\n\
-      \  PCB         Version : ES5MPSD17 REV D\n\nPWR6's  version information:\n \
-      \ PCB         Version : ES5MPSD17 REV D"
+    output: "Huawei Versatile Routing Platform Software\nVRP (R) software, Version\
+      \ 8.180 (ATN 910C-B V300R003C10SPC500)\nCopyright (C) 2012-2018 Huawei Technologies\
+      \ Co., Ltd.\nHUAWEI ATN 910C-B uptime is 358 days, 16 hours, 59 minutes\n\n\
+      ATN 910C-B version information:\n- - - - - - - - - - - - - - - - - - - - - -\
+      \ - - - - - - - - - - -\nCXP version information:\n\nCXP (Master) 2  : uptime\
+      \ is 358 days, 16 hours, 58 minutes\n  StartupTime   2019/02/24   17:20:13\n\
+      \  SDRAM Memory Size   : 4096M bytes\n  FLASH Memory Size   : 64M bytes\n  CFCARD\
+      \ Memory Size  : 800M bytes\n  CFCARD2 Memory Size : 800M bytes\n  ANGMHSTA0211\
+      \ version information\n  PCB         Version : ANG1CXPH REV A\n  EPLD      \
+      \  Version : V120\n  FPGA1       Version : V110\n  PE          Version : 000\n\
+      \  BootROM     Version : 08.84\n  BootLoad    Version : 08.84\n  Software  \
+      \  Version : Version 8.180 RELEASE 0001\n- - - - - - - - - - - - - - - - - -\
+      \ - - - - - - - - - - - - - - -\nPWR version information:\n\nPWR5's  version\
+      \ information:\n  PCB         Version : ES5MPSD17 REV D\n\nPWR6's  version information:\n\
+      \  PCB         Version : ES5MPSD17 REV D"
     help: execute the command "display version"
     prompt:
     - huawei_vrp>
     - huawei_vrp#
   display interface description:
-    output: "PHY: Physical\n*down: administratively down\n#down: LBDT down\n(l): loopback\n
-      (s): spoofing\n(E): E-Trunk down\n(b): BFD down\n(e): ETHOAM down\n(dl): DLDP
-      down\n(lb): LBDT block\nInterface                     PHY     Protocol Description\n\
+    output: "PHY: Physical\n*down: administratively down\n#down: LBDT down\n(l): loopback\n\
+      \ (s): spoofing\n(E): E-Trunk down\n(b): BFD down\n(e): ETHOAM down\n(dl): DLDP\
+      \ down\n(lb): LBDT block\nInterface                     PHY     Protocol Description\n\
       GE0/0/1                       up      up       <C4> work - station 1\nGE0/0/2\
       \                       up      up       <C4> work - station 1\nGE0/0/3    \
       \                   up      up       <C4> work - station 1\nGE0/0/4        \
@@ -66,19 +66,19 @@ commands:
       \      up       <C4> work - station 1\nGE0/0/9                       up    \
       \  up       <C4> work - station 1\nGE0/0/10                      up      up\
       \       <C4> work - station 1\nGE0/0/11                      up      up    \
-      \   <C4> work - station 1\nGE0/0/12                      up      up       <C4>
-      work - station 1\nGE0/0/13                      up      up       <C4> work -
-      station 1\nGE0/0/14                      up      up       <C4> work - station
-      1\nGE0/0/15                      up      up       <C4> work - station 1\nGE0/0/16\
-      \                      down    down     <C4> work - station 1\nGE0/0/17    \
-      \                  up      up       <C4> work - station 1\nGE0/0/18        \
-      \              up      up       <C4> work - station 1\nGE0/0/19            \
-      \          down    down     <C4> work - station 1\nGE0/0/20                \
-      \      up      up       <C4> work - station 1\nGE0/0/21                    \
-      \  down    down     <C4> work - station 1\nGE0/0/22                      up\
-      \      up       <C4> work - station 1\nGE0/0/23                      up    \
-      \  up       <C4> work - station 1\nGE0/0/24                      up      up\
-      \       <C4> work - station 1\nGE0/0/25                      *down   down\n\
+      \   <C4> work - station 1\nGE0/0/12                      up      up       <C4>\
+      \ work - station 1\nGE0/0/13                      up      up       <C4> work\
+      \ - station 1\nGE0/0/14                      up      up       <C4> work - station\
+      \ 1\nGE0/0/15                      up      up       <C4> work - station 1\n\
+      GE0/0/16                      down    down     <C4> work - station 1\nGE0/0/17\
+      \                      up      up       <C4> work - station 1\nGE0/0/18    \
+      \                  up      up       <C4> work - station 1\nGE0/0/19        \
+      \              down    down     <C4> work - station 1\nGE0/0/20            \
+      \          up      up       <C4> work - station 1\nGE0/0/21                \
+      \      down    down     <C4> work - station 1\nGE0/0/22                    \
+      \  up      up       <C4> work - station 1\nGE0/0/23                      up\
+      \      up       <C4> work - station 1\nGE0/0/24                      up    \
+      \  up       <C4> work - station 1\nGE0/0/25                      *down   down\n\
       GE0/0/26                      *down   down\nGE0/0/27                      up\
       \      up       spine Uplink\nGE0/0/28                      up      up     \
       \  spine Uplink 2\nNULL0                         up      up(s)\nVlanif1    \
@@ -88,10 +88,10 @@ commands:
     - huawei_vrp>
     - huawei_vrp#
   display interface brief:
-    output: "PHY: Physical\n*down: administratively down\n^down: standby\n(l): loopback\n
-      (s): spoofing\n(E): E-Trunk down\n(b): BFD down\n(B): Bit-error-detection down\n
-      (e): ETHOAM down\n(d): Dampening Suppressed\nInUti/OutUti: input utility/output
-      utility\nInterface                   PHY   Protocol  InUti OutUti   inErrors\
+    output: "PHY: Physical\n*down: administratively down\n^down: standby\n(l): loopback\n\
+      \ (s): spoofing\n(E): E-Trunk down\n(b): BFD down\n(B): Bit-error-detection\
+      \ down\n (e): ETHOAM down\n(d): Dampening Suppressed\nInUti/OutUti: input utility/output\
+      \ utility\nInterface                   PHY   Protocol  InUti OutUti   inErrors\
       \  outErrors\nAux0/0/1                    down  down         0%     0%     \
       \     0          0\nEth-Trunk2                  up    up           0%  0.38%\
       \          0          0\n  GigabitEthernet8/1/16     up    up           0% \
@@ -104,13 +104,13 @@ commands:
       \     up    up           0%     0%          0          0\n  GigabitEthernet8/1/22\
       \     up    up           0%     0%          0          0\n  GigabitEthernet8/1/23\
       \     up    up        0.01%  0.01%          0          0\nEth-Trunk4       \
-      \           up    down      0.69% 13.57%       4625          0\n  GigabitEthernet15/1/0(10G)
-      up    up        0.69% 14.30%          0          0\n  GigabitEthernet16/0/1(10G)
-      up    up        0.71% 12.84%       4625          0\nEth-Trunk4.10          \
-      \     up    up        0.69% 13.57%          0          0\nEth-Trunk5       \
-      \           up    down      0.01%     0%          0          0\n  GigabitEthernet4/0/4(10G)
-      up    up        0.01%     0%          0          0\nEth-Trunk5.100         \
-      \     up    up           0%     0%          0          0\n"
+      \           up    down      0.69% 13.57%       4625          0\n  GigabitEthernet15/1/0(10G)\
+      \ up    up        0.69% 14.30%          0          0\n  GigabitEthernet16/0/1(10G)\
+      \ up    up        0.71% 12.84%       4625          0\nEth-Trunk4.10        \
+      \       up    up        0.69% 13.57%          0          0\nEth-Trunk5     \
+      \             up    down      0.01%     0%          0          0\n  GigabitEthernet4/0/4(10G)\
+      \ up    up        0.01%     0%          0          0\nEth-Trunk5.100       \
+      \       up    up           0%     0%          0          0\n"
     help: execute the command "display interface brief"
     prompt:
     - huawei_vrp>
@@ -169,12 +169,12 @@ commands:
     - huawei_vrp>
     - huawei_vrp#
   display ipv6 neighbors:
-    output: "-----------------------------------------------------------------------------\n
-      IPv6 Address : FC00:1::2\nLink-layer   : 0025-9e01-020a                    \
-      \ State   : STALE\nInterface    : 10GE4/17/6                          Age  \
-      \   : 75\nVLAN         : 35                                 CEVLAN  : -\nVPN
-      name     : -                                  Is Router: TRUE\nSecure FLAG \
-      \ : UNSECURE                           Nickname  : -\n\nIPv6 Address : FE80::225:9EFF:FE01:20A\n\
+    output: "-----------------------------------------------------------------------------\n\
+      \ IPv6 Address : FC00:1::2\nLink-layer   : 0025-9e01-020a                  \
+      \   State   : STALE\nInterface    : 10GE4/17/6                          Age\
+      \     : 75\nVLAN         : 35                                 CEVLAN  : -\n\
+      VPN name     : -                                  Is Router: TRUE\nSecure FLAG\
+      \  : UNSECURE                           Nickname  : -\n\nIPv6 Address : FE80::225:9EFF:FE01:20A\n\
       Link-layer   : 0025-9e01-020a                     State   : STALE\nInterface\
       \    : 10GE4/17/6                          Age     : 38\nVLAN         : 35 \
       \                                CEVLAN  : -\nVPN name     : -             \
@@ -182,9 +182,10 @@ commands:
       \              Nickname  : -\n\nIPv6 Address : FC00:2::1\nLink-layer   : 0023-0045-0067\
       \                     State   : INCMP\nInterface    : 10GE4/17/3           \
       \               Age     : -\nVLAN         : -                              \
-      \    CEVLAN  : -\nVPN name     : -                                  Is Router:
-      TRUE\nSecure FLAG  : SECURE                             Nickname  : -\n\n-----------------------------------------------------------------------------\n
-      Total: 3        Dynamic: 2      Static: 1\n"
+      \    CEVLAN  : -\nVPN name     : -                                  Is Router:\
+      \ TRUE\nSecure FLAG  : SECURE                             Nickname  : -\n\n\
+      -----------------------------------------------------------------------------\n\
+      \ Total: 3        Dynamic: 2      Static: 1\n"
     help: execute the command "display ipv6 neighbors"
     prompt:
     - huawei_vrp>
@@ -192,11 +193,11 @@ commands:
   display service-set id id:
     output: "  ----------------------------------------------------------------------------\n\
       \  Service-set ID                   : 1\n  Service-Set name                \
-      \ : Livebox_5ad8__5G\n  SSID                             : Livebox_5ad8\n  Hide
-      SSID                        : disable\n  User isolate                     :
-      disable\n  Type                             : service\n  Maximum number of user\
-      \           : 32\n  Association timeout(min)         : 5\n  Traffic profile
-      name             : traf\n  Security profile name            : Security_Livebox_5ad8\n\
+      \ : Livebox_5ad8__5G\n  SSID                             : Livebox_5ad8\n  Hide\
+      \ SSID                        : disable\n  User isolate                    \
+      \ : disable\n  Type                             : service\n  Maximum number\
+      \ of user           : 32\n  Association timeout(min)         : 5\n  Traffic\
+      \ profile name             : traf\n  Security profile name            : Security_Livebox_5ad8\n\
       \  Wlan-bss interface               : Wlan-bss7\n  Igmp mode               \
       \         : off\n  Forward mode                     : direct-forward\n  ----------------------------------------------------------------------------\n"
     help: execute the command "display service-set id id"
@@ -208,8 +209,8 @@ commands:
       \                   Direction  AppliedRecord       \n-----------------------------------------------------------\n\
       Vlanif1                     inbound    acl name ACL_Test\nVlanif1          \
       \           outbound   ipv6 acl name MyACL_IPv6\nVlanif3                   \
-      \  inbound    acl 3998\nVlanif3                     inbound    ipv6 acl name
-      MyACL_IPv6\nWlan-Bss0                   outbound   IPv4 ACL 4000\nWlan-Bss1\
+      \  inbound    acl 3998\nVlanif3                     inbound    ipv6 acl name\
+      \ MyACL_IPv6\nWlan-Bss0                   outbound   IPv4 ACL 4000\nWlan-Bss1\
       \                   outbound   IPv4 ACL 4000\n-----------------------------------------------------------\
       \             \nTotal:6                                                    \
       \                     \n-----------------------------------------------------------\
@@ -225,19 +226,20 @@ commands:
     - huawei_vrp#
   display acl all:
     output: " Total quantity of nonempty ACL number is 3 \n\nBasic ACL 2000, 7 rules\n\
-      Acl's step is 5\n rule 5 permit source 85.14.167.234 0 (94 matches)\n rule 10
-      permit source 85.14.167.193 0 (26939 matches)\n rule 15 permit source 5.10.130.152
-      0.0.0.3 (24 matches)\n rule 20 permit source 185.48.254.19 0 \n rule 25 permit
-      source 10.0.0.0 0.255.255.255 \n rule 30 permit source 172.0.0.0 0.15.255.255
-      \n rule 35 permit source 192.168.0.0 0.0.255.255 \n\nBasic ACL 2500, 1 rule\n\
-      Acl's step is 5\n rule 35 permit source 192.168.0.0 0.0.255.255 (5431 matches)\n
-      \nAdvanced ACL 3997, 1 rule\nAcl's step is 5\n rule 5 permit ip source 192.165.3.5
-      0 \n rule 5 description \"qsdqsdqsdqsdqsdqsdqs az\"\n\nAdvanced ACL REGLE_NAT
-      3998, 3 rules\nAcl's step is 5\n rule 5 permit tcp source 85.14.167.234 0 destination
-      192.214.198.156 0 destination-port eq 8022 (18 matches)\n rule 10 deny tcp destination
-      192.214.198.156 0 destination-port eq www (8 matches)\n rule 15 deny tcp destination
-      192.23.26.1 0.0.255.255 destination-port range 50 80 (8 matches)\n rule 20 permit
-      ip (278450 matches)\n\nAdvanced ACL qsdqsd 3999, 0 rule\nAcl's step is 5\n"
+      Acl's step is 5\n rule 5 permit source 85.14.167.234 0 (94 matches)\n rule 10\
+      \ permit source 85.14.167.193 0 (26939 matches)\n rule 15 permit source 5.10.130.152\
+      \ 0.0.0.3 (24 matches)\n rule 20 permit source 185.48.254.19 0 \n rule 25 permit\
+      \ source 10.0.0.0 0.255.255.255 \n rule 30 permit source 172.0.0.0 0.15.255.255\
+      \ \n rule 35 permit source 192.168.0.0 0.0.255.255 \n\nBasic ACL 2500, 1 rule\n\
+      Acl's step is 5\n rule 35 permit source 192.168.0.0 0.0.255.255 (5431 matches)\n\
+      \ \nAdvanced ACL 3997, 1 rule\nAcl's step is 5\n rule 5 permit ip source 192.165.3.5\
+      \ 0 \n rule 5 description \"qsdqsdqsdqsdqsdqsdqs az\"\n\nAdvanced ACL REGLE_NAT\
+      \ 3998, 3 rules\nAcl's step is 5\n rule 5 permit tcp source 85.14.167.234 0\
+      \ destination 192.214.198.156 0 destination-port eq 8022 (18 matches)\n rule\
+      \ 10 deny tcp destination 192.214.198.156 0 destination-port eq www (8 matches)\n\
+      \ rule 15 deny tcp destination 192.23.26.1 0.0.255.255 destination-port range\
+      \ 50 80 (8 matches)\n rule 20 permit ip (278450 matches)\n\nAdvanced ACL qsdqsd\
+      \ 3999, 0 rule\nAcl's step is 5\n"
     help: execute the command "display acl all"
     prompt:
     - huawei_vrp>
@@ -265,40 +267,40 @@ commands:
       \          Cost         : 0\n Entry ID     : 2826122436                    \
       \  EntryFlags   : 0x80010050\n Reference Cnt: 2                            \
       \   Tag          : 0\n Priority     : high                            Age  \
-      \        : 93545sec\n IndirectID   : 0x0                             \n RelayNextHop
-      : ::                              TunnelID     : 0x0\n Interface    : InLoopBack0\
+      \        : 93545sec\n IndirectID   : 0x0                             \n RelayNextHop\
+      \ : ::                              TunnelID     : 0x0\n Interface    : InLoopBack0\
       \                     Flags        : D\n"
     help: execute the command "display ip routing-table verbose"
     prompt:
     - huawei_vrp>
     - huawei_vrp#
   display ip vpn-instance:
-    output: " Total VPN-Instances configured      : 1\n Total IPv4 VPN-Instances configured
-      : 1\n Total IPv6 VPN-Instances configured : 1\n\n  VPN-Instance Name       \
-      \        RD                    Address-family\n  red                       \
-      \      1:2                   IPv4\n  red                             1:2   \
-      \                IPv6\n"
+    output: " Total VPN-Instances configured      : 1\n Total IPv4 VPN-Instances configured\
+      \ : 1\n Total IPv6 VPN-Instances configured : 1\n\n  VPN-Instance Name     \
+      \          RD                    Address-family\n  red                     \
+      \        1:2                   IPv4\n  red                             1:2 \
+      \                  IPv6\n"
     help: execute the command "display ip vpn-instance"
     prompt:
     - huawei_vrp>
     - huawei_vrp#
   display lldp neighbor:
-    output: "XGigabitEthernet0/0/1 has 1 neighbor(s):\n\nNeighbor index :1\nChassis
-      type   :MAC address\nChassis ID     :b8d6-f6ff-7390\nPort ID type   :Interface
-      name\nPort ID        :XGigabitEthernet0/0/2\nPort description    :XGigabitEthernet0/0/2\n
-      System name         :ROUTER2\nSystem description  :Huawei Switch S6730-S24X6Q\n
-      Huawei Versatile Routing Platform Software\nVRP (R) software, Version 5.170
-      (S6730 V200R022C00SPC500)\nCopyright (C) 2000-2022 HUAWEI TECH Co., Ltd.\nSystem
-      capabilities supported   :bridge router\nSystem capabilities enabled     :bridge
-      router\nManagement address type  :ipv4\nManagement address value :169.254.1.2\n\
-      OID  :0.6.15.43.6.1.4.1.2011.5.25.41.1.2.1.1.1.\nExpired time   :95s\n\nPort
-      VLAN ID(PVID)  :10\nVLAN name of VLAN  1:VLAN 0001\n\nAuto-negotiation supported\
-      \    :Yes\nAuto-negotiation enabled      :Yes\nOperMau   :speed(1000)/duplex(Full)\n
-      \nPower port class            :PD\nPSE power supported         :No\nPSE power
-      enabled           :No\nPSE pairs control ability   :No\nPower pairs        \
-      \         :Unknown\nPort power classification   :Unknown\n\nLink aggregation
-      supported:Yes\nLink aggregation enabled :No\nAggregation port ID      :0\n\n
-      Maximum frame Size       :9216\n"
+    output: "XGigabitEthernet0/0/1 has 1 neighbor(s):\n\nNeighbor index :1\nChassis\
+      \ type   :MAC address\nChassis ID     :b8d6-f6ff-7390\nPort ID type   :Interface\
+      \ name\nPort ID        :XGigabitEthernet0/0/2\nPort description    :XGigabitEthernet0/0/2\n\
+      \ System name         :ROUTER2\nSystem description  :Huawei Switch S6730-S24X6Q\n\
+      \ Huawei Versatile Routing Platform Software\nVRP (R) software, Version 5.170\
+      \ (S6730 V200R022C00SPC500)\nCopyright (C) 2000-2022 HUAWEI TECH Co., Ltd.\n\
+      System capabilities supported   :bridge router\nSystem capabilities enabled\
+      \     :bridge router\nManagement address type  :ipv4\nManagement address value\
+      \ :169.254.1.2\nOID  :0.6.15.43.6.1.4.1.2011.5.25.41.1.2.1.1.1.\nExpired time\
+      \   :95s\n\nPort VLAN ID(PVID)  :10\nVLAN name of VLAN  1:VLAN 0001\n\nAuto-negotiation\
+      \ supported    :Yes\nAuto-negotiation enabled      :Yes\nOperMau   :speed(1000)/duplex(Full)\n\
+      \ \nPower port class            :PD\nPSE power supported         :No\nPSE power\
+      \ enabled           :No\nPSE pairs control ability   :No\nPower pairs      \
+      \           :Unknown\nPort power classification   :Unknown\n\nLink aggregation\
+      \ supported:Yes\nLink aggregation enabled :No\nAggregation port ID      :0\n\
+      \n Maximum frame Size       :9216\n"
     help: execute the command "display lldp neighbor"
     prompt:
     - huawei_vrp>
@@ -307,17 +309,17 @@ commands:
     output: "  Nat Server Information:\n  Interface  : Dialer1\n    Global IP/Port\
       \     : current-interface/8080 (Real IP : 192.214.198.156)\n    Inside IP/Port\
       \     : 192.168.1.24/80(www)\n    Protocol : 6(tcp)   \n    VPN instance-name\
-      \  : ----                            \n    Acl number         : 2600\n    Vrrp
-      id            : ----\n    Description : ----\n\n    Global IP/Port     : current-interface/8080
-      (Real IP : 192.214.198.156)\n    Inside IP/Port     : 192.168.1.24/80\n    Protocol
-      : 17(udp)  \n    VPN instance-name  : ----                            \n   \
-      \ Acl number         : 2600\n    Vrrp id            : ----\n    Description
-      : ----\n\n  Interface  : Vlanif300                                         \
-      \                                                                   \n    Global
-      IP/Port     : current-interface/0(any) (Real IP : 2.2.2.2)\n    Inside IP/Port\
-      \     : 10.1.1.1/0(any)\n    Protocol : 6(tcp)\n    VPN instance-name  : ----\n\
-      \    Acl number         : ----\n    Vrrp id            : ----\n    Description
-      : ----\n\n  Total :    3\n"
+      \  : ----                            \n    Acl number         : 2600\n    Vrrp\
+      \ id            : ----\n    Description : ----\n\n    Global IP/Port     : current-interface/8080\
+      \ (Real IP : 192.214.198.156)\n    Inside IP/Port     : 192.168.1.24/80\n  \
+      \  Protocol : 17(udp)  \n    VPN instance-name  : ----                     \
+      \       \n    Acl number         : 2600\n    Vrrp id            : ----\n   \
+      \ Description : ----\n\n  Interface  : Vlanif300                           \
+      \                                                                          \
+      \       \n    Global IP/Port     : current-interface/0(any) (Real IP : 2.2.2.2)\n\
+      \    Inside IP/Port     : 10.1.1.1/0(any)\n    Protocol : 6(tcp)\n    VPN instance-name\
+      \  : ----\n    Acl number         : ----\n    Vrrp id            : ----\n  \
+      \  Description : ----\n\n  Total :    3\n"
     help: execute the command "display nat server"
     prompt:
     - huawei_vrp>
@@ -342,18 +344,20 @@ commands:
       \ 89    94    105   76   86   55\nLPUF41A   7   175  1    NORMAL  89    94 \
       \   105   76   86   37\nLPUF41A   7   175  2    NORMAL  89    94    105   76\
       \   86   41\nEFGF      2   73   0    NORMAL  77    83    92    64   74   30\n\
-      EFGF      3   73   0    NORMAL  77    83    92    64   74   36\n\nSlotID25 :\n
-      \nSlotID26 :\n\nSlotID27 :\n Base-Board, Unit:C, SlotID27\nPCB   I2C Addr Chl\
-      \  Status  Minor Major Fatal Adj_speed Temp\n                              \
-      \                TMin Tmax (C)\n-----------------------------------------------------------------\n\
-      FAN   1   0    0    NORMAL  70    80    95    32   45   25\n\n\n\nSlotID31 :
-      No temp sensors.\n"
+      EFGF      3   73   0    NORMAL  77    83    92    64   74   36\n\nSlotID25 :\n\
+      \ \nSlotID26 :\n\nSlotID27 :\n Base-Board, Unit:C, SlotID27\nPCB   I2C Addr\
+      \ Chl  Status  Minor Major Fatal Adj_speed Temp\n                          \
+      \                    TMin Tmax (C)\n-----------------------------------------------------------------\n\
+      FAN   1   0    0    NORMAL  70    80    95    32   45   25\n\n\n\nSlotID31 :\
+      \ No temp sensors.\n"
     help: execute the command "display temperature"
     prompt:
     - huawei_vrp>
     - huawei_vrp#
   display sn license:
-    output: " ESN of device: 21500104792SM8504636\n"
+    output: ' ESN of device: 21500104792SM8504636
+
+      '
     help: execute the command "display sn license"
     prompt:
     - huawei_vrp>
@@ -372,20 +376,20 @@ commands:
   display startup:
     output: "MainBoard: \n  Startup system software:                   flash:/AR610-V300R021C00SPC200.cc\n\
       \  Next startup system software:              flash:/AR610-V300R021C00SPC200.cc\n\
-      \  Backup system software for next startup:   null\n  Startup saved-configuration
-      file:          flash:/vrpcfg.zip\n  Next startup saved-configuration file: \
-      \    flash:/vrpcfg2.zip\n  Startup license file:                      null\n\
+      \  Backup system software for next startup:   null\n  Startup saved-configuration\
+      \ file:          flash:/vrpcfg.zip\n  Next startup saved-configuration file:\
+      \     flash:/vrpcfg2.zip\n  Startup license file:                      null\n\
       \  Next startup license file:                 null\n  Startup patch package:\
-      \                     flash:/AR610_V300R021SPH180.pat\n  Next startup patch
-      package:                flash:/AR610_V300R021SPH180.pat\n  Startup voice-files:\
+      \                     flash:/AR610_V300R021SPH180.pat\n  Next startup patch\
+      \ package:                flash:/AR610_V300R021SPH180.pat\n  Startup voice-files:\
       \                       null\n  Next startup voice-files:                  null\n"
     help: execute the command "display startup"
     prompt:
     - huawei_vrp>
     - huawei_vrp#
   display vlan:
-    output: "The total number of VLANs is: 3\n--------------------------------------------------------------------------------\n
-      U: Up;         D: Down;         TG: Tagged;         UT: Untagged;\nMP: Vlan-mapping;\
+    output: "The total number of VLANs is: 3\n--------------------------------------------------------------------------------\n\
+      \ U: Up;         D: Down;         TG: Tagged;         UT: Untagged;\nMP: Vlan-mapping;\
       \               ST: Vlan-stacking;\n#: ProtocolTransparent-vlan;    *: Management-vlan;\n\
       --------------------------------------------------------------------------------\n\
       \nVID  Type    Ports\n--------------------------------------------------------------------------------\n\
@@ -408,86 +412,40 @@ commands:
     - huawei_vrp>
     - huawei_vrp#
   display interface:
-    output: "GigabitEthernet0/0/0 current state : DOWN\nLine protocol current state
-      : DOWN\nDescription:HUAWEI, AR Series, GigabitEthernet0/0/0 Interface\nSwitch
-      Port, PVID :    1, TPID : 8100(Hex), The Maximum Frame Length is 9596\nIP Sending
-      Frames' Format is PKTFMT_ETHNT_2, Hardware address is fc73-fb9e-601c\nLast physical
-      up time   : -\nLast physical down time : 2022-10-13 09:35:55\nCurrent system
-      time: 2022-10-13 13:12:02\nPort Mode: COMMON COPPER\nSpeed :   10,  Loopback:
-      NONE\nDuplex: FULL,  Negotiation: DISABLE\nMdi   : AUTO,  Clock   : -\nLast
-      300 seconds input rate 0 bits/sec, 0 packets/sec\nLast 300 seconds output rate
-      0 bits/sec, 0 packets/sec\nInput peak rate 0 bits/sec,Record time: -\nOutput
-      peak rate 0 bits/sec,Record time: -\n\nInput:  0 packets, 0 bytes\n  Unicast:\
-      \                  0,  Multicast:                   0\n  Broadcast:        \
-      \        0,  Jumbo:                       -\n  Discard:                  0,\
-      \  Total Error:                 0\n\n  CRC:                      0,  Giants:\
-      \                      0\n  Jabbers:                  0,  Throttles:       \
-      \            0\n  Runts:                    0,  Symbols:                   \
-      \  0\n  Ignoreds:                 0,  Frames:                      0\n\nOutput:\
-      \  0 packets, 0 bytes\n  Unicast:                  0,  Multicast:          \
-      \         0\n  Broadcast:                0,  Jumbo:                       -\n\
-      \  Discard:                  0,  Total Error:                 0\n\n  Collisions:\
-      \               0,  ExcessiveCollisions:         0\n  Late Collisions:     \
-      \     0,  Deferreds:                   0\n\n    Input bandwidth utilization
-      threshold : 100.00%\n    Output bandwidth utilization threshold: 100.00%\n \
-      \   Input bandwidth utilization  :    0%\n    Output bandwidth utilization :\
-      \    0%\n\nGigabitEthernet0/0/1 current state : DOWN\nLine protocol current
-      state : DOWN\nDescription:HUAWEI, AR Series, GigabitEthernet0/0/1 Interface\n
-      Switch Port, PVID :    2, TPID : 8100(Hex), The Maximum Frame Length is 9596\n
-      IP Sending Frames' Format is PKTFMT_ETHNT_2, Hardware address is fc73-fb9e-601c\n
-      Last physical up time   : -\nLast physical down time : 2022-10-13 09:35:55\n
-      Current system time: 2022-10-13 13:12:04\nPort Mode: COMMON COPPER\nSpeed :
-      1000,  Loopback: NONE\nDuplex: FULL,  Negotiation: ENABLE        \nMdi   : AUTO,\
-      \  Clock   : -\nLast 300 seconds input rate 0 bits/sec, 0 packets/sec\nLast
-      300 seconds output rate 0 bits/sec, 0 packets/sec\nInput peak rate 0 bits/sec,Record
-      time: -\nOutput peak rate 0 bits/sec,Record time: -\n\nInput:  0 packets, 0
-      bytes\n  Unicast:                  0,  Multicast:                   0\n  Broadcast:\
-      \                0,  Jumbo:                       -\n  Discard:            \
-      \      0,  Total Error:                 0\n\n  CRC:                      0,\
-      \  Giants:                      0\n  Jabbers:                  0,  Throttles:\
-      \                   0\n  Runts:                    0,  Symbols:            \
-      \         0\n  Ignoreds:                 0,  Frames:                      0\n\
-      \nOutput:  0 packets, 0 bytes\n  Unicast:                  0,  Multicast:  \
-      \                 0\n  Broadcast:                0,  Jumbo:                \
-      \       -\n  Discard:                  0,  Total Error:                 0\n\n\
-      \  Collisions:               0,  ExcessiveCollisions:         0\n  Late Collisions:\
-      \          0,  Deferreds:                   0\n\n    Input bandwidth utilization
-      threshold : 100.00%\n    Output bandwidth utilization threshold: 100.00%\n \
-      \   Input bandwidth utilization  :    0%\n    Output bandwidth utilization :\
-      \    0%\n\nGigabitEthernet0/0/2 current state : UP\nLine protocol current state
-      : UP\nDescription:HUAWEI, AR Series, GigabitEthernet0/0/2 Interface\nSwitch
-      Port, PVID :  100, TPID : 8100(Hex), The Maximum Frame Length is 9596\nIP Sending
-      Frames' Format is PKTFMT_ETHNT_2, Hardware address is fc73-fb9e-601c\nLast physical
-      up time   : 2022-10-13 09:37:04\nLast physical down time : 2022-10-13 09:37:03\n
-      Current system time: 2022-10-13 13:12:05\nPort Mode: COMMON COPPER\nSpeed :
-      1000,  Loopback: PHY\nDuplex: FULL,  Negotiation: ENABLE\nMdi   : AUTO,  Clock\
-      \   : -\nLast 300 seconds input rate 488 bits/sec, 0 packets/sec\nLast 300 seconds
-      output rate 488 bits/sec, 0 packets/sec\nInput peak rate 592 bits/sec,Record
-      time: 2022-10-13 10:26:22\nOutput peak rate 592 bits/sec,Record time: 2022-10-13
-      10:26:22\n\nInput:  6460 packets, 768740 bytes\n  Unicast:                 \
-      \ 0,  Multicast:                6460\n  Broadcast:                0,  Jumbo:\
-      \                       -\n  Discard:                  0,  Total Error:    \
-      \             0\n\n  CRC:                      0,  Giants:                 \
-      \     0\n  Jabbers:                  0,  Throttles:                   0\n  Runts:\
-      \                    0,  Symbols:                     0\n  Ignoreds:       \
-      \          0,  Frames:                      0\n\nOutput:  6460 packets, 768740
-      bytes\n  Unicast:                  0,  Multicast:                6460\n  Broadcast:\
-      \                0,  Jumbo:                       -\n  Discard:            \
-      \      0,  Total Error:                 0\n\n  Collisions:               0,\
-      \  ExcessiveCollisions:         0\n  Late Collisions:          0,  Deferreds:\
-      \                   0\n\n    Input bandwidth utilization threshold : 100.00%\n\
-      \    Output bandwidth utilization threshold: 100.00%\n    Input bandwidth utilization\
-      \  : 0.01%\n    Output bandwidth utilization : 0.01%\n\nGigabitEthernet0/0/3
-      current state : DOWN\nLine protocol current state : DOWN\nDescription:HUAWEI,
-      AR Series, GigabitEthernet0/0/3 Interface\nSwitch Port, PVID :    1, TPID :
-      8100(Hex), The Maximum Frame Length is 9596\nIP Sending Frames' Format is PKTFMT_ETHNT_2,
-      Hardware address is fc73-fb9e-601c\nLast physical up time   : -            \
-      \   \nLast physical down time : 2022-10-13 09:35:55\nCurrent system time: 2022-10-13
-      13:12:06\nPort Mode: COMMON COPPER\nSpeed : 1000,  Loopback: NONE\nDuplex: FULL,\
-      \  Negotiation: ENABLE\nMdi   : AUTO,  Clock   : -\nLast 300 seconds input rate
-      0 bits/sec, 0 packets/sec\nLast 300 seconds output rate 0 bits/sec, 0 packets/sec\n
-      Input peak rate 0 bits/sec,Record time: -\nOutput peak rate 0 bits/sec,Record
-      time: -\n\nInput:  0 packets, 0 bytes\n  Unicast:                  0,  Multicast:\
+    output: "GigabitEthernet0/0/0 current state : DOWN\nLine protocol current state\
+      \ : DOWN\nDescription:HUAWEI, AR Series, GigabitEthernet0/0/0 Interface\nSwitch\
+      \ Port, PVID :    1, TPID : 8100(Hex), The Maximum Frame Length is 9596\nIP\
+      \ Sending Frames' Format is PKTFMT_ETHNT_2, Hardware address is fc73-fb9e-601c\n\
+      Last physical up time   : -\nLast physical down time : 2022-10-13 09:35:55\n\
+      Current system time: 2022-10-13 13:12:02\nPort Mode: COMMON COPPER\nSpeed :\
+      \   10,  Loopback: NONE\nDuplex: FULL,  Negotiation: DISABLE\nMdi   : AUTO,\
+      \  Clock   : -\nLast 300 seconds input rate 0 bits/sec, 0 packets/sec\nLast\
+      \ 300 seconds output rate 0 bits/sec, 0 packets/sec\nInput peak rate 0 bits/sec,Record\
+      \ time: -\nOutput peak rate 0 bits/sec,Record time: -\n\nInput:  0 packets,\
+      \ 0 bytes\n  Unicast:                  0,  Multicast:                   0\n\
+      \  Broadcast:                0,  Jumbo:                       -\n  Discard:\
+      \                  0,  Total Error:                 0\n\n  CRC:            \
+      \          0,  Giants:                      0\n  Jabbers:                  0,\
+      \  Throttles:                   0\n  Runts:                    0,  Symbols:\
+      \                     0\n  Ignoreds:                 0,  Frames:           \
+      \           0\n\nOutput:  0 packets, 0 bytes\n  Unicast:                  0,\
+      \  Multicast:                   0\n  Broadcast:                0,  Jumbo:  \
+      \                     -\n  Discard:                  0,  Total Error:      \
+      \           0\n\n  Collisions:               0,  ExcessiveCollisions:      \
+      \   0\n  Late Collisions:          0,  Deferreds:                   0\n\n  \
+      \  Input bandwidth utilization threshold : 100.00%\n    Output bandwidth utilization\
+      \ threshold: 100.00%\n    Input bandwidth utilization  :    0%\n    Output bandwidth\
+      \ utilization :    0%\n\nGigabitEthernet0/0/1 current state : DOWN\nLine protocol\
+      \ current state : DOWN\nDescription:HUAWEI, AR Series, GigabitEthernet0/0/1\
+      \ Interface\n Switch Port, PVID :    2, TPID : 8100(Hex), The Maximum Frame\
+      \ Length is 9596\n IP Sending Frames' Format is PKTFMT_ETHNT_2, Hardware address\
+      \ is fc73-fb9e-601c\n Last physical up time   : -\nLast physical down time :\
+      \ 2022-10-13 09:35:55\n Current system time: 2022-10-13 13:12:04\nPort Mode:\
+      \ COMMON COPPER\nSpeed : 1000,  Loopback: NONE\nDuplex: FULL,  Negotiation:\
+      \ ENABLE        \nMdi   : AUTO,  Clock   : -\nLast 300 seconds input rate 0\
+      \ bits/sec, 0 packets/sec\nLast 300 seconds output rate 0 bits/sec, 0 packets/sec\n\
+      Input peak rate 0 bits/sec,Record time: -\nOutput peak rate 0 bits/sec,Record\
+      \ time: -\n\nInput:  0 packets, 0 bytes\n  Unicast:                  0,  Multicast:\
       \                   0\n  Broadcast:                0,  Jumbo:              \
       \         -\n  Discard:                  0,  Total Error:                 0\n\
       \n  CRC:                      0,  Giants:                      0\n  Jabbers:\
@@ -498,47 +456,95 @@ commands:
       \        0,  Jumbo:                       -\n  Discard:                  0,\
       \  Total Error:                 0\n\n  Collisions:               0,  ExcessiveCollisions:\
       \         0\n  Late Collisions:          0,  Deferreds:                   0\n\
-      \n    Input bandwidth utilization threshold : 100.00%\n    Output bandwidth
-      utilization threshold: 100.00%\n    Input bandwidth utilization  :    0%\n \
-      \   Output bandwidth utilization :    0%\n\nGigabitEthernet0/0/4 current state
-      : UP\nLine protocol current state : DOWN\nDescription:HUAWEI, AR Series, GigabitEthernet0/0/4
-      Interface\nRoute Port,The Maximum Transmit Unit is 1500\nInternet protocol processing
-      : disabled\nIP Sending Frames' Format is PKTFMT_ETHNT_2, Hardware address is
-      fc73-fb9e-601d\nLast physical up time   : 2022-10-13 09:37:06\nLast physical
-      down time : 2022-10-13 09:35:55\nCurrent system time: 2022-10-13 13:12:07\n
-      Port Mode: AUTO COPPER\nSpeed : 1000,  Loopback: NONE\nDuplex: FULL,  Negotiation:
-      ENABLE\nMdi   : AUTO,  Clock   : -\nLast 300 seconds input rate 2112 bits/sec,
-      3 packets/sec\nLast 300 seconds output rate 1904 bits/sec, 2 packets/sec\nInput
-      peak rate 19400 bits/sec,Record time: 2022-10-13 12:55:33\nOutput peak rate
-      63040 bits/sec,Record time: 2022-10-13 12:55:33\n\nInput:  30464 packets, 2525068
-      bytes\n  Unicast:              21147,  Multicast:                6738\n  Broadcast:\
-      \             2579,  Jumbo:                       -\n  Discard:            \
+      \n    Input bandwidth utilization threshold : 100.00%\n    Output bandwidth\
+      \ utilization threshold: 100.00%\n    Input bandwidth utilization  :    0%\n\
+      \    Output bandwidth utilization :    0%\n\nGigabitEthernet0/0/2 current state\
+      \ : UP\nLine protocol current state : UP\nDescription:HUAWEI, AR Series, GigabitEthernet0/0/2\
+      \ Interface\nSwitch Port, PVID :  100, TPID : 8100(Hex), The Maximum Frame Length\
+      \ is 9596\nIP Sending Frames' Format is PKTFMT_ETHNT_2, Hardware address is\
+      \ fc73-fb9e-601c\nLast physical up time   : 2022-10-13 09:37:04\nLast physical\
+      \ down time : 2022-10-13 09:37:03\n Current system time: 2022-10-13 13:12:05\n\
+      Port Mode: COMMON COPPER\nSpeed : 1000,  Loopback: PHY\nDuplex: FULL,  Negotiation:\
+      \ ENABLE\nMdi   : AUTO,  Clock   : -\nLast 300 seconds input rate 488 bits/sec,\
+      \ 0 packets/sec\nLast 300 seconds output rate 488 bits/sec, 0 packets/sec\n\
+      Input peak rate 592 bits/sec,Record time: 2022-10-13 10:26:22\nOutput peak rate\
+      \ 592 bits/sec,Record time: 2022-10-13 10:26:22\n\nInput:  6460 packets, 768740\
+      \ bytes\n  Unicast:                  0,  Multicast:                6460\n  Broadcast:\
+      \                0,  Jumbo:                       -\n  Discard:            \
       \      0,  Total Error:                 0\n\n  CRC:                      0,\
       \  Giants:                      0\n  Jabbers:                  0,  Throttles:\
       \                   0\n  Runts:                    0,  Symbols:            \
       \         0\n  Ignoreds:                 0,  Frames:                      0\n\
-      \nOutput:  20762 packets, 2116014 bytes\n  Unicast:              20761,  Multicast:\
-      \                   0\n  Broadcast:                1,  Jumbo:              \
+      \nOutput:  6460 packets, 768740 bytes\n  Unicast:                  0,  Multicast:\
+      \                6460\n  Broadcast:                0,  Jumbo:              \
       \         -\n  Discard:                  0,  Total Error:                 0\n\
       \n  Collisions:               0,  ExcessiveCollisions:         0\n  Late Collisions:\
-      \          0,  Deferreds:                   0\n\n    Input bandwidth utilization
-      threshold : 100.00%\n    Output bandwidth utilization threshold: 100.00%\n \
-      \   Input bandwidth utilization  : 0.01%\n    Output bandwidth utilization :
-      0.01%\n                                          \nGigabitEthernet0/0/5 current
-      state : UP\nLine protocol current state : DOWN\nDescription:VirtualPort\nRoute
-      Port,The Maximum Transmit Unit is 1500\nInternet protocol processing : disabled\n
-      IP Sending Frames' Format is PKTFMT_ETHNT_2, Hardware address is fc73-fb9e-601e\n
-      Last physical up time   : 2022-10-13 09:37:05\nLast physical down time : 2022-10-13
-      09:35:55\nCurrent system time: 2022-10-13 13:12:08\nPort Mode: COMMON COPPER\n
+      \          0,  Deferreds:                   0\n\n    Input bandwidth utilization\
+      \ threshold : 100.00%\n    Output bandwidth utilization threshold: 100.00%\n\
+      \    Input bandwidth utilization  : 0.01%\n    Output bandwidth utilization\
+      \ : 0.01%\n\nGigabitEthernet0/0/3 current state : DOWN\nLine protocol current\
+      \ state : DOWN\nDescription:HUAWEI, AR Series, GigabitEthernet0/0/3 Interface\n\
+      Switch Port, PVID :    1, TPID : 8100(Hex), The Maximum Frame Length is 9596\n\
+      IP Sending Frames' Format is PKTFMT_ETHNT_2, Hardware address is fc73-fb9e-601c\n\
+      Last physical up time   : -               \nLast physical down time : 2022-10-13\
+      \ 09:35:55\nCurrent system time: 2022-10-13 13:12:06\nPort Mode: COMMON COPPER\n\
       Speed : 1000,  Loopback: NONE\nDuplex: FULL,  Negotiation: ENABLE\nMdi   : AUTO,\
-      \  Clock   : -\nLast 300 seconds input rate 36064 bits/sec, 13 packets/sec\n
-      Last 300 seconds output rate 0 bits/sec, 0 packets/sec\nInput peak rate 121600
-      bits/sec,Record time: 2022-10-13 10:50:03\nOutput peak rate 0 bits/sec,Record
-      time: -\n\nInput:  1832 packets, 619216 bytes\n  Unicast:                  0,\
-      \  Multicast:                   0\n  Broadcast:             1832,  Jumbo:  \
+      \  Clock   : -\nLast 300 seconds input rate 0 bits/sec, 0 packets/sec\nLast\
+      \ 300 seconds output rate 0 bits/sec, 0 packets/sec\n Input peak rate 0 bits/sec,Record\
+      \ time: -\nOutput peak rate 0 bits/sec,Record time: -\n\nInput:  0 packets,\
+      \ 0 bytes\n  Unicast:                  0,  Multicast:                   0\n\
+      \  Broadcast:                0,  Jumbo:                       -\n  Discard:\
+      \                  0,  Total Error:                 0\n\n  CRC:            \
+      \          0,  Giants:                      0\n  Jabbers:                  0,\
+      \  Throttles:                   0\n  Runts:                    0,  Symbols:\
+      \                     0\n  Ignoreds:                 0,  Frames:           \
+      \           0\n\nOutput:  0 packets, 0 bytes\n  Unicast:                  0,\
+      \  Multicast:                   0\n  Broadcast:                0,  Jumbo:  \
       \                     -\n  Discard:                  0,  Total Error:      \
-      \           0\n\n  CRC:                      0,  Giants:                   \
-      \   0\n  Jabbers:                  0,  Throttles:                   0\n  Runts:\
+      \           0\n\n  Collisions:               0,  ExcessiveCollisions:      \
+      \   0\n  Late Collisions:          0,  Deferreds:                   0\n\n  \
+      \  Input bandwidth utilization threshold : 100.00%\n    Output bandwidth utilization\
+      \ threshold: 100.00%\n    Input bandwidth utilization  :    0%\n    Output bandwidth\
+      \ utilization :    0%\n\nGigabitEthernet0/0/4 current state : UP\nLine protocol\
+      \ current state : DOWN\nDescription:HUAWEI, AR Series, GigabitEthernet0/0/4\
+      \ Interface\nRoute Port,The Maximum Transmit Unit is 1500\nInternet protocol\
+      \ processing : disabled\nIP Sending Frames' Format is PKTFMT_ETHNT_2, Hardware\
+      \ address is fc73-fb9e-601d\nLast physical up time   : 2022-10-13 09:37:06\n\
+      Last physical down time : 2022-10-13 09:35:55\nCurrent system time: 2022-10-13\
+      \ 13:12:07\n Port Mode: AUTO COPPER\nSpeed : 1000,  Loopback: NONE\nDuplex:\
+      \ FULL,  Negotiation: ENABLE\nMdi   : AUTO,  Clock   : -\nLast 300 seconds input\
+      \ rate 2112 bits/sec, 3 packets/sec\nLast 300 seconds output rate 1904 bits/sec,\
+      \ 2 packets/sec\nInput peak rate 19400 bits/sec,Record time: 2022-10-13 12:55:33\n\
+      Output peak rate 63040 bits/sec,Record time: 2022-10-13 12:55:33\n\nInput: \
+      \ 30464 packets, 2525068 bytes\n  Unicast:              21147,  Multicast: \
+      \               6738\n  Broadcast:             2579,  Jumbo:               \
+      \        -\n  Discard:                  0,  Total Error:                 0\n\
+      \n  CRC:                      0,  Giants:                      0\n  Jabbers:\
+      \                  0,  Throttles:                   0\n  Runts:            \
+      \        0,  Symbols:                     0\n  Ignoreds:                 0,\
+      \  Frames:                      0\n\nOutput:  20762 packets, 2116014 bytes\n\
+      \  Unicast:              20761,  Multicast:                   0\n  Broadcast:\
+      \                1,  Jumbo:                       -\n  Discard:            \
+      \      0,  Total Error:                 0\n\n  Collisions:               0,\
+      \  ExcessiveCollisions:         0\n  Late Collisions:          0,  Deferreds:\
+      \                   0\n\n    Input bandwidth utilization threshold : 100.00%\n\
+      \    Output bandwidth utilization threshold: 100.00%\n    Input bandwidth utilization\
+      \  : 0.01%\n    Output bandwidth utilization : 0.01%\n                     \
+      \                     \nGigabitEthernet0/0/5 current state : UP\nLine protocol\
+      \ current state : DOWN\nDescription:VirtualPort\nRoute Port,The Maximum Transmit\
+      \ Unit is 1500\nInternet protocol processing : disabled\n IP Sending Frames'\
+      \ Format is PKTFMT_ETHNT_2, Hardware address is fc73-fb9e-601e\n Last physical\
+      \ up time   : 2022-10-13 09:37:05\nLast physical down time : 2022-10-13 09:35:55\n\
+      Current system time: 2022-10-13 13:12:08\nPort Mode: COMMON COPPER\n Speed :\
+      \ 1000,  Loopback: NONE\nDuplex: FULL,  Negotiation: ENABLE\nMdi   : AUTO, \
+      \ Clock   : -\nLast 300 seconds input rate 36064 bits/sec, 13 packets/sec\n\
+      \ Last 300 seconds output rate 0 bits/sec, 0 packets/sec\nInput peak rate 121600\
+      \ bits/sec,Record time: 2022-10-13 10:50:03\nOutput peak rate 0 bits/sec,Record\
+      \ time: -\n\nInput:  1832 packets, 619216 bytes\n  Unicast:                \
+      \  0,  Multicast:                   0\n  Broadcast:             1832,  Jumbo:\
+      \                       -\n  Discard:                  0,  Total Error:    \
+      \             0\n\n  CRC:                      0,  Giants:                 \
+      \     0\n  Jabbers:                  0,  Throttles:                   0\n  Runts:\
       \                    0,  Symbols:                     0\n  Ignoreds:       \
       \          0,  Frames:                      0\n\nOutput:  0 packets, 0 bytes\n\
       \  Unicast:                  0,  Multicast:                   0\n  Broadcast:\
@@ -561,14 +567,21 @@ commands:
     - huawei_vrp>
     - huawei_vrp#
   display mac-address:
-    output: "-------------------------------------------------------------------------------\n
-      MAC Address    VLAN/VSI/BD                       Learned-From        Type\n
-      -------------------------------------------------------------------------------\n
-      b8d6-f6ff-7390 10/-/-                            XGE0/0/1            dynamic\n
-      b8d6-f6ff-739b 10/-/-                            XGE0/0/1            dynamic\n
-      \n-------------------------------------------------------------------------------\n
-      Total items displayed = 2\n"
+    output: "-------------------------------------------------------------------------------\n\
+      \ MAC Address    VLAN/VSI/BD                       Learned-From        Type\n\
+      \ -------------------------------------------------------------------------------\n\
+      \ b8d6-f6ff-7390 10/-/-                            XGE0/0/1            dynamic\n\
+      \ b8d6-f6ff-739b 10/-/-                            XGE0/0/1            dynamic\n\
+      \ \n-------------------------------------------------------------------------------\n\
+      \ Total items displayed = 2\n"
     help: execute the command "display mac-address"
+    prompt:
+    - huawei_vrp>
+    - huawei_vrp#
+  screen-length 0 temporary:
+    output: null
+    help: Execute the command screen-length 0 temporary. This automatically generated.
+      Feel free to change it!
     prompt:
     - huawei_vrp>
     - huawei_vrp#

@@ -1,45 +1,71 @@
-name: ubiquiti_edgeswitch
-initial_prompt: ubiquiti_edgeswitch>
 commands:
   enable:
-    output: 'null'
-    new_prompt: ubiquiti_edgeswitch#
     help: enter enable mode
+    new_prompt: ubiquiti_edgeswitch#
+    output: null
     prompt: ubiquiti_edgeswitch>
+  ex:
+    help: exit the terminal
+    output: true
   show arp:
-    output: "\nAge Time (seconds)............................. 300\nResponse Time
-      (seconds)........................ 1\nRetries........................................
-      4\nCache Size..................................... 493\nDynamic Renew Mode ............................
-      Disable\nTotal Entry Count Current / Peak .............. 4 / 4\nStatic Entry
-      Count Configured / Active / Max .. 0 / 0 / 128\n\n  IP Address        MAC Address\
-      \      Interface        Type        Age\n---------------  -----------------\
-      \  --------------  --------  -----------\n172.16.216.1     80:2A:A8:F1:D2:46\
-      \  4/1             Gateway    0h  0m 10s\n172.16.216.2     E2:91:F5:CC:E8:19\
-      \  4/1             Dynamic    0h  2m 16s\n172.16.216.4     78:8A:20:44:02:7F\
-      \  4/1             Local         n/a\n172.16.216.33    00:00:00:00:00:00  4/1\
-      \             Dynamic    0h  0m  5s\n"
     help: execute the command "show arp"
-    prompt:
-    - ubiquiti_edgeswitch>
-    - ubiquiti_edgeswitch#
-  show vlan:
-    output: "VLAN ID VLAN Name                        VLAN Type\n------- --------------------------------
-      -------------------\n1       default                          Default\n101 \
-      \    ip tv                            Static\n102     internet             \
-      \            Static\n216     hjemmenett                       Static\n217  \
-      \   server                           Static\n"
-    help: execute the command "show vlan"
+    output: "\nAge Time (seconds)............................. 300\nResponse Time\
+      \ (seconds)........................ 1\nRetries........................................\
+      \ 4\nCache Size..................................... 493\nDynamic Renew Mode\
+      \ ............................ Disable\nTotal Entry Count Current / Peak ..............\
+      \ 4 / 4\nStatic Entry Count Configured / Active / Max .. 0 / 0 / 128\n\n  IP\
+      \ Address        MAC Address      Interface        Type        Age\n---------------\
+      \  -----------------  --------------  --------  -----------\n172.16.216.1  \
+      \   80:2A:A8:F1:D2:46  4/1             Gateway    0h  0m 10s\n172.16.216.2 \
+      \    E2:91:F5:CC:E8:19  4/1             Dynamic    0h  2m 16s\n172.16.216.4\
+      \     78:8A:20:44:02:7F  4/1             Local         n/a\n172.16.216.33  \
+      \  00:00:00:00:00:00  4/1             Dynamic    0h  0m  5s\n"
     prompt:
     - ubiquiti_edgeswitch>
     - ubiquiti_edgeswitch#
   show version:
-    output: "r\n\nSwitch: 1\n\nSystem Description............................. EdgeSwitch
-      24-Port 250W, 1.8.0.5106045, Linux 3.6.5-1b505fb7, 0.0.0.0000000\nMachine Type...................................
-      EdgeSwitch 24-Port 250W\nMachine Model.................................. ES-24-250W\n
-      Serial Number.................................. 788A20BE0E00\nBurned In MAC
-      Address.......................... 78:8A:20:BE:0E:00\nSoftware Version...............................
-      1.8.0.5106045\n"
     help: execute the command "show version"
+    output: "r\n\nSwitch: 1\n\nSystem Description............................. EdgeSwitch\
+      \ 24-Port 250W, 1.8.0.5106045, Linux 3.6.5-1b505fb7, 0.0.0.0000000\nMachine\
+      \ Type................................... EdgeSwitch 24-Port 250W\nMachine Model..................................\
+      \ ES-24-250W\n Serial Number.................................. 788A20BE0E00\n\
+      Burned In MAC Address.......................... 78:8A:20:BE:0E:00\nSoftware\
+      \ Version............................... 1.8.0.5106045\n"
     prompt:
     - ubiquiti_edgeswitch>
     - ubiquiti_edgeswitch#
+  show vlan:
+    help: execute the command "show vlan"
+    output: 'VLAN ID VLAN Name                        VLAN Type
+
+      ------- -------------------------------- -------------------
+
+      1       default                          Default
+
+      101     ip tv                            Static
+
+      102     internet                         Static
+
+      216     hjemmenett                       Static
+
+      217     server                           Static
+
+      '
+    prompt:
+    - ubiquiti_edgeswitch>
+    - ubiquiti_edgeswitch#
+  terminal length 0:
+    help: set the terminal width to the maximum
+    output: null
+    prompt:
+    - ubiquiti_edgeswitch>
+    - ubiquiti_edgeswitch#
+  terminal width 511:
+    output: null
+    help: Execute the command terminal width 511. This automatically generated. Feel
+      free to change it!
+    prompt:
+    - ubiquiti_edgeswitch>
+    - ubiquiti_edgeswitch#
+initial_prompt: ubiquiti_edgeswitch>
+name: ubiquiti_edgeswitch

@@ -8,6 +8,10 @@ import paramiko
 import io
 import threading
 import time
+import socket
+
+import paramiko.channel
+import paramiko.transport
 
 from fakenos.core.servers import TCPServerBase
 
@@ -164,8 +168,15 @@ def channel_to_shell_tap(channel_stdio, shell_stdin, shell_replied_event, run_sr
         time.sleep(0.01)
 
 
-def shell_to_channel_tap(channel_stdio, shell_stdout, shell_replied_event, run_srv):
+def shell_to_channel_tap(
+        channel_stdio: paramiko.channel.ChannelFile, 
+        shell_stdout: TapIO, 
+        shell_replied_event: threading.Event , 
+        run_srv: threading.Event
+    ):
     while run_srv.is_set():
+        if channel_stdio.closed:
+            break
         line = shell_stdout.readline()
         # line is None we break the loop
         if line is None:
@@ -175,9 +186,15 @@ def shell_to_channel_tap(channel_stdio, shell_stdout, shell_replied_event, run_s
         log.debug(
             "ssh_server.shell_to_channel_tap sending line to channel {}".format([line])
         )
-        channel_stdio.write(line.encode(encoding="utf-8"))
+        try:
+            channel_stdio.write(line.encode(encoding="utf-8"))
+        except socket.error as e:
+            if e.errno == 104: # Connection reset by peer
+                log.error(
+                    "ssh_server.shell_to_channel_tap channel write error: {}".format(e)
+                )
+                break	
         shell_replied_event.set()
-
 
 class ParamikoSshServer(TCPServerBase):
     def __init__(

@@ -2,10 +2,16 @@ name: juniper_screenos
 initial_prompt: juniper_screenos>
 commands:
   enable:
-    output: 'null'
+    output: null
     new_prompt: juniper_screenos#
     help: enter enable mode
     prompt: juniper_screenos>
+  set console page 0:
+    output: null
+    help: set the terminal width to maximum
+    prompt:
+    - juniper_screenos>
+    - juniper_screenos#
   get route:
     output: "IPv4 Dest-Routes for <untrust-vr> (0 entries)\n----------------------------------------------------------------------\n
       H: Host C: Connected S: Static A: Auto-Exported\nI: Imported R: RIP P: Permanent

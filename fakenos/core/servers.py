@@ -40,16 +40,12 @@ class TCPServerBase(ABC):
         self._listen_thread = None
         self._connection_threads: list = []
 
-    def start(self, address: str = "127.0.0.1", port: int = 6000, timeout: int = 1):
+    def start(self):
         """
         Start Server which distributes the connections.
         It handles the creation of the socket, binding to the address and port,
         and starting the listening thread.
         """
-        address = address or self.address
-        port = port or self.port
-        timeout = timeout or self.timeout
-
         if self._is_running.is_set():
             return
 

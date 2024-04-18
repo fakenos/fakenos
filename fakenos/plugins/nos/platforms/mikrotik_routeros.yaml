@@ -2,7 +2,7 @@ name: mikrotik_routeros
 initial_prompt: mikrotik_routeros>
 commands:
   enable:
-    output: 'null'
+    output: null
     new_prompt: mikrotik_routeros#
     help: enter enable mode
     prompt: mikrotik_routeros>

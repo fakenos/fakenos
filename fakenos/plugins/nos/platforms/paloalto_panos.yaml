@@ -2,10 +2,19 @@ name: paloalto_panos
 initial_prompt: paloalto_panos>
 commands:
   enable:
-    output: 'null'
+    output: null
     new_prompt: paloalto_panos#
     help: enter enable mode
     prompt: paloalto_panos>
+  set cli scripting-mode on:
+    output: null
+    help: set the terminal width to full
+    prompt:
+    - paloalto_panos>
+    - paloalto_panos#
+  ex:
+    output: True
+    help: exit the terminal
   show interface logical:
     output: "total configured logical interfaces: 38\n​\nname                id  \
       \  vsys zone             forwarding               tag    address           \

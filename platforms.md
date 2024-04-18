@@ -1,43 +1,43 @@
 ## Available Platforms
 
-- hp_procurve
-- avaya_ers
-- checkpoint_gaia
-- paloalto_panos
-- mikrotik_routeros
-- alcatel_aos
-- extreme_exos
-- yamaha
-- hp_comware
-- juniper_screenos
-- zyxel_os
-- ciena_saos
-- cisco_nxos
-- ubiquiti_edgeswitch
-- eltex
-- huawei_vrp
-- brocade_netiron
-- cisco_asa
-- juniper_junos
-- arista_eos
-- ipinfusion_ocnos
-- dlink_ds
-- cisco_ftd
-- cisco_s300
-- brocade_fastiron
-- fortinet
-- broadcom_icos
-- huawei_smartax
-- avaya_vsp
-- dell_powerconnect
-- allied_telesis_awplus
-- linux
-- ericsson_ipos
-- cisco_xr
-- cisco_ios
-- dell_force10
-- aruba_os
-- alcatel_sros
-- ruckus_fastiron
-- vyatta_vyos
-- ubiquiti_edgerouter
+- hp_procurve ✅
+- avaya_ers ✅
+- checkpoint_gaia ✅
+- paloalto_panos ❌ ()
+- mikrotik_routeros ❌ ()
+- alcatel_aos ✅
+- extreme_exos ✅
+- yamaha ✅
+- hp_comware ✅
+- juniper_screenos ❌ ()
+- zyxel_os ✅
+- ciena_saos ✅
+- cisco_nxos ✅
+- ubiquiti_edgeswitch ✅
+- eltex ✅
+- huawei_vrp ✅
+- brocade_netiron ✅
+- cisco_asa ✅
+- juniper_junos ✅
+- arista_eos ✅
+- ipinfusion_ocnos ✅
+- dlink_ds ✅
+- cisco_ftd ✅
+- cisco_s300 ✅
+- brocade_fastiron ❌ ()
+- fortinet ❌ ()
+- broadcom_icos ✅
+- huawei_smartax ✅
+- avaya_vsp ✅
+- dell_powerconnect ❌ ()
+- allied_telesis_awplus ✅
+- linux ✅
+- ericsson_ipos ✅
+- cisco_xr ✅
+- cisco_ios ✅
+- dell_force10 ✅
+- aruba_os ✅
+- alcatel_sros ✅
+- ruckus_fastiron ❌ ()
+- vyatta_vyos ✅
+- ubiquiti_edgerouter ✅

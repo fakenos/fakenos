@@ -2,29 +2,35 @@ name: zyxel_os
 initial_prompt: zyxel_os>
 commands:
   enable:
-    output: 'null'
+    output: null
     new_prompt: zyxel_os#
     help: enter enable mode
     prompt: zyxel_os>
+  ex:
+    output: true
+    help: exit the terminal
+    prompt:
+    - zyxel_os>
+    - zyxel_os#
   sys atsh:
-    output: "Firmware Version        : V5.13(AAXA.8)C0\nBootbase Version        :
-      V1.61 | 05/25/2018 17:08:36\nVendor Name             : Zyxel Communications
-      Corp.\nProduct Model           : VMG1312-B10D\nSerial Number           : S182E47002040\n
-      First MAC Address       : 8C5973AE89B0\nLast MAC Address        : 8C5973AE89BB\n
-      MAC Address Quantity    : 12\nDefault Country Code    : FF\nBoot Module Debug
-      Flag  : 00\nKernel Checksum         : 00008FE8\nRootFS Checksum         : 00009ACC\n
-      Romfile Checksum        : 00000E1D\nMain Feature Bits       : 00\nOther Feature
-      Bits      :\n7f9f2a9c: 04050202 ffffffff ffffffff ffffffff\n7f9f2aac: ffffffff
-      ffffffff ffffffff ffff\n"
+    output: "Firmware Version        : V5.13(AAXA.8)C0\nBootbase Version        :\
+      \ V1.61 | 05/25/2018 17:08:36\nVendor Name             : Zyxel Communications\
+      \ Corp.\nProduct Model           : VMG1312-B10D\nSerial Number           : S182E47002040\n\
+      \ First MAC Address       : 8C5973AE89B0\nLast MAC Address        : 8C5973AE89BB\n\
+      \ MAC Address Quantity    : 12\nDefault Country Code    : FF\nBoot Module Debug\
+      \ Flag  : 00\nKernel Checksum         : 00008FE8\nRootFS Checksum         :\
+      \ 00009ACC\n Romfile Checksum        : 00000E1D\nMain Feature Bits       : 00\n\
+      Other Feature Bits      :\n7f9f2a9c: 04050202 ffffffff ffffffff ffffffff\n7f9f2aac:\
+      \ ffffffff ffffffff ffffffff ffff\n"
     help: execute the command "sys atsh"
     prompt:
     - zyxel_os>
     - zyxel_os#
   cfg ipalias get:
-    output: "handlerName=ethwanlan method=GET i=2\nThis device do not support Ethernet
-      LAN4 port change to WAN port.                IP Alias Setup                \
-      \             Public LAN\nGroup Name      Active     IPv4 Arrdess    Subnet
-      mask     Active     IPv4 Arrdess    Subnet mask     Offer Public IP by DHCP\
+    output: "handlerName=ethwanlan method=GET i=2\nThis device do not support Ethernet\
+      \ LAN4 port change to WAN port.                IP Alias Setup              \
+      \               Public LAN\nGroup Name      Active     IPv4 Arrdess    Subnet\
+      \ mask     Active     IPv4 Arrdess    Subnet mask     Offer Public IP by DHCP\
       \   Enable ARP Proxy\nDefault         0          N/A             N/A       \
       \      1          100.200.77.111  255.255.255.252 0                        \
       \ 0\nLAN VOIX        0          N/A             N/A             0          N/A\
@@ -36,10 +42,27 @@ commands:
     - zyxel_os>
     - zyxel_os#
   cfg snmp get:
-    output: "SNMP Agent          : Enabled\nGet Community       : Monitoring\nSet
-      Community       : Monitoring\nTrap Community      : public\nSystem Name    \
-      \     : paris-stella-customer-child-site\nSystem Location     : Paris\nSystem
-      Contact      :\nDomain Name         : home\nTrap Destination    :\nCommand Successful.\n"
+    output: 'SNMP Agent          : Enabled
+
+      Get Community       : Monitoring
+
+      Set Community       : Monitoring
+
+      Trap Community      : public
+
+      System Name         : paris-stella-customer-child-site
+
+      System Location     : Paris
+
+      System Contact      :
+
+      Domain Name         : home
+
+      Trap Destination    :
+
+      Command Successful.
+
+      '
     help: execute the command "cfg snmp get"
     prompt:
     - zyxel_os>
@@ -47,22 +70,29 @@ commands:
   cfg intf group get:
     output: "Index  Name         WAN Interface                       LAN Interfaces\
       \                                          Criteria                        \
-      \    \n1      datas        Any WAN                             LAN2,LAN4,LAN3,LAN4,magic
-      2000,ZyXEL_8B91_guest1,ZyXEL_8B91_guest2,ZyXEL_8B91_guest3 N/A             \
-      \                    \n2      zzefzef      WWAN,VDSL                       \
-      \    N/A                                                     vlangroup<datas>\
+      \    \n1      datas        Any WAN                             LAN2,LAN4,LAN3,LAN4,magic\
+      \ 2000,ZyXEL_8B91_guest1,ZyXEL_8B91_guest2,ZyXEL_8B91_guest3 N/A           \
+      \                      \n2      zzefzef      WWAN,VDSL                     \
+      \      N/A                                                     vlangroup<datas>\
       \                    \n3      qsdq sdqsdqsd ADSL                           \
-      \     N/A                                                     op61<efsdfsdf>;op60<qs
-      qsd>;mac<AA-AA-AA-AA-AA-AA,AA-BB-BB-BB-BB-BB> \nCommand Successful.\n"
+      \     N/A                                                     op61<efsdfsdf>;op60<qs\
+      \ qsd>;mac<AA-AA-AA-AA-AA-AA,AA-BB-BB-BB-BB-BB> \nCommand Successful.\n"
     help: execute the command "cfg intf group get"
     prompt:
     - zyxel_os>
     - zyxel_os#
   cfg static dhcp get:
-    output: "Index      Status     Mac Address                    IP Address\n1  \
-      \        1          eb:fa:ae:cf:34:15              192.168.1.25\n2         \
-      \ 1          bb:aa:ee:ff:32:12              192.168.1.13\n3          1     \
-      \     aa:cc:bb:ee:43:21              192.168.1.1\nCommand Successful.\n"
+    output: 'Index      Status     Mac Address                    IP Address
+
+      1          1          eb:fa:ae:cf:34:15              192.168.1.25
+
+      2          1          bb:aa:ee:ff:32:12              192.168.1.13
+
+      3          1          aa:cc:bb:ee:43:21              192.168.1.1
+
+      Command Successful.
+
+      '
     help: execute the command "cfg static dhcp get"
     prompt:
     - zyxel_os>
@@ -100,18 +130,19 @@ commands:
       \   ADSL            66.135.158.175\n3          b1a49337-a 0       IPv4    43.188.51.10\
       \                                  255.255.0.0       WWAN            221.29.200.232\n\
       4          f9ed53d7-5 1       IPv4    101.168.102.179                      \
-      \         255.255.255.0     ADSL            222.173.23.26\n5          b7feec47-b
-      1       IPv4    72.37.37.55                                   255.0.0.0    \
-      \     VDSL                      \n6          facf6dd5-a 0       IPv4    59.38.164.29\
+      \         255.255.255.0     ADSL            222.173.23.26\n5          b7feec47-b\
+      \ 1       IPv4    72.37.37.55                                   255.0.0.0  \
+      \       VDSL                      \n6          facf6dd5-a 0       IPv4    59.38.164.29\
       \                                  255.0.0.0         VDSL                  \
       \    \n7          3ab0c611-b 0       IPv6    6d78:60da:1b22::/47           \
       \                                  ADSL            6185:f0a7:164e:7fe3:8549:dfb3:dda5:f330\n\
       8          f5f679b4-c 0       IPv6    aff9:c5d3:877d:8276:c5d9:dbc1:8000:0/97\
-      \                         WWAN                      \n9          723130e9-a
-      1       IPv6    51f2:794e:7305:2a0f:1a80::/73                              \
-      \     WWAN            e583:cfd7:c872:94b4:e9af:a5f8:b095:a058\n10         bd7e5ad3-9
-      0       IPv6    7ec0::/10                                                  \
-      \     ADSL            1aa8:fc25:8d13:67ac:4740:fdd1:61fd:1f81\nCommand Successful.\n"
+      \                         WWAN                      \n9          723130e9-a\
+      \ 1       IPv6    51f2:794e:7305:2a0f:1a80::/73                            \
+      \       WWAN            e583:cfd7:c872:94b4:e9af:a5f8:b095:a058\n10        \
+      \ bd7e5ad3-9 0       IPv6    7ec0::/10                                     \
+      \                  ADSL            1aa8:fc25:8d13:67ac:4740:fdd1:61fd:1f81\n\
+      Command Successful.\n"
     help: execute the command "cfg static route get"
     prompt:
     - zyxel_os>
@@ -151,19 +182,25 @@ commands:
     - zyxel_os>
     - zyxel_os#
   cfg lan get:
-    output: "Group Name      LAN IP Address       IPv4 DHCP Server     IPv6 Enable\n\
-      Default                              Disable              false\nLAN VOIX  \
-      \      192.168.72.253       Disable              false\nCommand Successful.\n"
+    output: 'Group Name      LAN IP Address       IPv4 DHCP Server     IPv6 Enable
+
+      Default                              Disable              false
+
+      LAN VOIX        192.168.72.253       Disable              false
+
+      Command Successful.
+
+      '
     help: execute the command "cfg lan get"
     prompt:
     - zyxel_os>
     - zyxel_os#
   cfg lan get --Name name:
     output: "Group Name      lan_1\nIP Address      192.168.1.1\nSubnet Mask     255.255.255.0\n\
-      DHCP            Enable\n   Beginning IP Address      192.168.1.10\n   Ending
-      IP Address         192.168.1.150\n   AutoReserveLanIp          false\n   DHCP
-      Server Lease Time    1 Days 0 Hours 0 Minutes\n   DNS Values      Static\nIPv6
-      Active     false\nCommand Successful.\n"
+      DHCP            Enable\n   Beginning IP Address      192.168.1.10\n   Ending\
+      \ IP Address         192.168.1.150\n   AutoReserveLanIp          false\n   DHCP\
+      \ Server Lease Time    1 Days 0 Hours 0 Minutes\n   DNS Values      Static\n\
+      IPv6 Active     false\nCommand Successful.\n"
     help: execute the command "cfg lan get --Name name"
     prompt:
     - zyxel_os>
@@ -178,30 +215,38 @@ commands:
     - zyxel_os>
     - zyxel_os#
   zycli Ethctl media-type:
-    output: "Auto-negotiation enabled.\nThe autonegotiated media type is Auto Full
-      Duplex\nLink is down\n"
+    output: 'Auto-negotiation enabled.
+
+      The autonegotiated media type is Auto Full Duplex
+
+      Link is down
+
+      '
     help: execute the command "zycli Ethctl media-type"
     prompt:
     - zyxel_os>
     - zyxel_os#
   cfg nat get:
-    output: "Index Description     Enable  Originating IP  Server IP Address WAN Interface\
-      \   Start Port End Port   Translation Start Port    Translation End Port   \
-      \   Protocol\n1     rabbitmq0       0       185.24.67.123   192.168.1.13   \
-      \   ADSL            15672      15672      15672                     15672  \
-      \                   ALL\n2     website0        1       N/A             192.168.1.25\
-      \      ADSL            80         80         8080                      8080\
-      \                      ALL\n3     phone-udp0      1       34.32.21.43     192.168.1.1\
-      \       ADSL            4433       4433       433                       433\
-      \                       UDP\n4     phone-udp1      1       45.21.54.76     192.168.1.1\
-      \       ADSL            4433       4433       433                       433\
-      \                       UDP\n5     phone-udp2      1       21.78.99.34     192.168.1.1\
-      \       ADSL            4433       4433       433                       433\
-      \                       UDP\n6     phone-udp3      1       185.24.67.123   192.168.1.1\
-      \       ADSL            4433       4433       433                       433\
-      \                       UDP\n7     phone-tcp0      1       N/A             192.168.1.1\
-      \       ADSL            8080       8080       80                        80 \
-      \                       TCP\nCommand Successful.\n"
+    output: 'Index Description     Enable  Originating IP  Server IP Address WAN Interface   Start
+      Port End Port   Translation Start Port    Translation End Port      Protocol
+
+      1     rabbitmq0       0       185.24.67.123   192.168.1.13      ADSL            15672      15672      15672                     15672                     ALL
+
+      2     website0        1       N/A             192.168.1.25      ADSL            80         80         8080                      8080                      ALL
+
+      3     phone-udp0      1       34.32.21.43     192.168.1.1       ADSL            4433       4433       433                       433                       UDP
+
+      4     phone-udp1      1       45.21.54.76     192.168.1.1       ADSL            4433       4433       433                       433                       UDP
+
+      5     phone-udp2      1       21.78.99.34     192.168.1.1       ADSL            4433       4433       433                       433                       UDP
+
+      6     phone-udp3      1       185.24.67.123   192.168.1.1       ADSL            4433       4433       433                       433                       UDP
+
+      7     phone-tcp0      1       N/A             192.168.1.1       ADSL            8080       8080       80                        80                        TCP
+
+      Command Successful.
+
+      '
     help: execute the command "cfg nat get"
     prompt:
     - zyxel_os>

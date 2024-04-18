@@ -1,3 +1,6 @@
+import threading
+import time
+from unittest.mock import patch
 import pytest
 from fakenos.core.fakenos import FakeNOS
 
@@ -18,11 +21,12 @@ class TestFakeNOS:
         """
         net = FakeNOS()
         assert len(net.hosts) == 2
+        print(net.hosts['router0'].port)
         for router_name, host in net.hosts.items():
             assert router_name in ["router0", "router1"]
             assert host.username in ["user"]
             assert host.password in ["user"]
-            assert host.port in [6000, 6001]
+            assert host.port in {6000, 6001}
             assert host.server_inventory["plugin"] == "ParamikoSshServer"
             assert host.server_inventory["configuration"]["address"] == "127.0.0.1"
             assert host.server_inventory["configuration"]["timeout"] == 1
@@ -116,7 +120,8 @@ class TestFakeNOS:
         """
         net = FakeNOS()
         net.inventory = "tests/assets/inventory.yaml"
-        assert isinstance(net._load_inventory_yaml(), dict)
+        net._load_inventory_yaml()
+        assert isinstance(net.inventory, dict)
 
     def test_load_inventory_yaml_unit_false(self):
         """
@@ -127,5 +132,206 @@ class TestFakeNOS:
         net.inventory = "tests/assets/inventory.txt"
         assert net._load_inventory_yaml() == None
 
+    def test_load_inventory_unit_yaml(self):
+        """
+        Test that the function _load_inventory loads the inventory
+        when the inventory is in yaml format.
+        """
+        net = FakeNOS()
+        net.inventory = "tests/assets/inventory.yaml"
+        net._load_inventory()
+        assert isinstance(net.inventory, dict)
+
+    def test_load_inventory_unit_dict(self):
+        """
+        Test that the function _load_inventory loads the inventory
+        when the inventory is a dictionary.
+        """
+        net = FakeNOS()
+        net.inventory = {"hosts": {"R1": {"port": 5001}}}
+        net._load_inventory()
+        assert isinstance(net.inventory, dict)
+
+    def test_load_inventory_unit_default(self):
+        """
+        Test that the function _load_inventory loads the inventory
+        when the inventory is a dictionary with a default key.
+        """
+        net = FakeNOS()
+        net.inventory = {"default": {"port": 5001}, "hosts": {"R1": {}}}
+        net._load_inventory()
+        assert isinstance(net.inventory, dict)
+
+    def test_load_inventory_unit_wrong_dict(self):
+        """
+        Test that the function _load_inventory raises an exception
+        when the inventory is not a dictionary.
+        """
+        net = FakeNOS()
+        net.inventory = "tests/assets/inventory.txt"
+        with pytest.raises(Exception):
+            net._load_inventory()
+
+    @patch("fakenos.core.fakenos.FakeNOS._allocate_port")
+    def test_init_unit(self, mock_allocate_port):
+        """
+        Test that the function _init creates the hosts.
+        """
+        inventory = {
+            "default": {"port": 5001},
+            "hosts": {"R1": {}}
+        }
+        net = FakeNOS(inventory)
+        assert len(net.hosts) == 1
+        assert "R1" in net.hosts
+        assert mock_allocate_port.call_count == 1
+
+    def test_port_already_allocated(self):
+        """
+        Test that the function _allocate_port raises an exception
+        when the port is already allocated.
+        """
+        net = FakeNOS()
+        net.allocated_ports = [5000]
+        with pytest.raises(ValueError):
+            net._allocate_port(5000)
     
+    def test_allocate_port(self):
+        """
+        Test that the function _allocate_port allocates the port.
+        """
+        inventory = {
+            "hosts": {"R1": {"port": 5000}}
+        }
+        net = FakeNOS(inventory=inventory)
+        assert 5000 in net.allocated_ports
+        assert len(net.allocated_ports) == 1
+
+    def test_allocate_port_range(self):
+        """
+        Test that the function _allocate_port allocates the port.
+        """
+        inventory = {
+            "default": {"port": [5000, 5001], "replicas": 2},
+            "hosts": {"R1": {}}
+        }
+        net = FakeNOS(inventory=inventory)
+        assert net.allocated_ports == {5000, 5001}
+
+    def test_replicas_not_set_and_port_list(self):
+        """
+        Test that the function _check_ports_and_replicas_are_okey raises an exception
+        when replicas is not set.
+        """
+        inventory = {
+            "default": {"port": [5000, 5001]},
+            "hosts": {"R1": {}}
+        }
+        with pytest.raises(ValueError):
+            FakeNOS(inventory=inventory)
+    
+    def test_replicas_set_and_port_int(self):
+        """
+        Test that the function _check_ports_and_replicas_are_okey raises an exception
+        when replicas is set and port is an int.
+        """
+        inventory = {
+            "default": {"port": 5000, "replicas": 2},
+            "hosts": {"R1": {}}
+        }
+        with pytest.raises(ValueError):
+            FakeNOS(inventory=inventory)
+
+
+    def test_replicas_set_and_port_list_not_enough_ports(self):
+        """
+        Test that the function _check_ports_and_replicas_are_okey raises an exception
+        when replicas is set and there are not enough ports.
+        """
+        inventory = {
+            "default": {"port": [5000], "replicas": 2},
+            "hosts": {"R1": {}}
+        }
+        with pytest.raises(ValueError):
+            FakeNOS(inventory=inventory)
+
+    def test_replicas_set_and_port_list_too_many_ports(self):
+        """
+        Test that the function _check_ports_and_replicas_are_okey raises an exception
+        when replicas is set and there are too many ports.
+        """
+        inventory = {
+            "default": {"port": [5000, 5001, 5002], "replicas": 2},
+            "hosts": {"R1": {}}
+        }
+        with pytest.raises(ValueError):
+            FakeNOS(inventory=inventory)
+    
+    def test_replicas_set_and_port_1_larger_than_port_2(self):
+        """
+        Test that the function _check_ports_and_replicas_are_okey raises an exception
+        when replicas is set and the first port is larger than the second port.
+        """
+        inventory = {
+            "default": {"port": [5001, 5000], "replicas": 2},
+            "hosts": {"R1": {}}
+        }
+        with pytest.raises(ValueError):
+            FakeNOS(inventory=inventory)
+
+    def test_replicas_set_and_replicas_less_than_1(self):
+        """
+        Test that the function _check_ports_and_replicas_are_okey raises an exception
+        when replicas is set and the replicas are less than 1.
+        """
+        inventory = {
+            "default": {"port": [5000, 5001], "replicas": 0},
+            "hosts": {"R1": {}}
+        }
+        with pytest.raises(ValueError):
+            FakeNOS(inventory=inventory)
+
+    def test_replicas_set_and_ports_set_not_same_length(self):
+        """
+        Test that the function _check_ports_and_replicas_are_okey raises an exception
+        when replicas is set and the ports are not the same length.
+        """
+        inventory = {
+            "default": {"port": [5000, 5001], "replicas": 3},
+            "hosts": {"R1": {}}
+        }
+        with pytest.raises(ValueError):
+            FakeNOS(inventory=inventory)
+
+    def test_wrong_plugin_name(self):
+        """
+        Test that the function _check_plugin_name raises an exception
+        when the plugin name is wrong.
+        """
+        inventory = {
+            "hosts": {"R1": {"server": {"plugin": "wrong_plugin"}}}
+        }
+        with pytest.raises(ValueError):
+            FakeNOS(inventory=inventory)
+
+    def test_wrong_platform(self):
+        """
+        Test that the function _check_platform raises an exception
+        when the platform is wrong.
+        """
+        inventory = {
+            "hosts": {"R1": {"platform": "wrong_platform"}}
+        }
+        with pytest.raises(ValueError):
+            FakeNOS(inventory=inventory)
+
         
+    def test_number_of_threads_after_stop_is_only_main(self):
+        """
+        Test that the number of threads after stopping the network is only the main thread.
+        """
+        net = FakeNOS()
+        net.start()
+        net.stop()
+        active_threads = threading.active_count() 
+        assert active_threads == 1

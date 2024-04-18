@@ -2,17 +2,26 @@ name: eltex
 initial_prompt: eltex>
 commands:
   enable:
-    output: 'null'
+    output: null
     new_prompt: eltex#
     help: enter enable mode
     prompt: eltex>
+  terminal datadump:
+    output: null
+    help: set terminal width to maximum
+    prompt:
+    - eltex>
+    - eltex#
+  ex:
+    output: true
+    help: exit the terminal
   show vlan:
-    output: "Vlan            Name                    Tagged ports               Untagged
-      ports            Type     Authorization\n---- --------------------------- ---------------------------
-      --------------------------- ------------ -------------\n 1                -\
-      \                           -              gi1/0/2,gi1/0/4-23,te1/0/1,   Default\
-      \      Required\n                                                          \
-      \   te1/0/3-4,Po1-12\n 2          Telia-Sonera               te1/0/1,te1/0/4\
+    output: "Vlan            Name                    Tagged ports               Untagged\
+      \ ports            Type     Authorization\n---- ---------------------------\
+      \ --------------------------- --------------------------- ------------ -------------\n\
+      \ 1                -                           -              gi1/0/2,gi1/0/4-23,te1/0/1,\
+      \   Default      Required\n                                                \
+      \             te1/0/3-4,Po1-12\n 2          Telia-Sonera               te1/0/1,te1/0/4\
       \                    -               permanent     Required\n111           \
       \    -                    te1/0/1,te1/0/4                    -             \
       \  permanent     Required\n237           managment                te1/0/1,te1/0/4\
@@ -27,7 +36,9 @@ commands:
     - eltex>
     - eltex#
   show system id:
-    output: "Serial number : ES12345678\n"
+    output: 'Serial number : ES12345678
+
+      '
     help: execute the command "show system id"
     prompt:
     - eltex>
@@ -35,8 +46,8 @@ commands:
   show interfaces status:
     output: "                                             Flow Link           Uptime\
       \       Back   Mdix\nPort     Type         Duplex  Speed Neg      ctrl State\
-      \         (d,h:m:s)   Pressure Mode    Port Mode (VLAN)\n-------- ------------
-      ------  ----- -------- ---- ----------- ------------- -------- ------- ------------------------\n\
+      \         (d,h:m:s)   Pressure Mode    Port Mode (VLAN)\n-------- ------------\
+      \ ------  ----- -------- ---- ----------- ------------- -------- ------- ------------------------\n\
       gi1/0/1  1G-Copper    Full    1000  Enabled  Off  Up          183,19:35:02 \
       \ Disabled Off     Trunk\ngi1/0/2  1G-Copper    Full    1000  Enabled  Off \
       \ Up          183,19:34:59  Disabled On      Trunk\ngi1/0/3  1G-Copper    Full\
@@ -48,204 +59,205 @@ commands:
       gi1/0/7  1G-Copper    Full    1000  Enabled  Off  Up          181,20:48:48 \
       \ Disabled On      Trunk\ngi1/0/8  1G-Copper    Full    1000  Enabled  Off \
       \ Up          183,19:35:00  Disabled On      Trunk\ngi1/0/9  1G-Copper    Full\
-      \    1000  Enabled  Off  Up          183,19:34:56  Disabled On      Trunk\n
-      gi1/0/10 1G-Copper    Full    1000  Enabled  Off  Up          183,19:34:50 \
-      \ Disabled On      Trunk\ngi1/0/11 1G-Copper    Full    1000  Enabled  Off \
-      \ Up          183,19:34:50  Disabled On      Trunk\ngi1/0/12 1G-Copper    Full\
-      \    1000  Enabled  Off  Up          183,19:34:50  Disabled Off     Trunk\n
-      gi1/0/13 1G-Copper      --      --     --     --  Down (nc)         --     \
-      \    --     --     Trunk\ngi1/0/14 1G-Copper    Full    1000  Enabled  Off \
-      \ Up          183,19:34:51  Disabled Off     Trunk\ngi1/0/15 1G-Copper    Full\
-      \    1000  Enabled  Off  Up                --      Disabled Off     Trunk\n
-      gi1/0/16 1G-Copper    Full    1000  Enabled  Off  Up          183,19:34:51 \
-      \ Disabled Off     Trunk\ngi1/0/17 1G-Copper    Full    1000  Enabled  Off \
-      \ Up                --      Disabled Off     Access (1610)\ngi1/0/18 1G-Copper\
+      \    1000  Enabled  Off  Up          183,19:34:56  Disabled On      Trunk\n\
+      \ gi1/0/10 1G-Copper    Full    1000  Enabled  Off  Up          183,19:34:50\
+      \  Disabled On      Trunk\ngi1/0/11 1G-Copper    Full    1000  Enabled  Off\
+      \  Up          183,19:34:50  Disabled On      Trunk\ngi1/0/12 1G-Copper    Full\
+      \    1000  Enabled  Off  Up          183,19:34:50  Disabled Off     Trunk\n\
+      \ gi1/0/13 1G-Copper      --      --     --     --  Down (nc)         --   \
+      \      --     --     Trunk\ngi1/0/14 1G-Copper    Full    1000  Enabled  Off\
+      \  Up          183,19:34:51  Disabled Off     Trunk\ngi1/0/15 1G-Copper    Full\
+      \    1000  Enabled  Off  Up                --      Disabled Off     Trunk\n\
+      \ gi1/0/16 1G-Copper    Full    1000  Enabled  Off  Up          183,19:34:51\
+      \  Disabled Off     Trunk\ngi1/0/17 1G-Copper    Full    1000  Enabled  Off\
+      \  Up                --      Disabled Off     Access (1610)\ngi1/0/18 1G-Copper\
       \    Full    1000  Enabled  Off  Up          00,07:41:23   Disabled On     \
       \ Access (1)\ngi1/0/19 1G-Copper      --      --     --     --  Down (adm) \
       \       --         --     --     Access (1609)\ngi1/0/20 1G-Copper      -- \
-      \     --     --     --  Down (nc)         --         --     --     Access (1)\n
-      gi1/0/21 1G-Copper      --      --     --     --  Down (nc)         --     \
-      \    --     --     Trunk\ngi1/0/22 1G-Copper      --      --     --     -- \
-      \ Down (nc)         --         --     --     Trunk\ngi1/0/23 1G-Copper     \
-      \ --      --     --     --  Down (nc)         --         --     --     Access
-      (1)\ngi1/0/24 1G-Copper      --      --     --     --  Down (nc)         --\
+      \     --     --     --  Down (nc)         --         --     --     Access (1)\n\
+      \ gi1/0/21 1G-Copper      --      --     --     --  Down (nc)         --   \
+      \      --     --     Trunk\ngi1/0/22 1G-Copper      --      --     --     --\
+      \  Down (nc)         --         --     --     Trunk\ngi1/0/23 1G-Copper    \
+      \  --      --     --     --  Down (nc)         --         --     --     Access\
+      \ (1)\ngi1/0/24 1G-Copper      --      --     --     --  Down (nc)         --\
       \         --     --     Access (1)\ngi1/0/25 1G-Copper    Full    100   Enabled\
       \  Off  Up          01,05:52:26   Disabled On      Access (1)\ngi1/0/26 1G-Copper\
       \      --      --     --     --  Down (nc)         --         --     --    \
       \ Access (1)\ngi1/0/27 1G-Copper      --      --     --     --  Down (nc)  \
       \       --         --     --     Access (1)\ngi1/0/28 1G-Copper      --    \
-      \  --     --     --  Down (nc)         --         --     --     Access (1)\n
-      gi1/0/29 1G-Copper      --      --     --     --  Down (nc)         --     \
-      \    --     --     Access (1)\ngi1/0/30 1G-Copper      --      --     --   \
-      \  --  Down (nc)         --         --     --     Access (1)\ngi1/0/31 1G-Copper\
+      \  --     --     --  Down (nc)         --         --     --     Access (1)\n\
+      \ gi1/0/29 1G-Copper      --      --     --     --  Down (nc)         --   \
+      \      --     --     Access (1)\ngi1/0/30 1G-Copper      --      --     -- \
+      \    --  Down (nc)         --         --     --     Access (1)\ngi1/0/31 1G-Copper\
       \      --      --     --     --  Down (nc)         --         --     --    \
       \ Access (1)\ngi1/0/32 1G-Copper      --      --     --     --  Down (nc)  \
       \       --         --     --     Access (1)\ngi1/0/33 1G-Copper      --    \
-      \  --     --     --  Down (nc)         --         --     --     Access (1)\n
-      gi1/0/34 1G-Copper      --      --     --     --  Down (nc)         --     \
-      \    --     --     Access (1)\ngi1/0/35 1G-Copper      --      --     --   \
-      \  --  Down (nc)         --         --     --     Access (1)\ngi1/0/36 1G-Copper\
+      \  --     --     --  Down (nc)         --         --     --     Access (1)\n\
+      \ gi1/0/34 1G-Copper      --      --     --     --  Down (nc)         --   \
+      \      --     --     Access (1)\ngi1/0/35 1G-Copper      --      --     -- \
+      \    --  Down (nc)         --         --     --     Access (1)\ngi1/0/36 1G-Copper\
       \      --      --     --     --  Down (nc)         --         --     --    \
       \ Access (1)\ngi1/0/37 1G-Copper      --      --     --     --  Down (nc)  \
       \       --         --     --     Access (1)\ngi1/0/38 1G-Copper      --    \
-      \  --     --     --  Down (nc)         --         --     --     Access (1)\n
-      gi1/0/39 1G-Copper      --      --     --     --  Down (nc)         --     \
-      \    --     --     Access (355)\ngi1/0/40 1G-Copper      --      --     -- \
-      \    --  Down (nc)         --         --     --     Access (1)\ngi1/0/41 1G-Copper\
+      \  --     --     --  Down (nc)         --         --     --     Access (1)\n\
+      \ gi1/0/39 1G-Copper      --      --     --     --  Down (nc)         --   \
+      \      --     --     Access (355)\ngi1/0/40 1G-Copper      --      --     --\
+      \     --  Down (nc)         --         --     --     Access (1)\ngi1/0/41 1G-Copper\
       \      --      --     --     --  Down (nc)         --         --     --    \
       \ Access (1609)\ngi1/0/42 1G-Copper    Full    100   Enabled  Off  Up      \
       \    183,19:35:23  Disabled Off     Access (1609)\ngi1/0/43 1G-Copper    Full\
-      \    1000  Enabled  Off  Up          31,05:07:01   Disabled Off     Access (1609)\n
-      gi1/0/44 1G-Copper    Full    1000  Enabled  Off  Up          31,05:07:01  \
-      \ Disabled On      Access (3800)\ngi1/0/45 1G-Copper      --      --     --\
-      \     --  Down (nc)         --         --     --     Access (355)\ngi1/0/46
-      1G-Copper      --      --     --     --  Down (nc)         --         --   \
-      \  --     Access (130)\ngi1/0/47 1G-Copper      --      --     --     --  Down
-      (nc)         --         --     --     Access (1609)\ngi1/0/48 1G-Copper    \
-      \  --      --     --     --  Down (nc)         --         --     --     Access
-      (1609)\nte1/0/1  10G-Fiber    Full    10000 Disabled Off  Up          183,19:35:22\
-      \  Disabled Off     Trunk\nte1/0/2  10G-Fiber      --      --     --     --\
-      \  Down (nc)         --         --     --     Trunk\ngi2/0/1  1G-Copper    \
-      \  --      --     --     --  Down (nc)         --         --     --     Trunk\n\
-      gi2/0/2  1G-Copper      --      --     --     --  Down (nc)         --     \
-      \    --     --     Trunk\ngi2/0/3  1G-Copper      --      --     --     -- \
-      \ Down (nc)         --         --     --     Trunk\ngi2/0/4  1G-Copper     \
-      \ --      --     --     --  Down (nc)         --         --     --     Trunk\n\
-      gi2/0/5  1G-Copper      --      --     --     --  Down (nc)         --     \
-      \    --     --     Trunk\ngi2/0/6  1G-Copper      --      --     --     -- \
-      \ Down (nc)         --         --     --     Trunk\ngi2/0/7  1G-Copper     \
-      \ --      --     --     --  Down (nc)         --         --     --     Trunk\n\
-      gi2/0/8  1G-Copper      --      --     --     --  Down (nc)         --     \
-      \    --     --     Trunk\ngi2/0/9  1G-Copper      --      --     --     -- \
-      \ Down (nc)         --         --     --     Trunk\ngi2/0/10 1G-Copper    Full\
-      \    1000  Enabled  Off  Up                --      Disabled On      Trunk\n
-      gi2/0/11 1G-Copper    Full    1000  Enabled  Off  Up                --     \
-      \ Disabled On      Trunk\ngi2/0/12 1G-Copper      --      --     --     -- \
-      \ Down (nc)         --         --     --     Trunk\ngi2/0/13 1G-Copper     \
-      \ --      --     --     --  Down (nc)         --         --     --     Trunk\n
-      gi2/0/14 1G-Copper      --      --     --     --  Down (nc)         --     \
-      \    --     --     Trunk\ngi2/0/15 1G-Copper      --      --     --     -- \
-      \ Down (nc)         --         --     --     Trunk\ngi2/0/16 1G-Copper    Full\
-      \    1000  Enabled  Off  Up                --      Disabled On      Trunk\n
-      gi2/0/17 1G-Copper    Full    1000  Enabled  Off  Up                --     \
-      \ Disabled Off     Access (1610)\ngi2/0/18 1G-Copper      --      --     --\
-      \     --  Down (nc)         --         --     --     Access (1)\ngi2/0/19 1G-Copper\
+      \    1000  Enabled  Off  Up          31,05:07:01   Disabled Off     Access (1609)\n\
+      \ gi1/0/44 1G-Copper    Full    1000  Enabled  Off  Up          31,05:07:01\
+      \   Disabled On      Access (3800)\ngi1/0/45 1G-Copper      --      --     --\
+      \     --  Down (nc)         --         --     --     Access (355)\ngi1/0/46\
+      \ 1G-Copper      --      --     --     --  Down (nc)         --         -- \
+      \    --     Access (130)\ngi1/0/47 1G-Copper      --      --     --     -- \
+      \ Down (nc)         --         --     --     Access (1609)\ngi1/0/48 1G-Copper\
       \      --      --     --     --  Down (nc)         --         --     --    \
-      \ Access (1)\ngi2/0/20 1G-Copper      --      --     --     --  Down (nc)  \
-      \       --         --     --     Access (1)\ngi2/0/21 1G-Copper      --    \
-      \  --     --     --  Down (nc)         --         --     --     Access (1)\n
-      gi2/0/22 1G-Copper      --      --     --     --  Down (nc)         --     \
-      \    --     --     Access (1)\ngi2/0/23 1G-Copper      --      --     --   \
-      \  --  Down (nc)         --         --     --     Access (1)\ngi2/0/24 1G-Copper\
+      \ Access (1609)\nte1/0/1  10G-Fiber    Full    10000 Disabled Off  Up      \
+      \    183,19:35:22  Disabled Off     Trunk\nte1/0/2  10G-Fiber      --      --\
+      \     --     --  Down (nc)         --         --     --     Trunk\ngi2/0/1 \
+      \ 1G-Copper      --      --     --     --  Down (nc)         --         -- \
+      \    --     Trunk\ngi2/0/2  1G-Copper      --      --     --     --  Down (nc)\
+      \         --         --     --     Trunk\ngi2/0/3  1G-Copper      --      --\
+      \     --     --  Down (nc)         --         --     --     Trunk\ngi2/0/4 \
+      \ 1G-Copper      --      --     --     --  Down (nc)         --         -- \
+      \    --     Trunk\ngi2/0/5  1G-Copper      --      --     --     --  Down (nc)\
+      \         --         --     --     Trunk\ngi2/0/6  1G-Copper      --      --\
+      \     --     --  Down (nc)         --         --     --     Trunk\ngi2/0/7 \
+      \ 1G-Copper      --      --     --     --  Down (nc)         --         -- \
+      \    --     Trunk\ngi2/0/8  1G-Copper      --      --     --     --  Down (nc)\
+      \         --         --     --     Trunk\ngi2/0/9  1G-Copper      --      --\
+      \     --     --  Down (nc)         --         --     --     Trunk\ngi2/0/10\
+      \ 1G-Copper    Full    1000  Enabled  Off  Up                --      Disabled\
+      \ On      Trunk\n gi2/0/11 1G-Copper    Full    1000  Enabled  Off  Up     \
+      \           --      Disabled On      Trunk\ngi2/0/12 1G-Copper      --     \
+      \ --     --     --  Down (nc)         --         --     --     Trunk\ngi2/0/13\
+      \ 1G-Copper      --      --     --     --  Down (nc)         --         -- \
+      \    --     Trunk\n gi2/0/14 1G-Copper      --      --     --     --  Down (nc)\
+      \         --         --     --     Trunk\ngi2/0/15 1G-Copper      --      --\
+      \     --     --  Down (nc)         --         --     --     Trunk\ngi2/0/16\
+      \ 1G-Copper    Full    1000  Enabled  Off  Up                --      Disabled\
+      \ On      Trunk\n gi2/0/17 1G-Copper    Full    1000  Enabled  Off  Up     \
+      \           --      Disabled Off     Access (1610)\ngi2/0/18 1G-Copper     \
+      \ --      --     --     --  Down (nc)         --         --     --     Access\
+      \ (1)\ngi2/0/19 1G-Copper      --      --     --     --  Down (nc)         --\
+      \         --     --     Access (1)\ngi2/0/20 1G-Copper      --      --     --\
+      \     --  Down (nc)         --         --     --     Access (1)\ngi2/0/21 1G-Copper\
       \      --      --     --     --  Down (nc)         --         --     --    \
-      \ Access (1609)\ngi2/0/25 1G-Copper      --      --     --     --  Down (nc)\
-      \         --         --     --     Access (1)\ngi2/0/26 1G-Copper      --  \
-      \    --     --     --  Down (nc)         --         --     --     Access (1)\n
-      gi2/0/27 1G-Copper      --      --     --     --  Down (nc)         --     \
-      \    --     --     Access (1)\ngi2/0/28 1G-Copper      --      --     --   \
-      \  --  Down (nc)         --         --     --     Access (1)\ngi2/0/29 1G-Copper\
+      \ Access (1)\n gi2/0/22 1G-Copper      --      --     --     --  Down (nc) \
+      \        --         --     --     Access (1)\ngi2/0/23 1G-Copper      --   \
+      \   --     --     --  Down (nc)         --         --     --     Access (1)\n\
+      gi2/0/24 1G-Copper      --      --     --     --  Down (nc)         --     \
+      \    --     --     Access (1609)\ngi2/0/25 1G-Copper      --      --     --\
+      \     --  Down (nc)         --         --     --     Access (1)\ngi2/0/26 1G-Copper\
       \      --      --     --     --  Down (nc)         --         --     --    \
-      \ Access (1)\ngi2/0/30 1G-Copper      --      --     --     --  Down (nc)  \
-      \       --         --     --     Access (1609)\ngi2/0/31 1G-Copper      -- \
-      \     --     --     --  Down (nc)         --         --     --     Access (1)\n
-      gi2/0/32 1G-Copper      --      --     --     --  Down (nc)         --     \
-      \    --     --     Access (1)\ngi2/0/33 1G-Copper      --      --     --   \
-      \  --  Down (nc)         --         --     --     Access (1)\ngi2/0/34 1G-Copper\
+      \ Access (1)\n gi2/0/27 1G-Copper      --      --     --     --  Down (nc) \
+      \        --         --     --     Access (1)\ngi2/0/28 1G-Copper      --   \
+      \   --     --     --  Down (nc)         --         --     --     Access (1)\n\
+      gi2/0/29 1G-Copper      --      --     --     --  Down (nc)         --     \
+      \    --     --     Access (1)\ngi2/0/30 1G-Copper      --      --     --   \
+      \  --  Down (nc)         --         --     --     Access (1609)\ngi2/0/31 1G-Copper\
       \      --      --     --     --  Down (nc)         --         --     --    \
-      \ Access (1)\ngi2/0/35 1G-Copper      --      --     --     --  Down (nc)  \
-      \       --         --     --     Access (1)\ngi2/0/36 1G-Copper      --    \
-      \  --     --     --  Down (nc)         --         --     --     Access (1)\n
-      gi2/0/37 1G-Copper      --      --     --     --  Down (nc)         --     \
-      \    --     --     Access (1)\ngi2/0/38 1G-Copper      --      --     --   \
-      \  --  Down (nc)         --         --     --     Access (1)\ngi2/0/39 1G-Copper\
+      \ Access (1)\n gi2/0/32 1G-Copper      --      --     --     --  Down (nc) \
+      \        --         --     --     Access (1)\ngi2/0/33 1G-Copper      --   \
+      \   --     --     --  Down (nc)         --         --     --     Access (1)\n\
+      gi2/0/34 1G-Copper      --      --     --     --  Down (nc)         --     \
+      \    --     --     Access (1)\ngi2/0/35 1G-Copper      --      --     --   \
+      \  --  Down (nc)         --         --     --     Access (1)\ngi2/0/36 1G-Copper\
       \      --      --     --     --  Down (nc)         --         --     --    \
-      \ Access (1)\ngi2/0/40 1G-Copper      --      --     --     --  Down (nc)  \
-      \       --         --     --     Access (1)\ngi2/0/41 1G-Copper      --    \
-      \  --     --     --  Down (nc)         --         --     --     Access (1)\n
-      gi2/0/42 1G-Copper      --      --     --     --  Down (nc)         --     \
-      \    --     --     Access (1)\ngi2/0/43 1G-Copper      --      --     --   \
-      \  --  Down (nc)         --         --     --     Access (1)\ngi2/0/44 1G-Copper\
+      \ Access (1)\n gi2/0/37 1G-Copper      --      --     --     --  Down (nc) \
+      \        --         --     --     Access (1)\ngi2/0/38 1G-Copper      --   \
+      \   --     --     --  Down (nc)         --         --     --     Access (1)\n\
+      gi2/0/39 1G-Copper      --      --     --     --  Down (nc)         --     \
+      \    --     --     Access (1)\ngi2/0/40 1G-Copper      --      --     --   \
+      \  --  Down (nc)         --         --     --     Access (1)\ngi2/0/41 1G-Copper\
       \      --      --     --     --  Down (nc)         --         --     --    \
-      \ Access (1)\ngi2/0/45 1G-Copper      --      --     --     --  Down (nc)  \
-      \       --         --     --     Access (1)\ngi2/0/46 1G-Copper      --    \
-      \  --     --     --  Down (nc)         --         --     --     Access (130)\n
-      gi2/0/47 1G-Copper    Full    1000  Enabled  Off  Up          183,19:37:01 \
-      \ Disabled Off     Access (1609)\ngi2/0/48 1G-Copper      --      --     --\
-      \     --  Down (nc)         --         --     --     Access (1609)\nte2/0/1\
-      \  10G-Fiber      --      --     --     --  Down (nc)         --         --\
-      \     --     Access (1)\nte2/0/2  10G-Fiber      --      --     --     --  Down
-      (nc)         --         --     --     Trunk\n\n                            \
-      \              Flow    Link\nCh       Type    Duplex  Speed  Neg      control\
-      \  State         Port Mode (VLAN)\n-------- ------- ------  -----  --------
-      -------  ------------- ------------------------\nPo1         --     --     \
-      \ --      --       --    Not Present   Trunk\nPo2         --     --      --\
-      \      --       --    Not Present   Trunk\nPo3         --     --      --   \
-      \   --       --    Not Present   Trunk\nPo4         --     --      --      --\
-      \       --    Not Present   Trunk\nPo5         --     --      --      --   \
-      \    --    Not Present   Trunk\nPo6         --     --      --      --      \
-      \ --    Not Present   Trunk\nPo7         --     --      --      --       --\
-      \    Not Present   Trunk\nPo8         --     --      --      --       --   \
-      \ Not Present   Trunk\nPo9         --     --      --      --       --    Not
-      Present   Trunk\nPo10        --     --      --      --       --    Not Present\
-      \   Trunk\nPo11        --     --      --      --       --    Not Present   Trunk\n\
-      Po12        --     --      --      --       --    Not Present   Trunk\nPo13\
-      \        --     --      --      --       --    Not Present   Trunk\nPo14   \
-      \     --     --      --      --       --    Not Present   Trunk\nPo15      \
-      \  --     --      --      --       --    Not Present   Trunk\nPo16        --\
-      \     --      --      --       --    Not Present   Trunk\nPo17        --   \
-      \  --      --      --       --    Not Present   Access (1)\nPo18        -- \
-      \    --      --      --       --    Not Present   Access (1)\nPo19        --\
-      \     --      --      --       --    Not Present   Access (1)\nPo20        --\
-      \     --      --      --       --    Not Present   Access (1)\nPo21        --\
-      \     --      --      --       --    Not Present   Access (1)\nPo22        --\
-      \     --      --      --       --    Not Present   Access (1)\nPo23        --\
-      \     --      --      --       --    Not Present   Access (1)\nPo24        --\
-      \     --      --      --       --    Not Present   Access (1)\nPo25        --\
-      \     --      --      --       --    Not Present   Access (1)\nPo26        --\
-      \     --      --      --       --    Not Present   Access (1)\nPo27        --\
-      \     --      --      --       --    Not Present   Access (1)\nPo28        --\
-      \     --      --      --       --    Not Present   Access (1)\nPo29        --\
-      \     --      --      --       --    Not Present   Access (1)\nPo30        --\
-      \     --      --      --       --    Not Present   Access (1)\nPo31        --\
-      \     --      --      --       --    Not Present   Access (1)\nPo32        --\
-      \     --      --      --       --    Not Present   Access (1)\nPo33        --\
-      \     --      --      --       --    Not Present   Access (1)\nPo34        --\
-      \     --      --      --       --    Not Present   Access (1)\nPo35        --\
-      \     --      --      --       --    Not Present   Access (1)\nPo36        --\
-      \     --      --      --       --    Not Present   Access (1)\nPo37        --\
-      \     --      --      --       --    Not Present   Access (1)\nPo38        --\
-      \     --      --      --       --    Not Present   Access (1)\nPo39        --\
-      \     --      --      --       --    Not Present   Access (1)\nPo40        --\
-      \     --      --      --       --    Not Present   Access (1)\nPo41        --\
-      \     --      --      --       --    Not Present   Access (1)\nPo42        --\
-      \     --      --      --       --    Not Present   Access (1)\nPo43        --\
-      \     --      --      --       --    Not Present   Access (1)\nPo44        --\
-      \     --      --      --       --    Not Present   Access (1)\nPo45        --\
-      \     --      --      --       --    Not Present   Access (1)\nPo46        --\
-      \     --      --      --       --    Not Present   Access (1)\nPo47        --\
-      \     --      --      --       --    Not Present   Access (1)\nPo48        --\
-      \     --      --      --       --    Not Present   Access (1)\n\n          \
-      \                                    Link\nOob       Type         Duplex  Speed
-      Neg      State\n--------  ------------ ------  ----- -------- -----------\n\
-      oob       1G-Copper      --      --     --    Down\n\nnc (not connected): The
-      interface is not connected.\nerr (error-disabled): The interface was suspended
-      by the system.\nadm (admin.shutdown): The interface was suspended by administrator.\n"
+      \ Access (1)\n gi2/0/42 1G-Copper      --      --     --     --  Down (nc) \
+      \        --         --     --     Access (1)\ngi2/0/43 1G-Copper      --   \
+      \   --     --     --  Down (nc)         --         --     --     Access (1)\n\
+      gi2/0/44 1G-Copper      --      --     --     --  Down (nc)         --     \
+      \    --     --     Access (1)\ngi2/0/45 1G-Copper      --      --     --   \
+      \  --  Down (nc)         --         --     --     Access (1)\ngi2/0/46 1G-Copper\
+      \      --      --     --     --  Down (nc)         --         --     --    \
+      \ Access (130)\n gi2/0/47 1G-Copper    Full    1000  Enabled  Off  Up      \
+      \    183,19:37:01  Disabled Off     Access (1609)\ngi2/0/48 1G-Copper      --\
+      \      --     --     --  Down (nc)         --         --     --     Access (1609)\n\
+      te2/0/1  10G-Fiber      --      --     --     --  Down (nc)         --     \
+      \    --     --     Access (1)\nte2/0/2  10G-Fiber      --      --     --   \
+      \  --  Down (nc)         --         --     --     Trunk\n\n                \
+      \                          Flow    Link\nCh       Type    Duplex  Speed  Neg\
+      \      control  State         Port Mode (VLAN)\n-------- ------- ------  -----\
+      \  -------- -------  ------------- ------------------------\nPo1         --\
+      \     --      --      --       --    Not Present   Trunk\nPo2         --   \
+      \  --      --      --       --    Not Present   Trunk\nPo3         --     --\
+      \      --      --       --    Not Present   Trunk\nPo4         --     --   \
+      \   --      --       --    Not Present   Trunk\nPo5         --     --      --\
+      \      --       --    Not Present   Trunk\nPo6         --     --      --   \
+      \   --       --    Not Present   Trunk\nPo7         --     --      --      --\
+      \       --    Not Present   Trunk\nPo8         --     --      --      --   \
+      \    --    Not Present   Trunk\nPo9         --     --      --      --      \
+      \ --    Not Present   Trunk\nPo10        --     --      --      --       --\
+      \    Not Present   Trunk\nPo11        --     --      --      --       --   \
+      \ Not Present   Trunk\nPo12        --     --      --      --       --    Not\
+      \ Present   Trunk\nPo13        --     --      --      --       --    Not Present\
+      \   Trunk\nPo14        --     --      --      --       --    Not Present   Trunk\n\
+      Po15        --     --      --      --       --    Not Present   Trunk\nPo16\
+      \        --     --      --      --       --    Not Present   Trunk\nPo17   \
+      \     --     --      --      --       --    Not Present   Access (1)\nPo18 \
+      \       --     --      --      --       --    Not Present   Access (1)\nPo19\
+      \        --     --      --      --       --    Not Present   Access (1)\nPo20\
+      \        --     --      --      --       --    Not Present   Access (1)\nPo21\
+      \        --     --      --      --       --    Not Present   Access (1)\nPo22\
+      \        --     --      --      --       --    Not Present   Access (1)\nPo23\
+      \        --     --      --      --       --    Not Present   Access (1)\nPo24\
+      \        --     --      --      --       --    Not Present   Access (1)\nPo25\
+      \        --     --      --      --       --    Not Present   Access (1)\nPo26\
+      \        --     --      --      --       --    Not Present   Access (1)\nPo27\
+      \        --     --      --      --       --    Not Present   Access (1)\nPo28\
+      \        --     --      --      --       --    Not Present   Access (1)\nPo29\
+      \        --     --      --      --       --    Not Present   Access (1)\nPo30\
+      \        --     --      --      --       --    Not Present   Access (1)\nPo31\
+      \        --     --      --      --       --    Not Present   Access (1)\nPo32\
+      \        --     --      --      --       --    Not Present   Access (1)\nPo33\
+      \        --     --      --      --       --    Not Present   Access (1)\nPo34\
+      \        --     --      --      --       --    Not Present   Access (1)\nPo35\
+      \        --     --      --      --       --    Not Present   Access (1)\nPo36\
+      \        --     --      --      --       --    Not Present   Access (1)\nPo37\
+      \        --     --      --      --       --    Not Present   Access (1)\nPo38\
+      \        --     --      --      --       --    Not Present   Access (1)\nPo39\
+      \        --     --      --      --       --    Not Present   Access (1)\nPo40\
+      \        --     --      --      --       --    Not Present   Access (1)\nPo41\
+      \        --     --      --      --       --    Not Present   Access (1)\nPo42\
+      \        --     --      --      --       --    Not Present   Access (1)\nPo43\
+      \        --     --      --      --       --    Not Present   Access (1)\nPo44\
+      \        --     --      --      --       --    Not Present   Access (1)\nPo45\
+      \        --     --      --      --       --    Not Present   Access (1)\nPo46\
+      \        --     --      --      --       --    Not Present   Access (1)\nPo47\
+      \        --     --      --      --       --    Not Present   Access (1)\nPo48\
+      \        --     --      --      --       --    Not Present   Access (1)\n\n\
+      \                                              Link\nOob       Type        \
+      \ Duplex  Speed Neg      State\n--------  ------------ ------  ----- --------\
+      \ -----------\noob       1G-Copper      --      --     --    Down\n\nnc (not\
+      \ connected): The interface is not connected.\nerr (error-disabled): The interface\
+      \ was suspended by the system.\nadm (admin.shutdown): The interface was suspended\
+      \ by administrator.\n"
     help: execute the command "show interfaces status"
     prompt:
     - eltex>
     - eltex#
   show system:
-    output: "System Description:                       MES3124 28-port 1G/10G Managed
-      Switch\nSystem Up Time (days,hour:min:sec):       67,08:57:53\nSystem Contact:\
+    output: "System Description:                       MES3124 28-port 1G/10G Managed\
+      \ Switch\nSystem Up Time (days,hour:min:sec):       67,08:57:53\nSystem Contact:\
       \                           email@email.com\nSystem Name:                  \
-      \            Eltex3124-3\nSystem Location:                          Elm street,
-      1428\nSystem MAC Address:                       12:34:56:78:90:00\nSystem Object
-      ID:                         1.3.6.1.4.1.35265.1.24\n\nMain Power Supply Status
-      [AC]:            OK\nRedundant Power Supply Status [DC]:       OK\nFan 1 Status:\
-      \                             OK\nFan 2 Status:                            \
-      \ OK\nFan 3 Status:                             OK\nFan 4 Status:          \
-      \                   OK\n\n Sensor Index            Temperature (Celsius)   \
-      \        Status\n---------------------  --------------------------  -------------------\n\
+      \            Eltex3124-3\nSystem Location:                          Elm street,\
+      \ 1428\nSystem MAC Address:                       12:34:56:78:90:00\nSystem\
+      \ Object ID:                         1.3.6.1.4.1.35265.1.24\n\nMain Power Supply\
+      \ Status [AC]:            OK\nRedundant Power Supply Status [DC]:       OK\n\
+      Fan 1 Status:                             OK\nFan 2 Status:                \
+      \             OK\nFan 3 Status:                             OK\nFan 4 Status:\
+      \                             OK\n\n Sensor Index            Temperature (Celsius)\
+      \           Status\n---------------------  --------------------------  -------------------\n\
       \      1                       29                          OK\n      2     \
       \                  43                          OK\n      3                 \
       \      45                          OK\n"
@@ -254,869 +266,887 @@ commands:
     - eltex>
     - eltex#
   show interface:
-    output: "------------------ show interfaces gi1/0/1 ------------------\ngigabitethernet1/0/1
-      is up (connected)\n  Interface index is 49\n  Hardware is gigabitethernet, MAC
-      address is e8:28:c1:5c:02:41\n  Description: link_to_MGTS_ADSL\n  Interface
-      MTU is 1500\n  Full-duplex, 1000Mbps, link type is auto, media type is 1G-Fiber\n\
-      \  Link is up for 0 days, 0 hours, 0 minutes and -40760306 seconds\n  Advertised
-      link modes: 1000baseT/Full\n  Flow control is off, MDIX mode is normal\n  FEC
-      is disabled\n  15 second input rate is 1321 Kbit/s\n  15 second output rate
-      is 1315 Kbit/s\n      108873837739 packets input, 7385782387851 bytes received\n\
-      \      73700287 broadcasts, 4537873 multicasts\n      0 input errors, 0 FCS,
-      0 alignment\n      0 oversize, 0 internal MAC\n      0 pause frames received\n\
-      \      109055618146 packets output, 7350024234403 bytes sent\n      108034 broadcasts,
-      1439641 multicasts\n      0 output errors, 0 collisions\n      0 excessive collisions,
-      0 late collisions\n      0 pause frames transmitted\n      0 symbol errors,
-      0 carrier, 0 SQE test error\n  Output queues: (queue #: packets passed/packets
-      dropped)\n      1: 0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n\
-      \      6: 0/0\n      7: 0/0\n      8: 0/0\n------------------ show interfaces
-      gi1/0/2 ------------------\ngigabitethernet1/0/2 is up (connected)\n  Interface
-      index is 50\n  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:42\n\
-      \  Description: LAN (Office)\n  Interface MTU is 1500\n  Full-duplex, 1000Mbps,
-      link type is auto, media type is 1G-Fiber\n  Link is up for 2 days, 18 hours,
-      37 minutes and 5 seconds\n  Advertised link modes: 1000baseT/Full\n  Flow control
-      is off, MDIX mode is normal\n  FEC is disabled\n  15 second input rate is 168706
-      Kbit/s\n  15 second output rate is 51870 Kbit/s\n      396190779063 packets
-      input, 476968058054193 bytes received\n      2824380 broadcasts, 25865641 multicasts\n\
-      \      0 input errors, 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n\
-      \      0 pause frames received\n      330426396743 packets output, 227106169368911
-      bytes sent\n      38634166 broadcasts, 132202046940 multicasts\n      0 output
-      errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n    \
-      \  0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test
-      error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:
-      0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
-      \      7: 0/0\n      8: 0/0\n------------------ show interfaces gi1/0/3 ------------------\n
-      gigabitethernet1/0/3 is up (connected)\n  Interface index is 51\n  Hardware
-      is gigabitethernet, MAC address is e8:28:c1:5c:02:43\n  Description: Eltex1124M
-      - gi1/0/1\n  Interface MTU is 1500\n  Full-duplex, 1000Mbps, link type is auto,
-      media type is 1G-Fiber\n  Link is up for 0 days, 0 hours, 0 minutes and -12007484
-      seconds\n  Advertised link modes: 1000baseT/Full\n  Flow control is off, MDIX
-      mode is normal\n  FEC is disabled\n  15 second input rate is 21 Kbit/s\n  15
-      second output rate is 28 Kbit/s\n      1127701000 packets input, 330048141411
-      bytes received\n      5798212 broadcasts, 3596982 multicasts\n      0 input
-      errors, 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n      0 pause
-      frames received\n      2248533117 packets output, 2498371279437 bytes sent\n\
-      \      84020339 broadcasts, 19047121 multicasts\n      0 output errors, 0 collisions\n\
+    output: "------------------ show interfaces gi1/0/1 ------------------\ngigabitethernet1/0/1\
+      \ is up (connected)\n  Interface index is 49\n  Hardware is gigabitethernet,\
+      \ MAC address is e8:28:c1:5c:02:41\n  Description: link_to_MGTS_ADSL\n  Interface\
+      \ MTU is 1500\n  Full-duplex, 1000Mbps, link type is auto, media type is 1G-Fiber\n\
+      \  Link is up for 0 days, 0 hours, 0 minutes and -40760306 seconds\n  Advertised\
+      \ link modes: 1000baseT/Full\n  Flow control is off, MDIX mode is normal\n \
+      \ FEC is disabled\n  15 second input rate is 1321 Kbit/s\n  15 second output\
+      \ rate is 1315 Kbit/s\n      108873837739 packets input, 7385782387851 bytes\
+      \ received\n      73700287 broadcasts, 4537873 multicasts\n      0 input errors,\
+      \ 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n      0 pause frames\
+      \ received\n      109055618146 packets output, 7350024234403 bytes sent\n  \
+      \    108034 broadcasts, 1439641 multicasts\n      0 output errors, 0 collisions\n\
       \      0 excessive collisions, 0 late collisions\n      0 pause frames transmitted\n\
-      \      0 symbol errors, 0 carrier, 0 SQE test error\n  Output queues: (queue
-      #: packets passed/packets dropped)\n      1: 0/0\n      2: 0/0\n      3: 0/0\n\
-      \      4: 0/0\n      5: 0/0\n      6: 0/0\n      7: 0/0\n      8: 0/0\n------------------
-      show interfaces gi1/0/4 ------------------\ngigabitethernet1/0/4 is up (connected)\n\
-      \  Interface index is 52\n  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:44\n\
-      \  Description: L2_OST_M9\n  Interface MTU is 1500\n  Full-duplex, 1000Mbps,
-      link type is auto, media type is 1G-Fiber\n  Link is up for 0 days, 0 hours,
-      0 minutes and -39131125 seconds\n  Advertised link modes: 1000baseT/Full\n \
-      \ Flow control is off, MDIX mode is normal\n  FEC is disabled\n  15 second input
-      rate is 674910 Kbit/s\n  15 second output rate is 34908 Kbit/s\n      324252795264
-      packets input, 441557871273045 bytes received\n      670821 broadcasts, 324194976402
-      multicasts\n      1 input errors, 0 FCS, 0 alignment\n      0 oversize, 1 internal
-      MAC\n      0 pause frames received\n      14199838076 packets output, 19261838800370
-      bytes sent\n      262737 broadcasts, 14142282124 multicasts\n      0 output
-      errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n    \
-      \  0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test
-      error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:
-      0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
-      \      7: 0/0\n      8: 0/0\n------------------ show interfaces gi1/0/5 ------------------\n
-      gigabitethernet1/0/5 is down (admin.shutdown)\n  Interface index is 53\n  Hardware
-      is gigabitethernet, MAC address is e8:28:c1:5c:02:45\n  Interface MTU is 1500\n\
-      \  Link is down for 2 days, 18 hours, 37 minutes and 33 seconds\n  Flow control
-      is off, MDIX mode is normal\n  FEC is disabled\n  15 second input rate is 0
-      Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes
-      received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n  Output
-      queues: (queue #: packets passed/packets dropped)\n      1: 0/0\n      2: 0/0\n\
-      \      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n      7: 0/0\n    \
-      \  8: 0/0\n------------------ show interfaces gi1/0/6 ------------------\ngigabitethernet1/0/6
-      is down (admin.shutdown)\n  Interface index is 54\n  Hardware is gigabitethernet,
-      MAC address is e8:28:c1:5c:02:46\n  Interface MTU is 1500\n  Link is down for
-      2 days, 18 hours, 37 minutes and 33 seconds\n  Flow control is off, MDIX mode
-      is normal\n  FEC is disabled\n  15 second input rate is 0 Kbit/s\n  15 second
-      output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n      0 broadcasts,
-      0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n      0 oversize, 0
-      internal MAC\n      0 pause frames received\n      0 packets output, 0 bytes
-      sent\n      0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n\
-      \      0 excessive collisions, 0 late collisions\n      0 pause frames transmitted\n\
-      \      0 symbol errors, 0 carrier, 0 SQE test error\n  Output queues: (queue
-      #: packets passed/packets dropped)\n      1: 0/0\n      2: 0/0\n      3: 0/0\n\
-      \      4: 0/0\n      5: 0/0\n      6: 0/0\n      7: 0/0\n      8: 0/0\n------------------
-      show interfaces gi1/0/7 ------------------\ngigabitethernet1/0/7 is down (admin.shutdown)\n\
-      \  Interface index is 55\n  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:47\n\
-      \  Interface MTU is 1500\n  Link is down for 2 days, 18 hours, 37 minutes and
-      34 seconds\n  Flow control is off, MDIX mode is normal\n  FEC is disabled\n\
-      \  15 second input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n \
-      \     0 packets input, 0 bytes received\n      0 broadcasts, 0 multicasts\n\
-      \      0 input errors, 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n\
-      \      0 pause frames received\n      0 packets output, 0 bytes sent\n     \
-      \ 0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n      0 excessive
-      collisions, 0 late collisions\n      0 pause frames transmitted\n      0 symbol
-      errors, 0 carrier, 0 SQE test error\n  Output queues: (queue #: packets passed/packets
-      dropped)\n      1: 0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n\
-      \      6: 0/0\n      7: 0/0\n      8: 0/0\n------------------ show interfaces
-      gi1/0/8 ------------------\ngigabitethernet1/0/8 is down (admin.shutdown)\n\
-      \  Interface index is 56\n  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:48\n\
-      \  Interface MTU is 1500\n  Link is down for 2 days, 18 hours, 37 minutes and
-      35 seconds\n  Flow control is off, MDIX mode is normal\n  FEC is disabled\n\
-      \  15 second input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n \
-      \     0 packets input, 0 bytes received\n      0 broadcasts, 0 multicasts\n\
-      \      0 input errors, 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n\
-      \      0 pause frames received\n      0 packets output, 0 bytes sent\n     \
-      \ 0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n      0 excessive
-      collisions, 0 late collisions\n      0 pause frames transmitted\n      0 symbol
-      errors, 0 carrier, 0 SQE test error\n  Output queues: (queue #: packets passed/packets
-      dropped)\n      1: 0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n\
-      \      6: 0/0\n      7: 0/0\n      8: 0/0\n------------------ show interfaces
-      gi1/0/9 ------------------\ngigabitethernet1/0/9 is down (admin.shutdown)\n\
-      \  Interface index is 57\n  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:49\n\
-      \  Interface MTU is 1500\n  Link is down for 2 days, 18 hours, 37 minutes and
-      36 seconds\n  Flow control is off, MDIX mode is normal\n  FEC is disabled\n\
-      \  15 second input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n \
-      \     0 packets input, 0 bytes received\n      0 broadcasts, 0 multicasts\n\
-      \      0 input errors, 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n\
-      \      0 pause frames received\n      0 packets output, 0 bytes sent\n     \
-      \ 0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n      0 excessive
-      collisions, 0 late collisions\n      0 pause frames transmitted\n      0 symbol
-      errors, 0 carrier, 0 SQE test error\n  Output queues: (queue #: packets passed/packets
-      dropped)\n      1: 0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n\
-      \      6: 0/0\n      7: 0/0\n      8: 0/0\n------------------ show interfaces
-      gi1/0/10 ------------------\ngigabitethernet1/0/10 is down (admin.shutdown)\n\
-      \  Interface index is 58\n  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:4a\n\
-      \  Interface MTU is 1500\n  Link is down for 2 days, 18 hours, 37 minutes and
-      37 seconds\n  Flow control is off, MDIX mode is normal\n  FEC is disabled\n\
-      \  15 second input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n \
-      \     0 packets input, 0 bytes received\n      0 broadcasts, 0 multicasts\n\
-      \      0 input errors, 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n\
-      \      0 pause frames received\n      0 packets output, 0 bytes sent\n     \
-      \ 0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n      0 excessive
-      collisions, 0 late collisions\n      0 pause frames transmitted\n      0 symbol
-      errors, 0 carrier, 0 SQE test error\n  Output queues: (queue #: packets passed/packets
-      dropped)\n      1: 0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n\
-      \      6: 0/0\n      7: 0/0\n      8: 0/0\n------------------ show interfaces
-      gi1/0/11 ------------------\ngigabitethernet1/0/11 is up (connected)\n  Interface
-      index is 59\n  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:4b\n\
-      \  Description: ASR920-1 - Gi0 (MGMT_BSH2)\n  Interface MTU is 1500\n  Full-duplex,
-      1000Mbps, link type is auto, media type is 1G-Combo-C\n  Link is up for 0 days,
-      0 hours, 0 minutes and -31270588 seconds\n  Advertised link modes: 1000baseT/Full
-      100baseT/Full\n                         100baseT/Half 10baseT/Full\n       \
-      \                  10baseT/Half\n  Flow control is off, MDIX mode is cross\n\
-      \  FEC is disabled\n  15 second input rate is 0 Kbit/s\n  15 second output rate
-      is 0 Kbit/s\n      36368707 packets input, 8017641772 bytes received\n     \
-      \ 12 broadcasts, 11854 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      41766075
-      packets output, 4693865203 bytes sent\n      15107491 broadcasts, 1511338 multicasts\n\
+      \      0 symbol errors, 0 carrier, 0 SQE test error\n  Output queues: (queue\
+      \ #: packets passed/packets dropped)\n      1: 0/0\n      2: 0/0\n      3: 0/0\n\
+      \      4: 0/0\n      5: 0/0\n      6: 0/0\n      7: 0/0\n      8: 0/0\n------------------\
+      \ show interfaces gi1/0/2 ------------------\ngigabitethernet1/0/2 is up (connected)\n\
+      \  Interface index is 50\n  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:42\n\
+      \  Description: LAN (Office)\n  Interface MTU is 1500\n  Full-duplex, 1000Mbps,\
+      \ link type is auto, media type is 1G-Fiber\n  Link is up for 2 days, 18 hours,\
+      \ 37 minutes and 5 seconds\n  Advertised link modes: 1000baseT/Full\n  Flow\
+      \ control is off, MDIX mode is normal\n  FEC is disabled\n  15 second input\
+      \ rate is 168706 Kbit/s\n  15 second output rate is 51870 Kbit/s\n      396190779063\
+      \ packets input, 476968058054193 bytes received\n      2824380 broadcasts, 25865641\
+      \ multicasts\n      0 input errors, 0 FCS, 0 alignment\n      0 oversize, 0\
+      \ internal MAC\n      0 pause frames received\n      330426396743 packets output,\
+      \ 227106169368911 bytes sent\n      38634166 broadcasts, 132202046940 multicasts\n\
       \      0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
-      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test
-      error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:
-      0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
-      \      7: 0/0\n      8: 0/0\n------------------ show interfaces gi1/0/12 ------------------\n
-      gigabitethernet1/0/12 is up (connected)\n  Interface index is 60\n  Hardware
-      is gigabitethernet, MAC address is e8:28:c1:5c:02:4c\n  Description: ASR920-2
-      - Gi0 (MGMT_BSH2)\n  Interface MTU is 1500\n  Full-duplex, 1000Mbps, link type
-      is auto, media type is 1G-Combo-C\n  Link is up for 0 days, 0 hours, 0 minutes
-      and -31274488 seconds\n  Advertised link modes: 1000baseT/Full 100baseT/Full\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:\
+      \ 0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
+      \      7: 0/0\n      8: 0/0\n------------------ show interfaces gi1/0/3 ------------------\n\
+      \ gigabitethernet1/0/3 is up (connected)\n  Interface index is 51\n  Hardware\
+      \ is gigabitethernet, MAC address is e8:28:c1:5c:02:43\n  Description: Eltex1124M\
+      \ - gi1/0/1\n  Interface MTU is 1500\n  Full-duplex, 1000Mbps, link type is\
+      \ auto, media type is 1G-Fiber\n  Link is up for 0 days, 0 hours, 0 minutes\
+      \ and -12007484 seconds\n  Advertised link modes: 1000baseT/Full\n  Flow control\
+      \ is off, MDIX mode is normal\n  FEC is disabled\n  15 second input rate is\
+      \ 21 Kbit/s\n  15 second output rate is 28 Kbit/s\n      1127701000 packets\
+      \ input, 330048141411 bytes received\n      5798212 broadcasts, 3596982 multicasts\n\
+      \      0 input errors, 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n\
+      \      0 pause frames received\n      2248533117 packets output, 2498371279437\
+      \ bytes sent\n      84020339 broadcasts, 19047121 multicasts\n      0 output\
+      \ errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n  \
+      \    0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:\
+      \ 0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
+      \      7: 0/0\n      8: 0/0\n------------------ show interfaces gi1/0/4 ------------------\n\
+      gigabitethernet1/0/4 is up (connected)\n  Interface index is 52\n  Hardware\
+      \ is gigabitethernet, MAC address is e8:28:c1:5c:02:44\n  Description: L2_OST_M9\n\
+      \  Interface MTU is 1500\n  Full-duplex, 1000Mbps, link type is auto, media\
+      \ type is 1G-Fiber\n  Link is up for 0 days, 0 hours, 0 minutes and -39131125\
+      \ seconds\n  Advertised link modes: 1000baseT/Full\n  Flow control is off, MDIX\
+      \ mode is normal\n  FEC is disabled\n  15 second input rate is 674910 Kbit/s\n\
+      \  15 second output rate is 34908 Kbit/s\n      324252795264 packets input,\
+      \ 441557871273045 bytes received\n      670821 broadcasts, 324194976402 multicasts\n\
+      \      1 input errors, 0 FCS, 0 alignment\n      0 oversize, 1 internal MAC\n\
+      \      0 pause frames received\n      14199838076 packets output, 19261838800370\
+      \ bytes sent\n      262737 broadcasts, 14142282124 multicasts\n      0 output\
+      \ errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n  \
+      \    0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:\
+      \ 0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
+      \      7: 0/0\n      8: 0/0\n------------------ show interfaces gi1/0/5 ------------------\n\
+      \ gigabitethernet1/0/5 is down (admin.shutdown)\n  Interface index is 53\n \
+      \ Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:45\n  Interface\
+      \ MTU is 1500\n  Link is down for 2 days, 18 hours, 37 minutes and 33 seconds\n\
+      \  Flow control is off, MDIX mode is normal\n  FEC is disabled\n  15 second\
+      \ input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets\
+      \ input, 0 bytes received\n      0 broadcasts, 0 multicasts\n      0 input errors,\
+      \ 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n      0 pause frames\
+      \ received\n      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n\
+      \      0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:\
+      \ 0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
+      \      7: 0/0\n      8: 0/0\n------------------ show interfaces gi1/0/6 ------------------\n\
+      gigabitethernet1/0/6 is down (admin.shutdown)\n  Interface index is 54\n  Hardware\
+      \ is gigabitethernet, MAC address is e8:28:c1:5c:02:46\n  Interface MTU is 1500\n\
+      \  Link is down for 2 days, 18 hours, 37 minutes and 33 seconds\n  Flow control\
+      \ is off, MDIX mode is normal\n  FEC is disabled\n  15 second input rate is\
+      \ 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes\
+      \ received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0\
+      \ alignment\n      0 oversize, 0 internal MAC\n      0 pause frames received\n\
+      \      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n  \
+      \    0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:\
+      \ 0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
+      \      7: 0/0\n      8: 0/0\n------------------ show interfaces gi1/0/7 ------------------\n\
+      gigabitethernet1/0/7 is down (admin.shutdown)\n  Interface index is 55\n  Hardware\
+      \ is gigabitethernet, MAC address is e8:28:c1:5c:02:47\n  Interface MTU is 1500\n\
+      \  Link is down for 2 days, 18 hours, 37 minutes and 34 seconds\n  Flow control\
+      \ is off, MDIX mode is normal\n  FEC is disabled\n  15 second input rate is\
+      \ 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes\
+      \ received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0\
+      \ alignment\n      0 oversize, 0 internal MAC\n      0 pause frames received\n\
+      \      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n  \
+      \    0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:\
+      \ 0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
+      \      7: 0/0\n      8: 0/0\n------------------ show interfaces gi1/0/8 ------------------\n\
+      gigabitethernet1/0/8 is down (admin.shutdown)\n  Interface index is 56\n  Hardware\
+      \ is gigabitethernet, MAC address is e8:28:c1:5c:02:48\n  Interface MTU is 1500\n\
+      \  Link is down for 2 days, 18 hours, 37 minutes and 35 seconds\n  Flow control\
+      \ is off, MDIX mode is normal\n  FEC is disabled\n  15 second input rate is\
+      \ 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes\
+      \ received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0\
+      \ alignment\n      0 oversize, 0 internal MAC\n      0 pause frames received\n\
+      \      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n  \
+      \    0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:\
+      \ 0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
+      \      7: 0/0\n      8: 0/0\n------------------ show interfaces gi1/0/9 ------------------\n\
+      gigabitethernet1/0/9 is down (admin.shutdown)\n  Interface index is 57\n  Hardware\
+      \ is gigabitethernet, MAC address is e8:28:c1:5c:02:49\n  Interface MTU is 1500\n\
+      \  Link is down for 2 days, 18 hours, 37 minutes and 36 seconds\n  Flow control\
+      \ is off, MDIX mode is normal\n  FEC is disabled\n  15 second input rate is\
+      \ 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes\
+      \ received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0\
+      \ alignment\n      0 oversize, 0 internal MAC\n      0 pause frames received\n\
+      \      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n  \
+      \    0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:\
+      \ 0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
+      \      7: 0/0\n      8: 0/0\n------------------ show interfaces gi1/0/10 ------------------\n\
+      gigabitethernet1/0/10 is down (admin.shutdown)\n  Interface index is 58\n  Hardware\
+      \ is gigabitethernet, MAC address is e8:28:c1:5c:02:4a\n  Interface MTU is 1500\n\
+      \  Link is down for 2 days, 18 hours, 37 minutes and 37 seconds\n  Flow control\
+      \ is off, MDIX mode is normal\n  FEC is disabled\n  15 second input rate is\
+      \ 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes\
+      \ received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0\
+      \ alignment\n      0 oversize, 0 internal MAC\n      0 pause frames received\n\
+      \      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n  \
+      \    0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:\
+      \ 0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
+      \      7: 0/0\n      8: 0/0\n------------------ show interfaces gi1/0/11 ------------------\n\
+      gigabitethernet1/0/11 is up (connected)\n  Interface index is 59\n  Hardware\
+      \ is gigabitethernet, MAC address is e8:28:c1:5c:02:4b\n  Description: ASR920-1\
+      \ - Gi0 (MGMT_BSH2)\n  Interface MTU is 1500\n  Full-duplex, 1000Mbps, link\
+      \ type is auto, media type is 1G-Combo-C\n  Link is up for 0 days, 0 hours,\
+      \ 0 minutes and -31270588 seconds\n  Advertised link modes: 1000baseT/Full 100baseT/Full\n\
+      \                         100baseT/Half 10baseT/Full\n                     \
+      \    10baseT/Half\n  Flow control is off, MDIX mode is cross\n  FEC is disabled\n\
+      \  15 second input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n \
+      \     36368707 packets input, 8017641772 bytes received\n      12 broadcasts,\
+      \ 11854 multicasts\n      0 input errors, 0 FCS, 0 alignment\n      0 oversize,\
+      \ 0 internal MAC\n      0 pause frames received\n      41766075 packets output,\
+      \ 4693865203 bytes sent\n      15107491 broadcasts, 1511338 multicasts\n   \
+      \   0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:\
+      \ 0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
+      \      7: 0/0\n      8: 0/0\n------------------ show interfaces gi1/0/12 ------------------\n\
+      \ gigabitethernet1/0/12 is up (connected)\n  Interface index is 60\n  Hardware\
+      \ is gigabitethernet, MAC address is e8:28:c1:5c:02:4c\n  Description: ASR920-2\
+      \ - Gi0 (MGMT_BSH2)\n  Interface MTU is 1500\n  Full-duplex, 1000Mbps, link\
+      \ type is auto, media type is 1G-Combo-C\n  Link is up for 0 days, 0 hours,\
+      \ 0 minutes and -31274488 seconds\n  Advertised link modes: 1000baseT/Full 100baseT/Full\n\
       \                         100baseT/Half 10baseT/Full\n                     \
       \    10baseT/Half\n  Flow control is off, MDIX mode is normal\n  FEC is disabled\n\
       \  15 second input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n \
-      \     36635681 packets input, 8790158609 bytes received\n      12 broadcasts,
-      11833 multicasts\n      0 input errors, 0 FCS, 0 alignment\n      0 oversize,
-      0 internal MAC\n      0 pause frames received\n      41798808 packets output,
-      4773894689 bytes sent\n      15107508 broadcasts, 1511357 multicasts\n     \
-      \ 0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
-      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test
-      error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:
-      0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
-      \      7: 0/0\n      8: 0/0\n------------------ show interfaces gi1/0/13 ------------------\n
-      gigabitethernet1/0/13 is down (admin.shutdown)\n  Interface index is 61\n  Hardware
-      is gigabitethernet, MAC address is e8:28:c1:5c:02:4d\n  Interface MTU is 1500\n\
-      \  Link is down for 2 days, 18 hours, 37 minutes and 40 seconds\n  Flow control
-      is off, MDIX mode is normal\n  FEC is disabled\n  15 second input rate is 0
-      Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes
-      received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n  Output
-      queues: (queue #: packets passed/packets dropped)\n      1: 0/0\n      2: 0/0\n\
-      \      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n      7: 0/0\n    \
-      \  8: 0/0\n------------------ show interfaces gi1/0/14 ------------------\n
-      gigabitethernet1/0/14 is down (admin.shutdown)\n  Interface index is 62\n  Hardware
-      is gigabitethernet, MAC address is e8:28:c1:5c:02:4e\n  Interface MTU is 1500\n\
-      \  Link is down for 2 days, 18 hours, 37 minutes and 41 seconds\n  Flow control
-      is off, MDIX mode is normal\n  FEC is disabled\n  15 second input rate is 0
-      Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes
-      received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n  Output
-      queues: (queue #: packets passed/packets dropped)\n      1: 0/0\n      2: 0/0\n\
-      \      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n      7: 0/0\n    \
-      \  8: 0/0\n------------------ show interfaces gi1/0/15 ------------------\n
-      gigabitethernet1/0/15 is down (admin.shutdown)\n  Interface index is 63\n  Hardware
-      is gigabitethernet, MAC address is e8:28:c1:5c:02:4f\n  Interface MTU is 1500\n\
-      \  Link is down for 2 days, 18 hours, 37 minutes and 43 seconds\n  Flow control
-      is off, MDIX mode is normal\n  FEC is disabled\n  15 second input rate is 0
-      Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes
-      received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n  Output
-      queues: (queue #: packets passed/packets dropped)\n      1: 0/0\n      2: 0/0\n\
-      \      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n      7: 0/0\n    \
-      \  8: 0/0\n------------------ show interfaces gi1/0/16 ------------------\n
-      gigabitethernet1/0/16 is down (admin.shutdown)\n  Interface index is 64\n  Hardware
-      is gigabitethernet, MAC address is e8:28:c1:5c:02:50\n  Interface MTU is 1500\n\
-      \  Link is down for 2 days, 18 hours, 37 minutes and 45 seconds\n  Flow control
-      is off, MDIX mode is normal\n  FEC is disabled\n  15 second input rate is 0
-      Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes
-      received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n  Output
-      queues: (queue #: packets passed/packets dropped)\n      1: 0/0\n      2: 0/0\n\
-      \      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n      7: 0/0\n    \
-      \  8: 0/0\n------------------ show interfaces gi1/0/17 ------------------\n
-      gigabitethernet1/0/17 is down (admin.shutdown)\n  Interface index is 65\n  Hardware
-      is gigabitethernet, MAC address is e8:28:c1:5c:02:51\n  Interface MTU is 1500\n\
-      \  Link is down for 2 days, 18 hours, 37 minutes and 46 seconds\n  Flow control
-      is off, MDIX mode is normal\n  FEC is disabled\n  15 second input rate is 0
-      Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes
-      received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n  Output
-      queues: (queue #: packets passed/packets dropped)\n      1: 0/0\n      2: 0/0\n\
-      \      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n      7: 0/0\n    \
-      \  8: 0/0\n------------------ show interfaces gi1/0/18 ------------------\n
-      gigabitethernet1/0/18 is down (admin.shutdown)\n  Interface index is 66\n  Hardware
-      is gigabitethernet, MAC address is e8:28:c1:5c:02:52\n  Interface MTU is 1500\n\
-      \  Link is down for 2 days, 18 hours, 37 minutes and 47 seconds\n  Flow control
-      is off, MDIX mode is normal\n  FEC is disabled\n  15 second input rate is 0
-      Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes
-      received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n  Output
-      queues: (queue #: packets passed/packets dropped)\n      1: 0/0\n      2: 0/0\n\
-      \      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n      7: 0/0\n    \
-      \  8: 0/0\n------------------ show interfaces gi1/0/19 ------------------\n
-      gigabitethernet1/0/19 is down (admin.shutdown)\n  Interface index is 67\n  Hardware
-      is gigabitethernet, MAC address is e8:28:c1:5c:02:53\n  Interface MTU is 1500\n\
-      \  Link is down for 2 days, 18 hours, 37 minutes and 48 seconds\n  Flow control
-      is off, MDIX mode is normal\n  FEC is disabled\n  15 second input rate is 0
-      Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes
-      received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n  Output
-      queues: (queue #: packets passed/packets dropped)\n      1: 0/0\n      2: 0/0\n\
-      \      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n      7: 0/0\n    \
-      \  8: 0/0\n------------------ show interfaces gi1/0/20 ------------------\n
-      gigabitethernet1/0/20 is down (admin.shutdown)\n  Interface index is 68\n  Hardware
-      is gigabitethernet, MAC address is e8:28:c1:5c:02:54\n  Interface MTU is 1500\n\
-      \  Link is down for 2 days, 18 hours, 37 minutes and 50 seconds\n  Flow control
-      is off, MDIX mode is normal\n  FEC is disabled\n  15 second input rate is 0
-      Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes
-      received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n  Output
-      queues: (queue #: packets passed/packets dropped)\n      1: 0/0\n      2: 0/0\n\
-      \      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n      7: 0/0\n    \
-      \  8: 0/0\n------------------ show interfaces gi1/0/21 ------------------\n
-      gigabitethernet1/0/21 is down (admin.shutdown)\n  Interface index is 69\n  Hardware
-      is gigabitethernet, MAC address is e8:28:c1:5c:02:55\n  Interface MTU is 1500\n\
-      \  Link is down for 2 days, 18 hours, 37 minutes and 51 seconds\n  Flow control
-      is off, MDIX mode is normal\n  FEC is disabled\n  15 second input rate is 0
-      Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes
-      received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n  Output
-      queues: (queue #: packets passed/packets dropped)\n      1: 0/0\n      2: 0/0\n\
-      \      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n      7: 0/0\n    \
-      \  8: 0/0\n------------------ show interfaces gi1/0/22 ------------------\n
-      gigabitethernet1/0/22 is down (admin.shutdown)\n  Interface index is 70\n  Hardware
-      is gigabitethernet, MAC address is e8:28:c1:5c:02:56\n  Interface MTU is 1500\n\
-      \  Link is down for 2 days, 18 hours, 37 minutes and 52 seconds\n  Flow control
-      is off, MDIX mode is normal\n  FEC is disabled\n  15 second input rate is 0
-      Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes
-      received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n  Output
-      queues: (queue #: packets passed/packets dropped)\n      1: 0/0\n      2: 0/0\n\
-      \      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n      7: 0/0\n    \
-      \  8: 0/0\n------------------ show interfaces gi1/0/23 ------------------\n
-      gigabitethernet1/0/23 is down (admin.shutdown)\n  Interface index is 71\n  Hardware
-      is gigabitethernet, MAC address is e8:28:c1:5c:02:57\n  Interface MTU is 1500\n\
-      \  Link is down for 2 days, 18 hours, 37 minutes and 53 seconds\n  Flow control
-      is off, MDIX mode is unknown\n  FEC is disabled\n  15 second input rate is 0
-      Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes
-      received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n  Output
-      queues: (queue #: packets passed/packets dropped)\n      1: 0/0\n      2: 0/0\n\
-      \      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n      7: 0/0\n    \
-      \  8: 0/0\n------------------ show interfaces gi1/0/24 ------------------\n
-      gigabitethernet1/0/24 is down (admin.shutdown)\n  Interface index is 72\n  Hardware
-      is gigabitethernet, MAC address is e8:28:c1:5c:02:58\n  Interface MTU is 1500\n\
-      \  Link is down for 2 days, 18 hours, 38 minutes and 0 seconds\n  Flow control
-      is off, MDIX mode is unknown\n  FEC is disabled\n  15 second input rate is 0
-      Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes
-      received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n  Output
-      queues: (queue #: packets passed/packets dropped)\n      1: 0/0\n      2: 0/0\n\
-      \      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n      7: 0/0\n    \
-      \  8: 0/0\n------------------ show interfaces te1/0/1 ------------------\ntengigabitethernet1/0/1
-      is up (connected)\n  Interface index is 105\n  Hardware is tengigabitethernet,
-      MAC address is e8:28:c1:5c:02:59\n  Description: N9K-1 - eth1/18 (Po1)\n  Interface
-      MTU is 1500\n  Full-duplex, 10000Mbps, link type is 10000Mbps full-duplex, media
-      type is 10G-Fiber\n  Link is up for 2 days, 18 hours, 38 minutes and 0 seconds\n\
-      \  Flow control is off, MDIX mode is normal\n  FEC is disabled\n  5 second input
-      rate is 51910 Kbit/s\n  5 second output rate is 344782 Kbit/s\n      274085380822
-      packets input, 164119962658503 bytes received\n      243661784 broadcasts, 105648246049
-      multicasts\n      0 input errors, 0 FCS, 0 alignment\n      0 oversize, 0 internal
-      MAC\n      0 pause frames received\n      346719236719 packets output, 371416643096885
-      bytes sent\n      9147208 broadcasts, 123471943176 multicasts\n      0 output
-      errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n    \
-      \  0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test
-      error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:
-      0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
-      \      7: 0/0\n      8: 0/0\n------------------ show interfaces te1/0/2 ------------------\n
-      tengigabitethernet1/0/2 is up (connected)\n  Interface index is 106\n  Hardware
-      is tengigabitethernet, MAC address is e8:28:c1:5c:02:5a\n  Description: N9K-1
-      - eth1/19 (Po1)\n  Interface MTU is 1500\n  Full-duplex, 10000Mbps, link type
-      is 10000Mbps full-duplex, media type is 10G-Fiber\n  Link is up for 0 days,
-      0 hours, 0 minutes and -36668287 seconds\n  Flow control is off, MDIX mode is
-      normal\n  FEC is disabled\n  5 second input rate is 36277 Kbit/s\n  5 second
-      output rate is 499662 Kbit/s\n      93081707442 packets input, 51410670602855
-      bytes received\n      90432414 broadcasts, 25421955562 multicasts\n      56
-      input errors, 38 FCS, 0 alignment\n      0 oversize, 16 internal MAC\n     \
-      \ 0 pause frames received\n      314234071944 packets output, 371471867677116
-      bytes sent\n      3345667 broadcasts, 200541023323 multicasts\n      0 output
-      errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n    \
-      \  0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test
-      error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:
-      0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
-      \      7: 0/0\n      8: 0/0\n------------------ show interfaces te1/0/3 ------------------\n
-      tengigabitethernet1/0/3 is down (admin.shutdown)\n  Interface index is 107\n\
-      \  Hardware is tengigabitethernet, MAC address is e8:28:c1:5c:02:5b\n  Interface
-      MTU is 1500\n  Link is down for 2 days, 18 hours, 38 minutes and 3 seconds\n\
-      \  Flow control is off, MDIX mode is normal\n  FEC is disabled\n  15 second
-      input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets
-      input, 0 bytes received\n      0 broadcasts, 0 multicasts\n      0 input errors,
-      0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n      0 pause frames received\n\
-      \      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n  \
-      \    0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
-      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test
-      error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:
-      0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
-      \      7: 0/0\n      8: 0/0\n------------------ show interfaces te1/0/4 ------------------\n
-      tengigabitethernet1/0/4 is up (connected)\n  Interface index is 108\n  Hardware
-      is tengigabitethernet, MAC address is e8:28:c1:5c:02:5c\n  Description: Eltex3124-2
-      - te1/0/1\n  Interface MTU is 1500\n  Full-duplex, 10000Mbps, link type is 10000Mbps
-      full-duplex, media type is 10G-Fiber\n  Link is up for 2 days, 18 hours, 38
-      minutes and 3 seconds\n  Flow control is off, MDIX mode is normal\n  FEC is
-      disabled\n  15 second input rate is 0 Kbit/s\n  15 second output rate is 1 Kbit/s\n\
-      \      49640783 packets input, 4437603028 bytes received\n      1454 broadcasts,
-      23188937 multicasts\n      2 input errors, 1 FCS, 0 alignment\n      0 oversize,
-      1 internal MAC\n      0 pause frames received\n      73595762 packets output,
-      9744002055 bytes sent\n      26740544 broadcasts, 20413128 multicasts\n    \
-      \  0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
-      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test
-      error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:
-      0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
-      \      7: 0/0\n      8: 0/0\n------------------ show interfaces Po1 ------------------\n
-      Po1 is up (connected)\n  Interface index is 1000\n  Hardware is aggregated ethernet
-      interface(s), MAC address is e8:28:c1:5c:02:41\n  Description: N9K-1 - po25\n\
-      \  Interface MTU is 1500\n  Link is up for 2 days, 18 hours, 38 minutes and
-      0 seconds\n    Link aggregation type is LACP\n    No. of members in this port-channel:
-      2 (active 2)\n      tengigabitethernet1/0/1, full-duplex, LACP active, 10000Mbps
-      (active)\n      tengigabitethernet1/0/2, full-duplex, LACP active, 10000Mbps
-      (active)\n    Active bandwidth is 20000Mbps\n  15 second input rate is 88280
-      Kbit/s\n  15 second output rate is 848490 Kbit/s\n      367167172559 packets
-      input, 215530683039427 bytes received\n      334094237 broadcasts, 131070234700
-      multicasts\n      56 input errors, 38 FCS, 0 alignment\n      0 oversize, 16
-      internal MAC\n      0 pause frames received\n      660953658224 packets output,
-      742888970320949 bytes sent\n      12492875 broadcasts, 324013229657 multicasts\n\
+      \     36635681 packets input, 8790158609 bytes received\n      12 broadcasts,\
+      \ 11833 multicasts\n      0 input errors, 0 FCS, 0 alignment\n      0 oversize,\
+      \ 0 internal MAC\n      0 pause frames received\n      41798808 packets output,\
+      \ 4773894689 bytes sent\n      15107508 broadcasts, 1511357 multicasts\n   \
+      \   0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:\
+      \ 0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
+      \      7: 0/0\n      8: 0/0\n------------------ show interfaces gi1/0/13 ------------------\n\
+      \ gigabitethernet1/0/13 is down (admin.shutdown)\n  Interface index is 61\n\
+      \  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:4d\n  Interface\
+      \ MTU is 1500\n  Link is down for 2 days, 18 hours, 37 minutes and 40 seconds\n\
+      \  Flow control is off, MDIX mode is normal\n  FEC is disabled\n  15 second\
+      \ input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets\
+      \ input, 0 bytes received\n      0 broadcasts, 0 multicasts\n      0 input errors,\
+      \ 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n      0 pause frames\
+      \ received\n      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n\
       \      0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
-      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test
-      error\n------------------ show interfaces Po2 ------------------\nPo2 is down
-      (not connected)\n  Interface index is 1001\n  Hardware is aggregated ethernet
-      interface(s), MAC address is e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15
-      second input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n      0
-      packets input, 0 bytes received\n      0 broadcasts, 0 multicasts\n      0 input
-      errors, 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n      0 pause
-      frames received\n      0 packets output, 0 bytes sent\n      0 broadcasts, 0
-      multicasts\n      0 output errors, 0 collisions\n      0 excessive collisions,
-      0 late collisions\n      0 pause frames transmitted\n      0 symbol errors,
-      0 carrier, 0 SQE test error\n------------------ show interfaces Po3 ------------------\n
-      Po3 is down (not connected)\n  Interface index is 1002\n  Hardware is aggregated
-      ethernet interface(s), MAC address is e8:28:c1:5c:02:40\n  Interface MTU is
-      1500\n  15 second input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:\
+      \ 0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
+      \      7: 0/0\n      8: 0/0\n------------------ show interfaces gi1/0/14 ------------------\n\
+      \ gigabitethernet1/0/14 is down (admin.shutdown)\n  Interface index is 62\n\
+      \  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:4e\n  Interface\
+      \ MTU is 1500\n  Link is down for 2 days, 18 hours, 37 minutes and 41 seconds\n\
+      \  Flow control is off, MDIX mode is normal\n  FEC is disabled\n  15 second\
+      \ input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets\
+      \ input, 0 bytes received\n      0 broadcasts, 0 multicasts\n      0 input errors,\
+      \ 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n      0 pause frames\
+      \ received\n      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n\
+      \      0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:\
+      \ 0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
+      \      7: 0/0\n      8: 0/0\n------------------ show interfaces gi1/0/15 ------------------\n\
+      \ gigabitethernet1/0/15 is down (admin.shutdown)\n  Interface index is 63\n\
+      \  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:4f\n  Interface\
+      \ MTU is 1500\n  Link is down for 2 days, 18 hours, 37 minutes and 43 seconds\n\
+      \  Flow control is off, MDIX mode is normal\n  FEC is disabled\n  15 second\
+      \ input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets\
+      \ input, 0 bytes received\n      0 broadcasts, 0 multicasts\n      0 input errors,\
+      \ 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n      0 pause frames\
+      \ received\n      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n\
+      \      0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:\
+      \ 0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
+      \      7: 0/0\n      8: 0/0\n------------------ show interfaces gi1/0/16 ------------------\n\
+      \ gigabitethernet1/0/16 is down (admin.shutdown)\n  Interface index is 64\n\
+      \  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:50\n  Interface\
+      \ MTU is 1500\n  Link is down for 2 days, 18 hours, 37 minutes and 45 seconds\n\
+      \  Flow control is off, MDIX mode is normal\n  FEC is disabled\n  15 second\
+      \ input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets\
+      \ input, 0 bytes received\n      0 broadcasts, 0 multicasts\n      0 input errors,\
+      \ 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n      0 pause frames\
+      \ received\n      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n\
+      \      0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:\
+      \ 0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
+      \      7: 0/0\n      8: 0/0\n------------------ show interfaces gi1/0/17 ------------------\n\
+      \ gigabitethernet1/0/17 is down (admin.shutdown)\n  Interface index is 65\n\
+      \  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:51\n  Interface\
+      \ MTU is 1500\n  Link is down for 2 days, 18 hours, 37 minutes and 46 seconds\n\
+      \  Flow control is off, MDIX mode is normal\n  FEC is disabled\n  15 second\
+      \ input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets\
+      \ input, 0 bytes received\n      0 broadcasts, 0 multicasts\n      0 input errors,\
+      \ 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n      0 pause frames\
+      \ received\n      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n\
+      \      0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:\
+      \ 0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
+      \      7: 0/0\n      8: 0/0\n------------------ show interfaces gi1/0/18 ------------------\n\
+      \ gigabitethernet1/0/18 is down (admin.shutdown)\n  Interface index is 66\n\
+      \  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:52\n  Interface\
+      \ MTU is 1500\n  Link is down for 2 days, 18 hours, 37 minutes and 47 seconds\n\
+      \  Flow control is off, MDIX mode is normal\n  FEC is disabled\n  15 second\
+      \ input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets\
+      \ input, 0 bytes received\n      0 broadcasts, 0 multicasts\n      0 input errors,\
+      \ 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n      0 pause frames\
+      \ received\n      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n\
+      \      0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:\
+      \ 0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
+      \      7: 0/0\n      8: 0/0\n------------------ show interfaces gi1/0/19 ------------------\n\
+      \ gigabitethernet1/0/19 is down (admin.shutdown)\n  Interface index is 67\n\
+      \  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:53\n  Interface\
+      \ MTU is 1500\n  Link is down for 2 days, 18 hours, 37 minutes and 48 seconds\n\
+      \  Flow control is off, MDIX mode is normal\n  FEC is disabled\n  15 second\
+      \ input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets\
+      \ input, 0 bytes received\n      0 broadcasts, 0 multicasts\n      0 input errors,\
+      \ 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n      0 pause frames\
+      \ received\n      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n\
+      \      0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:\
+      \ 0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
+      \      7: 0/0\n      8: 0/0\n------------------ show interfaces gi1/0/20 ------------------\n\
+      \ gigabitethernet1/0/20 is down (admin.shutdown)\n  Interface index is 68\n\
+      \  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:54\n  Interface\
+      \ MTU is 1500\n  Link is down for 2 days, 18 hours, 37 minutes and 50 seconds\n\
+      \  Flow control is off, MDIX mode is normal\n  FEC is disabled\n  15 second\
+      \ input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets\
+      \ input, 0 bytes received\n      0 broadcasts, 0 multicasts\n      0 input errors,\
+      \ 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n      0 pause frames\
+      \ received\n      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n\
+      \      0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:\
+      \ 0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
+      \      7: 0/0\n      8: 0/0\n------------------ show interfaces gi1/0/21 ------------------\n\
+      \ gigabitethernet1/0/21 is down (admin.shutdown)\n  Interface index is 69\n\
+      \  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:55\n  Interface\
+      \ MTU is 1500\n  Link is down for 2 days, 18 hours, 37 minutes and 51 seconds\n\
+      \  Flow control is off, MDIX mode is normal\n  FEC is disabled\n  15 second\
+      \ input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets\
+      \ input, 0 bytes received\n      0 broadcasts, 0 multicasts\n      0 input errors,\
+      \ 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n      0 pause frames\
+      \ received\n      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n\
+      \      0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:\
+      \ 0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
+      \      7: 0/0\n      8: 0/0\n------------------ show interfaces gi1/0/22 ------------------\n\
+      \ gigabitethernet1/0/22 is down (admin.shutdown)\n  Interface index is 70\n\
+      \  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:56\n  Interface\
+      \ MTU is 1500\n  Link is down for 2 days, 18 hours, 37 minutes and 52 seconds\n\
+      \  Flow control is off, MDIX mode is normal\n  FEC is disabled\n  15 second\
+      \ input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets\
+      \ input, 0 bytes received\n      0 broadcasts, 0 multicasts\n      0 input errors,\
+      \ 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n      0 pause frames\
+      \ received\n      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n\
+      \      0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:\
+      \ 0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
+      \      7: 0/0\n      8: 0/0\n------------------ show interfaces gi1/0/23 ------------------\n\
+      \ gigabitethernet1/0/23 is down (admin.shutdown)\n  Interface index is 71\n\
+      \  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:57\n  Interface\
+      \ MTU is 1500\n  Link is down for 2 days, 18 hours, 37 minutes and 53 seconds\n\
+      \  Flow control is off, MDIX mode is unknown\n  FEC is disabled\n  15 second\
+      \ input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets\
+      \ input, 0 bytes received\n      0 broadcasts, 0 multicasts\n      0 input errors,\
+      \ 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n      0 pause frames\
+      \ received\n      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n\
+      \      0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:\
+      \ 0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
+      \      7: 0/0\n      8: 0/0\n------------------ show interfaces gi1/0/24 ------------------\n\
+      \ gigabitethernet1/0/24 is down (admin.shutdown)\n  Interface index is 72\n\
+      \  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:58\n  Interface\
+      \ MTU is 1500\n  Link is down for 2 days, 18 hours, 38 minutes and 0 seconds\n\
+      \  Flow control is off, MDIX mode is unknown\n  FEC is disabled\n  15 second\
+      \ input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets\
+      \ input, 0 bytes received\n      0 broadcasts, 0 multicasts\n      0 input errors,\
+      \ 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n      0 pause frames\
+      \ received\n      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n\
+      \      0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:\
+      \ 0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
+      \      7: 0/0\n      8: 0/0\n------------------ show interfaces te1/0/1 ------------------\n\
+      tengigabitethernet1/0/1 is up (connected)\n  Interface index is 105\n  Hardware\
+      \ is tengigabitethernet, MAC address is e8:28:c1:5c:02:59\n  Description: N9K-1\
+      \ - eth1/18 (Po1)\n  Interface MTU is 1500\n  Full-duplex, 10000Mbps, link type\
+      \ is 10000Mbps full-duplex, media type is 10G-Fiber\n  Link is up for 2 days,\
+      \ 18 hours, 38 minutes and 0 seconds\n  Flow control is off, MDIX mode is normal\n\
+      \  FEC is disabled\n  5 second input rate is 51910 Kbit/s\n  5 second output\
+      \ rate is 344782 Kbit/s\n      274085380822 packets input, 164119962658503 bytes\
+      \ received\n      243661784 broadcasts, 105648246049 multicasts\n      0 input\
+      \ errors, 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n      0 pause\
+      \ frames received\n      346719236719 packets output, 371416643096885 bytes\
+      \ sent\n      9147208 broadcasts, 123471943176 multicasts\n      0 output errors,\
+      \ 0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause\
+      \ frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n \
+      \ Output queues: (queue #: packets passed/packets dropped)\n      1: 0/0\n \
+      \     2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n     \
+      \ 7: 0/0\n      8: 0/0\n------------------ show interfaces te1/0/2 ------------------\n\
+      \ tengigabitethernet1/0/2 is up (connected)\n  Interface index is 106\n  Hardware\
+      \ is tengigabitethernet, MAC address is e8:28:c1:5c:02:5a\n  Description: N9K-1\
+      \ - eth1/19 (Po1)\n  Interface MTU is 1500\n  Full-duplex, 10000Mbps, link type\
+      \ is 10000Mbps full-duplex, media type is 10G-Fiber\n  Link is up for 0 days,\
+      \ 0 hours, 0 minutes and -36668287 seconds\n  Flow control is off, MDIX mode\
+      \ is normal\n  FEC is disabled\n  5 second input rate is 36277 Kbit/s\n  5 second\
+      \ output rate is 499662 Kbit/s\n      93081707442 packets input, 51410670602855\
+      \ bytes received\n      90432414 broadcasts, 25421955562 multicasts\n      56\
+      \ input errors, 38 FCS, 0 alignment\n      0 oversize, 16 internal MAC\n   \
+      \   0 pause frames received\n      314234071944 packets output, 371471867677116\
+      \ bytes sent\n      3345667 broadcasts, 200541023323 multicasts\n      0 output\
+      \ errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n  \
+      \    0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:\
+      \ 0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
+      \      7: 0/0\n      8: 0/0\n------------------ show interfaces te1/0/3 ------------------\n\
+      \ tengigabitethernet1/0/3 is down (admin.shutdown)\n  Interface index is 107\n\
+      \  Hardware is tengigabitethernet, MAC address is e8:28:c1:5c:02:5b\n  Interface\
+      \ MTU is 1500\n  Link is down for 2 days, 18 hours, 38 minutes and 3 seconds\n\
+      \  Flow control is off, MDIX mode is normal\n  FEC is disabled\n  15 second\
+      \ input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets\
+      \ input, 0 bytes received\n      0 broadcasts, 0 multicasts\n      0 input errors,\
+      \ 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n      0 pause frames\
+      \ received\n      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n\
+      \      0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n  Output queues: (queue #: packets passed/packets dropped)\n      1:\
+      \ 0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5: 0/0\n      6: 0/0\n\
+      \      7: 0/0\n      8: 0/0\n------------------ show interfaces te1/0/4 ------------------\n\
+      \ tengigabitethernet1/0/4 is up (connected)\n  Interface index is 108\n  Hardware\
+      \ is tengigabitethernet, MAC address is e8:28:c1:5c:02:5c\n  Description: Eltex3124-2\
+      \ - te1/0/1\n  Interface MTU is 1500\n  Full-duplex, 10000Mbps, link type is\
+      \ 10000Mbps full-duplex, media type is 10G-Fiber\n  Link is up for 2 days, 18\
+      \ hours, 38 minutes and 3 seconds\n  Flow control is off, MDIX mode is normal\n\
+      \  FEC is disabled\n  15 second input rate is 0 Kbit/s\n  15 second output rate\
+      \ is 1 Kbit/s\n      49640783 packets input, 4437603028 bytes received\n   \
+      \   1454 broadcasts, 23188937 multicasts\n      2 input errors, 1 FCS, 0 alignment\n\
+      \      0 oversize, 1 internal MAC\n      0 pause frames received\n      73595762\
+      \ packets output, 9744002055 bytes sent\n      26740544 broadcasts, 20413128\
+      \ multicasts\n      0 output errors, 0 collisions\n      0 excessive collisions,\
+      \ 0 late collisions\n      0 pause frames transmitted\n      0 symbol errors,\
+      \ 0 carrier, 0 SQE test error\n  Output queues: (queue #: packets passed/packets\
+      \ dropped)\n      1: 0/0\n      2: 0/0\n      3: 0/0\n      4: 0/0\n      5:\
+      \ 0/0\n      6: 0/0\n      7: 0/0\n      8: 0/0\n------------------ show interfaces\
+      \ Po1 ------------------\n Po1 is up (connected)\n  Interface index is 1000\n\
+      \  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:41\n\
+      \  Description: N9K-1 - po25\n  Interface MTU is 1500\n  Link is up for 2 days,\
+      \ 18 hours, 38 minutes and 0 seconds\n    Link aggregation type is LACP\n  \
+      \  No. of members in this port-channel: 2 (active 2)\n      tengigabitethernet1/0/1,\
+      \ full-duplex, LACP active, 10000Mbps (active)\n      tengigabitethernet1/0/2,\
+      \ full-duplex, LACP active, 10000Mbps (active)\n    Active bandwidth is 20000Mbps\n\
+      \  15 second input rate is 88280 Kbit/s\n  15 second output rate is 848490 Kbit/s\n\
+      \      367167172559 packets input, 215530683039427 bytes received\n      334094237\
+      \ broadcasts, 131070234700 multicasts\n      56 input errors, 38 FCS, 0 alignment\n\
+      \      0 oversize, 16 internal MAC\n      0 pause frames received\n      660953658224\
+      \ packets output, 742888970320949 bytes sent\n      12492875 broadcasts, 324013229657\
+      \ multicasts\n      0 output errors, 0 collisions\n      0 excessive collisions,\
+      \ 0 late collisions\n      0 pause frames transmitted\n      0 symbol errors,\
+      \ 0 carrier, 0 SQE test error\n------------------ show interfaces Po2 ------------------\n\
+      Po2 is down (not connected)\n  Interface index is 1001\n  Hardware is aggregated\
+      \ ethernet interface(s), MAC address is e8:28:c1:5c:02:40\n  Interface MTU is\
+      \ 1500\n  15 second input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n\
       \      0 packets input, 0 bytes received\n      0 broadcasts, 0 multicasts\n\
       \      0 input errors, 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n\
       \      0 pause frames received\n      0 packets output, 0 bytes sent\n     \
-      \ 0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n      0 excessive
-      collisions, 0 late collisions\n      0 pause frames transmitted\n      0 symbol
-      errors, 0 carrier, 0 SQE test error\n------------------ show interfaces Po4
-      ------------------\nPo4 is down (not connected)\n  Interface index is 1003\n\
+      \ 0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n      0 excessive\
+      \ collisions, 0 late collisions\n      0 pause frames transmitted\n      0 symbol\
+      \ errors, 0 carrier, 0 SQE test error\n------------------ show interfaces Po3\
+      \ ------------------\n Po3 is down (not connected)\n  Interface index is 1002\n\
       \  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40\n\
-      \  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n  15 second output
-      rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n      0 broadcasts,
-      0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n      0 oversize, 0
-      internal MAC\n      0 pause frames received\n      0 packets output, 0 bytes
-      sent\n      0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n\
+      \  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n  15 second output\
+      \ rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n      0 broadcasts,\
+      \ 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n      0 oversize,\
+      \ 0 internal MAC\n      0 pause frames received\n      0 packets output, 0 bytes\
+      \ sent\n      0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n\
       \      0 excessive collisions, 0 late collisions\n      0 pause frames transmitted\n\
-      \      0 symbol errors, 0 carrier, 0 SQE test error\n------------------ show
-      interfaces Po5 ------------------\nPo5 is down (not connected)\n  Interface
-      index is 1004\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po6 ------------------\nPo6 is down (not connected)\n  Interface
-      index is 1005\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po7 ------------------\nPo7 is down (not connected)\n  Interface
-      index is 1006\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po8 ------------------\nPo8 is down (not connected)\n  Interface
-      index is 1007\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po9 ------------------\nPo9 is down (not connected)\n  Interface
-      index is 1008\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po10 ------------------\nPo10 is down (not connected)\n  Interface
-      index is 1009\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po11 ------------------\nPo11 is down (not connected)\n  Interface
-      index is 1010\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po12 ------------------\nPo12 is down (not connected)\n  Interface
-      index is 1011\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po13 ------------------\nPo13 is down (not connected)\n  Interface
-      index is 1012\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po14 ------------------\nPo14 is down (not connected)\n  Interface
-      index is 1013\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po15 ------------------\nPo15 is down (not connected)\n  Interface
-      index is 1014\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po16 ------------------\nPo16 is down (not connected)\n  Interface
-      index is 1015\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po17 ------------------\nPo17 is down (not connected)\n  Interface
-      index is 1016\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po18 ------------------\nPo18 is down (not connected)\n  Interface
-      index is 1017\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po19 ------------------\nPo19 is down (not connected)\n  Interface
-      index is 1018\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po20 ------------------\nPo20 is down (not connected)\n  Interface
-      index is 1019\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po21 ------------------\nPo21 is down (not connected)\n  Interface
-      index is 1020\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po22 ------------------\nPo22 is down (not connected)\n  Interface
-      index is 1021\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po23 ------------------\nPo23 is down (not connected)\n  Interface
-      index is 1022\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po24 ------------------\nPo24 is down (not connected)\n  Interface
-      index is 1023\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po25 ------------------\nPo25 is down (not connected)\n  Interface
-      index is 1024\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po26 ------------------\nPo26 is down (not connected)\n  Interface
-      index is 1025\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po27 ------------------\nPo27 is down (not connected)\n  Interface
-      index is 1026\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po28 ------------------\nPo28 is down (not connected)\n  Interface
-      index is 1027\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po29 ------------------\nPo29 is down (not connected)\n  Interface
-      index is 1028\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po30 ------------------\nPo30 is down (not connected)\n  Interface
-      index is 1029\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po31 ------------------\nPo31 is down (not connected)\n  Interface
-      index is 1030\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po32 ------------------\nPo32 is down (not connected)\n  Interface
-      index is 1031\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po33 ------------------\nPo33 is down (not connected)\n  Interface
-      index is 1032\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po34 ------------------\nPo34 is down (not connected)\n  Interface
-      index is 1033\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po35 ------------------\nPo35 is down (not connected)\n  Interface
-      index is 1034\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po36 ------------------\nPo36 is down (not connected)\n  Interface
-      index is 1035\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po37 ------------------\nPo37 is down (not connected)\n  Interface
-      index is 1036\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po38 ------------------\nPo38 is down (not connected)\n  Interface
-      index is 1037\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po39 ------------------\nPo39 is down (not connected)\n  Interface
-      index is 1038\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po40 ------------------\nPo40 is down (not connected)\n  Interface
-      index is 1039\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po41 ------------------\nPo41 is down (not connected)\n  Interface
-      index is 1040\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po42 ------------------\nPo42 is down (not connected)\n  Interface
-      index is 1041\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po43 ------------------\nPo43 is down (not connected)\n  Interface
-      index is 1042\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po44 ------------------\nPo44 is down (not connected)\n  Interface
-      index is 1043\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po45 ------------------\nPo45 is down (not connected)\n  Interface
-      index is 1044\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po46 ------------------\nPo46 is down (not connected)\n  Interface
-      index is 1045\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po47 ------------------\nPo47 is down (not connected)\n  Interface
-      index is 1046\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces Po48 ------------------\nPo48 is down (not connected)\n  Interface
-      index is 1047\n  Hardware is aggregated ethernet interface(s), MAC address is
-      e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n\
-      \  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n\
-      \      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n\
-      \      0 oversize, 0 internal MAC\n      0 pause frames received\n      0 packets
-      output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n      0 output errors,
-      0 collisions\n      0 excessive collisions, 0 late collisions\n      0 pause
-      frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test error\n------------------
-      show interfaces tunnel1 ------------------\ntunnel1 is down (not connected)\n\
-      \  Interface index is 3000\n  Hardware is tunnel, MAC address is e8:28:c1:5c:02:40\n\
-      \  Interface MTU is 1476\n------------------ show interfaces tunnel2 ------------------\n
-      tunnel2 is down (not connected)\n  Interface index is 3001\n  Hardware is tunnel,
-      MAC address is e8:28:c1:5c:02:40\n  Interface MTU is 1476\n------------------
-      show interfaces tunnel3 ------------------\ntunnel3 is down (not connected)\n\
+      \      0 symbol errors, 0 carrier, 0 SQE test error\n------------------ show\
+      \ interfaces Po4 ------------------\nPo4 is down (not connected)\n  Interface\
+      \ index is 1003\n  Hardware is aggregated ethernet interface(s), MAC address\
+      \ is e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0\
+      \ Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes\
+      \ received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0\
+      \ alignment\n      0 oversize, 0 internal MAC\n      0 pause frames received\n\
+      \      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n  \
+      \    0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n------------------ show interfaces Po5 ------------------\nPo5 is down\
+      \ (not connected)\n  Interface index is 1004\n  Hardware is aggregated ethernet\
+      \ interface(s), MAC address is e8:28:c1:5c:02:40\n  Interface MTU is 1500\n\
+      \  15 second input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n \
+      \     0 packets input, 0 bytes received\n      0 broadcasts, 0 multicasts\n\
+      \      0 input errors, 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n\
+      \      0 pause frames received\n      0 packets output, 0 bytes sent\n     \
+      \ 0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n      0 excessive\
+      \ collisions, 0 late collisions\n      0 pause frames transmitted\n      0 symbol\
+      \ errors, 0 carrier, 0 SQE test error\n------------------ show interfaces Po6\
+      \ ------------------\nPo6 is down (not connected)\n  Interface index is 1005\n\
+      \  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40\n\
+      \  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n  15 second output\
+      \ rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n      0 broadcasts,\
+      \ 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n      0 oversize,\
+      \ 0 internal MAC\n      0 pause frames received\n      0 packets output, 0 bytes\
+      \ sent\n      0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n\
+      \      0 excessive collisions, 0 late collisions\n      0 pause frames transmitted\n\
+      \      0 symbol errors, 0 carrier, 0 SQE test error\n------------------ show\
+      \ interfaces Po7 ------------------\nPo7 is down (not connected)\n  Interface\
+      \ index is 1006\n  Hardware is aggregated ethernet interface(s), MAC address\
+      \ is e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0\
+      \ Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes\
+      \ received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0\
+      \ alignment\n      0 oversize, 0 internal MAC\n      0 pause frames received\n\
+      \      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n  \
+      \    0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n------------------ show interfaces Po8 ------------------\nPo8 is down\
+      \ (not connected)\n  Interface index is 1007\n  Hardware is aggregated ethernet\
+      \ interface(s), MAC address is e8:28:c1:5c:02:40\n  Interface MTU is 1500\n\
+      \  15 second input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n \
+      \     0 packets input, 0 bytes received\n      0 broadcasts, 0 multicasts\n\
+      \      0 input errors, 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n\
+      \      0 pause frames received\n      0 packets output, 0 bytes sent\n     \
+      \ 0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n      0 excessive\
+      \ collisions, 0 late collisions\n      0 pause frames transmitted\n      0 symbol\
+      \ errors, 0 carrier, 0 SQE test error\n------------------ show interfaces Po9\
+      \ ------------------\nPo9 is down (not connected)\n  Interface index is 1008\n\
+      \  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40\n\
+      \  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n  15 second output\
+      \ rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n      0 broadcasts,\
+      \ 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n      0 oversize,\
+      \ 0 internal MAC\n      0 pause frames received\n      0 packets output, 0 bytes\
+      \ sent\n      0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n\
+      \      0 excessive collisions, 0 late collisions\n      0 pause frames transmitted\n\
+      \      0 symbol errors, 0 carrier, 0 SQE test error\n------------------ show\
+      \ interfaces Po10 ------------------\nPo10 is down (not connected)\n  Interface\
+      \ index is 1009\n  Hardware is aggregated ethernet interface(s), MAC address\
+      \ is e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0\
+      \ Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes\
+      \ received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0\
+      \ alignment\n      0 oversize, 0 internal MAC\n      0 pause frames received\n\
+      \      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n  \
+      \    0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n------------------ show interfaces Po11 ------------------\nPo11 is\
+      \ down (not connected)\n  Interface index is 1010\n  Hardware is aggregated\
+      \ ethernet interface(s), MAC address is e8:28:c1:5c:02:40\n  Interface MTU is\
+      \ 1500\n  15 second input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n\
+      \      0 packets input, 0 bytes received\n      0 broadcasts, 0 multicasts\n\
+      \      0 input errors, 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n\
+      \      0 pause frames received\n      0 packets output, 0 bytes sent\n     \
+      \ 0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n      0 excessive\
+      \ collisions, 0 late collisions\n      0 pause frames transmitted\n      0 symbol\
+      \ errors, 0 carrier, 0 SQE test error\n------------------ show interfaces Po12\
+      \ ------------------\nPo12 is down (not connected)\n  Interface index is 1011\n\
+      \  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40\n\
+      \  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n  15 second output\
+      \ rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n      0 broadcasts,\
+      \ 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n      0 oversize,\
+      \ 0 internal MAC\n      0 pause frames received\n      0 packets output, 0 bytes\
+      \ sent\n      0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n\
+      \      0 excessive collisions, 0 late collisions\n      0 pause frames transmitted\n\
+      \      0 symbol errors, 0 carrier, 0 SQE test error\n------------------ show\
+      \ interfaces Po13 ------------------\nPo13 is down (not connected)\n  Interface\
+      \ index is 1012\n  Hardware is aggregated ethernet interface(s), MAC address\
+      \ is e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0\
+      \ Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes\
+      \ received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0\
+      \ alignment\n      0 oversize, 0 internal MAC\n      0 pause frames received\n\
+      \      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n  \
+      \    0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n------------------ show interfaces Po14 ------------------\nPo14 is\
+      \ down (not connected)\n  Interface index is 1013\n  Hardware is aggregated\
+      \ ethernet interface(s), MAC address is e8:28:c1:5c:02:40\n  Interface MTU is\
+      \ 1500\n  15 second input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n\
+      \      0 packets input, 0 bytes received\n      0 broadcasts, 0 multicasts\n\
+      \      0 input errors, 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n\
+      \      0 pause frames received\n      0 packets output, 0 bytes sent\n     \
+      \ 0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n      0 excessive\
+      \ collisions, 0 late collisions\n      0 pause frames transmitted\n      0 symbol\
+      \ errors, 0 carrier, 0 SQE test error\n------------------ show interfaces Po15\
+      \ ------------------\nPo15 is down (not connected)\n  Interface index is 1014\n\
+      \  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40\n\
+      \  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n  15 second output\
+      \ rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n      0 broadcasts,\
+      \ 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n      0 oversize,\
+      \ 0 internal MAC\n      0 pause frames received\n      0 packets output, 0 bytes\
+      \ sent\n      0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n\
+      \      0 excessive collisions, 0 late collisions\n      0 pause frames transmitted\n\
+      \      0 symbol errors, 0 carrier, 0 SQE test error\n------------------ show\
+      \ interfaces Po16 ------------------\nPo16 is down (not connected)\n  Interface\
+      \ index is 1015\n  Hardware is aggregated ethernet interface(s), MAC address\
+      \ is e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0\
+      \ Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes\
+      \ received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0\
+      \ alignment\n      0 oversize, 0 internal MAC\n      0 pause frames received\n\
+      \      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n  \
+      \    0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n------------------ show interfaces Po17 ------------------\nPo17 is\
+      \ down (not connected)\n  Interface index is 1016\n  Hardware is aggregated\
+      \ ethernet interface(s), MAC address is e8:28:c1:5c:02:40\n  Interface MTU is\
+      \ 1500\n  15 second input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n\
+      \      0 packets input, 0 bytes received\n      0 broadcasts, 0 multicasts\n\
+      \      0 input errors, 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n\
+      \      0 pause frames received\n      0 packets output, 0 bytes sent\n     \
+      \ 0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n      0 excessive\
+      \ collisions, 0 late collisions\n      0 pause frames transmitted\n      0 symbol\
+      \ errors, 0 carrier, 0 SQE test error\n------------------ show interfaces Po18\
+      \ ------------------\nPo18 is down (not connected)\n  Interface index is 1017\n\
+      \  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40\n\
+      \  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n  15 second output\
+      \ rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n      0 broadcasts,\
+      \ 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n      0 oversize,\
+      \ 0 internal MAC\n      0 pause frames received\n      0 packets output, 0 bytes\
+      \ sent\n      0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n\
+      \      0 excessive collisions, 0 late collisions\n      0 pause frames transmitted\n\
+      \      0 symbol errors, 0 carrier, 0 SQE test error\n------------------ show\
+      \ interfaces Po19 ------------------\nPo19 is down (not connected)\n  Interface\
+      \ index is 1018\n  Hardware is aggregated ethernet interface(s), MAC address\
+      \ is e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0\
+      \ Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes\
+      \ received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0\
+      \ alignment\n      0 oversize, 0 internal MAC\n      0 pause frames received\n\
+      \      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n  \
+      \    0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n------------------ show interfaces Po20 ------------------\nPo20 is\
+      \ down (not connected)\n  Interface index is 1019\n  Hardware is aggregated\
+      \ ethernet interface(s), MAC address is e8:28:c1:5c:02:40\n  Interface MTU is\
+      \ 1500\n  15 second input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n\
+      \      0 packets input, 0 bytes received\n      0 broadcasts, 0 multicasts\n\
+      \      0 input errors, 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n\
+      \      0 pause frames received\n      0 packets output, 0 bytes sent\n     \
+      \ 0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n      0 excessive\
+      \ collisions, 0 late collisions\n      0 pause frames transmitted\n      0 symbol\
+      \ errors, 0 carrier, 0 SQE test error\n------------------ show interfaces Po21\
+      \ ------------------\nPo21 is down (not connected)\n  Interface index is 1020\n\
+      \  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40\n\
+      \  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n  15 second output\
+      \ rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n      0 broadcasts,\
+      \ 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n      0 oversize,\
+      \ 0 internal MAC\n      0 pause frames received\n      0 packets output, 0 bytes\
+      \ sent\n      0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n\
+      \      0 excessive collisions, 0 late collisions\n      0 pause frames transmitted\n\
+      \      0 symbol errors, 0 carrier, 0 SQE test error\n------------------ show\
+      \ interfaces Po22 ------------------\nPo22 is down (not connected)\n  Interface\
+      \ index is 1021\n  Hardware is aggregated ethernet interface(s), MAC address\
+      \ is e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0\
+      \ Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes\
+      \ received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0\
+      \ alignment\n      0 oversize, 0 internal MAC\n      0 pause frames received\n\
+      \      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n  \
+      \    0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n------------------ show interfaces Po23 ------------------\nPo23 is\
+      \ down (not connected)\n  Interface index is 1022\n  Hardware is aggregated\
+      \ ethernet interface(s), MAC address is e8:28:c1:5c:02:40\n  Interface MTU is\
+      \ 1500\n  15 second input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n\
+      \      0 packets input, 0 bytes received\n      0 broadcasts, 0 multicasts\n\
+      \      0 input errors, 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n\
+      \      0 pause frames received\n      0 packets output, 0 bytes sent\n     \
+      \ 0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n      0 excessive\
+      \ collisions, 0 late collisions\n      0 pause frames transmitted\n      0 symbol\
+      \ errors, 0 carrier, 0 SQE test error\n------------------ show interfaces Po24\
+      \ ------------------\nPo24 is down (not connected)\n  Interface index is 1023\n\
+      \  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40\n\
+      \  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n  15 second output\
+      \ rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n      0 broadcasts,\
+      \ 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n      0 oversize,\
+      \ 0 internal MAC\n      0 pause frames received\n      0 packets output, 0 bytes\
+      \ sent\n      0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n\
+      \      0 excessive collisions, 0 late collisions\n      0 pause frames transmitted\n\
+      \      0 symbol errors, 0 carrier, 0 SQE test error\n------------------ show\
+      \ interfaces Po25 ------------------\nPo25 is down (not connected)\n  Interface\
+      \ index is 1024\n  Hardware is aggregated ethernet interface(s), MAC address\
+      \ is e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0\
+      \ Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes\
+      \ received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0\
+      \ alignment\n      0 oversize, 0 internal MAC\n      0 pause frames received\n\
+      \      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n  \
+      \    0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n------------------ show interfaces Po26 ------------------\nPo26 is\
+      \ down (not connected)\n  Interface index is 1025\n  Hardware is aggregated\
+      \ ethernet interface(s), MAC address is e8:28:c1:5c:02:40\n  Interface MTU is\
+      \ 1500\n  15 second input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n\
+      \      0 packets input, 0 bytes received\n      0 broadcasts, 0 multicasts\n\
+      \      0 input errors, 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n\
+      \      0 pause frames received\n      0 packets output, 0 bytes sent\n     \
+      \ 0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n      0 excessive\
+      \ collisions, 0 late collisions\n      0 pause frames transmitted\n      0 symbol\
+      \ errors, 0 carrier, 0 SQE test error\n------------------ show interfaces Po27\
+      \ ------------------\nPo27 is down (not connected)\n  Interface index is 1026\n\
+      \  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40\n\
+      \  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n  15 second output\
+      \ rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n      0 broadcasts,\
+      \ 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n      0 oversize,\
+      \ 0 internal MAC\n      0 pause frames received\n      0 packets output, 0 bytes\
+      \ sent\n      0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n\
+      \      0 excessive collisions, 0 late collisions\n      0 pause frames transmitted\n\
+      \      0 symbol errors, 0 carrier, 0 SQE test error\n------------------ show\
+      \ interfaces Po28 ------------------\nPo28 is down (not connected)\n  Interface\
+      \ index is 1027\n  Hardware is aggregated ethernet interface(s), MAC address\
+      \ is e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0\
+      \ Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes\
+      \ received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0\
+      \ alignment\n      0 oversize, 0 internal MAC\n      0 pause frames received\n\
+      \      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n  \
+      \    0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n------------------ show interfaces Po29 ------------------\nPo29 is\
+      \ down (not connected)\n  Interface index is 1028\n  Hardware is aggregated\
+      \ ethernet interface(s), MAC address is e8:28:c1:5c:02:40\n  Interface MTU is\
+      \ 1500\n  15 second input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n\
+      \      0 packets input, 0 bytes received\n      0 broadcasts, 0 multicasts\n\
+      \      0 input errors, 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n\
+      \      0 pause frames received\n      0 packets output, 0 bytes sent\n     \
+      \ 0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n      0 excessive\
+      \ collisions, 0 late collisions\n      0 pause frames transmitted\n      0 symbol\
+      \ errors, 0 carrier, 0 SQE test error\n------------------ show interfaces Po30\
+      \ ------------------\nPo30 is down (not connected)\n  Interface index is 1029\n\
+      \  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40\n\
+      \  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n  15 second output\
+      \ rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n      0 broadcasts,\
+      \ 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n      0 oversize,\
+      \ 0 internal MAC\n      0 pause frames received\n      0 packets output, 0 bytes\
+      \ sent\n      0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n\
+      \      0 excessive collisions, 0 late collisions\n      0 pause frames transmitted\n\
+      \      0 symbol errors, 0 carrier, 0 SQE test error\n------------------ show\
+      \ interfaces Po31 ------------------\nPo31 is down (not connected)\n  Interface\
+      \ index is 1030\n  Hardware is aggregated ethernet interface(s), MAC address\
+      \ is e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0\
+      \ Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes\
+      \ received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0\
+      \ alignment\n      0 oversize, 0 internal MAC\n      0 pause frames received\n\
+      \      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n  \
+      \    0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n------------------ show interfaces Po32 ------------------\nPo32 is\
+      \ down (not connected)\n  Interface index is 1031\n  Hardware is aggregated\
+      \ ethernet interface(s), MAC address is e8:28:c1:5c:02:40\n  Interface MTU is\
+      \ 1500\n  15 second input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n\
+      \      0 packets input, 0 bytes received\n      0 broadcasts, 0 multicasts\n\
+      \      0 input errors, 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n\
+      \      0 pause frames received\n      0 packets output, 0 bytes sent\n     \
+      \ 0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n      0 excessive\
+      \ collisions, 0 late collisions\n      0 pause frames transmitted\n      0 symbol\
+      \ errors, 0 carrier, 0 SQE test error\n------------------ show interfaces Po33\
+      \ ------------------\nPo33 is down (not connected)\n  Interface index is 1032\n\
+      \  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40\n\
+      \  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n  15 second output\
+      \ rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n      0 broadcasts,\
+      \ 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n      0 oversize,\
+      \ 0 internal MAC\n      0 pause frames received\n      0 packets output, 0 bytes\
+      \ sent\n      0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n\
+      \      0 excessive collisions, 0 late collisions\n      0 pause frames transmitted\n\
+      \      0 symbol errors, 0 carrier, 0 SQE test error\n------------------ show\
+      \ interfaces Po34 ------------------\nPo34 is down (not connected)\n  Interface\
+      \ index is 1033\n  Hardware is aggregated ethernet interface(s), MAC address\
+      \ is e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0\
+      \ Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes\
+      \ received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0\
+      \ alignment\n      0 oversize, 0 internal MAC\n      0 pause frames received\n\
+      \      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n  \
+      \    0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n------------------ show interfaces Po35 ------------------\nPo35 is\
+      \ down (not connected)\n  Interface index is 1034\n  Hardware is aggregated\
+      \ ethernet interface(s), MAC address is e8:28:c1:5c:02:40\n  Interface MTU is\
+      \ 1500\n  15 second input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n\
+      \      0 packets input, 0 bytes received\n      0 broadcasts, 0 multicasts\n\
+      \      0 input errors, 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n\
+      \      0 pause frames received\n      0 packets output, 0 bytes sent\n     \
+      \ 0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n      0 excessive\
+      \ collisions, 0 late collisions\n      0 pause frames transmitted\n      0 symbol\
+      \ errors, 0 carrier, 0 SQE test error\n------------------ show interfaces Po36\
+      \ ------------------\nPo36 is down (not connected)\n  Interface index is 1035\n\
+      \  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40\n\
+      \  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n  15 second output\
+      \ rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n      0 broadcasts,\
+      \ 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n      0 oversize,\
+      \ 0 internal MAC\n      0 pause frames received\n      0 packets output, 0 bytes\
+      \ sent\n      0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n\
+      \      0 excessive collisions, 0 late collisions\n      0 pause frames transmitted\n\
+      \      0 symbol errors, 0 carrier, 0 SQE test error\n------------------ show\
+      \ interfaces Po37 ------------------\nPo37 is down (not connected)\n  Interface\
+      \ index is 1036\n  Hardware is aggregated ethernet interface(s), MAC address\
+      \ is e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0\
+      \ Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes\
+      \ received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0\
+      \ alignment\n      0 oversize, 0 internal MAC\n      0 pause frames received\n\
+      \      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n  \
+      \    0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n------------------ show interfaces Po38 ------------------\nPo38 is\
+      \ down (not connected)\n  Interface index is 1037\n  Hardware is aggregated\
+      \ ethernet interface(s), MAC address is e8:28:c1:5c:02:40\n  Interface MTU is\
+      \ 1500\n  15 second input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n\
+      \      0 packets input, 0 bytes received\n      0 broadcasts, 0 multicasts\n\
+      \      0 input errors, 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n\
+      \      0 pause frames received\n      0 packets output, 0 bytes sent\n     \
+      \ 0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n      0 excessive\
+      \ collisions, 0 late collisions\n      0 pause frames transmitted\n      0 symbol\
+      \ errors, 0 carrier, 0 SQE test error\n------------------ show interfaces Po39\
+      \ ------------------\nPo39 is down (not connected)\n  Interface index is 1038\n\
+      \  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40\n\
+      \  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n  15 second output\
+      \ rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n      0 broadcasts,\
+      \ 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n      0 oversize,\
+      \ 0 internal MAC\n      0 pause frames received\n      0 packets output, 0 bytes\
+      \ sent\n      0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n\
+      \      0 excessive collisions, 0 late collisions\n      0 pause frames transmitted\n\
+      \      0 symbol errors, 0 carrier, 0 SQE test error\n------------------ show\
+      \ interfaces Po40 ------------------\nPo40 is down (not connected)\n  Interface\
+      \ index is 1039\n  Hardware is aggregated ethernet interface(s), MAC address\
+      \ is e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0\
+      \ Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes\
+      \ received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0\
+      \ alignment\n      0 oversize, 0 internal MAC\n      0 pause frames received\n\
+      \      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n  \
+      \    0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n------------------ show interfaces Po41 ------------------\nPo41 is\
+      \ down (not connected)\n  Interface index is 1040\n  Hardware is aggregated\
+      \ ethernet interface(s), MAC address is e8:28:c1:5c:02:40\n  Interface MTU is\
+      \ 1500\n  15 second input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n\
+      \      0 packets input, 0 bytes received\n      0 broadcasts, 0 multicasts\n\
+      \      0 input errors, 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n\
+      \      0 pause frames received\n      0 packets output, 0 bytes sent\n     \
+      \ 0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n      0 excessive\
+      \ collisions, 0 late collisions\n      0 pause frames transmitted\n      0 symbol\
+      \ errors, 0 carrier, 0 SQE test error\n------------------ show interfaces Po42\
+      \ ------------------\nPo42 is down (not connected)\n  Interface index is 1041\n\
+      \  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40\n\
+      \  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n  15 second output\
+      \ rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n      0 broadcasts,\
+      \ 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n      0 oversize,\
+      \ 0 internal MAC\n      0 pause frames received\n      0 packets output, 0 bytes\
+      \ sent\n      0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n\
+      \      0 excessive collisions, 0 late collisions\n      0 pause frames transmitted\n\
+      \      0 symbol errors, 0 carrier, 0 SQE test error\n------------------ show\
+      \ interfaces Po43 ------------------\nPo43 is down (not connected)\n  Interface\
+      \ index is 1042\n  Hardware is aggregated ethernet interface(s), MAC address\
+      \ is e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0\
+      \ Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes\
+      \ received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0\
+      \ alignment\n      0 oversize, 0 internal MAC\n      0 pause frames received\n\
+      \      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n  \
+      \    0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n------------------ show interfaces Po44 ------------------\nPo44 is\
+      \ down (not connected)\n  Interface index is 1043\n  Hardware is aggregated\
+      \ ethernet interface(s), MAC address is e8:28:c1:5c:02:40\n  Interface MTU is\
+      \ 1500\n  15 second input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n\
+      \      0 packets input, 0 bytes received\n      0 broadcasts, 0 multicasts\n\
+      \      0 input errors, 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n\
+      \      0 pause frames received\n      0 packets output, 0 bytes sent\n     \
+      \ 0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n      0 excessive\
+      \ collisions, 0 late collisions\n      0 pause frames transmitted\n      0 symbol\
+      \ errors, 0 carrier, 0 SQE test error\n------------------ show interfaces Po45\
+      \ ------------------\nPo45 is down (not connected)\n  Interface index is 1044\n\
+      \  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40\n\
+      \  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n  15 second output\
+      \ rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n      0 broadcasts,\
+      \ 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n      0 oversize,\
+      \ 0 internal MAC\n      0 pause frames received\n      0 packets output, 0 bytes\
+      \ sent\n      0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n\
+      \      0 excessive collisions, 0 late collisions\n      0 pause frames transmitted\n\
+      \      0 symbol errors, 0 carrier, 0 SQE test error\n------------------ show\
+      \ interfaces Po46 ------------------\nPo46 is down (not connected)\n  Interface\
+      \ index is 1045\n  Hardware is aggregated ethernet interface(s), MAC address\
+      \ is e8:28:c1:5c:02:40\n  Interface MTU is 1500\n  15 second input rate is 0\
+      \ Kbit/s\n  15 second output rate is 0 Kbit/s\n      0 packets input, 0 bytes\
+      \ received\n      0 broadcasts, 0 multicasts\n      0 input errors, 0 FCS, 0\
+      \ alignment\n      0 oversize, 0 internal MAC\n      0 pause frames received\n\
+      \      0 packets output, 0 bytes sent\n      0 broadcasts, 0 multicasts\n  \
+      \    0 output errors, 0 collisions\n      0 excessive collisions, 0 late collisions\n\
+      \      0 pause frames transmitted\n      0 symbol errors, 0 carrier, 0 SQE test\
+      \ error\n------------------ show interfaces Po47 ------------------\nPo47 is\
+      \ down (not connected)\n  Interface index is 1046\n  Hardware is aggregated\
+      \ ethernet interface(s), MAC address is e8:28:c1:5c:02:40\n  Interface MTU is\
+      \ 1500\n  15 second input rate is 0 Kbit/s\n  15 second output rate is 0 Kbit/s\n\
+      \      0 packets input, 0 bytes received\n      0 broadcasts, 0 multicasts\n\
+      \      0 input errors, 0 FCS, 0 alignment\n      0 oversize, 0 internal MAC\n\
+      \      0 pause frames received\n      0 packets output, 0 bytes sent\n     \
+      \ 0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n      0 excessive\
+      \ collisions, 0 late collisions\n      0 pause frames transmitted\n      0 symbol\
+      \ errors, 0 carrier, 0 SQE test error\n------------------ show interfaces Po48\
+      \ ------------------\nPo48 is down (not connected)\n  Interface index is 1047\n\
+      \  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40\n\
+      \  Interface MTU is 1500\n  15 second input rate is 0 Kbit/s\n  15 second output\
+      \ rate is 0 Kbit/s\n      0 packets input, 0 bytes received\n      0 broadcasts,\
+      \ 0 multicasts\n      0 input errors, 0 FCS, 0 alignment\n      0 oversize,\
+      \ 0 internal MAC\n      0 pause frames received\n      0 packets output, 0 bytes\
+      \ sent\n      0 broadcasts, 0 multicasts\n      0 output errors, 0 collisions\n\
+      \      0 excessive collisions, 0 late collisions\n      0 pause frames transmitted\n\
+      \      0 symbol errors, 0 carrier, 0 SQE test error\n------------------ show\
+      \ interfaces tunnel1 ------------------\ntunnel1 is down (not connected)\n \
+      \ Interface index is 3000\n  Hardware is tunnel, MAC address is e8:28:c1:5c:02:40\n\
+      \  Interface MTU is 1476\n------------------ show interfaces tunnel2 ------------------\n\
+      \ tunnel2 is down (not connected)\n  Interface index is 3001\n  Hardware is\
+      \ tunnel, MAC address is e8:28:c1:5c:02:40\n  Interface MTU is 1476\n------------------\
+      \ show interfaces tunnel3 ------------------\ntunnel3 is down (not connected)\n\
       \  Interface index is 3002\n  Hardware is tunnel, MAC address is e8:28:c1:5c:02:40\n\
-      \  Interface MTU is 1476\n------------------ show interfaces tunnel4 ------------------\n
-      tunnel4 is down (not connected)\n  Interface index is 3003\n  Hardware is tunnel,
-      MAC address is e8:28:c1:5c:02:40\n  Interface MTU is 1476\n------------------
-      show interfaces tunnel5 ------------------\ntunnel5 is down (not connected)\n\
+      \  Interface MTU is 1476\n------------------ show interfaces tunnel4 ------------------\n\
+      \ tunnel4 is down (not connected)\n  Interface index is 3003\n  Hardware is\
+      \ tunnel, MAC address is e8:28:c1:5c:02:40\n  Interface MTU is 1476\n------------------\
+      \ show interfaces tunnel5 ------------------\ntunnel5 is down (not connected)\n\
       \  Interface index is 3004\n  Hardware is tunnel, MAC address is e8:28:c1:5c:02:40\n\
-      \  Interface MTU is 1476\n------------------ show interfaces tunnel6 ------------------\n
-      tunnel6 is down (not connected)\n  Interface index is 3005\n  Hardware is tunnel,
-      MAC address is e8:28:c1:5c:02:40\n  Interface MTU is 1476\n------------------
-      show interfaces tunnel7 ------------------\ntunnel7 is down (not connected)\n\
+      \  Interface MTU is 1476\n------------------ show interfaces tunnel6 ------------------\n\
+      \ tunnel6 is down (not connected)\n  Interface index is 3005\n  Hardware is\
+      \ tunnel, MAC address is e8:28:c1:5c:02:40\n  Interface MTU is 1476\n------------------\
+      \ show interfaces tunnel7 ------------------\ntunnel7 is down (not connected)\n\
       \  Interface index is 3006\n  Hardware is tunnel, MAC address is e8:28:c1:5c:02:40\n\
-      \  Interface MTU is 1476\n------------------ show interfaces tunnel8 ------------------\n
-      tunnel8 is down (not connected)\n  Interface index is 3007\n  Hardware is tunnel,
-      MAC address is e8:28:c1:5c:02:40\n  Interface MTU is 1476\n------------------
-      show interfaces tunnel9 ------------------\ntunnel9 is down (not connected)\n\
+      \  Interface MTU is 1476\n------------------ show interfaces tunnel8 ------------------\n\
+      \ tunnel8 is down (not connected)\n  Interface index is 3007\n  Hardware is\
+      \ tunnel, MAC address is e8:28:c1:5c:02:40\n  Interface MTU is 1476\n------------------\
+      \ show interfaces tunnel9 ------------------\ntunnel9 is down (not connected)\n\
       \  Interface index is 3008\n  Hardware is , MAC address is e8:28:c1:5c:02:40\n\
-      \  Interface MTU is 1476\n------------------ show interfaces tunnel10 ------------------\n
-      tunnel10 is down (not connected)\n  Interface index is 3009\n  Hardware is tunnel,
-      MAC address is e8:28:c1:5c:02:40\n  Interface MTU is 1476\n------------------
-      show interfaces tunnel11 ------------------\ntunnel11 is down (not connected)\n\
+      \  Interface MTU is 1476\n------------------ show interfaces tunnel10 ------------------\n\
+      \ tunnel10 is down (not connected)\n  Interface index is 3009\n  Hardware is\
+      \ tunnel, MAC address is e8:28:c1:5c:02:40\n  Interface MTU is 1476\n------------------\
+      \ show interfaces tunnel11 ------------------\ntunnel11 is down (not connected)\n\
       \  Interface index is 3010\n  Hardware is tunnel, MAC address is e8:28:c1:5c:02:40\n\
-      \  Interface MTU is 1476\n------------------ show interfaces tunnel12 ------------------\n
-      tunnel12 is down (not connected)\n  Interface index is 3011\n  Hardware is tunnel,
-      MAC address is e8:28:c1:5c:02:40\n  Interface MTU is 1476\n------------------
-      show interfaces tunnel13 ------------------\ntunnel13 is down (not connected)\n\
+      \  Interface MTU is 1476\n------------------ show interfaces tunnel12 ------------------\n\
+      \ tunnel12 is down (not connected)\n  Interface index is 3011\n  Hardware is\
+      \ tunnel, MAC address is e8:28:c1:5c:02:40\n  Interface MTU is 1476\n------------------\
+      \ show interfaces tunnel13 ------------------\ntunnel13 is down (not connected)\n\
       \  Interface index is 3012\n  Hardware is tunnel, MAC address is e8:28:c1:5c:02:40\n\
-      \  Interface MTU is 1476\n------------------ show interfaces tunnel14 ------------------\n
-      tunnel14 is down (not connected)\n  Interface index is 3013\n  Hardware is tunnel,
-      MAC address is e8:28:c1:5c:02:40\n  Interface MTU is 1476\n------------------
-      show interfaces tunnel15 ------------------\ntunnel15 is down (not connected)\n\
+      \  Interface MTU is 1476\n------------------ show interfaces tunnel14 ------------------\n\
+      \ tunnel14 is down (not connected)\n  Interface index is 3013\n  Hardware is\
+      \ tunnel, MAC address is e8:28:c1:5c:02:40\n  Interface MTU is 1476\n------------------\
+      \ show interfaces tunnel15 ------------------\ntunnel15 is down (not connected)\n\
       \  Interface index is 3014\n  Hardware is tunnel, MAC address is e8:28:c1:5c:02:40\n\
       \  Interface MTU is 1476\n"
     help: execute the command "show interface"
@@ -1124,70 +1154,71 @@ commands:
     - eltex>
     - eltex#
   show ip interface:
-    output: "  Gateway IP Address        Activity status       Type\n-----------------------
-      ----------------------- --------\n10.150.0.101            Active           \
-      \       static\n\n\n    IP Address         I/F       Type       Status\n-------------------
-      --------- ----------- -----------\n0.0.0.0/32          vlan 1    DHCP      \
-      \  Not\n                                          received\n10.150.0.9/24  \
-      \     vlan 150  Static      Valid\n"
+    output: "  Gateway IP Address        Activity status       Type\n-----------------------\
+      \ ----------------------- --------\n10.150.0.101            Active         \
+      \         static\n\n\n    IP Address         I/F       Type       Status\n-------------------\
+      \ --------- ----------- -----------\n0.0.0.0/32          vlan 1    DHCP    \
+      \    Not\n                                          received\n10.150.0.9/24\
+      \       vlan 150  Static      Valid\n"
     help: execute the command "show ip interface"
     prompt:
     - eltex>
     - eltex#
   show interfaces description:
     output: "                                  Admin Link\nPort     Port Mode (VLAN)\
-      \         State State       Description\n-------- ------------------------ -----
-      ----------- -----------\ngi1/0/1  Trunk                    Up    Up        \
-      \  link_to_MGTS_ADSL\ngi1/0/2  Trunk                    Up    Up          BS12700_-LAN
-      (Office)\ngi1/0/3  Trunk                    Up    Up          Eltex1124M - gi1/0/1\n\
-      gi1/0/4  Trunk                    Up    Up          L2_OST_M9\ngi1/0/5  Access
-      (1)               Down  Down\ngi1/0/6  Access (1)               Down  Down\n\
-      gi1/0/7  Access (1)               Down  Down\ngi1/0/8  Access (1)          \
-      \     Down  Down\ngi1/0/9  Access (1)               Down  Down\ngi1/0/10 Access
-      (1)               Down  Down\ngi1/0/11 Access (111)             Up    Up   \
-      \       ASR920-1 - Gi0\ngi1/0/12 Access (111)             Up    Up         \
-      \ ASR920-2 - Gi0\ngi1/0/13 Access (1)               Down  Down\ngi1/0/14 Access
-      (1)               Down  Down\ngi1/0/15 Access (1)               Down  Down\n
-      gi1/0/16 Access (1)               Down  Down\ngi1/0/17 Access (1)          \
-      \     Down  Down\ngi1/0/18 Access (1)               Down  Down\ngi1/0/19 Access
-      (1)               Down  Down\ngi1/0/20 Access (1)               Down  Down\n
-      gi1/0/21 Access (1)               Down  Down\ngi1/0/22 Access (1)          \
-      \     Down  Down\ngi1/0/23 Access (1)               Down  Down\ngi1/0/24 Access
-      (1)               Down  Down\nte1/0/1  Trunk                    Up    Up   \
-      \       N9K-1 - eth1/18 (Po1)\nte1/0/2  Trunk                    Up    Up  \
-      \        N9K-1 - eth1/19 (Po1)\nte1/0/3  Access (1)               Down  Down\n\
-      te1/0/4  Trunk                    Up    Up          Eltex3124-2 - te1/0/1\n\n\
-      \                                  Admin Link\nCh       Port Mode (VLAN)   \
-      \      State State       Description\n-------- ------------------------ -----
-      ----------- -----------\nPo1      Trunk                    Up    Up        \
-      \  N9K-1 - po25\nPo2      Access (1)               Up    Not Present\nPo3  \
-      \    Access (1)               Up    Not Present\nPo4      Access (1)       \
-      \        Up    Not Present\nPo5      Access (1)               Up    Not Present\n\
-      Po6      Access (1)               Up    Not Present\nPo7      Access (1)   \
-      \            Up    Not Present\nPo8      Access (1)               Up    Not
-      Present\nPo9      Access (1)               Up    Not Present\nPo10     Access
-      (1)               Up    Not Present\nPo11     Access (1)               Up  \
-      \  Not Present\nPo12     Access (1)               Up    Not Present\n\nVlan
-      Admin State Link State           Description\n---- ----------- ---------- --------------------------------\n\
-      1    Up          Up         -\n4    Up          Up         SW_MGMT\n634  Up\
-      \          Up         Multicast Office\n\n\n         Admin Link\nOob-eth  State
-      State       Description\n-------- ----- ----------- -----------\noob      Up\
-      \    Up          ASR920-1 - Gi0/0/0\n"
+      \         State State       Description\n-------- ------------------------ -----\
+      \ ----------- -----------\ngi1/0/1  Trunk                    Up    Up      \
+      \    link_to_MGTS_ADSL\ngi1/0/2  Trunk                    Up    Up         \
+      \ BS12700_-LAN (Office)\ngi1/0/3  Trunk                    Up    Up        \
+      \  Eltex1124M - gi1/0/1\ngi1/0/4  Trunk                    Up    Up        \
+      \  L2_OST_M9\ngi1/0/5  Access (1)               Down  Down\ngi1/0/6  Access\
+      \ (1)               Down  Down\ngi1/0/7  Access (1)               Down  Down\n\
+      gi1/0/8  Access (1)               Down  Down\ngi1/0/9  Access (1)          \
+      \     Down  Down\ngi1/0/10 Access (1)               Down  Down\ngi1/0/11 Access\
+      \ (111)             Up    Up          ASR920-1 - Gi0\ngi1/0/12 Access (111)\
+      \             Up    Up          ASR920-2 - Gi0\ngi1/0/13 Access (1)        \
+      \       Down  Down\ngi1/0/14 Access (1)               Down  Down\ngi1/0/15 Access\
+      \ (1)               Down  Down\n gi1/0/16 Access (1)               Down  Down\n\
+      gi1/0/17 Access (1)               Down  Down\ngi1/0/18 Access (1)          \
+      \     Down  Down\ngi1/0/19 Access (1)               Down  Down\ngi1/0/20 Access\
+      \ (1)               Down  Down\n gi1/0/21 Access (1)               Down  Down\n\
+      gi1/0/22 Access (1)               Down  Down\ngi1/0/23 Access (1)          \
+      \     Down  Down\ngi1/0/24 Access (1)               Down  Down\nte1/0/1  Trunk\
+      \                    Up    Up          N9K-1 - eth1/18 (Po1)\nte1/0/2  Trunk\
+      \                    Up    Up          N9K-1 - eth1/19 (Po1)\nte1/0/3  Access\
+      \ (1)               Down  Down\nte1/0/4  Trunk                    Up    Up \
+      \         Eltex3124-2 - te1/0/1\n\n                                  Admin Link\n\
+      Ch       Port Mode (VLAN)         State State       Description\n-------- ------------------------\
+      \ ----- ----------- -----------\nPo1      Trunk                    Up    Up\
+      \          N9K-1 - po25\nPo2      Access (1)               Up    Not Present\n\
+      Po3      Access (1)               Up    Not Present\nPo4      Access (1)   \
+      \            Up    Not Present\nPo5      Access (1)               Up    Not\
+      \ Present\nPo6      Access (1)               Up    Not Present\nPo7      Access\
+      \ (1)               Up    Not Present\nPo8      Access (1)               Up\
+      \    Not Present\nPo9      Access (1)               Up    Not Present\nPo10\
+      \     Access (1)               Up    Not Present\nPo11     Access (1)      \
+      \         Up    Not Present\nPo12     Access (1)               Up    Not Present\n\
+      \nVlan Admin State Link State           Description\n---- ----------- ----------\
+      \ --------------------------------\n1    Up          Up         -\n4    Up \
+      \         Up         SW_MGMT\n634  Up          Up         Multicast Office\n\
+      \n\n         Admin Link\nOob-eth  State State       Description\n-------- -----\
+      \ ----------- -----------\noob      Up    Up          ASR920-1 - Gi0/0/0\n"
     help: execute the command "show interfaces description"
     prompt:
     - eltex>
     - eltex#
   show interfaces switchport:
-    output: "Added by: D-Default, S-Static, G-GVRP, R-Radius Assigned VLAN, T-Guest
-      VLAN, V-Voice VLAN\nPort : gi1/0/1\nPort Mode: Trunk\nGvrp Status: disabled\n
-      Ingress Filtering: true\nAcceptable Frame Type: admitAll\nIngress UnTagged VLAN
-      ( NATIVE ): 4094\nProtected: Disabled\n\nPort is member in:\n\nVlan        \
-      \       Name               Egress rule     Added by\n---- --------------------------------
-      ----------- ----------------\n130             Servers_OS              Tagged\
-      \           S\n4094               NULL                Untagged          S\n\n
-      \nForbidden VLANS:\nVlan               Name\n---- --------------------------------\n
-      \n\nClassification rules:\n\nProtocol based VLANs:\n  Group ID   Vlan ID\n------------
-      -------\n\n\nMac based VLANs:\n  Group ID   Vlan ID\n------------ -------\n"
+    output: "Added by: D-Default, S-Static, G-GVRP, R-Radius Assigned VLAN, T-Guest\
+      \ VLAN, V-Voice VLAN\nPort : gi1/0/1\nPort Mode: Trunk\nGvrp Status: disabled\n\
+      \ Ingress Filtering: true\nAcceptable Frame Type: admitAll\nIngress UnTagged\
+      \ VLAN ( NATIVE ): 4094\nProtected: Disabled\n\nPort is member in:\n\nVlan \
+      \              Name               Egress rule     Added by\n---- --------------------------------\
+      \ ----------- ----------------\n130             Servers_OS              Tagged\
+      \           S\n4094               NULL                Untagged          S\n\n\
+      \ \nForbidden VLANS:\nVlan               Name\n---- --------------------------------\n\
+      \ \n\nClassification rules:\n\nProtocol based VLANs:\n  Group ID   Vlan ID\n\
+      ------------ -------\n\n\nMac based VLANs:\n  Group ID   Vlan ID\n------------\
+      \ -------\n"
     help: execute the command "show interfaces switchport"
     prompt:
     - eltex>

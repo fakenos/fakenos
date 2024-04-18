@@ -2,10 +2,16 @@ name: alcatel_aos
 initial_prompt: alcatel_aos>
 commands:
   enable:
-    output: 'null'
+    output: null
     new_prompt: alcatel_aos#
     help: enter enable mode
     prompt: alcatel_aos>
+  ex:
+    output: true
+    help: exit the terminal
+    prompt:
+    - alcatel_aos>
+    - alcatel_aos#
   show vlan:
     output: "                              stree                 mble   src      \
       \  \n vlan  type  admin   oper   1x1   flat   auth   ip   tag   lrn   name\n\
