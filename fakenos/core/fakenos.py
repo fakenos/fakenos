@@ -35,7 +35,6 @@ default_inventory = {
     }
 }
 
-
 class FakeNOS:
     """
     FakeNOS class is a main entry point to interact with fake NOS servers - start, stop, list.
@@ -245,7 +244,7 @@ class FakeNOS:
         """
         hosts: list[str] = self._get_hosts_as_list(hosts)
         self._execute_function_over_hosts(hosts, "stop", host_running=True)
-        time.sleep(2)
+        time.sleep(1)
 
     
     def _execute_function_over_hosts(
@@ -288,10 +287,3 @@ class FakeNOS:
                     raise TypeError("Unsupported NOS type {}, \
                                     supported str, dict or Nos".format(type(plugin)))
             self.nos_plugins[nos_instance.name] = nos_instance
-
-    @property
-    def supported_platforms(self) -> list[str]:
-        """
-        Method to get the supported platforms
-        """
-        return list(self.nos_plugins.keys())

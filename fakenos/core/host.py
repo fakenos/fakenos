@@ -4,6 +4,7 @@ Host classes
 import logging
 
 from fakenos.core.pydantic_models import ModelHost
+import fakenos
 
 log = logging.getLogger(__name__)
 
@@ -74,6 +75,5 @@ class Host:
 
     def _check_if_platform_is_supported(self, platform: str):
         """Check if the platform is supported"""
-        if platform not in self.fakenos.supported_platforms:
-            raise ValueError(f"Platform {platform} is not supported by FakeNOS. Supported platforms are: {self.fakenos.supported_platforms}")
-        
+        if platform not in fakenos.available_platforms:
+            raise ValueError(f"Platform {platform} is not supported by FakeNOS. Supported platforms are: {fakenos.available_platforms}")

@@ -142,6 +142,7 @@ tests/tofile_outputs/
 
 # Exclude the underlying folders
 !/*/*.py
+!/*/*/*.py
 !update_platforms.py
 
 # Ignore all .yaml files in the root folder

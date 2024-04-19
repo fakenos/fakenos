@@ -9,7 +9,7 @@ readme = "README.md"
 keywords = ["NetworkAutomation", "Testing", "SSH"]
 classifiers = [
     "Topic :: Utilities",
-    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
@@ -24,10 +24,11 @@ include = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.6.5,<3.12"
+python = ">=3.7,<3.12"
 paramiko = "<4.0"
 pyyaml = "<7.0"
 pydantic = "<3.0"
+pytest-timeout = "^2.3.1"
 
 [tool.poetry.dev-dependencies]
 bandit = "*"
@@ -42,8 +43,6 @@ yamllint = "*"
 pre-commit = "2.15.*"
 pyenchant = "*"
 netmiko = "*"
-nornir = "*"
-nornir-netmiko = "*"
 requests = "*"
 
 [tool.black]
@@ -114,6 +113,7 @@ exclude = ".venv"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+addopts = "-vv"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

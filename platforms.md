@@ -1,43 +1,43 @@
 ## Available Platforms
 
-- hp_procurve ✅
-- avaya_ers ✅
-- checkpoint_gaia ✅
-- paloalto_panos ❌ ()
-- mikrotik_routeros ❌ ()
 - alcatel_aos ✅
-- extreme_exos ✅
-- yamaha ✅
-- hp_comware ✅
-- juniper_screenos ❌ ()
-- zyxel_os ✅
-- ciena_saos ✅
-- cisco_nxos ✅
-- ubiquiti_edgeswitch ✅
-- eltex ✅
-- huawei_vrp ✅
-- brocade_netiron ✅
-- cisco_asa ✅
-- juniper_junos ✅
-- arista_eos ✅
-- ipinfusion_ocnos ✅
-- dlink_ds ✅
-- cisco_ftd ✅
-- cisco_s300 ✅
-- brocade_fastiron ❌ ()
-- fortinet ❌ ()
-- broadcom_icos ✅
-- huawei_smartax ✅
-- avaya_vsp ✅
-- dell_powerconnect ❌ ()
-- allied_telesis_awplus ✅
-- linux ✅
-- ericsson_ipos ✅
-- cisco_xr ✅
-- cisco_ios ✅
-- dell_force10 ✅
-- aruba_os ✅
 - alcatel_sros ✅
+- allied_telesis_awplus ✅
+- arista_eos ✅
+- aruba_os ✅
+- avaya_ers ✅
+- avaya_vsp ✅
+- broadcom_icos ✅
+- brocade_fastiron ❌ ()
+- brocade_netiron ✅
+- checkpoint_gaia ✅
+- ciena_saos ❌ [related issue in Netmiko](https://github.com/ktbyers/netmiko/issues/3268)
+- cisco_asa ✅
+- cisco_ftd ✅
+- cisco_ios ✅
+- cisco_nxos ✅
+- cisco_s300 ✅
+- cisco_xr ✅
+- dell_force10 ✅
+- dell_powerconnect ❌ ()
+- dlink_ds ✅
+- eltex ✅
+- ericsson_ipos ✅
+- extreme_exos ✅
+- fortinet ❌ ()
+- hp_comware ✅
+- hp_procurve ✅
+- huawei_smartax ✅
+- huawei_vrp ✅
+- ipinfusion_ocnos ✅
+- juniper_junos ✅
+- juniper_screenos ❌ ()
+- linux ✅
+- mikrotik_routeros ❌ ()
+- paloalto_panos ❌ ()
 - ruckus_fastiron ❌ ()
-- vyatta_vyos ✅
 - ubiquiti_edgerouter ✅
+- ubiquiti_edgeswitch ✅
+- vyatta_vyos ✅
+- yamaha ✅
+- zyxel_os ✅

@@ -130,15 +130,14 @@ def channel_to_shell_tap(channel_stdio, shell_stdin, shell_replied_event, run_sr
             )
         )
         if byte in (b"\r", b"\n"):
-            # in case several \n received from channel need to
-            # make sure to wait for shell to process replies
             shell_replied_event.wait(10)
-            # echo input back to the client
+            if not channel_stdio.channel.active:
+                log.error("SSH channel is not active. Exiting.")
+                break
             log.debug(
                 "ssh_server.channel_to_shell_tap echoing new line to channel: {}".format([b'\r\n'])
             )
             channel_stdio.write(b"\r\n")
-            # read line from buffer, clear buffer, send line to cmd shell
             buffer.write(byte)
             buffer.seek(0)
             line = buffer.read().decode(encoding="utf-8")
@@ -153,16 +152,16 @@ def channel_to_shell_tap(channel_stdio, shell_stdin, shell_replied_event, run_sr
             shell_replied_event.clear()
         else:
             shell_replied_event.wait(10)
-            # echo input back to the client
+            if not channel_stdio.channel.active:
+                log.error("SSH channel is not active. Exiting.")
+                break
             try:
                 channel_stdio.write(byte)
-            except OSError as e:
+            except (OSError,EOFError) as e:
                 log.error(
                     "ssh_server.channel_to_shell_tap channel write error: {}".format(e)
                 )
-                # do nothing, exit, watcdog will handle termination
                 break
-            # save received character in buffer except for special chars
             if byte not in [b"\x00", b'']:
                 buffer.write(byte)
         time.sleep(0.01)

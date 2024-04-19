@@ -29,14 +29,14 @@ class Nos:
         :param commands: dictionary of NOS commands
         :param initial_prompt: NOS initial prompt
         """
+        self.name = name
+        self.commands = commands
+        self.initial_prompt = initial_prompt
         if filename:
+            print("HOLA")
             self.from_file(filename)
         elif dict_args:
             self.from_dict(dict_args)
-        else:
-            self.name = name
-            self.commands = commands
-            self.initial_prompt = initial_prompt
 
         self.validate()
 
@@ -132,6 +132,7 @@ class Nos:
             self.from_yaml(data)
         elif data.endswith(".py"):
             self.from_module(data)
+
 
     def is_file_ending_correct(self, data: str) -> None:
         """

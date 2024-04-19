@@ -4,7 +4,7 @@ from pydantic import ValidationError
 import pytest
 import yaml
 
-from fakenos.core.nos import Nos as NOS
+from fakenos.core.nos import Nos
 
 
 class NosTest(unittest.TestCase):
@@ -15,14 +15,14 @@ class NosTest(unittest.TestCase):
         """
         Setup class for NosTest.
         """
-        with open("tests/assets/yaml_nos_1.yaml", "r") as yml_file:
+        with open("tests/assets/yaml_nos.yaml", "r") as yml_file:
             cls.commands = yaml.safe_load(yml_file)["commands"]
 
     def test_init_without_arguments(self):
         """
         Test that the init method works when no arguments are provided.
         """
-        nos = NOS()
+        nos = Nos()
         assert nos.name == "FakeNOS"
         assert nos.initial_prompt == "FakeNOS>"
         assert nos.commands == {}
@@ -31,8 +31,7 @@ class NosTest(unittest.TestCase):
         """
         Test that the init method works when arguments are provided.
         """
-        print(self.commands)
-        nos = NOS(name="MyFakeNOS", initial_prompt="MyFakeNOS>", commands=self.commands)
+        nos = Nos(name="MyFakeNOS", initial_prompt="MyFakeNOS>", commands=self.commands)
         assert nos.name == "MyFakeNOS"
         assert nos.initial_prompt == "MyFakeNOS>"
         assert nos.commands == self.commands
@@ -41,7 +40,7 @@ class NosTest(unittest.TestCase):
         """
         Test that the init method works when the name argument is provided.
         """
-        nos = NOS(name="MyFakeNOS")
+        nos = Nos(name="MyFakeNOS")
         assert nos.name == "MyFakeNOS"
         assert nos.initial_prompt == "FakeNOS>"
         assert nos.commands == {}
@@ -51,7 +50,7 @@ class NosTest(unittest.TestCase):
         Test that the init method works when
         the initial_prompt argument is provided.
         """
-        nos = NOS(initial_prompt="MyFakeNOS>")
+        nos = Nos(initial_prompt="MyFakeNOS>")
         assert nos.name == "FakeNOS"
         assert nos.initial_prompt == "MyFakeNOS>"
         assert nos.commands == {}
@@ -60,7 +59,7 @@ class NosTest(unittest.TestCase):
         """
         Test that the init method works when the commands argument is provided.
         """
-        nos = NOS(commands=self.commands)
+        nos = Nos(commands=self.commands)
         assert nos.name == "FakeNOS"
         assert nos.initial_prompt == "FakeNOS>"
         assert nos.commands == self.commands
@@ -71,14 +70,14 @@ class NosTest(unittest.TestCase):
         when the NOS attributes are invalid.
         """
         with pytest.raises(ValidationError):
-            nos = NOS(commands="invalid_commands")
+            nos = Nos(commands="invalid_commands")
             nos.validate()
 
     def test_from_dict_correct(self):
         """
         Test that the from_dict method works when the data is correct.
         """
-        nos = NOS()
+        nos = Nos()
         nos.from_dict({"name": "MyFakeNOS", "initial_prompt": "MyFakeNOS>", "commands": self.commands})
         assert nos.name == "MyFakeNOS"
         assert nos.initial_prompt == "MyFakeNOS>"
@@ -90,7 +89,7 @@ class NosTest(unittest.TestCase):
         ValidationError when the name is incorrect.
         """
         with pytest.raises(ValidationError):
-            NOS({"name": 123, "initial_prompt": "MyFakeNOS>", "commands": self.commands})
+            Nos({"name": 123, "initial_prompt": "MyFakeNOS>", "commands": self.commands})
 
     def test_from_dict_incorrect_initial_prompt(self):
         """
@@ -98,7 +97,7 @@ class NosTest(unittest.TestCase):
         ValidationError when the initial_prompt is incorrect.
         """
         with pytest.raises(ValidationError):
-            NOS({"name": "MyFakeNOS", "initial_prompt": 123, "commands": self.commands})
+            Nos({"name": "MyFakeNOS", "initial_prompt": 123, "commands": self.commands})
 
     def test_from_dict_incorrect_commands(self):
         """
@@ -106,13 +105,13 @@ class NosTest(unittest.TestCase):
         ValidationError when the commands are incorrect.
         """
         with pytest.raises(ValidationError):
-            NOS({"name": "MyFakeNOS", "initial_prompt": "MyFakeNOS>", "commands": "invalid_commands"})
+            Nos({"name": "MyFakeNOS", "initial_prompt": "MyFakeNOS>", "commands": "invalid_commands"})
 
     def test_from_dict_only_name(self):
         """
         Test that the from_dict method works when only the name is provided.
         """
-        nos = NOS()
+        nos = Nos()
         nos.from_dict({"name": "MyFakeNOS"})
         assert nos.name == "MyFakeNOS"
         assert nos.initial_prompt == "FakeNOS>"
@@ -123,7 +122,7 @@ class NosTest(unittest.TestCase):
         Test that the from_dict method works
         when only the initial_prompt is provided.
         """
-        nos = NOS()
+        nos = Nos()
         nos.from_dict({"initial_prompt": "MyFakeNOS>"})
         assert nos.name == "FakeNOS"
         assert nos.initial_prompt == "MyFakeNOS>"
@@ -134,7 +133,7 @@ class NosTest(unittest.TestCase):
         Test that the from_dict method works
         when only the commands are provided.
         """
-        nos = NOS()
+        nos = Nos()
         nos.from_dict({"commands": self.commands})
         assert nos.name == "FakeNOS"
         assert nos.initial_prompt == "FakeNOS>"
@@ -144,42 +143,63 @@ class NosTest(unittest.TestCase):
         """
         Test that the from_dict method works when no data is provided.
         """
-        nos = NOS()
+        nos = Nos()
         nos.from_dict({})
         assert nos.name == "FakeNOS"
         assert nos.initial_prompt == "FakeNOS>"
         assert nos.commands == {}
 
-    def test_from_file(self):
+    def test_from_yaml_file(self):
         """
-        Test that the from_file method works.
+        Test that the from_file method works .yaml.
         """
-        nos = NOS()
-        nos.from_file("tests/assets/yaml_nos_1.yaml")
+        nos = Nos()
+        nos.from_file("tests/assets/yaml_nos.yaml")
         assert nos.name == "Custom Nos 0.1.0"
         assert nos.initial_prompt == "{base_prompt}>"
         assert nos.commands == self.commands
 
-    def test_from_file_incorrect_file(self):
+    def test_from_file_incorrect_yaml_file(self):
         """
         Test that the from_file method raises a
         FileNotFoundError when the file is incorrect.
         """
         with pytest.raises(FileNotFoundError):
-            nos = NOS()
+            nos = Nos()
             nos.from_file("tests/assets/incorrect_file.yaml")
+
+    def test_from_py_file(self):
+        """
+        Test that the from_file method works with .py.
+        """
+        from tests.assets import module
+        nos = Nos()
+        nos.from_file("tests/assets/module.py")
+        assert nos.name == "FakeNOS"
+        assert nos.initial_prompt == "{base_prompt}>"
+        self.assertTrue(all(item in nos.commands.items() for item in module.commands.items()))
+
+    def test_from_file_incorrect_py_file(self):
+        """
+        Test that the from_file method raises a
+        FileNotFoundError when the file is incorrect.
+        """
+        with pytest.raises(FileNotFoundError):
+            nos = Nos()
+            nos.from_file("tests/assets/incorrect_file.py")
+
 
     def test_from_module(self):
         """
         Test that the from_module method works.
         """
-        import tests.assets.module_nos_1
+        import tests.assets.module
 
-        nos = NOS()
-        nos.from_module("tests/assets/module_nos_1.py")
+        nos = Nos()
+        nos.from_module("tests/assets/module.py")
         assert nos.name == "FakeNOS"
         assert nos.initial_prompt == "{base_prompt}>"
-        assert nos.commands == tests.assets.module_nos_1.commands
+        assert nos.commands == tests.assets.module.commands
 
     def test_from_module_incorrect_file(self):
         """
@@ -187,5 +207,88 @@ class NosTest(unittest.TestCase):
         FileNotFoundError when the file is incorrect.
         """
         with pytest.raises(FileNotFoundError):
-            nos = NOS()
+            nos = Nos()
             nos.from_module("tests/assets/incorrect_file.py")
+
+    def test_register_nos_plugin_directly(self):
+        """
+        Test that we can register a nos model directly.
+        """
+        commands = {
+            "terminal width 511": {"output": "", "help": "Set terminal width to 511"},
+            "terminal length 0": {"output": "", "help": "Set terminal length to 0"},
+            "show clock": {"output": "MyFakeNOSPlugin system time is 00:00:00"},
+        }
+        nos = Nos(
+            name="MyFakeNOSPlugin",
+            initial_prompt="{base_prompt}>",
+            commands=commands,
+        )
+
+        assert nos.name == "MyFakeNOSPlugin"
+        assert nos.initial_prompt == "{base_prompt}>"
+        assert nos.commands == commands
+
+    def test_register_nos_plugin_from_dict(self):
+        """
+        Test that we can register a nos model from a dict.
+        """
+        nos_dict = {
+            "name": "MyFakeNOSPlugin",
+            "initial_prompt": "{base_prompt}>",
+            "commands": {
+                "terminal width 511": {"output": "", "help": "Set terminal width to 511"},
+                "terminal length 0": {"output": "", "help": "Set terminal length to 0"},
+                "show clock": {"output": "MyFakeNOSPlugin system time is 00:00:00"},
+            },
+        }
+
+        nos = Nos(**nos_dict)
+
+        assert nos_dict["name"] == nos.name
+        assert nos_dict["initial_prompt"] == nos.initial_prompt
+        assert nos_dict["commands"] == nos.commands
+
+    def test_register_nos_plugin_from_yaml_file(self):
+        """
+        Test that we can register a nos model from a yaml file.
+        """
+        nos = Nos(filename="tests/assets/yaml_nos.yaml")
+
+        assert nos.name == "Custom Nos 0.1.0"
+        assert nos.initial_prompt == "{base_prompt}>"
+        assert nos.commands == self.commands
+
+    def test_register_nos_plugin_incorrect_commands(self):
+        """
+        Test that we can register a nos model from a dict.
+        """
+        with pytest.raises(ValidationError):
+            Nos(
+                name="MyFakeNOSPlugin", 
+                initial_prompt="{base_prompt}>", 
+                commands={
+                    "show clock": {"output": True},
+                }
+            )
+    
+    def test_register_nos_plugin_incorrect_name(self):
+        """
+        Test that we can register a nos model from a dict.
+        """
+        with pytest.raises(ValidationError):
+            Nos(
+                name=123, 
+                initial_prompt="{base_prompt}>", 
+                commands={
+                    "show clock": {"output": ""},
+                }
+            )
+
+
+    def test_register_nos_plugin_incorrect_output(self):
+        """
+        Test that we can register a nos model from a dict.
+        """
+        with pytest.raises(ValidationError):
+            Nos(commands={"show clock": {"output": 42}})

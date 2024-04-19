@@ -42,7 +42,6 @@ def test_container_cisco_ios_netmiko_send_show_clock_100_times():
     for i in range(times_to_collect):
         outputs.append(device.send_command("show clock"))
 
-    print(f"Devie output: '{outputs}'")
     assert len(outputs) == times_to_collect
     assert all(isinstance(i, str) for i in outputs)
     assert all("Traceback" not in i for i in outputs)

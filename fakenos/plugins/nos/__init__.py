@@ -4,10 +4,10 @@ import os
 from fakenos.core.nos import Nos
 
 from . import cisco_ios
-from . import arista_ceos
+from . import arista_eos
 
 
-nos_plugins = {"cisco_ios": cisco_ios, "arista_ceos": arista_ceos}
+nos_plugins = {"cisco_ios": cisco_ios, "arista_eos": arista_eos}
 
 current_file_path = os.path.abspath(__file__)
 current_directory = os.path.dirname(current_file_path)

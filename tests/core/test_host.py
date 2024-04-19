@@ -1,7 +1,7 @@
 import pytest
 from unittest.mock import MagicMock, Mock, patch
 from fakenos.core.host import Host
-from fakenos import FakeNOS
+from fakenos import FakeNOS, available_platforms
 
 class TestHost:
     @pytest.fixture
@@ -67,6 +67,6 @@ class TestHost:
         The test passes if the platform is supported.
         """
         host.fakenos = FakeNOS()
-        platform = host.fakenos.supported_platforms[0]
+        platform = available_platforms[0]
         host._check_if_platform_is_supported(platform)
     

@@ -1,8 +1,10 @@
 import threading
-import time
 from unittest.mock import patch
 import pytest
+from fakenos import available_platforms
 from fakenos.core.fakenos import FakeNOS
+
+from tests.utils import get_running_hosts
 
 class TestFakeNOS:
     def test_create_FakeNOS_without_arguments(self):
@@ -21,7 +23,6 @@ class TestFakeNOS:
         """
         net = FakeNOS()
         assert len(net.hosts) == 2
-        print(net.hosts['router0'].port)
         for router_name, host in net.hosts.items():
             assert router_name in ["router0", "router1"]
             assert host.username in ["user"]
@@ -48,13 +49,13 @@ class TestFakeNOS:
                     "port": 5001,
                     "username": "fakenos",
                     "password": "fakenos",
-                    "platform": FakeNOS().supported_platforms[0],
+                    "platform": available_platforms[0],
                 },
                 "R2": {
                     "port": 6000,
                     "username": "fakenos",
                     "password": "fakenos",
-                    "platform": FakeNOS().supported_platforms[0],
+                    "platform": available_platforms[0]
                 }
             }
         }
@@ -66,7 +67,7 @@ class TestFakeNOS:
             assert host.password in ["fakenos"]
             assert host.port in [5001, 6000]
 
-    def test_create_FakeNOS_with_inventory_as_file(self, tmp_path):
+    def test_create_FakeNOS_with_inventory_as_file(self):
         """
         Test that fakeNOS creates two hosts when an inventory is passed as a file.
         Those routers should have the following:
@@ -324,6 +325,73 @@ class TestFakeNOS:
         }
         with pytest.raises(ValueError):
             FakeNOS(inventory=inventory)
+    
+    def test_inventory_validation_cmdshell_plugin(self):
+        """
+        Test that the inventory is validated when
+        it contains a shell plugin.
+        """
+        inventory = {
+            "hosts": {
+                "R1": {
+                    "port": 6000,
+                    "platform": available_platforms[0],
+                    "shell": {
+                        "plugin": "CMDShell",
+                        "configuration": {},
+                    }
+                }
+            }
+        }
+        net = FakeNOS(inventory=inventory)
+        assert net.inventory["hosts"]["R1"]["shell"]["plugin"] == "CMDShell"
+
+    def test_fakenos_start_stop_hosts(self):
+        """
+        Test that the function start and stop hosts by the name.
+        """
+        net = FakeNOS()
+
+        net.start(hosts="router0")
+        assert net.hosts["router0"].running == True
+        assert net.hosts["router1"].running == False
+
+        net.start(hosts="router1")
+        assert net.hosts["router0"].running == True
+        assert net.hosts["router1"].running == True
+
+        net.stop(hosts="router0")
+        assert net.hosts["router0"].running == False
+        assert net.hosts["router1"].running == True
+
+        net.stop(hosts="router1")
+        assert net.hosts["router0"].running == False
+        assert net.hosts["router1"].running == False
+
+        net.stop()
+
+    def test_fakenos_base_inventory(self):
+        """
+        Base test for checking the start and stop operations
+        using default inventory.
+        """
+        net = FakeNOS()
+        before_start = get_running_hosts(net.hosts)
+        for running_state in before_start.values():
+            assert running_state == False
+        
+        net.start()
+        after_start = get_running_hosts(net.hosts)
+        for running_state in after_start.values():
+            assert running_state == True
+
+        net.stop()
+        after_stop = get_running_hosts(net.hosts)
+        for running_state in after_stop.values():
+            assert running_state == False
+
+
+        assert len(before_start) == len(after_start) == len(after_stop) == 2
 
         
     def test_number_of_threads_after_stop_is_only_main(self):
@@ -335,3 +403,44 @@ class TestFakeNOS:
         net.stop()
         active_threads = threading.active_count() 
         assert active_threads == 1
+
+
+class TestPlatforms:
+    """
+    Tests directly related to the platforms like the ordering
+    or if the platforms match the docs and the real in the code.
+    """
+    def test_available_platforms_match_docs(self):
+        """
+        Test if the available platforms are correct set
+        in the platforms.md and platforms.py file.
+        """
+        assert sorted(available_platforms) == sorted(get_platforms_from_md())
+
+    def test_available_platforms_in_py_file_are_ordered(self):
+        """
+        Test if the available platforms in the platforms.py file
+        are ordered alphabetically.
+        """
+        assert available_platforms == sorted(available_platforms)
+
+    def test_available_platforms_in_docs_are_ordered(self):
+        """
+        Test if the available platforms in the platforms.md file
+        are ordered alphabetically.
+        """
+        platforms = get_platforms_from_md()
+        assert platforms == sorted(platforms)
+
+def get_platforms_from_md() -> list[str]:
+    """Get the platforms in the platforms.md file."""
+    platforms = []
+    with open('platforms.md', 'r') as file:
+        for line in file:
+            if line.startswith('-'):
+                platform = line[1:].strip()  # Remove the dash and whitespace
+                if "❌" in platform:
+                    continue
+                platform = platform.split(' ')[0]  # Get the first word
+                platforms.append(platform)
+    return platforms

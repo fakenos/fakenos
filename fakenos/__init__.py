@@ -1,4 +1,40 @@
-from .core.fakenos import FakeNOS
-from .core.nos import Nos
+from fakenos.core.fakenos import FakeNOS
+from fakenos.core.nos import Nos
 
 __all__ = ("FakeNOS", "Nos")
+
+available_platforms: list[str] = [
+    "alcatel_aos",
+    "alcatel_sros",
+    "allied_telesis_awplus",
+    "arista_eos",
+    "aruba_os",
+    "avaya_ers",
+    "avaya_vsp",
+    "broadcom_icos",
+    "brocade_netiron",
+    "checkpoint_gaia",
+    "cisco_asa",
+    "cisco_ftd",
+    "cisco_ios",
+    "cisco_nxos",
+    "cisco_s300",
+    "cisco_xr",
+    "dell_force10",
+    "dlink_ds",
+    "eltex",
+    "ericsson_ipos",
+    "extreme_exos",
+    "hp_comware",
+    "hp_procurve",
+    "huawei_smartax",
+    "huawei_vrp",
+    "ipinfusion_ocnos",
+    "juniper_junos",
+    "linux",
+    "ubiquiti_edgerouter",
+    "ubiquiti_edgeswitch",
+    "vyatta_vyos",
+    "yamaha",
+    "zyxel_os",
+]
