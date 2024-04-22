@@ -41,7 +41,6 @@ class FakeNOS:
 
     :param inventory: FakeNOS inventory dictionary or OS path to .yaml file with inventory data
     :param plugins: Plugins to add extra devices/commands currently not supported easily.
-    :param log_level: logging level to use
 
     Sample usage:
 
@@ -234,6 +233,8 @@ class FakeNOS:
         """
         hosts: list[str] = self._get_hosts_as_list(hosts)
         self._execute_function_over_hosts(hosts, "start", host_running=False)
+        print(f"The following devices has been initiated: {[host.name for host in hosts]}")
+        log.info(f"The following devices has been initiated: {[host.name for host in hosts]}")
 
     def stop(self, hosts: str|list = None) -> None:
         """

@@ -9,7 +9,7 @@ commands:
   set terminal length 0:
     output: set terminal length 0
     help: set the terminal to max width
-    promtp:
+    prompt:
     - vyatta@vyatta:~$
     - vyatta@vyatta#
   show interfaces:

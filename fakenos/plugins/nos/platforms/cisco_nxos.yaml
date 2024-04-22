@@ -15,6 +15,9 @@ commands:
   ex:
     output: true
     help: exit the terminal
+    prompt:
+    - cisco_nxos>
+    - cisco_nxos#
   show l2rib internal permanently-frozen-list:
     output: '
 

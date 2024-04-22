@@ -110,7 +110,6 @@ class ServersTest(unittest.TestCase):
         
         mock_socket.assert_called_once_with(socket.AF_INET, socket.SOCK_STREAM)
         mock_socket().setsockopt.assert_any_call(socket.SOL_SOCKET, socket.SO_REUSEADDR, True)
-        mock_socket().setsockopt.assert_any_call(socket.SOL_SOCKET, socket.SO_REUSEPORT, True)
         mock_socket().settimeout.assert_called_once_with(servers.timeout)
         mock_socket().bind.assert_called_once_with((servers.address, servers.port))
 

@@ -1,7 +1,10 @@
 # Basic Usage
+FakeNOS has some built in default hosts which are used in case that no `inventory` is given. In such case it will open the following:
 
-This code starts two devices listening for SSH connections on 127.0.0.1 address
-ports 6001 and 6002 named `router1` and `router2` respectively:
+- **router1**: a device with username `user` and password `user` in the port 6000. The platform is `cisco_ios`.
+- **router2**: a device with username `user` and password `user` in the port 6001. The platform is `huawei_smartax`.
+
+In both cases, the fake devices are running on the localhost or 127.0.0.1 address. To run those just use the following code:
 
 ```python
 from fakenos import FakeNOS
@@ -13,9 +16,12 @@ network.start()
 Initiate SSH connection using default username `user` and password `user`:
 
 ```bash
-ssh 127.0.0.1 -l user -p 6001
-ssh 127.0.0.1 -l user -p 6002
+ssh -p 6000 user@localhost # cisco_ios
+ssh -p 6001 user@localhost # huawei_smartax
 ```
+
+!!! bug
+    The CLI command is not currently available.
 
 The equivalent to running above code would be to run FakeNOS CLI without
 any arguments:
@@ -25,8 +31,10 @@ fakenos
 ```
 
 # Using Custom Inventory
-
 FakeNOS uses Inventory dictionary to define a set of SSH servers to start.
+
+## YAML
+In case you want to use your own 
 
 Sample inventory data and code to start the servers:
 

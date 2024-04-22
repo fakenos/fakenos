@@ -7,6 +7,9 @@ commands:
   ex:
     help: exit the terminal
     output: true
+    prompt:
+    - ubiquiti_edgeswitch>
+    - ubiquiti_edgeswitch#
   show arp:
     help: execute the command "show arp"
     output: "\nAge Time (seconds)............................. 300\nResponse Time\

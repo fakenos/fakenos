@@ -10,7 +10,7 @@ commands:
     output: null
     help: It enters the terminal
     new_prompt: cisco_asa#
-    promtp: cisco_asa>
+    prompt: cisco_asa>
   show running-config all crypto map:
     output: "crypto map WAN1_CMAP 10 match address CMAP_RU16\ncrypto map WAN1_CMAP\
       \ 10 set connection-type bidirectional\ncrypto map WAN1_CMAP 10 set peer 1.1.1.1\n\

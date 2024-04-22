@@ -15,6 +15,9 @@ commands:
   ex:
     output: True
     help: exit the terminal
+    prompt:
+    - paloalto_panos>
+    - paloalto_panos#
   show interface logical:
     output: "total configured logical interfaces: 38\n​\nname                id  \
       \  vsys zone             forwarding               tag    address           \

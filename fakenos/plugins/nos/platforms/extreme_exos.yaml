@@ -15,6 +15,9 @@ commands:
   ex:
     output: true
     help: exit the terminal
+    prompt:
+    - extreme_exos>
+    - extreme_exos#
   show ipconfig:
     output: "       Use Redirects : Disabled\n       IpOption LSRR : Enabled\n   \
       \    IpOption SSRR : Enabled\n         IpOption RR : Enabled\n         IpOption\

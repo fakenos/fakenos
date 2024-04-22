@@ -65,7 +65,7 @@ class TCPServerBase(ABC):
         self._socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self._socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, True)
 
-        if sys.platform in ["linux", "darwin"]:
+        if sys.platform in ["linux"]:
             self._socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, True)
 
         self._socket.settimeout(self.timeout)

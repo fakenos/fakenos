@@ -10,7 +10,7 @@ commands:
     output: null
     new_prompt: brocade_fastiron(config)#
     help: enter the config mode
-    promtp:
+    prompt:
     - brocade_fastiron#
   show monitor:
     output: "Monitored Port 10\n  Input mirrored by\t:  18\n  Output mirrored by\t\

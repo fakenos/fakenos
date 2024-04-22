@@ -8,6 +8,7 @@ commands:
     prompt: ciena_saos>
   system shell session set more off:
     output: null
+    help: It enters the machine-to-machine interface mode (mmi-mode)
     prompt:
     - ciena_saos>
     - ciena_saos#

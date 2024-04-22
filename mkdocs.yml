@@ -1,0 +1,105 @@
+repo_name: dmulyalin/fakenos
+repo_url: https://github.com/dmulyalin/fakenos
+site_author: Denis Mulyalin
+site_description: FakeNOS, Network, SSH
+site_name: FakeNOS
+site_url: https://fakenos.github.io/
+docs_dir: docs/
+theme:
+  logo: assets/logo.svg
+  favicon: assets/logo.svg
+  name: material
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.tabs
+    - navigation.instant
+    - navigation.instant.progress
+    - content.tabs.link
+  palette:
+    - scheme: default 
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+      primary: brown
+      accent: deep orange
+    - scheme: slate
+      toggle:
+        icon: material/weather-night
+        name: Switch to system preference
+      primary: brown
+      accent: deep orange
+  language: en
+extra:
+  homepage: /overview/overview
+  alternate:
+    - name: Spanish
+      link: /es/
+      lang: es
+    - name: Catalan
+      link: /ca/
+      lang: ca
+    - name: Chinese
+      link: /zh/
+      lang: zh
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+  - attr_list
+  - md_in_html
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - toc:
+      permalink: "#"
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          selection:
+            docstring_style: sphinx
+          rendering:
+            show_root_heading: false
+            show_root_toc_entry: false
+            heading_level: 3
+            show_object_full_path: true
+            show_signature_annotations: true
+            docstring_section_style: list
+            merge_init_into_class: true
+nav:
+  - Overview: 
+    - Overview: overview.md
+    - Why?: overview/why.md
+    - What?: overview/what.md
+    - How?: overview/how.md
+    - What not?: overview/what_not.md
+    - References: overview/references.md
+  - Examples:
+    - Examples: examples.md
+    - Script Development: examples/developing_scripts.md
+    - Automatic testing - CI/CD: examples/automatic_testing.md
+  - Usage:
+    - Installation: usage/installation.md
+    - Getting Started: usage/getting_started.md
+    - FakeNOS Inventory: usage/fakenos_inventory.md
+    - Running in Docker Container: usage/running_in_docker_md.md
+    - Creating NOS Plugin: usage/creating_nos_plugin.md
+  - Platforms: platforms.md
+  - Development:
+    - Main: development.md
+    - Conventions: development/conventions.md
+    - Tasks: development/tasks.md
+  - Collaborators:
+    - Collaborators: collaborators.md
+  - API Reference:
+    - Core API: core_api_reference.md
+    - Built-in Plugins API: builtin_plugins_api_reference.md
+
+

@@ -15,6 +15,9 @@ commands:
   ex:
     output: true
     help: exit the terminal
+    prompt:
+    - hp_comware>
+    - hp_comware#
   display vlan all:
     output: " VLAN ID: 1\n VLAN type: Static\n Route interface: Not configured\n Description:\
       \ VLAN 0001\n Name: VLAN 0001\n Tagged ports:   None\n Untagged ports: \n  \

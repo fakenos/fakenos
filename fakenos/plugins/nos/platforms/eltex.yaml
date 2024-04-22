@@ -15,6 +15,9 @@ commands:
   ex:
     output: true
     help: exit the terminal
+    prompt:
+    - eltex>
+    - eltex#
   show vlan:
     output: "Vlan            Name                    Tagged ports               Untagged\
       \ ports            Type     Authorization\n---- ---------------------------\
