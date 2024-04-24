@@ -1,0 +1,9 @@
+hosts:
+  fakerouter:
+    username: user
+    password: user
+    port: 
+    - 6001
+    - 6002
+    replicas: 2
+    platform: cisco_ios

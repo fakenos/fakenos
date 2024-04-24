@@ -1,45 +1,58 @@
-import sys
-import pprint
+import subprocess
 import time
 
-sys.path.insert(0, "..")
-
+import psutil
 from netmiko import ConnectHandler
-from fakenos import FakeNOS
-
-xesandbox_data = {
-    "device_type": "cisco_xe",
-    "host": "sandbox-iosxe-latest-1.cisco.com",
-    "username": "developer",
-    "password": "C1sco12345",
-    "port": 22,
-}
+import pytest
 
 fakerouter1 = {
     "device_type": "cisco_ios",
-    "host": "10.100.0.2",
+    "host": "localhost",
     "username": "user",
     "password": "user",
-    "port": 6001,
+    "port": 12723,
 }
 
 fakerouter2 = {
     "device_type": "cisco_ios",
-    "host": "10.100.0.2",
+    "host": "localhost",
     "username": "user",
     "password": "user",
-    "port": 6002,
+    "port": 12724,
 }
 
 
-def test_container_cisco_ios_netmiko_send_show_clock_100_times():
-    times_to_collect = 100
-    outputs = []
+def check_docker_is_running() -> False:
+    """Checks if Docker is running."""
+    return "docker" not in (i.name() for i in psutil.process_iter())
 
-    # device = ConnectHandler(**xesandbox_data)
+
+@pytest.fixture
+def setup():
+    """Starts the docker containers."""
+    try:
+        subprocess.run(["docker", "compose", "-f", "docker/docker-compose.yaml", "up", "-d"], check=True)
+        time.sleep(5)
+        yield
+    finally:
+        subprocess.run(["docker", "compose", "-f", "docker/docker-compose.yaml", "down"], check=True)
+
+
+@pytest.mark.skipif(check_docker_is_running(), reason="Docker is not running.")
+def test_container(setup):
+    """
+    Test that we can connect to the device and run a command
+    in the case that the device is a container.
+
+    Specifically, in this test will connect to a Cisco IOS
+    device running in a container and run the command "show clock".
+    """
+    times_to_collect: int = 100
+    outputs: list[str] = []
+
     device = ConnectHandler(**fakerouter1)
 
-    for i in range(times_to_collect):
+    for _ in range(times_to_collect):
         outputs.append(device.send_command("show clock"))
 
     assert len(outputs) == times_to_collect
@@ -47,11 +60,12 @@ def test_container_cisco_ios_netmiko_send_show_clock_100_times():
     assert all("Traceback" not in i for i in outputs)
 
 
-# test_cisco_ios_netmiko_send_show_clock_100_times()
-
-
-def test_container_cisco_ios_netmiko_multiple_connections():
-    """Method to run multiple connection establishment and teardown"""
+@pytest.mark.skipif(check_docker_is_running(), reason="Docker is not running.")
+def test_container_multiple_connections(setup):
+    """
+    Similar to test_container, but it runs multiple
+    connections to the device.
+    """
     connections_count = 10
     times_to_collect = 5
 
@@ -68,8 +82,6 @@ def test_container_cisco_ios_netmiko_multiple_connections():
         device1.disconnect()
         device2.disconnect()
 
-    pprint.pprint(outputs)
-
     assert len(outputs["device1"]) == connections_count * times_to_collect
     assert all("Traceback" not in i for i in outputs["device1"])
     assert all(isinstance(i, str) for i in outputs["device1"])
@@ -77,6 +89,3 @@ def test_container_cisco_ios_netmiko_multiple_connections():
     assert len(outputs["device2"]) == connections_count * times_to_collect
     assert all("Traceback" not in i for i in outputs["device2"])
     assert all(isinstance(i, str) for i in outputs["device2"])
-
-
-# test_cisco_ios_multiple_connections()

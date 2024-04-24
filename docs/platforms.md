@@ -1,4 +1,15 @@
+# Platforms
+The following list of platforms are supported by FakeNOS. All the platforms listed here have been tested using Netmiko to enter, so you can be sure that at least you can enter correctly. The status of each platform is indicated by the following symbols:
+
+- ✅: Fully supported
+- ❌: Not currently working
+
+!!! note
+    If you encounter any issues with a platform, please open an issue on the [GitHub repository](https://github.com/fakenos/fakenos/issues).
+
+
 ## Available Platforms
+
 
 - [alcatel_aos](platforms/alcatel_aos.md) ✅
 - [alcatel_sros](platforms/alcatel_sros.md) ✅
@@ -11,7 +22,7 @@
 - [brocade_fastiron](platforms/brocade_fastiron.md) ❌ [Login issues?]()
 - [brocade_netiron](platforms/brocade_netiron.md) ✅
 - [checkpoint_gaia](platforms/checkpoint_gaia.md) ✅
-- [ciena_saos](platforms/ciena_saos.md) ❌ [related issue in Netmiko](https://github.com/ktbyers/netmiko/issues/3268)
+- [ciena_saos](platforms/ciena_saos.md) ❌ - [related issue in Netmiko](https://github.com/ktbyers/netmiko/issues/3268)
 - [cisco_asa](platforms/cisco_asa.md) ✅
 - [cisco_ftd](platforms/cisco_ftd.md) ✅
 - [cisco_ios](platforms/cisco_ios.md) ✅

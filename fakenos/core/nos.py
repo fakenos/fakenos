@@ -8,6 +8,42 @@ from fakenos.core.pydantic_models import ModelNosAttributes
 
 log = logging.getLogger(__name__)
 
+available_platforms: list[str] = [
+    "alcatel_aos",
+    "alcatel_sros",
+    "allied_telesis_awplus",
+    "arista_eos",
+    "aruba_os",
+    "avaya_ers",
+    "avaya_vsp",
+    "broadcom_icos",
+    "brocade_netiron",
+    "checkpoint_gaia",
+    "cisco_asa",
+    "cisco_ftd",
+    "cisco_ios",
+    "cisco_nxos",
+    "cisco_s300",
+    "cisco_xr",
+    "dell_force10",
+    "dlink_ds",
+    "eltex",
+    "ericsson_ipos",
+    "extreme_exos",
+    "hp_comware",
+    "hp_procurve",
+    "huawei_smartax",
+    "huawei_vrp",
+    "ipinfusion_ocnos",
+    "juniper_junos",
+    "linux",
+    "ubiquiti_edgerouter",
+    "ubiquiti_edgeswitch",
+    "vyatta_vyos",
+    "yamaha",
+    "zyxel_os",
+]
+
 
 class Nos:
     """
@@ -42,8 +78,9 @@ class Nos:
 
     def validate(self) -> None:
         """
-        Method to validate NOS attributes: commands, name, initial prompt - using
-        Pydantic models, raises ValidationError on failure.
+        Method to validate NOS attributes: commands, name,
+        initial prompt - using Pydantic models,
+        raises ValidationError on failure.
         """
         ModelNosAttributes(**self.__dict__)
         log.debug(f"{self.name} NOS attributes validation succeeded")
@@ -58,9 +95,21 @@ class Nos:
                 "name": "MyFakeNOSPlugin",
                 "initial_prompt": "{base_prompt}>",
                 "commands": {
-                    "terminal width 511": {"output": "", "help": "Set terminal width to 511"},
-                    "terminal length 0": {"output": "", "help": "Set terminal length to 0"},
-                    "show clock": {"output": "MyFakeNOSPlugin system time is 00:00:00"},
+                    "terminal width 511": {
+                        "output": "",
+                        "help": "Set terminal width to 511",
+                        "prompt": "{base_prompt}>",
+                    },
+                    "terminal length 0": {
+                        "output": "",
+                        "help": "Set terminal length to 0",
+                        "prompt": "{base_prompt}>",
+                    },
+                    "show clock": {
+                        "output": "MyFakeNOSPlugin system time is 00:00:00",
+                        "help": "Show system time",
+                        "prompt": "{base_prompt}>",
+                    },
                 },
             }
 
@@ -79,9 +128,21 @@ class Nos:
             name: "MyFakeNOSPlugin"
             initial_prompt: "{base_prompt}>"
             commands:
-              terminal width 511: {"output": "", "help": "Set terminal width to 511"}
-              terminal length 0: {"output": "", "help": "Set terminal length to 0"}
-              show clock: {"output": "MyFakeNOSPlugin system time is 00:00:00"}
+                terminal width 511: {
+                    "output": "",
+                    "help": "Set terminal width to 511",
+                    "prompt": "{base_prompt}>",
+                }
+                terminal length 0: {
+                    "output": "",
+                    "help": "Set terminal length to 0",
+                    "prompt": "{base_prompt}>",
+                }
+                show clock: {
+                    "output": "MyFakeNOSPlugin system time is 00:00:00",
+                    "help": "Show system time",
+                    "prompt": "{base_prompt}>",
+                }
 
         :param data: YAML structured text
         """
@@ -102,9 +163,21 @@ class Nos:
             initial_prompt = "{base_prompt}>"
 
             commands = {
-                "terminal width 511": {"output": "", "help": "Set terminal width to 511"},
-                "terminal length 0": {"output": "", "help": "Set terminal length to 0"},
-                "show clock": {"output": "MyFakeNOSPlugin system time is 00:00:00"},
+                "terminal width 511": {
+                    "output": "",
+                    "help": "Set terminal width to 511",
+                    "prompt": "{base_prompt}>",
+                },
+                "terminal length 0": {
+                    "output": "",
+                    "help": "Set terminal length to 0",
+                    "prompt": "{base_prompt}>",
+                },
+                "show clock": {
+                    "output": "MyFakeNOSPlugin system time is 00:00:00",
+                    "help": "Show system time",
+                    "prompt": "{base_prompt}>",
+                },
             }
 
         :param data: OS path string to Python .py file
@@ -132,7 +205,6 @@ class Nos:
             self.from_yaml(data)
         elif data.endswith(".py"):
             self.from_module(data)
-
 
     def is_file_ending_correct(self, data: str) -> None:
         """

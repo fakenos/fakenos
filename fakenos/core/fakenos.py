@@ -1,8 +1,11 @@
 import logging
 import copy
+import threading
 import time
+import platform
 
 import yaml
+import detect
 
 from fakenos.core.host import Host
 from fakenos.core.nos import Nos
@@ -30,17 +33,27 @@ default_inventory = {
         "nos": {"plugin": "cisco_ios", "configuration": {}},
     },
     "hosts": {
-        "router0": {"port": 6000, "platform":"cisco_ios"},
-        "router1": {"port": 6001, "platform": "huawei_smartax"}
-    }
+        "router0": {"port": 6000, "platform": "cisco_ios"},
+        "router1": {"port": 6001, "platform": "huawei_smartax"},
+    },
 }
+
+# If Windows or WSL, the configuration address is 0.0.0.0
+# WSL Bug: https://github.com/microsoft/WSL/issues/4983
+if detect.docker and "WSL2" in platform.release():
+    server_config = default_inventory["default"]["server"]["configuration"]
+    server_config["address"] = "0.0.0.0"
+
 
 class FakeNOS:
     """
-    FakeNOS class is a main entry point to interact with fake NOS servers - start, stop, list.
+    FakeNOS class is a main entry point to interact
+    with fake NOS servers - start, stop, list.
 
-    :param inventory: FakeNOS inventory dictionary or OS path to .yaml file with inventory data
-    :param plugins: Plugins to add extra devices/commands currently not supported easily.
+    :param inventory: FakeNOS inventory dictionary or
+                      OS path to .yaml file with inventory data
+    :param plugins: Plugins to add extra devices/commands
+                    currently not supported easily.
 
     Sample usage:
 
@@ -53,10 +66,10 @@ class FakeNOS:
     """
 
     def __init__(
-            self,
-            inventory: dict = default_inventory,
-            plugins: list = [],
-        ) -> None:
+        self,
+        inventory: dict = default_inventory,
+        plugins: list = [],
+    ) -> None:
         self.inventory: dict = inventory
         self.plugins: list = plugins
 
@@ -73,19 +86,18 @@ class FakeNOS:
 
     def _is_inventory_in_yaml(self) -> bool:
         """method that checks if the inventory is a yaml file."""
-        return isinstance(self.inventory, str) \
-            and self.inventory.endswith(".yaml")
+        return isinstance(self.inventory, str) and self.inventory.endswith(".yaml")
 
     def _load_inventory_yaml(self) -> None:
         """Helper method to load FakeNOS inventory if it is yaml."""
         with open(self.inventory, "r", encoding="utf-8") as f:
-                self.inventory = yaml.safe_load(f.read())
+            self.inventory = yaml.safe_load(f.read())
 
     def _load_inventory(self) -> None:
         """Helper method to load FakeNOS inventory"""
         if self._is_inventory_in_yaml():
             self._load_inventory_yaml()
-        
+
         self.inventory["default"] = {
             **default_inventory["default"],
             **self.inventory.get("default", {}),
@@ -96,7 +108,8 @@ class FakeNOS:
 
     def _init(self) -> None:
         """
-        Helper method to initiate host objects and store them in self.hosts, this
+        Helper method to initiate host objects
+        and store them in self.hosts, this
         method called automatically on FakeNOS object instantiation.
         """
         for host_name, host_config in self.inventory["hosts"].items():
@@ -104,7 +117,7 @@ class FakeNOS:
                 **copy.deepcopy(self.inventory["default"]),
                 **copy.deepcopy(host_config),
             }
-            port: int|list = params.pop("port")
+            port: int | list = params.pop("port")
             replicas: int = params.pop("replicas", None)
             self._check_ports_and_replicas_are_okey(port, replicas)
             self._instantiate_host_object(host_name, port, replicas, params)
@@ -126,17 +139,13 @@ class FakeNOS:
             raise ValueError("If replicas is set, port[0] must be less than port[1].")
         if replicas and replicas < 1:
             raise ValueError("If replicas is set, replicas must be greater than 0.")
-        if replicas and port[1] - port[0] +1 != replicas:
-            raise ValueError("If replicas is set, port range must be equal to the number of replicas.")
-         
+        if replicas and port[1] - port[0] + 1 != replicas:
+            raise ValueError(
+                "If replicas is set, port range \
+                    must be equal to the number of replicas."
+            )
 
-    def _instantiate_host_object(
-            self, 
-            host_name: str, 
-            port: int|list[int], 
-            replicas: int, 
-            params: dict
-        ):
+    def _instantiate_host_object(self, host_name: str, port: int | list[int], replicas: int, params: dict):
         """
         Method that instantiate the host objects. It initializes the hosts
         with the corresponding name, port and network operating system
@@ -144,22 +153,18 @@ class FakeNOS:
         :param host: string - name of the host
         :param port: integer or list of two integers - port to allocate
         :param count: integer - number of hosts to create
-        :param params: dictionary - parameters to pass to the host like configurations
+        :param params: dictionary - parameters to pass to
+                                    the host like configurations
         """
         hosts_name, ports = self._get_hosts_and_ports(host_name, port, replicas)
         for host_name, port in zip(hosts_name, ports):
             self._instantiate_single_host_object(host_name, port, params)
-        
-    def _get_hosts_and_ports(
-            self,
-            host_name: str,
-            port: int|list[int], 
-            replicas: int = None
-        ):
+
+    def _get_hosts_and_ports(self, host_name: str, port: int | list[int], replicas: int = None):
         """
         Method to get hosts and ports correctly
         depending on the number of replicas (if exists).
-        
+
         :param host_name: string - name of the host
         :param port: integer or list of two integers - port to allocate
         :param replicas: integer - number of hosts to create
@@ -169,19 +174,20 @@ class FakeNOS:
 
         if replicas:
             hosts_name = {f"{host_name}{i}" for i in range(replicas)}
-            ports = {port for port in range(port[0], port[1]+1)}
+            ports = {port for port in range(port[0], port[1] + 1)}
         else:
             hosts_name = {host_name}
             ports = {port}
         return hosts_name, ports
-    
+
     def _instantiate_single_host_object(self, host, port, params):
         """
         Method that instantiate the host objects. It initializes the hosts
 
         :param host: string - name of the host
         :param port: integer or list of two integers - port to allocate
-        :param params: dictionary - parameters to pass to the host like configurations
+        :param params: dictionary - parameters to pass to
+                                    the host like configurations
         """
         self._allocate_port(port)
         self.hosts[host] = Host(name=host, port=port, fakenos=self, **params)
@@ -190,7 +196,8 @@ class FakeNOS:
         """
         Method to allocate port for host
 
-        :param port: integer or list of two integers - range to allocate port from
+        :param port: integer or list of two integers -
+                     range to allocate port from
         """
         if isinstance(port, int):
             port: list[int] = [port]
@@ -202,7 +209,7 @@ class FakeNOS:
     def _allocate_port_single(self, port: int) -> int:
         """
         Method to allocate single port for host.
-        
+
         :param port: integer - port to allocate
         """
         if port in self.allocated_ports:
@@ -210,7 +217,7 @@ class FakeNOS:
         self.allocated_ports.add(port)
         return port
 
-    def _get_hosts_as_list(self, hosts: str|list = None) -> list[Host]:
+    def _get_hosts_as_list(self, hosts: str | list = None) -> list[Host]:
         """
         Helper method to get hosts as list
 
@@ -225,7 +232,7 @@ class FakeNOS:
         hosts_list = [self.hosts[host] for host in hosts]
         return hosts_list
 
-    def start(self, hosts: str|list = None) -> None:
+    def start(self, hosts: str | list = None) -> None:
         """
         Function to start NOS servers instances
 
@@ -233,10 +240,16 @@ class FakeNOS:
         """
         hosts: list[str] = self._get_hosts_as_list(hosts)
         self._execute_function_over_hosts(hosts, "start", host_running=False)
-        print(f"The following devices has been initiated: {[host.name for host in hosts]}")
-        log.info(f"The following devices has been initiated: {[host.name for host in hosts]}")
+        print(
+            f"The following devices has been initiated: \
+              {[host.name for host in hosts]}"
+        )
+        log.info(
+            f"The following devices has been initiated:\
+                 {[host.name for host in hosts]}"
+        )
 
-    def stop(self, hosts: str|list = None) -> None:
+    def stop(self, hosts: str | list = None) -> None:
         """
         Function to stop NOS servers instances. It waits 2 seconds
         just in case that there is any thread doing something.
@@ -245,15 +258,21 @@ class FakeNOS:
         """
         hosts: list[str] = self._get_hosts_as_list(hosts)
         self._execute_function_over_hosts(hosts, "stop", host_running=True)
-        time.sleep(1)
+        if hosts == list(self.hosts.values()):
+            self._join_threads()
 
-    
-    def _execute_function_over_hosts(
-            self, 
-            hosts: list[Host], 
-            func: str, 
-            host_running: bool = True
-        ):
+    def _join_threads(self) -> None:
+        """
+        Method to join threads in case that all hosts are stopped.
+        """
+        all_threads = threading.enumerate()
+        for thread in all_threads:
+            if thread is not threading.main_thread():
+                thread.join()
+        while threading.active_count() > 1:
+            time.sleep(0.01)
+
+    def _execute_function_over_hosts(self, hosts: list[Host], func: str, host_running: bool = True):
         """
         Function that executes a function like start or stop over
         the selected hosts.
@@ -285,6 +304,10 @@ class FakeNOS:
                 elif isinstance(plugin, str):
                     nos_instance.from_file(plugin)
                 else:
-                    raise TypeError("Unsupported NOS type {}, \
-                                    supported str, dict or Nos".format(type(plugin)))
+                    raise TypeError(
+                        "Unsupported NOS type {}, \
+                                    supported str, dict or Nos".format(
+                            type(plugin)
+                        )
+                    )
             self.nos_plugins[nos_instance.name] = nos_instance

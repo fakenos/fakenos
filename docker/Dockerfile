@@ -1,16 +1,11 @@
-FROM rockylinux:8
+FROM python:3.11-alpine
 
-# install misc libs
-RUN dnf install -y python3.9 nano tree
+RUN apk add --no-cache gcc musl-dev linux-headers
 
-# do python libs installation
-RUN python3 -m pip install pip setuptools wheel --upgrade
+RUN pip install poetry
 
-# run FakeNOS installation from local files
-COPY . /tmp/fakenos/
-RUN python3 -m pip install /tmp/fakenos/ --upgrade
+WORKDIR /app
 
-# copy inventory across for initial start
-COPY ./docker/fakenos_inventory.yaml /tmp/fakenos_inventory/fakenos_inventory.yaml
+COPY . /app
 
-ENTRYPOINT fakenos -i /tmp/fakenos_inventory/fakenos_inventory.yaml
+RUN poetry install

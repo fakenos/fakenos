@@ -1,6 +1,5 @@
 from cmd import Cmd
 import logging
-import time
 import traceback
 import copy
 
@@ -79,7 +78,6 @@ class CMDShell(Cmd):
         """Method to return help for commands"""
         lines = {}  # dict of {cmd: cmd_help}
         width = 0  # record longest command width for padding
-        cmd_string = " ".join(args)
         # form help for all commands
         for cmd, cmd_data in self.commands.items():
             # skip special commands
@@ -139,7 +137,7 @@ class CMDShell(Cmd):
         except KeyError:
             log.error("shell.default '{}' command '{}' not found".format(self.base_prompt, [command]))
             pass
-        except:
+        except (Exception,):
             ret = traceback.format_exc()
             ret = ret.replace("\n", self.newline)
 

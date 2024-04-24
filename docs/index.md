@@ -15,7 +15,7 @@ network devices like Cisco IOS or Huawei SmartAX interactions over
 SSH with little effort. This project it is mainly intented for testing 
 and development purposes.
 
-[Installation](/installation) | [Examples](/examples) | [Platforms](/platforms)
+[Installation](usage/installation) | [Examples](examples) | [Platforms](platforms)
 
 
 ## Installation

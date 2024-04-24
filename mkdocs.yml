@@ -16,17 +16,18 @@ theme:
     - navigation.instant
     - navigation.instant.progress
     - content.tabs.link
+    - content.footnote.tooltips
   palette:
-    - scheme: default 
-      toggle:
-        icon: material/weather-sunny
-        name: Switch to dark mode
-      primary: brown
-      accent: deep orange
     - scheme: slate
       toggle:
         icon: material/weather-night
         name: Switch to system preference
+      primary: brown
+      accent: deep orange
+    - scheme: default 
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
       primary: brown
       accent: deep orange
   language: en
@@ -57,6 +58,8 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
   - toc:
       permalink: "#"
+  - footnotes
+  - tables
 
 plugins:
   - search
@@ -73,9 +76,10 @@ plugins:
             show_signature_annotations: true
             docstring_section_style: list
             merge_init_into_class: true
+
 nav:
-  - Overview: 
-    - Overview: overview.md
+  - Overview:
+    - Overview: index.md
     - Why?: overview/why.md
     - What?: overview/what.md
     - How?: overview/how.md
@@ -88,14 +92,15 @@ nav:
   - Usage:
     - Installation: usage/installation.md
     - Getting Started: usage/getting_started.md
-    - FakeNOS Inventory: usage/fakenos_inventory.md
-    - Running in Docker Container: usage/running_in_docker_md.md
-    - Creating NOS Plugin: usage/creating_nos_plugin.md
+    - Inventory: usage/fakenos_inventory.md
+    - Running in Docker Container: usage/running_in_docker.md
   - Platforms: platforms.md
   - Development:
     - Main: development.md
     - Conventions: development/conventions.md
     - Tasks: development/tasks.md
+    - Creating a new platform: development/creating_new_platforms.md
+    - Creating NOS Plugin: development/creating_nos_plugin.md
   - Collaborators:
     - Collaborators: collaborators.md
   - API Reference:

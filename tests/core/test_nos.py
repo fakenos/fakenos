@@ -173,6 +173,7 @@ class NosTest(unittest.TestCase):
         Test that the from_file method works with .py.
         """
         from tests.assets import module
+
         nos = Nos()
         nos.from_file("tests/assets/module.py")
         assert nos.name == "FakeNOS"
@@ -187,7 +188,6 @@ class NosTest(unittest.TestCase):
         with pytest.raises(FileNotFoundError):
             nos = Nos()
             nos.from_file("tests/assets/incorrect_file.py")
-
 
     def test_from_module(self):
         """
@@ -265,26 +265,25 @@ class NosTest(unittest.TestCase):
         """
         with pytest.raises(ValidationError):
             Nos(
-                name="MyFakeNOSPlugin", 
-                initial_prompt="{base_prompt}>", 
+                name="MyFakeNOSPlugin",
+                initial_prompt="{base_prompt}>",
                 commands={
                     "show clock": {"output": True},
-                }
+                },
             )
-    
+
     def test_register_nos_plugin_incorrect_name(self):
         """
         Test that we can register a nos model from a dict.
         """
         with pytest.raises(ValidationError):
             Nos(
-                name=123, 
-                initial_prompt="{base_prompt}>", 
+                name=123,
+                initial_prompt="{base_prompt}>",
                 commands={
                     "show clock": {"output": ""},
-                }
+                },
             )
-
 
     def test_register_nos_plugin_incorrect_output(self):
         """

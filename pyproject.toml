@@ -27,8 +27,11 @@ python = ">=3.8,<3.12"
 paramiko = "<4.0"
 pyyaml = "<7.0"
 pydantic = "<3.0"
+# Installed due to a WSL Bug
+# See: https://github.com/microsoft/WSL/issues/4983
+detect = "^2020.12.3"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 pymdown-extensions = "*"
 mkdocs-material = "*"
 pytest-timeout = "*"
@@ -46,6 +49,8 @@ pre-commit = "2.15.*"
 pyenchant = "*"
 netmiko = "*"
 requests = "*"
+psutil = "*"
+ruamel-yaml = "^0.18.6"
 
 [tool.black]
 line-length = 120
@@ -73,8 +78,8 @@ exclude = '''
 [tool.pylint.master]
 ignore = ".venv"
 
-[bandit]
-exclude_dirs = ['tests', './.venv']
+[tool.bandit]
+exclude_dirs = ["./tests/", "./.venv", "./update_platforms.py"]
 tests = ["B201", "B301"]
 skips = ["B101", "B601"]
 
@@ -94,9 +99,6 @@ disable = """,
     redefined-outer-name
     """
 
-[tool.bandit]
-exclude_dirs = ["./tests", "./.venv"]
-
 [tool.coverage.run]
 branch = true
 omit = [".*", ".venv"]
@@ -109,10 +111,6 @@ show_missing = true
 [tools.coverage.html]
 directory = "coverage_html_report"
 
-[tool.flake8]
-extend-ignore = ["E501", "W503"]
-exclude = ".venv"
-
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-vv"
@@ -120,3 +118,6 @@ addopts = "-vv"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+fakenos = 'fakenos.plugins.utils.cli:run_cli'

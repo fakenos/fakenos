@@ -1,10 +1,11 @@
 """
 Host classes
 """
+
 import logging
 
 from fakenos.core.pydantic_models import ModelHost
-import fakenos
+from fakenos.core.nos import available_platforms
 
 log = logging.getLogger(__name__)
 
@@ -26,10 +27,10 @@ class Host:
         self.server_inventory: dict = server
         self.shell_inventory: dict = shell
         self.nos_inventory: dict = nos
-        self.username:str = username
-        self.password:str = password
+        self.username: str = username
+        self.password: str = password
         self.port: int = port
-        self.fakenos = fakenos # FakeNOS object
+        self.fakenos = fakenos  # FakeNOS object
         self.shell_inventory["configuration"].setdefault("base_prompt", self.name)
         self.running = False
         self.server = None
@@ -40,7 +41,7 @@ class Host:
 
         if self.platform:
             self.nos_inventory["plugin"] = self.platform
-        
+
         self._validate()
 
     def start(self):
@@ -68,6 +69,7 @@ class Host:
         self.server.stop()
         self.server = None
         self.running = False
+
     def _validate(self):
         """Validate that the host has the required attributes using pydantic"""
         self._check_if_platform_is_supported(self.platform)
@@ -75,5 +77,8 @@ class Host:
 
     def _check_if_platform_is_supported(self, platform: str):
         """Check if the platform is supported"""
-        if platform not in fakenos.available_platforms:
-            raise ValueError(f"Platform {platform} is not supported by FakeNOS. Supported platforms are: {fakenos.available_platforms}")
+        if platform not in available_platforms:
+            raise ValueError(
+                f"Platform {platform} is not supported by FakeNOS. \
+                    Supported platforms are: {available_platforms}"
+            )

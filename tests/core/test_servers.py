@@ -2,9 +2,8 @@ import socket
 import unittest
 from unittest.mock import MagicMock, patch
 
-import pytest
-
 from fakenos.core.servers import TCPServerBase
+
 
 class FakeServer(TCPServerBase):
     def __init__(self):
@@ -15,6 +14,7 @@ class FakeServer(TCPServerBase):
 
     def connection_function(self, client):
         pass
+
 
 class ServersTest(unittest.TestCase):
 
@@ -47,38 +47,31 @@ class ServersTest(unittest.TestCase):
         if no arguments are given.
         """
         mock_thread_event().is_set.return_value = False
-        
+
         servers = FakeServer()
         servers.start()
-        
+
         mock_bind_sockets.assert_called_once()
         mock_thread_event().set.assert_called_once()
         mock_thread.assert_called_once_with(target=servers._listen)
         mock_thread().start.assert_called_once()
 
-        
     @patch("threading.Event")
-    def test_start_does_not_execute_thread_if_running(
-        self,
-        mock_thread_event
-    ):
+    def test_start_does_not_execute_thread_if_running(self, mock_thread_event):
         """
         It passes if the start does not execute the
         thread if the server is already running.
         """
         mock_thread_event().is_set.return_value = True
-        
+
         servers = FakeServer()
         servers.start()
-        
+
         mock_thread_event().set.assert_not_called()
 
     @patch("socket.socket")
     @patch("sys.platform", "linux")
-    def test_bind_sockets_works_in_linux(
-        self,
-        mock_socket
-    ):
+    def test_bind_sockets_works_in_linux(self, mock_socket):
         """
         It passes if the socket is created and the
         setsockopt is called with the right parameters
@@ -86,20 +79,16 @@ class ServersTest(unittest.TestCase):
         """
         servers = FakeServer()
         servers._bind_sockets()
-        
+
         mock_socket.assert_called_once_with(socket.AF_INET, socket.SOCK_STREAM)
         mock_socket().setsockopt.assert_any_call(socket.SOL_SOCKET, socket.SO_REUSEADDR, True)
         mock_socket().setsockopt.assert_any_call(socket.SOL_SOCKET, socket.SO_REUSEPORT, True)
         mock_socket().settimeout.assert_called_once_with(servers.timeout)
         mock_socket().bind.assert_called_once_with((servers.address, servers.port))
 
-
     @patch("socket.socket")
     @patch("sys.platform", "darwin")
-    def test_bind_sockets_works_in_osx(
-        self,
-        mock_socket
-    ):
+    def test_bind_sockets_works_in_osx(self, mock_socket):
         """
         It passes if the socket is created and the
         setsockopt is called with the right parameters
@@ -107,19 +96,15 @@ class ServersTest(unittest.TestCase):
         """
         servers = FakeServer()
         servers._bind_sockets()
-        
+
         mock_socket.assert_called_once_with(socket.AF_INET, socket.SOCK_STREAM)
         mock_socket().setsockopt.assert_any_call(socket.SOL_SOCKET, socket.SO_REUSEADDR, True)
         mock_socket().settimeout.assert_called_once_with(servers.timeout)
         mock_socket().bind.assert_called_once_with((servers.address, servers.port))
 
-
     @patch("socket.socket")
     @patch("sys.platform", "win32")
-    def test_bind_sockets_works_in_windows(
-        self,
-        mock_socket
-    ):
+    def test_bind_sockets_works_in_windows(self, mock_socket):
         """
         It passes if the socket is created and the
         setsockopt is called with the right parameters
@@ -127,12 +112,11 @@ class ServersTest(unittest.TestCase):
         """
         servers = FakeServer()
         servers._bind_sockets()
-        
+
         mock_socket.assert_called_once_with(socket.AF_INET, socket.SOCK_STREAM)
         mock_socket().setsockopt.assert_called_once_with(socket.SOL_SOCKET, socket.SO_REUSEADDR, True)
         mock_socket().settimeout.assert_called_once_with(servers.timeout)
         mock_socket().bind.assert_called_once_with((servers.address, servers.port))
-        
 
     @patch("threading.Event")
     def test_stop_works_does_not_stop_if_not_running(self, mock_thread_event):
@@ -144,18 +128,13 @@ class ServersTest(unittest.TestCase):
 
         servers = FakeServer()
         servers.stop()
-        
+
         mock_thread_event().clear.assert_not_called()
 
     @patch("threading.Event")
     @patch("threading.Thread")
     @patch("socket.socket")
-    def test_stop_works_stop_if_running_is_set(
-        self,
-        mock_socket,
-        mock_thread,
-        mock_thread_event
-    ):
+    def test_stop_works_stop_if_running_is_set(self, mock_socket, mock_thread, mock_thread_event):
         """
         It passes if the functions exits correctly when
         the is_running flag is still set to true.
@@ -168,16 +147,11 @@ class ServersTest(unittest.TestCase):
         servers.stop()
 
         mock_thread_event().clear.assert_called_once()
-        
+
     @patch("threading.Event")
     @patch("threading.Thread")
     @patch("socket.socket")
-    def test_stop_works_closing_sockets(
-        self,
-        mock_socket,
-        mock_thread,
-        mock_thread_event
-    ):
+    def test_stop_works_closing_sockets(self, mock_socket, mock_thread, mock_thread_event):
         """
         It passes if the sockets have the close() being
         called.
@@ -193,12 +167,7 @@ class ServersTest(unittest.TestCase):
     @patch("threading.Event")
     @patch("threading.Thread")
     @patch("socket.socket")
-    def test_stop_works_joining_threads(
-        self,
-        mock_socket,
-        mock_thread,
-        mock_thread_event
-    ):
+    def test_stop_works_joining_threads(self, mock_socket, mock_thread, mock_thread_event):
         """
         It passes if the connection threads are joined
         after the program is interrupted.
@@ -216,12 +185,7 @@ class ServersTest(unittest.TestCase):
     @patch("threading.Event")
     @patch("threading.Thread")
     @patch("socket.socket")
-    def test_listen_works_when_new_connection(
-        self,
-        mock_socket,
-        mock_thread,
-        mock_thread_event
-    ):
+    def test_listen_works_when_new_connection(self, mock_socket, mock_thread, mock_thread_event):
         """
         Test passes if the listening thread opens
         a new thread whenever there is a new connection
@@ -236,22 +200,15 @@ class ServersTest(unittest.TestCase):
         mock_socket().listen.assert_called_once()
         mock_socket().accept.assert_called_once()
         mock_thread.assert_called_once_with(
-            target=servers.connection_function, 
-            args=(mock_socket().accept.return_value[0],)
+            target=servers.connection_function, args=(mock_socket().accept.return_value[0],)
         )
         mock_thread().start.assert_called_once()
         self.assertEqual(len(servers._connection_threads), 1)
 
-        
     @patch("threading.Event")
     @patch("threading.Thread")
     @patch("socket.socket")
-    def test_listen_socket_timeout_go_back_to_loop(
-        self,
-        mock_socket,
-        mock_thread,
-        mock_thread_event
-    ):
+    def test_listen_socket_timeout_go_back_to_loop(self, mock_socket, mock_thread, mock_thread_event):
         """
         The test passes if the listening thread goes
         back to the loop if the socket timeout is
@@ -268,16 +225,10 @@ class ServersTest(unittest.TestCase):
         mock_thread.assert_not_called()
         self.assertEqual(len(servers._connection_threads), 0)
 
-
     @patch("threading.Event")
     @patch("threading.Thread")
     @patch("socket.socket")
-    def test_listen_works_all_the_time(
-        self,
-        mock_socket,
-        mock_thread,
-        mock_thread_event
-    ):
+    def test_listen_works_all_the_time(self, mock_socket, mock_thread, mock_thread_event):
         """
         Test passes if it detects that it passes at least
         100 times in the while and when there is the

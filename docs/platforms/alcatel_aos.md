@@ -16,6 +16,7 @@
 **Help:** enter enable mode
 
 **Prompt:**
+
 - alcatel_aos>
 
 ### ex
@@ -28,6 +29,7 @@ True
 **Help:** exit the terminal
 
 **Prompt:**
+
 - alcatel_aos>
 - alcatel_aos#
 
@@ -48,6 +50,7 @@ True
 **Help:** execute the command "show vlan"
 
 **Prompt:**
+
 - alcatel_aos>
 - alcatel_aos#
 

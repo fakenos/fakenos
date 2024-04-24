@@ -1,0 +1,6 @@
+hosts:
+  router0:
+    username: user
+    password: user
+    platform: huawei_smartax
+    port: 6000

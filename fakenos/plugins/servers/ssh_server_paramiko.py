@@ -62,23 +62,25 @@ class ParamikoSshServerInterface(paramiko.ServerInterface):
         This will allow the SSH server to provide a channel for the client
         to communicate over. By default, this will return
         OPEN_FAILED_ADMINISTRATIVELY_PROHIBITED, so  we have to override it
-        to return OPEN_SUCCEEDED when the kind of channel requested is "session".
+        to return OPEN_SUCCEEDED when the kind of channel
+        requested is "session".
         """
         if kind == "session":
             return paramiko.OPEN_SUCCEEDED
         return paramiko.OPEN_FAILED_ADMINISTRATIVELY_PROHIBITED
 
-    def check_channel_pty_request(
-        self, channel, term, width, height, pixelwidth, pixelheight, modes
-    ):
+    def check_channel_pty_request(self, channel, term, width, height, pixelwidth, pixelheight, modes):
         """
-        AFAIK, pty (pseudo-tty (TeleTYpewriter)) will allow our client to interact
-        with our shell.
+        AFAIK, pty (pseudo-tty (TeleTYpewriter))
+        will allow our client to interact with our shell.
         """
         return True
 
     def check_channel_shell_request(self, channel):
-        """This allows us to provide the channel with a shell we can connect to it."""
+        """
+        This allows us to provide the channel
+        with a shell we can connect to it.
+        """
         return True
 
     def check_auth_password(self, username, password):
@@ -88,8 +90,9 @@ class ParamikoSshServerInterface(paramiko.ServerInterface):
 
     def get_banner(self):
         """
-        String that will display when a client connects, before authentication has
-        happened. This is different than the shell's intro property, which is displayed
+        String that will display when a client connects,
+        before authentication has happened. This is different
+        than the shell's intro property, which is displayed
         after the authentication.
         """
         return (self.ssh_banner + "\r\n", "en-US")
@@ -124,18 +127,17 @@ def channel_to_shell_tap(channel_stdio, shell_stdin, shell_replied_event, run_sr
     buffer = io.BytesIO()
     while run_srv.is_set():
         byte = channel_stdio.read(1)
-        log.debug(
-            "ssh_server.channel_to_shell_tap received from channel: {}".format(
-                [byte]
-            )
-        )
+        log.debug("ssh_server.channel_to_shell_tap received from channel: {}".format([byte]))
         if byte in (b"\r", b"\n"):
             shell_replied_event.wait(10)
             if not channel_stdio.channel.active:
                 log.error("SSH channel is not active. Exiting.")
                 break
             log.debug(
-                "ssh_server.channel_to_shell_tap echoing new line to channel: {}".format([b'\r\n'])
+                "ssh_server.channel_to_shell_tap echoing \
+                    new line to channel: {}".format(
+                    [b"\r\n"]
+                )
             )
             channel_stdio.write(b"\r\n")
             buffer.write(byte)
@@ -143,11 +145,7 @@ def channel_to_shell_tap(channel_stdio, shell_stdin, shell_replied_event, run_sr
             line = buffer.read().decode(encoding="utf-8")
             buffer.seek(0)
             buffer.truncate()
-            log.debug(
-                "ssh_server.channel_to_shell_tap sending line to shell: {}".format(
-                    [line]
-                )
-            )
+            log.debug("ssh_server.channel_to_shell_tap sending line to shell: {}".format([line]))
             shell_stdin.write(line)
             shell_replied_event.clear()
         else:
@@ -157,22 +155,20 @@ def channel_to_shell_tap(channel_stdio, shell_stdin, shell_replied_event, run_sr
                 break
             try:
                 channel_stdio.write(byte)
-            except (OSError,EOFError) as e:
-                log.error(
-                    "ssh_server.channel_to_shell_tap channel write error: {}".format(e)
-                )
+            except (OSError, EOFError) as e:
+                log.error("ssh_server.channel_to_shell_tap channel write error: {}".format(e))
                 break
-            if byte not in [b"\x00", b'']:
+            if byte not in [b"\x00", b""]:
                 buffer.write(byte)
         time.sleep(0.01)
 
 
 def shell_to_channel_tap(
-        channel_stdio: paramiko.channel.ChannelFile, 
-        shell_stdout: TapIO, 
-        shell_replied_event: threading.Event , 
-        run_srv: threading.Event
-    ):
+    channel_stdio: paramiko.channel.ChannelFile,
+    shell_stdout: TapIO,
+    shell_replied_event: threading.Event,
+    run_srv: threading.Event,
+):
     while run_srv.is_set():
         if channel_stdio.closed:
             break
@@ -182,18 +178,15 @@ def shell_to_channel_tap(
             break
         if "\r\n" not in line and "\n" in line:
             line = line.replace("\n", "\r\n")
-        log.debug(
-            "ssh_server.shell_to_channel_tap sending line to channel {}".format([line])
-        )
+        log.debug("ssh_server.shell_to_channel_tap sending line to channel {}".format([line]))
         try:
             channel_stdio.write(line.encode(encoding="utf-8"))
         except socket.error as e:
-            if e.errno == 104: # Connection reset by peer
-                log.error(
-                    "ssh_server.shell_to_channel_tap channel write error: {}".format(e)
-                )
-                break	
+            if e.errno == 104:  # Connection reset by peer
+                log.error("ssh_server.shell_to_channel_tap channel write error: {}".format(e))
+                break
         shell_replied_event.set()
+
 
 class ParamikoSshServer(TCPServerBase):
     def __init__(
@@ -227,13 +220,9 @@ class ParamikoSshServer(TCPServerBase):
         self.watchdog_interval = watchdog_interval
 
         if ssh_key_file:
-            self._ssh_server_key = paramiko.RSAKey.from_private_key_file(
-                ssh_key_file, ssh_key_file_password
-            )
+            self._ssh_server_key = paramiko.RSAKey.from_private_key_file(ssh_key_file, ssh_key_file_password)
         else:
-            self._ssh_server_key = paramiko.RSAKey(
-                file_obj=io.StringIO(DEFAULT_SSH_KEY)
-            )
+            self._ssh_server_key = paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY))
 
     def watchdog(self, run_srv, session, shell):
         """
@@ -243,7 +232,8 @@ class ParamikoSshServer(TCPServerBase):
             # check if session is alive, stop shell if it is not
             if not session.is_alive():
                 log.warning(
-                    "ParamikoSshServer.watchdog - session not alive, stopping shell"
+                    "ParamikoSshServer.watchdog - \
+                        session not alive, stopping shell"
                 )
                 shell.stop()
                 break
@@ -276,14 +266,16 @@ class ParamikoSshServer(TCPServerBase):
         # create stdio for the shell
         shell_stdin, shell_stdout = TapIO(run_srv), TapIO(run_srv)
 
-        # start intermediate thread to tap into the channel_stdio->shell_stdin bytes stream
+        # start intermediate thread to tap into
+        # the channel_stdio->shell_stdin bytes stream
         channel_to_shell_tapper = threading.Thread(
             target=channel_to_shell_tap,
             args=(channel_stdio, shell_stdin, shell_replied_event, run_srv),
         )
         channel_to_shell_tapper.start()
 
-        # start intermediate thread to tap into the shell_stdout->channel_stdio bytes stream
+        # start intermediate thread to tap into
+        # the shell_stdout->channel_stdio bytes stream
         shell_to_channel_tapper = threading.Thread(
             target=shell_to_channel_tap,
             args=(channel_stdio, shell_stdout, shell_replied_event, run_srv),
@@ -301,16 +293,15 @@ class ParamikoSshServer(TCPServerBase):
         )
 
         # start watchdog thread
-        watchdog_thread = threading.Thread(
-            target=self.watchdog, args=(run_srv, session, client_shell)
-        )
+        watchdog_thread = threading.Thread(target=self.watchdog, args=(run_srv, session, client_shell))
         watchdog_thread.start()
 
         # running this command will block this function until shell exits
         client_shell.start()
         log.debug("ParamikoSshServer.connection_function stopped shell thread")
 
-        # kill this server threads - watchdog, TapIO, shell_to_channel_tapper and channel_to_shell_tapper
+        # kill this server threads - watchdog, TapIO,
+        # shell_to_channel_tapper and channel_to_shell_tapper
         run_srv.clear()
         log.debug("ParamikoSshServer.connection_function stopped server threads")
 

@@ -1,15 +1,16 @@
 import threading
 from unittest.mock import patch
 import pytest
-from fakenos import available_platforms
+from fakenos.core.nos import available_platforms
 from fakenos.core.fakenos import FakeNOS
 
-from tests.utils import get_running_hosts
+from tests.utils import get_platforms_from_md, get_running_hosts
+
 
 class TestFakeNOS:
     def test_create_FakeNOS_without_arguments(self):
         """
-        Test that fakeNOS creates two hosts when no 
+        Test that fakeNOS creates two hosts when no
         arguments are passed.
         Those routers should have the following:
         - names are router0 and router1
@@ -32,7 +33,7 @@ class TestFakeNOS:
             assert host.server_inventory["configuration"]["address"] == "127.0.0.1"
             assert host.server_inventory["configuration"]["timeout"] == 1
             assert host.shell_inventory["plugin"] == "CMDShell"
-            assert host.shell_inventory["configuration"] == {'base_prompt': router_name}
+            assert host.shell_inventory["configuration"] == {"base_prompt": router_name}
 
     def test_create_FakeNOS_with_inventory_as_dict(self):
         """
@@ -47,24 +48,24 @@ class TestFakeNOS:
             "hosts": {
                 "R1": {
                     "port": 5001,
-                    "username": "fakenos",
-                    "password": "fakenos",
+                    "username": "fakenos_R1",
+                    "password": "fakenos_R1",
                     "platform": available_platforms[0],
                 },
                 "R2": {
                     "port": 6000,
-                    "username": "fakenos",
-                    "password": "fakenos",
+                    "username": "fakenos_R2",
+                    "password": "fakenos_R2",
                     "platform": available_platforms[0]
-                }
+                },
             }
         }
         net = FakeNOS(inventory=inventory)
         assert len(net.hosts) == 2
         for router_name, host in net.hosts.items():
             assert router_name in ["R1", "R2"]
-            assert host.username in ["fakenos"]
-            assert host.password in ["fakenos"]
+            assert host.username in ["fakenos_R1", "fakenos_R2"]
+            assert host.password in ["fakenos_R1", "fakenos_R2"]
             assert host.port in [5001, 6000]
 
     def test_create_FakeNOS_with_inventory_as_file(self):
@@ -80,8 +81,8 @@ class TestFakeNOS:
         assert len(net.hosts) == 2
         for router_name, host in net.hosts.items():
             assert router_name in ["R1", "R2"]
-            assert host.username in ["fakenos"]
-            assert host.password in ["fakenos"]
+            assert host.username in "fakenos"
+            assert host.password in "fakenos"
             assert host.port in [5001, 6000]
 
     def test_is_inventory_in_yaml(self):
@@ -105,7 +106,7 @@ class TestFakeNOS:
         """
         net = FakeNOS()
         net.inventory = "tests/assets/inventory.yaml"
-        assert net._is_inventory_in_yaml() == True
+        assert net._is_inventory_in_yaml() is True
 
     def test_is_inventory_in_yaml_unit_false(self):
         """
@@ -114,7 +115,7 @@ class TestFakeNOS:
         """
         net = FakeNOS()
         net.inventory = "tests/assets/inventory.txt"
-        assert net._is_inventory_in_yaml() == False
+        assert net._is_inventory_in_yaml() is False
 
     def test_load_inventory_yaml_unit_true(self):
         """
@@ -133,7 +134,7 @@ class TestFakeNOS:
         """
         net = FakeNOS()
         net.inventory = "tests/assets/inventory.txt"
-        assert net._load_inventory_yaml() == None
+        assert net._load_inventory_yaml() is None
 
     def test_load_inventory_unit_yaml(self):
         """
@@ -180,9 +181,7 @@ class TestFakeNOS:
         """
         Test that the function _init creates the hosts.
         """
-        inventory = {
-            "hosts": {"R1": {"port": 5001, "platform": "cisco_ios"}}
-        }
+        inventory = {"hosts": {"R1": {"port": 5001, "platform": "cisco_ios"}}}
         net = FakeNOS(inventory)
         assert len(net.hosts) == 1
         assert "R1" in net.hosts
@@ -197,14 +196,12 @@ class TestFakeNOS:
         net.allocated_ports = [5000]
         with pytest.raises(ValueError):
             net._allocate_port(5000)
-    
+
     def test_allocate_port(self):
         """
         Test that the function _allocate_port allocates the port.
         """
-        inventory = {
-            "hosts": {"R1": {"port": 5000, "platform": "cisco_ios"}}
-        }
+        inventory = {"hosts": {"R1": {"port": 5000, "platform": "cisco_ios"}}}
         net = FakeNOS(inventory=inventory)
         assert 5000 in net.allocated_ports
         assert len(net.allocated_ports) == 1
@@ -213,9 +210,7 @@ class TestFakeNOS:
         """
         Test that the function _allocate_port allocates the port.
         """
-        inventory = {
-            "hosts": {"R1": {"port": [5000, 5001], "replicas": 2, "platform": "cisco_ios"}}
-        }
+        inventory = {"hosts": {"R1": {"port": [5000, 5001], "replicas": 2, "platform": "cisco_ios"}}}
         net = FakeNOS(inventory=inventory)
         assert net.allocated_ports == {5000, 5001}
 
@@ -224,35 +219,25 @@ class TestFakeNOS:
         Test that the function _check_ports_and_replicas_are_okey raises an exception
         when replicas is not set.
         """
-        inventory = {
-            "default": {"port": [5000, 5001]},
-            "hosts": {"R1": {}}
-        }
+        inventory = {"default": {"port": [5000, 5001]}, "hosts": {"R1": {}}}
         with pytest.raises(ValueError):
             FakeNOS(inventory=inventory)
-    
+
     def test_replicas_set_and_port_int(self):
         """
         Test that the function _check_ports_and_replicas_are_okey raises an exception
         when replicas is set and port is an int.
         """
-        inventory = {
-            "default": {"port": 5000, "replicas": 2},
-            "hosts": {"R1": {}}
-        }
+        inventory = {"default": {"port": 5000, "replicas": 2}, "hosts": {"R1": {}}}
         with pytest.raises(ValueError):
             FakeNOS(inventory=inventory)
-
 
     def test_replicas_set_and_port_list_not_enough_ports(self):
         """
         Test that the function _check_ports_and_replicas_are_okey raises an exception
         when replicas is set and there are not enough ports.
         """
-        inventory = {
-            "default": {"port": [5000], "replicas": 2},
-            "hosts": {"R1": {}}
-        }
+        inventory = {"default": {"port": [5000], "replicas": 2}, "hosts": {"R1": {}}}
         with pytest.raises(ValueError):
             FakeNOS(inventory=inventory)
 
@@ -261,22 +246,16 @@ class TestFakeNOS:
         Test that the function _check_ports_and_replicas_are_okey raises an exception
         when replicas is set and there are too many ports.
         """
-        inventory = {
-            "default": {"port": [5000, 5001, 5002], "replicas": 2},
-            "hosts": {"R1": {}}
-        }
+        inventory = {"default": {"port": [5000, 5001, 5002], "replicas": 2}, "hosts": {"R1": {}}}
         with pytest.raises(ValueError):
             FakeNOS(inventory=inventory)
-    
+
     def test_replicas_set_and_port_1_larger_than_port_2(self):
         """
         Test that the function _check_ports_and_replicas_are_okey raises an exception
         when replicas is set and the first port is larger than the second port.
         """
-        inventory = {
-            "default": {"port": [5001, 5000], "replicas": 2},
-            "hosts": {"R1": {}}
-        }
+        inventory = {"default": {"port": [5001, 5000], "replicas": 2}, "hosts": {"R1": {}}}
         with pytest.raises(ValueError):
             FakeNOS(inventory=inventory)
 
@@ -285,10 +264,7 @@ class TestFakeNOS:
         Test that the function _check_ports_and_replicas_are_okey raises an exception
         when replicas is set and the replicas are less than 1.
         """
-        inventory = {
-            "default": {"port": [5000, 5001], "replicas": 0},
-            "hosts": {"R1": {}}
-        }
+        inventory = {"default": {"port": [5000, 5001], "replicas": 0}, "hosts": {"R1": {}}}
         with pytest.raises(ValueError):
             FakeNOS(inventory=inventory)
 
@@ -297,10 +273,7 @@ class TestFakeNOS:
         Test that the function _check_ports_and_replicas_are_okey raises an exception
         when replicas is set and the ports are not the same length.
         """
-        inventory = {
-            "default": {"port": [5000, 5001], "replicas": 3},
-            "hosts": {"R1": {}}
-        }
+        inventory = {"default": {"port": [5000, 5001], "replicas": 3}, "hosts": {"R1": {}}}
         with pytest.raises(ValueError):
             FakeNOS(inventory=inventory)
 
@@ -309,9 +282,7 @@ class TestFakeNOS:
         Test that the function _check_plugin_name raises an exception
         when the plugin name is wrong.
         """
-        inventory = {
-            "hosts": {"R1": {"server": {"plugin": "wrong_plugin"}}}
-        }
+        inventory = {"hosts": {"R1": {"server": {"plugin": "wrong_plugin"}}}}
         with pytest.raises(ValueError):
             FakeNOS(inventory=inventory)
 
@@ -320,12 +291,10 @@ class TestFakeNOS:
         Test that the function _check_platform raises an exception
         when the platform is wrong.
         """
-        inventory = {
-            "hosts": {"R1": {"platform": "wrong_platform"}}
-        }
+        inventory = {"hosts": {"R1": {"platform": "wrong_platform"}}}
         with pytest.raises(ValueError):
             FakeNOS(inventory=inventory)
-    
+
     def test_inventory_validation_cmdshell_plugin(self):
         """
         Test that the inventory is validated when
@@ -339,7 +308,7 @@ class TestFakeNOS:
                     "shell": {
                         "plugin": "CMDShell",
                         "configuration": {},
-                    }
+                    },
                 }
             }
         }
@@ -353,20 +322,20 @@ class TestFakeNOS:
         net = FakeNOS()
 
         net.start(hosts="router0")
-        assert net.hosts["router0"].running == True
-        assert net.hosts["router1"].running == False
+        assert net.hosts["router0"].running is True
+        assert net.hosts["router1"].running is False
 
         net.start(hosts="router1")
-        assert net.hosts["router0"].running == True
-        assert net.hosts["router1"].running == True
+        assert net.hosts["router0"].running is True
+        assert net.hosts["router1"].running is True
 
         net.stop(hosts="router0")
-        assert net.hosts["router0"].running == False
-        assert net.hosts["router1"].running == True
+        assert net.hosts["router0"].running is False
+        assert net.hosts["router1"].running is True
 
         net.stop(hosts="router1")
-        assert net.hosts["router0"].running == False
-        assert net.hosts["router1"].running == False
+        assert net.hosts["router0"].running is False
+        assert net.hosts["router1"].running is False
 
         net.stop()
 
@@ -378,22 +347,20 @@ class TestFakeNOS:
         net = FakeNOS()
         before_start = get_running_hosts(net.hosts)
         for running_state in before_start.values():
-            assert running_state == False
-        
+            assert running_state is False
+
         net.start()
         after_start = get_running_hosts(net.hosts)
         for running_state in after_start.values():
-            assert running_state == True
+            assert running_state is True
 
         net.stop()
         after_stop = get_running_hosts(net.hosts)
         for running_state in after_stop.values():
-            assert running_state == False
-
+            assert running_state is False
 
         assert len(before_start) == len(after_start) == len(after_stop) == 2
 
-        
     def test_number_of_threads_after_stop_is_only_main(self):
         """
         Test that the number of threads after stopping the network is only the main thread.
@@ -401,7 +368,7 @@ class TestFakeNOS:
         net = FakeNOS()
         net.start()
         net.stop()
-        active_threads = threading.active_count() 
+        active_threads = threading.active_count()
         assert active_threads == 1
 
 
@@ -410,6 +377,7 @@ class TestPlatforms:
     Tests directly related to the platforms like the ordering
     or if the platforms match the docs and the real in the code.
     """
+
     def test_available_platforms_match_docs(self):
         """
         Test if the available platforms are correct set
@@ -431,16 +399,3 @@ class TestPlatforms:
         """
         platforms = get_platforms_from_md()
         assert platforms == sorted(platforms)
-
-def get_platforms_from_md() -> list[str]:
-    """Get the platforms in the platforms.md file."""
-    platforms = []
-    with open('platforms.md', 'r') as file:
-        for line in file:
-            if line.startswith('-'):
-                platform = line[1:].strip()  # Remove the dash and whitespace
-                if "❌" in platform:
-                    continue
-                platform = platform.split(' ')[0]  # Get the first word
-                platforms.append(platform)
-    return platforms

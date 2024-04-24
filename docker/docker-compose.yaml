@@ -1,26 +1,12 @@
+version: '3.9'
+
 services:
   fakenos:
-    container_name: fakenos
     hostname: 'fakenos'
     build:
       context: ..
       dockerfile: docker/Dockerfile
-    networks:
-      fakenosnet0:
-        ipv4_address: 10.100.0.2
-    volumes:
-      # bind fakenos_inventory.yaml file
-      - type: bind
-        source: ../docker/
-        target: /tmp/fakenos_inventory/
-      # bind FakeNOS packages to Python3.9 for development/debugging
-      - type: bind
-        source: ../fakenos/
-        target: /usr/local/lib/python3.9/site-packages/fakenos/
-
-networks:
-  fakenosnet0:
-    ipam:
-      config:
-        - subnet: 10.100.0.0/24
-          gateway: 10.100.0.1
+    command: poetry run fakenos -i /app/docker/inventory.yaml
+    ports:
+      - "12723:6001"
+      - "12724:6002"

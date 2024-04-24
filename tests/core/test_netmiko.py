@@ -3,9 +3,10 @@ import random
 
 import pytest
 from netmiko import ConnectHandler
-from fakenos import FakeNOS, available_platforms
+from fakenos.core.nos import available_platforms
+from fakenos import FakeNOS
 
-from tests.utils import get_platforms, get_free_port, generate_random_string
+from tests.utils import get_platforms_from_md, get_free_port, generate_random_string
 
 
 fake_network = {
@@ -43,15 +44,15 @@ fake_network = {
     },
 }
 
+
 class TestNetmiko:
     """
     Test the Netmiko compatibility as this library can be used
     as a testing tool for Netmiko.
     """
 
-    @pytest.mark.filterwarnings("ignore:DeprecationWarning")
     @pytest.mark.timeout(30)
-    @pytest.mark.parametrize("device_type", get_platforms())
+    @pytest.mark.parametrize("device_type", get_platforms_from_md())
     def test_custom_inventory_network(self, device_type: str):
         """
         This test tries to connect to device as Netmiko would
@@ -64,15 +65,15 @@ class TestNetmiko:
             inventory = {
                 "hosts": {
                     "router": {
-                        "username" : "usertest",
-                        "password" : "passwordtest",
-                        "port" : free_port,
-                        "platform": device_type
+                        "username": "usertest",
+                        "password": "passwordtest",
+                        "port": free_port,
+                        "platform": device_type,
                     }
                 }
             }
             net = FakeNOS(inventory=inventory)
-            
+
             net.start()
 
             device_credentials = {
@@ -80,7 +81,7 @@ class TestNetmiko:
                 "username": "usertest",
                 "password": "passwordtest",
                 "port": free_port,
-                "device_type": device_type
+                "device_type": device_type,
             }
 
             with ConnectHandler(**device_credentials):
@@ -94,22 +95,23 @@ class TestNetmiko:
                 if thread is not threading.main_thread():
                     thread.join()
 
-    @pytest.mark.filterwarnings("ignore:'telnetlib' is deprecated")
-    @pytest.mark.timeout(60)
+    @pytest.mark.timeout(20 * 10)
     def test_fakenos_start_stop_hosts(self):
         """
         Test that the function start and stop hosts by the name.
         """
+        port_router0 = get_free_port()
+        port_router1 = get_free_port()
         inventory = {
             "hosts": {
                 "router0": {
-                    "port": get_free_port(),
+                    "port": port_router0,
                     "username": generate_random_string(5),
                     "password": generate_random_string(8),
                     "platform": random.choice(available_platforms),
                 },
                 "router1": {
-                    "port": get_free_port(),
+                    "port": port_router1,
                     "username": generate_random_string(5),
                     "password": generate_random_string(8),
                     "platform": random.choice(available_platforms),
@@ -140,8 +142,8 @@ class TestNetmiko:
             for router in inventory["hosts"].keys():
                 try:
                     with ConnectHandler(**credentials[router]):
-                        assert net.hosts[router].running == True
-                except (Exception,) as e:
-                    assert net.hosts[router].running == False
+                        assert net.hosts[router].running is True
+                except (Exception,):
+                    assert net.hosts[router].running is False
 
         net.stop()

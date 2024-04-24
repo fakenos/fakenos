@@ -14,32 +14,15 @@ import logging
 log = logging.getLogger(__name__)
 
 
+# pylint: disable=too-many-instance-attributes
 class TCPServerBase(ABC):
     """
-    Base class to host common TCP server methods.
+    This module provides the base class for a TCP Server.
+    It provides the methods to start and stop the server.
+
+    Note: We are looking to switch to socketserver as it is 
+    the standard library in python.
     """
-
-    def __init__(self):
-        """
-        Initialize the server instance.
-
-        Attributes:
-        _is_running: A multithreaded event, which is a thread-safe boolean.
-        _socket: A socket used to listen to incoming connections.
-        client_shell: The shell for the connected client. It is not initialized yet,
-                    since we need to get the stdin and stdout objects after the connection is made.
-        _listen_thread: The thread that will listen for incoming connections and data.
-        _connection_threads: A list of active connections maintained by this server.
-        address: It is the address to which the device will be listening to.
-        port: It is the port to which the device will be listening to.
-        timeout: The time after which
-        """
-        self._is_running = threading.Event()
-        self._socket = None
-        self.client_shell = None
-        self._listen_thread = None
-        self._connection_threads: list = []
-
     def start(self):
         """
         Start Server which distributes the connections.
