@@ -27,39 +27,49 @@ jobs:
         uses: "networktocode/gh-action-setup-poetry-environment@v6"
         with:
           poetry-install-options: ""
-      - name: "See pip packages installed"
-        run: "pip list"
       - name: "Linting: black"
         run: "poetry run invoke black"
   bandit:
     runs-on: "ubuntu-22.04"
+    env:
+      INVOKE_LOCAL: "True"
     steps:
       - name: "Check out repository code"
         uses: "actions/checkout@v3"
       - name: "Setup environment"
-        uses: "networktocode/gh-action-setup-poetry-environment@v5"
+        uses: "networktocode/gh-action-setup-poetry-environment@v6"
+        with:
+          poetry-install-options: ""
       - name: "Linting: bandit"
         run: "poetry run invoke bandit"
     needs:
       - black
   flake8:
     runs-on: "ubuntu-22.04"
+    env:
+      INVOKE_LOCAL: "True"
     steps:
       - name: "Check out repository code"
         uses: "actions/checkout@v3"
       - name: "Setup environment"
-        uses: "networktocode/gh-action-setup-poetry-environment@v5"
+        uses: "networktocode/gh-action-setup-poetry-environment@v6"
+        with:
+          poetry-install-options: ""
       - name: "Linting: flake8"
         run: "poetry run invoke flake8"
     needs:
       - black
   yamllint:
     runs-on: "ubuntu-22.04"
+    env:
+      INVOKE_LOCAL: "True"
     steps:
       - name: "Check out repository code"
         uses: "actions/checkout@v3"
       - name: "Setup environment"
-        uses: "networktocode/gh-action-setup-poetry-environment@v5"
+        uses: "networktocode/gh-action-setup-poetry-environment@v6"
+        with:
+          poetry-install-options: ""
       - name: "Linting: yamllint"
         run: "poetry run invoke yamllint"
     needs:
@@ -71,12 +81,15 @@ jobs:
         python-version: ["3.8", "3.9", "3.10", "3.11"]
     runs-on: "ubuntu-22.04"
     env:
+      INVOKE_LOCAL: "True"
       PYTHON_VER: ${{ matrix.python-version }}
     steps:
       - name: "Check out repository code"
         uses: "actions/checkout@v3"
       - name: "Setup environment"
-        uses: "networktocode/gh-action-setup-poetry-environment@v5"
+        uses: "networktocode/gh-action-setup-poetry-environment@v6"
+        with:
+          poetry-install-options: ""
       - name: "Get image version"
         run: "echo IMAGE_VER=`poetry version -s`-py${{ matrix.python-version }} >> $GITHUB_ENV"
       - name: "Setup Docker Buildx"
@@ -103,14 +116,17 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        python-version: ["3.10"]
+        python-version: ["3.8", "3.9", "3.10", "3.11"]
     env:
       PYTHON_VER: "${{ matrix.python-version }}"
+      INVOKE_LOCAL: "True"
     steps:
       - name: "Check out repository code"
         uses: "actions/checkout@v3"
       - name: "Setup environment"
-        uses: "networktocode/gh-action-setup-poetry-environment@v5"
+        uses: "networktocode/gh-action-setup-poetry-environment@v6"
+        with:
+          poetry-install-options: ""
       - name: "Get image version"
         run: "echo IMAGE_VER=`poetry version -s`-py${{ matrix.python-version }} >> $GITHUB_ENV"
       - name: "Set up Docker Buildx"
@@ -139,16 +155,19 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        python-version: ["3.8", "3.9", "3.10"]
+        python-version: ["3.8", "3.9", "3.10", "3.11"]
         platform: [ubuntu-latest, macOS-10.15, windows-latest]
     runs-on: ${{ matrix.platform }}
     env:
+      INVOKE_LOCAL: "True"
       PYTHON_VER: "${{ matrix.python-version }}"
     steps:
       - name: "Check out repository code"
         uses: "actions/checkout@v3"
       - name: "Setup environment"
-        uses: "networktocode/gh-action-setup-poetry-environment@v5"
+        uses: "networktocode/gh-action-setup-poetry-environment@v6"
+        with:
+          poetry-install-options: ""
       - name: "Get image version"
         run: "echo IMAGE_VER=`poetry version -s`-py${{ matrix.python-version }} >> $GITHUB_ENV"
       - name: "Set up Docker Buildx"
