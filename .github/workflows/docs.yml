@@ -40,6 +40,6 @@ jobs:
           restore-keys: |
             mkdocs-material-
       - name: "Install environment"
-        run: "poetry install ${{ inputs.poetry-install-options }}"
+        run: "poetry install"
         shell: "bash"
       - run: mkdocs gh-deploy --force

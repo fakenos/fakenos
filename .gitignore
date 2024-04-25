@@ -136,3 +136,6 @@ tests/tofile_outputs/
 
 # Visual Studio Code
 .vscode/
+
+# act
+act
