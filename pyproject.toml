@@ -27,7 +27,7 @@ python = ">=3.8,<3.12"
 paramiko = "<4.0"
 pyyaml = "<7.0"
 pydantic = "<3.0"
-detect = "^2020.12.3"
+detect = "2020.12.*"
 
 [tool.poetry.dev-dependencies]
 pymdown-extensions = "*"
