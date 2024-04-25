@@ -11,15 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Configure Git Credentials
-        run: |
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
       - uses: actions/setup-python@v5
         with:
-          python-version: 3.11
-      - name: "Log: Install Poetry"
-        run: "echo Installing Poetry"
+          python-version: '3.11'
+      - name: "Install packages"
+        run: "apt-get update && apt-get install -y curl"
         shell: "bash"
       - name: "Install Poetry"
         run: "curl -sSL https://install.python-poetry.org | python -"
@@ -41,5 +37,8 @@ jobs:
             mkdocs-material-
       - name: "Install environment"
         run: "poetry install"
+        shell: "bash"
+      - name: "Log: Check poetry"
+        run: "echo "
         shell: "bash"
       - run: mkdocs gh-deploy --force
