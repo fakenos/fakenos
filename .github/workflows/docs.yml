@@ -42,4 +42,4 @@ jobs:
       - name: "Log: Check poetry"
         run: "echo "
         shell: "bash"
-      - run: mkdocs gh-deploy --force
+      - run: poetry run mkdocs gh-deploy --force
