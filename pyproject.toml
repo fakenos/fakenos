@@ -29,7 +29,7 @@ pyyaml = "<7.0"
 pydantic = "<3.0"
 detect = "^2020.12.3"
 
-[tool.poetry.group.dev.dependencies]
+[tool.poetry.dev-dependencies]
 pymdown-extensions = "*"
 mkdocs-material = "*"
 pytest-timeout = "*"
