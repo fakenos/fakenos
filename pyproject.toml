@@ -30,6 +30,10 @@ pydantic = "<3.0"
 detect = "2020.12.*"
 
 [tool.poetry.dev-dependencies]
+paramiko = "*"
+pydantic = "*"
+detect = "*"
+pyyaml = "*"
 pymdown-extensions = "*"
 mkdocs-material = "*"
 pytest-timeout = "*"
