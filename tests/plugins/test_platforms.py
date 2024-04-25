@@ -1,3 +1,9 @@
+"""
+Test the platforms that are supported by FakeNOS.
+Currently, it checks if the platforms are correctly set
+in the yaml and python files.
+"""
+
 import re
 import os
 from importlib import import_module
@@ -51,7 +57,7 @@ class TestPlatforms:
         It checks if the platform yaml file can be opened correctly using
         the yaml library.
         """
-        with open(f"fakenos/plugins/nos/platforms/{platform}.yaml", "r") as file:
+        with open(f"fakenos/plugins/nos/platforms/{platform}.yaml", "r", encoding="utf-8") as file:
             data: dict = yaml.safe_load(file)
             for key in data.keys():
                 assert key in ["name", "initial_prompt", "commands"]
@@ -65,7 +71,7 @@ class TestPlatforms:
         - help
         - prompt
         """
-        with open(f"fakenos/plugins/nos/platforms/{platform}.yaml", "r") as file:
+        with open(f"fakenos/plugins/nos/platforms/{platform}.yaml", "r", encoding="utf-8") as file:
             data = yaml.safe_load(file)
             for _, values in data["commands"].items():
                 assert "output" in values
@@ -87,7 +93,7 @@ class TestPlatforms:
 
         assert module.__name__ == f"fakenos.plugins.nos.{platform}"
         assert hasattr(module, "commands")
-        assert hasattr(module, "initial_prompt")
+        assert hasattr(module, "INITIAL_PROMPT")
 
     @pytest.mark.parametrize("platform", get_py_nos_modules())
     def test_platforms_py_commands_has_correct_format(self, platform: str):

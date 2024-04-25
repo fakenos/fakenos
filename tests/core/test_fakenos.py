@@ -1,3 +1,9 @@
+"""
+Test module for fakenos.core.fakenos.
+The file can be found in fakenos/core/fakenos.py
+"""
+
+# pylint: disable=protected-access
 import threading
 from unittest.mock import patch
 import pytest
@@ -7,8 +13,13 @@ from fakenos.core.fakenos import FakeNOS
 from tests.utils import get_platforms_from_md, get_running_hosts
 
 
+# pylint: disable=too-many-public-methods
 class TestFakeNOS:
-    def test_create_FakeNOS_without_arguments(self):
+    """
+    Test class for the FakeNOS class.
+    """
+
+    def test_create_fakenos_without_arguments(self):
         """
         Test that fakeNOS creates two hosts when no
         arguments are passed.
@@ -35,7 +46,7 @@ class TestFakeNOS:
             assert host.shell_inventory["plugin"] == "CMDShell"
             assert host.shell_inventory["configuration"] == {"base_prompt": router_name}
 
-    def test_create_FakeNOS_with_inventory_as_dict(self):
+    def test_create_fakenos_with_inventory_as_dict(self):
         """
         Test that fakeNOS creates two hosts when an inventory is passed.
         Those routers should have the following:
@@ -56,7 +67,7 @@ class TestFakeNOS:
                     "port": 6000,
                     "username": "fakenos_R2",
                     "password": "fakenos_R2",
-                    "platform": available_platforms[0]
+                    "platform": available_platforms[0],
                 },
             }
         }
@@ -68,7 +79,7 @@ class TestFakeNOS:
             assert host.password in ["fakenos_R1", "fakenos_R2"]
             assert host.port in [5001, 6000]
 
-    def test_create_FakeNOS_with_inventory_as_file(self):
+    def test_create_fakenos_with_inventory_as_file(self):
         """
         Test that fakeNOS creates two hosts when an inventory is passed as a file.
         Those routers should have the following:

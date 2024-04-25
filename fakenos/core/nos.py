@@ -1,8 +1,12 @@
+"""
+Network Operating Systems (NOS). Base class to build NOS plugins instances to use with FakeNOS.
+"""
+
 import logging
 from typing import Optional
+import importlib.util
 
 import yaml
-import importlib.util
 
 from fakenos.core.pydantic_models import ModelNosAttributes
 
@@ -50,10 +54,11 @@ class Nos:
     Base class to build NOS plugins instances to use with FakeNOS.
     """
 
+    # pylint: disable=too-many-arguments
     def __init__(
         self,
         name: str = "FakeNOS",
-        commands: dict = {},
+        commands: dict = None,
         initial_prompt: str = "FakeNOS>",
         filename: Optional[str] = None,
         dict_args: Optional[dict] = None,
@@ -66,7 +71,7 @@ class Nos:
         :param initial_prompt: NOS initial prompt
         """
         self.name = name
-        self.commands = commands
+        self.commands = commands or {}
         self.initial_prompt = initial_prompt
         if filename:
             print("HOLA")
@@ -83,7 +88,7 @@ class Nos:
         raises ValidationError on failure.
         """
         ModelNosAttributes(**self.__dict__)
-        log.debug(f"{self.name} NOS attributes validation succeeded")
+        log.debug("%s NOS attributes validation succeeded", self.name)
 
     def from_dict(self, data: dict) -> None:
         """
@@ -146,7 +151,7 @@ class Nos:
 
         :param data: YAML structured text
         """
-        with open(data, "r") as f:
+        with open(data, "r", encoding="utf-8") as f:
             self.from_dict(yaml.safe_load(f))
 
     def from_module(self, data: str) -> None:
@@ -160,7 +165,7 @@ class Nos:
 
             name = "MyFakeNOSPlugin"
 
-            initial_prompt = "{base_prompt}>"
+            INITIAL_PROMPT = "{base_prompt}>"
 
             commands = {
                 "terminal width 511": {
@@ -188,7 +193,7 @@ class Nos:
         # source attributes from loaded .py module
         self.name = getattr(module, "name", self.name)
         self.commands = getattr(module, "commands", self.commands)
-        self.initial_prompt = getattr(module, "initial_prompt", self.initial_prompt)
+        self.initial_prompt = getattr(module, "INITIAL_PROMPT", self.initial_prompt)
 
     def from_file(self, data: str) -> None:
         """

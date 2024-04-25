@@ -20,9 +20,24 @@ class TCPServerBase(ABC):
     This module provides the base class for a TCP Server.
     It provides the methods to start and stop the server.
 
-    Note: We are looking to switch to socketserver as it is 
+    Note: We are looking to switch to socketserver as it is
     the standard library in python.
     """
+
+    def __init__(self, address="localhost", port=6000, timeout=1):
+        """
+        Initialize the server with the address and port
+        and the timeout for the socket.
+        """
+        self.address = address
+        self.port = port
+        self.timeout = timeout
+        self._is_running = threading.Event()
+        self._socket = None
+        self.client_shell = None
+        self._listen_thread = None
+        self._connection_threads = []
+
     def start(self):
         """
         Start Server which distributes the connections.

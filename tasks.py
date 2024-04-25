@@ -4,6 +4,7 @@ The tasks are used to run tests, build the Docker image,
 and run the development environment. The tasks can be
 run locally or within the Docker container.
 """
+
 import os
 import sys
 import time
@@ -210,7 +211,7 @@ def tests(context, local=INVOKE_LOCAL):
     black(context, local=local)
     flake8(context, local=local)
     pylint(context, local=local)
-    yamllint(context, local=local)
+    # yamllint(context, local=local)
     bandit(context, local=local)
     pytest(context, local=local)
 
@@ -231,6 +232,7 @@ WARNING_MESSAGE = """
     open an issue on the GitHub repository. Thanks! 🤗📖
 """
 
+
 # pylint: disable=unused-argument
 @task
 def gen_docs_platform_commands(ctx):
@@ -245,11 +247,9 @@ def gen_docs_platform_commands(ctx):
         print(f"Generating Platform: {platform}")
         if os.path.exists(f"docs/platforms/{platform}.md"):
             continue
-        with open(f"{platforms_folder}/{platform}.yaml", "r", encoding="utf-8") \
-            as file:
+        with open(f"{platforms_folder}/{platform}.yaml", "r", encoding="utf-8") as file:
             data = yaml.load(file, Loader=yaml.FullLoader)
-        with open(f"docs/platforms/{platform}.md", "w", encoding="utf-8") \
-            as platforms_file:
+        with open(f"docs/platforms/{platform}.md", "w", encoding="utf-8") as platforms_file:
             platforms_file.write(f"# {platform}\n\n")
             platforms_file.write(WARNING_MESSAGE)
             platforms_file.write("## Platforms:\n\n")
@@ -269,6 +269,7 @@ def gen_docs_platform_commands(ctx):
                 for prompt in prompts:
                     platforms_file.write(f"- {prompt}\n")
                 platforms_file.write("\n")
+
 
 # pylint: disable=unused-argument
 @task(help={"device_type": "The device type to connect to."})

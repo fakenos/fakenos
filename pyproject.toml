@@ -27,8 +27,6 @@ python = ">=3.8,<3.12"
 paramiko = "<4.0"
 pyyaml = "<7.0"
 pydantic = "<3.0"
-# Installed due to a WSL Bug
-# See: https://github.com/microsoft/WSL/issues/4983
 detect = "^2020.12.3"
 
 [tool.poetry.group.dev.dependencies]
@@ -75,9 +73,6 @@ exclude = '''
 )
 '''
 
-[tool.pylint.master]
-ignore = ".venv"
-
 [tool.bandit]
 exclude_dirs = ["./tests/", "./.venv", "./update_platforms.py"]
 tests = ["B201", "B301"]
@@ -85,6 +80,9 @@ skips = ["B101", "B601"]
 
 [tool.poetry.extras]
 test = ["pytest"]
+
+[tool.pylint.master]
+ignore = ".venv"
 
 [tool.pylint.basic]
 # No docstrings required for private methods (Pylint default), or for test_ functions, or for inner Meta classes.

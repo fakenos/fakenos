@@ -1,26 +1,31 @@
+"""
+NOS module for Arista EOS
+"""
+
 import time
 
-initial_prompt = "{base_prompt}>"
+INITIAL_PROMPT = "{base_prompt}>"
 
 
+# pylint: disable=unused-argument
 def make_show_clock(base_prompt, current_prompt, command):
-    return """{current_time}
+    """Return the current time."""
+    return f"""{time.strftime('%a %b %d %H:%M:%S %Y')}
 Timezone: UTC
-Clock source: local""".format(
-        current_time=time.strftime("%a %b %d %H:%M:%S %Y")
-    )
+Clock source: local"""
 
 
+# pylint: disable=unused-argument
 def make_exit(base_prompt, current_prompt, command):
+    """Exit the current level of the CLI."""
     if current_prompt in [f"{base_prompt}>", f"{base_prompt}#"]:
         return True  # close session
-    elif current_prompt in [f"{base_prompt}(config)#"]:
+    if current_prompt in [f"{base_prompt}(config)#"]:
         return {"output": "", "new_prompt": "{base_prompt}#"}  # return to exec prompt
-    else:
-        raise RuntimeError(f"make_exit does not know how to handle '{current_prompt}' prompt")
+    raise RuntimeError(f"make_exit does not know how to handle '{current_prompt}' prompt")
 
 
-running_configuration = """! Command: show running-config
+RUNNING_CONFIGURATION = """! Command: show running-config
 ! device: {{base_prompt}} (cEOSLab, EOS-4.26.0F-21792469.4260F (engineering build))
 !
 transceiver qsfp default-mode 4x10G
@@ -105,7 +110,7 @@ management api netconf
 !
 end"""
 
-show_version = """cEOSLab
+SHOW_VERSION = """cEOSLab
 Hardware version: 
 Serial number: 
 Hardware MAC address: 0242.0af6.c8a5
@@ -123,7 +128,8 @@ Uptime: 0 weeks, 0 days, 0 hours and 8 minutes
 Total memory: 4918832 kB
 Free memory: 1816320 kB"""
 
-show_ip_int_br = """                                                                          Address 
+SHOW_IP_INT_BR = """
+                                                                          Address 
 Interface       IP Address        Status       Protocol            MTU    Owner   
 --------------- ----------------- ------------ -------------- ----------- ------- 
 Ethernet1       10.0.1.4/24       up           up                 9200            
@@ -138,20 +144,20 @@ commands = {
         "output": None,
         "new_prompt": "{base_prompt}#",
         "help": "Enable commands for a specified privilege level",
-        "prompt": initial_prompt,
+        "prompt": INITIAL_PROMPT,
     },
     "show clock": {
         "output": make_show_clock,
         "help": "System time",
-        "prompt": [initial_prompt, "{base_prompt}#"],
+        "prompt": [INITIAL_PROMPT, "{base_prompt}#"],
     },
     "show running-config": {
-        "output": running_configuration,
+        "output": RUNNING_CONFIGURATION,
         "help": "System running configuration",
         "prompt": "{base_prompt}#",
     },
     "show version": {
-        "output": show_version,
+        "output": SHOW_VERSION,
         "help": "Software and hardware versions",
         "prompt": "{base_prompt}#",
     },
@@ -175,12 +181,12 @@ commands = {
     },
     "term length 0": {"alias": "terminal length 0"},
     "show ip int brief": {
-        "output": show_ip_int_br,
+        "output": SHOW_IP_INT_BR,
         "help": "Condensed output",
         "prompt": ["{base_prompt}#", "{base_prompt}>"],
     },
     "show ip interface brief": {
-        "output": show_ip_int_br,
+        "output": SHOW_IP_INT_BR,
         "help": "Condensed output",
         "prompt": ["{base_prompt}#", "{base_prompt}>"],
     },

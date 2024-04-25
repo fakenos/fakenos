@@ -164,6 +164,7 @@ class ModelFakenosInventory(BaseModel):
     default: Optional[InventoryDefaultSection] = None
     hosts: Dict[StrictStr, HostConfig]
 
+    # pylint: disable=too-few-public-methods
     class ConfigDict:
         """Pydantic model configuration"""
 

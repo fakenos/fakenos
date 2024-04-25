@@ -1,13 +1,25 @@
-import pytest
+"""
+Test module for the module fakenos.core.host
+under fakenos/core/host.py
+"""
+
 from unittest.mock import MagicMock, Mock, patch
+
+import pytest
+
 from fakenos.core.host import Host
 from fakenos.core.nos import available_platforms
 from fakenos import FakeNOS
 
 
 class TestHost:
+    """
+    Test module for the Host class
+    """
+
     @pytest.fixture
     def host(self):
+        """Initial fixture for the setup"""
         server = {"plugin": "server_plugin", "configuration": {}}
         shell = {"plugin": "shell_plugin", "configuration": {}}
         nos = {"plugin": "nos_plugin", "configuration": {}}
@@ -62,6 +74,7 @@ class TestHost:
         platform = "wrong_platform"
         host.fakenos = FakeNOS()
         with pytest.raises(ValueError):
+            # pylint: disable=protected-access
             host._check_if_platform_is_supported(platform)
 
     def test_platform_is_supported(self, host):
@@ -70,4 +83,5 @@ class TestHost:
         """
         host.fakenos = FakeNOS()
         platform = available_platforms[0]
+        # pylint: disable=protected-access
         host._check_if_platform_is_supported(platform)

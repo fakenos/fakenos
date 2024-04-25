@@ -1,3 +1,8 @@
+"""
+Module tests for compatibility with Docker containers.
+"""
+
+# pylint: disable=unused-argument
 import subprocess
 import time
 

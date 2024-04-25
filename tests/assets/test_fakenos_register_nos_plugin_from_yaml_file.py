@@ -1,6 +1,10 @@
-name = "MyFakeNOSPlugin"
+"""
+This is a fake NOS plugin for testing purposes.
+"""
 
-initial_prompt = "{base_prompt}>"
+NAME = "MyFakeNOSPlugin"
+
+INITIAL_PROMPT = "{base_prompt}>"
 
 commands = {
     "terminal width 511": {"output": "", "help": "Set terminal width to 511"},

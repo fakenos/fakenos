@@ -1,3 +1,8 @@
+"""
+Main module to interact with FakeNOS servers.
+It is the entry point to start, stop and list FakeNOS servers.
+"""
+
 import logging
 import copy
 import threading
@@ -67,11 +72,11 @@ class FakeNOS:
 
     def __init__(
         self,
-        inventory: dict = default_inventory,
-        plugins: list = [],
+        inventory: dict = None,
+        plugins: list = None,
     ) -> None:
-        self.inventory: dict = inventory
-        self.plugins: list = plugins
+        self.inventory: dict = inventory or default_inventory
+        self.plugins: list = plugins or []
 
         self.hosts: dict[str, Host] = {}
         self.allocated_ports: set[str] = set()
@@ -157,8 +162,8 @@ class FakeNOS:
                                     the host like configurations
         """
         hosts_name, ports = self._get_hosts_and_ports(host_name, port, replicas)
-        for host_name, port in zip(hosts_name, ports):
-            self._instantiate_single_host_object(host_name, port, params)
+        for h_name, p in zip(hosts_name, ports):
+            self._instantiate_single_host_object(h_name, p, params)
 
     def _get_hosts_and_ports(self, host_name: str, port: int | list[int], replicas: int = None):
         """
@@ -174,7 +179,7 @@ class FakeNOS:
 
         if replicas:
             hosts_name = {f"{host_name}{i}" for i in range(replicas)}
-            ports = {port for port in range(port[0], port[1] + 1)}
+            ports = set(range(port[0], port[1] + 1))
         else:
             hosts_name = {host_name}
             ports = {port}
@@ -244,10 +249,7 @@ class FakeNOS:
             f"The following devices has been initiated: \
               {[host.name for host in hosts]}"
         )
-        log.info(
-            f"The following devices has been initiated:\
-                 {[host.name for host in hosts]}"
-        )
+        log.info("The following devices has been initiated: %s", [host.name for host in hosts])
 
     def stop(self, hosts: str | list = None) -> None:
         """
@@ -304,10 +306,5 @@ class FakeNOS:
                 elif isinstance(plugin, str):
                     nos_instance.from_file(plugin)
                 else:
-                    raise TypeError(
-                        "Unsupported NOS type {}, \
-                                    supported str, dict or Nos".format(
-                            type(plugin)
-                        )
-                    )
+                    raise TypeError(f"Unsupported NOS type {type(plugin)}, supported str, dict or Nos")
             self.nos_plugins[nos_instance.name] = nos_instance

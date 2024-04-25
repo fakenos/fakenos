@@ -1,5 +1,7 @@
 """
-Host classes
+This module sets up the host object which is the main object in FakeNOS.
+It provides the methods to start and stop the server instance for the host.
+It also validates the host object using pydantic.
 """
 
 import logging
@@ -11,6 +13,12 @@ log = logging.getLogger(__name__)
 
 
 class Host:
+    """
+    Host class to build host instances to use with FakeNOS.
+    """
+
+    # pylint: disable=too-many-arguments
+    # pylint: disable=too-many-instance-attributes
     def __init__(
         self,
         name: str,

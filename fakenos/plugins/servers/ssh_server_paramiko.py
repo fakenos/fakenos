@@ -4,12 +4,12 @@ paramiko as the SSH connection library.
 """
 
 import logging
-import paramiko
 import io
 import threading
 import time
 import socket
 
+import paramiko
 import paramiko.channel
 import paramiko.transport
 
@@ -47,6 +47,11 @@ Eez9wYRqHiuvU0rryYvGyokr62w1MtJO0tttnxe1Of6wzb1WeCU=
 
 
 class ParamikoSshServerInterface(paramiko.ServerInterface):
+    """
+    Class to implement the SSH server interface
+    using paramiko as the SSH connection library.
+    """
+
     def __init__(
         self,
         ssh_banner="FakeNOS Paramiko SSH Server",
@@ -69,6 +74,7 @@ class ParamikoSshServerInterface(paramiko.ServerInterface):
             return paramiko.OPEN_SUCCEEDED
         return paramiko.OPEN_FAILED_ADMINISTRATIVELY_PROHIBITED
 
+    # pylint: disable=too-many-arguments
     def check_channel_pty_request(self, channel, term, width, height, pixelwidth, pixelheight, modes):
         """
         AFAIK, pty (pseudo-tty (TeleTYpewriter))
@@ -107,14 +113,15 @@ class TapIO(io.StringIO):
     def __init__(self, run_srv, initial_value="", newline="\n"):
         self.lines = []
         self.run_srv = run_srv
-        super(TapIO, self).__init__(initial_value, newline)
+        super().__init__(initial_value, newline)
 
-    def readline(self, size=-1):
+    def readline(self):
         """method to readline in indefinite block mode"""
         while self.run_srv.is_set():
             if self.lines:
                 return self.lines.pop(-1)
             time.sleep(0.01)
+        return None
 
     def write(self, value):
         """
@@ -124,28 +131,26 @@ class TapIO(io.StringIO):
 
 
 def channel_to_shell_tap(channel_stdio, shell_stdin, shell_replied_event, run_srv):
+    """
+    Method to tap into the channel_stdio and send it to the shell
+    """
     buffer = io.BytesIO()
     while run_srv.is_set():
         byte = channel_stdio.read(1)
-        log.debug("ssh_server.channel_to_shell_tap received from channel: {}".format([byte]))
+        log.debug("ssh_server.channel_to_shell_tap received from channel: %s", [byte])
         if byte in (b"\r", b"\n"):
             shell_replied_event.wait(10)
             if not channel_stdio.channel.active:
                 log.error("SSH channel is not active. Exiting.")
                 break
-            log.debug(
-                "ssh_server.channel_to_shell_tap echoing \
-                    new line to channel: {}".format(
-                    [b"\r\n"]
-                )
-            )
+            log.debug("ssh_server.channel_to_shell_tap echoing new line to channel: %s", [b"\r\n"])
             channel_stdio.write(b"\r\n")
             buffer.write(byte)
             buffer.seek(0)
             line = buffer.read().decode(encoding="utf-8")
             buffer.seek(0)
             buffer.truncate()
-            log.debug("ssh_server.channel_to_shell_tap sending line to shell: {}".format([line]))
+            log.debug("ssh_server.channel_to_shell_tap sending line to shell: %s", [line])
             shell_stdin.write(line)
             shell_replied_event.clear()
         else:
@@ -156,7 +161,7 @@ def channel_to_shell_tap(channel_stdio, shell_stdin, shell_replied_event, run_sr
             try:
                 channel_stdio.write(byte)
             except (OSError, EOFError) as e:
-                log.error("ssh_server.channel_to_shell_tap channel write error: {}".format(e))
+                log.error("ssh_server.channel_to_shell_tap channel write error: %s", e)
                 break
             if byte not in [b"\x00", b""]:
                 buffer.write(byte)
@@ -169,6 +174,9 @@ def shell_to_channel_tap(
     shell_replied_event: threading.Event,
     run_srv: threading.Event,
 ):
+    """
+    Method to tap into the shell_stdout and send it to the channel
+    """
     while run_srv.is_set():
         if channel_stdio.closed:
             break
@@ -178,17 +186,24 @@ def shell_to_channel_tap(
             break
         if "\r\n" not in line and "\n" in line:
             line = line.replace("\n", "\r\n")
-        log.debug("ssh_server.shell_to_channel_tap sending line to channel {}".format([line]))
+        log.debug("ssh_server.shell_to_channel_tap sending line to channel %s", [line])
         try:
             channel_stdio.write(line.encode(encoding="utf-8"))
         except socket.error as e:
             if e.errno == 104:  # Connection reset by peer
-                log.error("ssh_server.shell_to_channel_tap channel write error: {}".format(e))
+                log.error("ssh_server.shell_to_channel_tap channel write error: %s", e)
                 break
         shell_replied_event.set()
 
 
 class ParamikoSshServer(TCPServerBase):
+    """
+    Class to implement an SSH server using paramiko
+    as the SSH connection library.
+    """
+
+    # pylint: disable=too-many-instance-attributes
+    # pylint: disable=too-many-arguments
     def __init__(
         self,
         shell,
@@ -205,7 +220,7 @@ class ParamikoSshServer(TCPServerBase):
         timeout=1,
         watchdog_interval=1,
     ):
-        super(ParamikoSshServer, self).__init__()
+        super().__init__()
 
         self.nos = nos
         self.nos_inventory_config = nos_inventory_config
@@ -307,4 +322,4 @@ class ParamikoSshServer(TCPServerBase):
 
         # After execution continues, we can close the session
         session.close()
-        log.debug(f"ParamikoSshServer.connection_function closed transport {session}")
+        log.debug("ParamikoSshServer.connection_function closed transport %s", session)

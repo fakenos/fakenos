@@ -2,12 +2,12 @@ name: ci
 on:
   push:
     branches:
-      - master 
-      - main
+      - master
+      - dev
 permissions:
   contents: write
 jobs:
-  deploy:
+  docs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,13 +17,29 @@ jobs:
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
       - uses: actions/setup-python@v5
         with:
-          python-version: 3.x
-      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
-      - uses: actions/cache@v4
+          python-version: 3.11
+      - name: "Log: Install Poetry"
+        run: "echo Installing Poetry"
+        shell: "bash"
+      - name: "Install Poetry"
+        run: "curl -sSL https://install.python-poetry.org | python -"
+        shell: "bash"
+      - name: "Add poetry to PATH"
+        run: "ln -s /root/.local/bin/poetry /usr/local/bin/poetry"
+        shell: "bash"
+      - name: "Log: Check cache"
+        run: "echo Checking cache"
+        shell: "bash"
+      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
+      - name: "Cache"
+        uses: "actions/cache@v4"
+        id: "cached-poetry"
         with:
           key: mkdocs-material-${{ env.cache_id }}
-          path: .cache
+          path: ".cache"
           restore-keys: |
             mkdocs-material-
-      - run: pip install mkdocs-material 
+      - name: "Install environment"
+        run: "poetry install ${{ inputs.poetry-install-options }}"
+        shell: "bash"
       - run: mkdocs gh-deploy --force

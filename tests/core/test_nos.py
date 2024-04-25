@@ -1,3 +1,8 @@
+"""
+Test module for fakenos.core.nos module.
+This module can be found at fakenos/core/nos.py
+"""
+
 import unittest
 
 from pydantic import ValidationError
@@ -5,9 +10,15 @@ import pytest
 import yaml
 
 from fakenos.core.nos import Nos
+from tests.assets import module
 
 
+# pylint: disable=too-many-public-methods
 class NosTest(unittest.TestCase):
+    """
+    Test class for Nos.
+    """
+
     commands: dict = {}
 
     @classmethod
@@ -15,7 +26,7 @@ class NosTest(unittest.TestCase):
         """
         Setup class for NosTest.
         """
-        with open("tests/assets/yaml_nos.yaml", "r") as yml_file:
+        with open("tests/assets/yaml_nos.yaml", "r", encoding="utf-8") as yml_file:
             cls.commands = yaml.safe_load(yml_file)["commands"]
 
     def test_init_without_arguments(self):
@@ -172,8 +183,6 @@ class NosTest(unittest.TestCase):
         """
         Test that the from_file method works with .py.
         """
-        from tests.assets import module
-
         nos = Nos()
         nos.from_file("tests/assets/module.py")
         assert nos.name == "FakeNOS"
@@ -193,13 +202,11 @@ class NosTest(unittest.TestCase):
         """
         Test that the from_module method works.
         """
-        import tests.assets.module
-
         nos = Nos()
         nos.from_module("tests/assets/module.py")
         assert nos.name == "FakeNOS"
         assert nos.initial_prompt == "{base_prompt}>"
-        assert nos.commands == tests.assets.module.commands
+        assert nos.commands == module.commands
 
     def test_from_module_incorrect_file(self):
         """

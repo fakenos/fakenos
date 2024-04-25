@@ -1,8 +1,13 @@
+"""
+Test the Netmiko compatibility as this library can be used
+as a testing tool for Netmiko.
+"""
+
 import threading
 import random
 
 import pytest
-from netmiko import ConnectHandler
+from netmiko import ConnectHandler, NetMikoAuthenticationException, NetMikoTimeoutException
 from fakenos.core.nos import available_platforms
 from fakenos import FakeNOS
 
@@ -139,11 +144,11 @@ class TestNetmiko:
                 net.start(hosts=router_to_toggle)
 
             # Always check the state of both routers
-            for router in inventory["hosts"].keys():
+            for router in inventory["hosts"]:
                 try:
                     with ConnectHandler(**credentials[router]):
                         assert net.hosts[router].running is True
-                except (Exception,):
+                except (NetMikoTimeoutException, NetMikoAuthenticationException):
                     assert net.hosts[router].running is False
 
         net.stop()

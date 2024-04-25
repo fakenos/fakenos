@@ -66,7 +66,7 @@ def check_platforms_in_md(md_file):
     Check which platforms from the given list are also
     mentioned in the specified markdown file.
     """
-    with open(md_file, "r") as file:
+    with open(md_file, "r", encoding="utf-8") as file:
         content = file.read()
     match = re.search(r"###### Supported SSH device_type values\n((?:.|\n)*?)\n\n", content)
     if match:
@@ -84,8 +84,8 @@ def download_and_extract_platforms(url: str, local_path: str) -> list[str]:
     The platforms are extracted from the section
     under "Supported SSH device_type values".
     """
-    response = requests.get(url)
-    with open(local_path, "w") as file:
+    response = requests.get(url, timeout=30)
+    with open(local_path, "w", encoding="utf-8") as file:
         file.write(response.text)
     return check_platforms_in_md(local_path)
 
@@ -110,7 +110,7 @@ def get_command_and_output(test_file: str, platform_name: str) -> tuple[str, str
         f"{tmp_ntc_templates_dir}/tests/{platform_name}/{test_file}", ".raw"
     )[0]
     content: str = ""
-    with open(filename, "r") as file:
+    with open(filename, "r", encoding="utf-8") as file:
         content = file.read()
     command = test_file.replace("_", " ")
     return command, content
@@ -146,7 +146,7 @@ def generate_platform_yaml(platform_name: str, commands: dict):
     commands = get_commands_parsed(platform_name, commands)
     yaml = YAML()
     yaml_content = {"name": platform_name, "initial_prompt": f"{platform_name}>", "commands": commands}
-    with open(f"{platforms_folder}/{platform_name}.yaml", "w") as file:
+    with open(f"{platforms_folder}/{platform_name}.yaml", "w", encoding="utf-8") as file:
         yaml.dump(yaml_content, file)
 
 
@@ -158,7 +158,7 @@ available_netmiko_platforms = download_and_extract_platforms(netmiko_platforms_u
 common_platforms = set(platforms) & set(available_netmiko_platforms)
 print(f"Available platforms in Netmiko & NTC-Templates: {common_platforms}")
 
-with open("docs/platforms.md", "w") as file:
+with open("docs/platforms.md", "w", encoding="utf-8") as file:
     file.write("## Available Platforms\n\n")
     for platform in common_platforms:
         file.write(f"- {platform}\n")

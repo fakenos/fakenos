@@ -1,3 +1,9 @@
+"""
+Test moudle for fakenos.core.servers.
+The file can be found under fakenos/core/servers.py
+"""
+
+# pylint: disable=protected-access, attribute-defined-outside-init
 import socket
 import unittest
 from unittest.mock import MagicMock, patch
@@ -6,6 +12,11 @@ from fakenos.core.servers import TCPServerBase
 
 
 class FakeServer(TCPServerBase):
+    """
+    FakeServer class that inherits from TCPServerBase
+    to test the abstract class.
+    """
+
     def __init__(self):
         super().__init__()
         self.timeout = 1
@@ -17,6 +28,9 @@ class FakeServer(TCPServerBase):
 
 
 class ServersTest(unittest.TestCase):
+    """
+    Test class for the TCPServerBase class.
+    """
 
     @patch("threading.Event")
     def test_init(self, mock_thread_event):
@@ -31,7 +45,7 @@ class ServersTest(unittest.TestCase):
         assert servers._socket is None
         assert servers.client_shell is None
         assert servers._listen_thread is None
-        assert servers._connection_threads == []
+        assert not servers._connection_threads
 
     @patch("threading.Event")
     @patch("threading.Thread")
@@ -238,7 +252,6 @@ class ServersTest(unittest.TestCase):
         servers = FakeServer()
         servers._socket = mock_socket()
         servers._socket.accept.return_value = (MagicMock(), MagicMock())
-
         servers._listen()
         self.assertEqual(mock_socket().listen.call_count, 100)
         self.assertEqual(mock_socket().accept.call_count, 100)

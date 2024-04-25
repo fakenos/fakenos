@@ -1,3 +1,14 @@
+"""
+This module is the point of entry for all NOS plugins.
+It imports all the NOS plugins and loads them into a dictionary.
+
+The NOS plugins are loaded first, using the .py modules and
+then the .yaml files in the platforms directory for those which are left.
+
+With .py modules we can have functionality, while using YAML is only
+intended for quick development of new NOS plugins.
+"""
+
 import glob
 import os
 

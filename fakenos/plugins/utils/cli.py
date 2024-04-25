@@ -11,14 +11,14 @@ __version__ = "1.0.0"
 
 log = logging.getLogger(__name__)
 
-description_text = """-i --inventory   OS Path to inventory file
+DESCRIPTION_TEXT = """-i --inventory   OS Path to inventory file
 """
 
 argparser = argparse.ArgumentParser(
-    description="FakeNOS, version {}".format(__version__),
+    description=f"FakeNOS, version {__version__}",
     formatter_class=argparse.RawDescriptionHelpFormatter,
 )
-opts = argparser.add_argument_group(description=description_text)
+opts = argparser.add_argument_group(description=DESCRIPTION_TEXT)
 
 opts.add_argument(
     "-i",
