@@ -111,7 +111,7 @@ jobs:
     needs:
       - bandit
       - flake8
-      - yamllint
+      # - yamllint
   pylint:
     runs-on: "ubuntu-20.04"
     strategy:
