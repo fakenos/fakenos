@@ -5,8 +5,11 @@ The file can be found under fakenos/core/servers.py
 
 # pylint: disable=protected-access, attribute-defined-outside-init
 import socket
+import sys
 import unittest
 from unittest.mock import MagicMock, patch
+
+import pytest
 
 from fakenos.core.servers import TCPServerBase
 
@@ -83,6 +86,7 @@ class ServersTest(unittest.TestCase):
 
         mock_thread_event().set.assert_not_called()
 
+    @pytest.mark.skipif(sys.platform == 'win32', reason='Test only works in Linux')
     @patch("socket.socket")
     @patch("sys.platform", "linux")
     def test_bind_sockets_works_in_linux(self, mock_socket):
