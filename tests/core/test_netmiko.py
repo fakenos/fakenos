@@ -7,6 +7,7 @@ import threading
 import random
 
 import pytest
+import detect
 from netmiko import ConnectHandler, NetMikoAuthenticationException, NetMikoTimeoutException
 from fakenos.core.nos import available_platforms
 from fakenos import FakeNOS
@@ -93,11 +94,13 @@ class TestNetmiko:
                 pass
             net.stop()
 
-            assert threading.active_count() == 1
+            n_threads: int = 2 if detect.windows else 1
+            assert threading.active_count() == n_threads
         finally:
             all_threads = threading.enumerate()
             for thread in all_threads:
-                if thread is not threading.main_thread():
+                if thread is not threading.main_thread() \
+                    and 'pytest_timeout' not in thread.name:
                     thread.join()
 
     @pytest.mark.timeout(20 * 10)
