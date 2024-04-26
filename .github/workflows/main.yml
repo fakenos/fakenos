@@ -165,13 +165,15 @@ jobs:
         uses: "actions/checkout@v3"
       - name: "Setup environment"
         uses: "networktocode/gh-action-setup-poetry-environment@v5"
+        with:
+          poetry-install-options: ""
       - name: "Get image version"
         run: "echo IMAGE_VER=`poetry version -s`-py${{ matrix.python-version }} >> $GITHUB_ENV"
       - name: "Set up Docker Buildx"
         id: "buildx"
-        uses: "docker/setup-buildx-action@v2"
+        uses: "docker/setup-buildx-action@v3"
       - name: "Load the image from cache"
-        uses: "docker/build-push-action@v4"
+        uses: "docker/build-push-action@v5"
         with:
           builder: "${{ steps.buildx.outputs.name }}"
           context: "./"
