@@ -132,9 +132,9 @@ jobs:
         run: "echo IMAGE_VER=`poetry version -s`-py${{ matrix.python-version }} >> $GITHUB_ENV"
       - name: "Set up Docker Buildx"
         id: "buildx"
-        uses: "docker/setup-buildx-action@v2"
+        uses: "docker/setup-buildx-action@v3"
       - name: "Load the image from cache"
-        uses: "docker/build-push-action@v4"
+        uses: "docker/build-push-action@v5"
         with:
           builder: "${{ steps.buildx.outputs.name }}"
           context: "./"
@@ -173,9 +173,9 @@ jobs:
         run: "echo IMAGE_VER=`poetry version -s`-py${{ matrix.python-version }} >> $GITHUB_ENV"
       - name: "Set up Docker Buildx"
         id: "buildx"
-        uses: "docker/setup-buildx-action@v2"
+        uses: "docker/setup-buildx-action@v3"
       - name: "Load the image from cache"
-        uses: "docker/build-push-action@v4"
+        uses: "docker/build-push-action@v5"
         with:
           builder: "${{ steps.buildx.outputs.name }}"
           context: "./"
