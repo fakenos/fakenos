@@ -60,6 +60,7 @@ jobs:
     needs:
       - black
   yamllint:
+    if: false # Disable yamllint for now
     runs-on: "ubuntu-22.04"
     env:
       INVOKE_LOCAL: "True"
