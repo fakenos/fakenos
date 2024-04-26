@@ -239,7 +239,7 @@ class FakeNOS:
         hosts_list = [self.hosts[host] for host in hosts]
         return hosts_list
 
-    def start(self, hosts: Union[str,list] = None) -> None: # type: ignore
+    def start(self, hosts: Union[str, list] = None) -> None:  # type: ignore
         """
         Function to start NOS servers instances
 
@@ -253,7 +253,7 @@ class FakeNOS:
         )
         log.info("The following devices has been initiated: %s", [host.name for host in hosts])
 
-    def stop(self, hosts: Union[str, List[str]]= None) -> None:
+    def stop(self, hosts: Union[str, List[str]] = None) -> None:
         """
         Function to stop NOS servers instances. It waits 2 seconds
         just in case that there is any thread doing something.

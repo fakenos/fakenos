@@ -144,7 +144,11 @@ def channel_to_shell_tap(channel_stdio, shell_stdin, shell_replied_event, run_sr
                 log.error("SSH channel is not active. Exiting.")
                 break
             log.debug("ssh_server.channel_to_shell_tap echoing new line to channel: %s", [b"\r\n"])
-            channel_stdio.write(b"\r\n")
+            try:
+                channel_stdio.write(b"\r\n")
+            except (OSError, EOFError) as e:
+                log.error("ssh_server.channel_to_shell_tap channel write error: %s", e)
+                break
             buffer.write(byte)
             buffer.seek(0)
             line = buffer.read().decode(encoding="utf-8")

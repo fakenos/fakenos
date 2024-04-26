@@ -15,8 +15,11 @@ and the output for each device.
 import os
 import re
 import subprocess
+from typing import List, Dict, Tuple
 
 import requests
+
+# pylint: disable=import-error
 from ruamel.yaml import YAML
 
 tmp_ntc_templates_dir: str = "/tmp/ntc-templates"
@@ -90,7 +93,7 @@ def download_and_extract_platforms(url: str, local_path: str) -> List[str]:
     return check_platforms_in_md(local_path)
 
 
-def get_commands(platform_name: str) -> dict[str, str]:
+def get_commands(platform_name: str) -> Dict[str, str]:
     """
     Get the commands and outputs from the tests files for a specific platform.
     """
@@ -102,7 +105,7 @@ def get_commands(platform_name: str) -> dict[str, str]:
     return commands
 
 
-def get_command_and_output(test_file: str, platform_name: str) -> tuple[str, str]:
+def get_command_and_output(test_file: str, platform_name: str) -> Tuple[str, str]:
     """
     Get the commands and outputs from a specific test file for a platform.
     """

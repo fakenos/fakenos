@@ -33,6 +33,8 @@ fakerouter2 = {
 
 def check_docker_is_running() -> False:
     """Checks if Docker is running."""
+    if IN_GITHUB_ACTIONS:
+        return True
     return "docker" not in (i.name() for i in psutil.process_iter())
 
 
@@ -45,6 +47,7 @@ def setup():
         yield
     finally:
         subprocess.run(["docker", "compose", "-f", "docker/docker-compose.yaml", "down"], check=True)
+
 
 @pytest.mark.skipif(IN_GITHUB_ACTIONS, reason="Skipping test in GitHub Actions.")
 @pytest.mark.skipif(check_docker_is_running(), reason="Docker is not running.")

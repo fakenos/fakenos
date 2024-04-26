@@ -4,9 +4,11 @@ The file can be found in fakenos/core/fakenos.py
 """
 
 # pylint: disable=protected-access
+import platform
 import threading
 from unittest.mock import patch
 import pytest
+import detect
 from fakenos.core.nos import available_platforms
 from fakenos.core.fakenos import FakeNOS
 
@@ -41,7 +43,10 @@ class TestFakeNOS:
             assert host.password in ["user"]
             assert host.port in {6000, 6001}
             assert host.server_inventory["plugin"] == "ParamikoSshServer"
-            assert host.server_inventory["configuration"]["address"] == "127.0.0.1"
+            if detect.docker and "WSL2" in platform.release():
+                assert host.server_inventory["configuration"]["address"] == "0.0.0.0"
+            else:
+                assert host.server_inventory["configuration"]["address"] == "127.0.0.1"
             assert host.server_inventory["configuration"]["timeout"] == 1
             assert host.shell_inventory["plugin"] == "CMDShell"
             assert host.shell_inventory["configuration"] == {"base_prompt": router_name}
