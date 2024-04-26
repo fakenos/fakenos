@@ -271,8 +271,7 @@ class FakeNOS:
         """
         all_threads = threading.enumerate()
         for thread in all_threads:
-            if thread is not threading.main_thread() \
-                and 'pytest_timeout' not in thread.name:
+            if thread is not threading.main_thread() and "pytest_timeout" not in thread.name:
                 thread.join()
         n_threads: int = 2 if detect.windows else 1
         while threading.active_count() > n_threads:

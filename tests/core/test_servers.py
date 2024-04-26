@@ -86,7 +86,7 @@ class ServersTest(unittest.TestCase):
 
         mock_thread_event().set.assert_not_called()
 
-    @pytest.mark.skipif(sys.platform == 'win32', reason='Test only works in Linux')
+    @pytest.mark.skipif(sys.platform == "win32", reason="Test only works in Linux")
     @patch("socket.socket")
     @patch("sys.platform", "linux")
     def test_bind_sockets_works_in_linux(self, mock_socket):
