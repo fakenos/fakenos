@@ -1,7 +1,7 @@
 """
 File to contain pydantic models for plugins input/output data validation
 """
-
+from __future__ import annotations
 import sys
 
 from typing import Union, Optional, List, Dict, Callable

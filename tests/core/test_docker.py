@@ -5,6 +5,7 @@ Module tests for compatibility with Docker containers.
 # pylint: disable=unused-argument
 import subprocess
 import time
+from typing import List
 
 import psutil
 from netmiko import ConnectHandler
@@ -53,7 +54,7 @@ def test_container(setup):
     device running in a container and run the command "show clock".
     """
     times_to_collect: int = 100
-    outputs: list[str] = []
+    outputs: List[str] = []
 
     device = ConnectHandler(**fakerouter1)
 

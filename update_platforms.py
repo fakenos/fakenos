@@ -78,7 +78,7 @@ def check_platforms_in_md(md_file):
     return []
 
 
-def download_and_extract_platforms(url: str, local_path: str) -> list[str]:
+def download_and_extract_platforms(url: str, local_path: str) -> List[str]:
     """
     Download a file from the given URL and extract the platforms from it.
     The platforms are extracted from the section
@@ -152,7 +152,7 @@ def generate_platform_yaml(platform_name: str, commands: dict):
 
 clone_or_update_repository("https://github.com/networktocode/ntc-templates", tmp_ntc_templates_dir)
 
-platforms: list[str] = get_directories_in_folder(f"{tmp_ntc_templates_dir}/tests")
+platforms: List[str] = get_directories_in_folder(f"{tmp_ntc_templates_dir}/tests")
 
 available_netmiko_platforms = download_and_extract_platforms(netmiko_platforms_url, "/tmp/PLATFORMS.md")
 common_platforms = set(platforms) & set(available_netmiko_platforms)

@@ -8,6 +8,7 @@ import copy
 import threading
 import time
 import platform
+from typing import Union, List, Dict, Set
 
 import yaml
 import detect
@@ -19,6 +20,7 @@ from fakenos.core.pydantic_models import ModelFakenosInventory
 from fakenos.plugins.servers import servers_plugins
 from fakenos.plugins.nos import nos_plugins
 from fakenos.plugins.shell import shell_plugins
+
 
 log = logging.getLogger(__name__)
 
@@ -78,8 +80,8 @@ class FakeNOS:
         self.inventory: dict = inventory or default_inventory
         self.plugins: list = plugins or []
 
-        self.hosts: dict[str, Host] = {}
-        self.allocated_ports: set[str] = set()
+        self.hosts: Dict[str, Host] = {}
+        self.allocated_ports: Set[str] = set()
 
         self.shell_plugins = shell_plugins
         self.nos_plugins = nos_plugins
@@ -122,7 +124,7 @@ class FakeNOS:
                 **copy.deepcopy(self.inventory["default"]),
                 **copy.deepcopy(host_config),
             }
-            port: int | list = params.pop("port")
+            port: Union[int, list] = params.pop("port")
             replicas: int = params.pop("replicas", None)
             self._check_ports_and_replicas_are_okey(port, replicas)
             self._instantiate_host_object(host_name, port, replicas, params)
@@ -150,7 +152,7 @@ class FakeNOS:
                     must be equal to the number of replicas."
             )
 
-    def _instantiate_host_object(self, host_name: str, port: int | list[int], replicas: int, params: dict):
+    def _instantiate_host_object(self, host_name: str, port: Union[int, List[int]], replicas: int, params: dict):
         """
         Method that instantiate the host objects. It initializes the hosts
         with the corresponding name, port and network operating system
@@ -165,7 +167,7 @@ class FakeNOS:
         for h_name, p in zip(hosts_name, ports):
             self._instantiate_single_host_object(h_name, p, params)
 
-    def _get_hosts_and_ports(self, host_name: str, port: int | list[int], replicas: int = None):
+    def _get_hosts_and_ports(self, host_name: str, port: Union[int, List[int]], replicas: int = None):
         """
         Method to get hosts and ports correctly
         depending on the number of replicas (if exists).
@@ -174,8 +176,8 @@ class FakeNOS:
         :param port: integer or list of two integers - port to allocate
         :param replicas: integer - number of hosts to create
         """
-        hosts_name: set[str] = {}
-        ports: set[int] = {}
+        hosts_name: Set[str] = {}
+        ports: Set[int] = {}
 
         if replicas:
             hosts_name = {f"{host_name}{i}" for i in range(replicas)}
@@ -197,7 +199,7 @@ class FakeNOS:
         self._allocate_port(port)
         self.hosts[host] = Host(name=host, port=port, fakenos=self, **params)
 
-    def _allocate_port(self, port: int | list[int]) -> None:
+    def _allocate_port(self, port: Union[int, List[int]]) -> None:
         """
         Method to allocate port for host
 
@@ -205,7 +207,7 @@ class FakeNOS:
                      range to allocate port from
         """
         if isinstance(port, int):
-            port: list[int] = [port]
+            port: List[int] = [port]
 
         for p in port:
             allocated_port = self._allocate_port_single(p)
@@ -222,14 +224,14 @@ class FakeNOS:
         self.allocated_ports.add(port)
         return port
 
-    def _get_hosts_as_list(self, hosts: str | list = None) -> list[Host]:
+    def _get_hosts_as_list(self, hosts: Union[str, List[str]] = None) -> List[Host]:
         """
         Helper method to get hosts as list
 
         :param hosts: string or list of strings
         :return: list of strings
         """
-        hosts_list: list[Host] = []
+        hosts_list: List[Host] = []
         if not hosts:
             hosts = list(self.hosts.keys())
         if isinstance(hosts, str):
@@ -237,13 +239,13 @@ class FakeNOS:
         hosts_list = [self.hosts[host] for host in hosts]
         return hosts_list
 
-    def start(self, hosts: str | list = None) -> None:
+    def start(self, hosts: Union[str,list] = None) -> None: # type: ignore
         """
         Function to start NOS servers instances
 
         :param hosts: single or list of hosts to start by their name.
         """
-        hosts: list[str] = self._get_hosts_as_list(hosts)
+        hosts: List[str] = self._get_hosts_as_list(hosts)
         self._execute_function_over_hosts(hosts, "start", host_running=False)
         print(
             f"The following devices has been initiated: \
@@ -251,14 +253,14 @@ class FakeNOS:
         )
         log.info("The following devices has been initiated: %s", [host.name for host in hosts])
 
-    def stop(self, hosts: str | list = None) -> None:
+    def stop(self, hosts: Union[str, List[str]]= None) -> None:
         """
         Function to stop NOS servers instances. It waits 2 seconds
         just in case that there is any thread doing something.
 
         :param hosts: single or list of hosts to stop by their name.
         """
-        hosts: list[str] = self._get_hosts_as_list(hosts)
+        hosts: List[str] = self._get_hosts_as_list(hosts)
         self._execute_function_over_hosts(hosts, "stop", host_running=True)
         if hosts == list(self.hosts.values()):
             self._join_threads()
@@ -274,7 +276,7 @@ class FakeNOS:
         while threading.active_count() > 1:
             time.sleep(0.01)
 
-    def _execute_function_over_hosts(self, hosts: list[Host], func: str, host_running: bool = True):
+    def _execute_function_over_hosts(self, hosts: List[Host], func: str, host_running: bool = True):
         """
         Function that executes a function like start or stop over
         the selected hosts.

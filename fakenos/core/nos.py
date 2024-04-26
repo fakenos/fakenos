@@ -3,7 +3,7 @@ Network Operating Systems (NOS). Base class to build NOS plugins instances to us
 """
 
 import logging
-from typing import Optional
+from typing import Optional, List
 import importlib.util
 
 import yaml
@@ -12,7 +12,7 @@ from fakenos.core.pydantic_models import ModelNosAttributes
 
 log = logging.getLogger(__name__)
 
-available_platforms: list[str] = [
+available_platforms: List[str] = [
     "alcatel_aos",
     "alcatel_sros",
     "allied_telesis_awplus",

@@ -7,6 +7,7 @@ in the yaml and python files.
 import re
 import os
 from importlib import import_module
+from typing import List
 
 import pytest
 import yaml
@@ -14,7 +15,7 @@ import yaml
 from fakenos.core.nos import available_platforms
 
 
-def get_py_nos_modules() -> list[str]:
+def get_py_nos_modules() -> List[str]:
     """
     It returns the list of all the python files
     that are in the nos directory.

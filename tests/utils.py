@@ -5,11 +5,12 @@ This module contains utility functions for the tests.
 import random
 import socket
 import string
+from typing import Dict, List
 
 from fakenos.core.host import Host
 
 
-def get_running_hosts(hosts: dict[str, Host]) -> dict[str, bool]:
+def get_running_hosts(hosts: Dict[str, Host]) -> Dict[str, bool]:
     """
     Get the running hosts in the network.
     """
@@ -35,7 +36,7 @@ def get_random_available_platform():
     return random.choice(platforms)
 
 
-def get_platforms_from_md() -> list[str]:
+def get_platforms_from_md() -> List[str]:
     """Get the platforms in the platforms.md file."""
     platforms = []
     with open("docs/platforms.md", "r", encoding="utf-8") as file:

@@ -8,6 +8,7 @@ run locally or within the Docker container.
 import os
 import sys
 import time
+from typing import List
 
 import yaml
 from invoke import task
@@ -240,8 +241,8 @@ def gen_docs_platform_commands(ctx):
     Generate platform specific commands in the docs.
     """
     platforms_folder: str = "fakenos/plugins/nos/platforms"
-    files: list[str] = os.listdir(platforms_folder)
-    platforms: list[str] = [platform.split(".yaml")[0] for platform in files]
+    files: List[str] = os.listdir(platforms_folder)
+    platforms: List[str] = [platform.split(".yaml")[0] for platform in files]
 
     for platform in platforms:
         print(f"Generating Platform: {platform}")
@@ -264,7 +265,7 @@ def gen_docs_platform_commands(ctx):
                 platforms_file.write(f"**Help:** {details['help']}\n\n")
                 platforms_file.write("**Prompt:**\n")
                 prompts = details["prompt"]
-                if not isinstance(prompts, list):
+                if not isinstance(prompts, List):
                     prompts = [prompts]
                 for prompt in prompts:
                     platforms_file.write(f"- {prompt}\n")
