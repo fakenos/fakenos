@@ -157,7 +157,7 @@ jobs:
       fail-fast: true
       matrix:
         python-version: ["3.8", "3.9", "3.10", "3.11"]
-        platform: [ubuntu-latest, macOS-10.15, windows-latest]
+        platform: [ubuntu-latest, macOS-latest, windows-latest]
     runs-on: ${{ matrix.platform }}
     env:
       INVOKE_LOCAL: "True"
