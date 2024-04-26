@@ -187,8 +187,6 @@ jobs:
         run: "docker image ls"
       - name: "Run Tests"
         run: "poetry run invoke pytest"
-    needs:
-      - "pylint"
   pytest-multiplatform:
     strategy:
       fail-fast: true
@@ -212,3 +210,5 @@ jobs:
         run: "poetry install"
       - name: "Run Tests"
         run: "poetry run pytest"
+    needs:
+      - "pylint"
