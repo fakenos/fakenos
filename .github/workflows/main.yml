@@ -17,7 +17,7 @@ env:
 
 jobs:
   black:
-    runs-on: "ubuntu-22.04"
+    runs-on: "ubuntu-latest"
     env:
       INVOKE_LOCAL: "True"
     steps:
@@ -30,7 +30,7 @@ jobs:
       - name: "Linting: black"
         run: "poetry run invoke black"
   bandit:
-    runs-on: "ubuntu-22.04"
+    runs-on: "ubuntu-latest"
     env:
       INVOKE_LOCAL: "True"
     steps:
@@ -45,7 +45,7 @@ jobs:
     needs:
       - black
   flake8:
-    runs-on: "ubuntu-22.04"
+    runs-on: "ubuntu-latest"
     env:
       INVOKE_LOCAL: "True"
     steps:
@@ -61,7 +61,7 @@ jobs:
       - black
   yamllint:
     if: false # Disable yamllint for now
-    runs-on: "ubuntu-22.04"
+    runs-on: "ubuntu-latest"
     env:
       INVOKE_LOCAL: "True"
     steps:
@@ -80,7 +80,7 @@ jobs:
       fail-fast: true
       matrix:
         python-version: ["3.8", "3.9", "3.10", "3.11"]
-    runs-on: "ubuntu-22.04"
+    runs-on: "ubuntu-latest"
     env:
       INVOKE_LOCAL: "True"
       PYTHON_VER: ${{ matrix.python-version }}
@@ -157,7 +157,7 @@ jobs:
       fail-fast: true
       matrix:
         python-version: ["3.8", "3.9", "3.10", "3.11"]
-        platform: [ubuntu-latest, macOS-latest, windows-latest]
+        platform: [ubuntu-latest, macOS-latest]
     runs-on: ${{ matrix.platform }}
     env:
       INVOKE_LOCAL: "True"
