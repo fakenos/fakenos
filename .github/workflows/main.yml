@@ -211,4 +211,4 @@ jobs:
       - name: "Install poetry dependencies"
         run: "poetry install"
       - name: "Run Tests"
-        run: "poetry run invoke pytest"
+        run: "poetry run pytest"
