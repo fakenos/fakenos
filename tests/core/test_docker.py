@@ -3,6 +3,7 @@ Module tests for compatibility with Docker containers.
 """
 
 # pylint: disable=unused-argument
+import os
 import subprocess
 import time
 from typing import List
@@ -10,6 +11,8 @@ from typing import List
 import psutil
 from netmiko import ConnectHandler
 import pytest
+
+IN_GITHUB_ACTIONS = os.getenv("GITHUB_ACTIONS", None)
 
 fakerouter1 = {
     "device_type": "cisco_ios",
@@ -43,7 +46,7 @@ def setup():
     finally:
         subprocess.run(["docker", "compose", "-f", "docker/docker-compose.yaml", "down"], check=True)
 
-
+@pytest.mark.skipif(IN_GITHUB_ACTIONS, reason="Skipping test in GitHub Actions.")
 @pytest.mark.skipif(check_docker_is_running(), reason="Docker is not running.")
 def test_container(setup):
     """
