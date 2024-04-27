@@ -1,0 +1,84 @@
+name: linux
+initial_prompt: linux$
+commands:
+  enable:
+    output: 'null'
+    new_prompt: linux#
+    help: enter enable mode
+    prompt: linux$
+  ip vrf show:
+    output: "Name              Table\n-----------------------\nvrf-blue          \
+      \  10\nvrf-red             20\n"
+    help: execute the command "ip vrf show"
+    prompt:
+    - linux$
+    - linux#
+  ip address show:
+    output: "1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group
+      default qlen 1000\n    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00\n\
+      \    inet 127.0.0.1/8 scope host lo\n       valid_lft forever preferred_lft
+      forever\n2: ens32: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel
+      state UP group default qlen 1000\n    link/ether 00:0c:29:56:07:1b brd ff:ff:ff:ff:ff:ff\n\
+      \    inet 192.168.131.128/24 brd 192.168.131.255 scope global dynamic ens32\n\
+      \       valid_lft 1307sec preferred_lft 1307sec\n3: gpd0: <POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP>
+      mtu 1400 qdisc fq_codel state UNKNOWN group default qlen 500\n    link/none\n\
+      \    inet 10.20.20.12/32 scope global gpd0\n       valid_lft forever preferred_lft
+      forever\n4: br-218f5e637867: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc
+      noqueue state DOWN group default\n    link/ether 02:42:5d:d7:c2:c1 brd ff:ff:ff:ff:ff:ff\n\
+      \    inet 172.21.0.1/16 brd 172.21.255.255 scope global br-218f5e637867\n  \
+      \     valid_lft forever preferred_lft forever\n5: vrf-blue: <NOARP,MASTER,UP,LOWER_UP>
+      mtu 65575 qdisc noqueue state UP group default qlen 1000\n    link/ether ee:be:e9:28:70:69
+      brd ff:ff:ff:ff:ff:ff\n6: brblue: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500
+      qdisc noqueue master vrf-blue state UNKNOWN group default qlen 1000\n    link/ether
+      66:37:23:9b:9e:e4 brd ff:ff:ff:ff:ff:ff\n    inet 10.0.0.1/24 scope global brblue\n\
+      \       valid_lft forever preferred_lft forever\n    inet 192.168.0.1/25 scope
+      global brred\n       valid_lft forever preferred_lft forever\n"
+    help: execute the command "ip address show"
+    prompt:
+    - linux$
+    - linux#
+  ip link show:
+    output: "1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode
+      DEFAULT group default qlen 1000\n    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00\n
+      2: ens32: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP
+      mode DEFAULT group default qlen 1000\n    link/ether 00:0c:29:56:07:1b brd ff:ff:ff:ff:ff:ff\n
+      3: gpd0: <POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP> mtu 1400 qdisc fq_codel state
+      UNKNOWN mode DEFAULT group default qlen 500\n    link/none\n4: br-218f5e637867:
+      <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN mode DEFAULT
+      group default\n    link/ether 02:42:5d:d7:c2:c1 brd ff:ff:ff:ff:ff:ff\n5: vrf-blue:
+      <NOARP,MASTER,UP,LOWER_UP> mtu 65575 qdisc noqueue state UP mode DEFAULT group
+      default qlen 1000\n    link/ether ee:be:e9:28:70:69 brd ff:ff:ff:ff:ff:ff\n
+      6: vrf-red: <NOARP,MASTER,UP,LOWER_UP> mtu 65575 qdisc noqueue state UP mode
+      DEFAULT group default qlen 1000\n    link/ether d6:a6:dd:0d:d5:f9 brd ff:ff:ff:ff:ff:ff\n
+      7: brblue: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master vrf-blue
+      state UNKNOWN mode DEFAULT group default qlen 1000\n    link/ether 66:37:23:9b:9e:e4
+      brd ff:ff:ff:ff:ff:ff\n8: brred: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500
+      qdisc noqueue master vrf-red state UNKNOWN mode DEFAULT group default qlen 1000\n\
+      \    link/ether da:ca:17:97:f5:34 brd ff:ff:ff:ff:ff:ff\n"
+    help: execute the command "ip link show"
+    prompt:
+    - linux$
+    - linux#
+  arp -a:
+    output: "? (192.168.13.197) at 00:04:4b:cc:9c:ba [ether] on eth1.100\n? (192.168.10.100)
+      at <incomplete> on eth1.10\n? (192.168.13.252) at 5c:e2:8c:fc:a4:74 [ether]
+      on eth1.100\nesxi (192.168.13.5) at 00:e0:67:05:9d:5a [ether] on eth1.100\n
+      ? (192.168.13.253) at dc:f7:19:cd:d6:c4 [ether] on eth1.100\n? (192.168.123.199)
+      at 00:0f:c9:0e:c8:ec [ether] on eth0.21\n? (192.168.10.52) at <incomplete> on
+      eth1.10\n? (192.168.10.7) at 00:0c:29:02:3b:93 [ether] on eth1.10\n? (192.168.10.249)
+      at 00:0c:29:bb:5f:a2 [ether] on eth1.10\n"
+    help: execute the command "arp -a"
+    prompt:
+    - linux$
+    - linux#
+  ip route show:
+    output: "default via 10.0.0.4 dev brblue\nunreachable default metric 4278198272\n
+      broadcast 10.0.0.0 dev brblue proto kernel scope link src 10.0.0.1\n10.0.0.0/24
+      dev brblue proto kernel scope link src 10.0.0.1\nlocal 10.0.0.1 dev brblue proto
+      kernel scope host src 10.0.0.1\nbroadcast 10.0.0.255 dev brblue proto kernel
+      scope link src 10.0.0.1\n192.168.0.0/24 via 10.0.0.2 dev brblue\n192.168.131.2
+      dev ens32 proto dhcp scope link src 192.168.131.128 metric 100\n"
+    help: execute the command "ip route show"
+    prompt:
+    - linux$
+    - linux#

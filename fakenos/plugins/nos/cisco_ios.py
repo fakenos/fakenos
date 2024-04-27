@@ -1,19 +1,24 @@
+"""
+NOS module for Cisco IOS
+"""
+
 import time
 
-initial_prompt = "{base_prompt}>"
+INITIAL_PROMPT = "{base_prompt}>"
 
 
+# pylint: disable=unused-argument
 def make_show_clock(base_prompt, current_prompt, command):
     "Return String in format '*11:54:03.018 UTC Sat Apr 16 2022'"
     return time.strftime("*%H:%M:%S.000 %Z %a %b %d %Y")
 
 
-running_configuration = """
+RUNNING_CONFIGURATION = """
 service timestamps debug datetime msec
 service timestamps log datetime msec
 no service password-encryption
 !
-hostname {base_prompt}
+hostname {{base_prompt}}
 !
 boot-start-marker
 boot-end-marker
@@ -220,9 +225,10 @@ ntp server 7.7.7.7
 end
 """
 
-show_version = """
+SHOW_VERSION = """
 Cisco IOS XE Software, Version 17.03.01a
-Cisco IOS Software [Amsterdam], Virtual XE Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 17.3.1a, RELEASE SOFTWARE (fc3)
+Cisco IOS Software [Amsterdam], Virtual XE Software \
+    (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 17.3.1a, RELEASE SOFTWARE (fc3)
 Technical Support: http://www.cisco.com/techsupport
 Copyright (c) 1986-2020 by Cisco Systems, Inc.
 Compiled Wed 12-Aug-20 00:16 by mcpre
@@ -240,7 +246,7 @@ software.
 
 
 ROM: IOS-XE ROMMON
-{base_prompt} uptime is 1 day, 17 hours, 32 minutes
+{{base_prompt}} uptime is 1 day, 17 hours, 32 minutes
 Uptime for this control processor is 1 day, 17 hours, 33 minutes
 System returned to ROM by reload
 System image file is "bootflash:packages.conf"
@@ -272,7 +278,8 @@ The current throughput level is 1000 kbps
 
 Smart Licensing Status: UNREGISTERED/No Licenses in Use
 
-cisco CSR1000V (VXE) processor (revision VXE) with 715705K/3075K bytes of memory.
+cisco CSR1000V (VXE) processor (revision VXE) \
+    with 715705K/3075K bytes of memory.
 Processor board ID 9ESGOBARV9D
 Router operating mode: Autonomous
 3 Gigabit Ethernet interfaces
@@ -288,27 +295,36 @@ commands = {
         "output": None,
         "new_prompt": "{base_prompt}#",
         "help": "enter exec prompt",
-        "prompt": initial_prompt,
+        "prompt": INITIAL_PROMPT,
     },
     "show clock": {
         "output": make_show_clock,
         "help": "Display the system clock",
-        "prompt": [initial_prompt, "{base_prompt}#"],
+        "prompt": [INITIAL_PROMPT, "{base_prompt}#"],
     },
     "show running-config": {
-        "output": running_configuration,
+        "output": RUNNING_CONFIGURATION,
         "help": "Current operating configuration",
         "prompt": "{base_prompt}#",
     },
     "show version": {
-        "output": show_version,
+        "output": SHOW_VERSION,
         "help": "System hardware and software status",
         "prompt": "{base_prompt}#",
     },
     "_default_": {
         "output": "% Invalid input detected at '^' marker.",
         "help": "Output to print for unknown commands",
+        "prompt": ["{base_prompt}#", "{base_prompt}>"],
     },
-    "terminal width 511": {"output": "", "help": "Set terminal width to 511"},
-    "terminal length 0": {"output": "", "help": "Set terminal length to 0"},
+    "terminal width 511": {
+        "output": "",
+        "help": "Set terminal width to 511",
+        "prompt": ["{base_prompt}#", "{base_prompt}>"],
+    },
+    "terminal length 0": {
+        "output": "",
+        "help": "Set terminal length to 0",
+        "prompt": ["{base_prompt}#", "{base_prompt}>"],
+    },
 }

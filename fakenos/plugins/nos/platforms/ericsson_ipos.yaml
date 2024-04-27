@@ -1,0 +1,137 @@
+name: ericsson_ipos
+initial_prompt: ericsson_ipos>
+commands:
+  enable:
+    output: 'null'
+    new_prompt: ericsson_ipos#
+    help: enter enable mode
+    prompt: ericsson_ipos>
+  show arp:
+    output: "Context   :local                          Context id  : 0x40080001\n\
+      \ ------------------------------------------------------------------\nTotal\
+      \ number of arp entries in cache: 4\n  Resolved entry   : 4\n  Incomplete entry\
+      \ : 0\n\nHost              Hardware address    Ttl    Type  Circuit\n10.10.10.224\
+      \      98:a4:04:a2:d8:6a   1380   ARPA  1/9\n10.10.10.225      98:a4:04:a2:dc:e9\
+      \   -      ARPA  1/9\n10.10.10.226      98:a4:04:a2:dc:ea   -      ARPA  1/10\n\
+      10.10.10.227      f8:0f:6f:77:eb:0c   1593   ARPA  1/10\n\nContext   :Abis_IP\
+      \                        Context id  : 0x40080002\n------------------------------------------------------------------\n\
+      \ Total number of arp entries in cache: 2\n  Resolved entry   : 2\n  Incomplete\
+      \ entry : 0\n\nHost              Hardware address    Ttl    Type  Circuit\n\
+      10.10.10.33       98:a4:04:a2:dc:e5   -      ARPA  1/5 vlan-id 211\n10.10.10.34\
+      \       34:00:a3:4c:7e:2c   3502   ARPA  1/5 vlan-id 211\n\nContext   :Inband-RTN\
+      \                     Context id  : 0x40080003\n------------------------------------------------------------------\n\
+      \ Total number of arp entries in cache: 2\n  Resolved entry   : 2\n  Incomplete\
+      \ entry : 0\n\nHost              Hardware address    Ttl    Type  Circuit\n\
+      10.10.10.173      ec:38:8f:6f:91:68   3197   ARPA  1/5 vlan-id 3976\n10.10.10.174\
+      \      98:a4:04:a2:dc:e5   -      ARPA  1/5 vlan-id 3976\n\nContext   :IuB_UP\
+      \                         Context id  : 0x40080004\n------------------------------------------------------------------\n\
+      \ Total number of arp entries in cache: 2\n  Resolved entry   : 2\n  Incomplete\
+      \ entry : 0\n\nHost              Hardware address    Ttl    Type  Circuit\n\
+      10.10.10.97       98:a4:04:a2:dc:e5   -      ARPA  1/5 vlan-id 311\n10.10.10.98\
+      \       34:00:a3:4c:7e:2c   1730   ARPA  1/5 vlan-id 311\n\nContext   :LTE-S1X2\
+      \                       Context id  : 0x40080005\n------------------------------------------------------------------\n\
+      \ Total number of arp entries in cache: 2\n  Resolved entry   : 2\n  Incomplete\
+      \ entry : 0\n\nHost              Hardware address    Ttl    Type  Circuit\n\
+      10.10.10.161      98:a4:04:a2:dc:e5   -      ARPA  1/5 vlan-id 411\n10.10.10.162\
+      \      34:00:a3:4c:7e:2c   1259   ARPA  1/5 vlan-id 411\n\nContext   :OM-HWI\
+      \                         Context id  : 0x40080006\n------------------------------------------------------------------\n\
+      \ Total number of arp entries in cache: 2\n  Resolved entry   : 2\n  Incomplete\
+      \ entry : 0\n\nHost              Hardware address    Ttl    Type  Circuit\n\
+      10.10.10.225      98:a4:04:a2:dc:e5   -      ARPA  1/5 vlan-id 1051\n10.10.10.226\
+      \      34:00:a3:4c:7e:2c   249    ARPA  1/5 vlan-id 1051\n\nContext   :OM-Power\
+      \                       Context id  : 0x40080007\n------------------------------------------------------------------\n\
+      \ Total number of arp entries in cache: 2\n  Resolved entry   : 2\n  Incomplete\
+      \ entry : 0\n\nHost              Hardware address    Ttl    Type  Circuit\n\
+      10.10.10.161      98:a4:04:a2:dc:e5   -      ARPA  1/5 vlan-id 3911\n10.10.10.162\
+      \      00:20:85:ef:bb:aa   2657   ARPA  1/5 vlan-id 3911\n"
+    help: execute the command "show arp"
+    prompt:
+    - ericsson_ipos>
+    - ericsson_ipos#
+  show isis adjacency:
+    output: 'IS-IS Adjacenc(ies) for tag XL:
+
+      SystemId        Interface          L  MT   Stat Hold   SNPA            Uptime
+
+      MA-BJC547-01    Virtual_Interface_ 2p U    Up   29     41de.24a3.1e8d  04d20h01
+
+      MA-BMCI75-01    Virtual_Interface_ 2p U    Up   22     7d7e.b92a.670c  04d20h01
+
+      C-BJAHY-01      Virtual_Interface_ 1p U    Up   22     801a.8811.f1a4  04d20h01
+
+      0102.1905.0009  Virtual_Interface_ 3p U    Up   23     9aac.0480.2d1a  04d20h01
+
+
+      Total IS-IS Adjacenc(ies):   4
+
+      '
+    help: execute the command "show isis adjacency"
+    prompt:
+    - ericsson_ipos>
+    - ericsson_ipos#
+  show version:
+    output: "\nEricsson IPOS Version IPOS-v20.3.1.803.142-Release\nBuilt by spradmin@ericsson\
+      \ Tue Dec 15 12:49:29 CET 2020\nCopyright (C) 1998-2020, Ericsson AB. All rights\
+      \ reserved.\nOperating System version is Linux 3.14.65-mvista\nSystem Bootstrap\
+      \ version is CXC1740316_1-R11A01(K0000I0000)\nThere is no minikernel currently\
+      \ installed\nSecure Boot mode: PRODUCTION\nMinimal Key Revision is 0, images\
+      \ have 0\nMinimal Security Revision is 0, images have 0\nKernel version is Linux-3.14-CXC1740317_1-R11A02(K0000I0000)\n\
+      \ Golden Bootstrap version is CXC1740316_1-R1A08(KFFFFIFFFF)\nGolden SBI version\
+      \ is CXC1740314_1-R1A03\nPrimary SBI version is CXC1740314_1-R11A01(K0000I0000)\n\
+      \ FPGA version is CXC 174 0318/2  -R5C07\nCHIMP version is 1.0\n\nslad / mloam-service-layer\
+      \ component version: 0.0.0\nBuilt by nobody Sat Jan 1 00:00:00 UTC 2000\nCopyright\
+      \ (C) 1998-2020, Ericsson AB. All rights reserved.\nRouter Up Time -  10 hours\
+      \ 48 minutes 41 seconds\n"
+    help: execute the command "show version"
+    prompt:
+    - ericsson_ipos>
+    - ericsson_ipos#
+  terminal length 0:
+    output: null
+    help: Execute the command terminal length 0. This automatically generated. Feel
+      free to change it!
+    prompt:
+    - ericsson_ipos>
+    - ericsson_ipos#
+  terminal width 512:
+    output: null
+    help: Execute the command terminal width 512. This automatically generated. Feel
+      free to change it!
+    prompt:
+    - ericsson_ipos>
+    - ericsson_ipos#
+  show curpriv:
+    output: null
+    help: Execute the command show curpriv. This automatically generated. Feel free
+      to change it!
+    prompt:
+    - ericsson_ipos>
+    - ericsson_ipos#
+  set cli screen-width 511:
+    output: null
+    help: Execute the command set cli screen-width 511. This automatically generated.
+      Feel free to change it!
+    prompt:
+    - ericsson_ipos>
+    - ericsson_ipos#
+  terminal width 511:
+    output: null
+    help: Execute the command terminal width 511. This automatically generated. Feel
+      free to change it!
+    prompt:
+    - ericsson_ipos>
+    - ericsson_ipos#
+  enable clipaging:
+    output: null
+    help: Execute the command enable clipaging. This automatically generated. Feel
+      free to change it!
+    prompt:
+    - ericsson_ipos>
+    - ericsson_ipos#
+  login:
+    output: null
+    help: Execute the command login. This automatically generated. Feel free to change
+      it!
+    prompt:
+    - ericsson_ipos>
+    - ericsson_ipos#

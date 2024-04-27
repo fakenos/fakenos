@@ -1,0 +1,84 @@
+name: vyatta_vyos
+initial_prompt: vyatta@vyatta:~$
+commands:
+  enable:
+    output: null
+    new_prompt: vyatta@vyatta#
+    help: enter enable mode
+    prompt: vyatta@vyatta:~$
+  set terminal length 0:
+    output: set terminal length 0
+    help: set the terminal to max width
+    prompt:
+    - vyatta@vyatta:~$
+    - vyatta@vyatta#
+  show interfaces:
+    output: "Codes: S - State, L - Link, u - Up, D - Down, A - Admin Down\nInterface\
+      \        IP Address                        S/L  Description\n---------     \
+      \   ----------                        ---  -----------\neth0             - \
+      \                                u/u  \neth0.40          123.123.120.123/27\
+      \                u/u  OUTSIDE \neth1             -                         \
+      \        u/u  \neth1.204         123.123.123.81/28                 u/u  CUST-DS-LAN\
+      \ \neth1.269         172.18.32.14/28                   u/u  CUST-COM \n    \
+      \             123.123.123.123/32\neth1.437         123.123.116.169/29      \
+      \          u/u  CUST-VIDEO \neth1.1753        172.18.161.196/29            \
+      \     u/u  SERVICE-LINK \neth2             -                               \
+      \  u/u  \nlo               127.0.0.1/8                       u/u  \n       \
+      \          172.18.255.110/32\n                 ::1/128\nvtun0            192.168.80.2\
+      \                      u/u  \nvtun1            192.168.80.4                \
+      \      u/u   OpenVPN-TUNNEL1\nvtun2            192.168.80.6                \
+      \      u/u  \n\n"
+    help: execute the command "show interfaces"
+    prompt:
+    - vyatta@vyatta:~$
+    - vyatta@vyatta#
+  show arp:
+    output: 'Address                  HWtype  HWaddress           Flags Mask            Iface
+
+      10.123.254.20            ether   9c:8e:99:fa:15:0a   C                     eth1.1230
+
+      123.12.120.44            ether   11:22:33:aa:02:90   C                     eth0.42
+
+      123.12.120.218                   (incomplete)                              eth1.1234
+
+      10.123.254.21            ether   00:0c:29:59:94:56   C                     eth1.1230
+
+      123.12.120.219                   (incomplete)                              eth1.1234
+
+      123.12.120.57            ether   11:22:33:aa:65:bb   C                     eth0.42
+
+      '
+    help: execute the command "show arp"
+    prompt:
+    - vyatta@vyatta:~$
+    - vyatta@vyatta#
+  show ip bgp summary:
+    output: 'IPv4 Unicast Summary:
+
+      BGP router identifier 10.10.10.1, local AS number 123456 vrf-id 0
+
+      BGP table version 50711224
+
+      RIB entries 1537189, using 270 MiB of memory
+
+      Peers 3, using 593 KiB of memory
+
+      Peer groups 4, using 256 bytes of memory
+
+
+      Neighbor        V         AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd
+
+      10.10.10.10     4       1234   71460   69353        0    0    0 5d13h10m            0
+
+      123.123.123.123 4     345612  450590   34688        0    0    0 1d00h18m            0
+
+      193.189.82.105  4     12365        0       0        0    0    0    never       Active
+
+
+      Total number of neighbors 3
+
+      '
+    help: execute the command "show ip bgp summary"
+    prompt:
+    - vyatta@vyatta:~$
+    - vyatta@vyatta#

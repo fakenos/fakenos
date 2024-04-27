@@ -1,0 +1,11 @@
+hosts:
+  R1:
+    username: fakenos
+    password: fakenos
+    port: 5001
+    platform: huawei_smartax
+  R2:
+    username: fakenos
+    password: fakenos
+    port: 6000
+    platform: cisco_ios

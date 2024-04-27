@@ -1,0 +1,241 @@
+commands:
+  enable:
+    help: enter enable mode
+    new_prompt: broadcom_icos#
+    output: 'null'
+    prompt: broadcom_icos>
+  show isdp neighbors:
+    help: execute the command "show isdp neighbors"
+    output: "\nCapability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge,\n\
+      \                  S - Switch, H - Host, I - IGMP, r - Repeater\n\nDevice ID\
+      \                Intf      Holdtime  Capability Platform         Port ID\n------------------------\
+      \ --------- --------- ---------- ---------------- ---------\nAP00-1-00001  \
+      \           0/1       173       T B I      cisco AIR-CAP270 GigabitEt\nAP00-2-00002\
+      \             0/2       139       T B I      cisco AIR-CAP270 GigabitEt\nAP00-15-00050D\
+      \           0/3       127       R T        cisco AIR-AP3802 GigabitEt\nAP00-1-00115F\
+      \            0/4       170       R T        cisco AIR-AP3802 GigabitEt\nAP00-22-01665A\
+      \           0/5       143       R T        cisco AIR-AP3802 GigabitEt\ndev1-df-loc-sw000001\
+      \     0/35      161       R          BCM-56340        0/1\ndev2-dd-loc-sw000001\
+      \     0/37      178       R          BCM-56340        0/1\ndev3-ds-loc-sw000001\
+      \     0/39      157       R          BCM-56340        0/1\ndev4-da-loc-sw000001\
+      \     0/43      179       R          BCM-56340        0/1\ndev5-ab-loc-sw0001\
+      \       0/49      154       R          AS5610-52X       0/1\ndev6-aa-loc-sw0002\
+      \       0/50      158       R          AS5610-52X       0/1\n"
+    prompt:
+    - broadcom_icos>
+    - broadcom_icos#
+  show lldp remote-device all:
+    help: execute the command "show lldp remote-device all"
+    output: '
+
+      LLDP Remote Device Summary
+
+
+      Local
+
+      Interface  RemID   Chassis ID            Port ID             System Name
+
+      --------- -------  --------------------  ------------------  ------------------
+
+      0/1        17      84:3D:C6:00:12:E0     Gi0                 abc-1-00001.y ...
+
+      0/2        16      00:A6:CA:00:53:C0     Gi0                 abc-1-00002.y ...
+
+      0/3        18      F4:DB:E6:00:9F:46     0                   abc-1-00003M
+
+      0/4        19      F4:DB:E6:00:44:9E     0                   abc-1-00004M
+
+      0/5        20      F4:DB:E6:00:AC:FE     Te2/1               abc-1-00005M
+
+      0/25
+
+      0/26
+
+      0/27
+
+      0/28
+
+      0/29
+
+      0/30
+
+      0/31
+
+      0/32
+
+      0/33
+
+      0/34
+
+      0/35       8       6C:00:C5:4D:86:3A     6C:00:C5:4D:86:3B   abc-aa-acc-sw ...
+
+      0/36
+
+      0/37       7       6C:00:C5:49:E7:40     6C:00:C5:49:E7:41   abc-bb-acc-sw ...
+
+      0/38
+
+      0/39       29      6C:00:C5:49:08:8A     6C:00:C5:49:08:8B   abc-cc-acc-sw ...
+
+      0/40
+
+      0/41
+
+      0/42       26      00:00:64:4D:00:68     00:00:64:4D:6E:68   u0030644d6e685
+      ...
+
+      0/43       9       6C:00:C5:49:8D:DE     6C:00:C5:49:8D:DF   abc-dd-acc-sw ...
+
+      0/44
+
+      0/45       24      00:00:64:4D:D7:F0     00:00:64:4D:D7:F0   u0030644dd7f05
+      ...
+
+      0/46
+
+      0/47       4       00:00:64:4D:72:8A     00:00:64:4D:72:8A   u0030644d728a5
+      ...
+
+      0/48
+
+      0/49       1       A8:00:B5:57:CC:8D     A8:00:B5:57:CC:8E   abc-ee-abc-sw0101
+
+      0/50       2       A8:00:B5:57:CB:01     A8:00:B5:57:CB:02   abc-ff-abc-sw0102
+
+      '
+    prompt:
+    - broadcom_icos>
+    - broadcom_icos#
+  show mac-addr-table:
+    help: execute the command "show mac-addr-table"
+    output: '
+
+      VLAN ID  MAC Address         Interface              IfIndex  Status
+
+      -------  ------------------  ---------------------  -------  ------------
+
+      1        CC:37:AB:18:5F:01   5/1                    55       Management
+
+      100      CC:37:AB:18:AF:03   4/100                  219      Management
+
+      150      00:04:F2:B3:AD:CA   0/4                    4        Learned
+
+      150      00:30:D1:00:A2:F6   0/5                    5        Learned
+
+      150      00:30:F1:00:AC:36   0/1                    1        Learned
+
+      150      1C:C1:FE:24:00:C0   0/47                   47       Learned
+
+      150      1C:C1:FE:24:F7:C2   0/48                   48       Learned
+
+      150      40:00:34:25:03:A1   0/20                   20       Learned
+
+      150      64:06:0F:47:0F:A1   0/31                   31       Learned
+
+      150      64:16:0F:81:B6:BC   0/18                   18       Learned
+
+      150      04:16:0F:21:E6:3A   0/17                   17       Learned
+
+      150      14:16:0F:21:F8:24   0/30                   30       Learned
+
+      150      24:16:0F:34:57:24   0/10                   10       Learned
+
+      150      34:16:0F:89:28:4E   0/16                   16       Learned
+
+      150      44:16:0F:49:28:55   0/19                   19       Learned
+
+      150      AC:3F:DB:09:0D:8F   0/8                    8        Learned
+
+      112      00:40:58:0E:A6:36   0/14                   14       Learned
+
+      112      00:40:58:0E:A8:08   0/6                    6        Learned
+
+      112      00:00:58:13:E4:67   0/13                   13       Learned
+
+      '
+    prompt:
+    - broadcom_icos>
+    - broadcom_icos#
+  show version:
+    help: execute the command "show version"
+    output: "\nSwitch: 1\n\nSystem Description............................. DNI-3448P\
+      \ 48x1Gb POE, 2x10G, 2x20G Helix4 L3 System, 3.2.2.42, Linux 3.6.5-c428db7a\n\
+      \ Machine Type................................... DNI-3448P 48x1Gb POE, 2x10G,\
+      \ 2x20G Helix4 L3 System\nMachine Model.................................. BCM-56340\n\
+      \ Serial Number.................................. 3448BCN1603101\nMaintenance\
+      \ Level.............................. A\nManufacturer...................................\
+      \ 0xbc00\nBurned In MAC Address.......................... 00:30:AB:F2:48:DE\n\
+      \ Software Version............................... 3.2.2.42\nOperating System...............................\
+      \ Linux 3.6.5-c428db7a\nNetwork Processing Device...................... BCM56340_A0\n\
+      \ CPLD version................................... 0xd\nBoard Revision.................................\
+      \ 0x5\nAdditional Packages............................ BGP-4\n             \
+      \                                   QOS\n                                  \
+      \              Multicast\n                                                IPv6\n\
+      \                                                Routing\n                 \
+      \                               Data Center\n                              \
+      \                  OpEN API\n                                              \
+      \  Prototype Open API\n\n\n"
+    prompt:
+    - broadcom_icos>
+    - broadcom_icos#
+  show vlan brief:
+    help: execute the command "show vlan brief"
+    output: '
+
+      VLAN ID VLAN Name                        VLAN Type
+
+      ------- -------------------------------- -------------------
+
+      1       default                          Default
+
+      1       VLAN0001                         Static
+
+      2       VLAN0002                         Static
+
+      3       VLAN0003                         Static
+
+      4       VLAN0004                         Static
+
+      5       VLAN0005                         Static
+
+      6       VLAN0006                         Static
+
+      7       VLAN0007                         Static
+
+      8       VLAN0008                         Static
+
+      9       VLAN0009                         Static
+
+      10      VLAN0010                         Static
+
+      100     VLAN0100                         Static
+
+      200     VLAN0200                         Static
+
+      300     VLAN0300                         Static
+
+      400     VLAN0400                         Static
+
+      500     VLAN0500                         Static
+
+      600     VLAN0600                         Static
+
+      700     VLAN0700                         Static
+
+      800     VLAN0800                         Static
+
+      999     VLAN0999                         Static
+
+      '
+    prompt:
+    - broadcom_icos>
+    - broadcom_icos#
+  terminal length 0:
+    help: Execute the command terminal length 0. This automatically generated. Feel
+      free to change it!
+    output: null
+    prompt:
+    - broadcom_icos>
+    - broadcom_icos#
+initial_prompt: broadcom_icos>
+name: broadcom_icos

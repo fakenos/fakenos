@@ -1,59 +1,218 @@
+---
 name: FakeNOS Tests
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 on:
   push:
     branches:
       - master
-  pull_request:
-    branches:
-      - master
+      - dev
+    tags:
+      - "v*"
+  pull_request: ~
+
+env:
+  IMAGE_NAME: "fakenos"
 
 jobs:
-  linters:
-    name: linters
-    strategy:
-      matrix:
-        python-version: [ '3.7' ]
-        platform: [windows-latest]
-    runs-on: ${{ matrix.platform }}
+  black:
+    runs-on: "ubuntu-latest"
+    env:
+      INVOKE_LOCAL: "True"
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup python
-        uses: actions/setup-python@v1
+      - name: "Check out repository code"
+        uses: "actions/checkout@v4"
+      - name: "Setup environment"
+        uses: "networktocode/gh-action-setup-poetry-environment@v6"
+        with:
+          poetry-install-options: ""
+      - name: "Linting: black"
+        run: "poetry run invoke black"
+  bandit:
+    runs-on: "ubuntu-latest"
+    env:
+      INVOKE_LOCAL: "True"
+    steps:
+      - name: "Check out repository code"
+        uses: "actions/checkout@v4"
+      - name: "Setup environment"
+        uses: "networktocode/gh-action-setup-poetry-environment@v6"
+        with:
+          poetry-install-options: ""
+      - name: "Linting: bandit"
+        run: "poetry run invoke bandit"
+    needs:
+      - black
+  flake8:
+    runs-on: "ubuntu-latest"
+    env:
+      INVOKE_LOCAL: "True"
+    steps:
+      - name: "Check out repository code"
+        uses: "actions/checkout@v4"
+      - name: "Setup environment"
+        uses: "networktocode/gh-action-setup-poetry-environment@v6"
+        with:
+          poetry-install-options: ""
+      - name: "Linting: flake8"
+        run: "poetry run invoke flake8"
+    needs:
+      - black
+  yamllint:
+    if: false # Disable yamllint for now
+    runs-on: "ubuntu-latest"
+    env:
+      INVOKE_LOCAL: "True"
+    steps:
+      - name: "Check out repository code"
+        uses: "actions/checkout@v4"
+      - name: "Setup environment"
+        uses: "networktocode/gh-action-setup-poetry-environment@v6"
+        with:
+          poetry-install-options: ""
+      - name: "Linting: yamllint"
+        run: "poetry run invoke yamllint"
+    needs:
+      - black
+  build:
+    strategy:
+      fail-fast: true
+      matrix:
+        python-version: ["3.8", "3.9", "3.10", "3.11"]
+    runs-on: "ubuntu-latest"
+    env:
+      INVOKE_LOCAL: "True"
+      PYTHON_VER: ${{ matrix.python-version }}
+    steps:
+      - name: "Check out repository code"
+        uses: "actions/checkout@v4"
+      - name: "Setup environment"
+        uses: "networktocode/gh-action-setup-poetry-environment@v6"
+        with:
+          poetry-install-options: ""
+      - name: "Get image version"
+        run: "echo IMAGE_VER=`poetry version -s`-py${{ matrix.python-version }} >> $GITHUB_ENV"
+      - name: "Setup Docker Buildx"
+        id: "buildx"
+        uses: "docker/setup-buildx-action@v2"
+      - name: "Build"
+        uses: "docker/build-push-action@v4"
+        with:
+          builder: "${{ steps.buildx.outputs.name }}"
+          context: "."
+          push: false
+          tags: "${{ env.IMAGE_NAME }}:${{ env.IMAGE_VER }}"
+          file: "./Dockerfile"
+          cache-from: "type=gha,scope=${{ env.IMAGE_NAME }}-${{ env.IMAGE_VER }}-py${{ matrix.python-version }}"
+          cache-to: "type=gha,scope=${{ env.IMAGE_NAME }}-${{ env.IMAGE_VER }}-py${{ matrix.python-version }}"
+          build-args: |
+            PYTHON_VER=${{ env.PYTHON_VER }}
+    needs:
+      - bandit
+      - flake8
+      # - yamllint
+  pylint:
+    runs-on: "ubuntu-20.04"
+    strategy:
+      fail-fast: true
+      matrix:
+        python-version: ["3.8", "3.9", "3.10", "3.11"]
+    env:
+      PYTHON_VER: "${{ matrix.python-version }}"
+      INVOKE_LOCAL: "True"
+    steps:
+      - name: "Check out repository code"
+        uses: "actions/checkout@v4"
+      - name: "Setup environment"
+        uses: "networktocode/gh-action-setup-poetry-environment@v6"
+        with:
+          poetry-install-options: ""
+      - name: "Get image version"
+        run: "echo IMAGE_VER=`poetry version -s`-py${{ matrix.python-version }} >> $GITHUB_ENV"
+      - name: "Set up Docker Buildx"
+        id: "buildx"
+        uses: "docker/setup-buildx-action@v3"
+      - name: "Load the image from cache"
+        uses: "docker/build-push-action@v5"
+        with:
+          builder: "${{ steps.buildx.outputs.name }}"
+          context: "./"
+          push: false
+          load: true
+          tags: "${{ env.IMAGE_NAME }}:${{ env.IMAGE_VER }}"
+          file: "./Dockerfile"
+          cache-from: "type=gha,scope=${{ env.IMAGE_NAME }}-${{ env.IMAGE_VER }}-py${{ matrix.python-version }}"
+          cache-to: "type=gha,scope=${{ env.IMAGE_NAME }}-${{ env.IMAGE_VER }}-py${{ matrix.python-version }}"
+          build-args: |
+            PYTHON_VER=${{ env.PYTHON_VER }}
+      - name: "Debug: Show docker images"
+        run: "docker image ls"
+      - name: "Linting: Pylint"
+        run: "poetry run invoke pylint"
+    needs:
+      - "build"
+  pytest:
+    strategy:
+      fail-fast: true
+      matrix:
+        python-version: ["3.8", "3.9", "3.10", "3.11"]
+    runs-on: "ubuntu-20.04"
+    env:
+      PYTHON_VER: "${{ matrix.python-version }}"
+    steps:
+      - name: "Check out repository code"
+        uses: "actions/checkout@v3"
+      - name: "Setup environment"
+        uses: "networktocode/gh-action-setup-poetry-environment@v5"
+        with:
+          poetry-install-options: ""
+      - name: "Get image version"
+        run: "echo IMAGE_VER=`poetry version -s`-py${{ matrix.python-version }} >> $GITHUB_ENV"
+      - name: "Set up Docker Buildx"
+        id: "buildx"
+        uses: "docker/setup-buildx-action@v3"
+      - name: "Load the image from cache"
+        uses: "docker/build-push-action@v5"
+        with:
+          builder: "${{ steps.buildx.outputs.name }}"
+          context: "./"
+          push: false
+          load: true
+          tags: "${{ env.IMAGE_NAME }}:${{ env.IMAGE_VER }}"
+          file: "./Dockerfile"
+          cache-from: "type=gha,scope=${{ env.IMAGE_NAME }}-${{ env.IMAGE_VER }}-py${{ matrix.python-version }}"
+          cache-to: "type=gha,scope=${{ env.IMAGE_NAME }}-${{ env.IMAGE_VER }}-py${{ matrix.python-version }}"
+          build-args: |
+            PYTHON_VER=${{ env.PYTHON_VER }}
+      - name: "Debug: Show docker images"
+        run: "docker image ls"
+      - name: "Run Tests"
+        run: "poetry run invoke pytest"
+    needs:
+      - "pylint"
+  pytest-multiplatform:
+    strategy:
+      fail-fast: true
+      matrix:
+        python-version: ["3.8", "3.9", "3.10", "3.11"]
+        poetry-version: ["1.8.2"]
+        os: ["ubuntu-latest", "macos-latest", "windows-latest"]
+    runs-on: "${{ matrix.os }}"
+    steps:
+      - name: "Check out repository code"
+        uses: "actions/checkout@v3"
+      - name: "Use Python ${{ matrix.python-version }}"
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-          architecture: x64
-      - name: Install Dependencies
-        run: |
-          python -m pip install poetry
-          python -m poetry install
-      - name: Run pre-commit
-        run: python -m poetry run pre-commit run --all-files
-
-  run_tests:
-    name: Testing on Python ${{ matrix.python-version }} (${{ matrix.platform}})
-    defaults:
-      run:
-        # that is to run pytest from within tests directory
-        working-directory: tests
-        shell: bash
-    strategy:
-      max-parallel: 5
-      fail-fast: false
-      matrix:
-        python-version: [ '3.7', '3.8', '3.9' ]
-        platform: [ubuntu-latest, macOS-10.15, windows-latest]
-    runs-on: ${{ matrix.platform }}
-
-    steps:
-      - uses: actions/checkout@v2
-      - name: Setup Python
-        uses: actions/setup-python@v1
+      - name: Run image
+        uses: abatilo/actions-poetry@v2
         with:
-          python-version: ${{ matrix.python-version }}
-
-      - name: Install Dev dependencies
-        run: |
-          python -m pip install poetry
-          python -m poetry install
-      - name: Run pytest
-        run: python -m poetry run pytest -vv test_inventory.py test_nos_builders.py
+          poetry-version: ${{ matrix.poetry-version }}
+      - name: "Install poetry dependencies"
+        run: "poetry install"
+      - name: "Run Tests"
+        run: "poetry run pytest"
+    needs:
+      - "pylint"

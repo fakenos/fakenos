@@ -1,0 +1,25 @@
+name: avaya_vsp
+initial_prompt: avaya_vsp>
+commands:
+  enable:
+    output: 'null'
+    new_prompt: avaya_vsp#
+    help: enter enable mode
+    prompt: avaya_vsp>
+  show software:
+    output: "\n====================================================================================================\n\
+      \                    software releases in /intflash/release/\n====================================================================================================\n\
+      \ VOSS8K.4.2.2.0.GA (Backup Release)\nVOSS8K.6.0.1.2.GA (Primary Release)\n\n\
+      \ ----------------------------------------------------------------------------------------------------\n\
+      \ Auto Commit     : enabled\nCommit Timeout  : 10 minutes\n"
+    help: execute the command "show software"
+    prompt:
+    - avaya_vsp>
+    - avaya_vsp#
+  terminal more disable:
+    output: null
+    help: Execute the command terminal more disable. This automatically generated.
+      Feel free to change it!
+    prompt:
+    - avaya_vsp>
+    - avaya_vsp#

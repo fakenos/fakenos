@@ -1,0 +1,323 @@
+name: paloalto_panos
+initial_prompt: paloalto_panos>
+commands:
+  enable:
+    output: null
+    new_prompt: paloalto_panos#
+    help: enter enable mode
+    prompt: paloalto_panos>
+  set cli scripting-mode on:
+    output: null
+    help: set the terminal width to full
+    prompt:
+    - paloalto_panos>
+    - paloalto_panos#
+  ex:
+    output: True
+    help: exit the terminal
+    prompt:
+    - paloalto_panos>
+    - paloalto_panos#
+  show interface logical:
+    output: "total configured logical interfaces: 38\n​\nname                id  \
+      \  vsys zone             forwarding               tag    address           \
+      \                              \n------------------- ----- ---- ----------------
+      ------------------------ ------ ------------------\nethernet1/1         16 \
+      \   1                     N/A                      0      N/A              \
+      \ \nethernet1/2         17    1                     N/A                    \
+      \  0      N/A               \nethernet1/2.100     275   1    ISP1         vr:default\
+      \               100    65.5.44.46/30  \nethernet1/3         18    1        \
+      \             N/A                      0      N/A               \nethernet1/3.101\
+      \     278   1    ISP2         vr:default               101    65.5.26.46/30\
+      \  \nethernet1/4         19    1                     N/A                   \
+      \   0      N/A               \nethernet1/4.102     256   1    WAN     vr:default\
+      \               102    10.10.134.1/24  \nethernet1/5         20    1       \
+      \              N/A                      0      N/A               \nethernet1/5.103\
+      \     261   1    Voice            vr:default               101    10.10.248.49/24\n\
+      ethernet1/6         21    1                     N/A                      0 \
+      \     N/A               \nethernet1/6.104     265   1    Video            vr:default\
+      \               901    10.10.10.1/24    \nethernet1/7         22    1    Guest1\
+      \   N/A                      0      N/A               \nethernet1/7.700    \
+      \ 267   1    Guest1   vr:default               700    10.10.100.1/23     \n\
+      dedicated-ha1       5     1                     ha                       0 \
+      \     10.1.1.1/30       \ndedicated-ha2       6     1                     ha\
+      \                       0      10.2.2.1/30       \nvlan                1   \
+      \  1                     N/A                      0      N/A               \n\
+      loopback            3     1                     N/A                      0 \
+      \     N/A               \ntunnel              4     1                     N/A\
+      \                      0      N/A   \n"
+    help: execute the command "show interface logical"
+    prompt:
+    - paloalto_panos>
+    - paloalto_panos#
+  show running nat-policy:
+    output: "\"DMZ-PROXY-NAT; index: 1\" {{\n        nat-type ipv4;\n        from DMZ-APPS;\n\
+      \        source [ 10.1.1.1 10.1.1.2 ];\n        to UNTRUSTED;\n        to-interface
+      ethernet1/5 ;\n        destination any;\n        service 0:any/any/any;\n  \
+      \      translate-to \"src: 2.2.2.2 (dynamic-ip-and-port) (pool idx: 1)\";\n\
+      \        terminal no;\n}}\n"
+    help: execute the command "show running nat-policy"
+    prompt:
+    - paloalto_panos>
+    - paloalto_panos#
+  debug swm status:
+    output: "\nPartition         State             Version\n--------------------------------------------------------------------------------\n\
+      sysroot0          RUNNING-ACTIVE    9.0.5.xfr\nsysroot1          PENDING-CHANGE\
+      \    9.1.2\nmaint             READY             9.1.2\n"
+    help: execute the command "debug swm status"
+    prompt:
+    - paloalto_panos>
+    - paloalto_panos#
+  show mac all:
+    output: "\nmaximum of entries supported :      1500\ndefault timeout :       \
+      \            1800 seconds\ntotal MAC entries in table :        3\ntotal MAC
+      entries shown :           3\nstatus: s - static, c - complete, i - incomplete\n\
+      \nvlan                hw address        interface         status   ttl\n--------------------------------------------------------------------------------\n\
+      Test                00:50:00:00:07:00 ethernet1/2.110     c      1778\nTest\
+      \                00:50:00:00:08:00 ethernet1/2.111     c      1796\nTest   \
+      \             50:00:00:02:00:01 ethernet1/2.110     c      704\n"
+    help: execute the command "show mac all"
+    prompt:
+    - paloalto_panos>
+    - paloalto_panos#
+  show system info:
+    output: "hostname: pa1\nip-address: 10.0.0.90\nnetmask: 255.255.255.0\ndefault-gateway:
+      10.0.0.2\nipv6-address: unknown\nipv6-link-local-address: fe80::20c:29ff:fe6d:c67e/64\n
+      ipv6-default-gateway: \nmac-address: 00:0c:29:6d:c6:7e\ntime: Thu Apr 28 06:33:12
+      2016\nuptime: 2 days, 2:38:49\nfamily: vm\nmodel: PA-VM\nserial: unknown\nvm-mac-base:
+      BA:DB:EE:FB:AD:00\nvm-mac-count: 255\nvm-uuid: 564D8B6D-7BDB-75AF-400F-B062016DC67E\n
+      vm-cpuid: FB060000FDFB8B07\nvm-license: none\nvm-mode: VMWare ESXi\nsw-version:
+      7.0.1\nglobal-protect-client-package-version: 0.0.0\napp-version: 497-2688\n
+      app-release-date: unknown\nav-version: 0\nav-release-date: unknown\nthreat-version:
+      0\nthreat-release-date: unknown\nwf-private-version: 0\nwf-private-release-date:
+      unknown\nurl-db: paloaltonetworks\nwildfire-version: 0\nwildfire-release-date:
+      unknown\nurl-filtering-version: 0000.00.00.000\nglobal-protect-datafile-version:
+      0\nglobal-protect-datafile-release-date: unknown\nlogdb-version: 7.0.9\nplatform-family:
+      vm\nvpn-disable-mode: off\nmulti-vsys: off\noperational-mode: normal\n\n"
+    help: execute the command "show system info"
+    prompt:
+    - paloalto_panos>
+    - paloalto_panos#
+  show high-availability all:
+    output: "Group 1: \n  Mode: Active-Passive\n  Local Information:\n    Version:
+      1\n    Mode: Active-Passive\n    State: active (last 45 days)\n    Device Information:\n\
+      \      Model: PA-5020\n      Management IPv4 Address: 10.10.186.197/24\n   \
+      \   Management IPv6 Address: \n      Jumbo-Frames disabled; MTU 1500\n    HA1
+      Control Links Joint Configuration:\n      Link Monitor Interval: 3000 ms\n \
+      \     Encryption Enabled: no\n    HA1 Control Link Information:\n      IP Address:
+      10.1.1.1/30\n      MAC Address: 00:90:0b:33:3d:53\n      Interface: dedicated-ha1\n\
+      \      Link State: Up; Setting: 1Gb/s-full\n      Key Imported : no\n    HA2
+      Data Link Information:\n      IP Address: 10.2.2.1/30\n      MAC Address: 58:49:3b:1e:69:16\n\
+      \      Interface: dedicated-ha2\n      Link State: Up; Setting: 1Gb/s-full\n\
+      \    Election Option Information:\n      Priority: 50\n      Preemptive: yes\n\
+      \      Promotion Hold Interval: 2000 ms\n      Hello Message Interval: 8000
+      ms\n      Heartbeat Ping Interval: 1000 ms\n      Max # of Flaps: 3\n      Preemption
+      Hold Interval: 1 min\n      Monitor Fail Hold Up Interval: 0 ms\n      Addon
+      Master Hold Up Interval: 500 ms\n    Active-Passive Mode:\n      Passive Link
+      State: auto\n      Monitor Fail Hold Down Interval: 1 min\n    Version Information:\n\
+      \      Build Release: 6.1.10\n      URL Database: 4773\n      Application Content:
+      580-3287\n      Anti-Virus: 1858-2337\n      Threat Content: 580-3287\n    \
+      \  VPN Client Software: Not Installed\n      Global Protect Client Software:
+      Not Installed\n    Version Compatibility:\n      Software Version: Match\n \
+      \     Application Content Compatibility: Match\n      Anti-Virus Compatibility:
+      Match\n      Threat Content Compatibility: Match\n      VPN Client Software
+      Compatibility: Match\n      Global Protect Client Software Compatibility: Match\n\
+      \    State Synchronization: Complete; type: ethernet\n  Peer Information:\n\
+      \    Connection status: up\n    Version: 1\n    Mode: Active-Passive\n    State:
+      passive (last 45 days)\n    Device Information:\n      Model: PA-5020\n    \
+      \  Management IPv4 Address: 10.10.186.198/24\n      Management IPv6 Address:
+      \n      Jumbo-Frames disabled; MTU 1500\n    HA1 Control Link Information:\n\
+      \      IP Address: 10.1.1.2\n      MAC Address: 00:90:0b:33:44:53\n      Connection
+      up; Primary HA1 link\n    HA2 Data Link Information:\n      IP Address: 10.2.2.2\n\
+      \      MAC Address: 58:49:3b:1e:55:16\n    Election Option Information:\n  \
+      \    Priority: 100\n      Preemptive: yes\n    Version Information:\n      Build
+      Release: 6.1.10\n      URL Database: 4773\n      Application Content: 580-3287\n\
+      \      Anti-Virus: 1858-2337\n      Threat Content: 580-3287\n      VPN Client
+      Software: Not Installed\n      Global Protect Client Software: Not Installed\n\
+      \  Initial Monitor Hold inactive; Allow Network/Links to Settle:\n    Link and
+      path monitoring failures honored\n  Link Monitoring Information:\n    Enabled:
+      yes\n    Failure condition: any\n    Group Link:\n      Enabled: yes\n     \
+      \ Failure condition: any\n      Interface ethernet1/1: up\n      Interface ethernet1/2:
+      up\n      Interface ethernet1/3: up\n      Interface ethernet1/4: up\n     \
+      \ Interface ethernet1/5: up\n      Interface ethernet1/6: up\n      Interface
+      ethernet1/7: up\n      Interface ethernet1/8: up\n  Path Monitoring Information:\n\
+      \    Enabled: yes\n    Failure condition: any\n    Virtual-Wire Groups:\n  \
+      \    No Virtual-Wire path monitoring groups\n    VLAN Groups:\n      No VLAN
+      path monitoring groups\n    Virtual-Router Groups:\n      No Virtual-Router
+      path monitoring groups\n  Configuration Synchronization:\n    Enabled: yes\n\
+      \    Running Configuration: synchronized\n\n"
+    help: execute the command "show high-availability all"
+    prompt:
+    - paloalto_panos>
+    - paloalto_panos#
+  show counter global:
+    output: "Global counters:\nElapsed time since last sampling: 349.576 seconds\n\
+      \nname                                   value     rate severity  category \
+      \ aspect    description\n--------------------------------------------------------------------------------\n\
+      pkt_recv                                  29        0 info      packet    pktproc\
+      \   Packets received\npkt_sent                                  21        0
+      info      packet    pktproc   Packets transmitted\npkt_sock_recv           \
+      \                   1        0 info      packet    pktproc   Packets received
+      at socket level - delayed counter\npkt_lldp_sent                           \
+      \   1        0 info      packet    pktproc   LLDP Packets transmitted\nflow_rcv_dot1q_tag_err\
+      \                     1        0 drop      flow      parse     Packets dropped:
+      802.1q tag not configured\nflow_no_interface                          1    \
+      \    0 drop      flow      parse     Packets dropped: invalid interface\nssl_hsm_up_down_event_rcv\
+      \                  1        0 info      ssl       pktproc   The number of HSM
+      up/down events received\n--------------------------------------------------------------------------------\n
+      Total counters shown: 7\n--------------------------------------------------------------------------------\n\
+      \n"
+    help: execute the command "show counter global"
+    prompt:
+    - paloalto_panos>
+    - paloalto_panos#
+  show jobs all:
+    output: "\nEnqueued              Dequeued           ID  PositionInQ          \
+      \                    Type                         Status Result Completed\n
+      ------------------------------------------------------------------------------------------------------------------------------------------\n
+      2017/02/28 10:19:48   10:19:48            7                                \
+      \    FqdnRefresh                            FIN     OK 10:20:11\n2017/02/28
+      10:13:49   10:13:49            6                                    FqdnRefresh\
+      \                            FIN     OK 10:14:21\n2017/02/28 10:13:22   10:13:22\
+      \            5                                         Commit              \
+      \              FIN     OK 10:13:49\n2017/02/27 12:06:50   12:06:50         \
+      \   4                                         Commit                       \
+      \     FIN     OK 12:07:18\n2017/02/27 12:02:54   12:02:54            3     \
+      \                                    Commit                            FIN \
+      \    OK 12:03:20\n2017/02/27 11:55:15   11:55:15            2              \
+      \                           Commit                            FIN     OK 11:55:42\n
+      2017/02/23 08:31:14   08:31:14            1                                \
+      \        AutoCom                            FIN     OK 08:32:06\n\n\n"
+    help: execute the command "show jobs all"
+    prompt:
+    - paloalto_panos>
+    - paloalto_panos#
+  show arp all:
+    output: "\nmaximum of entries supported :      1500\ndefault timeout:        \
+      \            1800 seconds\ntotal ARP entries in table :        5\ntotal ARP
+      entries shown :           5\nstatus: s - static, c - complete, e - expiring,
+      i - incomplete\n\ninterface         ip address      hw address        port \
+      \             status   ttl\n--------------------------------------------------------------------------------\n\
+      ethernet1/1       172.25.1.254    08:30:6b:26:43:30 ethernet1/1         c  \
+      \    627\nvlan.1            172.25.2.195    00:50:00:00:07:00 ethernet1/2.110\
+      \     c      1012\nvlan.1            172.25.2.196    00:50:00:00:08:00 ethernet1/2.111\
+      \     c      1016\nvlan.1            172.25.2.197    (incomplete)      ethernet1/2.111\
+      \     c      1016\n"
+    help: execute the command "show arp all"
+    prompt:
+    - paloalto_panos>
+    - paloalto_panos#
+  show interface hardware:
+    output: "total configured hardware interfaces: 26\n\nname                    id\
+      \    speed/duplex/state        mac address\n--------------------------------------------------------------------------------\n\
+      ethernet1/1             64    1000/full/up              c4:24:56:d7:30:40\n\
+      ethernet1/2             65    ukn/ukn/down(autoneg)     c4:24:56:d7:30:41\n\
+      ethernet1/3             66    ukn/ukn/down(autoneg)     c4:24:56:d7:30:42\n\
+      ethernet1/4             67    ukn/ukn/down(autoneg)     c4:24:56:d7:30:43\n\
+      ethernet1/5             68    ukn/ukn/down(autoneg)     c4:24:56:d7:30:44\n\
+      ethernet1/6             69    ukn/ukn/down(autoneg)     c4:24:56:d7:30:45\n\
+      ethernet1/7             70    ukn/ukn/down(autoneg)     c4:24:56:d7:30:46\n\
+      ethernet1/8             71    ukn/ukn/down(autoneg)     c4:24:56:d7:30:47\n\
+      ethernet1/9             72    ukn/ukn/down(autoneg)     c4:24:56:d7:30:48\n\
+      ethernet1/10            73    ukn/ukn/down(autoneg)     c4:24:56:d7:30:49\n\
+      ethernet1/11            74    ukn/ukn/down(autoneg)     c4:24:56:d7:30:4a\n\
+      ethernet1/12            75    ukn/ukn/down(autoneg)     c4:24:56:d7:30:4b\n\
+      ethernet1/13            76    ukn/ukn/down(autoneg)     c4:24:56:d7:30:4c\n\
+      ethernet1/14            77    ukn/ukn/down(autoneg)     c4:24:56:d7:30:4d\n\
+      ethernet1/15            78    ukn/ukn/down(autoneg)     c4:24:56:d7:30:4e\n\
+      ethernet1/16            79    ukn/ukn/down(autoneg)     c4:24:56:d7:30:4f\n\
+      ethernet1/17            80    10000/full/up             c4:24:56:d7:30:50\n\
+      ethernet1/18            81    10000/full/up             c4:24:56:d7:30:51\n\
+      ethernet1/19            82    ukn/ukn/down(autoneg)     c4:24:56:d7:30:52\n\
+      ethernet1/20            83    ukn/ukn/down(autoneg)     c4:24:56:d7:30:53\n\
+      ha1-a                   5     ukn/ukn/down(autoneg)     08:66:1f:02:04:a2\n\
+      ha1-b                   7     ukn/ukn/down(autoneg)     c4:24:56:d7:30:07\n\
+      vlan                    1     [n/a]/[n/a]/up            c4:24:56:d7:30:01\n\
+      loopback                3     [n/a]/[n/a]/up            c4:24:56:d7:30:03\n\
+      tunnel                  4     [n/a]/[n/a]/up            c4:24:56:d7:30:04\n\
+      hsci                    8     ukn/ukn/down(autoneg)     c4:24:56:d7:30:08\n\n
+      aggregation groups: 0"
+    help: execute the command "show interface hardware"
+    prompt:
+    - paloalto_panos>
+    - paloalto_panos#
+  show running security-policy:
+    output: "\"Outside Web Server\" {{\n        from Trust;\n        source 10.1.1.0/24;\n\
+      \        source-region none;\n        to Untrust;\n        destination 200.10.10.10;\n\
+      \        destination-region none;\n        user any;\n        category any;\n\
+      \        application/service [ any/tcp/any/8000 any/tcp/any/80 any/tcp/any/8080
+      ];\n        action allow;\n        icmp-unreachable: no\n        terminal yes;\n\
+      }}\n\n\"ICMP Any\" {{\n        from Trust;\n        source any;\n        source-region
+      none;\n        to Untrust;\n        destination any;\n        destination-region
+      none;\n        user any;\n        category any;\n        application/service
+      [ icmp/icmp/any/any ping/icmp/any/any ];\n        action allow;\n        icmp-unreachable:
+      no\n        terminal yes;\n}}\n\n\"DNS Outbound\" {{\n        from Trust;\n  \
+      \      source 10.1.1.0/24;\n        source-region none;\n        to Untrust;\n\
+      \        destination [ 8.8.8.8 8.8.4.4 ];\n        destination-region none;\n\
+      \        user any;\n        category any;\n        application/service  dns/udp/any/53;\n\
+      \        action allow;\n        icmp-unreachable: no\n        terminal yes;\n\
+      }}\n\n\"Inbound to DMZ Web\" {{\n        from Untrust;\n        source any;\n\
+      \        source-region none;\n        to DMZ;\n        destination 200.10.10.100;\n\
+      \        destination-region none;\n        user any;\n        category any;\n\
+      \        application/service [ any/tcp/any/8000 any/tcp/any/80 any/tcp/any/8080
+      ];\n        action allow;\n        icmp-unreachable: no\n        terminal yes;\n\
+      }}\n\n\"Inbound to DMZ Deny\" {{\n        from Untrust;\n        source any;\n\
+      \        source-region none;\n        to DMZ;\n        destination any;\n  \
+      \      destination-region none;\n        user any;\n        category any;\n\
+      \        application/service  any/any/any/any;\n        action deny;\n     \
+      \   icmp-unreachable: no\n        terminal no;\n}}\n\nintrazone-default {{\n \
+      \       from any;\n        source any;\n        source-region none;\n      \
+      \  to any;\n        destination any;\n        destination-region none;\n   \
+      \     category any;\n        application/service  any/any/any/any;\n       \
+      \ action allow;\n        icmp-unreachable: no\n        terminal yes;\n     \
+      \   type intrazone;\n}}\n\ninterzone-default {{\n        from any;\n        source
+      any;\n        source-region none;\n        to any;\n        destination any;\n\
+      \        destination-region none;\n        category any;\n        application/service\
+      \  any/any/any/any;\n        action deny;\n        icmp-unreachable: no\n  \
+      \      terminal yes;\n        type interzone;\n}}\n\ndynamic url: no\npol objs
+      matched\n\n"
+    help: execute the command "show running security-policy"
+    prompt:
+    - paloalto_panos>
+    - paloalto_panos#
+  test security-policy-match:
+    output: "\"Allow 10.125.100.58-To-Google DNS; index: 1\" {{\n        from Internal;\n\
+      \        source 10.125.100.58;\n        source-region none;\n        to External;\n\
+      \        destination 8.8.8.8;\n        destination-region none;\n        user
+      any;\n        source-device any;\n        destinataion-device any;\n       \
+      \ category any;\n        application/service 0:any/tcp/any/59;\n        action
+      allow;\n        icmp-unreachable: no\n        terminal yes;\n}}\n\n\"Allow 10.125.100.58-To-1.1.1.1;
+      index: 2\" {{\n        from Internal;\n        source 10.125.100.58;\n      \
+      \  source-region none;\n        to External;\n        destination 1.1.1.1;\n\
+      \        destination-region none;\n        user any;\n        source-device
+      any;\n        destinataion-device any;\n        category any;\n        application/service
+      0:any/tcp/any/53;\n        action allow;\n        icmp-unreachable: no\n   \
+      \     terminal yes;\n}}\n\n\"Allow DNS_Objects-To-192.0.2.10; index: 4\" {{\n\
+      \        from Internal;\n        source [ 1.1.1.1 8.8.8.8 ];\n        source-region
+      none;\n        to External;\n        destination 192.0.2.10;\n        destination-region
+      none;\n        user any;\n        source-device any;\n        destinataion-device
+      any;\n        category any;\n        application/service [0:any/tcp/any/53 1:any/tcp/any/54
+      ];\n        action allow;\n        icmp-unreachable: no\n        terminal yes;\n\
+      }}"
+    help: execute the command "test security-policy-match"
+    prompt:
+    - paloalto_panos>
+    - paloalto_panos#
+  show interface management:
+    output: "\n\n-------------------------------------------------------------------------------\n
+      Name: Management Interface\nLink status:\n  Runtime link speed/duplex/state:
+      1000/full/up\n  Configured link speed/duplex/state: auto/auto/auto\nMAC address:\n\
+      \  Port MAC address 08:66:1f:02:04:a3\n\nIp address: 10.0.1.5\nNetmask: 255.255.255.0\n
+      Default gateway: 10.0.1.1\nIpv6 address: unknown\nIpv6 link local address: fe80::a66:1fff:fe02:4a3/64\n
+      Ipv6 default gateway:\n-------------------------------------------------------------------------------\n
+      \n\n-------------------------------------------------------------------------------\n
+      Logical interface counters:\n-------------------------------------------------------------------------------\n
+      bytes received                    264279971\nbytes transmitted             \
+      \    238725455\npackets received                  279836\npackets transmitted\
+      \               291248\nreceive errors                    0\ntransmit errors\
+      \                   0\nreceive packets dropped           0\ntransmit packets
+      dropped          0\nmulticast packets received        0\n-------------------------------------------------------------------------------\n"
+    help: execute the command "show interface management"
+    prompt:
+    - paloalto_panos>
+    - paloalto_panos#

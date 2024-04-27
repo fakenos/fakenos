@@ -1,14 +1,20 @@
+"""
+Custom shell class to interact with NOS.
+"""
+
 from cmd import Cmd
 import logging
-import time
 import traceback
 import copy
 
 log = logging.getLogger(__name__)
 
 
+# pylint: disable=too-many-instance-attributes
 class CMDShell(Cmd):
-    """"""
+    """
+    Custom shell class to interact with NOS.
+    """
 
     use_rawinput = False
 
@@ -20,6 +26,7 @@ class CMDShell(Cmd):
         },
     }
 
+    # pylint: disable=too-many-arguments
     def __init__(
         self,
         stdin,
@@ -49,37 +56,41 @@ class CMDShell(Cmd):
         }
 
         # call the base constructor of cmd.Cmd, with our own stdin and stdout
-        super(CMDShell, self).__init__(
+        super().__init__(
             completekey=completekey,
             stdin=stdin,
             stdout=stdout,
         )
 
     def start(self):
+        """Method to start the shell"""
         self.cmdloop()
 
     def stop(self):
+        """Method to stop the shell"""
         self.stdin.write("exit" + self.newline)
 
     def writeline(self, value):
+        """Method to write a line to stdout with newline at the end"""
         for line in str(value).splitlines():
             self.stdout.write(line + self.newline)
 
     def emptyline(self):
         """This method to do nothing if empty line entered"""
-        pass
 
     def precmd(self, line):
         return line
 
+    # pylint: disable=unused-argument
     def postcmd(self, stop, line):
+        """Method to return stop value to stop the shell"""
         return stop
 
-    def do_help(self, *args):
+    # pylint: disable=unused-argument
+    def do_help(self, arg):
         """Method to return help for commands"""
         lines = {}  # dict of {cmd: cmd_help}
         width = 0  # record longest command width for padding
-        cmd_string = " ".join(args)
         # form help for all commands
         for cmd, cmd_data in self.commands.items():
             # skip special commands
@@ -109,52 +120,42 @@ class CMDShell(Cmd):
         if isinstance(prompt_, str):
             return self.prompt == prompt_.format(base_prompt=self.base_prompt)
         if isinstance(prompt_, list):
-            return any(
-                self.prompt == i.format(base_prompt=self.base_prompt) for i in prompt_
-            )
+            return any(self.prompt == i.format(base_prompt=self.base_prompt) for i in prompt_)
+        return False
 
-    def default(self, command):
+    def default(self, line):
         """Method called if no do_xyz methods found"""
-        log.debug("shell.default '{}' running command '{}'".format(self.base_prompt, [command]))
+        log.debug("shell.default '%s' running command '%s'", self.base_prompt, [line])
         ret = self.commands["_default_"]["output"]
         try:
-            cmd_data = self.commands[command]
-            # check of command is alis to other command definition
+            cmd_data = self.commands[line]
             if "alias" in cmd_data:
                 cmd_data = {**self.commands[cmd_data.pop("alias")], **cmd_data}
-            # check current prompt and work with command output
             if self._check_prompt(cmd_data.get("prompt")):
                 ret = cmd_data["output"]
                 if callable(ret):
                     ret = ret(
                         base_prompt=self.base_prompt,
                         current_prompt=self.prompt,
-                        command=command,
+                        command=line,
                     )
-                    # handle the case when callable return dictionary
                     if isinstance(ret, dict):
                         if "new_prompt" in ret:
-                            self.prompt = ret["new_prompt"].format(
-                                base_prompt=self.base_prompt
-                            )
+                            self.prompt = ret["new_prompt"].format(base_prompt=self.base_prompt)
                         ret = ret["output"]
                 if "new_prompt" in cmd_data:
-                    self.prompt = cmd_data["new_prompt"].format(
-                        base_prompt=self.base_prompt
-                    )
+                    self.prompt = cmd_data["new_prompt"].format(base_prompt=self.base_prompt)
         except KeyError:
-            log.error("shell.default '{}' command '{}' not found".format(self.base_prompt, [command]))
-            pass
-        except:
+            log.error("shell.default '%s' command '%s' not found", self.base_prompt, [line])
+        # pylint: disable=broad-except
+        except (Exception,) as e:
+            log.error("An error occurred: %s", str(e))
             ret = traceback.format_exc()
             ret = ret.replace("\n", self.newline)
 
-        # returning True will close the shell
         if ret is True:
             return True
-        # if not None, write output to stdout
-        elif ret is not None:
-            ret = ret.format(
-                base_prompt=self.base_prompt
-            )
+        if ret is not None:
+            ret = ret.format(base_prompt=self.base_prompt)
             self.writeline(ret)
+        return False

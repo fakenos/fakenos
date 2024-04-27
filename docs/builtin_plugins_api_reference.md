@@ -38,7 +38,3 @@ gluing, connecting them together.
 
 Idea - Tape Plugins will allow to record interactions with real devices and build
 NOS plugins automatically using gathered data.
-
-## FakeNOS CLI
-
-::: fakenos.plugins.utils.cli

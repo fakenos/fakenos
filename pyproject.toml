@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fakenos"
-version = "0.1.1"
+version = "0.2.0"
 description = "Fake Network Operating System"
 authors = ["Denis Mulyalin <d.mulyalin@gmail.com>"]
 maintainers = ["Denis Mulyalin <d.mulyalin@gmail.com>"]
@@ -9,33 +9,109 @@ readme = "README.md"
 keywords = ["NetworkAutomation", "Testing", "SSH"]
 classifiers = [
     "Topic :: Utilities",
-    "Programming Language :: Python :: 3.6",
-    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
     "License :: OSI Approved :: MIT License",
     "Operating System :: POSIX :: Linux",
 ]
+include = [
+    "LICENSE",
+    "README.md",
+]
 
 [tool.poetry.dependencies]
-python = ">=3.6.5,<3.10"
-paramiko = "^2.10.3"
-pyyaml = "6.*"
-pydantic = "^1.9.0"
+python = ">=3.8,<3.12"
+paramiko = "<4.0"
+pyyaml = "<7.0"
+pydantic = "<3.0"
+detect = "2020.12.*"
 
 [tool.poetry.dev-dependencies]
-pytest = { version = "^7.1.1", markers = "python_version >= '3.7'" }
-netmiko = { version = "^3.4.*" }
-nornir = { version = "^3.2.*" }
-nornir-netmiko = { version = "^0.1.*" }
+pymdown-extensions = "*"
+mkdocs-material = "*"
+pytest-timeout = "*"
+mkdocstrings = {version = "*", extras = ["cystal", "python"]}
+bandit = "*"
+black = "*"
+coverage = "*"
+invoke = "*"
+flake8 = "*"
+pylint = "*"
+pytest = "*"
+toml = "*"
+yamllint = "*"
+pre-commit = "2.15.*"
+pyenchant = "*"
+netmiko = "*"
+requests = "*"
+psutil = "*"
+ruamel-yaml = "^0.18.6"
 
-# linters
-bandit = { version = "1.7.*", markers = "python_version >= '3.7'" }
-black = { version = "22.3.*", markers = "python_version >= '3.7'" }
-flake8 = { version = "^4.0.1", markers = "python_version >= '3.7'" }
-pre-commit = { version = "2.15.*", markers = "python_version >= '3.7'" }
-pyenchant = { version = "3.2.*", markers = "python_version >= '3.7'" }
-pylint = { version = "2.12.*", markers = "python_version >= '3.7'" }
+[tool.black]
+line-length = 120
+target-version = ['py38']
+include = '\.pyi?$'
+exclude = '''
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+  | settings.py     # This is where you define files that should not be stylized by black
+                     # the root of the project
+)
+'''
+
+[tool.bandit]
+exclude_dirs = ["./tests/", "./.venv", "./update_platforms.py"]
+tests = ["B201", "B301"]
+skips = ["B101", "B601"]
+
+[tool.poetry.extras]
+test = ["pytest"]
+
+[tool.pylint.master]
+ignore = ".venv"
+
+[tool.pylint.basic]
+# No docstrings required for private methods (Pylint default), or for test_ functions, or for inner Meta classes.
+no-docstring-rgx = "^(_|test_|Meta$)"
+min-public-methods = 1
+
+[tool.pylint.messages_control]
+# Line length is enforced by Black, so pylint doesn't need to check it.
+# Pylint and Black disagree about how to format multi-line arrays; Black wins.
+disable = """,
+    line-too-long,
+    redefined-outer-name
+    """
+
+[tool.coverage.run]
+branch = true
+omit = [".*", ".venv"]
+command_line = "-m pytest"
+
+[tools.coverage.report]
+fail_under = 80
+show_missing = true
+
+[tools.coverage.html]
+directory = "coverage_html_report"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-vv"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -43,5 +119,3 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 fakenos = 'fakenos.plugins.utils.cli:run_cli'
-
-[tool.poetry.extras]

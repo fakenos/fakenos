@@ -3,24 +3,22 @@ FakeNOS Command Line Tool for running fake servers.
 """
 
 import argparse
-import time
 import logging
 
 from fakenos import FakeNOS
 
-__version__ = "0.1.0"
+__version__ = "1.0.0"
 
 log = logging.getLogger(__name__)
 
-# form argparser menu:
-description_text = """-i --inventory   OS Path to inventory file
+DESCRIPTION_TEXT = """-i --inventory   OS Path to inventory file
 """
 
 argparser = argparse.ArgumentParser(
-    description="FakeNOS, version {}".format(__version__),
+    description=f"FakeNOS, version {__version__}",
     formatter_class=argparse.RawDescriptionHelpFormatter,
 )
-opts = argparser.add_argument_group(description=description_text)
+opts = argparser.add_argument_group(description=DESCRIPTION_TEXT)
 
 opts.add_argument(
     "-i",
@@ -32,19 +30,36 @@ opts.add_argument(
     help=argparse.SUPPRESS,
 )
 
+opts.add_argument(
+    "-l",
+    "--log-level",
+    action="store",
+    dest="LOG_LEVEL",
+    default="INFO",
+    type=str,
+    help="Log level",
+)
 
-# extract argparser arguments:
+
 args = argparser.parse_args()
-INVENTORY = args.INVENTORY
+
+logging.basicConfig(level=args.LOG_LEVEL.upper())
 
 
 def run_cli():
     """Function to start FakeNOS CLI"""
-    fakenet = FakeNOS(inventory=INVENTORY)
+    print("Initiating FakeNOS")
+    fakenet = FakeNOS(inventory=args.INVENTORY)
+    log.info("Initiating FakeNOS")
     fakenet.start()
-    print("Started servers:")
-    print(fakenet.list_hosts())
-    log.info("FakeNOS Started servers: {}".format(fakenet.list_hosts()))
+
+    try:
+        while True:
+            pass
+    except KeyboardInterrupt:
+        log.info("Shutting down FakeNOS")
+        print("Shutting down FakeNOS")
+        fakenet.stop()
 
 
 if __name__ == "__main__":

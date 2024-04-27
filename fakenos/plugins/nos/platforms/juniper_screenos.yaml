@@ -1,0 +1,28 @@
+name: juniper_screenos
+initial_prompt: juniper_screenos>
+commands:
+  enable:
+    output: null
+    new_prompt: juniper_screenos#
+    help: enter enable mode
+    prompt: juniper_screenos>
+  set console page 0:
+    output: null
+    help: set the terminal width to maximum
+    prompt:
+    - juniper_screenos>
+    - juniper_screenos#
+  get route:
+    output: "IPv4 Dest-Routes for <untrust-vr> (0 entries)\n----------------------------------------------------------------------\n
+      H: Host C: Connected S: Static A: Auto-Exported\nI: Imported R: RIP P: Permanent
+      D: Auto-Discovered\niB: IBGP eB: EBGP O: OSPF E1: OSPF external type 1\nE2:
+      OSPF external type 2\n\nIPv4 Dest-Routes for <trust-vr> (4 entries)\n----------------------------------------------------------------------\n\
+      \   ID          IP-Prefix  Interface    Gateway   P Pref    Mtr    Vsys\n----------------------------------------------------------------------\n\
+      *   4         1.1.1.2/32     eth0/1    0.0.0.0   H    0      0    Root\n*  \
+      \ 2     192.168.1.1/32     eth0/0    0.0.0.0   H    0      0    Root\n*   1\
+      \     192.168.1.0/24     eth0/0    0.0.0.0   C    0      0    Root\n*   3  \
+      \       1.1.1.0/24     eth0/1    0.0.0.0   C    0      0    Root\n"
+    help: execute the command "get route"
+    prompt:
+    - juniper_screenos>
+    - juniper_screenos#

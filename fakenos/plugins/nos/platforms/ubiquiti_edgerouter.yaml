@@ -1,0 +1,191 @@
+name: ubiquiti_edgerouter
+initial_prompt: ubiquiti@ubiquiti:~$
+commands:
+  enable:
+    output: null
+    new_prompt: ubiquiti@ubiquiti:#
+    help: enter enable mode
+    prompt: ubiquiti@ubiquiti:~$
+  show interfaces:
+    output: "Codes: S - State, L - Link, u - Up, D - Down, A - Admin Down\nInterface\
+      \    IP Address                        S/L  Description                 \n---------\
+      \    ----------                        ---  -----------                 \neth0\
+      \         -                                 u/u  Port\neth1         192.168.1.1/24\
+      \                    u/u  Eth 1\n             2a05:c100:1d::1/64\neth2     \
+      \    -                                 u/D  Port\neth3         -           \
+      \                      u/D  Port\nlo           127.0.0.1/8                 \
+      \      u/u\n             ::1/128      \neth4         192.168.1.1/24        \
+      \            u/u  datas\neth4.2900    -                                 u/u\n\
+      eth5         2a05:c100:1d::1/64                u/u\nswitch0.1    192.168.10.251/24\
+      \                 u/u  vl1-siege-serveurs\n"
+    help: execute the command "show interfaces"
+    prompt:
+    - ubiquiti@ubiquiti:~$
+    - ubiquiti@ubiquiti:#
+  show arp:
+    output: 'Address                  HWtype  HWaddress           Flags Mask            Iface
+
+      192.168.2.10             ether   34:29:8f:76:0f:e8   C                     eth1
+
+      192.168.11.127                   (incomplete)                              switch0.1
+
+      172.16.39.98             ether   00:0a:b0:04:98:fb   C                     eth5
+
+      172.16.35.123            ether   00:21:b6:00:34:c8   C                     eth3
+
+      172.16.36.200                    (incomplete)                              eth6
+
+      172.16.37.165            ether   ac:cc:8e:15:a6:3f   C                     eth7
+
+      172.16.37.21             ether   90:b1:1c:2f:92:82   C                     eth7
+
+      '
+    help: execute the command "show arp"
+    prompt:
+    - ubiquiti@ubiquiti:~$
+    - ubiquiti@ubiquiti:#
+  show dhcp leases:
+    output: "Warning: leased IP address [2886804269] not in any of the pools\nWarning:\
+      \ leased IP address [2886804283] not in any of the pools\nWarning: leased IP\
+      \ address [2886804287] not in any of the pools\nWarning: leased IP address [2886804295]\
+      \ not in any of the pools\nWarning: leased IP address [2886804284] not in any\
+      \ of the pools\nWarning: leased IP address [2886804252] not in any of the pools\n\
+      \ Warning: leased IP address [2886804248] not in any of the pools\nWarning:\
+      \ leased IP address [2886804305] not in any of the pools\nIP address      Hardware\
+      \ Address   Lease expiration     Pool       Client Name\n----------      ----------------\
+      \   ----------------     ----       -----------\n125.125.15.12   00:0a:95:9d:68:16\
+      \  Sep 18, 2021         5          HOSTNAME  \n"
+    help: execute the command "show dhcp leases"
+    prompt:
+    - ubiquiti@ubiquiti:~$
+    - ubiquiti@ubiquiti:#
+  show dhcpv6 server leases:
+    output: 'There are 6 DHCPv6 leases:
+
+
+      IPv6 Address                            Expiration          State
+
+      --------------------------------------- ------------------- ------
+
+      2001:d98:5554::210                      2014/01/27 18:55:53 active
+
+      2001:d98:5554::212                      2014/01/27 19:46:12 active
+
+      2001:d98:5554::213                      2014/01/27 19:00:18 active
+
+      2001:d98:5554::225                      2014/01/27 20:31:06 active
+
+      2001:d98:5554::214                      2014/01/27 18:55:57 active
+
+      2001:d98:5554::219                      2011/06/01 06:02:16 expired
+
+      '
+    help: execute the command "show dhcpv6 server leases"
+    prompt:
+    - ubiquiti@ubiquiti:~$
+    - ubiquiti@ubiquiti:#
+  show ipv6 neighbors:
+    output: "2a01::68e5:a41e:722c:2f7b dev eth0 lladdr 6c:40:08:4f:35:bc STALE\nfe80::7e91:22ff:fe87:d336\
+      \ dev eth0 lladdr 7c:91:22:87:d3:36 STALE\nfe80::feec:daff:fe47:bf49 dev eth0\
+      \ lladdr fc:ec:da:47:bf:49 router STALE\nfe80::250:56ff:fe90:50ee dev eth4.51\
+      \ lladdr 00:50:56:90:50:ee router REACHABLE\nfe80::11:32ff:fe2a:c970 dev eth1\
+      \ lladdr 02:11:32:2a:c9:70 STALE\n2a05:c100:37:0:6d40:4b07:e518:9ada dev switch0.1\
+      \  FAILED\nfe80::be16:65ff:fe7e:1cc1  FAILED\n2a02:33:44::1  router INCOMPLETE\n\
+      \ fe80::d093:e5ff:fe8e:8427 lladdr d2:93:e5:8e:84:27 STALE\n2a02:33:44::12 lladdr\
+      \ d2:93:e5:8e:84:27 STALE\nfe80::be16:65ff:fe7e:1cc1 lladdr bc:16:65:7e:1c:c1\
+      \ DELAY\n2a02:33:44::1 lladdr bc:16:65:7e:1c:c1 router REACHABLE\nfe80::d093:e5ff:fe8e:8427\
+      \ lladdr d2:93:e5:8e:84:27 STALE\n2a02:33:44::12 lladdr d2:93:e5:8e:84:27 STALE\n"
+    help: execute the command "show ipv6 neighbors"
+    prompt:
+    - ubiquiti@ubiquiti:~$
+    - ubiquiti@ubiquiti:#
+  show interfaces ethernet physical:
+    output: "Settings for eth0:\n   Auto-negotiation: off\n   Speed: 1000Mb/s\n  \
+      \ Duplex: Full\n   Link detected: no\n"
+    help: execute the command "show interfaces ethernet physical"
+    prompt:
+    - ubiquiti@ubiquiti:~$
+    - ubiquiti@ubiquiti:#
+  show ipv6 route:
+    output: "IPv6 Routing Table\nCodes: K - kernel route, C - connected, S - static,\
+      \ R - RIP, O - OSPF,\n       IA - OSPF inter area, E1 - OSPF external type 1,\n\
+      \       E2 - OSPF external type 2, N1 - OSPF NSSA external type 1,\n       N2\
+      \ - OSPF NSSA external type 2, B - BGP\nTimers: Uptime\n\nIP Route Table for\
+      \ VRF \"default\"\nS      ::/0 [50/0] via ::, pppoe4, 01w0d05h\nS      ::/64\
+      \ [50/0] via 2a05:c100:1d::2, eth1, 00:00:04\nC      ::1/128 via ::, lo, 01w0d05h\n\
+      C      2a05:b780:0:1d::/64 via ::, pppoe4, 01w0d05h\nC      2a05:c100:1d::/64\
+      \ via ::, eth1, 01:11:26\nC      fe80::/10 via ::, pppoe4, 01w0d05h\nC     \
+      \ fe80::/64 via ::, eth1, 01:11:25\n\n"
+    help: execute the command "show ipv6 route"
+    prompt:
+    - ubiquiti@ubiquiti:~$
+    - ubiquiti@ubiquiti:#
+  show nat rules:
+    output: "Type Codes:  SRC - source, DST - destination, MASQ - masquerade\n   \
+      \           X at the front of rule implies rule is excluded\n\nrule   type \
+      \ intf     translation                                               \n----\
+      \   ----  ----     -----------                                             \
+      \  \n1      DST   pppoe4   daddr 23.90.233.198 to 192.168.1.100            \
+      \          \n    proto-tcp         dport 8080 to 80                        \
+      \                      \n\n2      DST   pppoe4   daddr 23.90.233.198 to 192.168.1.231\
+      \                      \n    proto-tcp         dport 65001 to 3389         \
+      \                                  \n\n3      DST   pppoe4   daddr 23.90.233.198\
+      \ to 192.168.1.2                        \n    proto-tcp         dport 6666 to\
+      \ 6666                                            \n\n4      DST   pppoe4  \
+      \ daddr 23.90.233.198 to 192.168.1.111                      \n    proto-tcp_udp\
+      \     dport 83 to 83                                                \n\n5  \
+      \    DST   pppoe4   daddr 23.90.233.198 to 192.168.1.110                   \
+      \   \n    proto-tcp_udp     dport 80 to 80                                 \
+      \               \n\n6      DST   pppoe4   daddr 23.90.233.198 to 192.168.1.1\
+      \                        \n    proto-tcp_udp     dport 81 to 81            \
+      \                                    \n\n5001   MASQ  pppoe4   saddr 192.168.1.0/24\
+      \ to 23.90.233.198                     \n    proto-all         sport ANY   \
+      \                                                  \n\n5002   MASQ  pppoe4 \
+      \  saddr 192.168.42.0/24 to 23.90.233.198                    \n    proto-all\
+      \         sport ANY\n"
+    help: execute the command "show nat rules"
+    prompt:
+    - ubiquiti@ubiquiti:~$
+    - ubiquiti@ubiquiti:#
+  show ip route:
+    output: "Codes: K - kernel, C - connected, S - static, R - RIP, B - BGP\n    \
+      \   O - OSPF, IA - OSPF inter area\n       N1 - OSPF NSSA external type 1, N2\
+      \ - OSPF NSSA external type 2\n       E1 - OSPF external type 1, E2 - OSPF external\
+      \ type 2\n       > - selected route, * - FIB route, p - stale info\n\nIP Route\
+      \ Table for VRF \"default\"\nS    *> 0.0.0.0/0 [50/0] is directly connected,\
+      \ pppoe4\nS    *> 22.22.23.0/24 [1/0] via 198.168.0.1 (recursive is directly\
+      \ connected, pppoe4) )\nS    *> 23.23.23.0/24 [1/0] via 198.168.0.1 (recursive\
+      \ is directly connected, pppoe4) )\nC    *> 23.90.232.243/32 is directly connected,\
+      \ pppoe4\nS    *> 25.22.23.0/24 [35/0] via 198.168.0.1 (recursive is directly\
+      \ connected, pppoe4) )\nC    *> 100.95.11.96/32 is directly connected, pppoe4\n\
+      C    *> 127.0.0.0/8 is directly connected, lo\nS    *> 192.100.111.0/24 [1/0]\
+      \ via 192.168.1.25 (recursive is directly connected, pppoe4) )\n     *>    \
+      \              [1/0] via 192.168.1.20 (recursive is directly connected, pppoe4)\
+      \ )\n"
+    help: execute the command "show ip route"
+    prompt:
+    - ubiquiti@ubiquiti:~$
+    - ubiquiti@ubiquiti:#
+  show version:
+    output: "Version:      v2.0.6\nBuild ID:     5208554\nBuild on:     07/08/19 06:11\n\
+      Copyright:    2012-2018 Ubiquiti Networks, Inc.\nHW model:     EdgeRouter 6P\n\
+      \ HW S/N:       FCECDA47BF8A\nUptime:       16:17:57 up 11 days,  6:15,  1 user,\
+      \  load average: 0.09, 0.06, 0.01\n"
+    help: execute the command "show version"
+    prompt:
+    - ubiquiti@ubiquiti:~$
+    - ubiquiti@ubiquiti:#
+  terminal length 0:
+    output: null
+    help: Execute the command terminal length 0. This automatically generated. Feel
+      free to change it!
+    prompt:
+    - ubiquiti_edgerouter>
+    - ubiquiti_edgerouter#
+  terminal width 512:
+    output: null
+    help: Execute the command terminal width 512. This automatically generated. Feel
+      free to change it!
+    prompt:
+    - ubiquiti_edgerouter>
+    - ubiquiti_edgerouter#
