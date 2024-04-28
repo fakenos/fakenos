@@ -1,11 +1,11 @@
 name: ubiquiti_edgerouter
-initial_prompt: ubiquiti@ubiquiti:~$
+initial_prompt: "{base_prompt}~$"
 commands:
   enable:
     output: null
-    new_prompt: ubiquiti@ubiquiti:#
+    new_prompt: "{base_prompt}#"
     help: enter enable mode
-    prompt: ubiquiti@ubiquiti:~$
+    prompt: "{base_prompt}~$"
   show interfaces:
     output: "Codes: S - State, L - Link, u - Up, D - Down, A - Admin Down\nInterface\
       \    IP Address                        S/L  Description                 \n---------\
@@ -20,8 +20,8 @@ commands:
       \                 u/u  vl1-siege-serveurs\n"
     help: execute the command "show interfaces"
     prompt:
-    - ubiquiti@ubiquiti:~$
-    - ubiquiti@ubiquiti:#
+    - "{base_prompt}~$"
+    - "{base_prompt}#"
   show arp:
     output: 'Address                  HWtype  HWaddress           Flags Mask            Iface
 
@@ -42,8 +42,8 @@ commands:
       '
     help: execute the command "show arp"
     prompt:
-    - ubiquiti@ubiquiti:~$
-    - ubiquiti@ubiquiti:#
+    - "{base_prompt}~$"
+    - "{base_prompt}#"
   show dhcp leases:
     output: "Warning: leased IP address [2886804269] not in any of the pools\nWarning:\
       \ leased IP address [2886804283] not in any of the pools\nWarning: leased IP\
@@ -57,8 +57,8 @@ commands:
       \  Sep 18, 2021         5          HOSTNAME  \n"
     help: execute the command "show dhcp leases"
     prompt:
-    - ubiquiti@ubiquiti:~$
-    - ubiquiti@ubiquiti:#
+    - "{base_prompt}~$"
+    - "{base_prompt}#"
   show dhcpv6 server leases:
     output: 'There are 6 DHCPv6 leases:
 
@@ -82,8 +82,8 @@ commands:
       '
     help: execute the command "show dhcpv6 server leases"
     prompt:
-    - ubiquiti@ubiquiti:~$
-    - ubiquiti@ubiquiti:#
+    - "{base_prompt}~$"
+    - "{base_prompt}#"
   show ipv6 neighbors:
     output: "2a01::68e5:a41e:722c:2f7b dev eth0 lladdr 6c:40:08:4f:35:bc STALE\nfe80::7e91:22ff:fe87:d336\
       \ dev eth0 lladdr 7c:91:22:87:d3:36 STALE\nfe80::feec:daff:fe47:bf49 dev eth0\
@@ -97,15 +97,15 @@ commands:
       \ lladdr d2:93:e5:8e:84:27 STALE\n2a02:33:44::12 lladdr d2:93:e5:8e:84:27 STALE\n"
     help: execute the command "show ipv6 neighbors"
     prompt:
-    - ubiquiti@ubiquiti:~$
-    - ubiquiti@ubiquiti:#
+    - "{base_prompt}~$"
+    - "{base_prompt}#"
   show interfaces ethernet physical:
     output: "Settings for eth0:\n   Auto-negotiation: off\n   Speed: 1000Mb/s\n  \
       \ Duplex: Full\n   Link detected: no\n"
     help: execute the command "show interfaces ethernet physical"
     prompt:
-    - ubiquiti@ubiquiti:~$
-    - ubiquiti@ubiquiti:#
+    - "{base_prompt}~$"
+    - "{base_prompt}#"
   show ipv6 route:
     output: "IPv6 Routing Table\nCodes: K - kernel route, C - connected, S - static,\
       \ R - RIP, O - OSPF,\n       IA - OSPF inter area, E1 - OSPF external type 1,\n\
@@ -118,8 +118,8 @@ commands:
       \ fe80::/64 via ::, eth1, 01:11:25\n\n"
     help: execute the command "show ipv6 route"
     prompt:
-    - ubiquiti@ubiquiti:~$
-    - ubiquiti@ubiquiti:#
+    - "{base_prompt}~$"
+    - "{base_prompt}#"
   show nat rules:
     output: "Type Codes:  SRC - source, DST - destination, MASQ - masquerade\n   \
       \           X at the front of rule implies rule is excluded\n\nrule   type \
@@ -145,8 +145,8 @@ commands:
       \         sport ANY\n"
     help: execute the command "show nat rules"
     prompt:
-    - ubiquiti@ubiquiti:~$
-    - ubiquiti@ubiquiti:#
+    - "{base_prompt}~$"
+    - "{base_prompt}#"
   show ip route:
     output: "Codes: K - kernel, C - connected, S - static, R - RIP, B - BGP\n    \
       \   O - OSPF, IA - OSPF inter area\n       N1 - OSPF NSSA external type 1, N2\
@@ -164,8 +164,8 @@ commands:
       \ )\n"
     help: execute the command "show ip route"
     prompt:
-    - ubiquiti@ubiquiti:~$
-    - ubiquiti@ubiquiti:#
+    - "{base_prompt}~$"
+    - "{base_prompt}#"
   show version:
     output: "Version:      v2.0.6\nBuild ID:     5208554\nBuild on:     07/08/19 06:11\n\
       Copyright:    2012-2018 Ubiquiti Networks, Inc.\nHW model:     EdgeRouter 6P\n\
@@ -173,19 +173,19 @@ commands:
       \  load average: 0.09, 0.06, 0.01\n"
     help: execute the command "show version"
     prompt:
-    - ubiquiti@ubiquiti:~$
-    - ubiquiti@ubiquiti:#
+    - "{base_prompt}~$"
+    - "{base_prompt}#"
   terminal length 0:
     output: null
     help: Execute the command terminal length 0. This automatically generated. Feel
       free to change it!
     prompt:
-    - ubiquiti_edgerouter>
-    - ubiquiti_edgerouter#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   terminal width 512:
     output: null
     help: Execute the command terminal width 512. This automatically generated. Feel
       free to change it!
     prompt:
-    - ubiquiti_edgerouter>
-    - ubiquiti_edgerouter#
+    - "{base_prompt}>"
+    - "{base_prompt}#"

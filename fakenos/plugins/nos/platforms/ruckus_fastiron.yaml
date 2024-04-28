@@ -1,11 +1,11 @@
 name: ruckus_fastiron
-initial_prompt: ruckus_fastiron>
+initial_prompt: "{base_prompt}>"
 commands:
   enable:
     output: 'null'
-    new_prompt: ruckus_fastiron#
+    new_prompt: "{base_prompt}#"
     help: enter enable mode
-    prompt: ruckus_fastiron>
+    prompt: "{base_prompt}>"
   show interfaces:
     output: "40GigabitEthernet2/3/3 is up, line protocol is up\n  Port up for 128
       day(s) 19 hour(s) 49 minute(s) 25 second(s)\n  Hardware is 40GigabitEthernet,
@@ -112,8 +112,8 @@ commands:
       \  0 output errors, 0 collisions"
     help: execute the command "show interfaces"
     prompt:
-    - ruckus_fastiron>
-    - ruckus_fastiron#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show arp:
     output: "All ARPs: 3, maximum capacity: 4096\nNo.   IP              MAC      \
       \      Type     Age Port           Status VLAN \n1     10.103.3.1      70db.9862.224c
@@ -122,8 +122,8 @@ commands:
       Dynamic  4   1/1/6          Valid  1    \nTotal ARP Entries : 3"
     help: execute the command "show arp"
     prompt:
-    - ruckus_fastiron>
-    - ruckus_fastiron#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show vlan:
     output: "Total PORT-VLAN entries: 53\nMaximum PORT-VLAN entries: 1024\n\nLegend:
       [Stk=Stack-Id, S=Slot]\n\nPORT-VLAN 1, Name [None], Priority level0, Off\n Untagged
@@ -383,8 +383,8 @@ commands:
       (LAG)     1\n Mac-Vlan Ports: None\n     Monitoring: Disabled\n"
     help: execute the command "show vlan"
     prompt:
-    - ruckus_fastiron>
-    - ruckus_fastiron#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interfaces brief:
     output: "\nPort       Link    State   Dupl Speed Trunk Tag Pvid Pri MAC      \
       \       Name\n1/1/1      Up      Forward Full 10G   11    Yes N/A  0   c0c5.2050.a500\
@@ -506,8 +506,8 @@ commands:
       \  N/A  N/A   None  N/A N/A  N/A c0c5.2050.a500"
     help: execute the command "show interfaces brief"
     prompt:
-    - ruckus_fastiron>
-    - ruckus_fastiron#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show mac-address:
     output: "\nTotal active entries from all ports = 93\nMAC-Address     Port    \
       \             Type         VLAN \n70db.9895.73aa  1/2/1                Dynamic\
@@ -586,8 +586,8 @@ commands:
       \  2    "
     help: execute the command "show mac-address"
     prompt:
-    - ruckus_fastiron>
-    - ruckus_fastiron#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show media validation:
     output: "Port       Supported Vendor               Type\n----------------------------------------------------------------------\n\
       1/2/1      No        CISCO-OEM             Type  : 10GE SR 300m (SFP+)\n1/2/3\
@@ -600,8 +600,8 @@ commands:
       Copper 0.5m (QSFP+)"
     help: execute the command "show media validation"
     prompt:
-    - ruckus_fastiron>
-    - ruckus_fastiron#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show version:
     output: "  Copyright (c) Ruckus Networks, Inc. All rights reserved.\n    UNIT
       1: compiled on Feb 19 2019 at 13:48:49 labeled as SPS08090\n      (28575972
@@ -630,5 +630,5 @@ commands:
       \n"
     help: execute the command "show version"
     prompt:
-    - ruckus_fastiron>
-    - ruckus_fastiron#
+    - "{base_prompt}>"
+    - "{base_prompt}#"

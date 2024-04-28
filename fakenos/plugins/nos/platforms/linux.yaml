@@ -1,18 +1,18 @@
 name: linux
-initial_prompt: linux$
+initial_prompt: "{base_prompt}$"
 commands:
   enable:
     output: 'null'
-    new_prompt: linux#
+    new_prompt: "{base_prompt}#"
     help: enter enable mode
-    prompt: linux$
+    prompt: "{base_prompt}$"
   ip vrf show:
     output: "Name              Table\n-----------------------\nvrf-blue          \
       \  10\nvrf-red             20\n"
     help: execute the command "ip vrf show"
     prompt:
-    - linux$
-    - linux#
+    - "{base_prompt}$"
+    - "{base_prompt}#"
   ip address show:
     output: "1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group
       default qlen 1000\n    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00\n\
@@ -35,8 +35,8 @@ commands:
       global brred\n       valid_lft forever preferred_lft forever\n"
     help: execute the command "ip address show"
     prompt:
-    - linux$
-    - linux#
+    - "{base_prompt}$"
+    - "{base_prompt}#"
   ip link show:
     output: "1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode
       DEFAULT group default qlen 1000\n    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00\n
@@ -57,8 +57,8 @@ commands:
       \    link/ether da:ca:17:97:f5:34 brd ff:ff:ff:ff:ff:ff\n"
     help: execute the command "ip link show"
     prompt:
-    - linux$
-    - linux#
+    - "{base_prompt}$"
+    - "{base_prompt}#"
   arp -a:
     output: "? (192.168.13.197) at 00:04:4b:cc:9c:ba [ether] on eth1.100\n? (192.168.10.100)
       at <incomplete> on eth1.10\n? (192.168.13.252) at 5c:e2:8c:fc:a4:74 [ether]
@@ -69,8 +69,8 @@ commands:
       at 00:0c:29:bb:5f:a2 [ether] on eth1.10\n"
     help: execute the command "arp -a"
     prompt:
-    - linux$
-    - linux#
+    - "{base_prompt}$"
+    - "{base_prompt}#"
   ip route show:
     output: "default via 10.0.0.4 dev brblue\nunreachable default metric 4278198272\n
       broadcast 10.0.0.0 dev brblue proto kernel scope link src 10.0.0.1\n10.0.0.0/24
@@ -80,5 +80,5 @@ commands:
       dev ens32 proto dhcp scope link src 192.168.131.128 metric 100\n"
     help: execute the command "ip route show"
     prompt:
-    - linux$
-    - linux#
+    - "{base_prompt}$"
+    - "{base_prompt}#"

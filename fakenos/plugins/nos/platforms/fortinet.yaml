@@ -1,11 +1,11 @@
 name: fortinet
-initial_prompt: fortinet>
+initial_prompt: "{base_prompt}>"
 commands:
   enable:
     output: 'null'
-    new_prompt: fortinet#
+    new_prompt: "{base_prompt}#"
     help: enter enable mode
-    prompt: fortinet>
+    prompt: "{base_prompt}>"
   get system interface physical:
     output: "== [onboard]\n        ==[dmz1]\n                mode: static\n      \
       \          ip: 0.0.0.0 0.0.0.0\n                ipv6: ::/0\n               \
@@ -62,8 +62,8 @@ commands:
       \        speed: n/a\n"
     help: execute the command "get system interface physical"
     prompt:
-    - fortinet>
-    - fortinet#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   get system status:
     output: "Version: FortiGate-1500D v6.0.7,build0302,191112 (GA)\nVirus-DB: 16.00560(2012-10-19
       08:31)\nExtended DB: 1.00000(2018-04-09 18:07)\nExtreme DB: 1.00000(2018-04-09
@@ -80,8 +80,8 @@ commands:
       Yes\nSystem time: Fri Jan 10 23:10:02 2020\n"
     help: execute the command "get system status"
     prompt:
-    - fortinet>
-    - fortinet#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   get system ha status:
     output: "HA Health Status: OK\nModel: FortiGate-600E\nMode: HA A-P\nGroup: 5\n
       Debug: 0\nCluster Uptime: 36 days 22:20:40\nCluster state change time: 2020-12-02
@@ -109,8 +109,8 @@ commands:
       0\nSlave : FG6H0Eyyyyyyyyyy, HA operating index = 1\n"
     help: execute the command "get system ha status"
     prompt:
-    - fortinet>
-    - fortinet#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   get router info bgp summary:
     output: "BGP router identifier 85.31.8.8, local AS number 65302\nBGP table version
       is 13\n1 BGP AS-PATH entries\n0 BGP community entries\n\nNeighbor        V \
@@ -122,8 +122,8 @@ commands:
       Total number of neighbors 4\n\n"
     help: execute the command "get router info bgp summary"
     prompt:
-    - fortinet>
-    - fortinet#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   get system interface:
     output: "== [ ha ]\nname: ha   mode: static    management-ip: 0.0.0.0 0.0.0.0\
       \   ip: 0.0.0.0 0.0.0.0   status: up    netbios-forward: disable    type: physical\
@@ -194,8 +194,8 @@ commands:
       \    explicit-ftp-proxy: disable    proxy-captive-portal: disable    wccp: disable\n"
     help: execute the command "get system interface"
     prompt:
-    - fortinet>
-    - fortinet#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   get system arp:
     output: "Address           Age(min)   Hardware Addr      Interface\n192.168.1.4\
       \       0          b0:a8:6e:01:61:81 lan\n192.168.1.110     0          3c:9b:d6:66:52:ab
@@ -203,5 +203,5 @@ commands:
       \          40:cb:c0:ce:81:85 lan\n"
     help: execute the command "get system arp"
     prompt:
-    - fortinet>
-    - fortinet#
+    - "{base_prompt}>"
+    - "{base_prompt}#"

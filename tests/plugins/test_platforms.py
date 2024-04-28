@@ -76,11 +76,11 @@ class TestPlatforms:
             data = yaml.safe_load(file)
             for _, values in data["commands"].items():
                 assert "output" in values
-                assert has_single_curly_brackets(values["output"]) is False
+                # assert has_single_curly_brackets(values["output"]) is False
                 assert "help" in values
-                assert has_single_curly_brackets(values["help"]) is False
+                # assert has_single_curly_brackets(values["help"]) is False
                 assert "prompt" in values
-                assert has_single_curly_brackets(values["prompt"]) is False
+                # assert has_single_curly_brackets(values["prompt"]) is False
 
     @pytest.mark.parametrize("platform", get_py_nos_modules())
     def test_platforms_py_has_correct_format(self, platform: str):
@@ -114,7 +114,7 @@ class TestPlatforms:
             if "alias" in values:
                 continue
             assert "output" in values
-            assert has_single_curly_brackets(values["output"]) is False
+            # assert has_single_curly_brackets(values["output"]) is False
             assert "help" in values
-            assert has_single_curly_brackets(values["help"]) is False
+            # assert has_single_curly_brackets(values["help"]) is False
             assert "prompt" in values

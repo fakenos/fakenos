@@ -86,7 +86,7 @@ class TCPServerBase(ABC):
 
     def _listen(self):
         """
-        This funciton is constantly running if the server is running.
+        This function is constantly running if the server is running.
         It waits for a connection, and if a connection is made, it will
         call the connection function.
         """
@@ -94,7 +94,7 @@ class TCPServerBase(ABC):
             try:
                 self._socket.listen()
                 client, _ = self._socket.accept()
-                connection_thread = threading.Thread(target=self.connection_function, args=(client,))
+                connection_thread = threading.Thread(target=self.connection_function, args=(client, self._is_running,))
                 connection_thread.start()
                 self._connection_threads.append(connection_thread)
             except socket.timeout:

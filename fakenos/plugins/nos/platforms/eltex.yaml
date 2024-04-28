@@ -1,23 +1,23 @@
 name: eltex
-initial_prompt: eltex>
+initial_prompt: "{base_prompt}>"
 commands:
   enable:
     output: null
-    new_prompt: eltex#
+    new_prompt: "{base_prompt}#"
     help: enter enable mode
-    prompt: eltex>
+    prompt: "{base_prompt}>"
   terminal datadump:
     output: null
     help: set terminal width to maximum
     prompt:
-    - eltex>
-    - eltex#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   ex:
     output: true
     help: exit the terminal
     prompt:
-    - eltex>
-    - eltex#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show vlan:
     output: "Vlan            Name                    Tagged ports               Untagged\
       \ ports            Type     Authorization\n---- ---------------------------\
@@ -36,16 +36,16 @@ commands:
       \           permanent     Required\n"
     help: execute the command "show vlan"
     prompt:
-    - eltex>
-    - eltex#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show system id:
     output: 'Serial number : ES12345678
 
       '
     help: execute the command "show system id"
     prompt:
-    - eltex>
-    - eltex#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interfaces status:
     output: "                                             Flow Link           Uptime\
       \       Back   Mdix\nPort     Type         Duplex  Speed Neg      ctrl State\
@@ -247,8 +247,8 @@ commands:
       \ by administrator.\n"
     help: execute the command "show interfaces status"
     prompt:
-    - eltex>
-    - eltex#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show system:
     output: "System Description:                       MES3124 28-port 1G/10G Managed\
       \ Switch\nSystem Up Time (days,hour:min:sec):       67,08:57:53\nSystem Contact:\
@@ -266,8 +266,8 @@ commands:
       \      45                          OK\n"
     help: execute the command "show system"
     prompt:
-    - eltex>
-    - eltex#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interface:
     output: "------------------ show interfaces gi1/0/1 ------------------\ngigabitethernet1/0/1\
       \ is up (connected)\n  Interface index is 49\n  Hardware is gigabitethernet,\
@@ -1154,8 +1154,8 @@ commands:
       \  Interface MTU is 1476\n"
     help: execute the command "show interface"
     prompt:
-    - eltex>
-    - eltex#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip interface:
     output: "  Gateway IP Address        Activity status       Type\n-----------------------\
       \ ----------------------- --------\n10.150.0.101            Active         \
@@ -1165,8 +1165,8 @@ commands:
       \       vlan 150  Static      Valid\n"
     help: execute the command "show ip interface"
     prompt:
-    - eltex>
-    - eltex#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interfaces description:
     output: "                                  Admin Link\nPort     Port Mode (VLAN)\
       \         State State       Description\n-------- ------------------------ -----\
@@ -1208,8 +1208,8 @@ commands:
       \ ----------- -----------\noob      Up    Up          ASR920-1 - Gi0/0/0\n"
     help: execute the command "show interfaces description"
     prompt:
-    - eltex>
-    - eltex#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interfaces switchport:
     output: "Added by: D-Default, S-Static, G-GVRP, R-Radius Assigned VLAN, T-Guest\
       \ VLAN, V-Voice VLAN\nPort : gi1/0/1\nPort Mode: Trunk\nGvrp Status: disabled\n\
@@ -1224,5 +1224,5 @@ commands:
       \ -------\n"
     help: execute the command "show interfaces switchport"
     prompt:
-    - eltex>
-    - eltex#
+    - "{base_prompt}>"
+    - "{base_prompt}#"

@@ -1,23 +1,23 @@
 name: cisco_nxos
-initial_prompt: cisco_nxos>
+initial_prompt: "{base_prompt}>"
 commands:
   enable:
     output: null
-    new_prompt: cisco_nxos#
+    new_prompt: "{base_prompt}#"
     help: enter enable mode
-    prompt: cisco_nxos>
+    prompt: "{base_prompt}>"
   terminal length 0:
     output: null
     help: set the terminal width to maximum
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   ex:
     output: true
     help: exit the terminal
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show l2rib internal permanently-frozen-list:
     output: '
 
@@ -78,8 +78,8 @@ commands:
       '
     help: execute the command "show l2rib internal permanently-frozen-list"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show vrf interface:
     output: 'Interface                 VRF-Name                        VRF-ID  Site-of-Origin
 
@@ -122,8 +122,8 @@ commands:
       '
     help: execute the command "show vrf interface"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip bgp:
     output: "Status: s-suppressed, x-deleted, S-stale, d-dampened, h-history, *-valid,\
       \ >-best\nPath type: i-internal, e-external, c-confed, l-local, a-aggregate,\
@@ -177,8 +177,8 @@ commands:
       \        100      32768 i\n"
     help: execute the command "show ip bgp"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interface description:
     output: "\n-------------------------------------------------------------------------------\n\
       Interface                Description                                       \
@@ -280,8 +280,8 @@ commands:
       \ is another description\nEth100/1/24   eth    1000    This is another description\n"
     help: execute the command "show interface description"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show module:
     output: "Mod  Ports  Module-Type                      Model              Status\n\
       ---  -----  -------------------------------- ------------------ ------------\n\
@@ -306,8 +306,8 @@ commands:
       \ session \n"
     help: execute the command "show module"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show cts interface brief:
     output: "CTS Information for Interfaces:\n--------- -------- ---------- ------------------\
       \ -------------\nInterface CTS Mode IFC State    SGT Assignment   Propagate\
@@ -315,15 +315,15 @@ commands:
       \    MANUAL   OPEN           0, Not Trusted Disabled \n"
     help: execute the command "show cts interface brief"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show switching-mode:
     output: "Configured switching mode: Store and Forward\n\nModule Number     Operational\
       \ Mode \n     1            Store and Forward\n     2            Cut-Through "
     help: execute the command "show switching-mode"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show vrf detail:
     output: "VRF-Name: HUB, VRF-ID: 9, State: Up\n    VPNID: 123:456\n    RD: 172.21.111.112:197\n\
       \    Max Routes: 0  Mid-Threshold: 0\n    Table-ID: 0x80000009, AF: IPv6, Fwd-ID:\
@@ -337,8 +337,8 @@ commands:
       \ Table-ID: 0x0000000b, AF: IPv4, Fwd-ID: 0x0000000b, State: Up\n"
     help: execute the command "show vrf detail"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip dhcp snooping statistics:
     output: "----------------------------------------------------------------------\
       \ \nMessage Type             Rx              Tx           Drops  \n----------------------------------------------------------------------\
@@ -367,8 +367,8 @@ commands:
       \                         :      1700"
     help: execute the command "show ip dhcp snooping statistics"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip pim group-range vrf all:
     output: 'PIM Group-Range Configuration for VRF "default"
 
@@ -387,8 +387,8 @@ commands:
       '
     help: execute the command "show ip pim group-range vrf all"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show nve peers:
     output: "Interface Peer-IP                                 State LearnType Uptime\
       \   Router-Mac      \n--------- --------------------------------------  -----\
@@ -401,8 +401,8 @@ commands:
       \    CP        2y11w    0200.c0a8.545b  \n"
     help: execute the command "show nve peers"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show port-channel summary:
     output: "Flags:  D - Down        P - Up in port-channel (members)\n        I -\
       \ Individual  H - Hot-standby (LACP only)\n        s - Suspended   r - Module-removed\n\
@@ -432,8 +432,8 @@ commands:
       \   Eth      LACP      Eth5/3(P)\n828   Po828(RU)   Eth      LACP      Eth6/3(P)\n"
     help: execute the command "show port-channel summary"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show environment:
     output: "Power Supply:\nVoltage: 50 Volts\nPower                             \
       \ Actual        Total\nSupply    Model                    Output     Capacity\
@@ -482,8 +482,8 @@ commands:
       \   115             105         46         Ok         \n"
     help: execute the command "show environment"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show hardware internal bigsur all-ports detail:
     output: "\nBigsur port sup1 card-config info:\n        if_index           : 0x15010000\n\
       \        instance index     : 0\n        instance slot      : 17\n        instance\
@@ -816,8 +816,8 @@ commands:
       \ 0x0 (0)\n    Link debounced with link up since  last enable: 0x0 (0)\nDone.\n"
     help: execute the command "show hardware internal bigsur all-ports detail"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show lldp neighbors detail:
     output: "Capability codes:\n  (R) Router, (B) Bridge, (T) Telephone, (C) DOCSIS\
       \ Cable Device\n  (W) WLAN Access Point, (P) Repeater, (S) Station, (O) Other\n\
@@ -848,8 +848,8 @@ commands:
       \ Address: 10.30.140.30\nVlan ID: 1\n\nTotal entries displayed: 4\n"
     help: execute the command "show lldp neighbors detail"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interface snmp-ifindex:
     output: '
 
@@ -906,8 +906,8 @@ commands:
       Vlan1           151126017  (0x9020001)'
     help: execute the command "show interface snmp-ifindex"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show license usage:
     output: "\nFeature                      Ins  Lic   Status Expiry Date Comments\n\
       \                                 Count\n--------------------------------------------------------------------------------\n\
@@ -923,8 +923,8 @@ commands:
       \ Never       -\n--------------------------------------------------------------------------------\n"
     help: execute the command "show license usage"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip adjacency:
     output: "\nFlags: # - Adjacencies Throttled for Glean\n       G - Adjacencies\
       \ of vPC peer with G/W bit\n\nIP Adjacency Table for VRF default\nTotal number\
@@ -938,8 +938,8 @@ commands:
       \  50   arp        Vlan150"
     help: execute the command "show ip adjacency"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show spanning-tree root:
     output: '                                        Root  Hello Max Fwd
 
@@ -958,8 +958,8 @@ commands:
       root'
     help: execute the command "show spanning-tree root"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show bgp vrf all ipv4 unicast neighbors routes:
     output: "Can't find neighbor 10.1.1.1 in VRF TEST_1\n\nPeer 10.1.1.1 routes for\
       \ address family IPv4 Unicast:\nBGP table version is 401423, Local Router ID\
@@ -984,8 +984,8 @@ commands:
       \ {{64102.333 64201 64202}} 64203 64500.2345 i\n"
     help: execute the command "show bgp vrf all ipv4 unicast neighbors routes"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show vpc:
     output: "Legend:\n                (*) - local vPC is down, forwarding via vPC\
       \ peer-link\n\nvPC domain id                     : 100\nPeer status        \
@@ -1004,8 +1004,8 @@ commands:
       1    Po12   down   -\n2    Po13   up     10\n"
     help: execute the command "show vpc"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show access-lists:
     output: "IP access list TEST-ACL\n        statistics per-entry\n        10 remark\
       \ established connections\n        20 permit tcp any 10.10.10.0/24 established\
@@ -1019,8 +1019,8 @@ commands:
       \ become name\n        150 remark addTest: dont \"miss\" 'me'\n"
     help: execute the command "show access-lists"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show mac address-table:
     output: "Legend:\n        * - primary entry, G - Gateway MAC, (R) - Routed MAC,\
       \ O - Overlay MAC\n        age - seconds since last seen,+ - primary entry using\
@@ -1031,8 +1031,8 @@ commands:
       \ 145        000e.000e.000e   static     -        F      F    Po10\n\n"
     help: execute the command "show mac address-table"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show fex id:
     output: "FEX: 102 Description: ATL1-AS3P   state: Online\n  FEX version: 7.2(1)N1(1)\
       \ [Switch version: 7.2(1)N1(1)]\n  Extender Serial: SSI16340AR0\n  Extender\
@@ -1043,8 +1043,8 @@ commands:
       \ State: Active\n    Eth2/15 - Interface Up. State: Active\n"
     help: execute the command "show fex id"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip pim rp vrf all:
     output: "PIM RP Status Information for VRF \"default\"\nBSR disabled\nAuto-RP\
       \ disabled\nBSR RP Candidate policy: None\nBSR RP policy: None\nAuto-RP Announce\
@@ -1054,8 +1054,8 @@ commands:
       \ policy: None\n\n\n"
     help: execute the command "show ip pim rp vrf all"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show vdc:
     output: '
 
@@ -1075,8 +1075,8 @@ commands:
       '
     help: execute the command "show vdc"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show forwarding adjacency:
     output: 'IPv4 adjacency information
 
@@ -1104,8 +1104,8 @@ commands:
       10.6.140.238    54a2.72da.b651 Ethernet1/16'
     help: execute the command "show forwarding adjacency"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip ospf neighbor:
     output: "router1# sh ip ospf neighbors vrf all \n OSPF Process ID 1111 VRF CUSTVRF1\n\
       \ Total number of neighbors: 3\n Neighbor ID     Pri State            Up Time\
@@ -1121,8 +1121,8 @@ commands:
       \     1 INIT/DROTHER     -        77.77.77.77     Po4 \n"
     help: execute the command "show ip ospf neighbor"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip bgp summary vrf:
     output: "BGP summary information for VRF AMB, address family IPv4 Unicast\n \n\
       \ BGP summary information for VRF AMB, address family IPv6 Unicast\n \nBGP summary\
@@ -1195,8 +1195,8 @@ commands:
       S+)\nValue STATE_PFXRCD (\\S+?\\s+\\S+?|\\S+?)\n"
     help: execute the command "show ip bgp summary vrf"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show fex:
     output: "\n  FEX         FEX           FEX              FEX              Fex\n\
       Number    Description      State            Model            Serial\n------------------------------------------------------------------------\n\
@@ -1212,8 +1212,8 @@ commands:
       \n"
     help: execute the command "show fex"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show environment temperature:
     output: "\n\nTemperature\n-------------------------------------------------------------------------\n\
       Module  Sensor             MajorThresh   MinorThres   CurTemp     Status\n \
@@ -1225,8 +1225,8 @@ commands:
       \          ok\n"
     help: execute the command "show environment temperature"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show vlan:
     output: '
 
@@ -1259,8 +1259,8 @@ commands:
       '
     help: execute the command "show vlan"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip dhcp relay address:
     output: " Interface        Relay Address     VRF Name\n -------------    -------------\
       \     --------\n\n Vlan100           10.40.15.152      my_vrf\n Vlan100    \
@@ -1270,14 +1270,14 @@ commands:
       \     10.40.15.152\n Ethernet1/1.1     10.40.10.162"
     help: execute the command "show ip dhcp relay address"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show hostname:
     output: "n9k1 \n"
     help: execute the command "show hostname"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip interface brief:
     output: "IP Interface Status for VRF \"default\"(1)\nInterface            IP Address\
       \      Interface Status\n\nIP Interface Status for VRF \"management\"(2)\nInterface\
@@ -1285,8 +1285,8 @@ commands:
       \   protocol-up/link-up/admin-up       \n"
     help: execute the command "show ip interface brief"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show vrf:
     output: 'VRF-Name                           VRF-ID State   Reason
 
@@ -1307,8 +1307,8 @@ commands:
       management                              2 Up      --'
     help: execute the command "show vrf"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip ospf database:
     output: "OSPF Router with ID (50.50.50.50) (Process ID p1)\n \nRouter Link States\
       \ (Area 0)\n \nLink ID ADV Router Age Seq# Checksum Link Count\n40.40.40.40\
@@ -1323,8 +1323,8 @@ commands:
       \ 60.60.60.60 930 0x80000001 0x7b51"
     help: execute the command "show ip ospf database"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show route-map:
     output: "route-map RM-TEST-OUT, permit, sequence 10 \n  Match clauses:\n    as-path\
       \ (as-path filter): AS-TEST \n  Set clauses:\nroute-map RM-BGP-TO-OSPF, deny,\
@@ -1353,8 +1353,8 @@ commands:
       \ clauses:\n    ip address prefix-lists: PF-A-DEFAULT-ROUTE \n  Set clauses:\n"
     help: execute the command "show route-map"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interface brief:
     output: "--------------------------------------------------------------------------------\n\
       Ethernet      VLAN   Type Mode   Status  Reason                   Speed    \
@@ -1426,8 +1426,8 @@ commands:
       Vlan142   --                                      up     --"
     help: execute the command "show interface brief"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interface status:
     output: "--------------------------------------------------------------------------------\n\
       Port          Name               Status    Vlan      Duplex  Speed   Type\n\
@@ -1493,8 +1493,8 @@ commands:
       \ trunk     auto    auto    --         \n"
     help: execute the command "show interface status"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip mroutes vrf all:
     output: "IP Multicast Routing Table for VRF \"default\"\n\n(*, 225.1.0.1/32),\
       \ uptime: 2w3d, igmp ip pim\n  Incoming interface: Ethernet1/1, RPF nbr: 10.1.1.1\n\
@@ -1506,8 +1506,8 @@ commands:
       \ list: (count: 0)\n"
     help: execute the command "show ip mroutes vrf all"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show cdp neighbors detail:
     output: "----------------------------------------\nDevice ID:MKT1\n\nInterface\
       \ address(es): 0\nPlatform: MikroTik, Capabilities: Router\nInterface: Ethernet1/1,\
@@ -1516,8 +1516,8 @@ commands:
       \ Interface MAC: 00:00:00:00:00:00\n"
     help: execute the command "show cdp neighbors detail"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show feature:
     output: 'Feature Name          Instance  State
 
@@ -1650,8 +1650,8 @@ commands:
       '
     help: execute the command "show feature"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show hsrp all:
     output: "Vlan100 - Group 100 (HSRP-V2) (IPv4)\n  Local state is Active, priority\
       \ 250 (Cfged 250), may preempt\n    Forwarding threshold(for vPC), lower: 1\
@@ -1763,8 +1763,8 @@ commands:
       \ hsrp-Vlan420-420 (default)\n"
     help: execute the command "show hsrp all"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show inventory:
     output: "NAME: \"Chassis\",  DESCR: \"Nexus9000 C9396PX Chassis\"\nPID: N9K-C9396PX\
       \         ,  VID: V02 ,  SN: SAL1819S6LU\n\nNAME: \"Slot 1\",  DESCR: \"1/10G\
@@ -1790,8 +1790,8 @@ commands:
       \          ,  VID: SFCT-739SMZ,  SN: AVD2219K9AO\n"
     help: execute the command "show inventory"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interface transceiver details:
     output: "Ethernet3/1\n    transceiver is present\n    type is 10Gbase-SR\n   \
       \ name is CISCO-FINISAR   \n    part number is FTLX8571D3BCL-C2\n    revision\
@@ -1879,8 +1879,8 @@ commands:
       \  Note: ++  high-alarm; +  high-warning; --  low-alarm; -  low-warning\n"
     help: execute the command "show interface transceiver details"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interface:
     output: "Vlan1 is down (Administratively down), line protocol is down\n  Hardware\
       \ is EtherSVI, address is  00de.fb01.c9bc\n  MTU 1500 bytes, BW 1000000 Kbit,\
@@ -1914,8 +1914,8 @@ commands:
       \   0 lost carrier  0 no carrier  0 babble 0 output discard\n    0 Tx pause\n"
     help: execute the command "show interface"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip interface:
     output: "IP Interface Status for VRF \"default\"\nVlan156, Interface status: protocol-down/link-down/admin-up,\
       \ iod: 2,\n  IP address: 155.155.155.1, IP subnet: 155.155.155.0/30 route-preference:\
@@ -1948,8 +1948,8 @@ commands:
       \      : 0/0/0/0/0\n"
     help: execute the command "show ip interface"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show bgp vrf all ipv4 unicast detail:
     output: "BGP routing table information for VRF TEST_1, address family IPv4 Unicast\n\
       \ BGP routing table entry for 10.1.1.0/24, version 3446\nPaths: (1 available,\
@@ -2014,8 +2014,8 @@ commands:
       \ \n"
     help: execute the command "show bgp vrf all ipv4 unicast detail"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interface transceiver:
     output: "Ethernet1/1\n    transceiver is present\n    type is SFP-H25GB-Unknown\n\
       \    name is OEM\n    part number is BZ-SFP28-25G-DA1\n    revision is 01\n\
@@ -2265,8 +2265,8 @@ commands:
       \ is V02"
     help: execute the command "show interface transceiver"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip bgp neighbors:
     output: "BGP neighbor is 136.170.1.201,  remote AS 64826, ibgp link,  Peer index\
       \ 1\n  Inherits peer configuration from peer-template SPINES\n  Description:\
@@ -4187,8 +4187,8 @@ commands:
       \ Foreign port: 179\n  fd = 91\n"
     help: execute the command "show ip bgp neighbors"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip bgp summary:
     output: "BGP summary information for VRF default, address family IPv4 Multicast\n\
       \ BGP router identifier 2.2.2.3, local AS number 102\nBGP table version is 5,\
@@ -4212,8 +4212,8 @@ commands:
       \        2655204 14931352 512185206   0    0 1w5d      4452\n"
     help: execute the command "show ip bgp summary"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show configuration session summary:
     output: 'Session Manager Database:
 
@@ -4234,8 +4234,8 @@ commands:
       '
     help: execute the command "show configuration session summary"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show flogi database:
     output: "SWITCH1# sh flogi database\n--------------------------------------------------------------------------------\n\
       INTERFACE        VSAN    FCID           PORT NAME               NODE NAME\n\
@@ -4276,8 +4276,8 @@ commands:
       \    [DEV_SERVER_PORT_1]\n\n Total number of flogi = 21.\n"
     help: execute the command "show flogi database"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip community-list:
     output: "Expanded Community List ROUTES_CL1\n    1 permit \"11111:10000\"\nStandard\
       \ Community List ROUTES_CL2\n    1 permit 11111:10000\n    2 permit 22222:10000\n\
@@ -4285,8 +4285,8 @@ commands:
       \    5 deny internet\n"
     help: execute the command "show ip community-list"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show nve vni:
     output: "Codes: CP - Control Plane        DP - Data Plane         \n       UC\
       \ - Unconfigured         SA - Suppress ARP       \n       SU - Suppress Unknown\
@@ -4304,8 +4304,8 @@ commands:
       \ [GRY]               \n"
     help: execute the command "show nve vni"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip arp detail:
     output: "Flags: * - Adjacencies learnt on non-active FHRP router\n       + - Adjacencies\
       \ synced via CFSoE\n       # - Adjacencies Throttled for Glean\n\nIP ARP Table\
@@ -4316,8 +4316,8 @@ commands:
       \ -                -\n\n"
     help: execute the command "show ip arp detail"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   dir:
     output: "Input/output error\n       4096    Sep 22 15:27:34 2019  .rpmstore/\n\
       \       4096    Sep 22 15:27:53 2019  .swtam/\n       1982    Sep 22 15:29:22\
@@ -4330,8 +4330,8 @@ commands:
       \ 2019  libmon.logs\n       4096    Sep 22 15:02:17 2019  lost+found/"
     help: execute the command "dir"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip interface vrf all:
     output: "IP Interface Status for VRF \"default\"\nloopback0, Interface status:\
       \ protocol-up/link-up/admin-up, iod: 50,\nUnnumbered interfaces of loopback0:\
@@ -4387,8 +4387,8 @@ commands:
       \ disabled\n  WCCP Redirect exclude: disabled\n"
     help: execute the command "show ip interface vrf all"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show cdp neighbors:
     output: "Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge\n\
       \                 S - Switch, H - Host, I - IGMP, r - Repeater,\n          \
@@ -4405,8 +4405,8 @@ commands:
       \                   Eth1/2/1       100    H         Linux              eth9\n"
     help: execute the command "show cdp neighbors"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip route:
     output: "IP Route Table for VRF \"default\"\n'*' denotes best ucast next-hop\n\
       '**' denotes best mcast next-hop\n'[x/y]' denotes [preference/metric]\n'%<string>'\
@@ -4421,8 +4421,8 @@ commands:
       \ static\n"
     help: execute the command "show ip route"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip ospf interface brief:
     output: " OSPF Process ID BLU1 VRF BLU\n Total number of interface: 1\n Interface\
       \               ID     Area            Cost   State    Neighbors Status\n Vlan10\
@@ -4438,8 +4438,8 @@ commands:
       \   1         up \n"
     help: execute the command "show ip ospf interface brief"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip msdp summary vrf all:
     output: 'MSDP Peer Status Summary for VRF "default"
 
@@ -4466,8 +4466,8 @@ commands:
       '
     help: execute the command "show ip msdp summary vrf all"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip pim neighbor vrf all:
     output: '                                    ^
 
@@ -4476,8 +4476,8 @@ commands:
       '
     help: execute the command "show ip pim neighbor vrf all"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show processes cpu:
     output: "CPU utilization for five seconds: 15%/1%; one minute: 12%; five minutes:\
       \ 10%\nPID    Runtime(ms)  Invoked   uSecs  5Sec    1Min    5Min    TTY  Process\n\
@@ -4502,8 +4502,8 @@ commands:
       \          580     19429      0   0.00%   0.03%  0.03%   -    pdsd"
     help: execute the command "show processes cpu"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show forwarding ipv4 route:
     output: "IPv4 routes for table default/base\n\n------------------+------------------+----------------------+-----------------\n\
       Prefix            | Next-hop         | Interface            | Labels\n------------------+------------------+----------------------+-----------------\n\
@@ -4591,8 +4591,8 @@ commands:
       \    Ethernet1/47\n"
     help: execute the command "show forwarding ipv4 route"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip arp:
     output: "\nFlags: * - Adjacencies learnt on non-active FHRP router\n       + -\
       \ Adjacencies synced via CFSoE\n       # - Adjacencies Throttled for Glean\n\
@@ -4616,8 +4616,8 @@ commands:
       \       00:00:16  INCOMPLETE      Vlan1425"
     help: execute the command "show ip arp"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip pim interface brief vrf all:
     output: "PIM Interface Status for VRF \"default\"\nInterface            IP Address\
       \      PIM DR Address  Neighbor  Border\n                                  \
@@ -4629,8 +4629,8 @@ commands:
       \     192.0.2.5       192.0.2.6       1         no\n\n"
     help: execute the command "show ip pim interface brief vrf all"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interfaces switchport:
     output: "Name: Ethernet1/1\n  Switchport: Enabled\n  Switchport Monitor: Not enabled\n\
       \  Switchport Isolated : Not enabled\n  Switchport Block Multicast: Not enabled\n\
@@ -4669,16 +4669,16 @@ commands:
       \ none\n"
     help: execute the command "show interfaces switchport"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show clock:
     output: '18:57:38.347 UTC Mon Oct 19 2015
 
       '
     help: execute the command "show clock"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ipv6 interface brief:
     output: "IPv6 Interface Status for VRF \"default\"(1)\nInterface        IPv6 Address/Link-local\
       \ Address           Interface Status\n                                     \
@@ -4695,8 +4695,8 @@ commands:
       \                      up/up/up\n                 fe80::333:4444:5555:8888\n"
     help: execute the command "show ipv6 interface brief"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show cts interface all:
     output: "CTS Information for Interface Ethernet1/2:\n    CTS is enabled, mode:\
       \   CTS_MODE_MANUAL\n    IFC state:              Unknown\n    Authentication\
@@ -4717,8 +4717,8 @@ commands:
       \ mode: \n      Selected cipher: \n    Propagate SGT: Enabled\n\n"
     help: execute the command "show cts interface all"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show lldp neighbors:
     output: "Capability codes:\n  (R) Router, (B) Bridge, (T) Telephone, (C) DOCSIS\
       \ Cable Device\n  (W) WLAN Access Point, (P) Repeater, (S) Station, (O) Other\n\
@@ -4729,8 +4729,8 @@ commands:
       \        BR          Ethernet1/3   \nTotal entries displayed: 3\n"
     help: execute the command "show lldp neighbors"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show version:
     output: "Documents: http://www.cisco.com/en/US/products/ps9372/tsd_products_support_series_home.html\n\
       \ Copyright (c) 2002-2016, Cisco Systems, Inc. All rights reserved.\nThe copyrights\
@@ -4756,12 +4756,12 @@ commands:
       \ Fc Plugin\n"
     help: execute the command "show version"
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   terminal width 511:
     output: null
     help: Execute the command terminal width 511. This automatically generated. Feel
       free to change it!
     prompt:
-    - cisco_nxos>
-    - cisco_nxos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"

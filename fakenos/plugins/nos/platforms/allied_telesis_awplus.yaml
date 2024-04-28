@@ -1,11 +1,11 @@
 name: allied_telesis_awplus
-initial_prompt: allied_telesis_awplus>
+initial_prompt: "{base_prompt}>"
 commands:
   enable:
     output: 'null'
-    new_prompt: allied_telesis_awplus#
+    new_prompt: "{base_prompt}#"
     help: enter enable mode
-    prompt: allied_telesis_awplus>
+    prompt: "{base_prompt}>"
   show lldp neighbors detail:
     output: "LLDP Detailed Neighbor Information:\n\nLocal port1.0.1:\n  Neighbors\
       \ table last updated 1233 hrs 56 mins 19 secs ago\n\n  Chassis ID Type ..................\
@@ -103,8 +103,8 @@ commands:
       \ advertised]\n       Asset ID .................... [not advertised]"
     help: execute the command "show lldp neighbors detail"
     prompt:
-    - allied_telesis_awplus>
-    - allied_telesis_awplus#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show arp:
     output: ' IP Address      MAC Address     Interface    Port        Type
 
@@ -113,8 +113,8 @@ commands:
       192.168.254.250 0000.cd37.06bb  vlan954      sa1         dynamic'
     help: execute the command "show arp"
     prompt:
-    - allied_telesis_awplus>
-    - allied_telesis_awplus#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show mac address-table:
     output: 'VLAN port             mac            fwd
 
@@ -127,8 +127,8 @@ commands:
       989  port1.0.19   0050.566a.1aca   forward   dynamic'
     help: execute the command "show mac address-table"
     prompt:
-    - allied_telesis_awplus>
-    - allied_telesis_awplus#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interface switchport:
     output: " Interface name         : port1.0.1\n Switchport mode        : trunk\n\
       \ Ingress filter          : enable\n Acceptable frame types  : vlan-tagged only\n\
@@ -182,8 +182,8 @@ commands:
       \          :"
     help: execute the command "show interface switchport"
     prompt:
-    - allied_telesis_awplus>
-    - allied_telesis_awplus#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show system:
     output: "System Status                                   Sat Feb 03 03:30:29 2024\n\
       \nBoard       ID  Bay   Board Name                         Rev   Serial number\n\
@@ -198,16 +198,16 @@ commands:
       \ System Contact\n\nSystem Location"
     help: execute the command "show system"
     prompt:
-    - allied_telesis_awplus>
-    - allied_telesis_awplus#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show static-channel-group:
     output: "% Static Aggregator: sa11\n% Member: sa1\n   port1.1.1\n   port1.1.2\n\
       \   port1.1.3\n   port1.1.4\n% Static Aggregator: sa12\n% Member: sa2\n   port1.1.5\n\
       \   port1.1.6\n"
     help: execute the command "show static-channel-group"
     prompt:
-    - allied_telesis_awplus>
-    - allied_telesis_awplus#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interface:
     output: "Interface port1.1.1\n  Scope: both\n  Link is UP, administrative state\
       \ is UP\n  Thrash-limiting\n    Status Not Detected, Action learn-disable, Timeout\
@@ -276,8 +276,8 @@ commands:
       \ prefix info is accepted\n  Time since last state change: 134 days 01:59:44"
     help: execute the command "show interface"
     prompt:
-    - allied_telesis_awplus>
-    - allied_telesis_awplus#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show vlan all:
     output: "VLAN ID  Name            Type    State   Member ports\n             \
       \                            (u)-Untagged, (t)-Tagged\n======= ================\
@@ -298,8 +298,8 @@ commands:
       \                                         port1.0.29(t)"
     help: execute the command "show vlan all"
     prompt:
-    - allied_telesis_awplus>
-    - allied_telesis_awplus#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip route:
     output: "Codes: C - connected, S - static, R - RIP, B - BGP\n       O - OSPF,\
       \ D - DHCP, IA - OSPF inter area\n       N1 - OSPF NSSA external type 1, N2\
@@ -316,8 +316,8 @@ commands:
       \ 2.0.0.0/24 is directly connected, vlan51"
     help: execute the command "show ip route"
     prompt:
-    - allied_telesis_awplus>
-    - allied_telesis_awplus#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show etherchannel summary:
     output: "Aggregator po7 (IfIndex: 4607)\n Admin Key: 0007 - Oper Key 0007\n  Link:\
       \ port1.0.7 (IfIndex: 5007) synchronized\n  Link: port1.0.8 (IfIndex: 5008)\
@@ -326,12 +326,12 @@ commands:
       \ 5010) synchronized"
     help: execute the command "show etherchannel summary"
     prompt:
-    - allied_telesis_awplus>
-    - allied_telesis_awplus#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   terminal length 0:
     output: null
     help: Execute the command terminal length 0. This automatically generated. Feel
       free to change it!
     prompt:
-    - allied_telesis_awplus>
-    - allied_telesis_awplus#
+    - "{base_prompt}>"
+    - "{base_prompt}#"

@@ -243,7 +243,7 @@ class ParamikoSshServer(TCPServerBase):
         else:
             self._ssh_server_key = paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY))
 
-    def watchdog(self, run_srv, session, shell):
+    def watchdog(self, is_running, run_srv, session, shell):
         """
         Method to monitor server liveness and recover where possible.
         """
@@ -256,10 +256,14 @@ class ParamikoSshServer(TCPServerBase):
                 )
                 shell.stop()
                 break
+            
+            # exit the shell
+            if not is_running.is_set():
+                shell.stop()
 
             time.sleep(self.watchdog_interval)
 
-    def connection_function(self, client):
+    def connection_function(self, client, is_running):
         shell_replied_event = threading.Event()
         run_srv = threading.Event()
         run_srv.set()
@@ -307,12 +311,12 @@ class ParamikoSshServer(TCPServerBase):
             stdout=shell_stdout,
             nos=self.nos,
             nos_inventory_config=self.nos_inventory_config,
-            is_running=self._is_running,
+            is_running=is_running,
             **self.shell_configuration,
         )
 
         # start watchdog thread
-        watchdog_thread = threading.Thread(target=self.watchdog, args=(run_srv, session, client_shell))
+        watchdog_thread = threading.Thread(target=self.watchdog, args=(is_running, run_srv, session, client_shell))
         watchdog_thread.start()
 
         # running this command will block this function until shell exits

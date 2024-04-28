@@ -1,9 +1,9 @@
 commands:
   enable:
     help: enter enable mode
-    new_prompt: broadcom_icos#
+    new_prompt: "{base_prompt}#"
     output: 'null'
-    prompt: broadcom_icos>
+    prompt: "{base_prompt}>"
   show isdp neighbors:
     help: execute the command "show isdp neighbors"
     output: "\nCapability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge,\n\
@@ -22,8 +22,8 @@ commands:
       \       0/49      154       R          AS5610-52X       0/1\ndev6-aa-loc-sw0002\
       \       0/50      158       R          AS5610-52X       0/1\n"
     prompt:
-    - broadcom_icos>
-    - broadcom_icos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show lldp remote-device all:
     help: execute the command "show lldp remote-device all"
     output: '
@@ -104,8 +104,8 @@ commands:
 
       '
     prompt:
-    - broadcom_icos>
-    - broadcom_icos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show mac-addr-table:
     help: execute the command "show mac-addr-table"
     output: '
@@ -154,8 +154,8 @@ commands:
 
       '
     prompt:
-    - broadcom_icos>
-    - broadcom_icos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show version:
     help: execute the command "show version"
     output: "\nSwitch: 1\n\nSystem Description............................. DNI-3448P\
@@ -176,8 +176,8 @@ commands:
       \                  OpEN API\n                                              \
       \  Prototype Open API\n\n\n"
     prompt:
-    - broadcom_icos>
-    - broadcom_icos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show vlan brief:
     help: execute the command "show vlan brief"
     output: '
@@ -228,14 +228,14 @@ commands:
 
       '
     prompt:
-    - broadcom_icos>
-    - broadcom_icos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   terminal length 0:
     help: Execute the command terminal length 0. This automatically generated. Feel
       free to change it!
     output: null
     prompt:
-    - broadcom_icos>
-    - broadcom_icos#
-initial_prompt: broadcom_icos>
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+initial_prompt: "{base_prompt}>"
 name: broadcom_icos

@@ -1,11 +1,11 @@
 name: ipinfusion_ocnos
-initial_prompt: ipinfusion_ocnos>
+initial_prompt: "{base_prompt}>"
 commands:
   enable:
     output: 'null'
-    new_prompt: ipinfusion_ocnos#
+    new_prompt: "{base_prompt}#"
     help: enter enable mode
-    prompt: ipinfusion_ocnos>
+    prompt: "{base_prompt}>"
   show lldp table:
     output: 'Capability codes: (R) Router, (B) Bridge, (O) Other
 
@@ -34,33 +34,33 @@ commands:
       '
     help: execute the command "show lldp table"
     prompt:
-    - ipinfusion_ocnos>
-    - ipinfusion_ocnos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   terminal width 511:
     output: null
     help: Execute the command terminal width 511. This automatically generated. Feel
       free to change it!
     prompt:
-    - ipinfusion_ocnos>
-    - ipinfusion_ocnos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show curpriv:
     output: null
     help: Execute the command show curpriv. This automatically generated. Feel free
       to change it!
     prompt:
-    - ipinfusion_ocnos>
-    - ipinfusion_ocnos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   login:
     output: null
     help: Execute the command login. This automatically generated. Feel free to change
       it!
     prompt:
-    - ipinfusion_ocnos>
-    - ipinfusion_ocnos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   set cli screen-width 511:
     output: null
     help: Execute the command set cli screen-width 511. This automatically generated.
       Feel free to change it!
     prompt:
-    - ipinfusion_ocnos>
-    - ipinfusion_ocnos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"

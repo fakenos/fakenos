@@ -1,11 +1,11 @@
 name: cisco_ios
-initial_prompt: cisco_ios>
+initial_prompt: "{base_prompt}>"
 commands:
   enable:
     output: 'null'
-    new_prompt: cisco_ios#
+    new_prompt: "{base_prompt}#"
     help: enter enable mode
-    prompt: cisco_ios>
+    prompt: "{base_prompt}>"
   show rep topology:
     output: 'REP Segment 1
 
@@ -18,8 +18,8 @@ commands:
       Switch02          Fa1/0/23   Sec  Open'
     help: execute the command "show rep topology"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip mroute:
     output: "IP Multicast Forwarding is not enabled.\nIP Multicast Routing Table\n\
       \ Flags: D - Dense, S - Sparse, B - Bidir Group, s - SSM Group, C - Connected,\n\
@@ -33,8 +33,8 @@ commands:
       \ Interface state: Interface, Next-Hop or VCD, State/Mode\n"
     help: execute the command "show ip mroute"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip bgp:
     output: "BGP table version is 17, local router ID is 10.0.0.0\nStatus codes: s\
       \ suppressed, d damped, h history, * valid, > best, i - internal, \n       \
@@ -52,8 +52,8 @@ commands:
       \ *>i  10.14.0.0/16     10.0.0.1                 0    100      0 i\n"
     help: execute the command "show ip bgp"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show module:
     output: "Switch  Ports    Model                Serial No.   MAC address     Hw\
       \ Ver.       Sw Ver. \n------  -----   ---------             -----------  --------------\
@@ -62,8 +62,8 @@ commands:
       \       CBC7DQFNB7F  dc8c.aaa0.1b77  V01           16.12.6  \n"
     help: execute the command "show module"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show crypto pki certificates:
     output: "Certificate\n  Status: Available\n  Certificate Serial Number (hex):\
       \ 1234567890ABCDEFGHIJK\n  Certificate Usage: General Purpose\n  Issuer: \n\
@@ -93,15 +93,15 @@ commands:
       \ 00:00:00 UTC Nov 5 2038\n  Associated Trustpoints: ROOT-CA \n  Storage: nvram:certfile.cer\n"
     help: execute the command "show crypto pki certificates"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip prefix-list:
     output: "ip prefix-list OSPF_Redist: 2 entries\n   seq 5 deny 10.0.0.0/24\n  \
       \ seq 10 permit 0.0.0.0/0 le 32\n   seq 15 deny 10.0.0.0/8 ge 10 le 20\n"
     help: execute the command "show ip prefix-list"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show file systems:
     output: "File Systems:\n\n       Size(b)       Free(b)      Type  Flags  Prefixes\n\
       \             -             -    opaque     rw   system:\n             -   \
@@ -118,8 +118,8 @@ commands:
       \   https:\n             -             -    opaque     ro   cns:\n"
     help: execute the command "show file systems"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show isdn status:
     output: "Global ISDN Switchtype = primary-ni\nISDN Serial0/2/0:23 interface\n\
       \        dsl 0, interface ISDN Switchtype = primary-ni\n    Layer 1 Status:\n\
@@ -141,8 +141,8 @@ commands:
       \ CCBs = 1\n"
     help: execute the command "show isdn status"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interface link:
     output: 'Port    Name               Down Time        Down Since
 
@@ -200,8 +200,8 @@ commands:
       Te6/1    ICN-DOFKYLW5823TV000 secs'
     help: execute the command "show interface link"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip eigrp neighbors:
     output: "EIGRP-IPv4 Neighbors for AS(545)\nH   Address                 Interface\
       \              Hold Uptime   SRTT   RTO  Q  Seq\n                          \
@@ -211,8 +211,8 @@ commands:
       \           Vl942                    13 15w2d       1   100  0  1051652\n"
     help: execute the command "show ip eigrp neighbors"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show vrf detail:
     output: "VRF Management (VRF Id = 1); default RD <not set>; default VPNID <not\
       \ set>\n  Old CLI format, supports IPv4 only\n  Flags: 0x8\n  Interfaces:\n\
@@ -241,8 +241,8 @@ commands:
       \n"
     help: execute the command "show vrf detail"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show vlans:
     output: "VLAN ID: 1 (IEEE 802.1Q Encapsulation)\n This is configured as native\
       \ Vlan for the following interface(s) :\nGigabitEthernet0/0/0    Native-vlan\
@@ -337,8 +337,8 @@ commands:
       \ packets, 74260171809 bytes output\n      Total 0 oversubscription packet drops\n"
     help: execute the command "show vlans"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interfaces:
     output: "FastEthernet1 is down, line protocol is down \n  Hardware is RP management\
       \ port, address is 6c41.6aba.b47f (bia 6c41.6aba.b47f)\n  MTU 1500 bytes, BW\
@@ -632,8 +632,8 @@ commands:
       \ failures, 0 output buffers swapped out"
     help: execute the command "show interfaces"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show dmvpn:
     output: "Legend: Attrb --> S - Static, D - Dynamic, I - Incomplete\n        N\
       \ - NATed, L - Local, X - No Socket\n        T1 - Route Installed, T2 - Nexthop-override\n\
@@ -647,8 +647,8 @@ commands:
       \     S\n\n"
     help: execute the command "show dmvpn"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show controller t1:
     output: "T1 0/2/0 is up.        \n  Applique type is Channelized T1        \n\
       \  Cablelength is long gain36 0db        \n  No alarms detected.        \n \
@@ -700,8 +700,8 @@ commands:
       \ 0 Severely Err Secs, 58500 Unavail Secs\n"
     help: execute the command "show controller t1"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show platform diag:
     output: "Chassis type: ASR1004 \n Slot: 0, ASR1000-SIP10 \n Running state    \
       \           : ok\n Internal state              : online\n Internal operational\
@@ -734,8 +734,8 @@ commands:
       \n"
     help: execute the command "show platform diag"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip cef:
     output: 'Prefix               Next Hop             Interface
 
@@ -766,8 +766,8 @@ commands:
       '
     help: execute the command "show ip cef"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show nve peers:
     output: 'Interface  VNI      Type Peer-IP          RMAC/Num_RTs   eVNI     state
       flags UP time
@@ -787,8 +787,8 @@ commands:
       '
     help: execute the command "show nve peers"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show dhcp lease:
     output: "Temp IP addr: 0.0.0.0  for peer on Interface: Vlan1\nTemp  sub net mask:\
       \ 0.0.0.0\n   DHCP Lease server: 0.0.0.0, state: 10 Purging\n   DHCP transaction\
@@ -798,8 +798,8 @@ commands:
       \      306363302D566C31\n   Hostname: hostname-2"
     help: execute the command "show dhcp lease"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show lldp neighbors detail:
     output: "Local Intf: Gi0/1/7\nChassis id: 10.10.0.1\nPort id: C8F9F9D61BC2:P1\n\
       \ Port Description: SW PORT\nSystem Name: SEPC8F9F9D61BC2\n\nSystem Description:\n\
@@ -819,8 +819,8 @@ commands:
       \ Priority: Unknown, Wattage: 6.3\n    Location - not advertised"
     help: execute the command "show lldp neighbors detail"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show mpls interfaces:
     output: "Interface              IP            Tunnel   BGP Static Operational\n\
       TenGigabitEthernet1/1  Yes (ldp)     No       No  No     Yes     \nTenGigabitEthernet1/5\
@@ -832,8 +832,8 @@ commands:
       \   \n"
     help: execute the command "show mpls interfaces"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ap summary:
     output: "Number of APs: 1\n\nAP Name                            Slots    AP Model\
       \  Ethernet MAC    Radio MAC       Location                          Country\
@@ -843,8 +843,8 @@ commands:
       \         Registered\n"
     help: execute the command "show ap summary"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show object-group:
     output: "Network object group NNNN\nService object group SSSS\nService object\
       \ group TEST-SVC-OGR\n Description ! Test Service Group !\n icmp echo-reply\n\
@@ -856,8 +856,8 @@ commands:
       \ Network object group XXXX\nNetwork object group YYYY\n"
     help: execute the command "show object-group"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show snmp community:
     output: 'Community name: ILMI
 
@@ -891,8 +891,8 @@ commands:
       '
     help: execute the command "show snmp community"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   traceroute:
     output: "Type escape sequence to abort.\nTracing the route to 10.225.2.1\nVRF\
       \ info: (vrf in name/id, vrf out name/id)\n  1 10.180.140.150 1 msec 1 msec\
@@ -907,8 +907,8 @@ commands:
       \  *  !H"
     help: execute the command "traceroute"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show power supplies:
     output: 'Power supplies needed by system    : 1
 
@@ -917,8 +917,8 @@ commands:
       '
     help: execute the command "show power supplies"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ipv6 access-lists:
     output: "IPv6 access list ACL2_IPv6\n    deny ipv6 2A01:728::/29 any sequence\
       \ 10\nIPv6 access list ACL3_IPv6\n    permit tcp 2A01:720::/29 any log auth\
@@ -937,8 +937,8 @@ commands:
       \ sequence 9996\n"
     help: execute the command "show ipv6 access-lists"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show alert counters:
     output: 'Interface: Fa1/1
 
@@ -1046,8 +1046,8 @@ commands:
       '
     help: execute the command "show alert counters"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show switch detail:
     output: "Switch/Stack Mac Address : 4c4e.3573.ac00\n                         \
       \                  H/W   Current\nSwitch#  Role   Mac Address     Priority Version\
@@ -1062,8 +1062,8 @@ commands:
       \       1 \n"
     help: execute the command "show switch detail"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip bgp neighbors advertised-routes:
     output: "BGP table version is 143173748, local router ID is 192.168.88.2\nStatus\
       \ codes: s suppressed, d damped, h history, * valid, > best, i - internal,\n\
@@ -1081,8 +1081,8 @@ commands:
       \ number of prefixes 7\n"
     help: execute the command "show ip bgp neighbors advertised-routes"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show processes memory sorted:
     output: "Processor Pool Total:  919638648 Used:  236752096 Free:  682886552\n\
       \ lsmpi_io Pool Total:    6295128 Used:    6294296 Free:        832\n\n PID\
@@ -1104,8 +1104,8 @@ commands:
       \  \n\n342936032 Total\n"
     help: execute the command "show processes memory sorted"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show standby brief:
     output: "                     P indicates configured to preempt.\n           \
       \          |\nInterface   Grp  Pri P State   Active          Standby       \
@@ -1118,8 +1118,8 @@ commands:
       \     1    120 P Active  local           10.1.254.3    10.1.254.1\n"
     help: execute the command "show standby brief"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip ospf neighbor:
     output: 'Neighbor ID     Pri   State           Dead Time   Address         Interface
 
@@ -1132,8 +1132,8 @@ commands:
       '
     help: execute the command "show ip ospf neighbor"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show aliases:
     output: "Exec mode aliases:\n  h                     help\n  lo              \
       \      logout\n  p                     ping\n  r                     resume\n\
@@ -1143,8 +1143,8 @@ commands:
       \ configuration mode aliases:\n  vbr                   vbr-nrt"
     help: execute the command "show aliases"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show logging:
     output: "Syslog logging: enabled (0 messages dropped, 21 messages rate-limited,\
       \ 0 flushes, 0 overruns, xml disabled, filtering disabled)\n\nNo Active Message\
@@ -1173,8 +1173,8 @@ commands:
       \ changed state to down\n"
     help: execute the command "show logging"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show environment power all:
     output: 'SW  PID                 Serial#     Status           Sys Pwr  PoE Pwr  Watts
 
@@ -1191,8 +1191,8 @@ commands:
       '
     help: execute the command "show environment power all"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show tacacs:
     output: "Tacacs+ Server -  public  :\n               Server name: TACACS_ABC\n\
       \            Server address: 10.1.1.141\n               Server port: 49\n  \
@@ -1209,8 +1209,8 @@ commands:
       \       2953\n"
     help: execute the command "show tacacs"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show license:
     output: "Index 1 Feature: appxk9                         \n        Period left:\
       \ Life time\n        License Type: Permanent\n        License State: Active,\
@@ -1246,8 +1246,8 @@ commands:
       \  License Priority: None\nIndex 10 Feature: internal_service              \n"
     help: execute the command "show license"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show crypto session detail:
     output: "Crypto session current status\n \nCode: C - IKE Configuration mode, D\
       \ - Dead Peer Detection    \nK - Keepalives, N - NAT-traversal, T - cTCP encapsulation\
@@ -1279,8 +1279,8 @@ commands:
       \ 0/0\n        Outbound: #pkts enc'ed 0 drop 0 life (KB/Sec) 0/0\n"
     help: execute the command "show crypto session detail"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show snmp group:
     output: "groupname: GROUP1                           security model:v3 priv \n\
       \ contextname: <no context specified>         storage-type: nonvolatile\nreadview\
@@ -1312,8 +1312,8 @@ commands:
       \ <no notifyview specified>       \nrow status: active      access-list: snmp-acl-name"
     help: execute the command "show snmp group"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip eigrp interfaces detail:
     output: "EIGRP-IPv4 Interfaces for AS(12345)\n                              Xmit\
       \ Queue   PeerQ        Mean   Pacing Time   Multicast    Pending\nInterface\
@@ -1336,8 +1336,8 @@ commands:
       \ on this interface:  base\n  Topologies not advertised on this interface:\n"
     help: execute the command "show ip eigrp interfaces detail"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show crypto ipsec sa detail:
     output: "interface: Tunnel1\n    Crypto map tag: Tunnel1-head-0, local addr 1.2.3.4\n\
       \n   protected vrf: (none)\n   local  ident (addr/mask/prot/port): (1.2.3.4/255.255.255.255/47/0)\n\
@@ -1402,8 +1402,8 @@ commands:
       \    outbound ah sas:\n\n     outbound pcp sas:"
     help: execute the command "show crypto ipsec sa detail"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show capability feature routing:
     output: "Displaying capability information for all available features: \nL3VPN\
       \ Inter-AS Hybrid: Enabled \nL3VPN PE-CE Link Protection: Enabled \nOSPF nssa-only:\
@@ -1415,8 +1415,8 @@ commands:
       \ Enabled \n"
     help: execute the command "show capability feature routing"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show bfd neighbors details:
     output: "OurAddr       NeighAddr      LD/RD  RH/RS    Holdown(mult)  State   \
       \  Int\n172.16.1.1    172.16.1.3     5/3    1(RH)    150 (3 )       Up   Fa0/1\
@@ -1445,8 +1445,8 @@ commands:
       \ 1000000    - Min rx interval: 1000000\n             Min Echo interval: 50000\n"
     help: execute the command "show bfd neighbors details"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show vrrp all:
     output: "\nGigabitEthernet0/0 - Group 1 - Address-Family IPv4\n  State is MASTER\n\
       \  State duration 37 mins 23.080 secs\n  Virtual IP address is 10.0.1.1\n  Virtual\
@@ -1486,8 +1486,8 @@ commands:
       \ is unknown\n  Master Down interval is unknown\n\n\n"
     help: execute the command "show vrrp all"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show environment temperature:
     output: "Switch 1: SYSTEM TEMPERATURE is OK\nInlet Temperature Value: 29 Degree\
       \ Celsius\nTemperature State: GREEN\nYellow Threshold : 46 Degree Celsius\n\
@@ -1500,8 +1500,8 @@ commands:
       \ : 105 Degree Celsius\n Red Threshold    : 125 Degree Celsius"
     help: execute the command "show environment temperature"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show vlan:
     output: "VLAN Name                             Status    Ports\n---- --------------------------------\
       \ --------- -------------------------------\n1    default                  \
@@ -1529,8 +1529,8 @@ commands:
       \ ------------------------------------------\n"
     help: execute the command "show vlan"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip source binding:
     output: "MacAddress          IpAddress        Lease(sec)  Type           VLAN\
       \  Interface\n------------------  ---------------  ----------  -------------\
@@ -1541,8 +1541,8 @@ commands:
       \ Total number of bindings: 3\n"
     help: execute the command "show ip source binding"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show power available:
     output: "Power Summary                      Maximum\n (in Watts)             \
       \ Used     Available\n----------------------   ----     ---------\nSystem Power\
@@ -1551,8 +1551,8 @@ commands:
       \  ---------\nTotal                     575         750\n\n"
     help: execute the command "show power available"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ap cdp neighbors:
     output: "Number of neighbors: 4\n\nAP Name                          AP IP    \
       \                                 Neighbor Name                            \
@@ -1568,8 +1568,8 @@ commands:
       \     \n"
     help: execute the command "show ap cdp neighbors"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip interface brief:
     output: 'Interface                  IP-Address      OK? Method Status                Protocol
 
@@ -1590,8 +1590,8 @@ commands:
       '
     help: execute the command "show ip interface brief"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show vrf:
     output: "  Name                             Default RD            Protocols  \
       \ Interfaces\n  OOB-MGMT                         <not set>             ipv4\
@@ -1601,8 +1601,8 @@ commands:
       \ ipv4        \n"
     help: execute the command "show vrf"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interfaces status:
     output: "\n--------------------------------------------------------------------------------\n\
       Port          Name               Status    Vlan      Duplex  Speed   Type\n\
@@ -1622,8 +1622,8 @@ commands:
       \       connected 4093      full    10G     Fabric Exte\n"
     help: execute the command "show interfaces status"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show isis neighbors:
     output: '
 
@@ -1642,8 +1642,8 @@ commands:
       '
     help: execute the command "show isis neighbors"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip ospf database:
     output: "OSPF Router with id(192.168.239.66) (Process ID 300)\n              \
       \   Displaying Router Link States(Area 0.0.0.0)\n  Link ID       ADV Router\
@@ -1665,8 +1665,8 @@ commands:
       \  567         0x80000001 0x003B26 0\n"
     help: execute the command "show ip ospf database"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show route-map:
     output: "route-map equal, permit, sequence 10\n   Match clauses:\n     length\
       \ 150 200\n   Set clauses:\n     ip next-hop 10.10.11.254\n   Policy routing\
@@ -1676,8 +1676,8 @@ commands:
       \ 144 packets, 15190 bytes\n"
     help: execute the command "show route-map"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show adjacency:
     output: 'Protocol Interface                 Address
 
@@ -1690,8 +1690,8 @@ commands:
       IP       Vlan1                     227.0.0.0(3)'
     help: execute the command "show adjacency"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show access-session:
     output: "\n\nInterface    Identifier     Method  Domain  Status Fg Session ID\n\
       Gi1/0/10     c89a.12cd.3b74 dot1x   DATA    Auth      0A0A1DFE00000FB3000101FF\n\
@@ -1743,8 +1743,8 @@ commands:
       \  X - Unknown Blocker\n\n"
     help: execute the command "show access-session"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip flow toptalkers:
     output: 'SrcIf         SrcIPaddress    DstIf         DstIPaddress    Pr SrcP DstP  Pkts
 
@@ -1755,8 +1755,8 @@ commands:
       '
     help: execute the command "show ip flow toptalkers"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip ospf database router:
     output: "            OSPF Router with ID (100.1.1.1) (Process ID 1)\n\n      \
       \          Router Link States (Area 0)\n\n  LS age: 14\n  Options: (No TOS-capability,\
@@ -1811,8 +1811,8 @@ commands:
       \ 0 Metrics: 1\n"
     help: execute the command "show ip ospf database router"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip cef detail:
     output: "IPv4 CEF is enabled and running\nVRF Default\n 823 prefixes (823/0 fwd/non-fwd)\n\
       \ Table id 0x0\n Database epoch:        0 (823 entries at this epoch)\n\n0.0.0.0/0,\
@@ -1860,8 +1860,8 @@ commands:
       \ AS 0, Peer AS 0, Mask Bits 0\n  Special source: receive\n  receive\n"
     help: execute the command "show ip cef detail"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show authentication sessions:
     output: "\n\nInterface    MAC Address    Method  Domain  Status Fg Session ID\n\
       ------------------------------------------------------------------------------\n\
@@ -1914,8 +1914,8 @@ commands:
       \  X - Unknown Blocker\n\n"
     help: execute the command "show authentication sessions"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip eigrp topology:
     output: "IP-EIGRP Topology Table for AS(100)/ID(10.255.11.6)\n\nCodes: P - Passive,\
       \ A - Active, U - Update, Q - Query, R - Reply,\n       r - reply Status, s\
@@ -1942,8 +1942,8 @@ commands:
       \ tag is 5507497\n        via Redistributed\n"
     help: execute the command "show ip eigrp topology"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show vtp status:
     output: "VTP Version capable             : 1 to 3\nVTP version running       \
       \      : 1\nVTP Domain Name                 : router_vtp\nVTP Pruning Mode \
@@ -1958,8 +1958,8 @@ commands:
       \ 0xB1 0x1C 0xC1 \n"
     help: execute the command "show vtp status"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ipv6 neighbors:
     output: 'IPv6 Address                              Age Link-layer Addr State Interface
 
@@ -1986,8 +1986,8 @@ commands:
       '
     help: execute the command "show ipv6 neighbors"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show running-config partition route-map:
     output: "route-map BGP_IN permit 100\n match ip address prefix-list BGP_IN\n set\
       \ local-preference 200\nroute-map BGP_IN permit 110\n match community 500\n\
@@ -1998,14 +1998,14 @@ commands:
       \ set community 11167:5000\n"
     help: execute the command "show running-config partition route-map"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show archive:
     output: ' Archive feature not enabled'
     help: execute the command "show archive"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show running-config partition access-list:
     output: "ip access-list extended filter01\n 20 deny   udp any host 200.10.11.135\
       \ eq 5060\n 30 deny   tcp any 200.10.0.0 0.0.255.255 eq telnet\n 40 deny   tcp\
@@ -2045,8 +2045,8 @@ commands:
       \ +syn +psh\n 530 permit tcp any 10.1.0.0 0.0.255.255 established psh\n"
     help: execute the command "show running-config partition access-list"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show cdp neighbors detail:
     output: "-------------------------\nDevice ID: desktop-switch\nEntry address(es):\n\
       \  IP address: 10.1.1.2\nPlatform: cisco WS-C2960-8TC-L,  Capabilities: Switch\
@@ -2080,8 +2080,8 @@ commands:
       \ by mmen\n\nadvertisement version: 2\nNative VLAN: 1\nDuplex: full\n\n"
     help: execute the command "show cdp neighbors detail"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show authentication sessions method details:
     output: "            Interface:  GigabitEthernet1/0/31\n               IIF-ID:\
       \  0x18438F31\n          MAC Address:  cc96.abcd.1234\n         IPv6 Address:\
@@ -2100,8 +2100,8 @@ commands:
       \        mab           Authc Success"
     help: execute the command "show authentication sessions method details"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show redundancy:
     output: "Redundant System Information :\n------------------------------\n    \
       \   Available system uptime = 1 hour, 22 minutes\nSwitchovers system experienced\
@@ -2128,8 +2128,8 @@ commands:
       \    Configuration register = 0x2102"
     help: execute the command "show redundancy"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show boot:
     output: "2960l#show boot\nBOOT path-list : flash:c2960l-universalk9-mz.152-7.E2/c2960l-universalk9-mz.152-7.E2.bin\n\
       \ Config file : flash:/config.text\nPrivate Config file : flash:/private-config.text\n\
@@ -2139,8 +2139,8 @@ commands:
       \ (next boot: disabled)\n"
     help: execute the command "show boot"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show inventory:
     output: "NAME: \"3640 chassis\", DESCR: \"3640 chassis\"\nPID:               \
       \    , VID: 0xFF, SN: FF1045C5\n\nNAME: \"One port Fastethernet TX\", DESCR:\
@@ -2151,8 +2151,8 @@ commands:
       \ SN: 7720321\n\n"
     help: execute the command "show inventory"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip bgp vpnv4 all neighbors:
     output: "BGP neighbor is 10.255.11.4,  vrf VRF11,  remote AS 65514,  local AS\
       \ 65534, external link\n  BGP version 4, remote router ID 10.255.255.6\n  BGP\
@@ -2729,8 +2729,8 @@ commands:
       \  FREE"
     help: execute the command "show ip bgp vpnv4 all neighbors"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show mac-address-table:
     output: "Legend: * - primary entry\n        age - seconds since last seen\n  \
       \      n/a - not available\n\n  vlan   mac address     type    learn     age\
@@ -2744,8 +2744,8 @@ commands:
       \  2000  30a3.30a3.5a22   dynamic  Yes        300   Te3/20\n"
     help: execute the command "show mac-address-table"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip vrf interfaces:
     output: "Interface              IP-Address      VRF                          \
       \    Protocol\nVl1100                 192.168.100.1   BYOD-Guest           \
@@ -2757,8 +2757,8 @@ commands:
       \ SP-INET                          up"
     help: execute the command "show ip vrf interfaces"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip nat translations:
     output: "Pro Inside global      Inside local       Outside local      Outside\
       \ global\ntcp 10.9.0.0:51776     10.1.0.2:51776     10.2.0.2:21        10.2.0.2:21\n\
@@ -2769,8 +2769,8 @@ commands:
       \     ---        ---"
     help: execute the command "show ip nat translations"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show standby:
     output: "Vlan111 - Group 1\n  State is Standby\n    1 state change, last state\
       \ change 26w2d\n  Virtual IP address is 192.168.77.62\n  Active virtual MAC\
@@ -2804,8 +2804,8 @@ commands:
       \ (default)"
     help: execute the command "show standby"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip interface:
     output: "GigabitEthernet0/0/0 is up, line protocol is up\n  Internet address is\
       \ 10.1.1.1/30\n  Broadcast address is 255.255.255.255\n  Address determined\
@@ -2875,8 +2875,8 @@ commands:
       \ exclude is disabled\n  IP Clear Dont Fragment is disabled\n\n"
     help: execute the command "show ip interface"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show spanning-tree:
     output: "\nVLAN0001\n  Spanning tree enabled protocol ieee\n  Root ID    Priority\
       \    32769\n             Address     fa16.3e57.336f\n             Cost     \
@@ -2910,8 +2910,8 @@ commands:
       \       128.5    Shr\n"
     help: execute the command "show spanning-tree"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ipv6 route:
     output: "IPv6 Routing Table - default - 6 entries\nCodes: C - Connected, L - Local,\
       \ S - Static, U - Per-user Static route\n       B - BGP, HA - Home Agent, MR\
@@ -2926,8 +2926,8 @@ commands:
       \ Vlan1\n     via Vlan1, directly connected\n"
     help: execute the command "show ipv6 route"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interfaces description:
     output: 'Interface                      Status         Protocol Description
 
@@ -2964,8 +2964,8 @@ commands:
       '
     help: execute the command "show interfaces description"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip http server status:
     output: "HTTP server status: Enabled\nHTTP server port: 80\nHTTP server active\
       \ supplementary listener ports: 21111  \nHTTP server authentication method:\
@@ -2989,8 +2989,8 @@ commands:
       \ modules: ALL\n"
     help: execute the command "show ip http server status"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip route summary:
     output: "Route Source    Networks    Subnets     Replicates  Overhead    Memory\
       \ (bytes)\nconnected       0           6           0           408         1080\n\
@@ -3006,8 +3006,8 @@ commands:
       \      0           408         2000\n"
     help: execute the command "show ip route summary"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interface transceiver:
     output: "If device is externally calibrated, only calibrated values are printed.\n\
       \ ++ : high alarm, +  : high warning, -  : low warning, -- : low alarm.\nNA\
@@ -3020,8 +3020,8 @@ commands:
       \ -2.1   \nTe1/52       23.5       3.29      -2.4      -2.8  \n"
     help: execute the command "show interface transceiver"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip bgp neighbors:
     output: "BGP neighbor is 175.135.172.146,  vrf DEV, remote AS 65180, internal\
       \ link\n Description: nsxe-core-rtr1\n Member of peer-group HMCO-core for session\
@@ -3707,8 +3707,8 @@ commands:
       \ path: 0\nTCP Semaphore      0x3DD685B8  FREE \n"
     help: execute the command "show ip bgp neighbors"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show power status:
     output: "Power                                             Fan      Inline\nSupply\
       \  Model No          Type       Status       Sensor   Status\n------  ----------------\
@@ -3720,8 +3720,8 @@ commands:
       \ \n*** Power Supplies of different type have been detected***\n"
     help: execute the command "show power status"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip bgp summary:
     output: "BGP router identifier 10.0.0.0, local AS number 65000\nBGP table version\
       \ is 512185206, main routing table version 512185206\n566019 network entries\
@@ -3749,8 +3749,8 @@ commands:
       \ 512185203    0    0 1y10w     Idle (Admin) \n"
     help: execute the command "show ip bgp summary"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show dot1x all:
     output: "Sysauthcontrol             Disabled\nDot1x Protocol Version         \
       \   2\nCritical Recovery Delay         100\nCritical EAPOL             Disabled\n\
@@ -3770,8 +3770,8 @@ commands:
       \      = 2\nTxPeriod                  = 30\nRateLimitPeriod           = 0\n"
     help: execute the command "show dot1x all"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show nve vni:
     output: "Interface  VNI        Multicast-group VNI state  Mode  BD    cfg vrf\
       \                                         \nnve1       10306   N/A         \
@@ -3782,8 +3782,8 @@ commands:
       \  301  CLI BLU  "
     help: execute the command "show nve vni"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   dir:
     output: "Directory of bootflash:/\n\n   11  drwx            16384   Mar 2 2015\
       \ 08:46:31 +00:00  lost+found\n681409  drwx             4096   Mar 2 2015 08:47:35\
@@ -3801,8 +3801,8 @@ commands:
       \ bytes total (6612774912 bytes free)"
     help: execute the command "dir"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show cdp neighbors:
     output: "Capability Codes: R - Router, T - Trans Bridge, B- Source Route Bridge\n\
       \t       S - Switch, H - Host, I - IGMP, r - Repeater, P - Phone\n\nDevice ID\
@@ -3815,8 +3815,8 @@ commands:
       \   Gig 1/0/42    147          H P        IP Phone   Port 1\n"
     help: execute the command "show cdp neighbors"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip route:
     output: "Tue May 22 22:32:30.765 UTC\n\nCodes: L - local, C - connected, S - static,\
       \ R - RIP, M - mobile, B - BGP\n       D - EIGRP, EX - EIGRP external, O - OSPF,\
@@ -3832,8 +3832,8 @@ commands:
       \ is directly connected, vasileft1\n"
     help: execute the command "show ip route"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip ospf interface brief:
     output: "Interface    PID   Area  IP Address/Mask    Cost  State Nbrs F/C\nLo0\
       \          1     0     172.16.0.11/32     1     LOOP  0/0\nSe0/0/0.100  1  \
@@ -3847,8 +3847,8 @@ commands:
       \ \t6\t  P2P\t1/1\nSe3/1:0 \t 1\t   0 \t 10.1.225.150/30 \t6\t  P2P\t1/1\n"
     help: execute the command "show ip ospf interface brief"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   ping:
     output: 'Type escape sequence to abort.
 
@@ -3861,8 +3861,8 @@ commands:
       '
     help: execute the command "ping"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show etherchannel summary:
     output: "Flags:  D - down        P/bndl - bundled in port-channel\n        I -\
       \ stand-alone s/susp - suspended\n        H - Hot-standby (LACP only)\n    \
@@ -3875,8 +3875,8 @@ commands:
       \ UP State\nSU - L2 port-channel UP state\nP/bndl -  Bundled\nS/susp  - Suspended\n"
     help: execute the command "show etherchannel summary"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show processes cpu:
     output: "CPU utilization for five seconds: 4%/0%; one minute: 6%; five minutes:\
       \ 5%\n PID Runtime(ms)   Invoked      uSecs   5Sec   1Min   5Min TTY Process\n\
@@ -4212,8 +4212,8 @@ commands:
       \  0 Collection proce\n"
     help: execute the command "show processes cpu"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show hosts summary:
     output: 'Default domain is test.com
 
@@ -4226,8 +4226,8 @@ commands:
       '
     help: execute the command "show hosts summary"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show snmp user:
     output: "\nUser name: user_snmp1\nEngine ID: 80000009030000451DEC1085\nstorage-type:\
       \ nonvolatile        active\nAuthentication Protocol: SHA\nPrivacy Protocol:\
@@ -4238,8 +4238,8 @@ commands:
       \ Authentication Protocol: None\nPrivacy Protocol: -\nGroup-name: test-group\n"
     help: execute the command "show snmp user"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip arp:
     output: "Protocol  Address              Age(min)       Hardware Addr     Type\
       \      Interface\nInternet  172.16.233.229       -              0000.0c59.f892\
@@ -4252,8 +4252,8 @@ commands:
       \    SRP-A\n\n"
     help: execute the command "show ip arp"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip ospf database network:
     output: "            OSPF Router with ID (100.1.1.1) (Process ID 1)\n\n      \
       \          Net Link States (Area 0)\n\n  LS age: 500\n  Options: (No TOS-capability,\
@@ -4271,8 +4271,8 @@ commands:
       \        Attached Router: 100.3.3.3\n"
     help: execute the command "show ip ospf database network"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show access-list:
     output: 'Standard IP access list 1
 
@@ -4289,8 +4289,8 @@ commands:
       '
     help: execute the command "show access-list"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip device tracking all:
     output: "Global IP Device Tracking for clients = Enabled\nGlobal IP Device Tracking\
       \ Probe Count = 3\nGlobal IP Device Tracking Probe Interval = 30\nGlobal IP\
@@ -4307,8 +4307,8 @@ commands:
       \ Gi1/0/21, Gi1/0/22, Gi1/0/23, Gi1/0/24,\n  Gi1/0/25, Gi1/0/26, Gi1/0/27, Gi1/0/28\n"
     help: execute the command "show ip device tracking all"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interfaces switchport:
     output: "Name: Te5/0/1\nSwitchport: Enabled\nAdministrative Mode: trunk\nOperational\
       \ Mode: trunk\nAdministrative Trunking Encapsulation: dot1q\nOperational Trunking\
@@ -4341,8 +4341,8 @@ commands:
       \ none\n"
     help: execute the command "show interfaces switchport"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show vrrp brief:
     output: "  Interface          Grp  A-F Pri  Time Own Pre State   Master addr/Group\
       \ addr\n  Gi0/0                1 IPv4 110     0  N   Y  MASTER  10.0.1.2(local)\
@@ -4353,16 +4353,16 @@ commands:
       \ 172.26.0.1\n\n"
     help: execute the command "show vrrp brief"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show clock:
     output: '*18:57:38.347 UTC Mon Oct 19 2015
 
       '
     help: execute the command "show clock"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ipv6 interface brief:
     output: "TenGigabitEthernet1/1  [up/up]\n    FE80::333:3333:3333:3333\n    2A01:3333:3333::5\n\
       TenGigabitEthernet2/1  [up/up]\n    FE80::333:3333:3333:3333\n    2A01:3333:3333::9\n\
@@ -4431,8 +4431,8 @@ commands:
       \    unassigned\n"
     help: execute the command "show ipv6 interface brief"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show port-security interface interface:
     output: "Port Security              : Disabled\nPort Status                : Secure-down\n\
       \ Violation Mode             : Shutdown\nAging Time                 : 1440 mins\n\
@@ -4442,8 +4442,8 @@ commands:
       \   : 0000.0000.0000:0\nSecurity Violation Count   : 0\n"
     help: execute the command "show port-security interface interface"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip access-lists:
     output: "Standard IP access list 99\n    10 permit 172.16.191.199\n    20 deny\
       \   any log\n    30 permit 10.0.10.0, wildcard bits 0.255.0.255 (20 matches)\n\
@@ -4515,8 +4515,8 @@ commands:
       \ test2 (inactive)\nExtended IP access list test2\n"
     help: execute the command "show ip access-lists"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show lldp neighbors:
     output: "Capability codes:\n    (R) Router, (B) Bridge, (T) Telephone, (C) DOCSIS\
       \ Cable Device\n    (W) WLAN Access Point, (P) Repeater, (S) Station, (O) Other\n\
@@ -4528,8 +4528,8 @@ commands:
       \ 120        T               0004.f2d1.2222\n\nTotal entries displayed: 5\n"
     help: execute the command "show lldp neighbors"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show version:
     output: "Cisco IOS Software, IOSv Software (VIOS-ADVENTERPRISEK9-M), Version 15.8(3)M2,\
       \ RELEASE SOFTWARE (fc2)\nTechnical Support: http://www.cisco.com/techsupport\n\
@@ -4556,19 +4556,19 @@ commands:
       \ register is 0x0"
     help: execute the command "show version"
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   terminal length 0:
     output: null
     help: Execute the command terminal length 0. This automatically generated. Feel
       free to change it!
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   terminal width 511:
     output: null
     help: Execute the command terminal width 511. This automatically generated. Feel
       free to change it!
     prompt:
-    - cisco_ios>
-    - cisco_ios#
+    - "{base_prompt}>"
+    - "{base_prompt}#"

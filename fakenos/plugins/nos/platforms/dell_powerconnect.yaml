@@ -1,11 +1,11 @@
 name: dell_powerconnect
-initial_prompt: dell_powerconnect>
+initial_prompt: "{base_prompt}>"
 commands:
   enable:
     output: 'null'
-    new_prompt: dell_powerconnect#
+    new_prompt: "{base_prompt}#"
     help: enter enable mode
-    prompt: dell_powerconnect>
+    prompt: "{base_prompt}>"
   show interfaces status:
     output: "Flow Link          Back   Mdix\nPort     Type         Duplex  Speed Neg\
       \      ctrl State       Pressure Mode\n-------- ------------ ------  ----- --------
@@ -68,8 +68,8 @@ commands:
       ch8         --     --      --      --       --    Not Present\n"
     help: execute the command "show interfaces status"
     prompt:
-    - dell_powerconnect>
-    - dell_powerconnect#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interfaces description:
     output: "Port      Description\n-------   -----------\ng1        TO_SRV05-VSAN_[DRAC]\n\
       g2        TO_SRV11-V6_[DRAC]\ng3        TO_SRV06-V6_[DRAC]\ng4        TO_SRV07-V6_[DRAC]\n\
@@ -91,8 +91,8 @@ commands:
       ch3\nch4\nch5\nch6\nch7\nch8\n"
     help: execute the command "show interfaces description"
     prompt:
-    - dell_powerconnect>
-    - dell_powerconnect#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show bridge address table:
     output: "Aging time is 300 sec\n\n  Vlan        Mac Address       Port     Type\n
       -------- --------------------- ------ ----------\n   5       00:08:e3:ff:fc:28\
@@ -114,5 +114,5 @@ commands:
       \     g1    dynamic\n"
     help: execute the command "show bridge address table"
     prompt:
-    - dell_powerconnect>
-    - dell_powerconnect#
+    - "{base_prompt}>"
+    - "{base_prompt}#"

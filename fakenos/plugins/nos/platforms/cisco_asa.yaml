@@ -1,16 +1,16 @@
 name: cisco_asa
-initial_prompt: cisco_asa>
+initial_prompt: "{base_prompt}>"
 commands:
   enable:
     output: null
-    new_prompt: cisco_asa#
+    new_prompt: "{base_prompt}#"
     help: enter enable mode
-    prompt: cisco_asa>
+    prompt: "{base_prompt}>"
   login:
     output: null
     help: It enters the terminal
-    new_prompt: cisco_asa#
-    prompt: cisco_asa>
+    new_prompt: "{base_prompt}#"
+    prompt: "{base_prompt}>"
   show running-config all crypto map:
     output: "crypto map WAN1_CMAP 10 match address CMAP_RU16\ncrypto map WAN1_CMAP\
       \ 10 set connection-type bidirectional\ncrypto map WAN1_CMAP 10 set peer 1.1.1.1\n\
@@ -61,8 +61,8 @@ commands:
       \ map S2S_CMAP interface S2SVPN"
     help: execute the command "show running-config all crypto map"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interface ip brief:
     output: "Interface                  IP-Address      OK? Method Status        \
       \        Protocol\nVirtual0                   127.1.0.1       YES unset  up\
@@ -86,8 +86,8 @@ commands:
       \      YES CONFIG up                    up  \n"
     help: execute the command "show interface ip brief"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show module:
     output: "\nMod  Card Type                                    Model           \
       \   Serial No.\n---- -------------------------------------------- ------------------\
@@ -105,8 +105,8 @@ commands:
       \            Not Applicable\n sfr Up                 Up"
     help: execute the command "show module"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show failover:
     output: "Failover On\nFailover unit Primary\nFailover LAN Interface: fover Vlan150\
       \ (up)\nUnit Poll frequency 1 seconds, holdtime 15 seconds\nInterface Poll frequency\
@@ -122,8 +122,8 @@ commands:
       \ test (172.23.62.137): Normal\nslot 1: empty\n"
     help: execute the command "show failover"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show asp table vpn-context detail:
     output: "VPN CTX  = 0x01177414\n\nPeer IP  = 10.10.200.25\nPointer  = 0xCC11B670\n\
       State    = UP+DIP\nFlags    = DECR+ESP+NATT\nSA   = 0x0DA8FA2F\nSPI  = 0x4F456306\n\
@@ -147,8 +147,8 @@ commands:
       \ Crypto = 0\nRekey Pkt  = 5\nRekey Call = 5\nVPN Filter = <none>\n"
     help: execute the command "show asp table vpn-context detail"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show running-config crypto ikev1:
     output: "crypto ikev1 policy 5\n authentication pre-share\n encryption aes-256\n\
       \ hash sha\n group 5\n lifetime 86400\ncrypto ikev1 policy 10\n authentication\
@@ -169,8 +169,8 @@ commands:
       \ pre-share\n encryption aes-256\n hash md5\n group 5      \n lifetime 86400\n"
     help: execute the command "show running-config crypto ikev1"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show crypto ikev1 sa detail:
     output: "IKE Peer      Type  Dir   Rky  State      Encrypt Hash  Auth    Lifetime\n\
       \ 1 209.165.200.225 User  Resp  No   AM_Active  3des    SHA   preshrd 86400\n\
@@ -182,8 +182,8 @@ commands:
       \ 209.165.200.228 User  Resp  No   AM_ACTIVE  3des    SHA   preshrd 86400"
     help: execute the command "show crypto ikev1 sa detail"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show port-channel summary:
     output: "Flags:  D - down        P - bundled in port-channel\n        I - stand-alone\
       \ s - suspended\n        H - Hot-standby (LACP only)\n        U - in use   \
@@ -195,16 +195,16 @@ commands:
       \            LACP          No     Gi0/2(P)   Gi0/3(P)\n"
     help: execute the command "show port-channel summary"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show arp:
     output: "        outside 1.2.3.4 444e.6df8.b97e 15\n        DMZ 192.168.10.9 0013.2401.01a3\
       \ 5054\n        DMZ1 172.19.0.5 000c.2911.ebc4 711\n        DMZ2 172.19.1.11\
       \ 000c.293b.d502 8744\n        INSIDE 10.0.0.1 2401.c75e.3acb 12074\n"
     help: execute the command "show arp"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show license all:
     output: "Smart Licensing Status\n======================\n\nSmart Licensing is\
       \ ENABLED\n\nRegistration:\n  Status: REGISTERED\n  Smart Account: COMPANY LLC\n\
@@ -226,8 +226,8 @@ commands:
       ================\n License reservation: DISABLED\n"
     help: execute the command "show license all"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interface detail:
     output: "Interface Virtual0 \"_internal_loopback\", is up, line protocol is up\n\
       \  Hardware is Virtual   MAC address 0000.0000.0000, MTU 1500\n        IP address\
@@ -241,8 +241,8 @@ commands:
       \ Interface config status is active\n        Interface state is active\n"
     help: execute the command "show interface detail"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ospf interface brief:
     output: 'Interface    PID   Area            IP Address/Mask    Cost  State Nbrs
       F/C
@@ -258,8 +258,8 @@ commands:
       CustA        101   0.0.1.1         10.200.0.1/255.255.255.240    10    DR 0/0'
     help: execute the command "show ospf interface brief"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show logging:
     output: "Syslog logging: enabled\n    Facility: 20\n    Timestamp logging: disabled\n\
       \    Hide Username logging: disabled\n    Standby logging: disabled\n    Debug-trace\
@@ -284,8 +284,8 @@ commands:
       \ interface.  Original IP payload: udp src 75.66.66.22/53 dst 172.16.111.2/57348.\n"
     help: execute the command "show logging"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show vpn-sessiondb detail l2l:
     output: "Session Type: LAN-to-LAN Detailed\n\nConnection   : 169.254.107.1\nIndex\
       \        : 6539                   IP Addr      : 169.254.107.1\nProtocol   \
@@ -412,8 +412,8 @@ commands:
       \ Rx      : 72095 \n"
     help: execute the command "show vpn-sessiondb detail l2l"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show resource usage:
     output: 'Resource                 Current        Peak      Limit        Denied
       Context
@@ -464,8 +464,8 @@ commands:
       '
     help: execute the command "show resource usage"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show route:
     output: "Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B -\
       \ BGP\n       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area\n\
@@ -487,8 +487,8 @@ commands:
       \ 255.255.255.255 is directly connected, inside\n"
     help: execute the command "show route"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show crypto ipsec sa:
     output: "interface: outside2\n     Crypto map tag: def, local addr: 10.132.0.17\n\
       \       local ident (addr/mask/prot/port): (0.0.0.0/0.0.0.0/0/0)\n       remote\
@@ -569,8 +569,8 @@ commands:
       \ detection support: Y\n         Anti replay bitmap:\n          0x00000000 0x00000001\n"
     help: execute the command "show crypto ipsec sa"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show name:
     output: "name 10.1.1.1 server\nname 10.1.1.10 server1\nname 10.1.10.1 server-1\n\
       \ name 10.1.1.1 server_1\nname 10.10.1.1 server_web\nname 10.1.10.10 server-db\n\
@@ -579,8 +579,8 @@ commands:
       \ server2\n"
     help: execute the command "show name"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show vpn-sessiondb anyconnect:
     output: "Session Type: AnyConnect\n\nUsername     : USER               Index \
       \       : 1018\nAssigned IP  : 10.254.254.22          Public IP    : 1.2.3.4\n\
@@ -602,8 +602,8 @@ commands:
       \ Audt Sess ID : a31867c632efaeaad\nSecurity Grp : none                   \n"
     help: execute the command "show vpn-sessiondb anyconnect"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show xlate:
     output: "5 in use, 5 most used\nFlags: D - DNS, i - dynamic, r - portmap, s -\
       \ static, I - identity, T - twice\ne - extended\nNAT from any:10.90.67.2 to\
@@ -617,8 +617,8 @@ commands:
       \ timeout 0:00:00\n"
     help: execute the command "show xlate"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show running-config crypto map:
     output: "crypto map Standard-1 20 match address peer1\ncrypto map Standard-1 20\
       \ set pfs group5\ncrypto map Standard-1 20 set peer Peer-1 \ncrypto map Standard-1\
@@ -630,8 +630,8 @@ commands:
       crypto map Standard-1 interface outside\n"
     help: execute the command "show running-config crypto map"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show inventory:
     output: 'Name: "Chassis", DESCR: "ASA 5506-X with FirePOWER services, 8GE, AC,
       DES"
@@ -644,8 +644,8 @@ commands:
       PID: ASA5506-SSD       , VID: N/A     , SN:'
     help: execute the command "show inventory"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show running-config ipsec:
     output: "crypto ipsec ikev1 transform-set AES-256_MD5 esp-aes-256 esp-md5-hmac\
       \ \ncrypto ipsec ikev1 transform-set AES-256_SHA esp-aes-256 esp-sha-hmac \n\
@@ -667,8 +667,8 @@ commands:
       \ sha-512 sha-1 md5"
     help: execute the command "show running-config ipsec"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show object-group network:
     output: "object-group network NETWORK-10.42.89.0_24\n network-object 10.142.89.0\
       \ 255.255.255.0\nobject-group network network-10.0.0.0_8\n network-object 10.0.0.0\
@@ -684,8 +684,8 @@ commands:
       \ 255.255.0.0\n"
     help: execute the command "show object-group network"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interface:
     output: "Interface GigabitEthernet0/0 \"outside\", is up, line protocol is up\n\
       \  Hardware is i82540EM rev03, BW 1000 Mbps, DLY 10 usec\n        Full-Duplex(Full-duplex),\
@@ -759,8 +759,8 @@ commands:
       \ bytes\n        32105760 packets dropped\n"
     help: execute the command "show interface"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show vpn-sessiondb:
     output: "---------------------------------------------------------------------------\n\
       \ VPN Session Summary\n---------------------------------------------------------------------------\n\
@@ -784,8 +784,8 @@ commands:
       Totals                       :    113 :    3543638\n---------------------------------------------------------------------------\n"
     help: execute the command "show vpn-sessiondb"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show cpu usage detailed:
     output: "Break down of per-core data path versus control point cpu usage:\nCore\
       \         5 sec               1 min               5 min\nCore 0       35.0 (22.4\
@@ -817,8 +817,8 @@ commands:
       \ 36.4%"
     help: execute the command "show cpu usage detailed"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ospf neighbor:
     output: 'Neighbor ID     Pri   State           Dead Time   Address         Interface
 
@@ -833,8 +833,8 @@ commands:
       '
     help: execute the command "show ospf neighbor"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   dir:
     output: "\nDirectory of disk0:/\n\n120    -rwx  74369568     19:39:56 Nov 03 2015\
       \  asa951-lfbff-k8.spa\n121    -rwx  25025404     19:40:46 Nov 03 2015  asdm-751.bin\n\
@@ -854,8 +854,8 @@ commands:
       \ \n7859437568 bytes total (4417200128 bytes free)\n"
     help: execute the command "dir"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show bgp summary:
     output: "BGP router identifier 10.10.254.1, local AS number 65101\nBGP table version\
       \ is 9, main routing table version 9\n8 network entries using 1600 bytes of\
@@ -870,8 +870,8 @@ commands:
       \    9    0    0 4w6d  1   "
     help: execute the command "show bgp summary"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   ping:
     output: 'Type escape sequence to abort.
 
@@ -884,8 +884,8 @@ commands:
       '
     help: execute the command "ping"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show running-config object network:
     output: "object network corp\n subnet 10.0.0.0 255.0.0.0\nobject network internal\n\
       \ subnet 192.168.0.0 255.255.255.0\nobject network any\n subnet 0.0.0.0 0.0.0.0\n\
@@ -899,8 +899,8 @@ commands:
       \ subnet fd00::/8\n"
     help: execute the command "show running-config object network"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show access-list:
     output: "access-list test; 51 elements; name hash: 0xcb4257a3\naccess-list test\
       \ line 1 extended permit ah any4 interface outside log informational interval\
@@ -1021,8 +1021,8 @@ commands:
       \ eq 6991 log disable (hitcnt=40) 0xea52300b \n"
     help: execute the command "show access-list"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show running-config tunnel-group:
     output: "tunnel-group tun01 type remote-access\ntunnel-group tun01 general-attributes\n\
       \ dhcp-server 10.10.10.10\n dhcp-server link-selection 10.10.10.11\n dhcp-server\
@@ -1058,8 +1058,8 @@ commands:
       \ ikev1 pre-shared-key *****\n"
     help: execute the command "show running-config tunnel-group"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show nat:
     output: "Manual NAT Policies (Section 1)\n1 (any) to (any) source static any any\
       \   description source dynamic static destination static net-to-net service\
@@ -1179,8 +1179,8 @@ commands:
       \ test13 test14\n    translate_hits = 291, untranslate_hits = 3\n"
     help: execute the command "show nat"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show version:
     output: "\nCisco Adaptive Security Appliance Software Version 9.8(3)21 <context>\n\
       \ Firepower Extensible Operating System Version 2.4(1.103)\nDevice Manager Version\
@@ -1206,8 +1206,8 @@ commands:
       \ 2018"
     help: execute the command "show version"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show asp drop:
     output: "Frame drop:\n  Unsupported IP version (unsupported-ip-version)      \
       \                      111\n  TCP dup of packet in Out-of-Order queue (tcp-dup-in-queue)\
@@ -1313,5 +1313,5 @@ commands:
       \ access rule (acl-drop)                                192350\n"
     help: execute the command "show asp drop"
     prompt:
-    - cisco_asa>
-    - cisco_asa#
+    - "{base_prompt}>"
+    - "{base_prompt}#"

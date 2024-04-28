@@ -1,29 +1,29 @@
 name: huawei_smartax
-initial_prompt: huawei_smartax>
+initial_prompt: "{base_prompt}>"
 commands:
   enable:
     output: null
-    new_prompt: huawei_smartax#
+    new_prompt: "{base_prompt}#"
     help: enter enable mode
-    prompt: huawei_smartax>
+    prompt: "{base_prompt}>"
   undo smart:
     output: null
     help: undo the command completion mode (smart mode)
     prompt:
-    - huawei_smartax>
-    - huawei_smartax#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   scroll:
     output: null
     help: disables the paging so the output is complete always
     prompt:
-    - huawei_smartax>
-    - huawei_smartax#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display cpu:
     output: '  CPU occupancy: 17%'
     help: execute the command "display cpu"
     prompt:
-    - huawei_smartax>
-    - huawei_smartax#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display board:
     output: "  -------------------------------------------------------------------------\n\
       \  SlotID  BoardName  Status          SubType0 SubType1    Online/Offline\n\
@@ -34,8 +34,8 @@ commands:
       \      Offline  \n  5     \n  -------------------------------------------------------------------------"
     help: execute the command "display board"
     prompt:
-    - huawei_smartax>
-    - huawei_smartax#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display version:
     output: "\n  VERSION : AB1234C342A123D23\n  PATCH   : QEF227\n  PRODUCT : MA5608T\n\
       \ \n  Active Mainboard Running Area Information: \n  --------------------------------------------------\n\
@@ -51,8 +51,8 @@ commands:
       \ day(s), 23 hour(s), 19 minute(s), 16 second(s)"
     help: execute the command "display version"
     prompt:
-    - huawei_smartax>
-    - huawei_smartax#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display sysman service state:
     output: "  ---------------------------------------------------------------------------\n\
       \  Network service                                   Port           State\n\
@@ -79,8 +79,8 @@ commands:
       \                                            5246           disable\n  ---------------------------------------------------------------------------\n"
     help: execute the command "display sysman service state"
     prompt:
-    - huawei_smartax>
-    - huawei_smartax#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display ont info summary ont:
     output: "  ------------------------------------------------------------------------------\n\
       \  In port 0/1/0, the total of ONTs are: 23, online: 23\n  ------------------------------------------------------------------------------\n\
@@ -130,8 +130,8 @@ commands:
       \  AB12\n  ------------------------------------------------------------------------------"
     help: execute the command "display ont info summary ont"
     prompt:
-    - huawei_smartax>
-    - huawei_smartax#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display port info:
     output: "  -----------------------------------------------------------\n  F/S/P\
       \                                      0/0/0\n  Min distance(km)           \
@@ -153,8 +153,8 @@ commands:
       \                Disable\n  -----------------------------------------------------------"
     help: execute the command "display port info"
     prompt:
-    - huawei_smartax>
-    - huawei_smartax#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display ont autofind:
     output: "   ----------------------------------------------------------------------------\n\
       \   Number              : 1\n   F/S/P               : 0/0/0\n   Ont SN     \
@@ -167,8 +167,8 @@ commands:
       \ : -\n   ----------------------------------------------------------------------------"
     help: execute the command "display ont autofind"
     prompt:
-    - huawei_smartax>
-    - huawei_smartax#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display ont info by-sn sn:
     output: "  -----------------------------------------------------------------------------\n\
       \  F/S/P                   : 0/1/1\n  ONT-ID                  : 131\n  Control\
@@ -314,8 +314,8 @@ commands:
       \  The number of required ONTs     : 1\n  -----------------------------------------------------------------------------"
     help: execute the command "display ont info by-sn sn"
     prompt:
-    - huawei_smartax>
-    - huawei_smartax#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display temperature:
     output: "  SlotID:  4      BoardName: H805GPFD       Temperature:   57C( 134F)\n\
       \n  SlotID:  5      BoardName: H808EPSD       Temperature:   59C( 138F)\n\n\
@@ -325,14 +325,14 @@ commands:
       \      BoardName: H801X2CS       Temperature:   38C( 100F)"
     help: execute the command "display temperature"
     prompt:
-    - huawei_smartax>
-    - huawei_smartax#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display mem:
     output: '  Memory occupancy: 79%'
     help: execute the command "display mem"
     prompt:
-    - huawei_smartax>
-    - huawei_smartax#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display board serial-number:
     output: "  -------------------------------------------------------------------------\n\
       \  Solt ID        Board Name         Serial Number \n  -------------------------------------------------------------------------\n\
@@ -344,14 +344,14 @@ commands:
       \                                                \n  -------------------------------------------------------------------------"
     help: execute the command "display board serial-number"
     prompt:
-    - huawei_smartax>
-    - huawei_smartax#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display sysuptime:
     output: '  System up time: 11 day 22 hour 5 minute 17 second'
     help: execute the command "display sysuptime"
     prompt:
-    - huawei_smartax>
-    - huawei_smartax#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display ont info fsp:
     output: "  -----------------------------------------------------------------------------\n\
       \  F/S/P   ONT         SN         Control     Run      Config   Match    Protect\n\
@@ -409,5 +409,5 @@ commands:
       \  In port 0/ 1/0 , the total of ONTs are: 31, online: 31\n  -----------------------------------------------------------------------------"
     help: execute the command "display ont info fsp"
     prompt:
-    - huawei_smartax>
-    - huawei_smartax#
+    - "{base_prompt}>"
+    - "{base_prompt}#"

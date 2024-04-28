@@ -4,6 +4,7 @@ NOS module for Cisco IOS
 
 import time
 
+name = "cisco_ios"
 INITIAL_PROMPT = "{base_prompt}>"
 
 
@@ -18,7 +19,7 @@ service timestamps debug datetime msec
 service timestamps log datetime msec
 no service password-encryption
 !
-hostname {{base_prompt}}
+hostname {base_prompt}
 !
 boot-start-marker
 boot-end-marker
@@ -246,7 +247,7 @@ software.
 
 
 ROM: IOS-XE ROMMON
-{{base_prompt}} uptime is 1 day, 17 hours, 32 minutes
+{base_prompt} uptime is 1 day, 17 hours, 32 minutes
 Uptime for this control processor is 1 day, 17 hours, 33 minutes
 System returned to ROM by reload
 System image file is "bootflash:packages.conf"
@@ -315,16 +316,16 @@ commands = {
     "_default_": {
         "output": "% Invalid input detected at '^' marker.",
         "help": "Output to print for unknown commands",
-        "prompt": ["{base_prompt}#", "{base_prompt}>"],
+        "prompt": [INITIAL_PROMPT, "{base_prompt}#"],
     },
     "terminal width 511": {
         "output": "",
         "help": "Set terminal width to 511",
-        "prompt": ["{base_prompt}#", "{base_prompt}>"],
+        "prompt": [INITIAL_PROMPT, "{base_prompt}#"],
     },
     "terminal length 0": {
         "output": "",
         "help": "Set terminal length to 0",
-        "prompt": ["{base_prompt}#", "{base_prompt}>"],
+        "prompt": [INITIAL_PROMPT, "{base_prompt}#"],
     },
 }

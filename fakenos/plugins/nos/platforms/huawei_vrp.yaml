@@ -1,11 +1,11 @@
 name: huawei_vrp
-initial_prompt: huawei_vrp>
+initial_prompt: "{base_prompt}>"
 commands:
   enable:
     output: 'null'
-    new_prompt: huawei_vrp#
+    new_prompt: "{base_prompt}#"
     help: enter enable mode
-    prompt: huawei_vrp>
+    prompt: "{base_prompt}>"
   display arp brief:
     output: "IP ADDRESS      MAC ADDRESS    EXPIRE(M) TYPE  INTERFACE           VLAN/CEVLAN\
       \  \n------------------------------------------------------------------------------\
@@ -16,8 +16,8 @@ commands:
       \  \nTotal:3         Dynamic:2       Static:0     Interface:1  \n"
     help: execute the command "display arp brief"
     prompt:
-    - huawei_vrp>
-    - huawei_vrp#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display ip vpn-instance interface:
     output: " Total VPN-Instances configured      : 3\n\n VPN-Instance Name and ID\
       \ : cftv, 1\n  Interface Number : 3 \n  Interface list : Vlanif1823, \n    \
@@ -30,8 +30,8 @@ commands:
       \         LoopBack1\n"
     help: execute the command "display ip vpn-instance interface"
     prompt:
-    - huawei_vrp>
-    - huawei_vrp#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display version:
     output: "Huawei Versatile Routing Platform Software\nVRP (R) software, Version\
       \ 8.180 (ATN 910C-B V300R003C10SPC500)\nCopyright (C) 2012-2018 Huawei Technologies\
@@ -50,8 +50,8 @@ commands:
       \  PCB         Version : ES5MPSD17 REV D"
     help: execute the command "display version"
     prompt:
-    - huawei_vrp>
-    - huawei_vrp#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display interface description:
     output: "PHY: Physical\n*down: administratively down\n#down: LBDT down\n(l): loopback\n\
       \ (s): spoofing\n(E): E-Trunk down\n(b): BFD down\n(e): ETHOAM down\n(dl): DLDP\
@@ -85,8 +85,8 @@ commands:
       \                   up      up"
     help: execute the command "display interface description"
     prompt:
-    - huawei_vrp>
-    - huawei_vrp#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display interface brief:
     output: "PHY: Physical\n*down: administratively down\n^down: standby\n(l): loopback\n\
       \ (s): spoofing\n(E): E-Trunk down\n(b): BFD down\n(B): Bit-error-detection\
@@ -113,8 +113,8 @@ commands:
       \       up    up           0%     0%          0          0\n"
     help: execute the command "display interface brief"
     prompt:
-    - huawei_vrp>
-    - huawei_vrp#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display port vlan:
     output: "Port                        Link Type    PVID  Trunk VLAN List\n-------------------------------------------------------------------------------\n\
       GigabitEthernet0/0/1        trunk        1     1 191 212 214 218 224 238\n \
@@ -166,8 +166,8 @@ commands:
       \ 1     1-4094\nGigabitEthernet0/0/28       trunk        1     1-4094\n"
     help: execute the command "display port vlan"
     prompt:
-    - huawei_vrp>
-    - huawei_vrp#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display ipv6 neighbors:
     output: "-----------------------------------------------------------------------------\n\
       \ IPv6 Address : FC00:1::2\nLink-layer   : 0025-9e01-020a                  \
@@ -188,8 +188,8 @@ commands:
       \ Total: 3        Dynamic: 2      Static: 1\n"
     help: execute the command "display ipv6 neighbors"
     prompt:
-    - huawei_vrp>
-    - huawei_vrp#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display service-set id id:
     output: "  ----------------------------------------------------------------------------\n\
       \  Service-set ID                   : 1\n  Service-Set name                \
@@ -202,8 +202,8 @@ commands:
       \         : off\n  Forward mode                     : direct-forward\n  ----------------------------------------------------------------------------\n"
     help: execute the command "display service-set id id"
     prompt:
-    - huawei_vrp>
-    - huawei_vrp#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display traffic-filter applied-record:
     output: "-----------------------------------------------------------\nInterface\
       \                   Direction  AppliedRecord       \n-----------------------------------------------------------\n\
@@ -222,8 +222,8 @@ commands:
       \             \nTotal:2 \n"
     help: execute the command "display traffic-filter applied-record"
     prompt:
-    - huawei_vrp>
-    - huawei_vrp#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display acl all:
     output: " Total quantity of nonempty ACL number is 3 \n\nBasic ACL 2000, 7 rules\n\
       Acl's step is 5\n rule 5 permit source 85.14.167.234 0 (94 matches)\n rule 10\
@@ -242,8 +242,8 @@ commands:
       \ 3999, 0 rule\nAcl's step is 5\n"
     help: execute the command "display acl all"
     prompt:
-    - huawei_vrp>
-    - huawei_vrp#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display arp all:
     output: "IP ADDRESS      MAC ADDRESS     EXPIRE(M) TYPE        INTERFACE   VPN-INSTANCE\n\
       \                                    VLAN/CEVLAN(SIP/DIP)\n------------------------------------------------------------------------------\n\
@@ -256,8 +256,8 @@ commands:
       Total:5         Dynamic:2       Static:0     Interface:3\n"
     help: execute the command "display arp all"
     prompt:
-    - huawei_vrp>
-    - huawei_vrp#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display ip routing-table verbose:
     output: "Routing Table : Public\n\tDestinations : 1\tRoutes : 1\n\n Destination\
       \  : ::1                             PrefixLength : 128\n NextHop      : ::1\
@@ -272,8 +272,8 @@ commands:
       \                     Flags        : D\n"
     help: execute the command "display ip routing-table verbose"
     prompt:
-    - huawei_vrp>
-    - huawei_vrp#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display ip vpn-instance:
     output: " Total VPN-Instances configured      : 1\n Total IPv4 VPN-Instances configured\
       \ : 1\n Total IPv6 VPN-Instances configured : 1\n\n  VPN-Instance Name     \
@@ -282,8 +282,8 @@ commands:
       \                  IPv6\n"
     help: execute the command "display ip vpn-instance"
     prompt:
-    - huawei_vrp>
-    - huawei_vrp#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display lldp neighbor:
     output: "XGigabitEthernet0/0/1 has 1 neighbor(s):\n\nNeighbor index :1\nChassis\
       \ type   :MAC address\nChassis ID     :b8d6-f6ff-7390\nPort ID type   :Interface\
@@ -303,8 +303,8 @@ commands:
       \n Maximum frame Size       :9216\n"
     help: execute the command "display lldp neighbor"
     prompt:
-    - huawei_vrp>
-    - huawei_vrp#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display nat server:
     output: "  Nat Server Information:\n  Interface  : Dialer1\n    Global IP/Port\
       \     : current-interface/8080 (Real IP : 192.214.198.156)\n    Inside IP/Port\
@@ -322,8 +322,8 @@ commands:
       \  Description : ----\n\n  Total :    3\n"
     help: execute the command "display nat server"
     prompt:
-    - huawei_vrp>
-    - huawei_vrp#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display isis peer:
     output: "                          Peer information for ISIS(1)\n\n  System Id\
       \     Interface          Circuit Id        State HoldTime Type     PRI\n--------------------------------------------------------------------------------\n\
@@ -332,8 +332,8 @@ commands:
       \       --\n\nTotal Peer(s): 2\n"
     help: execute the command "display isis peer"
     prompt:
-    - huawei_vrp>
-    - huawei_vrp#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display temperature:
     output: "SlotID2 :\n Base-Board, Unit:C, Slot2\nPCB       I2C Addr Chl  Status\
       \  Minor Major Fatal Adj_speed Temp\n                                      \
@@ -352,16 +352,16 @@ commands:
       \ No temp sensors.\n"
     help: execute the command "display temperature"
     prompt:
-    - huawei_vrp>
-    - huawei_vrp#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display sn license:
     output: ' ESN of device: 21500104792SM8504636
 
       '
     help: execute the command "display sn license"
     prompt:
-    - huawei_vrp>
-    - huawei_vrp#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display service-set all:
     output: "  ----------------------------------------------------------------------------\n\
       \  ID      Name                            SSID\n  0       Livebox_5ad8    \
@@ -371,8 +371,8 @@ commands:
       \  Total: 3\n"
     help: execute the command "display service-set all"
     prompt:
-    - huawei_vrp>
-    - huawei_vrp#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display startup:
     output: "MainBoard: \n  Startup system software:                   flash:/AR610-V300R021C00SPC200.cc\n\
       \  Next startup system software:              flash:/AR610-V300R021C00SPC200.cc\n\
@@ -385,8 +385,8 @@ commands:
       \                       null\n  Next startup voice-files:                  null\n"
     help: execute the command "display startup"
     prompt:
-    - huawei_vrp>
-    - huawei_vrp#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display vlan:
     output: "The total number of VLANs is: 3\n--------------------------------------------------------------------------------\n\
       \ U: Up;         D: Down;         TG: Tagged;         UT: Untagged;\nMP: Vlan-mapping;\
@@ -409,8 +409,8 @@ commands:
       \    VLAN 0020\n30   enable  default       enable  disable    VLAN 0030\n"
     help: execute the command "display vlan"
     prompt:
-    - huawei_vrp>
-    - huawei_vrp#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display interface:
     output: "GigabitEthernet0/0/0 current state : DOWN\nLine protocol current state\
       \ : DOWN\nDescription:HUAWEI, AR Series, GigabitEthernet0/0/0 Interface\nSwitch\
@@ -556,16 +556,16 @@ commands:
       \  :    0%\n    Output bandwidth utilization :    0%\n"
     help: execute the command "display interface"
     prompt:
-    - huawei_vrp>
-    - huawei_vrp#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display snmp-agent community read:
     output: "   Community name: %^%#K[&`Jc~_4H-~.>0:m%dK:*7s,{{(3i02`R$>&n}}+56Pb'@]rd}}NT@o4.7RG'8ScPW0=d%O<1oU+7KHS[I%^%#\n\
       \   Group name: %^%#K[&`Jc~_4H-~.>0:m%dK:*7s,{{(3i02`R$>&n}}+56Pb'@]rd}}NT@o4.7RG'8ScPW0=d%O<1oU+7KHS[I%^%#\n\
       \   Acl: 2001\n   Storage-type: nonVolatile\n\n   Total number is 1\n"
     help: execute the command "display snmp-agent community read"
     prompt:
-    - huawei_vrp>
-    - huawei_vrp#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   display mac-address:
     output: "-------------------------------------------------------------------------------\n\
       \ MAC Address    VLAN/VSI/BD                       Learned-From        Type\n\
@@ -576,12 +576,12 @@ commands:
       \ Total items displayed = 2\n"
     help: execute the command "display mac-address"
     prompt:
-    - huawei_vrp>
-    - huawei_vrp#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   screen-length 0 temporary:
     output: null
     help: Execute the command screen-length 0 temporary. This automatically generated.
       Feel free to change it!
     prompt:
-    - huawei_vrp>
-    - huawei_vrp#
+    - "{base_prompt}>"
+    - "{base_prompt}#"

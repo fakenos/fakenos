@@ -1,17 +1,17 @@
 name: juniper_junos
-initial_prompt: juniper_junos>
+initial_prompt: "{base_prompt}>"
 commands:
   enable:
     output: 'null'
-    new_prompt: juniper_junos#
+    new_prompt: "{base_prompt}#"
     help: enter enable mode
-    prompt: juniper_junos>
+    prompt: "{base_prompt}>"
   set cli screen-width 511:
     output: Screen width set to 511
     help: Sets the terminal width to maximum
     prompt:
-    - juniper_junos>
-    - juniper_junos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show vlans:
     output: "Routing instance        VLAN name             Tag          Interfaces\n\
       default-switch          v100-Control           100\n                       \
@@ -40,8 +40,8 @@ commands:
       \       xe-0/0/9.0*\n\n{{master:0}}"
     help: execute the command "show vlans"
     prompt:
-    - juniper_junos>
-    - juniper_junos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interfaces:
     output: "Physical interface: ge-0/0/0, Enabled, Physical link is Up\n  Interface\
       \ index: 134, SNMP ifIndex: 502\n  Description: Test\n  Link-level type: Ethernet,\
@@ -91,8 +91,8 @@ commands:
       \ SNMP-Traps Internal: 0x4000\n\n{{master:0}}\n"
     help: execute the command "show interfaces"
     prompt:
-    - juniper_junos>
-    - juniper_junos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show chassis hardware:
     output: "Hardware inventory:\nItem             Version  Part number  Serial number\
       \     Description\nChassis                                A0000            \
@@ -136,8 +136,8 @@ commands:
       \ 0       REV 03   711-000000   ABCD0000          Fan Tray\n"
     help: execute the command "show chassis hardware"
     prompt:
-    - juniper_junos>
-    - juniper_junos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show arp no-resolve:
     output: 'MAC Address       Address         Interface     Flags
 
@@ -167,8 +167,8 @@ commands:
       '
     help: execute the command "show arp no-resolve"
     prompt:
-    - juniper_junos>
-    - juniper_junos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show lacp interfaces:
     output: "Aggregated interface: ae33\n    LACP state:       Role   Exp   Def  Dist\
       \  Col  Syn  Aggr  Timeout  Activity\n      xe-0/0/0:0     Actor    No    No\
@@ -204,8 +204,8 @@ commands:
       \                 Current   Fast periodic Collecting distributing\n\n{{master:0}}\n"
     help: execute the command "show lacp interfaces"
     prompt:
-    - juniper_junos>
-    - juniper_junos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show chassis firmware:
     output: "Part                     Type       Version\nFPC                    \
       \  ROM        PC Bios\n                         O/S        Version 15.1F4.15\
@@ -374,8 +374,8 @@ commands:
       \ on 2004-0\n\n{{master:0}}\n"
     help: execute the command "show chassis firmware"
     prompt:
-    - juniper_junos>
-    - juniper_junos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show chassis cluster interfaces:
     output: "Control link status: Down\n\nControl interfaces:\nIndex   Interface \
       \       Status   Internal-SA\n0       fxp1             Down     Disabled\n\n\
@@ -390,8 +390,8 @@ commands:
       \         255       Down      1\nge-2/0/0          255       Up        1\n"
     help: execute the command "show chassis cluster interfaces"
     prompt:
-    - juniper_junos>
-    - juniper_junos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show chassis cluster status:
     output: 'Monitor Failure codes:
 
@@ -436,8 +436,8 @@ commands:
       '
     help: execute the command "show chassis cluster status"
     prompt:
-    - juniper_junos>
-    - juniper_junos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show isis adjacency:
     output: 'Interface             System         L State        Hold (secs) SNPA
 
@@ -457,8 +457,8 @@ commands:
       '
     help: execute the command "show isis adjacency"
     prompt:
-    - juniper_junos>
-    - juniper_junos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show system uptime:
     output: 'Current time: 2021-08-31 12:29:34 MSK
 
@@ -473,8 +473,8 @@ commands:
       12:29PM  up 185 days, 17:59, 1 user, load averages: 0.11, 0.05, 0.01'
     help: execute the command "show system uptime"
     prompt:
-    - juniper_junos>
-    - juniper_junos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ethernet-switching table:
     output: "\nMAC flags (S - static MAC, D - dynamic MAC, L - locally learned, P\
       \ - Persistent static\n           SE - statistics enabled, NM - non configured\
@@ -486,8 +486,8 @@ commands:
       \            -   ae112.0\n\n{{master:0}}\n"
     help: execute the command "show ethernet-switching table"
     prompt:
-    - juniper_junos>
-    - juniper_junos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ospf neighbor:
     output: 'Address          Interface              State     ID               Pri  Dead
 
@@ -501,8 +501,8 @@ commands:
       '
     help: execute the command "show ospf neighbor"
     prompt:
-    - juniper_junos>
-    - juniper_junos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show lldp neighbors:
     output: 'Local Interface    Parent Interface    Chassis Id          Port info          System
       Name
@@ -512,8 +512,8 @@ commands:
       ge-0/0/0           -                   2c:6b:f5:a2:08:c0   ge-0/0/0           vmx3'
     help: execute the command "show lldp neighbors"
     prompt:
-    - juniper_junos>
-    - juniper_junos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show version:
     output: "fpc0:\n--------------------------------------------------------------------------\n\
       \ Hostname: lab\nModel: ex4550-32f\nJUNOS EX  Software Suite [13.2X51-D35.3]\n\
@@ -526,19 +526,19 @@ commands:
       \n{{master:0}}\n"
     help: execute the command "show version"
     prompt:
-    - juniper_junos>
-    - juniper_junos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   set cli screen-length 0:
     output: null
     help: Execute the command set cli screen-length 0. This automatically generated.
       Feel free to change it!
     prompt:
-    - juniper_junos>
-    - juniper_junos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   set cli complete-on-space off:
     output: null
     help: Execute the command set cli complete-on-space off. This automatically generated.
       Feel free to change it!
     prompt:
-    - juniper_junos>
-    - juniper_junos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"

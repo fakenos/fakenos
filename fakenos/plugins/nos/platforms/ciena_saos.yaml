@@ -1,17 +1,17 @@
 name: ciena_saos
-initial_prompt: ciena_saos>
+initial_prompt: "{base_prompt}>"
 commands:
   enable:
     output: null
-    new_prompt: ciena_saos#
+    new_prompt: "{base_prompt}#"
     help: enter enable mode
-    prompt: ciena_saos>
+    prompt: "{base_prompt}>"
   system shell session set more off:
     output: null
     help: It enters the machine-to-machine interface mode (mmi-mode)
     prompt:
-    - ciena_saos>
-    - ciena_saos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   rstp show:
     output: "+---------------------Bridge-------------------+BridgeTimer+-------Bridge------+\n\
       |Rstp|    |            |  Root  |  Root  |Force|Fwd|Hlo|Max|T Chg|    Time \
@@ -58,8 +58,8 @@ commands:
       +-------+--+---+----+----+----+--+--------+-+--+--+----+--+---+--+-------------+\n"
     help: execute the command "rstp show"
     prompt:
-    - ciena_saos>
-    - ciena_saos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   traffic-profiling standard-profile show:
     output: '+---------------------------------------- STANDARD PROFILE TABLE -----------------------------------------+
 
@@ -86,8 +86,8 @@ commands:
       +-------+----+---------------+----+------+----------+----------+--------+--------+------------------------+'
     help: execute the command "traffic-profiling standard-profile show"
     prompt:
-    - ciena_saos>
-    - ciena_saos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   vlan show:
     output: "+------------ VLAN GLOBAL CONFIGURATION ------------+\n| Parameter  \
       \       | Value                         |\n+-------------------+---------------+---------------+\n\
@@ -110,8 +110,8 @@ commands:
       \           |\n+------+------+----------------------------------+----------------------------------+"
     help: execute the command "vlan show"
     prompt:
-    - ciena_saos>
-    - ciena_saos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   chassis show temperature:
     output: "+- TEMPERATURE THRESHOLD -+\n| Low        | High       |\n+------------+------------+\n\
       \ | -40 C      | 65  C      |\n+------------+------------+\n\n+--- TEMPERATURE\
@@ -119,8 +119,8 @@ commands:
       \  C   | 17  C | 20  C |\n+---------+-------+-------+"
     help: execute the command "chassis show temperature"
     prompt:
-    - ciena_saos>
-    - ciena_saos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   software show:
     output: "+------------------------------------------------------------------------------+\n\
       \ | Installed Package   : saos-06-18-00-1848                               \
@@ -147,8 +147,8 @@ commands:
       \              |\n+------------------------------------------------------------------------------+\n"
     help: execute the command "software show"
     prompt:
-    - ciena_saos>
-    - ciena_saos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   port show:
     output: "+--------------- PORT GLOBAL CONFIGURATION ----------------+\n|     \
       \       Parameter             |       Value           |\n+----------------------------------+-----------------------+\n\
@@ -189,8 +189,8 @@ commands:
       \       |    |Ena |       |    |\n+---------+---------+----+--------------+----+---+-------+----+----+-------+----+"
     help: execute the command "port show"
     prompt:
-    - ciena_saos>
-    - ciena_saos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   ssh server show key:
     output: "+---------------------------- SSH SERVER KEY --------------------------------+\n\
       \ | Key Status              | Generated                                    \
@@ -204,5 +204,5 @@ commands:
       \                            |\n+----------------------------------+--------------------------------------------------+\n"
     help: execute the command "ssh server show key"
     prompt:
-    - ciena_saos>
-    - ciena_saos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"

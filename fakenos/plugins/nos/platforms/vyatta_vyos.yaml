@@ -1,17 +1,17 @@
 name: vyatta_vyos
-initial_prompt: vyatta@vyatta:~$
+initial_prompt: "{base_prompt}~$"
 commands:
   enable:
     output: null
-    new_prompt: vyatta@vyatta#
+    new_prompt: "{base_prompt}#"
     help: enter enable mode
-    prompt: vyatta@vyatta:~$
+    prompt: "{base_prompt}~$"
   set terminal length 0:
     output: set terminal length 0
     help: set the terminal to max width
     prompt:
-    - vyatta@vyatta:~$
-    - vyatta@vyatta#
+    - "{base_prompt}~$"
+    - "{base_prompt}#"
   show interfaces:
     output: "Codes: S - State, L - Link, u - Up, D - Down, A - Admin Down\nInterface\
       \        IP Address                        S/L  Description\n---------     \
@@ -30,8 +30,8 @@ commands:
       \      u/u  \n\n"
     help: execute the command "show interfaces"
     prompt:
-    - vyatta@vyatta:~$
-    - vyatta@vyatta#
+    - "{base_prompt}~$"
+    - "{base_prompt}#"
   show arp:
     output: 'Address                  HWtype  HWaddress           Flags Mask            Iface
 
@@ -50,8 +50,8 @@ commands:
       '
     help: execute the command "show arp"
     prompt:
-    - vyatta@vyatta:~$
-    - vyatta@vyatta#
+    - "{base_prompt}~$"
+    - "{base_prompt}#"
   show ip bgp summary:
     output: 'IPv4 Unicast Summary:
 
@@ -80,5 +80,5 @@ commands:
       '
     help: execute the command "show ip bgp summary"
     prompt:
-    - vyatta@vyatta:~$
-    - vyatta@vyatta#
+    - "{base_prompt}~$"
+    - "{base_prompt}#"

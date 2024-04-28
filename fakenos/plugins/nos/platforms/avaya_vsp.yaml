@@ -1,11 +1,11 @@
 name: avaya_vsp
-initial_prompt: avaya_vsp>
+initial_prompt: "{base_prompt}>"
 commands:
   enable:
     output: 'null'
-    new_prompt: avaya_vsp#
+    new_prompt: "{base_prompt}#"
     help: enter enable mode
-    prompt: avaya_vsp>
+    prompt: "{base_prompt}>"
   show software:
     output: "\n====================================================================================================\n\
       \                    software releases in /intflash/release/\n====================================================================================================\n\
@@ -14,12 +14,12 @@ commands:
       \ Auto Commit     : enabled\nCommit Timeout  : 10 minutes\n"
     help: execute the command "show software"
     prompt:
-    - avaya_vsp>
-    - avaya_vsp#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   terminal more disable:
     output: null
     help: Execute the command terminal more disable. This automatically generated.
       Feel free to change it!
     prompt:
-    - avaya_vsp>
-    - avaya_vsp#
+    - "{base_prompt}>"
+    - "{base_prompt}#"

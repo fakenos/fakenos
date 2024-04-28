@@ -1,11 +1,11 @@
 name: dell_force10
-initial_prompt: dell_force10>
+initial_prompt: "{base_prompt}>"
 commands:
   enable:
     output: 'null'
-    new_prompt: dell_force10#
+    new_prompt: "{base_prompt}#"
     help: enter enable mode
-    prompt: dell_force10>
+    prompt: "{base_prompt}>"
   show arp:
     output: 'Protocol    Address         Age(min)  Hardware Address    Interface  VLAN             CPU
 
@@ -24,8 +24,8 @@ commands:
       '
     help: execute the command "show arp"
     prompt:
-    - dell_force10>
-    - dell_force10#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show vlan:
     output: "\nCodes: * - Default VLAN, G - GVRP VLANs, P - Primary, C - Community,\
       \ I - Isolated\nQ: U - Untagged, T - Tagged\n   x - Dot1x untagged, X - Dot1x\
@@ -45,8 +45,8 @@ commands:
       \ U Te 0/20-29\n"
     help: execute the command "show vlan"
     prompt:
-    - dell_force10>
-    - dell_force10#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip interface brief:
     output: 'Interface                     IP-Address      OK  Method Status                Protocol
 
@@ -159,8 +159,8 @@ commands:
       Port-channel 128              unassigned      YES None   up                    up'
     help: execute the command "show ip interface brief"
     prompt:
-    - dell_force10>
-    - dell_force10#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show vlan brief:
     output: "VLAN Name                             STG   MAC Aging IP Address    \
       \     \n---- -------------------------------- ----  --------- ------------------\
@@ -173,8 +173,8 @@ commands:
       \         \n"
     help: execute the command "show vlan brief"
     prompt:
-    - dell_force10>
-    - dell_force10#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show version:
     output: "Dell Real Time Operating System Software\nDell Operating System Version:\
       \  2.0\nDell Application Software Version:  9.9(0.0)\nCopyright (c) 1999-2015\
@@ -187,19 +187,19 @@ commands:
       \ 802.3 interface(s)\n  4 Forty GigabitEthernet/IEEE 802.3 interface(s)"
     help: execute the command "show version"
     prompt:
-    - dell_force10>
-    - dell_force10#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   terminal width 511:
     output: null
     help: Execute the command terminal width 511. This automatically generated. Feel
       free to change it!
     prompt:
-    - dell_force10>
-    - dell_force10#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   terminal length 0:
     output: null
     help: Execute the command terminal length 0. This automatically generated. Feel
       free to change it!
     prompt:
-    - dell_force10>
-    - dell_force10#
+    - "{base_prompt}>"
+    - "{base_prompt}#"

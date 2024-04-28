@@ -58,7 +58,6 @@ def run_cli():
             pass
     except KeyboardInterrupt:
         log.info("Shutting down FakeNOS")
-        print("Shutting down FakeNOS")
         fakenet.stop()
 
 

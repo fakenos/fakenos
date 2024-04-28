@@ -1,17 +1,17 @@
 name: zyxel_os
-initial_prompt: zyxel_os>
+initial_prompt: "{base_prompt}>"
 commands:
   enable:
     output: null
-    new_prompt: zyxel_os#
+    new_prompt: "{base_prompt}#"
     help: enter enable mode
-    prompt: zyxel_os>
+    prompt: "{base_prompt}>"
   ex:
     output: true
     help: exit the terminal
     prompt:
-    - zyxel_os>
-    - zyxel_os#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   sys atsh:
     output: "Firmware Version        : V5.13(AAXA.8)C0\nBootbase Version        :\
       \ V1.61 | 05/25/2018 17:08:36\nVendor Name             : Zyxel Communications\
@@ -24,8 +24,8 @@ commands:
       \ ffffffff ffffffff ffffffff ffff\n"
     help: execute the command "sys atsh"
     prompt:
-    - zyxel_os>
-    - zyxel_os#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   cfg ipalias get:
     output: "handlerName=ethwanlan method=GET i=2\nThis device do not support Ethernet\
       \ LAN4 port change to WAN port.                IP Alias Setup              \
@@ -39,8 +39,8 @@ commands:
       \           0                         0                   \nCommand Successful.\n"
     help: execute the command "cfg ipalias get"
     prompt:
-    - zyxel_os>
-    - zyxel_os#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   cfg snmp get:
     output: 'SNMP Agent          : Enabled
 
@@ -65,8 +65,8 @@ commands:
       '
     help: execute the command "cfg snmp get"
     prompt:
-    - zyxel_os>
-    - zyxel_os#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   cfg intf group get:
     output: "Index  Name         WAN Interface                       LAN Interfaces\
       \                                          Criteria                        \
@@ -79,8 +79,8 @@ commands:
       \ qsd>;mac<AA-AA-AA-AA-AA-AA,AA-BB-BB-BB-BB-BB> \nCommand Successful.\n"
     help: execute the command "cfg intf group get"
     prompt:
-    - zyxel_os>
-    - zyxel_os#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   cfg static dhcp get:
     output: 'Index      Status     Mac Address                    IP Address
 
@@ -95,8 +95,8 @@ commands:
       '
     help: execute the command "cfg static dhcp get"
     prompt:
-    - zyxel_os>
-    - zyxel_os#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   cfg firewall acl get:
     output: "Index  Enable Order  Name          Source IP                        \
       \         Destination IP                            Service                \
@@ -119,8 +119,8 @@ commands:
       \                             Accept      \nCommand Successful.\n"
     help: execute the command "cfg firewall acl get"
     prompt:
-    - zyxel_os>
-    - zyxel_os#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   cfg static route get:
     output: "Index      Name       Enable  IPver   DestIPAddress/DestPrefix      \
       \                DestMask          Interface       Gateway/NextHop\n1      \
@@ -145,8 +145,8 @@ commands:
       Command Successful.\n"
     help: execute the command "cfg static route get"
     prompt:
-    - zyxel_os>
-    - zyxel_os#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   cfg wlan get:
     output: "Index   Band     SSID                                Enable     Bandwidth\
       \  Channel    MaxDevices   SecurityMode         PskValue            \n1    \
@@ -167,8 +167,8 @@ commands:
       \        TestTest          \nCommand Successful.\n"
     help: execute the command "cfg wlan get"
     prompt:
-    - zyxel_os>
-    - zyxel_os#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   cfg nat addr map get:
     output: "Index MappingRuleName Interface       Type            LocalStartIP  \
       \  LocalEndIP      GlobalStartIP   GlobalEndIP    \n1     DMZ0            ADSL\
@@ -179,8 +179,8 @@ commands:
       \                       \nCommand Successful.\n"
     help: execute the command "cfg nat addr map get"
     prompt:
-    - zyxel_os>
-    - zyxel_os#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   cfg lan get:
     output: 'Group Name      LAN IP Address       IPv4 DHCP Server     IPv6 Enable
 
@@ -193,8 +193,8 @@ commands:
       '
     help: execute the command "cfg lan get"
     prompt:
-    - zyxel_os>
-    - zyxel_os#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   cfg lan get --Name name:
     output: "Group Name      lan_1\nIP Address      192.168.1.1\nSubnet Mask     255.255.255.0\n\
       DHCP            Enable\n   Beginning IP Address      192.168.1.10\n   Ending\
@@ -203,8 +203,8 @@ commands:
       IPv6 Active     false\nCommand Successful.\n"
     help: execute the command "cfg lan get --Name name"
     prompt:
-    - zyxel_os>
-    - zyxel_os#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   cfg lanhosts get:
     output: "Name                 IP Address        IPv6 Address                 \
       \  MAC Address          Address Source   Connection Type\ndevice1          \
@@ -212,8 +212,8 @@ commands:
       \     Wired \nCommand Successful.\n"
     help: execute the command "cfg lanhosts get"
     prompt:
-    - zyxel_os>
-    - zyxel_os#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   zycli Ethctl media-type:
     output: 'Auto-negotiation enabled.
 
@@ -224,8 +224,8 @@ commands:
       '
     help: execute the command "zycli Ethctl media-type"
     prompt:
-    - zyxel_os>
-    - zyxel_os#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   cfg nat get:
     output: 'Index Description     Enable  Originating IP  Server IP Address WAN Interface   Start
       Port End Port   Translation Start Port    Translation End Port      Protocol
@@ -249,5 +249,5 @@ commands:
       '
     help: execute the command "cfg nat get"
     prompt:
-    - zyxel_os>
-    - zyxel_os#
+    - "{base_prompt}>"
+    - "{base_prompt}#"

@@ -1,23 +1,23 @@
 name: arista_eos
-initial_prompt: arista_eos>
+initial_prompt: "{base_prompt}>"
 commands:
   enable:
     output: null
-    new_prompt: arista_eos#
+    new_prompt: "{base_prompt}#"
     help: enter enable mode
-    prompt: arista_eos>
+    prompt: "{base_prompt}>"
   terminal width 511:
     output: Width set to 511
     help: set the terminal width to maximum
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   terminal length 0:
     output: Pagination disabled
     help: It disables the pagination
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip bgp:
     output: "BGP routing table information for VRF default\nRouter identifier 10.103.1.1,\
       \ local AS number 103\nRoute status codes: s - suppressed, * - valid, > - active,\
@@ -44,8 +44,8 @@ commands:
       \    0       5000    0       62222.4002 ?\n"
     help: execute the command "show ip bgp"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show processes top once:
     output: "top - 18:53:50 up 3 days,  1:06,  2 users,  load average: 0.15, 0.08,\
       \ 0.09\nTasks: 202 total,   1 running, 201 sleeping,   0 stopped,   0 zombie\n\
@@ -65,8 +65,8 @@ commands:
       \  430m  15m    4 S   0.0  0.8   0:00.00 netnsd-session"
     help: execute the command "show processes top once"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show module:
     output: "Module  Ports Card Type                Model          Serial No.\n-------\
       \ ----- ------------------------ -------------- -----------\n1       3     DCS-7500-SUP2\
@@ -98,8 +98,8 @@ commands:
       \ Ok     74 days, 0:25:22"
     help: execute the command "show module"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interfaces:
     output: "ceos1#show  interface\n\nEthernet1 is up, line protocol is up (connected)\n\
       \  Hardware is Ethernet, address is aac1.ab3b.1c7a (bia aac1.ab3b.1c7a)\n  Description:\
@@ -182,8 +182,8 @@ commands:
       \ 1500 bytes (default)\n  Up 21 minutes, 56 seconds\n"
     help: execute the command "show interfaces"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show pim ipv4 interface:
     output: "Address       Interface             Mode    Neighbor  Hello  DR   DR\
       \ Address    PktsQed  PktsDropped\n                                        \
@@ -195,8 +195,8 @@ commands:
       \     0        0"
     help: execute the command "show pim ipv4 interface"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show port-channel summary:
     output: "Flags                                                            \n--------------------------\
       \ ----------------------------- ------------------------- \n   a - LACP Active\
@@ -249,8 +249,8 @@ commands:
       \          LACP(a)      Et54/1(PG+)   "
     help: execute the command "show port-channel summary"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interfaces transceiver:
     output: "If device is externally calibrated, only calibrated values are printed.\n\
       \ N/A: not applicable, Tx: transmit, Rx: receive.\nmA: milliamperes, dBm: decibels\
@@ -266,8 +266,8 @@ commands:
       \     N/A       \n"
     help: execute the command "show interfaces transceiver"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show lldp neighbors detail:
     output: "Interface Ethernet1 detected 1 LLDP neighbors:\n\n  Neighbor 2cc2.6081.eaf9/\"\
       Ethernet1\", age 12 seconds\n  Discovered 0:01:11 ago; Last changed 0:01:11\
@@ -624,8 +624,8 @@ commands:
       \ : 0\n  - IEEE802.3 Maximum Frame Size: 1518 bytes"
     help: execute the command "show lldp neighbors detail"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show snmp community:
     output: "Community name: TEST\nCommunity access: read-only\n\nCommunity name:\
       \ TEST_AGAIN\nCommunity access: read-only\nCommunity view: TEST (non-existent)\n\
@@ -635,8 +635,8 @@ commands:
       \ public\nCommunity access: read-only\n"
     help: execute the command "show snmp community"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ipv6 bgp summary:
     output: "BGP summary information for VRF default\nRouter identifier 10.0.65.72,\
       \ local AS number 64911\nNeighbor Status Codes: m - Under maintenance\n  Neighbor\
@@ -647,8 +647,8 @@ commands:
       \    118481    0    0   79d05h Estab  1      1\n"
     help: execute the command "show ipv6 bgp summary"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   dir flash:
     output: "Directory of flash:/\n\n       -rwx   591941836            Aug 2  2017\
       \  EOS-4.18.3.1F.swi\n       -rwx   609823300           Feb 14 02:03  EOS-4.19.5M.swi\n\
@@ -662,8 +662,8 @@ commands:
       \  zerotouch-config\n\n3519041536 bytes total (1725112320 bytes free)\n"
     help: execute the command "dir flash"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show mac security interface:
     output: "Interface       SCI                       Controlled Port      Key in\
       \ Use          \nEthernet4/15/1  ch:99:3h:69:76:cc::661    True            \
@@ -677,8 +677,8 @@ commands:
       \    True                 changedd888jc35359kbd0c:39"
     help: execute the command "show mac security interface"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show mac address-table:
     output: "          mac Address Table\n------------------------------------------------------------------\n\
       \ \nVlan    mac Address       Type        Ports      Moves   Last Move\n----\
@@ -706,8 +706,8 @@ commands:
       \ for this criterion: 1"
     help: execute the command "show mac address-table"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show mac security mka counters:
     output: "Interface       Rx Success      Rx Failure      Tx Success      Tx Failure\
       \     \nEthernet4/13/1  0               0               0               0  \
@@ -725,8 +725,8 @@ commands:
       \  68225           0               68188           0"
     help: execute the command "show mac security mka counters"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show mac security participants detail:
     output: "Interface: Ethernet4/15/1\n    CKN: cd1df125ffbd3027abe6068fcbfdchanged91af15c274998046ca547\n\
       \      Message ID: changed0975adf202e94acf2\n      Elected self: True\n    \
@@ -752,8 +752,8 @@ commands:
       \ peer list: ['changedbe5869ab7cb6fa2c5cb1c']\n      Potential peer list: []"
     help: execute the command "show mac security participants detail"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip ospf neighbor:
     output: 'Neighbor ID     VRF    Pri   State            Dead Time   Address         Interface
 
@@ -764,8 +764,8 @@ commands:
       '
     help: execute the command "show ip ospf neighbor"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show reload cause:
     output: 'Reload Cause 1:
 
@@ -795,8 +795,8 @@ commands:
       None available.'
     help: execute the command "show reload cause"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip helper-address:
     output: "DHCP Relay is active\nDHCP Relay Option 82 is disabled\nDHCPv6 Relay\
       \ Link-layer Address Option (79) is disabled\nDHCP Smart Relay is disabled\n\
@@ -806,8 +806,8 @@ commands:
       \  DHCP servers: 10.1.0.4\n                server.domain\n"
     help: execute the command "show ip helper-address"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show environment temperature:
     output: "System temperature status is: Ok\n\nSupervisor 1:\n                 \
       \                                                Alert  Critical\n         \
@@ -856,8 +856,8 @@ commands:
       \   (85) 83.8     95       105"
     help: execute the command "show environment temperature"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show vlan:
     output: 'VLAN  Name                             Status    Ports
 
@@ -874,8 +874,8 @@ commands:
       '
     help: execute the command "show vlan"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show hostname:
     output: 'eos-spine1#show hostname
 
@@ -886,8 +886,8 @@ commands:
       '
     help: execute the command "show hostname"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip interface brief:
     output: 'Interface              IP Address         Status     Protocol         MTU
 
@@ -905,8 +905,8 @@ commands:
       '
     help: execute the command "show ip interface brief"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show vrf:
     output: "Maximum number of vrfs allowed: 1023\n   VRF           RD           \
       \   Protocols       State                     Interfaces\n------------- ---------------\
@@ -920,8 +920,8 @@ commands:
       \             Port-Channel1.20\n\n"
     help: execute the command "show vrf"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip bgp detail:
     output: "BGP routing table information for VRF default\nRouter identifier 10.103.1.1,\
       \ local AS number 103\nBGP routing table entry for 10.103.1.0/24\n Paths: 2\
@@ -989,8 +989,8 @@ commands:
       \ SAFI: Unicast\n"
     help: execute the command "show ip bgp detail"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interfaces status:
     output: "Port Name Status Vlan Duplex Speed Type\nEt1 Cust: (SERV-XXXXX disabled\
       \ 1 auto auto 1000BASE-T\nEt47 Cust: (SERV-XXXXX disabled 1 auto auto 1000BASE-T\n\
@@ -999,8 +999,8 @@ commands:
       \ a-10M 10/100/1000\n Po49 Core: dr01-dr02.y connected trunk full 20G N/A\n"
     help: execute the command "show interfaces status"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show isis neighbors:
     output: "\nInstance  VRF      System Id            Type Interface       SNPA \
       \             State Hold time   Circuit Id\n1         default  3333.3333.3333\
@@ -1009,8 +1009,8 @@ commands:
       \    UP    30          0F                 \n"
     help: execute the command "show isis neighbors"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip ospf database:
     output: "            OSPF Router with ID(10.168.103.1) (Process ID 1) (VRF default)\n\
       \ \n                 Router Link States (Area 0.0.0.2)\n \nLink ID         ADV\
@@ -1034,8 +1034,8 @@ commands:
       \  0x800003d2   0x1751   0\n"
     help: execute the command "show ip ospf database"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show boot-config:
     output: 'Software image: flash:/EOS-2.2.0.swi
 
@@ -1044,8 +1044,8 @@ commands:
       Aboot password (encrypted): $1$ap1QMbmz$DTqsFYeauuMSa7/Qxbi2l1'
     help: execute the command "show boot-config"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show bgp evpn summary:
     output: "BGP summary information for VRF default\nRouter identifier 10.0.250.1,\
       \ local AS number 65000\nNeighbor Status Codes: m - Under maintenance\n  Neighbor\
@@ -1062,8 +1062,8 @@ commands:
       \    8    0    0 00:03:57 Estab  0      0\n"
     help: execute the command "show bgp evpn summary"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show inventory:
     output: "System information\n DCS-7150S-52-CL 52-port SFP+ 10GigE 1RU + Clock\n\
       \ 02.00 JPE13120702 2013-03-27\nSystem has 2 power supply slots\n Slot Model\
@@ -1079,8 +1079,8 @@ commands:
       \ 0002\n 52 Arista Networks SFP-10G-SR XCW1225FD753 0002"
     help: execute the command "show inventory"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interfaces transceiver detail:
     output: "mA: milliamperes, dBm: decibels (milliwatts), NA or N/A: not applicable.\n\
       \ ++ : high alarm, +  : high warning, -  : low warning, -- : low alarm.\nA2D\
@@ -1129,8 +1129,8 @@ commands:
       \       -11.50      -10.50           \n"
     help: execute the command "show interfaces transceiver detail"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   bash df -h:
     output: 'Filesystem      Size  Used Avail Use% Mounted on
 
@@ -1161,8 +1161,8 @@ commands:
       /dev/sda1       3.3G  1.2G  2.2G  35% /mnt/flash'
     help: execute the command "bash df -h"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show environment cooling:
     output: 'System cooling status is: Ok
 
@@ -1251,8 +1251,8 @@ commands:
       PowerSupply8     Not Inserted                 N/A              N/A'
     help: execute the command "show environment cooling"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interfaces description:
     output: 'Interface                      Status         Protocol           Description
 
@@ -1313,8 +1313,8 @@ commands:
       '
     help: execute the command "show interfaces description"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip bgp summary:
     output: "BGP summary information for VRF RED\nRouter identifier 192.168.1.1, local\
       \ AS number 645001\nNeighbor Status Codes: m - Under maintenance\n  Neighbor\
@@ -1332,8 +1332,8 @@ commands:
       \          97651     97643    0    0   40d23h Estab  18     18\n"
     help: execute the command "show ip bgp summary"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip ospf summary:
     output: "OSPF instance 1 with ID 65.87.229.70, VRF default, ASBR\nTime since last\
       \ SPF: 14 s\nMax LSAs: 12000, Total LSAs: 6\nType-5 Ext LSAs: 3\nID        \
@@ -1346,8 +1346,8 @@ commands:
       \       0"
     help: execute the command "show ip ospf summary"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip route:
     output: "VRF: default\nCodes: C - connected, S - static, K - kernel, \n      \
       \ O - OSPF, IA - OSPF inter area, E1 - OSPF external type 1,\n       E2 - OSPF\
@@ -1392,8 +1392,8 @@ commands:
       \ [200/0] via 10.63.255.10, Ethernet20\n"
     help: execute the command "show ip route"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip ospf interface brief:
     output: "   Interface    Instance VRF        Area            IP Address      \
       \   Cost  State      Nbrs\n   Lo0          1        default    0.0.0.10    \
@@ -1407,8 +1407,8 @@ commands:
       \    0.0.0.0         192.0.2.1/32       10    P2P        1"
     help: execute the command "show ip ospf interface brief"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show mlag:
     output: 'MLAG Configuration:
 
@@ -1450,8 +1450,8 @@ commands:
       '
     help: execute the command "show mlag"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show pim ipv4 neighbor:
     output: 'PIM Neighbor Table for default VRF
 
@@ -1466,8 +1466,8 @@ commands:
       192.0.2.8         Vlan200               02:04:47  00:01:35  sparse  datagram'
     help: execute the command "show pim ipv4 neighbor"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip arp:
     output: 'Address      Age (min) Hardware Addr  Interface
 
@@ -1482,8 +1482,8 @@ commands:
       '
     help: execute the command "show ip arp"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show clock:
     output: 'Mon Jan 14 18:42:49 2013
 
@@ -1493,8 +1493,8 @@ commands:
       '
     help: execute the command "show clock"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip access-lists:
     output: "IP Access List TEST_1\n        10 permit ip host 10.0.0.1 10.0.0.0/24\n\
       \ \nIP Access List default-control-plane-acl [readonly]\n        statistics\
@@ -1510,8 +1510,8 @@ commands:
       \ any log\n"
     help: execute the command "show ip access-lists"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show lldp neighbors:
     output: "Last table change time   : 0:00:02 ago\nNumber of table inserts  : 2\n\
       \ Number of table deletes  : 0\nNumber of table drops    : 0\nNumber of table\
@@ -1523,8 +1523,8 @@ commands:
       \           120\n"
     help: execute the command "show lldp neighbors"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show version:
     output: "Arista vEOS\nHardware version:    \nSerial number:       \nSystem MAC\
       \ address:  2803.829a.1347\n\nSoftware image version: 4.14.7M\nArchitecture:\
@@ -1534,5 +1534,5 @@ commands:
       \       301240 kB\n"
     help: execute the command "show version"
     prompt:
-    - arista_eos>
-    - arista_eos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"

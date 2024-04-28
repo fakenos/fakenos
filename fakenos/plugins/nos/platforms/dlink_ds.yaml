@@ -1,17 +1,17 @@
 name: dlink_ds
-initial_prompt: dlink_ds#
+initial_prompt: "{base_prompt}#"
 commands:
   enable:
     output: null
-    new_prompt: dlink_ds#
+    new_prompt: "{base_prompt}#"
     help: enter enable mode
-    prompt: dlink_ds#
+    prompt: "{base_prompt}#"
   enable clipaging:
     output: "Command: disable clipaging\n\rSuccess."
-    new_prompt: dlink_ds#
+    new_prompt: "{base_prompt}#"
     help: enters the mmi mode (machine-machine interface)
     prompt:
-    - dlink_ds#
+    - "{base_prompt}#"
   show arpentry:
     output: ' ARP Aging Time : 20
 
@@ -32,4 +32,4 @@ commands:
       Total Entries: 4'
     help: execute the command "show arpentry"
     prompt:
-    - dlink_ds#
+    - "{base_prompt}#"

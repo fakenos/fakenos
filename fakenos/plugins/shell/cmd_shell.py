@@ -145,6 +145,8 @@ class CMDShell(Cmd):
                         ret = ret["output"]
                 if "new_prompt" in cmd_data:
                     self.prompt = cmd_data["new_prompt"].format(base_prompt=self.base_prompt)
+            else:
+                log.warning("'%s' command prompt '%s' not matching current prompt '%s'", line, cmd_data.get("prompt", "").format(base_prompt=self.base_prompt), self.prompt)
         except KeyError:
             log.error("shell.default '%s' command '%s' not found", self.base_prompt, [line])
         # pylint: disable=broad-except
@@ -152,8 +154,8 @@ class CMDShell(Cmd):
             log.error("An error occurred: %s", str(e))
             ret = traceback.format_exc()
             ret = ret.replace("\n", self.newline)
-
-        if ret is True:
+        # check if need to exit
+        if ret is True or not self.is_running.is_set():
             return True
         if ret is not None:
             ret = ret.format(base_prompt=self.base_prompt)

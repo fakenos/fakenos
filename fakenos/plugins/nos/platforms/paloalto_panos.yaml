@@ -1,23 +1,23 @@
 name: paloalto_panos
-initial_prompt: paloalto_panos>
+initial_prompt: "{base_prompt}>"
 commands:
   enable:
     output: null
-    new_prompt: paloalto_panos#
+    new_prompt: "{base_prompt}#"
     help: enter enable mode
-    prompt: paloalto_panos>
+    prompt: "{base_prompt}>"
   set cli scripting-mode on:
     output: null
     help: set the terminal width to full
     prompt:
-    - paloalto_panos>
-    - paloalto_panos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   ex:
     output: True
     help: exit the terminal
     prompt:
-    - paloalto_panos>
-    - paloalto_panos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interface logical:
     output: "total configured logical interfaces: 38\n​\nname                id  \
       \  vsys zone             forwarding               tag    address           \
@@ -48,8 +48,8 @@ commands:
       \                      0      N/A   \n"
     help: execute the command "show interface logical"
     prompt:
-    - paloalto_panos>
-    - paloalto_panos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show running nat-policy:
     output: "\"DMZ-PROXY-NAT; index: 1\" {{\n        nat-type ipv4;\n        from DMZ-APPS;\n\
       \        source [ 10.1.1.1 10.1.1.2 ];\n        to UNTRUSTED;\n        to-interface
@@ -58,16 +58,16 @@ commands:
       \        terminal no;\n}}\n"
     help: execute the command "show running nat-policy"
     prompt:
-    - paloalto_panos>
-    - paloalto_panos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   debug swm status:
     output: "\nPartition         State             Version\n--------------------------------------------------------------------------------\n\
       sysroot0          RUNNING-ACTIVE    9.0.5.xfr\nsysroot1          PENDING-CHANGE\
       \    9.1.2\nmaint             READY             9.1.2\n"
     help: execute the command "debug swm status"
     prompt:
-    - paloalto_panos>
-    - paloalto_panos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show mac all:
     output: "\nmaximum of entries supported :      1500\ndefault timeout :       \
       \            1800 seconds\ntotal MAC entries in table :        3\ntotal MAC
@@ -78,8 +78,8 @@ commands:
       \             50:00:00:02:00:01 ethernet1/2.110     c      704\n"
     help: execute the command "show mac all"
     prompt:
-    - paloalto_panos>
-    - paloalto_panos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show system info:
     output: "hostname: pa1\nip-address: 10.0.0.90\nnetmask: 255.255.255.0\ndefault-gateway:
       10.0.0.2\nipv6-address: unknown\nipv6-link-local-address: fe80::20c:29ff:fe6d:c67e/64\n
@@ -96,8 +96,8 @@ commands:
       vm\nvpn-disable-mode: off\nmulti-vsys: off\noperational-mode: normal\n\n"
     help: execute the command "show system info"
     prompt:
-    - paloalto_panos>
-    - paloalto_panos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show high-availability all:
     output: "Group 1: \n  Mode: Active-Passive\n  Local Information:\n    Version:
       1\n    Mode: Active-Passive\n    State: active (last 45 days)\n    Device Information:\n\
@@ -148,8 +148,8 @@ commands:
       \    Running Configuration: synchronized\n\n"
     help: execute the command "show high-availability all"
     prompt:
-    - paloalto_panos>
-    - paloalto_panos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show counter global:
     output: "Global counters:\nElapsed time since last sampling: 349.576 seconds\n\
       \nname                                   value     rate severity  category \
@@ -169,8 +169,8 @@ commands:
       \n"
     help: execute the command "show counter global"
     prompt:
-    - paloalto_panos>
-    - paloalto_panos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show jobs all:
     output: "\nEnqueued              Dequeued           ID  PositionInQ          \
       \                    Type                         Status Result Completed\n
@@ -190,8 +190,8 @@ commands:
       \        AutoCom                            FIN     OK 08:32:06\n\n\n"
     help: execute the command "show jobs all"
     prompt:
-    - paloalto_panos>
-    - paloalto_panos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show arp all:
     output: "\nmaximum of entries supported :      1500\ndefault timeout:        \
       \            1800 seconds\ntotal ARP entries in table :        5\ntotal ARP
@@ -205,8 +205,8 @@ commands:
       \     c      1016\n"
     help: execute the command "show arp all"
     prompt:
-    - paloalto_panos>
-    - paloalto_panos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interface hardware:
     output: "total configured hardware interfaces: 26\n\nname                    id\
       \    speed/duplex/state        mac address\n--------------------------------------------------------------------------------\n\
@@ -239,8 +239,8 @@ commands:
       aggregation groups: 0"
     help: execute the command "show interface hardware"
     prompt:
-    - paloalto_panos>
-    - paloalto_panos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show running security-policy:
     output: "\"Outside Web Server\" {{\n        from Trust;\n        source 10.1.1.0/24;\n\
       \        source-region none;\n        to Untrust;\n        destination 200.10.10.10;\n\
@@ -278,8 +278,8 @@ commands:
       matched\n\n"
     help: execute the command "show running security-policy"
     prompt:
-    - paloalto_panos>
-    - paloalto_panos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   test security-policy-match:
     output: "\"Allow 10.125.100.58-To-Google DNS; index: 1\" {{\n        from Internal;\n\
       \        source 10.125.100.58;\n        source-region none;\n        to External;\n\
@@ -301,8 +301,8 @@ commands:
       }}"
     help: execute the command "test security-policy-match"
     prompt:
-    - paloalto_panos>
-    - paloalto_panos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interface management:
     output: "\n\n-------------------------------------------------------------------------------\n
       Name: Management Interface\nLink status:\n  Runtime link speed/duplex/state:
@@ -319,5 +319,5 @@ commands:
       dropped          0\nmulticast packets received        0\n-------------------------------------------------------------------------------\n"
     help: execute the command "show interface management"
     prompt:
-    - paloalto_panos>
-    - paloalto_panos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"

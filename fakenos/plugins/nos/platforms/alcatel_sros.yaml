@@ -1,11 +1,11 @@
 name: alcatel_sros
-initial_prompt: alcatel_sros>
+initial_prompt: "{base_prompt}>"
 commands:
   enable:
     output: 'null'
-    new_prompt: alcatel_sros#
+    new_prompt: "{base_prompt}#"
     help: enter enable mode
-    prompt: alcatel_sros>
+    prompt: "{base_prompt}>"
   show router pim interface:
     output: "\n===============================================================================\n\
       \ PIM Interfaces ipv4\n===============================================================================\n\
@@ -20,8 +20,8 @@ commands:
       \ Interfaces : 5 Tunnel-Interfaces : 0\n===============================================================================\n"
     help: execute the command "show router pim interface"
     prompt:
-    - alcatel_sros>
-    - alcatel_sros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show router interface:
     output: "===============================================================================\n\
       \ Interface Table (Router: Base)\n===============================================================================\n\
@@ -50,8 +50,8 @@ commands:
       \ Interfaces : 6\n===============================================================================\n"
     help: execute the command "show router interface"
     prompt:
-    - alcatel_sros>
-    - alcatel_sros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show router mpls interface:
     output: "===============================================================================\n\
       \ MPLS Interfaces\n===============================================================================\n\
@@ -71,8 +71,8 @@ commands:
       \ Interfaces : 4\n==============================================================================="
     help: execute the command "show router mpls interface"
     prompt:
-    - alcatel_sros>
-    - alcatel_sros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show service sdp:
     output: "\n============================================================================\n\
       \ Services: Service Destination Points\n============================================================================\n\
@@ -90,8 +90,8 @@ commands:
       \      I = SR-ISIS, O = SR-OSPF, T = SR-TE, F = FPE\n============================================================================\n"
     help: execute the command "show service sdp"
     prompt:
-    - alcatel_sros>
-    - alcatel_sros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show router isis adjacency:
     output: "\n===============================================================================\n\
       \ Rtr Base ISIS Instance 0 Adjacency\n===============================================================================\n\
@@ -103,8 +103,8 @@ commands:
       \ Adjacencies : 2\n===============================================================================\n"
     help: execute the command "show router isis adjacency"
     prompt:
-    - alcatel_sros>
-    - alcatel_sros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show service sdp-using:
     output: "===============================================================================\n\
       \ SDP Using\n===============================================================================\n\
@@ -121,8 +121,8 @@ commands:
       ===============================================================================\n"
     help: execute the command "show service sdp-using"
     prompt:
-    - alcatel_sros>
-    - alcatel_sros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show router isis interface:
     output: "\n===============================================================================\n\
       \ Rtr Base ISIS Instance 0 Interfaces\n===============================================================================\n\
@@ -133,8 +133,8 @@ commands:
       \ Interfaces : 3\n===============================================================================\n"
     help: execute the command "show router isis interface"
     prompt:
-    - alcatel_sros>
-    - alcatel_sros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show router mpls lsp:
     output: "===============================================================================\n\
       \ MPLS LSPs (Originating)\n===============================================================================\n\
@@ -157,8 +157,8 @@ commands:
       \ LSPs : 6\n===============================================================================\n"
     help: execute the command "show router mpls lsp"
     prompt:
-    - alcatel_sros>
-    - alcatel_sros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show lag:
     output: "\n===============================================================================\n\
       \ Lag Data\n===============================================================================\n\
@@ -194,8 +194,8 @@ commands:
       \ 1\n===============================================================================\n"
     help: execute the command "show lag"
     prompt:
-    - alcatel_sros>
-    - alcatel_sros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show service sap-using:
     output: "===============================================================================\n\
       \ Service Access Points \n===============================================================================\n\
@@ -212,8 +212,8 @@ commands:
       ===============================================================================\n"
     help: execute the command "show service sap-using"
     prompt:
-    - alcatel_sros>
-    - alcatel_sros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show router ldp interface:
     output: "\n===============================================================================\n\
       \ LDP Interfaces\n===============================================================================\n\
@@ -229,8 +229,8 @@ commands:
       \ No. of Interfaces: 3\n===============================================================================\n"
     help: execute the command "show router ldp interface"
     prompt:
-    - alcatel_sros>
-    - alcatel_sros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   oam mac-ping:
     output: "Seq Node-id                                                    Path \
       \    RTT\n----------------------------------------------------------------------------\n\
@@ -238,8 +238,8 @@ commands:
       \   No FIB on Egress In-Band  0.153ms\n"
     help: execute the command "oam mac-ping"
     prompt:
-    - alcatel_sros>
-    - alcatel_sros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show service id base:
     output: "===============================================================================\n\
       \ Service Basic Information\n===============================================================================\n\
@@ -263,8 +263,8 @@ commands:
       \  Down\n===============================================================================\n"
     help: execute the command "show service id base"
     prompt:
-    - alcatel_sros>
-    - alcatel_sros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show router bgp summary family:
     output: "[kvanlang@steffi upgrade-support]$ cat ../ntc-templates-test/lib/test-bgp-sum-family.raw\n\
       \ A:SRHERE01# show router \"Base\" bgp summary family ipv4\n===============================================================================\n\
@@ -314,8 +314,8 @@ commands:
       \ * indicates that the corresponding row element may have been truncated.\n"
     help: execute the command "show router bgp summary family"
     prompt:
-    - alcatel_sros>
-    - alcatel_sros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show system cpu:
     output: "===============================================================================\n\
       \ CPU Utilization (Sample period: 1 second)\n===============================================================================\n\
@@ -379,8 +379,8 @@ commands:
       \ 13.60%                \n===============================================================================\n"
     help: execute the command "show system cpu"
     prompt:
-    - alcatel_sros>
-    - alcatel_sros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show router rsvp interface:
     output: "===============================================================================\n\
       \ RSVP Interfaces\n===============================================================================\n\
@@ -395,8 +395,8 @@ commands:
       \ Interfaces : 4\n===============================================================================\n"
     help: execute the command "show router rsvp interface"
     prompt:
-    - alcatel_sros>
-    - alcatel_sros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show router bgp routes vpn-ipv4:
     output: "===============================================================================\n\
       \ BGP Router ID:192.0.2.1        AS:65500       Local AS:65500      \n===============================================================================\n\
@@ -416,8 +416,8 @@ commands:
       \ Routes : 2\n===============================================================================\n"
     help: execute the command "show router bgp routes vpn-ipv4"
     prompt:
-    - alcatel_sros>
-    - alcatel_sros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show port:
     output: "\n===============================================================================\n\
       \ Ports on Slot 1\n===============================================================================\n\
@@ -618,8 +618,8 @@ commands:
       \ * indicates that the corresponding row element may have been truncated.\n\n"
     help: execute the command "show port"
     prompt:
-    - alcatel_sros>
-    - alcatel_sros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show router ospf interface:
     output: "===============================================================================\n\
       \ Rtr Base OSPFv2 Instance 0 Interfaces\n===============================================================================\n\
@@ -633,19 +633,19 @@ commands:
       \ No. of OSPF Interfaces: 4\n===============================================================================\n"
     help: execute the command "show router ospf interface"
     prompt:
-    - alcatel_sros>
-    - alcatel_sros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   environment no more:
     output: null
     help: Execute the command environment no more. This automatically generated. Feel
       free to change it!
     prompt:
-    - alcatel_sros>
-    - alcatel_sros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   //environment more false:
     output: null
     help: Execute the command //environment more false. This automatically generated.
       Feel free to change it!
     prompt:
-    - alcatel_sros>
-    - alcatel_sros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"

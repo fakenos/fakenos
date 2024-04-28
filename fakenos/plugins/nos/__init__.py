@@ -17,15 +17,26 @@ from fakenos.core.nos import Nos
 from . import cisco_ios
 from . import arista_eos
 
-
-nos_plugins = {"cisco_ios": cisco_ios, "arista_eos": arista_eos}
+nos_plugins = {}
+nos_plugins_modules = {"cisco_ios": cisco_ios, "arista_eos": arista_eos}
 
 current_file_path = os.path.abspath(__file__)
 current_directory = os.path.dirname(current_file_path)
 platforms_directory = os.path.join(current_directory, "platforms")
 yaml_files = glob.glob(os.path.join(platforms_directory, "*.yaml"))
 
+# load NOS from YAML files
 for file in yaml_files:
     nos_instance = Nos()
     nos_instance.from_file(file)
     nos_plugins[nos_instance.name] = nos_instance
+
+# load NOS from python modules updating the NOS
+for plugin_name, plugin_module in nos_plugins_modules.items():
+    if plugin_name in nos_plugins:
+        nos_instance = nos_plugins[plugin_name]
+    else:
+        nos_instance = Nos()
+    nos_instance.from_module(plugin_module)
+    nos_plugins[nos_instance.name] = nos_instance
+    

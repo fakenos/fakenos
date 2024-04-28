@@ -1,11 +1,11 @@
 name: hp_procurve
-initial_prompt: hp_procurve>
+initial_prompt: "{base_prompt}>"
 commands:
   enable:
     output: 'null'
-    new_prompt: hp_procurve#
+    new_prompt: "{base_prompt}#"
     help: enter enable mode
-    prompt: hp_procurve>
+    prompt: "{base_prompt}>"
   show ip:
     output: " Internet (IP) Service\n\n\n  Default Gateway : 10.11.11.254   \n  Default\
       \ TTL     : 64   \n  Arp Age         : 20  \n  Domain Suffix   :           \
@@ -16,20 +16,20 @@ commands:
       \    255.255.255.0  "
     help: execute the command "show ip"
     prompt:
-    - hp_procurve>
-    - hp_procurve#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   no page:
     output: null
     help: Disable pagination
     prompt:
-    - hp_procurve>
-    - hp_procurve#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   logout:
     output: true
     help: not implemented the exit
     prompt:
-    - hp_procurve>
-    - hp_procurve#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show lldp info remote-device detail:
     output: "\n LLDP Remote Device Information Detail\n\n  Local Port   : 1\n  ChassisType\
       \  : mac-address         \n  ChassisId    : 3821c7-c1cd00            \n  PortType\
@@ -126,8 +126,8 @@ commands:
       \   :Class1\n\n\n"
     help: execute the command "show lldp info remote-device detail"
     prompt:
-    - hp_procurve>
-    - hp_procurve#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show vlans:
     output: " Status and Counters - VLAN Information\n\n  Maximum VLANs to support\
       \ : 256                  \n  Primary VLAN : DEFAULT_VLAN\n  Management VLAN\
@@ -138,8 +138,8 @@ commands:
       \      Voice                            | Port-based Yes   No   \n"
     help: execute the command "show vlans"
     prompt:
-    - hp_procurve>
-    - hp_procurve#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interfaces:
     output: "Status and Counters - Port Counters\n\n                             \
       \                                       Flow\n Port       Total Bytes    Total\
@@ -198,8 +198,8 @@ commands:
       \             0            0            off\n"
     help: execute the command "show interfaces"
     prompt:
-    - hp_procurve>
-    - hp_procurve#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show port-security:
     output: " Port Security\n\n  Port  Learn Mode         | Action               \
       \    Eavesdrop Prevention\n  ----- ------------------ + ------------------------\
@@ -247,8 +247,8 @@ commands:
       \          Enabled\n  52    Continuous         | None                     Enabled\n"
     help: execute the command "show port-security"
     prompt:
-    - hp_procurve>
-    - hp_procurve#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show lldp info remote-device:
     output: "\n LLDP Remote Devices Information\n\n  LocalPort | ChassisId       \
       \   PortId             PortDescr SysName           \n  --------- + ------------------\
@@ -263,16 +263,16 @@ commands:
       \      d8 cb 8a 89 46 44                              \n \n"
     help: execute the command "show lldp info remote-device"
     prompt:
-    - hp_procurve>
-    - hp_procurve#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show arp:
     output: "\n IP ARP table\n\n  IP Address      MAC Address       Type    Port\n\
       \  --------------- ----------------- ------- ----\n  10.11.12.11     0015b2-a45078\
       \     dynamic\n"
     help: execute the command "show arp"
     prompt:
-    - hp_procurve>
-    - hp_procurve#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show trunks:
     output: "\n Load Balancing Method:  L3-based (default)\n\n  Port   | Name    \
       \                         Type       | Group Type    \n  ------ + --------------------------------\
@@ -281,8 +281,8 @@ commands:
       \    | Trk2  LACP    \n \n"
     help: execute the command "show trunks"
     prompt:
-    - hp_procurve>
-    - hp_procurve#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interfaces brief:
     output: " Status and Counters - Port Status\n\n                          | Intrusion\
       \                           MDI  Flow Bcast\n  Port         Type       | Alert\
@@ -314,8 +314,8 @@ commands:
       \  | No        Yes     Up     100FDx     MDI  off  0\n"
     help: execute the command "show interfaces brief"
     prompt:
-    - hp_procurve>
-    - hp_procurve#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show tech buffers:
     output: "\n\n\n\n\n\n\n\n\n\nCRASHLogfileshow\n\n\nActive Management Module 2\
       \ Crash Log\n\n...Crash Log File Header..........................\nProduct:\
@@ -388,8 +388,8 @@ commands:
       \ buffer allocated at init time (not used since).\n\n"
     help: execute the command "show tech buffers"
     prompt:
-    - hp_procurve>
-    - hp_procurve#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show system:
     output: "\n Status and Counters - General System Information\n\n  System Name\
       \        : HP_Procurve-01                           \n  System Contact     :\
@@ -406,8 +406,8 @@ commands:
       \                                 Missed  : 0           \n\n"
     help: execute the command "show system"
     prompt:
-    - hp_procurve>
-    - hp_procurve#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show cdp neighbors detail:
     output: " CDP neighbors information\n\n  Port : 1   \n  Device ID : AP01-Site\n\
       \  Address Type : IP          \n  Address      : 10.11.11.16               \
@@ -438,16 +438,16 @@ commands:
       \      : 5.9.1.5-001RAP-6521-60020-WR                               "
     help: execute the command "show cdp neighbors detail"
     prompt:
-    - hp_procurve>
-    - hp_procurve#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show mac-address:
     output: "\n Status and Counters - Port Address Table\n\n  MAC Address   Port\n\
       \  ------------- -----\n  00000d-600000 10\n  000424-731040 10\n  0010f3-841dea\
       \ 10\n  5c0e8b-97d9db 3"
     help: execute the command "show mac-address"
     prompt:
-    - hp_procurve>
-    - hp_procurve#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip route:
     output: "\n                                                                  \
       \                                                                          \
@@ -461,54 +461,54 @@ commands:
       \                  connected            1          0    \n"
     help: execute the command "show ip route"
     prompt:
-    - hp_procurve>
-    - hp_procurve#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   terminal width 511:
     output: null
     help: Execute the command terminal width 511. This automatically generated. Feel
       free to change it!
     prompt:
-    - hp_procurve>
-    - hp_procurve#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   screen-length 0 temporary:
     output: null
     help: Execute the command screen-length 0 temporary. This automatically generated.
       Feel free to change it!
     prompt:
-    - hp_procurve>
-    - hp_procurve#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   terminal datadump:
     output: null
     help: Execute the command terminal datadump. This automatically generated. Feel
       free to change it!
     prompt:
-    - hp_procurve>
-    - hp_procurve#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   terminal length 0:
     output: null
     help: Execute the command terminal length 0. This automatically generated. Feel
       free to change it!
     prompt:
-    - hp_procurve>
-    - hp_procurve#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   disable cli prompting:
     output: null
     help: Execute the command disable cli prompting. This automatically generated.
       Feel free to change it!
     prompt:
-    - hp_procurve>
-    - hp_procurve#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   disable clipaging:
     output: null
     help: Execute the command disable clipaging. This automatically generated. Feel
       free to change it!
     prompt:
-    - hp_procurve>
-    - hp_procurve#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   screen-length disable:
     output: null
     help: Execute the command screen-length disable. This automatically generated.
       Feel free to change it!
     prompt:
-    - hp_procurve>
-    - hp_procurve#
+    - "{base_prompt}>"
+    - "{base_prompt}#"

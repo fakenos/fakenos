@@ -1,25 +1,25 @@
 name: checkpoint_gaia
-initial_prompt: checkpoint_gaia>
+initial_prompt: "{base_prompt}>"
 commands:
   enable:
     output: null
-    new_prompt: checkpoint_gaia#
+    new_prompt: "{base_prompt}#"
     help: enter enable mode
-    prompt: checkpoint_gaia>
+    prompt: "{base_prompt}>"
   set clienv rows 0:
     output: null
     help: set the terminal width to full
     prompt:
-    - checkpoint_gaia>
-    - checkpoint_gaia#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show domainname:
     output: 'Domain name  example.com
 
       '
     help: execute the command "show domainname"
     prompt:
-    - checkpoint_gaia>
-    - checkpoint_gaia#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show version all:
     output: 'Product version Check Point Gaia R77.30
 
@@ -32,8 +32,8 @@ commands:
       '
     help: execute the command "show version all"
     prompt:
-    - checkpoint_gaia>
-    - checkpoint_gaia#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show asset all:
     output: "Platform: T-180-00\nModel: Check Point 4800\nSerial Number: 0000000000\n\
       \ CPU Frequency: 2660.283\nDisk Model: XXX NNNNNNNNNN-XXXXXXX\nDisk Capacity:\
@@ -43,8 +43,8 @@ commands:
       \ Supply #2\n Power supply 2 status: Up\n\n\n"
     help: execute the command "show asset all"
     prompt:
-    - checkpoint_gaia>
-    - checkpoint_gaia#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show virtual-system all:
     output: 'Virtual systems list
 
@@ -57,8 +57,8 @@ commands:
       2           gandalf_SRCXT-VS01'
     help: execute the command "show virtual-system all"
     prompt:
-    - checkpoint_gaia>
-    - checkpoint_gaia#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interfaces all:
     output: "Interface Mgmt\n    state on\n    mac-addr 00:1c:7f:43:08:28\n    type\
       \ ethernet\n    link-state link up\n    instance 0\n    mtu 1500\n    auto-negotiation\
@@ -117,8 +117,8 @@ commands:
       \ dropped:0 overruns:0 frame:0"
     help: execute the command "show interfaces all"
     prompt:
-    - checkpoint_gaia>
-    - checkpoint_gaia#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show arp dynamic all:
     output: 'Dynamic Arp Parameters
 
@@ -140,8 +140,8 @@ commands:
       '
     help: execute the command "show arp dynamic all"
     prompt:
-    - checkpoint_gaia>
-    - checkpoint_gaia#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show route:
     output: "Codes: C - Connected, S - Static, R - RIP, B - BGP (D - Default),\n \
       \      O - OSPF IntraArea (IA - InterArea, E - External, N - NSSA)\n       A\
@@ -153,16 +153,16 @@ commands:
       \      is directly connected, eth1.111\n                                  Comment-Network-1\n"
     help: execute the command "show route"
     prompt:
-    - checkpoint_gaia>
-    - checkpoint_gaia#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ntp servers:
     output: "IP Address               Type              Version  \n1.1.1.1       \
       \           Primary           3        \n2.2.2.2                  Secondary\
       \         3   \n"
     help: execute the command "show ntp servers"
     prompt:
-    - checkpoint_gaia>
-    - checkpoint_gaia#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ipv6 route:
     output: "Codes: C - Connected, S - Static, B - BGP, A - Aggregate,\n       O -\
       \ OSPFv3 IntraArea (IA - InterArea, E - External),\n       K - Kernel Remnant,\
@@ -173,8 +173,8 @@ commands:
       \ cost 0, age 4237508\n                                       Comment-static-Route-1\n"
     help: execute the command "show ipv6 route"
     prompt:
-    - checkpoint_gaia>
-    - checkpoint_gaia#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   fw stat:
     output: 'HOST      POLICY     DATE
 
@@ -184,16 +184,16 @@ commands:
       '
     help: execute the command "fw stat"
     prompt:
-    - checkpoint_gaia>
-    - checkpoint_gaia#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show dns:
     output: "DNS setup\nName                  Value                 \n\nDomain   \
       \             test.com            \nDNS server            1.1.1.1\nDNS server\
       \            2.2.2.2\nDNS server              \n"
     help: execute the command "show dns"
     prompt:
-    - checkpoint_gaia>
-    - checkpoint_gaia#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show lom:
     output: 'Firmware Revision : 2.2
 
@@ -202,5 +202,5 @@ commands:
       '
     help: execute the command "show lom"
     prompt:
-    - checkpoint_gaia>
-    - checkpoint_gaia#
+    - "{base_prompt}>"
+    - "{base_prompt}#"

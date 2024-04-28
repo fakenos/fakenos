@@ -1,23 +1,23 @@
 name: avaya_ers
-initial_prompt: avaya_ers>
+initial_prompt: "{base_prompt}>"
 commands:
   enable:
     output: null
-    new_prompt: avaya_ers#
+    new_prompt: "{base_prompt}#"
     help: enter enable mode
-    prompt: avaya_ers>
+    prompt: "{base_prompt}>"
   terminal length 0:
     output: null
     help: make the terminal full screen
     prompt:
-    - avaya_ers>
-    - avaya_ers#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   ex:
     output: true
     help: exit the terminal
     prompt:
-    - avaya_ers>
-    - avaya_ers#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show sys-info:
     output: "Operation Mode:        Stack, Unit # 1\nSize Of Stack:         4\nBase\
       \ Unit:             1\nMAC Address:           FF-FF-FF-FF-FF-FF\nPoE Module\
@@ -37,8 +37,8 @@ commands:
       \      stackAssetID\nUnit sysAssetId:       unitAssetID\n"
     help: execute the command "show sys-info"
     prompt:
-    - avaya_ers>
-    - avaya_ers#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interface name:
     output: "Unit/Port Name      \n--------- ----------------------------------------------------------------\
       \      \n1/1       \n1/2       \n1/3       \n1/4       \n1/5       \n1/6   \
@@ -60,8 +60,8 @@ commands:
       2/46      \n2/47      \n2/48      HALL-UPS\n2/49      \n2/50      HALL-FC4:1/25\n"
     help: execute the command "show interface name"
     prompt:
-    - avaya_ers>
-    - avaya_ers#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show mlt all-members:
     output: "Id: 1\n    Name:UPLINK\n    Active Members: 1/50,2/50\n    Inactive Members:\
       \ NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP key:\
@@ -130,8 +130,8 @@ commands:
       \ key: NONE\n"
     help: execute the command "show mlt all-members"
     prompt:
-    - avaya_ers>
-    - avaya_ers#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show vlan:
     output: "Id   Name                 Type     Protocol         PID     Active IVL/SVL\
       \ Mgmt\n---- -------------------- -------- ---------------- ------- ------ -------\
@@ -150,8 +150,8 @@ commands:
       \ \tPort Members: NONE\nTotal VLANs: 9\n"
     help: execute the command "show vlan"
     prompt:
-    - avaya_ers>
-    - avaya_ers#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show logging config:
     output: 'Event Logging: Enabled
 
@@ -174,8 +174,8 @@ commands:
       '
     help: execute the command "show logging config"
     prompt:
-    - avaya_ers>
-    - avaya_ers#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show mac-address-table:
     output: "   MAC Address    Vid   Type       Source    \n----------------- ----\
       \ ------- -------------- \n00-0E-C4-CE-AD-39   15 Dynamic Port:47\n00-C0-B7-4C-91-CF\
@@ -193,8 +193,8 @@ commands:
       \  275 Dynamic Port: 2\n00-0E-C4-CE-AD-3B  275 Dynamic Port:48"
     help: execute the command "show mac-address-table"
     prompt:
-    - avaya_ers>
-    - avaya_ers#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show mlt:
     output: "Id: 1\n    Name:IST\n    Active Members: 38-39\n    Inactive Members:\
       \ NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Enabled \n    Type: Trunk\n\
@@ -311,26 +311,26 @@ commands:
       \    Status: Disabled\n"
     help: execute the command "show mlt"
     prompt:
-    - avaya_ers>
-    - avaya_ers#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   logout:
     output: null
     help: Execute the command logout. This automatically generated. Feel free to change
       it!
     prompt:
-    - avaya_ers>
-    - avaya_ers#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   no page:
     output: null
     help: Execute the command no page. This automatically generated. Feel free to
       change it!
     prompt:
-    - avaya_ers>
-    - avaya_ers#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   terminal width 511:
     output: null
     help: Execute the command terminal width 511. This automatically generated. Feel
       free to change it!
     prompt:
-    - avaya_ers>
-    - avaya_ers#
+    - "{base_prompt}>"
+    - "{base_prompt}#"

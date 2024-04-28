@@ -1,11 +1,11 @@
 name: ericsson_ipos
-initial_prompt: ericsson_ipos>
+initial_prompt: "{base_prompt}>"
 commands:
   enable:
     output: 'null'
-    new_prompt: ericsson_ipos#
+    new_prompt: "{base_prompt}#"
     help: enter enable mode
-    prompt: ericsson_ipos>
+    prompt: "{base_prompt}>"
   show arp:
     output: "Context   :local                          Context id  : 0x40080001\n\
       \ ------------------------------------------------------------------\nTotal\
@@ -46,8 +46,8 @@ commands:
       \      00:20:85:ef:bb:aa   2657   ARPA  1/5 vlan-id 3911\n"
     help: execute the command "show arp"
     prompt:
-    - ericsson_ipos>
-    - ericsson_ipos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show isis adjacency:
     output: 'IS-IS Adjacenc(ies) for tag XL:
 
@@ -67,8 +67,8 @@ commands:
       '
     help: execute the command "show isis adjacency"
     prompt:
-    - ericsson_ipos>
-    - ericsson_ipos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show version:
     output: "\nEricsson IPOS Version IPOS-v20.3.1.803.142-Release\nBuilt by spradmin@ericsson\
       \ Tue Dec 15 12:49:29 CET 2020\nCopyright (C) 1998-2020, Ericsson AB. All rights\
@@ -84,54 +84,54 @@ commands:
       \ 48 minutes 41 seconds\n"
     help: execute the command "show version"
     prompt:
-    - ericsson_ipos>
-    - ericsson_ipos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   terminal length 0:
     output: null
     help: Execute the command terminal length 0. This automatically generated. Feel
       free to change it!
     prompt:
-    - ericsson_ipos>
-    - ericsson_ipos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   terminal width 512:
     output: null
     help: Execute the command terminal width 512. This automatically generated. Feel
       free to change it!
     prompt:
-    - ericsson_ipos>
-    - ericsson_ipos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show curpriv:
     output: null
     help: Execute the command show curpriv. This automatically generated. Feel free
       to change it!
     prompt:
-    - ericsson_ipos>
-    - ericsson_ipos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   set cli screen-width 511:
     output: null
     help: Execute the command set cli screen-width 511. This automatically generated.
       Feel free to change it!
     prompt:
-    - ericsson_ipos>
-    - ericsson_ipos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   terminal width 511:
     output: null
     help: Execute the command terminal width 511. This automatically generated. Feel
       free to change it!
     prompt:
-    - ericsson_ipos>
-    - ericsson_ipos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   enable clipaging:
     output: null
     help: Execute the command enable clipaging. This automatically generated. Feel
       free to change it!
     prompt:
-    - ericsson_ipos>
-    - ericsson_ipos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   login:
     output: null
     help: Execute the command login. This automatically generated. Feel free to change
       it!
     prompt:
-    - ericsson_ipos>
-    - ericsson_ipos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"

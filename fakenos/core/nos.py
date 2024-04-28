@@ -5,7 +5,7 @@ Network Operating Systems (NOS). Base class to build NOS plugins instances to us
 import logging
 from typing import Optional, List
 import importlib.util
-
+import os
 import yaml
 
 from fakenos.core.pydantic_models import ModelNosAttributes
@@ -74,7 +74,6 @@ class Nos:
         self.commands = commands or {}
         self.initial_prompt = initial_prompt
         if filename:
-            print("HOLA")
             self.from_file(filename)
         elif dict_args:
             self.from_dict(dict_args)
@@ -121,7 +120,7 @@ class Nos:
         :param data: NOS dictionary
         """
         self.name = data.get("name", self.name)
-        self.commands = data.get("commands", self.commands)
+        self.commands.update(data.get("commands", self.commands))
         self.initial_prompt = data.get("initial_prompt", self.initial_prompt)
 
     def from_yaml(self, data: str) -> None:
@@ -154,11 +153,12 @@ class Nos:
         with open(data, "r", encoding="utf-8") as f:
             self.from_dict(yaml.safe_load(f))
 
+        
     def from_module(self, data: str) -> None:
         """
-        Method to import NOS data from python file.
+        Method to import NOS data from python file or python module.
 
-        Load the .py using the recipe:
+        Loads from the .py file using the recipe:
         https://docs.python.org/3/library/importlib.html#importing-a-source-file-directly
 
         Sample Python NOS plugin file::
@@ -187,14 +187,22 @@ class Nos:
 
         :param data: OS path string to Python .py file
         """
-        spec = importlib.util.spec_from_file_location("nos_module", data)
-        module = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(module)
+        # check if data is a .py file path
+        if isinstance(data, str) and data.endswith(".py"):
+            if os.path.isfile(data):
+                spec = importlib.util.spec_from_file_location("nos_module", data)
+                module = importlib.util.module_from_spec(spec)
+                spec.loader.exec_module(module)
+            else:
+                raise FileNotFoundError(data)
+        # blindly assume it is imported python module
+        else:
+            module = data
         # source attributes from loaded .py module
         self.name = getattr(module, "name", self.name)
-        self.commands = getattr(module, "commands", self.commands)
+        self.commands.update(getattr(module, "commands", self.commands))
         self.initial_prompt = getattr(module, "INITIAL_PROMPT", self.initial_prompt)
-
+        
     def from_file(self, data: str) -> None:
         """
         Method to load NOS from YAML or Python file

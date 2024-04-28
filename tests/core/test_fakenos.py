@@ -387,6 +387,15 @@ class TestFakeNOS:
         active_threads = threading.active_count()
         assert active_threads == 1
 
+    def test_nos_load_inventory_from_py_and_yaml(self):
+        """
+        Test cisco_ios NOS loaded correctly as it has both
+        cisco_ios.py and cisco_io.yaml definitions
+        """
+        inventory = {"hosts": {"R1": {"port": 5001, "platform": "cisco_ios"}}}
+        net = FakeNOS(inventory)
+        assert len(net.nos_plugins["cisco_ios"].commands) > 6, "Not all commands loaded"
+                
 
 class TestPlatforms:
     """

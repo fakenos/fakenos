@@ -4,6 +4,7 @@ NOS module for Arista EOS
 
 import time
 
+name = "arista_eos"
 INITIAL_PROMPT = "{base_prompt}>"
 
 
@@ -26,7 +27,7 @@ def make_exit(base_prompt, current_prompt, command):
 
 
 RUNNING_CONFIGURATION = """! Command: show running-config
-! device: {{base_prompt}} (cEOSLab, EOS-4.26.0F-21792469.4260F (engineering build))
+! device: {base_prompt} (cEOSLab, EOS-4.26.0F-21792469.4260F (engineering build))
 !
 transceiver qsfp default-mode 4x10G
 !
@@ -53,7 +54,7 @@ logging host 9.9.9.9 514
 !
 logging level AAA informational
 !
-hostname {{base_prompt}}
+hostname {base_prompt}
 !
 ntp server 1.1.1.1
 ntp server 1.1.1.2
@@ -201,8 +202,8 @@ commands = {
     "do show ip int brief": {"alias": "show ip int brief", "prompt": "{base_prompt}(config)#"},
     "exit": {"output": make_exit, "help": "Leave Exec mode", "prompt": ["{base_prompt}#", "{base_prompt}(config)#"]},
     "show hostname": {
-        "output": """Hostname: {{base_prompt}}
-FQDN:     {{base_prompt}}""",
+        "output": """Hostname: {base_prompt}
+FQDN:     {base_prompt}""",
         "help": "Show the system hostname",
         "prompt": "{base_prompt}#",
     },

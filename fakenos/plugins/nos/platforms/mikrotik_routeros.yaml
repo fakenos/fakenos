@@ -1,11 +1,11 @@
 name: mikrotik_routeros
-initial_prompt: mikrotik_routeros>
+initial_prompt: "{base_prompt}>"
 commands:
   enable:
     output: null
-    new_prompt: mikrotik_routeros#
+    new_prompt: "{base_prompt}#"
     help: enter enable mode
-    prompt: mikrotik_routeros>
+    prompt: "{base_prompt}>"
   ip firewall filter print all without-paging:
     output: "Flags: X - disabled, I - invalid, D - dynamic \n 0    ;;; defconf: accept
       established,related,untracked\n      chain=input action=accept connection-state=established,related,untracked
@@ -41,16 +41,16 @@ commands:
       in-interface=all-ethernet log-prefix=\"\"\n"
     help: execute the command "ip firewall filter print all without-paging"
     prompt:
-    - mikrotik_routeros>
-    - mikrotik_routeros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   system clock print:
     output: "                  time: 10:00:47\n                  date: jul/21/2023\n\
       \  time-zone-autodetect: yes\n        time-zone-name: Europe/Moscow\n      \
       \      gmt-offset: +03:00\n            dst-active: no"
     help: execute the command "system clock print"
     prompt:
-    - mikrotik_routeros>
-    - mikrotik_routeros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   ip route print terse:
     output: " 0 ADS  dst-address=::/0 gateway=pppoe-out1 gateway-status=pppoe-out1
       reachable distance=100 scope=30 target-scope=10 \n 1 ADC  dst-address=2a05:c100:7::/64
@@ -63,8 +63,8 @@ commands:
       unreachable distance=24 scope=30 target-scope=10 \n"
     help: execute the command "ip route print terse"
     prompt:
-    - mikrotik_routeros>
-    - mikrotik_routeros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   ip dhcp-server lease print without-paging:
     output: "Flags: X - disabled, R - radius, D - dynamic, B - blocked \n #   ADDRESS\
       \                                 MAC-ADDRESS       HOST-NAME              \
@@ -79,14 +79,14 @@ commands:
       \      \n"
     help: execute the command "ip dhcp-server lease print without-paging"
     prompt:
-    - mikrotik_routeros>
-    - mikrotik_routeros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   interface ethernet poe print without-paging:
     output: "bad command name po (line 1 column 7)\n"
     help: execute the command "interface ethernet poe print without-paging"
     prompt:
-    - mikrotik_routeros>
-    - mikrotik_routeros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   interface ethernet print:
     output: "Flags: X - disabled, R - running, S - slave\n #    NAME     MTU MAC-ADDRESS\
       \       ARP             SWITCH\n 0    ether1  1500 12:34:56:78:90:AA enabled\
@@ -96,8 +96,8 @@ commands:
       enabled         switch1\n"
     help: execute the command "interface ethernet print"
     prompt:
-    - mikrotik_routeros>
-    - mikrotik_routeros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   system routerboard print:
     output: "       routerboard: yes\n        board-name: hEX PoE lite\n         \
       \    model: RouterBOARD 750UP r2\n     serial-number: 8B0208F4D5F9\n     firmware-type:
@@ -105,16 +105,16 @@ commands:
       6.48.6\n"
     help: execute the command "system routerboard print"
     prompt:
-    - mikrotik_routeros>
-    - mikrotik_routeros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   user active print:
     output: "Flags: R - radius, M - by-romon\n #    WHEN                 NAME    \
       \   ADDRESS         VIA\n 0    jul/21/2023 09:38:39 user1      1.2.3.4     \
       \    ssh\n 1    jul/21/2023 11:00:32 user2      1.2.3.5         telnet\n"
     help: execute the command "user active print"
     prompt:
-    - mikrotik_routeros>
-    - mikrotik_routeros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   ip firewall address-list print terse:
     output: " 0   list=Eqinoxe address=185.48.253.0/27 creation-time=jan/01/2002 01:00:25
       \n 1   list=Eqinoxe address=185.48.254.0/28 creation-time=jan/01/2002 01:00:25
@@ -135,8 +135,8 @@ commands:
       13:59:33\n"
     help: execute the command "ip firewall address-list print terse"
     prompt:
-    - mikrotik_routeros>
-    - mikrotik_routeros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   log print detail without-paging:
     output: " time=jul/19 14:27:01 topics=script,info message=\"Ping testA: Packets
       Sent = 18, Packets Loss = 10 % \"\n\n time=jul/19 16:27:01 topics=script,info
@@ -150,8 +150,8 @@ commands:
       dhcp-client on lte1 got IP address 192.168.1.2\"\n"
     help: execute the command "log print detail without-paging"
     prompt:
-    - mikrotik_routeros>
-    - mikrotik_routeros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   ip firewall nat print all without-paging:
     output: "Flags: X - disabled, I - invalid, D - dynamic \n17:20:06 echo: system,error,critical
       login failure for user admin from 65.160.140.13 via ssh\n 0    ;;; dmz-1: masquerade\n\
@@ -167,8 +167,8 @@ commands:
       \" ipsec-policy=out,ipsec \n"
     help: execute the command "ip firewall nat print all without-paging"
     prompt:
-    - mikrotik_routeros>
-    - mikrotik_routeros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   routing bgp peer print status without-paging:
     output: "Flags: X - disabled, E - established\n 0 E name=\"SRV-R1\" instance=default
       remote-address=1.2.3.4 remote-as=8491 tcp-md5-key=\"\" nexthop-choice=default
@@ -188,8 +188,8 @@ commands:
       refresh-capability=yes as4-capability=yes state=established\n"
     help: execute the command "routing bgp peer print status without-paging"
     prompt:
-    - mikrotik_routeros>
-    - mikrotik_routeros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   ipv6 neighbor print without-paging:
     output: "Flags: R - router \n 0   address=ff02::5 interface=main mac-address=33:33:00:00:00:05
       status=\"noarp\" \n\n 1   address=ff02::1 interface=main mac-address=33:33:00:00:00:01
@@ -198,8 +198,8 @@ commands:
       failed\"\n"
     help: execute the command "ipv6 neighbor print without-paging"
     prompt:
-    - mikrotik_routeros>
-    - mikrotik_routeros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   ip address print:
     output: "Flags: X - disabled, I - invalid, D - dynamic\n #   ADDRESS         \
       \   NETWORK         INTERFACE\n 0   10.156.1.229/30    10.156.1.228    ether4_CiscoPhone3\n
@@ -207,16 +207,16 @@ commands:
       \    10.160.1.228    ether2_BOX\n 3 XI 10.100.3.200/27    10.100.3.192    bridge70\n"
     help: execute the command "ip address print"
     prompt:
-    - mikrotik_routeros>
-    - mikrotik_routeros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   interface ethernet monitor name once:
     output: "                     name: ether30\n                    status: no-link\n\
       \          auto-negotiation: done\n               advertising: 10M-half,10M-full,100M-half,100M-full,1000M-half,1000M-full\n\
       \  link-partner-advertising:\n"
     help: execute the command "interface ethernet monitor name once"
     prompt:
-    - mikrotik_routeros>
-    - mikrotik_routeros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   snmp community print without-paging:
     output: "17:20:06 echo: system,error,critical login failure for user admin from
       65.160.140.13 via ssh\nFlags: * - default, X - disabled \n #    NAME       \
@@ -229,8 +229,8 @@ commands:
       \       no          \n"
     help: execute the command "snmp community print without-paging"
     prompt:
-    - mikrotik_routeros>
-    - mikrotik_routeros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   ip arp print without-paging:
     output: "Flags: X - disabled, I - invalid, H - DHCP, D - dynamic, P - published,
       C - complete \n #    ADDRESS         MAC-ADDRESS       INTERFACE           \
@@ -245,8 +245,8 @@ commands:
       \      \n"
     help: execute the command "ip arp print without-paging"
     prompt:
-    - mikrotik_routeros>
-    - mikrotik_routeros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   ip address export verbose:
     output: "# jul/21/2023 09:42:42 by RouterOS 6.48.6\n# software id = 1234-ABCD\n
       #\n# model = RB750UPr2\n# serial number = AB12345CD789\n/ip address\nadd address=10.159.1.159/30
@@ -254,8 +254,8 @@ commands:
       comment=\"test comment\" disabled=yes interface=eth3_vlan1 network=10.80.90.0\n"
     help: execute the command "ip address export verbose"
     prompt:
-    - mikrotik_routeros>
-    - mikrotik_routeros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   routing ospf neighbor print terse without-paging:
     output: " 0 instance=default router-id=1.2.3.4 address=1.2.3.58 interface=vlan1
       priority=128 dr-address=0.0.0.0 backup-dr-address=0.0.0.0 state=Full state-changes=5
@@ -265,8 +265,8 @@ commands:
       db-summaries=0\n"
     help: execute the command "routing ospf neighbor print terse without-paging"
     prompt:
-    - mikrotik_routeros>
-    - mikrotik_routeros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   interface print terse without-paging:
     output: " 0 D   name=ether1 default-name=ether1 type=ether mtu=1500 actual-mtu=1500
       l2mtu=1598 max-l2mtu=2028 mac-address=12:34:56:78:90:AA last-link-up-time=aug/16/1970
@@ -291,8 +291,8 @@ commands:
       01:07:09 link-downs=7\n"
     help: execute the command "interface print terse without-paging"
     prompt:
-    - mikrotik_routeros>
-    - mikrotik_routeros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   ping:
     output: "  SEQ HOST                                     SIZE TTL TIME  STATUS\n\
       \    0 8.8.8.8                                    56  64 157ms\n    1 8.8.8.8\
@@ -302,5 +302,5 @@ commands:
       avg-rtt=67ms max-rtt=157ms\n"
     help: execute the command "ping"
     prompt:
-    - mikrotik_routeros>
-    - mikrotik_routeros#
+    - "{base_prompt}>"
+    - "{base_prompt}#"

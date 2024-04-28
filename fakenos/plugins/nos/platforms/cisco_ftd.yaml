@@ -1,18 +1,18 @@
 name: cisco_ftd
-initial_prompt: cisco_ftd>
+initial_prompt: "{base_prompt}>"
 commands:
   enable:
     output: 'null'
-    new_prompt: cisco_ftd#
+    new_prompt: "{base_prompt}#"
     help: enter enable mode
-    prompt: cisco_ftd>
+    prompt: "{base_prompt}>"
   show arp:
     output: "        outside 10.86.194.61 0011.2094.1d2b 2\n        outside 10.86.194.1\
       \ 001a.300c.8000 -\n        outside 10.86.195.2 00d0.02a8.440a alias\n"
     help: execute the command "show arp"
     prompt:
-    - cisco_ftd>
-    - cisco_ftd#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show vpn-sessiondb anyconnect:
     output: "Session Type: AnyConnect\n\nUsername     : USER                 Index\
       \        : 7033\nAssigned IP  : 10.0.0.1             Public IP    : 1.1.1.1\n\
@@ -27,8 +27,8 @@ commands:
       \                 Tunnel Zone  : 0\n"
     help: execute the command "show vpn-sessiondb anyconnect"
     prompt:
-    - cisco_ftd>
-    - cisco_ftd#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   ping:
     output: 'Type escape sequence to abort.
 
@@ -41,12 +41,12 @@ commands:
       '
     help: execute the command "ping"
     prompt:
-    - cisco_ftd>
-    - cisco_ftd#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   enable clipaging:
     output: null
     help: Execute the command enable clipaging. This automatically generated. Feel
       free to change it!
     prompt:
-    - cisco_ftd>
-    - cisco_ftd#
+    - "{base_prompt}>"
+    - "{base_prompt}#"

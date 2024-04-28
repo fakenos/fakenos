@@ -1,23 +1,23 @@
 name: extreme_exos
-initial_prompt: extreme_exos>
+initial_prompt: "{base_prompt}>"
 commands:
   enable:
     output: null
-    new_prompt: extreme_exos#
+    new_prompt: "{base_prompt}#"
     help: enter enable mode
-    prompt: extreme_exos>
+    prompt: "{base_prompt}>"
   disable cli prompting:
     output: null
     help: set the terminal width to maximum
     prompt:
-    - extreme_exos>
-    - extreme_exos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   ex:
     output: true
     help: exit the terminal
     prompt:
-    - extreme_exos>
-    - extreme_exos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ipconfig:
     output: "       Use Redirects : Disabled\n       IpOption LSRR : Enabled\n   \
       \    IpOption SSRR : Enabled\n         IpOption RR : Enabled\n         IpOption\
@@ -42,8 +42,8 @@ commands:
       \ Enabled\n"
     help: execute the command "show ipconfig"
     prompt:
-    - extreme_exos>
-    - extreme_exos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ports description:
     output: 'Port   Display String        Description String
 
@@ -150,8 +150,8 @@ commands:
       '
     help: execute the command "show ports description"
     prompt:
-    - extreme_exos>
-    - extreme_exos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ports information detail:
     output: "Port:\t1\n\tDescription String: \"AggregateLink\"\n\tVirtual-router:\t\
       \ VR-Default\n\tType:\t\tNONE\n\tRandom Early drop:\tUnsupported\n\tAdmin state:\t\
@@ -219,8 +219,8 @@ commands:
       \ VLANs:    \tDisabled\n"
     help: execute the command "show ports information detail"
     prompt:
-    - extreme_exos>
-    - extreme_exos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ports information:
     output: "Port      Flags               Link      ELSM Link Num Num  Num   Jumbo\
       \ QOS     Load\n                              State     /OAM UPS  STP VLAN Proto\
@@ -289,8 +289,8 @@ commands:
       \ Flow Control Enabled\n"
     help: execute the command "show ports information"
     prompt:
-    - extreme_exos>
-    - extreme_exos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show sharing:
     output: "Load Sharing Monitor\nConfig    Current    Agg       Ld Share    Ld Share\
       \  Agg   Link    Link Up\nMaster    Master     Control   Algorithm   Group \
@@ -313,8 +313,8 @@ commands:
       \ trunks: 4\n"
     help: execute the command "show sharing"
     prompt:
-    - extreme_exos>
-    - extreme_exos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show vlan description:
     output: "-------------------------------------------------------------------------------\n\
       Name            VID  Description\n-------------------------------------------------------------------------------\n\
@@ -338,12 +338,12 @@ commands:
       \ of VLAN(s) : 3469\n"
     help: execute the command "show vlan description"
     prompt:
-    - extreme_exos>
-    - extreme_exos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   disable clipaging:
     output: null
     help: Execute the command disable clipaging. This automatically generated. Feel
       free to change it!
     prompt:
-    - extreme_exos>
-    - extreme_exos#
+    - "{base_prompt}>"
+    - "{base_prompt}#"

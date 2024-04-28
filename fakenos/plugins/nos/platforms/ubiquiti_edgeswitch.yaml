@@ -1,15 +1,17 @@
+name: ubiquiti_edgeswitch
+initial_prompt: "{base_prompt}>"
 commands:
   enable:
     help: enter enable mode
-    new_prompt: ubiquiti_edgeswitch#
+    new_prompt: "{base_prompt}#"
     output: null
-    prompt: ubiquiti_edgeswitch>
+    prompt: "{base_prompt}>"
   ex:
     help: exit the terminal
     output: true
     prompt:
-    - ubiquiti_edgeswitch>
-    - ubiquiti_edgeswitch#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show arp:
     help: execute the command "show arp"
     output: "\nAge Time (seconds)............................. 300\nResponse Time\
@@ -24,8 +26,8 @@ commands:
       \     78:8A:20:44:02:7F  4/1             Local         n/a\n172.16.216.33  \
       \  00:00:00:00:00:00  4/1             Dynamic    0h  0m  5s\n"
     prompt:
-    - ubiquiti_edgeswitch>
-    - ubiquiti_edgeswitch#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show version:
     help: execute the command "show version"
     output: "r\n\nSwitch: 1\n\nSystem Description............................. EdgeSwitch\
@@ -35,8 +37,8 @@ commands:
       Burned In MAC Address.......................... 78:8A:20:BE:0E:00\nSoftware\
       \ Version............................... 1.8.0.5106045\n"
     prompt:
-    - ubiquiti_edgeswitch>
-    - ubiquiti_edgeswitch#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show vlan:
     help: execute the command "show vlan"
     output: 'VLAN ID VLAN Name                        VLAN Type
@@ -55,20 +57,18 @@ commands:
 
       '
     prompt:
-    - ubiquiti_edgeswitch>
-    - ubiquiti_edgeswitch#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   terminal length 0:
     help: set the terminal width to the maximum
     output: null
     prompt:
-    - ubiquiti_edgeswitch>
-    - ubiquiti_edgeswitch#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   terminal width 511:
     output: null
     help: Execute the command terminal width 511. This automatically generated. Feel
       free to change it!
     prompt:
-    - ubiquiti_edgeswitch>
-    - ubiquiti_edgeswitch#
-initial_prompt: ubiquiti_edgeswitch>
-name: ubiquiti_edgeswitch
+    - "{base_prompt}>"
+    - "{base_prompt}#"

@@ -1,11 +1,11 @@
 name: brocade_netiron
-initial_prompt: brocade_netiron>
+initial_prompt: "{base_prompt}>"
 commands:
   enable:
     output: 'null'
-    new_prompt: brocade_netiron#
+    new_prompt: "{base_prompt}#"
     help: enter enable mode
-    prompt: brocade_netiron>
+    prompt: "{base_prompt}>"
   show interfaces:
     output: "GigabitEthernet1/1 is up, line protocol is up \n  STP Root Guard is disabled,\
       \ STP BPDU Guard is disabled\n  Hardware is GigabitEthernet, address is 0024.38a5.1c00\
@@ -126,8 +126,8 @@ commands:
       \ LOOPBACK"
     help: execute the command "show interfaces"
     prompt:
-    - brocade_netiron>
-    - brocade_netiron#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show lldp neighbors detail:
     output: "Total number of LLDP neighbors on all ports: 38\nLocal port: 1/1\n  Neighbor:\
       \ 0012.f2f0.2377, TTL 101 seconds\n    + Chassis ID (MAC address): 0012.f2f0.2360\n\
@@ -179,8 +179,8 @@ commands:
       \ port, power not supported\n"
     help: execute the command "show lldp neighbors detail"
     prompt:
-    - brocade_netiron>
-    - brocade_netiron#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show running-config vlan:
     output: "no spanning-tree\n!\nno dual-mode-default-vlan\n!\n!\nvlan 1 name DEFAULT-VLAN\
       \ \n no untagged e 1/1 e 1/4 to 1/8 e 1/12 e 1/17 e 2/1 e 2/4 to 2/8 e 2/12\
@@ -212,8 +212,8 @@ commands:
       \ e 2/10 \n router-interface ve 158\n"
     help: execute the command "show running-config vlan"
     prompt:
-    - brocade_netiron>
-    - brocade_netiron#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show lag brief:
     output: "Total number of LAGs\t: 12, 100/40g : 0\nTotal number of deployed LAGs\t\
       \ : 12, 100/40g : 0\nTotal number of trunks created\t: 12 (116 available), 100/40g\
@@ -234,8 +234,8 @@ commands:
       \                                     o 2/18\n"
     help: execute the command "show lag brief"
     prompt:
-    - brocade_netiron>
-    - brocade_netiron#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show interfaces brief:
     output: "\nPort   Link     Port-State   Dupl Speed Trunk Tag Priori MAC      \
       \      Name           Type              \n1/1    Up       Forward      Full\
@@ -261,8 +261,8 @@ commands:
       \            default-port      "
     help: execute the command "show interfaces brief"
     prompt:
-    - brocade_netiron>
-    - brocade_netiron#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show topo:
     output: "VLAN 2 - STP instance 0\n--------------------------------------------------------------------\n\
       \ STP Bridge Parameters:\n\nBridge           Bridge Bridge Bridge Hold  LastTopology\
@@ -400,8 +400,8 @@ commands:
       \ e 3/1 e 3/3 e 4/1 e 4/3 \nFree Ports :\n"
     help: execute the command "show topo"
     prompt:
-    - brocade_netiron>
-    - brocade_netiron#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show monitor actual:
     output: "Monitored Port 1/10\n  Input traffic mirrored to:  1/13\n  Output traffic\
       \ mirrored to:  1/13\nMonitored Port 1/11\n  Input traffic mirrored to:  1/13\n\
@@ -410,8 +410,8 @@ commands:
       \ traffic mirrored to:  1/13\n  Output traffic mirrored to:  1/13\n"
     help: execute the command "show monitor actual"
     prompt:
-    - brocade_netiron>
-    - brocade_netiron#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show span:
     output: "\nVLAN 2 - STP instance 0\n--------------------------------------------------------------------\n\
       \ STP Bridge Parameters:\n\nBridge           Bridge Bridge Bridge Hold  LastTopology\
@@ -431,8 +431,8 @@ commands:
       \ \n2/17  128  4         FORWARDING 0         8000002438a51c00 8000002438a51c00 "
     help: execute the command "show span"
     prompt:
-    - brocade_netiron>
-    - brocade_netiron#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show metro:
     output: "\nMetro Ring 10 - VLAN Type REGULAR\n==============\nRing       State\
       \      Ring       Master     Topo       Hello      Prefwing\nid            \
@@ -525,8 +525,8 @@ commands:
       7               0               0          0          33\n"
     help: execute the command "show metro"
     prompt:
-    - brocade_netiron>
-    - brocade_netiron#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show running-config interface:
     output: "interface ve 2801\n ip address 10.92.176.219/29\n ip address 10.92.191.67/26\n\
       \ ip address 10.201.214.35/28\n ip address 10.231.184.211/28\n ip address 10.251.229.83/28\n\
@@ -550,12 +550,12 @@ commands:
       \ ve 2802\n"
     help: execute the command "show running-config interface"
     prompt:
-    - brocade_netiron>
-    - brocade_netiron#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   skip-page-display:
     output: null
     help: Execute the command skip-page-display. This automatically generated. Feel
       free to change it!
     prompt:
-    - brocade_netiron>
-    - brocade_netiron#
+    - "{base_prompt}>"
+    - "{base_prompt}#"

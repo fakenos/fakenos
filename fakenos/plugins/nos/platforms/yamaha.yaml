@@ -1,17 +1,17 @@
 name: yamaha
-initial_prompt: yamaha>
+initial_prompt: "{base_prompt}>"
 commands:
   enable:
     output: null
-    new_prompt: yamaha#
+    new_prompt: "{base_prompt}#"
     help: enter enable mode
-    prompt: yamaha>
+    prompt: "{base_prompt}>"
   console lines infinity:
     output: true
     help: set the terminal width to maximum
     prompt:
-    - yamaha>
-    - yamaha#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show environment:
     output: "RTX1200 BootROM Ver.1.01\nRTX1200 Rev.10.01.71 (Thu Sep 29 15:08:40 2016)\n\
       \  main:  RTX1200 ver=c0 serial=D12345678 MAC-Address=00:a0:de:aa:bb:11 MAC-Addr\n\
@@ -24,8 +24,8 @@ commands:
       \ 36"
     help: execute the command "show environment"
     prompt:
-    - yamaha>
-    - yamaha#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
   show ip route:
     output: "Destination         Gateway          Interface       Kind  Additional\
       \ Info.\ndefault             -                    PP[01]    static  \n10.0.0.0/8\
@@ -39,5 +39,5 @@ commands:
       \             PP[01] temporary "
     help: execute the command "show ip route"
     prompt:
-    - yamaha>
-    - yamaha#
+    - "{base_prompt}>"
+    - "{base_prompt}#"
