@@ -4,8 +4,10 @@ NOS module for Cisco IOS
 
 import time
 
-name = "cisco_ios"
-INITIAL_PROMPT = "{base_prompt}>"
+NAME: str = "cisco_ios"
+INITIAL_PROMPT: str = "{base_prompt}>"
+ENABLE_PROMPT: str = "{base_prompt}#"
+CONFIG_PROMPT: str = "{base_prompt}(config)#"
 
 
 # pylint: disable=unused-argument
@@ -19,7 +21,7 @@ service timestamps debug datetime msec
 service timestamps log datetime msec
 no service password-encryption
 !
-hostname {base_prompt}
+hostname {{base_prompt}}
 !
 boot-start-marker
 boot-end-marker
@@ -247,7 +249,7 @@ software.
 
 
 ROM: IOS-XE ROMMON
-{base_prompt} uptime is 1 day, 17 hours, 32 minutes
+{{base_prompt}} uptime is 1 day, 17 hours, 32 minutes
 Uptime for this control processor is 1 day, 17 hours, 33 minutes
 System returned to ROM by reload
 System image file is "bootflash:packages.conf"
@@ -294,38 +296,38 @@ Configuration register is 0x2102
 commands = {
     "enable": {
         "output": None,
-        "new_prompt": "{base_prompt}#",
+        "new_prompt": ENABLE_PROMPT,
         "help": "enter exec prompt",
         "prompt": INITIAL_PROMPT,
     },
     "show clock": {
         "output": make_show_clock,
         "help": "Display the system clock",
-        "prompt": [INITIAL_PROMPT, "{base_prompt}#"],
+        "prompt": [INITIAL_PROMPT, ENABLE_PROMPT],
     },
     "show running-config": {
         "output": RUNNING_CONFIGURATION,
         "help": "Current operating configuration",
-        "prompt": "{base_prompt}#",
+        "prompt": ENABLE_PROMPT,
     },
     "show version": {
         "output": SHOW_VERSION,
         "help": "System hardware and software status",
-        "prompt": "{base_prompt}#",
+        "prompt": ENABLE_PROMPT,
     },
     "_default_": {
         "output": "% Invalid input detected at '^' marker.",
         "help": "Output to print for unknown commands",
-        "prompt": [INITIAL_PROMPT, "{base_prompt}#"],
+        "prompt": [INITIAL_PROMPT, ENABLE_PROMPT],
     },
     "terminal width 511": {
         "output": "",
         "help": "Set terminal width to 511",
-        "prompt": [INITIAL_PROMPT, "{base_prompt}#"],
+        "prompt": [INITIAL_PROMPT, ENABLE_PROMPT],
     },
     "terminal length 0": {
         "output": "",
         "help": "Set terminal length to 0",
-        "prompt": [INITIAL_PROMPT, "{base_prompt}#"],
+        "prompt": [INITIAL_PROMPT, ENABLE_PROMPT],
     },
 }

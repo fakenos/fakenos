@@ -4,8 +4,11 @@ NOS module for Arista EOS
 
 import time
 
-name = "arista_eos"
-INITIAL_PROMPT = "{base_prompt}>"
+NAME: str = "arista_eos"
+INITIAL_PROMPT: str = "{base_prompt}>"
+ENABLE_PROMPT: str = "{base_prompt}#"
+CONFIG_PROMPT: str = "{base_prompt}(config)#"
+
 
 
 # pylint: disable=unused-argument
@@ -19,15 +22,15 @@ Clock source: local"""
 # pylint: disable=unused-argument
 def make_exit(base_prompt, current_prompt, command):
     """Exit the current level of the CLI."""
-    if current_prompt in [f"{base_prompt}>", f"{base_prompt}#"]:
+    if current_prompt in [INITIAL_PROMPT, ENABLE_PROMPT]:
         return True  # close session
-    if current_prompt in [f"{base_prompt}(config)#"]:
-        return {"output": "", "new_prompt": "{base_prompt}#"}  # return to exec prompt
+    if current_prompt in [CONFIG_PROMPT]:
+        return {"output": "", "new_prompt": ENABLE_PROMPT}  # return to exec prompt
     raise RuntimeError(f"make_exit does not know how to handle '{current_prompt}' prompt")
 
 
 RUNNING_CONFIGURATION = """! Command: show running-config
-! device: {base_prompt} (cEOSLab, EOS-4.26.0F-21792469.4260F (engineering build))
+! device: {{base_prompt}} (cEOSLab, EOS-4.26.0F-21792469.4260F (engineering build))
 !
 transceiver qsfp default-mode 4x10G
 !
@@ -54,7 +57,7 @@ logging host 9.9.9.9 514
 !
 logging level AAA informational
 !
-hostname {base_prompt}
+hostname {{base_prompt}}
 !
 ntp server 1.1.1.1
 ntp server 1.1.1.2
@@ -143,34 +146,34 @@ Loopback3       1.2.3.4/24        up           up                65535
 commands = {
     "enable": {
         "output": None,
-        "new_prompt": "{base_prompt}#",
+        "new_prompt": ENABLE_PROMPT,
         "help": "Enable commands for a specified privilege level",
         "prompt": INITIAL_PROMPT,
     },
     "show clock": {
         "output": make_show_clock,
         "help": "System time",
-        "prompt": [INITIAL_PROMPT, "{base_prompt}#"],
+        "prompt": [INITIAL_PROMPT, ENABLE_PROMPT],
     },
     "show running-config": {
         "output": RUNNING_CONFIGURATION,
         "help": "System running configuration",
-        "prompt": "{base_prompt}#",
+        "prompt": ENABLE_PROMPT,
     },
     "show version": {
         "output": SHOW_VERSION,
         "help": "Software and hardware versions",
-        "prompt": "{base_prompt}#",
+        "prompt": ENABLE_PROMPT,
     },
     "_default_": {
         "output": "% Invalid input",
         "help": "Output to print for unknown commands",
-        "prompt": ["{base_prompt}#", "{base_prompt}>"],
+        "prompt": [ENABLE_PROMPT, INITIAL_PROMPT],
     },
     "terminal width 511": {
         "output": "Width set to 511 columns.",
         "help": "Configure the terminal width to 511",
-        "prompt": ["{base_prompt}#", "{base_prompt}>"],
+        "prompt": [ENABLE_PROMPT, INITIAL_PROMPT],
     },
     "term width 0": {
         "alias": "terminal width 511",
@@ -178,40 +181,40 @@ commands = {
     "terminal length 0": {
         "output": "Pagination disabled.",
         "help": "Configure the pagination length to 0",
-        "prompt": ["{base_prompt}#", "{base_prompt}>"],
+        "prompt": [ENABLE_PROMPT, INITIAL_PROMPT],
     },
     "term length 0": {"alias": "terminal length 0"},
     "show ip int brief": {
         "output": SHOW_IP_INT_BR,
         "help": "Condensed output",
-        "prompt": ["{base_prompt}#", "{base_prompt}>"],
+        "prompt": [ENABLE_PROMPT, INITIAL_PROMPT],
     },
     "show ip interface brief": {
         "output": SHOW_IP_INT_BR,
         "help": "Condensed output",
-        "prompt": ["{base_prompt}#", "{base_prompt}>"],
+        "prompt": [ENABLE_PROMPT, INITIAL_PROMPT],
     },
     "conf t": {
-        "prompt": "{base_prompt}#",
+        "prompt": ENABLE_PROMPT,
         "output": None,
-        "new_prompt": "{base_prompt}(config)#",
+        "new_prompt": CONFIG_PROMPT,
         "help": "Config mode",
     },
     "config term": {"alias": "conf t"},
     "configure terminal": {"alias": "conf t"},
-    "do show ip int brief": {"alias": "show ip int brief", "prompt": "{base_prompt}(config)#"},
-    "exit": {"output": make_exit, "help": "Leave Exec mode", "prompt": ["{base_prompt}#", "{base_prompt}(config)#"]},
+    "do show ip int brief": {"alias": "show ip int brief", "prompt": CONFIG_PROMPT},
+    "exit": {"output": make_exit, "help": "Leave Exec mode", "prompt": [ENABLE_PROMPT, CONFIG_PROMPT]},
     "show hostname": {
-        "output": """Hostname: {base_prompt}
-FQDN:     {base_prompt}""",
+        "output": """Hostname: {{base_prompt}}
+FQDN:     {{base_prompt}}""",
         "help": "Show the system hostname",
-        "prompt": "{base_prompt}#",
+        "prompt": ENABLE_PROMPT,
     },
-    "no logging console": {"output": "", "help": "Set console logging parameters", "prompt": "{base_prompt}(config)#"},
+    "no logging console": {"output": "", "help": "Set console logging parameters", "prompt": CONFIG_PROMPT},
     "end": {
         "output": "",
         "help": "Leave config mode",
-        "new_prompt": "{base_prompt}#",
-        "prompt": "{base_prompt}(config)#",
+        "new_prompt": ENABLE_PROMPT,
+        "prompt": CONFIG_PROMPT,
     },
 }
