@@ -26,6 +26,7 @@ The package is currently available in PyPI, so you can install it using pip:
 pip install fakenos
 ```
 
+
 ## Usage
 This is sample example in which we simulate two devices, one running Cisco IOS 
 and another running Huawei SmartAX. To run it, create `inventory.yaml` file with
@@ -76,6 +77,23 @@ And here are some commands :computer: you can try:
     - `display version`
     - `display board`
     - `display sysman service state`
+
+## CLI Usage
+FakeNOS comes with a CLI tool that allows you to start the simulation from the
+command line. You can try a predefined example by running:
+```bash
+fakenos
+```
+
+In this case 3 devices will be created:
+- Cisco IOS device with username `user` and password `user` on port `6000`
+- Huawei SmartAX device with username `user` and password `user` on port `6001`
+- Arista EOS device with username `user` and password `user` on port `6002`
+
+You can also specify the inventory file to use:
+```bash
+fakenos --inventory inventory.yaml
+```
 
 
 [github-discussions-link]:     https://github.com/dmulyalin/fakenos/discussions

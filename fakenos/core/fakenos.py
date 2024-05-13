@@ -40,8 +40,9 @@ default_inventory = {
         "nos": {"plugin": "cisco_ios", "configuration": {}},
     },
     "hosts": {
-        "router0": {"port": 6000, "platform": "cisco_ios"},
-        "router1": {"port": 6001, "platform": "arista_eos"}
+        "router_cisco_ios": {"port": 6000, "platform": "cisco_ios"},
+        "router_huawei_smartax": {"port": 6001, "platform": "huawei_smartax"},
+        "router_arista_eos": {"port": 6002, "platform": "arista_eos"}
     },
 }
 
@@ -248,6 +249,8 @@ class FakeNOS:
         hosts: List[str] = self._get_hosts_as_list(hosts)
         self._execute_function_over_hosts(hosts, "start", host_running=False)
         log.info("The following devices has been initiated: %s", [host.name for host in hosts])
+        for host in hosts:
+            log.info("Device %s is running on port %s", host.name, host.port)
 
     def stop(self, hosts: Union[str, List[str]] = None) -> None:
         """
