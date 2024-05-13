@@ -101,6 +101,7 @@ nav:
     - Tasks: development/tasks.md
     - Creating a new platform: development/creating_new_platforms.md
     - Creating NOS Plugin: development/creating_nos_plugin.md
+    - Github Actions: development/github_actions.md
   - Collaborators:
     - Collaborators: collaborators.md
   - API Reference:
