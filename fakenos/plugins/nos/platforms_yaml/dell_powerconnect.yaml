@@ -1,0 +1,120 @@
+name: dell_powerconnect
+initial_prompt: "{base_prompt}>"
+enable_prompt: "{base_prompt}#"
+config_prompt: "{base_prompt}(config)#"
+commands:
+  enable:
+    output: 'null'
+    new_prompt: "{base_prompt}#"
+    help: enter enable mode
+    prompt: "{base_prompt}>"
+  show interfaces status:
+    output: "Flow Link          Back   Mdix\nPort     Type         Duplex  Speed Neg\
+      \      ctrl State       Pressure Mode\n-------- ------------ ------  ----- --------
+      ---- ----------- -------- -------\ng1       1G-Copper    Full    1000  Enabled\
+      \  Off  Up          Disabled On\ng2       1G-Copper    Full    1000  Enabled\
+      \  Off  Up          Disabled On\ng3       1G-Copper    Full    1000  Enabled\
+      \  Off  Up          Disabled On\ng4       1G-Copper    Full    1000  Enabled\
+      \  Off  Up          Disabled On\ng5       1G-Copper    Full    1000  Enabled\
+      \  Off  Up          Disabled On\ng6       1G-Copper    Full    100   Enabled\
+      \  Off  Up          Disabled On\ng7       1G-Copper    Full    100   Enabled\
+      \  Off  Up          Disabled On\ng8       1G-Copper    Full    1000  Enabled\
+      \  Off  Up          Disabled On\ng9       1G-Copper    Full    1000  Enabled\
+      \  Off  Up          Disabled On\ng10      1G-Copper    Full    1000  Enabled\
+      \  Off  Up          Disabled Off\ng11      1G-Copper    Full    1000  Enabled\
+      \  Off  Up          Disabled On\ng12      1G-Copper    Full    1000  Enabled\
+      \  Off  Up          Disabled On\ng13      1G-Copper    Full    1000  Enabled\
+      \  Off  Up          Disabled On\ng14      1G-Copper    Full    1000  Enabled\
+      \  Off  Up          Disabled On\ng15      1G-Copper    Full    1000  Enabled\
+      \  Off  Up          Disabled On\ng16      1G-Copper    Full    1000  Enabled\
+      \  Off  Up          Disabled On\ng17      1G-Copper    Full    1000  Enabled\
+      \  Off  Up          Disabled Off\ng18      1G-Copper    Full    1000  Enabled\
+      \  Off  Up          Disabled On\ng19      1G-Copper    Full    1000  Enabled\
+      \  Off  Up          Disabled On\ng20      1G-Copper    Full    1000  Enabled\
+      \  Off  Up          Disabled On\ng21      1G-Copper    Full    100   Enabled\
+      \  Off  Up          Disabled On\ng22      1G-Copper    Full    100   Enabled\
+      \  Off  Up          Disabled On\ng23      1G-Copper    Full    1000  Enabled\
+      \  Off  Up          Disabled On\ng24      1G-Copper    Full    1000  Enabled\
+      \  Off  Up          Disabled Off\ng25      1G-Copper    Full    1000  Enabled\
+      \  Off  Up          Disabled On\ng26      1G-Copper    Full    1000  Enabled\
+      \  Off  Up          Disabled On\ng27      1G-Copper    Full    1000  Enabled\
+      \  Off  Up          Disabled On\ng28      1G-Copper    Full    100   Enabled\
+      \  Off  Up          Disabled On\ng29      1G-Copper    Full    100   Enabled\
+      \  Off  Up          Disabled On\ng30      1G-Copper    Full    1000  Enabled\
+      \  Off  Up          Disabled On\ng31      1G-Copper    Full    1000  Enabled\
+      \  Off  Up          Disabled Off\ng32      1G-Copper    Full    1000  Enabled\
+      \  Off  Up          Disabled Off\ng33      1G-Copper    Full    100   Enabled\
+      \  Off  Up          Disabled On\ng34      1G-Copper    Full    100   Enabled\
+      \  Off  Up          Disabled On\ng35      1G-Copper    Full    100   Enabled\
+      \  Off  Up          Disabled On\ng36      1G-Copper      --      --     -- \
+      \    --  Down           --     --\ng37      1G-Copper    Full    1000  Enabled\
+      \  Off  Up          Disabled On\ng38      1G-Copper    Full    1000  Enabled\
+      \  Off  Up          Disabled On\ng39      1G-Copper    Full    100   Enabled\
+      \  Off  Up          Disabled On\ng40      1G-Copper      --      --     -- \
+      \    --  Down           --     --\ng41      1G-Copper    Full    100   Enabled\
+      \  Off  Up          Disabled On\ng42      1G-Copper    Full    100   Enabled\
+      \  Off  Up          Disabled On\ng43      1G-Copper    Full    1000  Enabled\
+      \  Off  Up          Disabled On\ng44      1G-Copper    Full    1000  Enabled\
+      \  Off  Up          Disabled Off\ng45      1G-Combo-C     --      --     --\
+      \     --  Down           --     --\ng46      1G-Combo-C     --      --     --\
+      \     --  Down           --     --\ng47      1G-Combo-C     --      --     --\
+      \     --  Down           --     --\ng48      1G-Combo-F   Full    1000  Enabled\
+      \  Off  Up          Disabled Off\n\nFlow    Link\nCh       Type    Duplex  Speed\
+      \  Neg      control  State\n-------- ------- ------  -----  -------- -------\
+      \  -----------\nch1         --     --      --      --       --    Not Present\n\
+      ch2         --     --      --      --       --    Not Present\nch3         --\
+      \     --      --      --       --    Not Present\nch4         --     --    \
+      \  --      --       --    Not Present\nch5         --     --      --      --\
+      \       --    Not Present\nch6         --     --      --      --       --  \
+      \  Not Present\nch7         --     --      --      --       --    Not Present\n\
+      ch8         --     --      --      --       --    Not Present\n"
+    help: execute the command "show interfaces status"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show interfaces description:
+    output: "Port      Description\n-------   -----------\ng1        TO_SRV05-VSAN_[DRAC]\n\
+      g2        TO_SRV11-V6_[DRAC]\ng3        TO_SRV06-V6_[DRAC]\ng4        TO_SRV07-V6_[DRAC]\n\
+      g5        TO_SRV08-V6_[DRAC]\ng6        TO-NAS-MASTER_[DRAC]\ng7        TO-NAS-MASTER_[admin]\n\
+      g8        SRV-IDRAC\ng9        SRV-EXT2-IDRAC\ng10       TO_SRV02-V3_[DRAC]\n\
+      g11       TO_SRV03-V3_[DRAC]\ng12       TO_SRV04-V3_[DRAC]\ng13       TO_SRV12-V6_[DRAC]\n\
+      g14       TO_SRV01-V4_[DRAC]\ng15       TO_SRV02-V4_[DRAC]\ng16       TO_SRV09-ESS_[DRAC]\n\
+      g17       TO_SRV01-V2_[DRAC]\ng18       TO_SRV02-V2_[DRAC]\ng19       TO_SRV03-V2_[DRAC]\n\
+      g20       TO_SRV04-V2_[DRAC]\ng21       TO_SAN-SAS-2_[C0]\ng22       TO_SAN-SAS-2_[C1]\n\
+      g23       TO_SRV09-V6_[DRAC]\ng24       TO_SRV10-V6_[DRAC]\ng25       TO_SRV04-VSAN_[DRAC]\n\
+      g26       TO_SRV07-LC_[DRAC]\ng27       TO_SRV03-VSAN_[DRAC]\ng28       TO_SAN-[CTRL-0]\n\
+      g29       TO_SAN-[CTRL-1]\ng30       TO_SRV10-VSAN_[DRAC]\ng31       TO_SRV09-VSAN_[DRAC]\n\
+      g32       TO_SRV02-VSAN_[DRAC]\ng33       TO_SAN2-[CTRL-0]\ng34       TO_SAN2-[CTRL-1]\n\
+      g35       TO_SAN3[CTRL-0]\ng36       TO_SAN3[CTRL-1]\ng37       TO_SRV01-VSAN_[DRAC]\n\
+      g38       TO_SRV01-V3_[DRAC]\ng39       TO_SAN4[CTRL-0]\ng40       TO_SAN4[CTRL-1]\n\
+      g41       TO_SAN5[CTRL-0]\ng42       TO_SAN5[CTRL-1]\ng43       TO_UPLINK1_[1Gbit]\n\
+      g44       TO_UPLINK2_[1Gbit]\ng45       TO_SRV07-V2_[DRAC]\ng46\ng47\ng48  \
+      \     ADMIN_[1Gbit]\n\nCh        Description\n-------   -----------\nch1\nch2\n\
+      ch3\nch4\nch5\nch6\nch7\nch8\n"
+    help: execute the command "show interfaces description"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show bridge address table:
+    output: "Aging time is 300 sec\n\n  Vlan        Mac Address       Port     Type\n
+      -------- --------------------- ------ ----------\n   5       00:08:e3:ff:fc:28\
+      \    g48    dynamic\n   5       00:13:c6:05:d3:1f    g48    dynamic\n   5  \
+      \     0c:f5:a4:cf:21:1f    g48    dynamic\n   5       8c:60:4f:59:90:81    g44\
+      \    dynamic\n   5       8c:60:4f:59:98:01    g43    dynamic\n   12      00:08:e3:ff:fc:28\
+      \    g48    dynamic\n   12      00:11:32:7c:0e:ba    g48    dynamic\n  220 \
+      \     00:08:e3:ff:fc:28    g48    dynamic\n  220      00:0a:f7:14:c0:92    g48\
+      \    dynamic\n  220      00:0a:f7:14:c3:80    g48    dynamic\n  220      00:0a:f7:38:33:10\
+      \    g48    dynamic\n  220      00:0a:f7:6a:56:30    g48    dynamic\n  220 \
+      \     4c:d9:8f:00:31:7a    g19    dynamic\n  220      4c:d9:8f:00:33:24    g17\
+      \    dynamic\n  220      4c:d9:8f:09:c9:10    g31    dynamic\n  220      4c:d9:8f:09:c9:16\
+      \    g30    dynamic\n  220      4c:d9:8f:09:c9:40    g37    dynamic\n  220 \
+      \     4c:d9:8f:9f:04:3c    g48    dynamic\n  220      5c:f9:dd:fd:8b:72    g12\
+      \    dynamic\n  220      5c:f9:dd:fd:8c:28    g38    dynamic\n  220      5c:f9:dd:fd:90:bc\
+      \    g11    dynamic\n  220      5c:f9:dd:fd:9a:da    g10    dynamic\n  220 \
+      \     70:81:05:1d:e6:e2    g48    dynamic\n  220      70:b5:e8:d5:de:d6    g13\
+      \    dynamic\n  220      70:b5:e8:d5:e2:fc     g2    dynamic\n  220      70:b5:e8:d5:e6:d4\
+      \     g1    dynamic\n"
+    help: execute the command "show bridge address table"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"

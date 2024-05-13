@@ -11,32 +11,27 @@ intended for quick development of new NOS plugins.
 
 import glob
 import os
+from typing import Set
 
 from fakenos.core.nos import Nos
 
-from . import cisco_ios
-from . import arista_eos
-
-nos_plugins = {}
-nos_plugins_modules = {"cisco_ios": cisco_ios, "arista_eos": arista_eos}
+nos_plugins: Set = {}
 
 current_file_path = os.path.abspath(__file__)
 current_directory = os.path.dirname(current_file_path)
-platforms_directory = os.path.join(current_directory, "platforms")
-yaml_files = glob.glob(os.path.join(platforms_directory, "*.yaml"))
 
 # load NOS from YAML files
+platforms_directory_yaml = os.path.join(current_directory, "platforms_yaml")
+yaml_files = glob.glob(os.path.join(platforms_directory_yaml, "*.yaml"))
 for file in yaml_files:
     nos_instance = Nos()
     nos_instance.from_file(file)
     nos_plugins[nos_instance.name] = nos_instance
 
 # load NOS from python modules updating the NOS
-for plugin_name, plugin_module in nos_plugins_modules.items():
-    if plugin_name in nos_plugins:
-        nos_instance = nos_plugins[plugin_name]
-    else:
-        nos_instance = Nos()
-    nos_instance.from_module(plugin_module)
+platforms_directory_py: str = os.path.join(current_directory, "platforms_py")
+py_files = glob.glob(os.path.join(platforms_directory_py, "*.py"))
+for file in py_files:
+    nos_instance = Nos()
+    nos_instance.from_file(file)
     nos_plugins[nos_instance.name] = nos_instance
-    

@@ -1,0 +1,209 @@
+name: fortinet
+initial_prompt: "{base_prompt}>"
+enable_prompt: "{base_prompt}#"
+config_prompt: "{base_prompt}(config)#"
+commands:
+  enable:
+    output: 'null'
+    new_prompt: "{base_prompt}#"
+    help: enter enable mode
+    prompt: "{base_prompt}>"
+  get system interface physical:
+    output: "== [onboard]\n        ==[dmz1]\n                mode: static\n      \
+      \          ip: 0.0.0.0 0.0.0.0\n                ipv6: ::/0\n               \
+      \ status: down\n                speed: n/a\n        ==[dmz2]\n             \
+      \   mode: static\n                ip: 0.0.0.0 0.0.0.0\n                ipv6:
+      ::/0\n                status: down\n                speed: n/a\n        ==[mgmt]\n\
+      \                mode: static\n                ip: 1.2.3.4 255.255.255.248\n\
+      \                ipv6: ::/0\n                status: up\n                speed:
+      1000Mbps (Duplex: full)\n        ==[port1]\n                mode: static\n \
+      \               ip: 2.3.4.5 255.255.255.240\n                ipv6: ::/0\n  \
+      \              status: up\n                speed: 1000Mbps (Duplex: full)\n\
+      \        ==[port2]\n                mode: static\n                ip: 0.0.0.0
+      0.0.0.0\n                ipv6: ::/0\n                status: up\n          \
+      \      speed: 1000Mbps (Duplex: full)\n        ==[port3]\n                mode:
+      static\n                ip: 66.51.24.44 255.255.255.248\n                ipv6:
+      ::/0\n                status: up\n                speed: 1000Mbps (Duplex: full)\n\
+      \        ==[port4]\n                mode: static\n                ip: 192.168.111.1
+      255.255.255.0\n                ipv6: ::/0\n                status: up\n    \
+      \            speed: 1000Mbps (Duplex: full)\n        ==[port5]\n           \
+      \     mode: static\n                ip: 3.4.5.6 255.255.255.240\n          \
+      \      ipv6: ::/0\n                status: up\n                speed: 1000Mbps
+      (Duplex: full)\n        ==[port6]\n                mode: static\n          \
+      \      ip: 0.0.0.0 0.0.0.0\n                ipv6: ::/0\n                status:
+      up\n                speed: 1000Mbps (Duplex: full)\n        ==[port7]\n    \
+      \            mode: static\n                ip: 0.0.0.0 0.0.0.0\n           \
+      \     ipv6: ::/0\n                status: down\n                speed: n/a\n\
+      \        ==[port8]\n                mode: static\n                ip: 0.0.0.0
+      0.0.0.0\n                ipv6: ::/0\n                status: down\n        \
+      \        speed: n/a\n        ==[port9]\n                mode: static\n     \
+      \           ip: 0.0.0.0 0.0.0.0\n                ipv6: ::/0\n              \
+      \  status: down\n                speed: n/a\n        ==[port10]\n          \
+      \      mode: static\n                ip: 0.0.0.0 0.0.0.0\n                ipv6:
+      ::/0\n                status: down\n                speed: n/a\n        ==[port11]\n\
+      \                mode: static\n                ip: 0.0.0.0 0.0.0.0\n       \
+      \         ipv6: ::/0\n                status: down\n                speed: n/a\n\
+      \        ==[port12]\n                mode: static\n                ip: 0.0.0.0
+      0.0.0.0\n                ipv6: ::/0\n                status: down\n        \
+      \        speed: n/a\n        ==[port13]\n                mode: static\n    \
+      \            ip: 0.0.0.0 0.0.0.0\n                ipv6: ::/0\n             \
+      \   status: down\n                speed: n/a\n        ==[port14]\n         \
+      \       mode: static\n                ip: 0.0.0.0 0.0.0.0\n                ipv6:
+      ::/0\n                status: down\n                speed: n/a\n        ==[port15]\n\
+      \                mode: static\n                ip: 0.0.0.0 0.0.0.0\n       \
+      \         ipv6: ::/0\n                status: down\n                speed: n/a\n\
+      \        ==[port16]\n                mode: static\n                ip: 0.0.0.0
+      0.0.0.0\n                ipv6: ::/0\n                status: up\n          \
+      \      speed: 1000Mbps (Duplex: full)\n        ==[wan1]\n                mode:
+      static\n                ip: 0.0.0.0 0.0.0.0\n                ipv6: ::/0\n  \
+      \              status: down\n                speed: n/a\n        ==[wan2]\n\
+      \                mode: static\n                ip: 0.0.0.0 0.0.0.0\n       \
+      \         ipv6: ::/0\n                status: down\n                speed: n/a\n\
+      \        ==[modem]\n                mode: pppoe\n                ip: 0.0.0.0
+      0.0.0.0\n                ipv6: ::/0\n                status: down\n        \
+      \        speed: n/a\n"
+    help: execute the command "get system interface physical"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  get system status:
+    output: "Version: FortiGate-1500D v6.0.7,build0302,191112 (GA)\nVirus-DB: 16.00560(2012-10-19
+      08:31)\nExtended DB: 1.00000(2018-04-09 18:07)\nExtreme DB: 1.00000(2018-04-09
+      18:07)\nIPS-DB: 6.00741(2015-12-01 02:30)\nIPS-ETDB: 15.00748(2019-12-19 04:16)\n
+      APP-DB: 15.00756(2020-01-10 02:10)\nINDUSTRIAL-DB: 15.00756(2020-01-10 02:10)\n
+      Serial-Number: FG1K501234567890\nIPS Malicious URL Database: 2.00521(2020-01-10
+      04:24)\nBotnet DB: 1.00000(2012-05-28 22:51)\nBIOS version: 05000006\nSystem
+      Part-Number: P12917-08\nLog hard disk: Available\nHostname: MYCOOLEFIREWALLNAME
+      \nOperation Mode: NAT\nCurrent virtual domain: root\nMax number of virtual domains:
+      10\nVirtual domains status: 7 in NAT mode, 1 in TP mode\nVirtual domain configuration:
+      enable\nFIPS-CC mode: disable\nCurrent HA mode: a-p, master\nCluster uptime:
+      102 days, 22 hours, 39 minutes, 22 seconds\nCluster state change time: 2019-12-22
+      05:24:41\nBranch point: 0302\nRelease Version Information: GA\nFortiOS x86-64:
+      Yes\nSystem time: Fri Jan 10 23:10:02 2020\n"
+    help: execute the command "get system status"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  get system ha status:
+    output: "HA Health Status: OK\nModel: FortiGate-600E\nMode: HA A-P\nGroup: 5\n
+      Debug: 0\nCluster Uptime: 36 days 22:20:40\nCluster state change time: 2020-12-02
+      22:40:46\nMaster selected using:\n    <2020/12/02 22:40:46> FG6H0Exxxxxxxxxx
+      is selected as the master because it has the largest value of override priority.\n
+      ses_pickup: enable, ses_pickup_delay=disable\noverride: enable\nConfiguration
+      Status:\n    FG6H0Exxxxxxxxxx(updated 1 seconds ago): in-sync\n    FG6H0Eyyyyyyyyyy(updated
+      3 seconds ago): in-sync\nSystem Usage stats:\n    FG6H0Exxxxxxxxxx(updated 1
+      seconds ago):\n        sessions=692, average-cpu-user/nice/system/idle=0%/0%/0%/100%,
+      memory=25%\n    FG6H0Eyyyyyyyyyy(updated 3 seconds ago):\n        sessions=303,
+      average-cpu-user/nice/system/idle=0%/0%/0%/100%, memory=23%\nHBDEV stats:\n\
+      \    FG6H0Exxxxxxxxxx(updated 1 seconds ago):\n        ha: physical/1000auto,
+      up, rx-bytes/packets/dropped/errors=13086049757/51933375/0/0, tx=93993034207/102822032/0/0\n\
+      \    FG6H0Eyyyyyyyyyy(updated 3 seconds ago):\n        ha: physical/1000auto,
+      up, rx-bytes/packets/dropped/errors=93993244676/102822709/0/0, tx=13085729171/51934319/0/0\n
+      MONDEV stats:\n    FG6H0Exxxxxxxxxx(updated 1 seconds ago):\n        x1: physical/10000full,
+      up, rx-bytes/packets/dropped/errors=166373929414532/122946162431/0/0, tx=51746004768400/50869381172/0/0\n\
+      \        x2: physical/10000full, up, rx-bytes/packets/dropped/errors=49656542180617/50909579016/0/337,
+      tx=165637609617619/122981014444/0/0\n    FG6H0Eyyyyyyyyyy(updated 3 seconds
+      ago):\n        x1: physical/10000full, up, rx-bytes/packets/dropped/errors=409699822/4202261/0/0,
+      tx=0/0/0/0\n        x2: physical/10000full, up, rx-bytes/packets/dropped/errors=12425072765/11621697/0/0,
+      tx=0/0/0/0\nMaster: fgt-600e_a, FG6H0Exxxxxxxxxx, HA cluster index = 1\nSlave
+      : fgt-600e_b, FG6H0Eyyyyyyyyyy, HA cluster index = 0\nnumber of vcluster: 1\n
+      vcluster 1: work 169.254.0.2\nMaster: FG6H0Exxxxxxxxxx, HA operating index =
+      0\nSlave : FG6H0Eyyyyyyyyyy, HA operating index = 1\n"
+    help: execute the command "get system ha status"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  get router info bgp summary:
+    output: "BGP router identifier 85.31.8.8, local AS number 65302\nBGP table version
+      is 13\n1 BGP AS-PATH entries\n0 BGP community entries\n\nNeighbor        V \
+      \        AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd\n10.204.35.84\
+      \   4      65302   43173   43182        0    0    0 09w3d01h Active     \n10.205.35.95\
+      \   4      65302  107081  107168       12    0    0 05:48:47        1\n169.132.250.17\
+      \  4       4224       0       0        0    0    0    never Idle       \n169.132.250.21\
+      \  4       4224       0       0        0    0    0    never Idle       \n\n
+      Total number of neighbors 4\n\n"
+    help: execute the command "get router info bgp summary"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  get system interface:
+    output: "== [ ha ]\nname: ha   mode: static    management-ip: 0.0.0.0 0.0.0.0\
+      \   ip: 0.0.0.0 0.0.0.0   status: up    netbios-forward: disable    type: physical\
+      \   netflow-sampler: disable    sflow-sampler: disable    src-check: enable\
+      \    explicit-web-proxy: disable    explicit-ftp-proxy: disable    proxy-captive-portal:
+      disable    mtu-override: disable    wccp: disable    drop-overlapped-fragment:
+      disable    drop-fragment: disable\n== [ mgmt ]\nname: mgmt   mode: static  \
+      \  management-ip: 1.2.3.4 255.255.255.248   ip: 1.2.3.4 255.255.255.248   status:
+      up    netbios-forward: disable    type: physical   netflow-sampler: disable\
+      \    sflow-sampler: disable    src-check: enable    explicit-web-proxy: disable\
+      \    explicit-ftp-proxy: disable    proxy-captive-portal: disable    mtu-override:
+      disable    wccp: disable    drop-overlapped-fragment: disable    drop-fragment:
+      disable\n== [ port1 ]\nname: port1   mode: static    management-ip: 0.0.0.0
+      0.0.0.0   ip: 0.0.0.0 0.0.0.0   status: up    netbios-forward: disable    type:
+      physical   netflow-sampler: disable    sflow-sampler: disable    src-check:
+      enable    explicit-web-proxy: disable    explicit-ftp-proxy: disable    proxy-captive-portal:
+      disable    mtu-override: disable    wccp: disable    drop-overlapped-fragment:
+      disable    drop-fragment: disable\n== [ port2 ]\nname: port2   mode: static\
+      \    management-ip: 0.0.0.0 0.0.0.0   ip: 0.0.0.0 0.0.0.0   status: up    netbios-forward:
+      disable    type: physical   netflow-sampler: disable    sflow-sampler: disable\
+      \    src-check: enable    explicit-web-proxy: disable    explicit-ftp-proxy:
+      disable    proxy-captive-portal: disable    mtu-override: disable    wccp: disable\
+      \    drop-overlapped-fragment: disable    drop-fragment: disable\n== [ s1 ]\n
+      name: s1   mode: static    management-ip: 0.0.0.0 0.0.0.0   ip: 0.0.0.0 0.0.0.0\
+      \   status: up    netbios-forward: disable    type: physical   netflow-sampler:
+      disable    sflow-sampler: disable    src-check: enable    explicit-web-proxy:
+      disable    explicit-ftp-proxy: disable    proxy-captive-portal: disable    mtu-override:
+      disable    wccp: disable    drop-overlapped-fragment: disable    drop-fragment:
+      disable\n== [ vw1 ]\nname: vw1   status: up    type: physical   netflow-sampler:
+      disable    sflow-sampler: disable    src-check: enable    mtu-override: disable\
+      \    wccp: disable    drop-overlapped-fragment: disable    drop-fragment: disable\n
+      == [ x1 ]\nname: x1   mode: static    management-ip: 0.0.0.0 0.0.0.0   ip: 0.0.0.0
+      0.0.0.0   status: up    netbios-forward: disable    type: physical   netflow-sampler:
+      disable    sflow-sampler: disable    src-check: enable    explicit-web-proxy:
+      disable    explicit-ftp-proxy: disable    proxy-captive-portal: disable    mtu-override:
+      disable    wccp: disable    drop-overlapped-fragment: disable    drop-fragment:
+      disable\n== [ modem ]\nname: modem   mode: pppoe    management-ip: 0.0.0.0 0.0.0.0\
+      \   ip: 0.0.0.0 0.0.0.0   netbios-forward: disable    type: physical   netflow-sampler:
+      disable    sflow-sampler: disable    src-check: enable    proxy-captive-portal:
+      disable    mtu-override: disable    wccp: disable    drop-overlapped-fragment:
+      disable    drop-fragment: disable\n== [ ssl.root ]\nname: ssl.root   ip: 0.0.0.0
+      0.0.0.0   status: up    netbios-forward: disable    type: tunnel   netflow-sampler:
+      disable    sflow-sampler: disable    src-check: enable    explicit-web-proxy:
+      disable    explicit-ftp-proxy: disable    proxy-captive-portal: disable    wccp:
+      disable\n== [ npu0_vlink0 ]\nname: npu0_vlink0   mode: static    management-ip:
+      0.0.0.0 0.0.0.0   ip: 0.0.0.0 0.0.0.0   status: up    netbios-forward: disable\
+      \    type: physical   netflow-sampler: disable    sflow-sampler: disable   \
+      \ src-check: enable    explicit-web-proxy: disable    explicit-ftp-proxy: disable\
+      \    proxy-captive-portal: disable    wccp: disable    drop-overlapped-fragment:
+      disable    drop-fragment: disable\n== [ fortilink ]\nname: fortilink   mode:
+      static    management-ip: 0.0.0.0 0.0.0.0   ip: 169.254.1.1 255.255.255.0   status:
+      up    netbios-forward: disable    type: aggregate   netflow-sampler: disable\
+      \    sflow-sampler: disable    src-check: enable    explicit-web-proxy: disable\
+      \    explicit-ftp-proxy: disable    proxy-captive-portal: disable    mtu-override:
+      disable    wccp: disable    drop-overlapped-fragment: disable    drop-fragment:
+      disable\n== [ x1.113 ]\nname: x1.113   mode: static    management-ip: 0.0.0.0
+      0.0.0.0   ip: 2.3.4.5 255.255.255.0   status: up    netbios-forward: disable\
+      \    type: vlan   netflow-sampler: disable    sflow-sampler: disable    src-check:
+      enable    explicit-web-proxy: disable    explicit-ftp-proxy: disable    proxy-captive-portal:
+      disable    mtu-override: disable    wccp: disable    drop-overlapped-fragment:
+      disable    drop-fragment: disable\n== [ loopback.0 ]\nname: loopback.0   management-ip:
+      0.0.0.0 0.0.0.0   ip: 10.0.0.100 255.255.255.255   status: up    type: loopback\
+      \   netflow-sampler: disable    sflow-sampler: disable    src-check: enable\
+      \    explicit-web-proxy: disable    explicit-ftp-proxy: disable    proxy-captive-portal:
+      disable\n== [ VPN-TUN ]\nname: VPN-TUN   ip: 3.4.5.6 255.255.255.255   status:
+      up    netbios-forward: disable    type: tunnel   netflow-sampler: disable  \
+      \  sflow-sampler: disable    src-check: enable    explicit-web-proxy: disable\
+      \    explicit-ftp-proxy: disable    proxy-captive-portal: disable    wccp: disable\n"
+    help: execute the command "get system interface"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  get system arp:
+    output: "Address           Age(min)   Hardware Addr      Interface\n192.168.1.4\
+      \       0          b0:a8:6e:01:61:81 lan\n192.168.1.110     0          3c:9b:d6:66:52:ab
+      lan\n192.168.1.111     0          18:64:72:c9:02:d2 lan\n192.168.1.114     4\
+      \          40:cb:c0:ce:81:85 lan\n"
+    help: execute the command "get system arp"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"

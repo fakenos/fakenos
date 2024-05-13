@@ -1,0 +1,338 @@
+name: avaya_ers
+initial_prompt: "{base_prompt}>"
+enable_prompt: "{base_prompt}#"
+config_prompt: "{base_prompt}(config)#"
+commands:
+  enable:
+    output: null
+    new_prompt: "{base_prompt}#"
+    help: enter enable mode
+    prompt: "{base_prompt}>"
+  terminal length 0:
+    output: null
+    help: make the terminal full screen
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  ex:
+    output: true
+    help: exit the terminal
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show sys-info:
+    output: "Operation Mode:        Stack, Unit # 1\nSize Of Stack:         4\nBase\
+      \ Unit:             1\nMAC Address:           FF-FF-FF-FF-FF-FF\nPoE Module\
+      \ FW:         4.1.0.4\nReset Count:           37\nLast Reset Type:       Power\
+      \ Cycle\nAutotopology:          Enabled\nPluggable Port 47:     None\nPluggable\
+      \ Port 48:     None\nPluggable Port 49:     SX\nPluggable Port 50:     Direct\
+      \ Attach Cable\nPluggable Port 51:     Direct Attach Cable\nBase Unit Selection:\
+      \   Base unit using rear-panel switch\nsysDescr:              Ethernet Routing\
+      \ Switch 3549GTS-PWR+\n                       HW:03       FW:5.3.0.6   SW:v5.3.0.005\n\
+      \                       Mfg Date:20150406    HW Dev:none\nSerial #:        \
+      \      1XXXXXXXXXXX\nOperational Software:  FW:5.3.0.6   SW:v5.3.0.005\nInstalled\
+      \ software:    FW:5.3.0.6   SW:v5.3.0.005\nOperational license:   Base software\n\
+      \ Installed license:     Base software\nsysObjectID:           1.3.6.1.4.1.45.3.80.8\n\
+      sysUpTime:             35 days, 07:24:53\nsysNtpTime:            2015-10-21\
+      \ 20:26:44 GMT+00:00\nsysServices:           6\nsysContact:            sysContact\n\
+      sysName:               sysName\nsysLocation:           sysLocation\nStack sysAssetId:\
+      \      stackAssetID\nUnit sysAssetId:       unitAssetID\n"
+    help: execute the command "show sys-info"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show interface name:
+    output: "Unit/Port Name      \n--------- ----------------------------------------------------------------\
+      \      \n1/1       \n1/2       \n1/3       \n1/4       \n1/5       \n1/6   \
+      \    \n1/7       \n1/8       \n1/9       \n1/10      \n1/11      \n1/12    \
+      \  \n1/13      \n1/14      \n1/15      \n1/16      \n1/17      \n1/18      \n\
+      1/19      \n1/20      \n1/21      \n1/22      \n1/23      \n1/24      \n1/25\
+      \      \n1/26      \n1/27      \n1/28      \n1/29      \n1/30      \n1/31  \
+      \    \n1/32      \n1/33      \n1/34      \n1/35      \n1/36      \n1/37    \
+      \  \n1/38      \n1/39      \n1/40      \n1/41      \n1/42      \n1/43      \n\
+      1/44      \n1/45      \n1/46      \n1/47      \n1/48      \n1/49      \n1/50\
+      \      HALL-FC3: 1/25\n2/1       \n2/2       \n2/3       \n2/4       \n2/5 \
+      \      \n2/6       \n2/7       \n2/8       \n2/9       Bell 10.1.1.100\n2/10\
+      \      \n2/11      \n2/12      \n2/13      \n2/14      \n2/15      HALL-Park\
+      \ (outdoor WAP)\n2/16      \n2/17      \n2/18      \n2/19      \n2/20      \n\
+      2/21      \n2/22      \n2/23      \n2/24      \n2/25      \n2/26      \n2/27\
+      \      \n2/28      \n2/29      \n2/30      \n2/31      \n2/32      \n2/33  \
+      \    \n2/34      \n2/35      \n2/36      \n2/37      \n2/38      \n2/39    \
+      \  \n2/40      \n2/41      \n2/42      \n2/43      \n2/44      \n2/45      \n\
+      2/46      \n2/47      \n2/48      HALL-UPS\n2/49      \n2/50      HALL-FC4:1/25\n"
+    help: execute the command "show interface name"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show mlt all-members:
+    output: "Id: 1\n    Name:UPLINK\n    Active Members: 1/50,2/50\n    Inactive Members:\
+      \ NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP key:\
+      \ NONE\n Id: 2\n    Name:Trunk #2\n    Active Members: NONE\n    Inactive Members:\
+      \ NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP key:\
+      \ NONE\n Id: 3\n    Name:Trunk #3\n    Active Members: NONE\n    Inactive Members:\
+      \ NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP key:\
+      \ NONE\n Id: 4\n    Name:Trunk #4\n    Active Members: NONE\n    Inactive Members:\
+      \ NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP key:\
+      \ NONE\n Id: 5\n    Name:Trunk #5\n    Active Members: NONE\n    Inactive Members:\
+      \ NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP key:\
+      \ NONE\n Id: 6\n    Name:Trunk #6\n    Active Members: NONE\n    Inactive Members:\
+      \ NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP key:\
+      \ NONE\n Id: 7\n    Name:Trunk #7\n    Active Members: NONE\n    Inactive Members:\
+      \ NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP key:\
+      \ NONE\n Id: 8\n    Name:Trunk #8\n    Active Members: NONE\n    Inactive Members:\
+      \ NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP key:\
+      \ NONE\n Id: 9\n    Name:Trunk #9\n    Active Members: NONE\n    Inactive Members:\
+      \ NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP key:\
+      \ NONE\n Id: 10\n    Name:Trunk #10\n    Active Members: NONE\n    Inactive\
+      \ Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP\
+      \ key: NONE\n Id: 11\n    Name:Trunk #11\n    Active Members: NONE\n    Inactive\
+      \ Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP\
+      \ key: NONE\n Id: 12\n    Name:Trunk #12\n    Active Members: NONE\n    Inactive\
+      \ Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP\
+      \ key: NONE\n Id: 13\n    Name:Trunk #13\n    Active Members: NONE\n    Inactive\
+      \ Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP\
+      \ key: NONE\n Id: 14\n    Name:Trunk #14\n    Active Members: NONE\n    Inactive\
+      \ Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP\
+      \ key: NONE\n Id: 15\n    Name:Trunk #15\n    Active Members: NONE\n    Inactive\
+      \ Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP\
+      \ key: NONE\n Id: 16\n    Name:Trunk #16\n    Active Members: NONE\n    Inactive\
+      \ Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP\
+      \ key: NONE\n Id: 17\n    Name:Trunk #17\n    Active Members: NONE\n    Inactive\
+      \ Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP\
+      \ key: NONE\n Id: 18\n    Name:Trunk #18\n    Active Members: NONE\n    Inactive\
+      \ Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP\
+      \ key: NONE\n Id: 19\n    Name:Trunk #19\n    Active Members: NONE\n    Inactive\
+      \ Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP\
+      \ key: NONE\n Id: 20\n    Name:Trunk #20\n    Active Members: NONE\n    Inactive\
+      \ Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP\
+      \ key: NONE\n Id: 21\n    Name:Trunk #21\n    Active Members: NONE\n    Inactive\
+      \ Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP\
+      \ key: NONE\n Id: 22\n    Name:Trunk #22\n    Active Members: NONE\n    Inactive\
+      \ Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP\
+      \ key: NONE\n Id: 23\n    Name:Trunk #23\n    Active Members: NONE\n    Inactive\
+      \ Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP\
+      \ key: NONE\n Id: 24\n    Name:Trunk #24\n    Active Members: NONE\n    Inactive\
+      \ Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP\
+      \ key: NONE\n Id: 25\n    Name:Trunk #25\n    Active Members: NONE\n    Inactive\
+      \ Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP\
+      \ key: NONE\n Id: 26\n    Name:Trunk #26\n    Active Members: NONE\n    Inactive\
+      \ Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP\
+      \ key: NONE\n Id: 27\n    Name:Trunk #27\n    Active Members: NONE\n    Inactive\
+      \ Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP\
+      \ key: NONE\n Id: 28\n    Name:Trunk #28\n    Active Members: NONE\n    Inactive\
+      \ Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP\
+      \ key: NONE\n Id: 29\n    Name:Trunk #29\n    Active Members: NONE\n    Inactive\
+      \ Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP\
+      \ key: NONE\n Id: 30\n    Name:Trunk #30\n    Active Members: NONE\n    Inactive\
+      \ Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP\
+      \ key: NONE\n Id: 31\n    Name:Trunk #31\n    Active Members: NONE\n    Inactive\
+      \ Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP\
+      \ key: NONE\n Id: 32\n    Name:Trunk #32\n    Active Members: NONE\n    Inactive\
+      \ Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n    LACP\
+      \ key: NONE\n"
+    help: execute the command "show mlt all-members"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show vlan:
+    output: "Id   Name                 Type     Protocol         PID     Active IVL/SVL\
+      \ Mgmt\n---- -------------------- -------- ---------------- ------- ------ -------\
+      \ ----\n1    VLAN #1              Port     None             0x0000  Yes    IVL\
+      \     No\n\tPort Members: NONE\n2    Dead_VLAN            Port     None    \
+      \         0x0000  Yes    IVL     No\n\tPort Members: 17-42,49-50\n17   Network_Services\
+      \     Port     None             0x0000  Yes    IVL     No\n\tPort Members: 5-10,47\n\
+      27   Lab_Mgmt             Port     None             0x0000  Yes    IVL     Yes\n\
+      \ \tPort Members: 1,11,13,16,43-46,48\n47   IoT_Devices          Port     None\
+      \             0x0000  Yes    IVL     No\n\tPort Members: 14,48\n300  Trusted\
+      \ Wifi         Port     None             0x0000  Yes    IVL     No\n\tPort Members:\
+      \ 3-4,11-13,47\n301  Untrusted Wifi       Port     None             0x0000 \
+      \ Yes    IVL     No\n\tPort Members: 11,13,48\n477  VM Environment       Port\
+      \     None             0x0000  Yes    IVL     No\n\tPort Members: 2,15,48\n\
+      999  Native_VLAN          Port     None             0x0000  Yes    IVL     No\n\
+      \ \tPort Members: NONE\nTotal VLANs: 9\n"
+    help: execute the command "show vlan"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show logging config:
+    output: 'Event Logging: Enabled
+
+      Volatile Logging Option: Latch
+
+      Event Types To Log: Critical, Serious, Informational
+
+      Event Types To Log To NV Storage: Critical, Serious
+
+      Remote Logging: Enabled
+
+      Remote Logging Address: 0.0.0.0
+
+      Secondary Remote Logging Address: 0.0.0.0
+
+      Event Types To Log Remotely: Critical, Serious, Informational
+
+      Facility: Daemon
+
+      '
+    help: execute the command "show logging config"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show mac-address-table:
+    output: "   MAC Address    Vid   Type       Source    \n----------------- ----\
+      \ ------- -------------- \n00-0E-C4-CE-AD-39   15 Dynamic Port:47\n00-C0-B7-4C-91-CF\
+      \   15 Dynamic Port: 7\n00-D0-2D-B3-4B-D2   15 Dynamic Port:10\nEC-8E-B5-BF-59-5B\
+      \   15 Dynamic Port: 9\n00-0E-C4-CE-AD-3B   25 Dynamic Port:48\n00-15-17-2E-58-F3\
+      \   25 Dynamic Port: 1\n50-61-84-DD-58-00   25 Self           \nF0-9F-C2-33-4A-00\
+      \   25 Dynamic Port:13\nF0-9F-C2-70-B4-8E   25 Dynamic Port:11\n00-0E-C4-CE-AD-3B\
+      \   45 Dynamic Port:48\nAC-CC-8E-47-85-63   45 Dynamic Port:14\n00-0E-C4-CE-AD-39\
+      \  100 Dynamic Port:47\n00-11-32-4E-75-07  100 Dynamic Port: 3\n00-11-32-4E-75-08\
+      \  100 Dynamic Port: 4\n50-F5-DA-2D-00-A0  100 Dynamic Port:13\n6C-40-08-93-CF-94\
+      \  100 Dynamic Port:11\nA4-5E-60-D4-F7-4B  100 Dynamic Port:13\nB8-44-D9-1A-BC-42\
+      \  100 Dynamic Port:11\n00-0E-C4-CE-AD-3B  101 Dynamic Port:48\n2C-1F-23-2E-89-CB\
+      \  101 Dynamic Port:13\n84-41-67-5E-D7-54  101 Dynamic Port:13\n90-FD-61-BE-14-37\
+      \  101 Dynamic Port:13\nAC-CF-5C-73-A1-6D  101 Dynamic Port:11\n00-0C-29-AD-8B-03\
+      \  275 Dynamic Port: 2\n00-0E-C4-CE-AD-3B  275 Dynamic Port:48"
+    help: execute the command "show mac-address-table"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show mlt:
+    output: "Id: 1\n    Name:IST\n    Active Members: 38-39\n    Inactive Members:\
+      \ NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Enabled \n    Type: Trunk\n\
+      \ Id: 2\n    Name:Trunk #2\n    Active Members: NONE\n    Inactive Members:\
+      \ NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\nId: 3\n    Name:Trunk\
+      \ #3\n    Active Members: NONE\n    Inactive Members: NONE\n    Bpdu: All\n\
+      \    Mode: Basic\n    Status: Disabled\nId: 4\n    Name:Trunk #4\n    Active\
+      \ Members: NONE\n    Inactive Members: NONE\n    Bpdu: All\n    Mode: Basic\n\
+      \    Status: Disabled\nId: 5\n    Name:Trunk #5\n    Active Members: NONE\n\
+      \    Inactive Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n\
+      Id: 6\n    Name:Trunk #6\n    Active Members: NONE\n    Inactive Members: NONE\n\
+      \    Bpdu: All\n    Mode: Basic\n    Status: Disabled\nId: 7\n    Name:Trunk\
+      \ #7\n    Active Members: NONE\n    Inactive Members: NONE\n    Bpdu: All\n\
+      \    Mode: Basic\n    Status: Disabled\nId: 8\n    Name:Trunk #8\n    Active\
+      \ Members: NONE\n    Inactive Members: NONE\n    Bpdu: All\n    Mode: Basic\n\
+      \    Status: Disabled\nId: 9\n    Name:Trunk #9\n    Active Members: NONE\n\
+      \    Inactive Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n\
+      Id: 10\n    Name:Trunk #10\n    Active Members: NONE\n    Inactive Members:\
+      \ NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\nId: 11\n    Name:Trunk\
+      \ #11\n    Active Members: NONE\n    Inactive Members: NONE\n    Bpdu: All\n\
+      \    Mode: Basic\n    Status: Disabled\n Id: 12\n    Name:Trunk #12\n    Active\
+      \ Members: NONE\n    Inactive Members: NONE\n    Bpdu: All\n    Mode: Basic\n\
+      \    Status: Disabled\nId: 13\n    Name:Trunk #13\n    Active Members: NONE\n\
+      \    Inactive Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n\
+      Id: 14\n    Name:Trunk #14\n    Active Members: NONE\n    Inactive Members:\
+      \ NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\nId: 15\n    Name:Trunk\
+      \ #15\n    Active Members: NONE\n    Inactive Members: NONE\n    Bpdu: All\n\
+      \    Mode: Basic\n    Status: Disabled\n Id: 16\n    Name:Trunk #16\n    Active\
+      \ Members: NONE\n    Inactive Members: NONE\n    Bpdu: All\n    Mode: Basic\n\
+      \    Status: Disabled\nId: 17\n    Name:Trunk #17\n    Active Members: NONE\n\
+      \    Inactive Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n\
+      Id: 18\n    Name:Trunk #18\n    Active Members: NONE\n    Inactive Members:\
+      \ NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\nId: 19\n    Name:Trunk\
+      \ #19\n    Active Members: NONE\n    Inactive Members: NONE\n    Bpdu: All\n\
+      \    Mode: Basic\n    Status: Disabled\n Id: 20\n    Name:Trunk #20\n    Active\
+      \ Members: NONE\n    Inactive Members: NONE\n    Bpdu: All\n    Mode: Basic\n\
+      \    Status: Disabled\nId: 21\n    Name:Trunk #21\n    Active Members: NONE\n\
+      \    Inactive Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n\
+      Id: 22\n    Name:Trunk #22\n    Active Members: NONE\n    Inactive Members:\
+      \ NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\nId: 23\n    Name:Trunk\
+      \ #23\n    Active Members: NONE\n    Inactive Members: NONE\n    Bpdu: All\n\
+      \    Mode: Basic\n    Status: Disabled\n Id: 24\n    Name:Trunk #24\n    Active\
+      \ Members: NONE\n    Inactive Members: NONE\n    Bpdu: All\n    Mode: Basic\n\
+      \    Status: Disabled\nId: 25\n    Name:Trunk #25\n    Active Members: NONE\n\
+      \    Inactive Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n\
+      Id: 26\n    Name:Trunk #26\n    Active Members: NONE\n    Inactive Members:\
+      \ NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\nId: 27\n    Name:Trunk\
+      \ #27\n    Active Members: NONE\n    Inactive Members: NONE\n    Bpdu: All\n\
+      \    Mode: Basic\n    Status: Disabled\n Id: 28\n    Name:Trunk #28\n    Active\
+      \ Members: NONE\n    Inactive Members: NONE\n    Bpdu: All\n    Mode: Basic\n\
+      \    Status: Disabled\nId: 29\n    Name:Trunk #29\n    Active Members: NONE\n\
+      \    Inactive Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n\
+      Id: 30\n    Name:Trunk #30\n    Active Members: NONE\n    Inactive Members:\
+      \ NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\nId: 31\n    Name:Trunk\
+      \ #31\n    Active Members: NONE\n    Inactive Members: NONE\n    Bpdu: All\n\
+      \    Mode: Basic\n    Status: Disabled\n Id: 32\n    Name:Trunk #32\n    Active\
+      \ Members: NONE\n    Inactive Members: NONE\n    Bpdu: All\n    Mode: Basic\n\
+      \    Status: Disabled\nId: 33\n    Name:Trunk #33\n    Active Members: NONE\n\
+      \    Inactive Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n\
+      Id: 34\n    Name:Trunk #34\n    Active Members: NONE\n    Inactive Members:\
+      \ NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\nId: 35\n    Name:Trunk\
+      \ #35\n    Active Members: NONE\n    Inactive Members: NONE\n    Bpdu: All\n\
+      \    Mode: Basic\n    Status: Disabled\n Id: 36\n    Name:Trunk #36\n    Active\
+      \ Members: NONE\n    Inactive Members: NONE\n    Bpdu: All\n    Mode: Basic\n\
+      \    Status: Disabled\nId: 37\n    Name:Trunk #37\n    Active Members: NONE\n\
+      \    Inactive Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n\
+      Id: 38\n    Name:Trunk #38\n    Active Members: NONE\n    Inactive Members:\
+      \ NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\nId: 39\n    Name:Trunk\
+      \ #39\n    Active Members: NONE\n    Inactive Members: NONE\n    Bpdu: All\n\
+      \    Mode: Basic\n    Status: Disabled\n Id: 40\n    Name:Trunk #40\n    Active\
+      \ Members: NONE\n    Inactive Members: NONE\n    Bpdu: All\n    Mode: Basic\n\
+      \    Status: Disabled\nId: 41\n    Name:Trunk #41\n    Active Members: NONE\n\
+      \    Inactive Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n\
+      Id: 42\n    Name:Trunk #42\n    Active Members: NONE\n    Inactive Members:\
+      \ NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\nId: 43\n    Name:Trunk\
+      \ #43\n    Active Members: NONE\n    Inactive Members: NONE\n    Bpdu: All\n\
+      \    Mode: Basic\n    Status: Disabled\n Id: 44\n    Name:Trunk #44\n    Active\
+      \ Members: NONE\n    Inactive Members: NONE\n    Bpdu: All\n    Mode: Basic\n\
+      \    Status: Disabled\nId: 45\n    Name:Trunk #45\n    Active Members: NONE\n\
+      \    Inactive Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n\
+      Id: 46\n    Name:Trunk #46\n    Active Members: NONE\n    Inactive Members:\
+      \ NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\nId: 47\n    Name:Trunk\
+      \ #47\n    Active Members: NONE\n    Inactive Members: NONE\n    Bpdu: All\n\
+      \    Mode: Basic\n    Status: Disabled\n Id: 48\n    Name:Trunk #48\n    Active\
+      \ Members: NONE\n    Inactive Members: NONE\n    Bpdu: All\n    Mode: Basic\n\
+      \    Status: Disabled\nId: 49\n    Name:Trunk #49\n    Active Members: NONE\n\
+      \    Inactive Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n\
+      Id: 50\n    Name:Trunk #50\n    Active Members: NONE\n    Inactive Members:\
+      \ NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\nId: 51\n    Name:Trunk\
+      \ #51\n    Active Members: NONE\n    Inactive Members: NONE\n    Bpdu: All\n\
+      \    Mode: Basic\n    Status: Disabled\n Id: 52\n    Name:Trunk #52\n    Active\
+      \ Members: NONE\n    Inactive Members: NONE\n    Bpdu: All\n    Mode: Basic\n\
+      \    Status: Disabled\nId: 53\n    Name:Trunk #53\n    Active Members: NONE\n\
+      \    Inactive Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n\
+      Id: 54\n    Name:Trunk #54\n    Active Members: NONE\n    Inactive Members:\
+      \ NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\nId: 55\n    Name:Trunk\
+      \ #55\n    Active Members: NONE\n    Inactive Members: NONE\n    Bpdu: All\n\
+      \    Mode: Basic\n    Status: Disabled\n Id: 56\n    Name:Trunk #56\n    Active\
+      \ Members: NONE\n    Inactive Members: NONE\n    Bpdu: All\n    Mode: Basic\n\
+      \    Status: Disabled\nId: 57\n    Name:Trunk #57\n    Active Members: NONE\n\
+      \    Inactive Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n\
+      Id: 58\n    Name:Trunk #58\n    Active Members: NONE\n    Inactive Members:\
+      \ NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\nId: 59\n    Name:Trunk\
+      \ #59\n    Active Members: NONE\n    Inactive Members: NONE\n    Bpdu: All\n\
+      \    Mode: Basic\n    Status: Disabled\n Id: 60\n    Name:Trunk #60\n    Active\
+      \ Members: NONE\n    Inactive Members: NONE\n    Bpdu: All\n    Mode: Basic\n\
+      \    Status: Disabled\nId: 61\n    Name:Trunk #61\n    Active Members: NONE\n\
+      \    Inactive Members: NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\n\
+      Id: 62\n    Name:Trunk #62\n    Active Members: NONE\n    Inactive Members:\
+      \ NONE\n    Bpdu: All\n    Mode: Basic\n    Status: Disabled\nId: 63\n    Name:Trunk\
+      \ #63\n    Active Members: NONE\n    Inactive Members: NONE\n    Bpdu: All\n\
+      \    Mode: Basic\n    Status: Disabled\n Id: 64\n    Name:Trunk #64\n    Active\
+      \ Members: NONE\n    Inactive Members: NONE\n    Bpdu: All\n    Mode: Basic\n\
+      \    Status: Disabled\n"
+    help: execute the command "show mlt"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  logout:
+    output: null
+    help: Execute the command logout. This automatically generated. Feel free to change
+      it!
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  no page:
+    output: null
+    help: Execute the command no page. This automatically generated. Feel free to
+      change it!
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  terminal width 511:
+    output: null
+    help: Execute the command terminal width 511. This automatically generated. Feel
+      free to change it!
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"

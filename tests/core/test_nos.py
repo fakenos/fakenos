@@ -203,7 +203,8 @@ class NosTest(unittest.TestCase):
         Test that the from_module method works.
         """
         nos = Nos()
-        nos.from_module("tests/assets/module.py")
+        # pylint: disable=protected-access
+        nos._from_module("tests/assets/module.py")
         assert nos.name == "FakeNOS"
         assert nos.initial_prompt == "{base_prompt}>"
         assert nos.commands == module.commands
@@ -215,7 +216,8 @@ class NosTest(unittest.TestCase):
         """
         with pytest.raises(FileNotFoundError):
             nos = Nos()
-            nos.from_module("tests/assets/incorrect_file.py")
+            # pylint: disable=protected-access
+            nos._from_module("tests/assets/incorrect_file.py")
 
     def test_register_nos_plugin_directly(self):
         """

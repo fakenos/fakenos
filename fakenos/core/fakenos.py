@@ -42,7 +42,7 @@ default_inventory = {
     "hosts": {
         "router_cisco_ios": {"port": 6000, "platform": "cisco_ios"},
         "router_huawei_smartax": {"port": 6001, "platform": "huawei_smartax"},
-        "router_arista_eos": {"port": 6002, "platform": "arista_eos"}
+        "router_arista_eos": {"port": 6002, "platform": "arista_eos"},
     },
 }
 

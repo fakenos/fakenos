@@ -7,7 +7,7 @@ in the yaml and python files.
 import re
 import os
 from importlib import import_module
-from typing import List
+from typing import Any, List
 
 import pytest
 import yaml
@@ -20,14 +20,17 @@ def get_py_nos_modules() -> List[str]:
     It returns the list of all the python files
     that are in the nos directory.
     """
-    return [f.split(".py", 1)[0] for f in os.listdir("fakenos/plugins/nos") if f.endswith(".py") and f != "__init__.py"]
+    return [
+        f.split(".py", 1)[0]
+        for f in os.listdir("fakenos/plugins/nos/platforms_py")
+        if f.endswith(".py") and f != "__init__.py"
+    ]
 
 
-def has_single_curly_brackets(text) -> bool:
+def has_single_curly_brackets(text: Any, exceptions: List[str]) -> bool:
     """
     It returns False if the single curly
     brackets are in the text.
-
     The strategy is to check if the text has
     the curly brackets and if so it checks that
     those are double, otherwise returns True.
@@ -38,7 +41,7 @@ def has_single_curly_brackets(text) -> bool:
     if isinstance(text, str):
         text = [text]
     for t in text:
-        if "{" not in t or "}" not in t:
+        if "{" not in t or "}" not in t or any(e in t for e in exceptions):
             continue
         matches = re.search(pattern, t)
         if not matches:
@@ -58,10 +61,10 @@ class TestPlatforms:
         It checks if the platform yaml file can be opened correctly using
         the yaml library.
         """
-        with open(f"fakenos/plugins/nos/platforms/{platform}.yaml", "r", encoding="utf-8") as file:
+        with open(f"fakenos/plugins/nos/platforms_yaml/{platform}.yaml", "r", encoding="utf-8") as file:
             data: dict = yaml.safe_load(file)
             for key in data.keys():
-                assert key in ["name", "initial_prompt", "commands"]
+                assert key in ["name", "initial_prompt", "enable_prompt", "config_prompt", "commands"]
 
     @pytest.mark.parametrize("platform", available_platforms)
     def test_platforms_yaml_commands_has_correct_format(self, platform: str):
@@ -72,15 +75,20 @@ class TestPlatforms:
         - help
         - prompt
         """
-        with open(f"fakenos/plugins/nos/platforms/{platform}.yaml", "r", encoding="utf-8") as file:
+        with open(f"fakenos/plugins/nos/platforms_yaml/{platform}.yaml", "r", encoding="utf-8") as file:
             data = yaml.safe_load(file)
+            exceptions: List[str] = [data["initial_prompt"]]
+            if "enable_prompt" in data:
+                exceptions.append(data["enable_prompt"])
+            if "config_prompt" in data:
+                exceptions.append(data["config_prompt"])
             for _, values in data["commands"].items():
                 assert "output" in values
-                # assert has_single_curly_brackets(values["output"]) is False
+                assert has_single_curly_brackets(values["output"], exceptions) is False
                 assert "help" in values
-                # assert has_single_curly_brackets(values["help"]) is False
+                assert has_single_curly_brackets(values["help"], exceptions) is False
                 assert "prompt" in values
-                # assert has_single_curly_brackets(values["prompt"]) is False
+                assert has_single_curly_brackets(values["prompt"], exceptions) is False
 
     @pytest.mark.parametrize("platform", get_py_nos_modules())
     def test_platforms_py_has_correct_format(self, platform: str):
@@ -88,11 +96,11 @@ class TestPlatforms:
         It checks if the platform python file can be imported correctly.
         """
         try:
-            module = import_module(f"fakenos.plugins.nos.{platform}")
+            module = import_module(f"fakenos.plugins.nos.platforms_py.{platform}")
         except ImportError:
             pytest.fail(f"Failed to import platform module for {platform}")
 
-        assert module.__name__ == f"fakenos.plugins.nos.{platform}"
+        assert module.__name__ == f"fakenos.plugins.nos.platforms_py.{platform}"
         assert hasattr(module, "commands")
         assert hasattr(module, "INITIAL_PROMPT")
 
@@ -106,15 +114,20 @@ class TestPlatforms:
         - prompt
         """
         try:
-            module = import_module(f"fakenos.plugins.nos.{platform}")
+            module = import_module(f"fakenos.plugins.nos.platforms_py.{platform}")
         except ImportError:
             pytest.fail(f"Failed to import platform module for {platform}")
 
         for _, values in module.commands.items():
             if "alias" in values:
                 continue
+            exceptions: List[str] = [module.INITIAL_PROMPT]
+            if hasattr(module, "ENABLE_PROMPT"):
+                exceptions.append(module.ENABLE_PROMPT)
+            if hasattr(module, "CONFIG_PROMPT"):
+                exceptions.append(module.CONFIG_PROMPT)
             assert "output" in values
-            # assert has_single_curly_brackets(values["output"]) is False
+            assert has_single_curly_brackets(values["output"], exceptions) is False
             assert "help" in values
-            # assert has_single_curly_brackets(values["help"]) is False
+            assert has_single_curly_brackets(values["help"], exceptions) is False
             assert "prompt" in values

@@ -94,14 +94,20 @@ class TCPServerBase(ABC):
             try:
                 self._socket.listen()
                 client, _ = self._socket.accept()
-                connection_thread = threading.Thread(target=self.connection_function, args=(client, self._is_running,))
+                connection_thread = threading.Thread(
+                    target=self.connection_function,
+                    args=(
+                        client,
+                        self._is_running,
+                    ),
+                )
                 connection_thread.start()
                 self._connection_threads.append(connection_thread)
             except socket.timeout:
                 pass
 
     @abstractmethod
-    def connection_function(self, client):
+    def connection_function(self, client, is_running):
         """
         This abstract method it is called when a new connection
         is made. The implementation should handle all the

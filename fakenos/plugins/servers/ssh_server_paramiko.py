@@ -256,7 +256,7 @@ class ParamikoSshServer(TCPServerBase):
                 )
                 shell.stop()
                 break
-            
+
             # exit the shell
             if not is_running.is_set():
                 shell.stop()

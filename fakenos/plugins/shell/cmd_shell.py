@@ -146,7 +146,12 @@ class CMDShell(Cmd):
                 if "new_prompt" in cmd_data:
                     self.prompt = cmd_data["new_prompt"].format(base_prompt=self.base_prompt)
             else:
-                log.warning("'%s' command prompt '%s' not matching current prompt '%s'", line, cmd_data.get("prompt", "").format(base_prompt=self.base_prompt), self.prompt)
+                log.warning(
+                    "'%s' command prompt '%s' not matching current prompt '%s'",
+                    line,
+                    cmd_data.get("prompt", "").format(base_prompt=self.base_prompt),
+                    self.prompt,
+                )
         except KeyError:
             log.error("shell.default '%s' command '%s' not found", self.base_prompt, [line])
         # pylint: disable=broad-except

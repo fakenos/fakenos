@@ -1,0 +1,653 @@
+name: alcatel_sros
+initial_prompt: "{base_prompt}>"
+enable_prompt: "{base_prompt}#"
+config_prompt: "{base_prompt}(config)#"
+commands:
+  enable:
+    output: 'null'
+    new_prompt: "{base_prompt}#"
+    help: enter enable mode
+    prompt: "{base_prompt}>"
+  show router pim interface:
+    output: "\n===============================================================================\n\
+      \ PIM Interfaces ipv4\n===============================================================================\n\
+      Interface                   Adm  Opr  DR Prty         Hello Intvl  Mcast Send\n\
+      \   DR\n-------------------------------------------------------------------------------\n\
+      R1_R2                       Up   Up   1               30           auto\n  \
+      \ 192.0.2.245\nR1_R3                       Up   Up   1               30    \
+      \       auto\n   192.0.2.42\nR1_R4                       Up   Down 10      \
+      \        30           auto\n   N/A\nR1_R5                       Up   Down 5\
+      \               30           auto\n   N/A\nR1_R6                       Up  \
+      \ Down N/A             30           auto\n   N/A\n-------------------------------------------------------------------------------\n\
+      \ Interfaces : 5 Tunnel-Interfaces : 0\n===============================================================================\n"
+    help: execute the command "show router pim interface"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show router interface:
+    output: "===============================================================================\n\
+      \ Interface Table (Router: Base)\n===============================================================================\n\
+      Interface-Name                   Adm       Opr(v4/v6)  Mode    Port/SapId\n\
+      \   IP-Address                                                  PfxState\n-------------------------------------------------------------------------------\n\
+      L3-Telecom-IXR01-1               Up        Down/Up     IES     lag-21:300\n\
+      \   2001:4888:2062:357a:645:400:0:2/64                          PREFERRED\n\
+      \   fe80::645:400:0:2/64                                        PREFERRED\n\
+      L3-Telecom-IXR02-1               Up        Down/Up     IES     lag-22:300\n\
+      \   2001:4888:2062:3591:645:400:0:2/64                          PREFERRED\n\
+      \   fe80::645:400:0:2/64                                        PREFERRED\n\
+      TO_EDGE_IXR01                    Up        Down/Down   Network n/a\n   192.168.28.1/24\
+      \                                             n/a\n   192.168.47.1/24      \
+      \                                       n/a\nsystem                        \
+      \   Up        Up/Up       Network system\n   10.115.43.64/32               \
+      \                              n/a\n   2001:4888:2062:3000:645:400:0:1a0/128\
+      \                       PREFERRED\nto-7750-02                       Up     \
+      \   Up/Up       Network 1/1/c4/1:2415\n   172.25.214.121/31                \
+      \                           n/a\n   2001:4888:206a:335c:645:400:0:1/64     \
+      \                     PREFERRED\n   fe80::c9:ffff:fe00:0/64                \
+      \                     PREFERRED\nto-BTS0415-7750-H1               Up       \
+      \ Down/Down   Network lag-11:4094\n   172.25.198.123/31                    \
+      \                       n/a\n   2001:4888:206a:335f:645:400:0:1/64         \
+      \                 INACCESSIBLE\n   fe80::c9:ffff:fe00:14b/64               \
+      \                    INACCESSIBLE\n-------------------------------------------------------------------------------\n\
+      \ Interfaces : 6\n===============================================================================\n"
+    help: execute the command "show router interface"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show router mpls interface:
+    output: "===============================================================================\n\
+      \ MPLS Interfaces\n===============================================================================\n\
+      Interface                           Port-id           Adm  Opr(V4/V6) TE-\n\
+      \                                                                      metric\n\
+      -------------------------------------------------------------------------------\n\
+      system                              system            Up   Up/Down    None\n\
+      \  Admin Groups                      None\n  SRLG Groups                   \
+      \    None\nTO_IOSXR                            1/1/c4/1          Up   Up/Down\
+      \    98999\n  Admin Groups                      RED\n                      \
+      \              GREEN\n  SRLG Groups                       None\nTO_R1      \
+      \                         1/1/c1/1          Up   Up/Down    65660\n  Admin Groups\
+      \                      None\n  SRLG Groups                       None\nTO_R4\
+      \                               1/1/c2/1          Up   Up/Down    None\n  Admin\
+      \ Groups                      None\n  SRLG Groups                       PURPLE\n\
+      \                                    WHITE\n-------------------------------------------------------------------------------\n\
+      \ Interfaces : 4\n==============================================================================="
+    help: execute the command "show router mpls interface"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show service sdp:
+    output: "\n============================================================================\n\
+      \ Services: Service Destination Points\n============================================================================\n\
+      SdpId  AdmMTU  OprMTU  Far End          Adm  Opr         Del     LSP   Sig\n\
+      ----------------------------------------------------------------------------\n\
+      1      0       9170    192.168.0.1      Down Down        GRE     n/a   TLDP\n\
+      31     0       0       10.10.10.1       Up   Down        MPLS    R     TLDP\n\
+      32     0       0       10.10.10.2       Up   Down        MPLS    R     TLDP\n\
+      34     0       0       10.10.10.4       Up   Down        MPLS    R     TLDP\n\
+      38     0       492     10.10.10.8       Up   Down        MPLS    R     TLDP\n\
+      2000   0       0                        Down Down        GRE     n/a   TLDP\n\
+      \ ----------------------------------------------------------------------------\n\
+      \ Number of SDPs : 6\n----------------------------------------------------------------------------\n\
+      \ Legend: R = RSVP, L = LDP, B = BGP, M = MPLS-TP, n/a = Not Applicable\n  \
+      \      I = SR-ISIS, O = SR-OSPF, T = SR-TE, F = FPE\n============================================================================\n"
+    help: execute the command "show service sdp"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show router isis adjacency:
+    output: "\n===============================================================================\n\
+      \ Rtr Base ISIS Instance 0 Adjacency\n===============================================================================\n\
+      \ System ID                Usage State Hold Interface                     MT-ID\n\
+      -------------------------------------------------------------------------------\n\
+      R2                       L2    Up    27   R1_R2                         0,2\n\
+      R3                       L2    Up    19   R1_R3                         0,2\n\
+      \ -------------------------------------------------------------------------------\n\
+      \ Adjacencies : 2\n===============================================================================\n"
+    help: execute the command "show router isis adjacency"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show service sdp-using:
+    output: "===============================================================================\n\
+      \ SDP Using\n===============================================================================\n\
+      SvcId      SdpId              Type   Far End              Opr   I.Label E.Label\n\
+      \                                                          State         \n\
+      -------------------------------------------------------------------------------\n\
+      200        31:200             Spok   10.10.10.1           Up    524281  524283\n\
+      200        34:200             Mesh   10.10.10.4           Down  None    None\n\
+      310        32767:4294967295   BgpAd  10.10.10.1           Up    524278  524280\n\
+      400        32767:4294967294   BgpAd  10.10.10.1           Up    524277  524279\n\
+      401        32767:4294967293   BgpAd  10.10.10.1           Up    524276  524278\n\
+      \ -------------------------------------------------------------------------------\n\
+      \ Number of SDPs : 5\n-------------------------------------------------------------------------------\n\
+      ===============================================================================\n"
+    help: execute the command "show service sdp-using"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show router isis interface:
+    output: "\n===============================================================================\n\
+      \ Rtr Base ISIS Instance 0 Interfaces\n===============================================================================\n\
+      Interface                        Level CircID  Oper State   L1/L2 Metric\n-------------------------------------------------------------------------------\n\
+      system                           L1L2  1       Up           0/0\nR1_R2     \
+      \                       L2    18      Up           10/10\nR1_R3            \
+      \                L1    21      Down         10/1000\n-------------------------------------------------------------------------------\n\
+      \ Interfaces : 3\n===============================================================================\n"
+    help: execute the command "show router isis interface"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show router mpls lsp:
+    output: "===============================================================================\n\
+      \ MPLS LSPs (Originating)\n===============================================================================\n\
+      \ LSP Name                                            Tun     Fastfail  Adm\
+      \  Opr\n  To                                                Id      Config \
+      \        \n-------------------------------------------------------------------------------\n\
+      TO_IOSXR                                            1       Yes       Up   Up\n\
+      \  10.10.10.8                                                              \
+      \ \nTO_R1                                               2       Yes       Up\
+      \   Up\n  10.10.10.1                                                       \
+      \        \nTO_R2                                               3       Yes \
+      \      Up   Dwn\n  10.10.10.2                                              \
+      \                 \nTO_R4                                               4  \
+      \     Yes       Up   Dwn\n  10.10.10.4                                     \
+      \                          \nFull-Mesh-10.10.10.8-61441                    \
+      \      61441   Yes       Up   Up\n  10.10.10.8                             \
+      \                                  \nFull-Mesh-10.10.10.1-65240            \
+      \              65240   Yes       Up   Up\n  10.10.10.1                     \
+      \                                          \n-------------------------------------------------------------------------------\n\
+      \ LSPs : 6\n===============================================================================\n"
+    help: execute the command "show router mpls lsp"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show lag:
+    output: "\n===============================================================================\n\
+      \ Lag Data\n===============================================================================\n\
+      Lag-id         Adm     Opr     Weighted Threshold Up-Count MC Act/Stdby\n-------------------------------------------------------------------------------\n\
+      1              up      up      No       0         2        N/A\n2          \
+      \    up      up      No       0         2        N/A\n3              up    \
+      \  up      No       0         1        N/A\n4              down    down    No\
+      \       0         0        N/A\n5              down    down    No       0  \
+      \       0        N/A\n10             down    down    No       0         0  \
+      \      N/A\n20             up      down    No       0         0        standby\n\
+      70             down    down    No       0         0        N/A\n80         \
+      \    up      down    No       0         0        N/A\n90             down  \
+      \  down    No       0         0        N/A\n100            up      up      No\
+      \       0         1        N/A\n101            up      up      No       0  \
+      \       1        N/A\n102            up      up      No       0         1  \
+      \      N/A\n103            up      up      No       0         1        active\n\
+      104            up      up      No       0         1        N/A\n105        \
+      \    up      up      No       0         1        N/A\n106            up    \
+      \  up      No       0         1        N/A\n107            up      up      No\
+      \       0         1        N/A\n108            up      up      No       0  \
+      \       1        N/A\n109            up      up      No       0         1  \
+      \      N/A\n110            up      up      No       0         1        active\n\
+      111            up      up      No       0         1        N/A\n112        \
+      \    up      up      No       0         1        N/A\n114            up    \
+      \  up      No       0         1        N/A\n115            up      up      No\
+      \       0         1        N/A\n120            up      up      No       0  \
+      \       1        N/A\n124            down    down    No       0         0  \
+      \      N/A\n140            up      up      No       0         1        N/A\n\
+      150            down    down    No       0         0        N/A\n153        \
+      \    up      up      No       0         1        active\n180            down\
+      \    down    No       0         0        N/A\n-------------------------------------------------------------------------------\n\
+      \ Total Lag-ids: 31      Single Chassis: 27       MC Act: 3       MC Stdby:\
+      \ 1\n===============================================================================\n"
+    help: execute the command "show lag"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show service sap-using:
+    output: "===============================================================================\n\
+      \ Service Access Points \n===============================================================================\n\
+      PortId                          SvcId      Ing.  Ing.    Egr.  Egr.   Adm  Opr\n\
+      \                                           QoS   Fltr    QoS   Fltr       \
+      \ \n-------------------------------------------------------------------------------\n\
+      lag-21:300                      1          11130 none    11140 none   Up   Up\n\
+      lag-22:300                      1          11130 ip4     11140 none   Up   Up\n\
+      1/1/c6/1:234                    400        1     none    1     none   Up   Down\n\
+      lag-21:400                      76415001   10    none    1     none   Up   Up\n\
+      lag-22:400                      76415002   10    none    1     none   Up   Up\n\
+      \ -------------------------------------------------------------------------------\n\
+      \ Number of SAPs : 5\n-------------------------------------------------------------------------------\n\
+      ===============================================================================\n"
+    help: execute the command "show service sap-using"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show router ldp interface:
+    output: "\n===============================================================================\n\
+      \ LDP Interfaces\n===============================================================================\n\
+      Interface                         Adm/Opr\n Sub-Interface(s)               \
+      \   Adm/Opr  Hello Hold  KA    KA    Transport\n                           \
+      \                 Fctr  Time  Fctr  Time  Address\n-------------------------------------------------------------------------------\n\
+      R1_R2                             Up/Up\n  ipv4                            \
+      \  Up/Up   3     15    3     30    System\nR1_R3                           \
+      \  Up/Up\n  ipv4                              Up/Up   3     15    3     30 \
+      \   System\n  ipv6                              Up/Up   3     15    3     30\
+      \    System\nR1_R4                             Up/Up\n  ipv4               \
+      \               Up/Dwn  3     15    3     30    System\n-------------------------------------------------------------------------------\n\
+      \ No. of Interfaces: 3\n===============================================================================\n"
+    help: execute the command "show router ldp interface"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  oam mac-ping:
+    output: "Seq Node-id                                                    Path \
+      \    RTT\n----------------------------------------------------------------------------\n\
+      \ [Send request Seq. 1, Size 126]\n1   192.0.2.4:sap1/1/2:100              \
+      \   No FIB on Egress In-Band  0.153ms\n"
+    help: execute the command "oam mac-ping"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show service id base:
+    output: "===============================================================================\n\
+      \ Service Basic Information\n===============================================================================\n\
+      \ Service Id        : 1099                Vpn Id            : 0\nService Type\
+      \      : VPLS                \nName              : (Not Specified)\nDescription\
+      \       : this_is_a_description\nCustomer Id       : 4                   \n\
+      \ Last Status Change: 10/31/2016 14:44:10 \nLast Mgmt Change  : 11/01/2016 11:04:36\
+      \ \nAdmin State       : Up                  Oper State        : Down\nMTU  \
+      \             : 5000                Def. Mesh VC Id   : 1099\nSAP Count    \
+      \     : 1                   SDP Bind Count    : 1\nSnd Flush on Fail : Disabled\
+      \            Host Conn Verify  : Disabled\nPropagate MacFlush: Disabled    \
+      \        Per Svc Hashing   : Disabled\nAllow IP Intf Bind: Disabled        \
+      \    \nDef. Gateway IP   : None                \nDef. Gateway MAC  : None  \
+      \              \nTemp Flood Time   : Disabled            Temp Flood        :\
+      \ Inactive\nTemp Flood Chg Cnt: 0                   \n \n-------------------------------------------------------------------------------\n\
+      \ Service Access & Destination Points\n-------------------------------------------------------------------------------\n\
+      Identifier                               Type         AdmMTU  OprMTU  Adm  Opr\n\
+      -------------------------------------------------------------------------------\n\
+      sap:1/1/6:100                            q-tag        9212    9212    Up   Down\n\
+      \ sdp:4:1099 M(192.0.2.4)                  Mesh         0       9190    Up \
+      \  Down\n===============================================================================\n"
+    help: execute the command "show service id base"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show router bgp summary family:
+    output: "[kvanlang@steffi upgrade-support]$ cat ../ntc-templates-test/lib/test-bgp-sum-family.raw\n\
+      \ A:SRHERE01# show router \"Base\" bgp summary family ipv4\n===============================================================================\n\
+      \ BGP Router ID:192.0.2.11   AS:6848        Local AS:65535\n===============================================================================\n\
+      \ BGP Admin State         : Up          BGP Oper State              : Up\nTotal\
+      \ Peer Groups       : 6           Total Peers                 : 150\nTotal VPN\
+      \ Peer Groups   : 79          Total VPN Peers             : 207\nTotal BGP Paths\
+      \         : 407944      Total Path Memory           : 160791243\n\nTotal IPv4\
+      \ Remote Rts   : 1725031     Total IPv4 Rem. Active Rts  : 862201\nTotal IPv6\
+      \ Remote Rts   : 0           Total IPv6 Rem. Active Rts  : 0\nTotal IPv4 Backup\
+      \ Rts   : 0           Total IPv6 Backup Rts       : 0\nTotal LblIpv4 Rem Rts\
+      \   : 2844        Total LblIpv4 Rem. Act Rts  : 311\nTotal LblIpv6 Rem Rts \
+      \  : 196896      Total LblIpv6 Rem. Act Rts  : 98446\nTotal LblIpv4 Bkp Rts\
+      \   : 0           Total LblIpv6 Bkp Rts       : 0\nTotal Supressed Rts     :\
+      \ 0           Total Hist. Rts             : 0\nTotal Decay Rts         : 0\n\
+      \n Total VPN-IPv4 Rem. Rts : 93000       Total VPN-IPv4 Rem. Act. Rts: 45689\n\
+      \ Total VPN-IPv6 Rem. Rts : 0           Total VPN-IPv6 Rem. Act. Rts: 0\nTotal\
+      \ VPN-IPv4 Bkup Rts : 0           Total VPN-IPv6 Bkup Rts     : 0\nTotal VPN\
+      \ Local Rts     : 1147        Total VPN Supp. Rts         : 0\nTotal VPN Hist.\
+      \ Rts     : 0           Total VPN Decay Rts         : 0\n\nTotal MVPN-IPv4 Rem\
+      \ Rts : 0           Total MVPN-IPv4 Rem Act Rts : 0\nTotal MVPN-IPv6 Rem Rts\
+      \ : 0           Total MVPN-IPv6 Rem Act Rts : 0\nTotal MDT-SAFI Rem Rts  : 0\
+      \           Total MDT-SAFI Rem Act Rts  : 0\nTotal McIPv4 Remote Rts : 0   \
+      \        Total McIPv4 Rem. Active Rts: 0\nTotal McIPv6 Remote Rts : 0      \
+      \     Total McIPv6 Rem. Active Rts: 0\nTotal McVpnIPv4 Rem Rts : 0         \
+      \  Total McVpnIPv4 Rem Act Rts : 0\nTotal McVpnIPv6 Rem Rts : 0           Total\
+      \ McVpnIPv6 Rem Act Rts : 0\n\nTotal EVPN Rem Rts      : 692         Total EVPN\
+      \ Rem Act Rts      : 338\nTotal L2-VPN Rem. Rts   : 0           Total L2VPN\
+      \ Rem. Act. Rts   : 0\nTotal MSPW Rem Rts      : 0           Total MSPW Rem\
+      \ Act Rts      : 0\nTotal RouteTgt Rem Rts  : 1546        Total RouteTgt Rem\
+      \ Act Rts  : 1546\nTotal FlowIpv4 Rem Rts  : 0           Total FlowIpv4 Rem\
+      \ Act Rts  : 0\n Total FlowIpv6 Rem Rts  : 0           Total FlowIpv6 Rem Act\
+      \ Rts  : 0\nTotal Link State Rem Rts: 0           Total Link State Rem Act Rts:\
+      \ 0\nTotal SrPlcyIpv4 Rem Rts: 0           Total SrPlcyIpv4 Rem Act Rts: 0\n\
+      \n===============================================================================\n\
+      \ BGP IPv4 Summary\n===============================================================================\n\
+      \ Legend : D - Dynamic Neighbor\n===============================================================================\n\
+      Neighbor\n                   AS PktRcvd PktSent  InQ OutQ Up/Down   State|Recv/Actv/Sent\n\
+      -------------------------------------------------------------------------------\n\
+      192.0.2.118\n               42598*  228872  215409    0    0 25d10h18m 2/2/1\n\
+      192.0.2.110\n               42598   271035  249777    0    0 29d11h41m 1/1/1\n\
+      192.0.2.126\n               42598*       0       0    0    0 54d18h43m Connect\n\
+      192.0.2.254\n               42598*       0       0    0    0 36d13h37m Active\n\
+      192.0.2.103\n               65535  390698*  749512    0    0 54d18h40m 862440/627895/373\n\
+      192.0.2.104\n               65535  355316*  749512    0    0 54d18h40m 862439/234172/373\n\
+      \ -------------------------------------------------------------------------------\n\
+      \ * indicates that the corresponding row element may have been truncated.\n"
+    help: execute the command "show router bgp summary family"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show system cpu:
+    output: "===============================================================================\n\
+      \ CPU Utilization (Sample period: 1 second)\n===============================================================================\n\
+      Name                                   CPU Time       CPU Usage        Capacity\n\
+      \                                         (uSec)                           Usage\n\
+      -------------------------------------------------------------------------------\n\
+      BFD                                         189           0.01%           0.01%\n\
+      BGP                                          20          ~0.00%          ~0.00%\n\
+      \ BGP PE-CE                                     0           0.00%          \
+      \ 0.00%\nBIER                                          0           0.00%   \
+      \        0.00%\nCFLOWD                                       48          ~0.00%\
+      \          ~0.00%\n Cards & Ports                             2,311        \
+      \   0.23%           0.10%\n DHCP Server                                  11\
+      \          ~0.00%          ~0.00%\nETH-CFM                                 \
+      \    244           0.02%           0.02%\n HQoS Algorithm                  \
+      \            102           0.01%           0.01%\n HQoS Statistics         \
+      \                    653           0.06%           0.06%\nICC              \
+      \                           524           0.05%           0.03%\nIGMP/MLD  \
+      \                                   78          ~0.00%          ~0.00%\n IMSI\
+      \ Db Appl                                128           0.01%           0.01%\n\
+      IOM                                      37,866           3.78%           2.15%\n\
+      \ IP Stack                                  3,554           0.35%          \
+      \ 0.22%\nIS-IS                                       298           0.02%   \
+      \        0.01%\nISA                                       1,093           0.10%\
+      \           0.03%\nLDP                                         433         \
+      \  0.04%           0.02%\nLogging                                      15  \
+      \        ~0.00%          ~0.00%\nMBUF                                      \
+      \    0           0.00%           0.00%\nMCS                                \
+      \          83          ~0.00%          ~0.00%\nMPLS/RSVP                   \
+      \              1,230           0.12%           0.05%\nMSCP                 \
+      \                         0           0.00%           0.00%\nMSDP          \
+      \                                0           0.00%           0.00%\nManagement\
+      \                               25,404           2.53%           1.84%\nOAM\
+      \                                       1,759           0.17%           0.05%\n\
+      OSPF                                        815           0.08%           0.02%\n\
+      OpenFlow                                     30          ~0.00%          ~0.00%\n\
+      PIM/L2Mcast                                   0           0.00%           0.00%\n\
+      PKI                                          24          ~0.00%          ~0.00%\n\
+      PTP                                           8          ~0.00%          ~0.00%\n\
+      RIP                                           0           0.00%           0.00%\n\
+      RTM/Policies                                  0           0.00%           0.00%\n\
+      Redundancy                                    0           0.00%           0.00%\n\
+      SIM                                       4,086           0.40%           0.39%\n\
+      \ SNMP Daemon                                   0           0.00%          \
+      \ 0.00%\nSecurity                                      0           0.00%   \
+      \        0.00%\nServices                                  1,246           0.12%\
+      \           0.04%\nStats                                         0         \
+      \  0.00%           0.00%\nStats-Extended                                0  \
+      \         0.00%           0.00%\n Subscriber Mgmt                          \
+      \   834           0.08%           0.01%\nSystem                            \
+      \       52,774           5.27%           2.63%\n Traffic Eng               \
+      \                    0           0.00%           0.00%\n Tree Sid          \
+      \                            0           0.00%           0.00%\nVRRP       \
+      \                                 227           0.02%           0.01%\n WEB\
+      \ Redirect                                107           0.01%          ~0.00%\n\
+      -------------------------------------------------------------------------------\n\
+      Total                                 1,001,337         100.00%            \
+      \    \n   Idle                                 865,143          86.39%     \
+      \           \n   Usage                                136,194          13.60%\
+      \                \nBusiest Core Utilization                136,194         \
+      \ 13.60%                \n===============================================================================\n"
+    help: execute the command "show system cpu"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show router rsvp interface:
+    output: "===============================================================================\n\
+      \ RSVP Interfaces\n===============================================================================\n\
+      Interface                        Total    Active    Total BW  Resv BW   Adm\
+      \ Opr\n                                 Sessions Sessions  (Mbps)    (Mbps)\
+      \        \n-------------------------------------------------------------------------------\n\
+      system                           -        -         -         -         Up \
+      \ Up\nTO_IOSXR                         0        0         10000     0      \
+      \   Dwn Dwn\nTO_R1                            0        0         10000     0\
+      \         Up  Up\nTO_R4                            0        0         10000\
+      \     0         Up  Up\n-------------------------------------------------------------------------------\n\
+      \ Interfaces : 4\n===============================================================================\n"
+    help: execute the command "show router rsvp interface"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show router bgp routes vpn-ipv4:
+    output: "===============================================================================\n\
+      \ BGP Router ID:192.0.2.1        AS:65500       Local AS:65500      \n===============================================================================\n\
+      \ Legend -\n Status codes  : u - used, s - suppressed, h - history, d - decayed,\
+      \ * - valid\n                 l - leaked, x - stale, > - best, b - backup, p\
+      \ - purge\n Origin codes  : i - IGP, e - EGP, ? - incomplete\n\n===============================================================================\n\
+      \ BGP VPN-IPv4 Routes\n===============================================================================\n\
+      Flag  Network                                            LocalPref   MED\n \
+      \     Nexthop (Router)                                   Path-Id     Label\n\
+      \      As-Path                                                        \n-------------------------------------------------------------------------------\n\
+      *>i   65500:11:192.0.2.4/32                              100         None\n\
+      \      10.11.5.5                                          None        262132\n\
+      \      No As-Path                                                      \nu*>i\
+      \  65500:11:192.0.2.14/32                             100         None\n   \
+      \   192.0.2.2                                          None        262132\n\
+      \      No As-Path                                                      \n-------------------------------------------------------------------------------\n\
+      \ Routes : 2\n===============================================================================\n"
+    help: execute the command "show router bgp routes vpn-ipv4"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show port:
+    output: "\n===============================================================================\n\
+      \ Ports on Slot 1\n===============================================================================\n\
+      Port          Admin Link Port    Cfg  Oper LAG/ Port Port Port   C/QS/S/XFP/\n\
+      Id            State      State   MTU  MTU  Bndl Mode Encp Type   MDIMDX\n-------------------------------------------------------------------------------\n\
+      1/1/1         Up    Yes  Up      9212 9212    - hybr dotq xcme   GIGE-SX\n1/1/2\
+      \         Up    Yes  Up      1518 1518    - accs dotq xcme   MDI GIGE-T\n1/1/3\
+      \         Up    Yes  Up      1518 1518    - accs dotq xcme   MDX GIGE-T\n1/1/4\
+      \         Up    Yes  Up      9212 9212    1 netw null xcme   GIGE-SX\n1/1/5\
+      \         Up    Yes  Up      9212 9212    - netw null xcme   GIGE-SX\n1/1/6\
+      \         Up    Yes  Up      9212 9212    - netw null xcme   GIGE-SX\n1/1/7\
+      \         Up    Yes  Up      1518 1518    - accs dotq xcme   MDX GIGE-T\n1/1/8\
+      \         Up    Yes  Up      1514 1514    - accs null xcme   MDX GIGE-T\n1/1/9\
+      \         Up    Yes  Up      9212 9212    - netw null xcme   GIGE-SX\n1/1/10\
+      \        Up    No   Down    1518 1518    - accs dotq xcme   GIGE-SX\n1/1/11\
+      \        Up    No   Down    1518 1518    - accs dotq xcme   GIGE-T\n1/1/12 \
+      \       Up    Yes  Up      9000 9000    - accs null xcme   MDX GIGE-T\n1/1/13\
+      \        Up    Yes  Up      1514 1514    - accs null xcme   GIGE-SX\n1/1/14\
+      \        Up    Yes  Up      1514 1514    - accs null xcme   MDI GIGE-T\n1/1/15\
+      \        Up    Yes  Up      9000 9000    - accs null xcme   MDI GIGE-T\n1/1/16\
+      \        Up    Yes  Up      1514 1514    - accs null xcme   GIGE-SX\n1/1/17\
+      \        Up    No   Down    1518 1518    - accs dotq xcme   GIGE-T\n1/1/18 \
+      \       Up    Yes  Up      1518 1518    - accs dotq xcme   MDI GIGE-T\n1/1/19\
+      \        Up    Yes  Up      1514 1514    - accs null xcme   MDI GIGE-T\n1/1/20\
+      \        Up    Yes  Up      9212 9212    - hybr dotq xcme   MDX GIGE-T\n1/1/21\
+      \        Up    Yes  Up      1518 1518    - accs dotq xcme   GIGE-SX\n1/1/22\
+      \        Up    Yes  Up      1518 1518    - accs dotq xcme   GIGE-SX\n1/1/23\
+      \        Up    Yes  Up      1518 1518    - accs dotq xcme   MDI GIGE-T\n1/1/24\
+      \        Up    Yes  Up      1518 1518    - accs dotq xcme   MDX GIGE-T\n1/2/1\
+      \         Up    No   Down    1518 1518    - accs dotq xcme   GIGE-SX\n1/2/2\
+      \         Up    Yes  Up      1514 1514    - accs null xcme   MDI GIGE-T\n1/2/3\
+      \         Up    Yes  Up      1514 1514    - accs null xcme   MDI GIGE-T\n1/2/4\
+      \         Up    No   Down    1514 1514    - accs null xcme   GIGE-T\n1/2/5 \
+      \        Up    Yes  Up      9212 9212    - hybr dotq xcme   MDX GIGE-T\n1/2/6\
+      \         Up    No   Down    9022 9022    - accs null xcme   GIGE-T\n1/2/7 \
+      \        Up    Yes  Up      1514 1514    - accs null xcme   MDX GIGE-T\n1/2/8\
+      \         Up    No   Down    1514 1514    - accs null xcme\n1/2/9         Up\
+      \    No   Down    1518 1518   99 accs dotq xcme   GIGE-SX\n1/2/10        Up\
+      \    Yes  Up      1514 1514    - accs null xcme   MDI GIGE-T\n1/2/11       \
+      \ Up    Yes  Up      1514 1514    - accs null xcme   MDI GIGE-T\n1/2/12    \
+      \    Up    No   Down    1514 1514    - accs null xcme   GIGE-T\n1/2/13     \
+      \   Up    Yes  Up      1514 1514    - accs null xcme   MDX GIGE-T\n1/2/14  \
+      \      Up    No   Down    1514 1514    - accs null xcme   GIGE-T\n1/2/15   \
+      \     Up    No   Down    1570 1570    - accs dotq xcme   GIGE-T\n1/2/16    \
+      \    Up    Yes  Up      9022 9022    - accs null xcme   MDX GIGE-T\n1/2/17 \
+      \       Up    Yes  Up      1538 1538    - accs dotq xcme   MDX GIGE-T\n1/2/18\
+      \        Up    No   Down    1514 1514    - accs null xcme   GIGE-T\n1/2/19 \
+      \       Up    No   Down    1518 1518    - accs dotq xcme   GIGE-T\n1/2/20  \
+      \      Up    No   Down    1514 1514    - accs null xcme   GIGE-T\n1/2/21   \
+      \     Up    Yes  Up      1514 1514    - accs null xcme   MDI GIGE-T\n1/2/22\
+      \        Up    Yes  Up      1518 1518    - accs dotq xcme   MDX GIGE-T\n1/2/23\
+      \        Up    Yes  Up      1518 1518    - accs dotq xcme   MDX GIGE-T\n1/2/24\
+      \        Up    Yes  Up      9212 9212    7 netw null xcme   GIGE-SX\n\n===============================================================================\n\
+      \ Ports on Slot A\n===============================================================================\n\
+      Port          Admin Link Port    Cfg  Oper LAG/ Port Port Port   C/QS/S/XFP/\n\
+      Id            State      State   MTU  MTU  Bndl Mode Encp Type   MDIMDX\n-------------------------------------------------------------------------------\n\
+      A/1           Up    Yes  Up      1514 1514    - netw null faste  MDI\nA/4  \
+      \         Up    No   Down    1514 1514    - netw null faste\n\n===============================================================================\n\
+      \ Ports on Slot B\n===============================================================================\n\
+      Port          Admin Link Port    Cfg  Oper LAG/ Port Port Port   C/QS/S/XFP/\n\
+      Id            State      State   MTU  MTU  Bndl Mode Encp Type   MDIMDX\n-------------------------------------------------------------------------------\n\
+      B/1           Up    No   Down    1514 1514    - netw null faste\nB/4       \
+      \    Up    No   Down    1514 1514    - netw null faste\n\n\n===============================================================================\n\
+      \ Ports on Satellite esat-1\n===============================================================================\n\
+      Port          Admin Link Port    Cfg  Oper LAG/ Port Port Port   C/QS/S/XFP/\n\
+      Id            State      State   MTU  MTU  Bndl Mode Encp Type   MDIMDX\n-------------------------------------------------------------------------------\n\
+      esat-1/1/1    Up    Yes  Up      1518 1518    5 accs dotq xcme   MDI GIGE-T\n\
+      esat-1/1/2    Up    Yes  Up      1518 1518    - accs dotq xcme   MDI GIGE-T\n\
+      esat-1/1/3    Up    Yes  Up      1518 1518    - accs dotq xcme   MDX GIGE-T\n\
+      esat-1/1/4    Up    Yes  Up      1538 1538    - accs dotq xcme   MDX GIGE-T\n\
+      esat-1/1/5    Up    Yes  Up      9022 9022    - accs null xcme   MDX GIGE-T\n\
+      esat-1/1/6    Up    Yes  Up      1514 1514    - accs null xcme   MDI GIGE-T\n\
+      esat-1/1/7    Up    Yes  Up      9022 9022    - accs null xcme   MDI GIGE-T\n\
+      esat-1/1/8    Up    No   Down    9022 9022    - accs null xcme   GIGE-T\nesat-1/1/9\
+      \    Down  No   Down    9208 9208    - netw null xcme\nesat-1/1/10   Down  No\
+      \   Down    9208 9208    - netw null xcme\nesat-1/1/11   Down  No   Down   \
+      \ 9208 9208    - netw null xcme\nesat-1/1/12   Down  No   Down    9208 9208\
+      \    - netw null xcme\nesat-1/1/13   Down  No   Down    9208 9208    - netw\
+      \ null xcme\nesat-1/1/14   Down  No   Down    9208 9208    - netw null xcme\n\
+      esat-1/1/15   Down  No   Down    9208 9208    - netw null xcme\nesat-1/1/16\
+      \   Down  No   Down    9208 9208    - netw null xcme\nesat-1/1/17   Down  No\
+      \   Down    9208 9208    - netw null xcme\nesat-1/1/18   Down  No   Down   \
+      \ 9208 9208    - netw null xcme\nesat-1/1/19   Down  No   Down    9208 9208\
+      \    - netw null xcme\nesat-1/1/20   Down  No   Down    9208 9208    - netw\
+      \ null xcme\nesat-1/1/21   Down  No   Down    9208 9208    - netw null xcme\n\
+      esat-1/1/22   Down  No   Down    9208 9208    - netw null xcme\nesat-1/1/23\
+      \   Down  No   Down    9208 9208    - netw null xcme\nesat-1/1/24   Down  No\
+      \   Down    9208 9208    - netw null xcme\nesat-1/1/25   Down  No   Down   \
+      \ 9208 9208    - netw null xcme\nesat-1/1/26   Down  No   Down    9208 9208\
+      \    - netw null xcme\nesat-1/1/27   Down  No   Down    9208 9208    - netw\
+      \ null xcme\nesat-1/1/28   Down  No   Down    9208 9208    - netw null xcme\n\
+      esat-1/1/29   Down  No   Down    9208 9208    - netw null xcme\nesat-1/1/30\
+      \   Down  No   Down    9208 9208    - netw null xcme\nesat-1/1/31   Up    No\
+      \   Down    9208 9208    - netw null xcme\nesat-1/1/32   Down  No   Down   \
+      \ 9208 9208    - netw null xcme\nesat-1/1/33   Down  No   Down    9208 9208\
+      \    - netw null xcme\nesat-1/1/34   Down  No   Down    9208 9208    - netw\
+      \ null xcme\nesat-1/1/35   Down  No   Down    9208 9208    - netw null xcme\n\
+      esat-1/1/36   Down  No   Down    9208 9208    - netw null xcme\nesat-1/1/37\
+      \   Down  No   Down    9208 9208    - netw null xcme\nesat-1/1/38   Down  No\
+      \   Down    9208 9208    - netw null xcme\nesat-1/1/39   Down  No   Down   \
+      \ 9208 9208    - netw null xcme\nesat-1/1/40   Down  No   Down    9208 9208\
+      \    - netw null xcme\nesat-1/1/41   Down  No   Down    9208 9208    - netw\
+      \ null xcme\nesat-1/1/42   Down  No   Down    9208 9208    - netw null xcme\n\
+      esat-1/1/43   Down  No   Down    9208 9208    - netw null xcme\nesat-1/1/44\
+      \   Down  No   Down    9208 9208    - netw null xcme\nesat-1/1/45   Down  No\
+      \   Down    9208 9208    - netw null xcme\nesat-1/1/46   Down  No   Down   \
+      \ 9208 9208    - netw null xcme\nesat-1/1/47   Down  No   Down    9208 9208\
+      \    - netw null xcme\nesat-1/1/48   Down  No   Down    9208 9208    - netw\
+      \ null xcme\nesat-1/1/u1   Up    Yes  Up      9212 9212    - accs dotq xgige\
+      \  10GBASE-LR  *\nesat-1/1/u2   Up    No   Down    9212 9212    - accs dotq\
+      \ xgige\nesat-1/1/u3   Up    No   Down    9212 9212    - accs dotq xgige\nesat-1/1/u4\
+      \   Up    No   Down    9212 9212    - accs dotq xgige\n\n===============================================================================\n\
+      \ Ports on Satellite esat-2\n===============================================================================\n\
+      Port          Admin Link Port    Cfg  Oper LAG/ Port Port Port   C/QS/S/XFP/\n\
+      Id            State      State   MTU  MTU  Bndl Mode Encp Type   MDIMDX\n-------------------------------------------------------------------------------\n\
+      esat-2/1/1    Down  No   Ghost   9208 9208    - netw null xcme\nesat-2/1/2 \
+      \   Down  No   Ghost   9208 9208    - netw null xcme\nesat-2/1/3    Down  No\
+      \   Ghost   9208 9208    - netw null xcme\nesat-2/1/4    Down  No   Ghost  \
+      \ 9208 9208    - netw null xcme\nesat-2/1/5    Down  No   Ghost   9208 9208\
+      \    - netw null xcme\nesat-2/1/6    Down  No   Ghost   9208 9208    - netw\
+      \ null xcme\nesat-2/1/7    Down  No   Ghost   9208 9208    - netw null xcme\n\
+      esat-2/1/8    Down  No   Ghost   9208 9208    - netw null xcme\nesat-2/1/9 \
+      \   Down  No   Ghost   9208 9208    - netw null xcme\nesat-2/1/10   Down  No\
+      \   Ghost   9208 9208    - netw null xcme\nesat-2/1/11   Down  No   Ghost  \
+      \ 9208 9208    - netw null xcme\nesat-2/1/12   Down  No   Ghost   9208 9208\
+      \    - netw null xcme\nesat-2/1/13   Down  No   Ghost   9208 9208    - netw\
+      \ null xcme\nesat-2/1/14   Down  No   Ghost   9208 9208    - netw null xcme\n\
+      esat-2/1/15   Down  No   Ghost   9208 9208    - netw null xcme\nesat-2/1/16\
+      \   Down  No   Ghost   9208 9208    - netw null xcme\nesat-2/1/17   Down  No\
+      \   Ghost   9208 9208    - netw null xcme\nesat-2/1/18   Down  No   Ghost  \
+      \ 9208 9208    - netw null xcme\nesat-2/1/19   Down  No   Ghost   9208 9208\
+      \    - netw null xcme\nesat-2/1/20   Down  No   Ghost   9208 9208    - netw\
+      \ null xcme\nesat-2/1/21   Down  No   Ghost   9208 9208    - netw null xcme\n\
+      esat-2/1/22   Down  No   Ghost   9208 9208    - netw null xcme\nesat-2/1/23\
+      \   Down  No   Ghost   9208 9208    - netw null xcme\nesat-2/1/24   Down  No\
+      \   Ghost   9208 9208    - netw null xcme\nesat-2/1/25   Down  No   Ghost  \
+      \ 9208 9208    - netw null xcme\nesat-2/1/26   Down  No   Ghost   9208 9208\
+      \    - netw null xcme\nesat-2/1/27   Down  No   Ghost   9208 9208    - netw\
+      \ null xcme\nesat-2/1/28   Down  No   Ghost   9208 9208    - netw null xcme\n\
+      esat-2/1/29   Down  No   Ghost   9208 9208    - netw null xcme\nesat-2/1/30\
+      \   Down  No   Ghost   9208 9208    - netw null xcme\nesat-2/1/31   Down  No\
+      \   Ghost   9208 9208    - netw null xcme\nesat-2/1/32   Down  No   Ghost  \
+      \ 9208 9208    - netw null xcme\nesat-2/1/33   Down  No   Ghost   9208 9208\
+      \    - netw null xcme\nesat-2/1/34   Down  No   Ghost   9208 9208    - netw\
+      \ null xcme\nesat-2/1/35   Down  No   Ghost   9208 9208    - netw null xcme\n\
+      esat-2/1/36   Down  No   Ghost   9208 9208    - netw null xcme\nesat-2/1/37\
+      \   Down  No   Ghost   9208 9208    - netw null xcme\nesat-2/1/38   Down  No\
+      \   Ghost   9208 9208    - netw null xcme\nesat-2/1/39   Down  No   Ghost  \
+      \ 9208 9208    - netw null xcme\nesat-2/1/40   Down  No   Ghost   9208 9208\
+      \    - netw null xcme\nesat-2/1/41   Down  No   Ghost   9208 9208    - netw\
+      \ null xcme\nesat-2/1/42   Down  No   Ghost   9208 9208    - netw null xcme\n\
+      esat-2/1/43   Down  No   Ghost   9208 9208    - netw null xcme\nesat-2/1/44\
+      \   Down  No   Ghost   9208 9208    - netw null xcme\nesat-2/1/45   Down  No\
+      \   Ghost   9208 9208    - netw null xcme\nesat-2/1/46   Down  No   Ghost  \
+      \ 9208 9208    - netw null xcme\nesat-2/1/47   Down  No   Ghost   9208 9208\
+      \    - netw null xcme\nesat-2/1/48   Down  No   Ghost   9208 9208    - netw\
+      \ null xcme\nesat-2/1/u1   Up    No   Ghost   9212 9212    - accs dotq xgige\n\
+      esat-2/1/u2   Up    No   Ghost   9212 9212    - accs dotq xgige\nesat-2/1/u3\
+      \   Up    No   Ghost   9212 9212    - accs dotq xgige\nesat-2/1/u4   Up    No\
+      \   Ghost   9212 9212    - accs dotq xgige\n\n===============================================================================\n\
+      \ Ports on Slot 10\n===============================================================================\n\
+      Port          Admin Link Port    Cfg  Oper LAG/ Port Port Port   C/QS/S/XFP/\n\
+      Id            State      State   MTU  MTU  Bndl Mode Encp Type   MDIMDX\n-------------------------------------------------------------------------------\n\
+      10/2/c1       Up         Link Up                          conn   100GBASE-LR4*\n\
+      10/2/c1/1     Up    Yes  Up      9192 9192   10 accs null cgige\n10/2/c2   \
+      \    Up         Link Up                          conn   100GBASE-LR4*\n10/2/c2/1\
+      \     Up    Yes  Up      9192 9192   10 accs null cgige\n10/2/c3       Up  \
+      \       Link Up                          conn   100GBASE-LR4*\n10/2/c3/1   \
+      \  Up    Yes  Up      9192 9192   10 accs null cgige\n10/2/c4       Down   \
+      \    Down                             conn   100GBASE-LR4*\n10/2/c5       Down\
+      \       Down                             conn\n10/2/c6       Down       Down\
+      \                             conn\n10/2/c7       Up         Link Up       \
+      \                   conn   100GBASE-LR4*\n10/2/c7/1     Up    Yes  Up      9192\
+      \ 9192   15 accs null cgige\n10/2/c8       Up         Link Up              \
+      \            conn   100GBASE-LR4*\n10/2/c8/1     Up    Yes  Up      9192 9192\
+      \   30 accs null cgige\n10/2/c9       Down       Down                      \
+      \       conn   100GBASE-LR4*\n10/2/c10      Up         Link Up             \
+      \             conn   100GBASE-LR4*\n10/2/c10/1    Up    Yes  Up      9192 9192\
+      \   24 accs null cgige\n10/2/c11      Down       Down                      \
+      \       conn\n10/2/c12      Down       Down                             conn\n\
+      10/2/c13      Up         Link Up                          conn   100GBASE-LR4*\n\
+      10/2/c13/1    Up    Yes  Up      9192 9192   14 accs null cgige\n10/2/c14  \
+      \    Up         Link Up                          conn   100GBASE-LR4*\n10/2/c14/1\
+      \    Up    Yes  Link Up 9192 9192   14 accs null cgige\n10/2/c15      Up   \
+      \      Link Up                          conn   100GBASE-LR4*\n10/2/c15/1   \
+      \ Down  No   Down    9192 9192    - accs null cgige\n10/2/c16      Down    \
+      \   Down                             conn   100GBASE-LR4*\n10/2/c17      Down\
+      \       Down                             conn\n10/2/c18      Down       Down\
+      \                             conn\n10/2/c19      Up         Link Up       \
+      \                   conn   100GBASE-LR4*\n10/2/c19/1    Up    Yes  Up      9212\
+      \ 9212    7 netw null cgige\n10/2/c20      Up         Link Up              \
+      \            conn   100GBASE-LR4*\n10/2/c20/1    Up    Yes  Up      9212 9212\
+      \    3 netw null cgige\n10/2/c21      Up         Link Up                   \
+      \       conn   100GBASE-LR4*\n10/2/c21/1    Up    Yes  Up      9212 9212   \
+      \ 7 netw null cgige\n10/2/c22      Down       Down                         \
+      \    conn\n10/2/c23      Down       Down                             conn\n\
+      10/2/c24      Down       Down                             conn\n===============================================================================\n\
+      \ * indicates that the corresponding row element may have been truncated.\n\n"
+    help: execute the command "show port"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show router ospf interface:
+    output: "===============================================================================\n\
+      \ Rtr Base OSPFv2 Instance 0 Interfaces\n===============================================================================\n\
+      \ If Name               Area Id         Designated Rtr  Bkup Desig Rtr  Adm\
+      \  Oper\n-------------------------------------------------------------------------------\n\
+      system                0.0.0.0         10.10.10.3      0.0.0.0         Up   DR\n\
+      TO_IOSXR              0.0.0.0         0.0.0.0         0.0.0.0         Up   PToP\n\
+      TO_R1                 0.0.0.0         0.0.0.0         0.0.0.0         Up   PToP\n\
+      TO_R4                 0.0.0.0         0.0.0.0         0.0.0.0         Up   PToP\n\
+      \ -------------------------------------------------------------------------------\n\
+      \ No. of OSPF Interfaces: 4\n===============================================================================\n"
+    help: execute the command "show router ospf interface"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  environment no more:
+    output: null
+    help: Execute the command environment no more. This automatically generated. Feel
+      free to change it!
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  //environment more false:
+    output: null
+    help: Execute the command //environment more false. This automatically generated.
+      Feel free to change it!
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"

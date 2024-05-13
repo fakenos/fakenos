@@ -26,7 +26,7 @@ class FakeServer(TCPServerBase):
         self.address = "127.0.0.1"
         self.port = 22
 
-    def connection_function(self, client):
+    def connection_function(self, client, is_running):
         pass
 
 

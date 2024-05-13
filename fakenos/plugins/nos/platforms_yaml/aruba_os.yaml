@@ -1,0 +1,176 @@
+name: aruba_os
+initial_prompt: "{base_prompt}>"
+enable_prompt: "{base_prompt}#"
+config_prompt: "{base_prompt}(config)#"
+commands:
+  enable:
+    output: 'null'
+    new_prompt: "{base_prompt}#"
+    help: enter enable mode
+    prompt: "{base_prompt}>"
+  show arp:
+    output: "\nCodes: * - Local Addresses, S - Static, A - Auth\n\nTotal ARP entries:\
+      \ 2\n\nIPV4 ARP Table\n--------------\n Protocol    IP Address    Hardware Address\
+      \   Interface  Age (min)\n----------   ----------    ----------------   ---------\
+      \  ---------\n   Internet  10.13.68.113  24:be:05:28:10:71  vlan10     78\n\
+      \   Internet  10.13.68.114  b0:5a:da:38:7e:0d  vlan10     19\n   Internet  10.13.68.117\
+      \  10:e7:c6:05:d3:22  vlan10     62\n   Internet  10.13.68.118  9c:eb:e8:75:0d:89\
+      \  vlan10     1376\n   Internet  10.13.68.119  70:5a:0f:d8:fc:cc  vlan10   \
+      \  65\n   Internet  10.13.68.120  10:e7:c6:6e:6a:d2  vlan10     25\n   Internet\
+      \  10.13.68.121  80:ce:62:5e:c4:d1  vlan10     63\n   Internet  10.13.68.123\
+      \  10:e7:c6:6e:3a:fe  vlan10     12\n   Internet  10.13.68.124  50:65:f3:1b:53:67\
+      \  vlan10     46\n   Internet  10.13.68.126  78:ac:c0:82:83:9c  vlan10     1376\n\
+      \   Internet  10.13.68.128  d4:95:24:ee:bd:d6  vlan10     1353\n   Internet\
+      \  10.13.68.150  78:f2:9e:90:f1:72  vlan10     1376\n"
+    help: execute the command "show arp"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show ap database long:
+    output: "\nAP Database\n-----------\nName                Group       AP Type \
+      \ IP Address     Status             Flags  Switch IP       Standby IP      \
+      \ Wired MAC Address  Serial #    Port  FQLN  Outer IP  User\n----          \
+      \      -----       -------  ----------     ------             -----  ---------\
+      \       ----------       -----------------  --------    ----  ----  --------\
+      \  ----\nap-building-1    building      635      192.168.1.1    Up 2d:17h:8m:4s\
+      \    2Sf    192.168.2.2  192.168.2.3    cc:88:c7:11:22:33  CNM12345  N/A   N/A\
+      \   N/A   N/A\nap-building-2     building      515      192.168.1.2  Up 2d:17h:8m:23s\
+      \   2Sf    192.168.2.2  192.168.2.3    cc:88:c7:11:22:34  CNM12346  N/A   N/A\
+      \   N/A   N/A\nap-building-3    building      505H      192.168.1.3  Up 2d:16h:57m:55s\
+      \  2Sf    192.168.2.2  192.168.2.3    cc:88:c7:11:22:35  CNM12347  N/A   N/A\
+      \   N/A   N/A\n\n\nFlags: 1 = 802.1x authenticated AP use EAP-PEAP;   1+ = 802.1x\
+      \ use EST;    1- = 802.1x use factory cert\n       2 = Using IKE version 2;\
+      \                    4 = WiFi Uplink\n       B = Built-in AP;              \
+      \              C = Cellular RAP;       D = Dirty or no config\n       E = Regulatory\
+      \ Domain Mismatch;             F = AP failed 802.1x authentication\n       G\
+      \ = No such group;        I = Inactive;     J = USB cert at AP;     L = Unlicensed\n\
+      \       M = Mesh node\n       N = Duplicate name;       P = PPPoe AP;     R\
+      \ = Remote AP;          R- = Remote AP requires Auth\n       S = Standby-mode\
+      \ AP;      T = Thermal ShutDown;    U = Unprovisioned;    X = Maintenance Mode\n\
+      \       Y = Mesh Recovery\n       b = bypass of AP1x timeout;    c = CERT-based\
+      \ RAP;    e = Custom EST cert;    f = No Spectrum FFT support\n       i = Indoor;\
+      \                    o = Outdoor;           l = LAG 802.3ad;        m = Protocol\
+      \ Mismatch\n       p = In deep-sleep status;      r = Power Restricted;  s =\
+      \ LACP striping;      t = Temperature Restricted\n       u = Custom-Cert RAP;\
+      \           z = Datazone AP\n"
+    help: execute the command "show ap database long"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show ap database:
+    output: "\nAP Database\n-----------\nName                Group       AP Type \
+      \ IP Address     Status             Flags  Switch IP       Standby IP\n----\
+      \                -----       -------  ----------     ------             -----\
+      \  ---------       ----------\nap-building-1    building      635      192.168.1.1\
+      \    Up 2d:17h:8m:4s    2Sf    192.168.2.2  192.168.2.3\nap-building-2     building\
+      \      515      192.168.1.2  Up 2d:17h:8m:23s   2Sf    192.168.2.2  192.168.2.3\n\
+      ap-building-3    building      505H      192.168.1.3  Up 2d:16h:57m:55s  2Sf\
+      \    192.168.2.2  192.168.2.3\n\n\nFlags: 1 = 802.1x authenticated AP use EAP-PEAP;\
+      \   1+ = 802.1x use EST;    1- = 802.1x use factory cert\n       2 = Using IKE\
+      \ version 2;                    4 = WiFi Uplink\n       B = Built-in AP;   \
+      \                         C = Cellular RAP;       D = Dirty or no config\n \
+      \      E = Regulatory Domain Mismatch;             F = AP failed 802.1x authentication\n\
+      \       G = No such group;        I = Inactive;     J = USB cert at AP;    \
+      \ L = Unlicensed\n       M = Mesh node\n       N = Duplicate name;       P =\
+      \ PPPoe AP;     R = Remote AP;          R- = Remote AP requires Auth\n     \
+      \  S = Standby-mode AP;      T = Thermal ShutDown;    U = Unprovisioned;   \
+      \ X = Maintenance Mode\n       Y = Mesh Recovery\n       b = bypass of AP1x\
+      \ timeout;    c = CERT-based RAP;    e = Custom EST cert;    f = No Spectrum\
+      \ FFT support\n       i = Indoor;                    o = Outdoor;          \
+      \ l = LAG 802.3ad;        m = Protocol Mismatch\n       p = In deep-sleep status;\
+      \      r = Power Restricted;  s = LACP striping;      t = Temperature Restricted\n\
+      \       u = Custom-Cert RAP;           z = Datazone AP\n"
+    help: execute the command "show ap database"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show ap bss-table details:
+    output: "fm (forward mode): T-Tunnel, S-Split, D-Decrypt Tunnel, B-Bridge (s-standard,\
+      \ p-persistent, b-backup, a-always), n-anyspot\n\ncluster (cluster role): U-UAC,\
+      \ A-AAC, sU-Standby UAC, sA-Standby AAC\n\nAruba AP BSS Table\n------------------\n\
+      bss                ess                     port  ip             band/ht-mode/bandwidth\
+      \  ch/EIRP/max-EIRP  type  cur-cl  ap name                in-t(s)  tot-t   \
+      \     mtu   acl-state  acl  fm  flags  cluster  active-clients  standby-clients\
+      \  datazone\n---                ---                     ----  --           \
+      \  ----------------------  ----------------  ----  ------  -------         \
+      \       -------  -----        ---   ---------  ---  --  -----  -------  --------------\
+      \  ---------------  --------\naa:bb:cc:dd:ee:ff  test1               N/A   192.168.1.2\
+      \   5GHz/HE/40MHz           136-/19.0/27.1    ap    0       test1-ap       \
+      \    0        11h:0m:35s   1500  -          2    T   KrT    A        0     \
+      \          0                no\naa:bb:cc:dd:ee:fa  test1                  N/A\
+      \   192.168.1.2   2.4GHz/HE/20MHz         6/9.0/26.9        ap    0       test1-ap\
+      \           0        11h:1m:17s   1500  -          119  T   KT     A       \
+      \ 0               0                no\naa:bb:cc:dd:ee:fb  test1            \
+      \      N/A   192.168.1.2   6GHz/HE/160MHz           197S/16.0/24.3    ap   \
+      \ 0       test1-ap          0        11h:0m:56s   1500  -          119  T  \
+      \ KT     A        0               0                no\naa:bb:cc:dd:ee:fc  multi\
+      \ word ssid                 N/A   192.168.1.3    2.4GHz/HE/20MHz           6/9.0/26.9\
+      \    ap    0       test2-ap             0        11h:0m:57s   1500  -      \
+      \    2    T   KrT    A        0               0                no\naa:bb:cc:dd:ee:fd\
+      \  test 2                  N/A   192.168.1.3  5GHz/HE/40MHz           120-/19.0/28.7\
+      \    ap    0       test2-ap  0        11h:1m:28s   1500  -          119  T \
+      \  KT     A        0               0                no\n\nChannel followed by\
+      \ \"*\" indicates channel selected due to unsupported configured channel.\n\"\
+      Spectrum\" followed by \"^\" indicates Local Spectrum Override in effect.\n\n\
+      \ fm (forward mode): T-Tunnel, S-Split, D-Decrypt Tunnel, B-Bridge (s-standard,\
+      \ p-persistent, b-backup, a-always), n-anyspot\n\ncluster (cluster role): U-UAC,\
+      \ A-AAC, sU-Standby UAC, sA-Standby AAC\n"
+    help: execute the command "show ap bss-table details"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show ip interface brief:
+    output: "Interface                   IP Address / IP Netmask        Admin   Protocol\n\
+      \ vlan 93                    162.25.53.4 / 255.255.255.192   up      up  \n\
+      vlan 1                      unassigned / unassigned        up      up  \nvlan\
+      \ 69                    162.25.53.9 / 255.255.255.192   up      up  \nvlan 999\
+      \                 162.21.33.196 / 255.255.255.240   up      up  \nloopback \
+      \                   unassigned / unassigned        up      up  \n\n"
+    help: execute the command "show ip interface brief"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show ap radio-database:
+    output: "AP Radio Database\n-----------------\nName             Group        \
+      \ AP Type  IP Address     Status              Flags  Switch IP        Standby\
+      \ IP       Radio 0 Band/Chan/HT-Type/EIRP  Radio 1 Band/Chan/HT-Type/EIRP  Radio\
+      \ 2 Band/Chan/HT-Type/EIRP\n----             -----         -------  ----------\
+      \     ------              -----  ---------        ----------       ------------------------------\
+      \  ------------------------------  ------------------------------\nap-building-1\
+      \    building  635      192.168.1.1  Up 35d:23h:44m:14s  2Sf    192.168.2.2\
+      \  192.168.2.3  AP:5GHz/132+/HE/20.0            AP:2.4GHz/6/HE/9.0         \
+      \     AP:6GHz/197S/HE/17.0\nap-building-2    building  515      192.168.1.2\
+      \  Up 35d:23h:44m:12s  2Sf    192.168.2.2  192.168.2.3  AP:5GHz/100+/HE/19.0\
+      \            AP:2.4GHz/11/HE/9.0             N/A\nap-building-3  building  505H\
+      \      192.168.1.3  Up 35d:23h:44m:19s  2Sf    192.168.2.2  192.168.2.3  N/A\
+      \             AP:2.4GHz/6/HE/9.0              N/A\n\nFlags: 1 = 802.1x authenticated\
+      \ AP use EAP-PEAP;   1+ = 802.1x use EST;    1- = 802.1x use factory cert\n\
+      \       2 = Using IKE version 2;                    4 = WiFi Uplink\n      \
+      \ B = Built-in AP;                            C = Cellular RAP;       D = Dirty\
+      \ or no config\n       E = Regulatory Domain Mismatch;             F = AP failed\
+      \ 802.1x authentication\n       G = No such group;        I = Inactive;    \
+      \ J = USB cert at AP;     L = Unlicensed\n       M = Mesh node\n       N = Duplicate\
+      \ name;       P = PPPoe AP;     R = Remote AP;          R- = Remote AP requires\
+      \ Auth\n       S = Standby-mode AP;      T = Thermal ShutDown;    U = Unprovisioned;\
+      \    X = Maintenance Mode\n       Y = Mesh Recovery\n       b = bypass of AP1x\
+      \ timeout;    c = CERT-based RAP;    e = Custom EST cert;    f = No Spectrum\
+      \ FFT support\n       i = Indoor;                    o = Outdoor;          \
+      \ l = LAG 802.3ad;        m = Protocol Mismatch\n       p = In deep-sleep status;\
+      \      r = Power Restricted;  s = LACP striping;      t = Temperature Restricted\n\
+      \       u = Custom-Cert RAP;           z = Datazone AP\n\n\"Spectrum\" followed\
+      \ by \"^\" indicates Local Spectrum Override in effect.\n\n"
+    help: execute the command "show ap radio-database"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show ipv6 interface brief:
+    output: "Interface                   [Status/Protocol]\nvlan 1               \
+      \       [  up/up  ]\n    fe80::1a:3e00:6ed1:1585/64\n    2001::1/64\nvlan 390\
+      \                     [  up/up  ]\n    unassigned\nvlan 991                \
+      \     [  up/up  ]\n    fe80::1a:3e00:6ed1:1585/64\n    2a01:9e73:433f:109::6/64\n\
+      \ vlan 992                    [  up/up  ]\n    unassigned\nloopback        \
+      \            [  up/up  ]\n    fe80::1a:3e00:6ed1:1585/64\n"
+    help: execute the command "show ipv6 interface brief"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"

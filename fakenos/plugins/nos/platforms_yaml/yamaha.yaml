@@ -1,0 +1,45 @@
+name: yamaha
+initial_prompt: "{base_prompt}>"
+enable_prompt: "{base_prompt}#"
+config_prompt: "{base_prompt}(config)#"
+commands:
+  enable:
+    output: null
+    new_prompt: "{base_prompt}#"
+    help: enter enable mode
+    prompt: "{base_prompt}>"
+  console lines infinity:
+    output: true
+    help: set the terminal width to maximum
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show environment:
+    output: "RTX1200 BootROM Ver.1.01\nRTX1200 Rev.10.01.71 (Thu Sep 29 15:08:40 2016)\n\
+      \  main:  RTX1200 ver=c0 serial=D12345678 MAC-Address=00:a0:de:aa:bb:11 MAC-Addr\n\
+      \ ess=00:a0:de:aa:bb:22 MAC-Address=00:a0:de:aa:bb:33\nCPU:   1%(5sec)   2%(1min)\
+      \   3%(5min)    Memory: 24% used\nPacket-buffer:   0%(small)   0%(middle)  \
+      \ 5%(large)   0%(huge) used\nFirmware: exec1  Config. file: config1\nDefault\
+      \ firmware: exec0  Default config. file: config0\nBoot time: 2021/01/24 12:32:36\
+      \ +09:00\nCurrent time: 2021/01/30 09:44:53 +09:00\nElapsed time from boot:\
+      \ 5days 21:12:17\nSecurity Class: 1, FORGET: ON, TELNET: OFF\nInside Temperature(C.):\
+      \ 36"
+    help: execute the command "show environment"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"
+  show ip route:
+    output: "Destination         Gateway          Interface       Kind  Additional\
+      \ Info.\ndefault             -                    PP[01]    static  \n10.0.0.0/8\
+      \          192.168.1.254          LAN2    static  k(1)\n10.0.0.0/8         \
+      \ 192.168.1.253          LAN2    static  w(0)\n10.1.0.0/24         192.168.1.253\
+      \          LAN2      OSPF     cost=2 \n10.2.0.0/24         192.168.1.252   \
+      \       LAN2      OSPF     cost=2 \n203.0.113.2/32      -                  \
+      \  PP[01]  implicit  \n169.254.1.1/30      -                 TUNNEL[1]  implicit\
+      \  \n192.168.1.0/24      192.168.1.8            LAN2  implicit  \n192.168.100.0/24\
+      \    192.168.100.1          LAN1  implicit  \n203.0.113.1/32       -       \
+      \             PP[01] temporary "
+    help: execute the command "show ip route"
+    prompt:
+    - "{base_prompt}>"
+    - "{base_prompt}#"

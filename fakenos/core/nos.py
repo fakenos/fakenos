@@ -160,8 +160,7 @@ class Nos:
         """
         with open(data, "r", encoding="utf-8") as f:
             self.from_dict(yaml.safe_load(f))
-        
-        
+
     def _from_module(self, data: str) -> None:
         """
         Method to import NOS data from python file or python module.
@@ -201,7 +200,7 @@ class Nos:
         self.name = getattr(module, "name", self.name)
         self.commands.update(getattr(module, "commands", self.commands))
         self.initial_prompt = getattr(module, "INITIAL_PROMPT", self.initial_prompt)
-        
+
     def from_file(self, data: str) -> None:
         """
         Method to load NOS from YAML or Python file

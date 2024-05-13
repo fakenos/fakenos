@@ -36,12 +36,12 @@ class TestFakeNOS:
         - shell plugin is CMDShell
         """
         net = FakeNOS()
-        assert len(net.hosts) == 2
+        assert len(net.hosts) == 3
         for router_name, host in net.hosts.items():
-            assert router_name in ["router0", "router1"]
+            assert router_name in ["router_cisco_ios", "router_huawei_smartax", "router_arista_eos"]
             assert host.username in ["user"]
             assert host.password in ["user"]
-            assert host.port in {6000, 6001}
+            assert host.port in {6000, 6001, 6002}
             assert host.server_inventory["plugin"] == "ParamikoSshServer"
             if detect.docker and "WSL2" in platform.release():
                 assert host.server_inventory["configuration"]["address"] == "0.0.0.0"
@@ -337,21 +337,35 @@ class TestFakeNOS:
         """
         net = FakeNOS()
 
-        net.start(hosts="router0")
-        assert net.hosts["router0"].running is True
-        assert net.hosts["router1"].running is False
+        net.start(hosts="router_cisco_ios")
+        assert net.hosts["router_cisco_ios"].running is True
+        assert net.hosts["router_huawei_smartax"].running is False
+        assert net.hosts["router_arista_eos"].running is False
 
-        net.start(hosts="router1")
-        assert net.hosts["router0"].running is True
-        assert net.hosts["router1"].running is True
+        net.start(hosts="router_huawei_smartax")
+        assert net.hosts["router_cisco_ios"].running is True
+        assert net.hosts["router_huawei_smartax"].running is True
+        assert net.hosts["router_arista_eos"].running is False
 
-        net.stop(hosts="router0")
-        assert net.hosts["router0"].running is False
-        assert net.hosts["router1"].running is True
+        net.start(hosts="router_arista_eos")
+        assert net.hosts["router_cisco_ios"].running is True
+        assert net.hosts["router_huawei_smartax"].running is True
+        assert net.hosts["router_arista_eos"].running is True
 
-        net.stop(hosts="router1")
-        assert net.hosts["router0"].running is False
-        assert net.hosts["router1"].running is False
+        net.stop(hosts="router_cisco_ios")
+        assert net.hosts["router_cisco_ios"].running is False
+        assert net.hosts["router_huawei_smartax"].running is True
+        assert net.hosts["router_arista_eos"].running is True
+
+        net.stop(hosts="router_huawei_smartax")
+        assert net.hosts["router_cisco_ios"].running is False
+        assert net.hosts["router_huawei_smartax"].running is False
+        assert net.hosts["router_arista_eos"].running is True
+
+        net.stop(hosts="router_arista_eos")
+        assert net.hosts["router_cisco_ios"].running is False
+        assert net.hosts["router_huawei_smartax"].running is False
+        assert net.hosts["router_arista_eos"].running is False
 
         net.stop()
 
@@ -375,7 +389,7 @@ class TestFakeNOS:
         for running_state in after_stop.values():
             assert running_state is False
 
-        assert len(before_start) == len(after_start) == len(after_stop) == 2
+        assert len(before_start) == len(after_start) == len(after_stop) == 3
 
     def test_number_of_threads_after_stop_is_only_main(self):
         """
@@ -395,7 +409,7 @@ class TestFakeNOS:
         inventory = {"hosts": {"R1": {"port": 5001, "platform": "cisco_ios"}}}
         net = FakeNOS(inventory)
         assert len(net.nos_plugins["cisco_ios"].commands) > 6, "Not all commands loaded"
-                
+
 
 class TestPlatforms:
     """
