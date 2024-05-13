@@ -131,7 +131,7 @@ class Nos:
         self.commands.update(data.get("commands", self.commands))
         self.initial_prompt = data.get("initial_prompt", self.initial_prompt)
 
-    def from_yaml(self, data: str) -> None:
+    def _from_yaml(self, data: str) -> None:
         """
         Method to build NOS from YAML data.
 
@@ -160,9 +160,9 @@ class Nos:
         """
         with open(data, "r", encoding="utf-8") as f:
             self.from_dict(yaml.safe_load(f))
-
         
-    def from_module(self, data: str) -> None:
+        
+    def _from_module(self, data: str) -> None:
         """
         Method to import NOS data from python file or python module.
 
@@ -195,18 +195,9 @@ class Nos:
 
         :param data: OS path string to Python .py file
         """
-        # check if data is a .py file path
-        if isinstance(data, str) and data.endswith(".py"):
-            if os.path.isfile(data):
-                spec = importlib.util.spec_from_file_location("nos_module", data)
-                module = importlib.util.module_from_spec(spec)
-                spec.loader.exec_module(module)
-            else:
-                raise FileNotFoundError(data)
-        # blindly assume it is imported python module
-        else:
-            module = data
-        # source attributes from loaded .py module
+        spec = importlib.util.spec_from_file_location("nos_module", data)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
         self.name = getattr(module, "name", self.name)
         self.commands.update(getattr(module, "commands", self.commands))
         self.initial_prompt = getattr(module, "INITIAL_PROMPT", self.initial_prompt)
@@ -222,10 +213,12 @@ class Nos:
                 f'Unsupported "{data}" file extension.\
                               Supported: .py, .yml, .yaml'
             )
+        if not os.path.isfile(data):
+            raise FileNotFoundError(data)
         if data.endswith((".yaml", ".yml")):
-            self.from_yaml(data)
+            self._from_yaml(data)
         elif data.endswith(".py"):
-            self.from_module(data)
+            self._from_module(data)
 
     def is_file_ending_correct(self, data: str) -> None:
         """
