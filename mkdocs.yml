@@ -32,7 +32,7 @@ theme:
       accent: deep orange
   language: en
 extra:
-  homepage: /overview/overview.md
+  homepage: /overview/overview
 
 markdown_extensions:
   - admonition
