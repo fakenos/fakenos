@@ -8,6 +8,7 @@ import io
 import threading
 import time
 import socket
+from typing import List
 
 import paramiko
 import paramiko.channel
@@ -110,9 +111,9 @@ class TapIO(io.StringIO):
     and a list to buffer lines on write
     """
 
-    def __init__(self, run_srv, initial_value="", newline="\n"):
-        self.lines = []
-        self.run_srv = run_srv
+    def __init__(self, run_srv: threading.Event, initial_value: str = "", newline: str = "\n"):
+        self.lines: List[str] = []
+        self.run_srv: threading.Event = run_srv
         super().__init__(initial_value, newline)
 
     def readline(self):
@@ -123,7 +124,7 @@ class TapIO(io.StringIO):
             time.sleep(0.01)
         return None
 
-    def write(self, value):
+    def write(self, value: str):
         """
         :param value: line to add to self.lines buffer
         """
