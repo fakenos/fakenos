@@ -5,7 +5,7 @@ Send input and get the output - this is how we interact with many Network Operat
 FakeNOS is a micro-kernel framework that has already a lot of network operating systems like Cisco IOS, Alcatel AOS or Huawei SmartAX and it can be extended using plugins. The core is kept small and optimized while most of the functionality offloaded to plugins.
 
 !!! info
-    If you want to see all the available platforms currently, look [here](/platforms).
+    If you want to see all the available platforms currently, look [here](../platforms.md).
 
 
 !!! note

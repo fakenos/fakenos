@@ -4,10 +4,10 @@
 
 This section is intended for anyone who wants to get involve on the development of the library. All PR are welcome! :stars: The only requisite is that the code is clear enough, has a well-defined goal, and it has the corresponding testing (whenever possible). Maintainers are more than welcome to help with anything you need :smiley:.
 
-Although, we highly encourage to read the [conventions section](/development/conventions), here there is a brief resume of what you need to do to submit a successful pull request.
+Although, we highly encourage to read the [conventions section](development/conventions.md), here there is a brief resume of what you need to do to submit a successful pull request.
 
 !!! note 
-    You have already installed in your computer `python`, `docker` and `poetry` at least.
+    You need to have already installed in your computer `python`, `docker` and `poetry` at least.
 
 1. Fork the project.
 2. Develop the code: code + **tests**.

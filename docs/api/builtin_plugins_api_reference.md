@@ -5,7 +5,7 @@ full potential.
 
 ### Cisco IOS
 
-::: fakenos.plugins.nos.cisco_ios
+::: fakenos.plugins.nos.platforms_py.cisco_ios
     rendering:
       show_if_no_docstring: true
 	  heading_level: 4

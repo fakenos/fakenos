@@ -15,7 +15,7 @@ network devices like Cisco IOS or Huawei SmartAX interactions over
 SSH with little effort. This project it is mainly intented for testing 
 and development purposes.
 
-[Installation](usage/installation) | [Examples](examples) | [Platforms](platforms)
+[Installation](usage/installation.en.md) | [Examples](examples.en.md) | [Platforms](platforms.en.md)
 
 
 ## Installation
@@ -96,7 +96,7 @@ fakenos --inventory inventory.yaml
 ```
 
 
-[github-discussions-link]:     https://github.com/dmulyalin/fakenos/discussions
+[github-discussions-link]:     https://github.com/fakenos/fakenos/discussions
 [github-discussions-badge]:    https://img.shields.io/static/v1?label=Discussions&message=Ask&color=blue&logo=github
 [black-badge]:                 https://img.shields.io/badge/code%20style-black-000000.svg
 [black-link]:                  https://github.com/psf/black
@@ -104,7 +104,7 @@ fakenos --inventory inventory.yaml
 [pypi-pyversion-badge]:        https://img.shields.io/pypi/pyversions/fakenos.svg
 [pepy-downloads-link]:         https://pepy.tech/project/fakenos
 [pepy-downloads-badge]:        https://pepy.tech/badge/fakenos
-[github-tests-badge]:          https://github.com/dmulyalin/fakenos/actions/workflows/main.yml/badge.svg
-[github-tests-link]:           https://github.com/dmulyalin/fakenos/actions
+[github-tests-badge]:          https://github.com/fakenos/fakenos/actions/workflows/main.yml/badge.svg
+[github-tests-link]:           https://github.com/fakenos/fakenos/actions
 [pypi-latest-release-badge]:   https://img.shields.io/pypi/v/fakenos.svg
 [pypi-latest-release-link]:    https://pypi.python.org/pypi/fakenos

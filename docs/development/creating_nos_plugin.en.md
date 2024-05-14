@@ -7,14 +7,15 @@ There are several ways to create NOS plugin:
 2. [Create NOS plugin from Python file](creating_nos_plugin.md#create-nos-plugin-from-python-file)
 3. [Create NOS plugin from Nos class](creating_nos_plugin.md#create-nos-plugin-from-nos-class)
 
-None of above ways better than the other, all of them have their own use cases. But 
-they listed in a sequence from simplest to create/less flexible to more involved/most
+None of above is better, all of them have their own use cases. But 
+they listed from simplest to create/less flexible to more involved/most
 flexible order.
 
 NOS plugins could have these attributes defined:
 
 - `name` - reference plugin name to use in inventory
 - `initial_prompt` - used to define or alter displayed shell prompt
+- `enable_prompt` - prompt to display after `enable` or similar command entered
 - `commands` - dictionary of commands this NOS plugin capable of returning output for
 
 Each time custom NOS plugin created out of Nos class or using one of Nos class 
@@ -296,7 +297,7 @@ commands = {
 }
 ```
 
-Sample code to register NOS plugin with FakeNOS using above YAML file:
+Sample code to register NOS plugin with FakeNOS using above py file:
 
 ```{ .python .annotate }
 from fakenos import FakeNOS
@@ -312,7 +313,7 @@ inventory = {
 
 net = FakeNOS(inventory)
 
-net.register_nos_plugin(plugin="path/to/my_nos.yaml") # (2)
+net.register_nos_plugin(plugin="path/to/my_nos.py") # (2)
 
 net.start()    
 ```
@@ -356,7 +357,7 @@ net.register_nos_plugin(plugin=nos)
 net.start()
 ```
 
-In addition, Nos class `from_dict`, `from_yaml`, `from_module` or `from_file` methods 
+In addition, Nos class `from_dict` or `from_file` methods 
 can be used to supply Nos attributes. For example, equivalent to 
 [Create NOS plugin from Python file](creating_nos_plugin.md#create-nos-plugin-from-python-file)
 section results can be obtained using this code:

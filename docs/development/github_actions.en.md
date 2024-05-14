@@ -1,3 +1,4 @@
+
 # Github actions
 A really nice feature to have always is a fully automated platform which tests the code in multiple platforms at once. In this case we are using Github Actions to do so. The configuration is stored in the `.github/workflows` folder.
 

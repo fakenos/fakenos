@@ -1,9 +1,9 @@
-# Automatic Testing
+# Testing automático
 
-One of the most interesting use cases is the automatic testing. In this example it will be shown how FakeNOS can help easily doing the testing for you in your library. It is not intended to substitute other kind of tests, like unit tests, but rather complement those giving a light fake platform. We will do first the script and later the test, although it is recommended to do the other way around (TDD).
+FakeNOS es una herramienta muy versátil y puede ser utilizada en muchos casos. Uno de los casos de uso más interesantes es el testing automático. En este ejemplo se mostrará cómo FakeNOS puede ayudar a hacer fácilmente las pruebas por ti en tu librería. No está destinado a sustituir otros tipos de pruebas, como las pruebas unitarias, sino más bien a complementarlas dando una plataforma falsa ligera. Primero haremos el script y luego la prueba, aunque se recomienda hacerlo al revés (TDD).
 
 ## Script
-The following script is similar to the one explained before in the example [developing_scripts](/examples/developing_scripts.md). It is recommended to do first that example. Briefly, it enters a device Huawei SmartAX, it the value for all the ONTs in a port and then it looks for the serial number of the first one.
+El siguiente script es similar al que se explica antes en el ejemplo [developing_scripts](developing_scripts.md). Se recomienda hacer primero ese ejemplo. En resumen, entra en un dispositivo Huawei SmartAX, obtiene el valor de todas las ONTs en un puerto y luego busca el número de serie del primero.
 
 ```python
 from netmiko import ConnectHandler
@@ -40,14 +40,14 @@ if __name__ == "__main__":
 ```
 
 !!! note
-    It is important to notice that those credentials are not real.
+    Es importante notar que esas credenciales no son reales.
 
-The previous file we will name it `main.py`
+El archivo anterior lo nombraremos `main.py`
 
 ## Testing
-For now we have a script that has not been tested yet, and even though, it could be used already, it is recommended to do some kind of testing beforehand. Even better, now that you have FakeNOS you can use this awesome library 😝.
+Por ahora tenemos un script que aún no se ha probado, y aunque, ya se podría utilizar, se recomienda hacer algún tipo de prueba antes. Aún mejor, ahora que tienes FakeNOS puedes utilizar esta increíble librería 😝.
 
-Let's write the test, and we do some explanation:
+Escribiremos la prueba, y haremos alguna explicación:
 ```python
 from unittest.mock import patch
 from fakenos import FakeNOS
@@ -89,13 +89,14 @@ if __name__ == "__main__":
     test_get_serial_number()
     print("All test passed ✅")
 ```
-This test will perform the following steps:
-1. Create the fake device and start it
-2. Perform the action to be tested
-3. Close the fake devices
+Este test realizará los siguientes pasos:
+1. Crear el dispositivo falso y arrancarlo
+2. Realizar la acción a probar
+3. Cerrar los dispositivos falsos
 
-In case of automatic testing, always needs to be followed the same structure. This sandwitch is needed. In case that you don't call the `net.stop()` the test suites will hang up as some underlying thread will be still wait for new connections.
+En caso de testing automático, siempre se necesita seguir la misma estructura. Este sandwich es necesario. En caso de que no llames al `net.stop()` las suites de test se quedarán colgadas ya que algún hilo subyacente seguirá esperando nuevas conexiones.
 
 !!! note
-    There are plans to make with a decorator like `@fakenos(platform="cisco_ios")`, but for now
-    this is the main way to do it. PR doing this are more than welcome! :smiley:
+    Hay planes para hacerlo con un decorador como `@fakenos(platform="cisco_ios")`, pero por ahora
+    esta es la forma principal de hacerlo. ¡Los PR que hagan esto son más que bienvenidos! :smiley:
+

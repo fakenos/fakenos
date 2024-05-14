@@ -17,7 +17,7 @@ You can call this file `inventory.yaml` 📕, but any other name is fine. Always
 we need to put our devices with the `hosts:`. In the *hosts* we can add as many devices as we want
 as long as they each device has its own port. To add a devices we just put whichever name we want.
 
-For each device, we can set a `username`, `password`, `port` and `platform`. All the available platforms can be found [here](/platforms). In this case we have selected the platform `huawei_smartax` and credentials are username `admin` and password `admin`.
+For each device, we can set a `username`, `password`, `port` and `platform`. All the available platforms can be found [here](../platforms.md). In this case we have selected the platform `huawei_smartax` and credentials are username `admin` and password `admin`.
 
 Then, create a Python script with the following content:
 ```python

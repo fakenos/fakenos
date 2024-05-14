@@ -7,7 +7,7 @@ invoke <task_name>
 
 The available tasks are:
 
--  `tests`: It will create a docker that will perform all the needed tests to ensure that the code passes all the tests, format conventions, etc. It is intended to help ensure a good maintainance of the project.
+-  `tests`: It will create a docker that will perform all the needed tests to ensure that the code passes all the tests, format conventions, etc. It is intended to help ensure a good maintainance of the project. There is an option that is `--local` so it does not run in a docker container.
 
 -  `gen-docs-platform-commands`: Generate automatically the documentation for a platform. It was originally intended to document all the commands in the first version of the project, but it can be used to document any platform.
 

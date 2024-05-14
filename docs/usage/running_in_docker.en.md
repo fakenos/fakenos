@@ -3,7 +3,7 @@ Running FakeNOS in a container enables numerous integrations use cases.
 ## Running with Docker
 
 Pre-built FakeNOS docker container published to 
-[DockerHUB repository](https://hub.docker.com/r/dmulyalin/fakenos) 
+[DockerHUB repository](https://hub.docker.com/r/fakenos/fakenos) 
 
 
 ## Build and Run with Docker-Compose
@@ -15,7 +15,7 @@ and start FakeNOS in a container. To use it, providing that you already installe
 [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) on the system:
 
 ```{ .bash .annotate }
-git clone https://github.com/dmulyalin/fakenos.git   # (1)
+git clone https://github.com/fakenos/fakenos.git   # (1)
 cd fakenos/docker/                                   # (2)
 docker-compose up -d                                 # (3)
 ssh 10.100.0.2 -l user -p 6001                       # (4)

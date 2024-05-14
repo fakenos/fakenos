@@ -36,8 +36,9 @@ default_inventory = {
         "nos": {"plugin": "cisco_ios", "configuration": {}},
     },
     "hosts": {
-        "router0": {"port": 6000, "platform":"cisco_ios"},
-        "router1": {"port": 6001, "platform": "huawei_smartax"}
+        "router_cisco_ios": {"port": 6000, "platform":"cisco_ios"},
+        "router_huawei_smartax": {"port": 6001, "platform": "huawei_smartax"}
+        "router_arista_eos": {"port": 6002, "platform": "arista_eos"}
     }
 }
 ```
@@ -66,9 +67,6 @@ hosts:
 ```
 
 In this case, you are creating 2 hosts: `router1` and `router2`. `router1` will have the port `6001` and the platform `huawei_smartax`. `router2` will have the port `6002` and the platform `cisco_ios`. As the credentials are not provided in the `hosts` section, FakeNOS will use the default credentials.
-
-!!! bug
-    Currently not available.
 
 To use the YAML file, you can use the FakeNOS CLI tool:
 

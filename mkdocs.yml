@@ -1,9 +1,9 @@
-repo_name: dmulyalin/fakenos
-repo_url: https://github.com/dmulyalin/fakenos
+repo_name: fakenos/fakenos
+repo_url: https://github.com/fakenos/fakenos
 site_author: Denis Mulyalin
 site_description: FakeNOS, Network, SSH
 site_name: FakeNOS
-site_url: https://fakenos.github.io/
+site_url: https://fakenos.github.io/fakenos
 docs_dir: docs/
 theme:
   logo: assets/logo.svg
@@ -32,17 +32,7 @@ theme:
       accent: deep orange
   language: en
 extra:
-  homepage: /overview/overview
-  alternate:
-    - name: Spanish
-      link: /es/
-      lang: es
-    - name: Catalan
-      link: /ca/
-      lang: ca
-    - name: Chinese
-      link: /zh/
-      lang: zh
+  homepage: /overview/overview.md
 
 markdown_extensions:
   - admonition
@@ -76,6 +66,68 @@ plugins:
             show_signature_annotations: true
             docstring_section_style: list
             merge_init_into_class: true
+  - i18n:
+      docs_structure: suffix
+      languages:
+        - locale: en
+          default: true
+          name: English
+          build: true
+        - locale: es
+          name: Español
+          build: true
+          nav_translations:
+            Overview: Resumen
+            Why?: ¿Por qué?
+            What?: ¿Qué?
+            How?: ¿Cómo?
+            What not?: ¿Qué no?
+            References: Referencias
+            Examples: Ejemplos
+            Script Development: Desarrollo de scripts
+            Automatic testing - CI/CD: Pruebas automáticas - CI/CD
+            Usage: Uso
+            Installation: Instalación
+            Getting Started: Empezar
+            Inventory: Inventario
+            Running in Docker Container: Ejecutar en contenedor Docker
+            Platforms: Plataformas
+            Development: Desarrollo
+            Main: Principal
+            Conventions: Convenciones
+            Tasks: Tareas
+            Creating a new platform: Crear una nueva plataforma
+            Creating NOS Plugin: Crear un complemento NOS
+            Github Actions: Acciones de Github
+            Collaborators: Colaboradores
+        - locale: ca
+          name: Català
+          build: true
+          nav_translations:
+            Overview: Resum
+            Why?: Per què?
+            What?: Què?
+            How?: Com?
+            What not?: Què no?
+            References: Referències
+            Examples: Exemples
+            Script Development: Desenvolupament de scripts
+            Automatic testing - CI/CD: Proves automàtiques - CI/CD
+            Usage: Ús
+            Installation: Instal·lació
+            Getting Started: Començar
+            Inventory: Inventario
+            Running in Docker Container: Executar en contenidor Docker
+            Platforms: Plataformes
+            Development: Desenvolupament
+            Main: Principal
+            Conventions: Convencions
+            Tasks: Tasques
+            Creating a new platform: Crear una nova plataforma
+            Creating NOS Plugin: Crear un complement NOS
+            Github Actions: Accions de Github
+            Collaborators: Col·laboradors
+
 
 nav:
   - Overview:
@@ -104,8 +156,8 @@ nav:
     - Github Actions: development/github_actions.md
   - Collaborators:
     - Collaborators: collaborators.md
-  - API Reference:
-    - Core API: core_api_reference.md
-    - Built-in Plugins API: builtin_plugins_api_reference.md
+  - API:
+    - Core API: api/core_api_reference.md
+    - Built-in Plugins API: api/builtin_plugins_api_reference.md
 
 

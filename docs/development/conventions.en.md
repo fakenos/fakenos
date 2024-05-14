@@ -39,8 +39,17 @@ Flake8 is a popular Python tool that combines multiple Python linting and style 
 
 To run flake8 do the following:
 ```bash
-pylint
+flake8 .
 ```
+
+## Code linting: Pylint
+Pylint is a Python code linting tool that analyzes source code to detect programming errors, code style issues, and coding conventions. Pylint checks Python code for potential issues such as syntax errors, unused variables, unconventional variable names, and other violations of coding guidelines. It's a valuable tool for improving code quality, identifying coding issues, and maintaining consistency in coding standards.
+
+To run the pylint tool do the following:
+```bash
+pylint fakenos
+```
+
 
 ## Code coverage: coverage
 Coverage is a tool used in software development to measure the extent to which the source code of a program is executed during testing. It helps developers understand how thoroughly their tests exercise the codebase by providing metrics on code coverage, typically expressed as a percentage. Coverage tools track which lines or branches of code are executed during tests and generate reports highlighting areas that are covered and those that are not. This information enables developers to identify untested code paths and improve the effectiveness of their testing efforts.
