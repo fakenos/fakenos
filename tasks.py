@@ -126,8 +126,7 @@ def run_cmd(context, exec_cmd, local=INVOKE_LOCAL, port=None):
 def build(context, cache=True, force_rm=False, hide=False):
     """Build a Docker image."""
     print(f"Building image {IMAGE_NAME}:{IMAGE_VER}")
-    command = f"docker build --tag {IMAGE_NAME}:{IMAGE_VER} \
-        --build-arg PYTHON_VER={PYTHON_VER} -f Dockerfile ."
+    command = f"docker build --tag {IMAGE_NAME}:{IMAGE_VER} --build-arg PYTHON_VER={PYTHON_VER} -f Dockerfile ."
 
     if not cache:
         command += " --no-cache"
@@ -261,7 +260,7 @@ def gen_docs_platform_commands(ctx):
                 if output is None:
                     platforms_file.write("**Output:** None\n\n")
                 else:
-                    platforms_file.write(f"**Output:**\n```\n{output}\n```\n\n")
+                    platforms_file.write("**Output:**\n```\n" + repr(output) + "\n```\n\n")
                 platforms_file.write(f"**Help:** {details['help']}\n\n")
                 platforms_file.write("**Prompt:**\n")
                 prompts = details["prompt"]
