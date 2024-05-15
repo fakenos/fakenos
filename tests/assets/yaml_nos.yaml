@@ -1,6 +1,8 @@
 name: Custom Nos 0.1.0
 
 initial_prompt: "{base_prompt}>"
+enable_prompt: "{base_prompt}#"
+config_prompt: "{base_prompt}(config)#"
 
 commands:
   enable:
@@ -8,6 +10,8 @@ commands:
     new_prompt: "{base_prompt}#"
     help: enter exec prompt
     prompt: "{base_prompt}>"
+  sh clock:
+    alias: show clock
   show clock:
     output: "*21:01:33.000 AET 01 01 01 2022"
     help: "Display the system clock"
