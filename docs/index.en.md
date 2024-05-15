@@ -78,6 +78,9 @@ And here are some commands :computer: you can try:
     - `display board`
     - `display sysman service state`
 
+!!! tip
+    Many times, we don't have time to read the documentation. There is a simple `help` command which shows all the available commands. It can be called using `help` or `?`.
+
 ## CLI Usage
 FakeNOS comes with a CLI tool that allows you to start the simulation from the
 command line. You can try a predefined example by running:
@@ -94,6 +97,7 @@ You can also specify the inventory file to use:
 ```bash
 fakenos --inventory inventory.yaml
 ```
+
 
 
 [github-discussions-link]:     https://github.com/fakenos/fakenos/discussions

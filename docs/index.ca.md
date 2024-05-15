@@ -78,6 +78,10 @@ I aquí tens alguns comandaments :computer: que pots provar:
     - `display board`
     - `display sysman service state`
 
+!!! tip
+    Moltes vegades, no tenim temps per llegir la documentació. Hi ha un senzill comandament `help` que mostra tots els comandaments disponibles. Es pot cridar amb `help` o `?`.
+
+
 ## Línia de comandaments
 FakeNOS ve amb una eina CLI que et permet iniciar la simulació des de la
 línia de comandaments. Pots provar un exemple predefinit executant:
