@@ -12,9 +12,12 @@ from unittest.mock import MagicMock, Mock
 import paramiko
 
 from fakenos.plugins.servers.ssh_server_paramiko import (
-    ParamikoSshServerInterface, ParamikoSshServer,
-    TapIO, channel_to_shell_tap, shell_to_channel_tap,
-    DEFAULT_SSH_KEY
+    ParamikoSshServerInterface,
+    ParamikoSshServer,
+    TapIO,
+    channel_to_shell_tap,
+    shell_to_channel_tap,
+    DEFAULT_SSH_KEY,
 )
 
 
@@ -163,7 +166,7 @@ class ChannelToShellTapTest(unittest.TestCase):
     """
 
     def setUp(self):
-        """ Set up the ChannelToShellTap object. """
+        """Set up the ChannelToShellTap object."""
         self.mock_channel_stdio: Mock = Mock()
         self.mock_channel_stdio.read.return_value = b"b"
         self.mock_shell_stdin: Mock = Mock()
@@ -171,7 +174,7 @@ class ChannelToShellTapTest(unittest.TestCase):
         self.mock_run_srv: Mock = Mock()
 
     def test_channel_to_shell_tap_received_byte(self):
-        """ Check that the ChannelToShellTap object receives a byte. """
+        """Check that the ChannelToShellTap object receives a byte."""
         self.mock_run_srv.is_set.side_effect = [True] * 10 + [False]
         channel_to_shell_tap(
             channel_stdio=self.mock_channel_stdio,
@@ -181,9 +184,8 @@ class ChannelToShellTapTest(unittest.TestCase):
         )
         self.mock_channel_stdio.read.assert_called_with(1)
 
-
     def test_channel_to_shell_tap_shell_replied_event_wait(self):
-        """ Check that the ChannelToShellTap object waits for the shell_replied_event. """
+        """Check that the ChannelToShellTap object waits for the shell_replied_event."""
         self.mock_run_srv.is_set.side_effect = [True] * 10 + [False]
         channel_to_shell_tap(
             channel_stdio=self.mock_channel_stdio,
@@ -194,7 +196,7 @@ class ChannelToShellTapTest(unittest.TestCase):
         self.mock_shell_replied_event.wait.assert_called_with(10)
 
     def test_channel_to_shell_tap_break_loop_when_channel_stdio_not_active(self):
-        """ Check that the ChannelToShellTap object breaks the loop when the channel_stdio is not active. """
+        """Check that the ChannelToShellTap object breaks the loop when the channel_stdio is not active."""
         self.mock_channel_stdio.read.return_value = b""
         self.mock_channel_stdio.channel.active = False
         channel_to_shell_tap(
@@ -206,7 +208,7 @@ class ChannelToShellTapTest(unittest.TestCase):
         self.assertEqual(self.mock_run_srv.is_set.call_count, 1)
 
     def test_channel_to_shell_tap_break_loop_if_os_error(self):
-        """ Check that the ChannelToShellTap object breaks the loop if an OSError occurs. """
+        """Check that the ChannelToShellTap object breaks the loop if an OSError occurs."""
         self.mock_channel_stdio.write.side_effect = OSError
         channel_to_shell_tap(
             channel_stdio=self.mock_channel_stdio,
@@ -217,7 +219,7 @@ class ChannelToShellTapTest(unittest.TestCase):
         self.assertEqual(self.mock_run_srv.is_set.call_count, 1)
 
     def test_channel_to_shell_tap_break_loop_if_eof_error(self):
-        """ Check that the ChannelToShellTap object breaks the loop if an EOFError occurs. """
+        """Check that the ChannelToShellTap object breaks the loop if an EOFError occurs."""
         self.mock_channel_stdio.write.side_effect = EOFError
         channel_to_shell_tap(
             channel_stdio=self.mock_channel_stdio,
@@ -228,7 +230,7 @@ class ChannelToShellTapTest(unittest.TestCase):
         self.assertEqual(self.mock_run_srv.is_set.call_count, 1)
 
     def test_channel_to_shell_tap_byte_return_character(self):
-        """ Check that the ChannelToShellTap object returns a character. """
+        """Check that the ChannelToShellTap object returns a character."""
         self.mock_run_srv.is_set.side_effect = [True] * 2 + [False]
         self.mock_channel_stdio.read.side_effect = [b"\r", b"\n"]
         channel_to_shell_tap(
@@ -246,7 +248,7 @@ class ChannelToShellTapTest(unittest.TestCase):
         self.assertEqual(self.mock_shell_replied_event.clear.call_count, 2)
 
     def test_channel_to_shell_tap_byte_return_x00_or_empty(self):
-        """ Check that the ChannelToShellTap object returns a character. """
+        """Check that the ChannelToShellTap object returns a character."""
         self.mock_run_srv.is_set.side_effect = [True] * 3 + [False]
         self.mock_channel_stdio.read.side_effect = [b"\x00", b"", b"\n"]
         channel_to_shell_tap(
@@ -255,7 +257,7 @@ class ChannelToShellTapTest(unittest.TestCase):
             shell_replied_event=self.mock_shell_replied_event,
             run_srv=self.mock_run_srv,
         )
-        self.mock_channel_stdio.write.assert_any_call(b'\x00')
+        self.mock_channel_stdio.write.assert_any_call(b"\x00")
         self.mock_channel_stdio.write.assert_any_call(b"")
         self.assertEqual(self.mock_channel_stdio.write.call_count, 3)
 
@@ -263,7 +265,7 @@ class ChannelToShellTapTest(unittest.TestCase):
         self.mock_shell_stdin.write.assert_called_with("\n")
 
     def test_channel_to_shell_tap_byte_return_other(self):
-        """ Check that the ChannelToShellTap object returns a character. """
+        """Check that the ChannelToShellTap object returns a character."""
         self.mock_run_srv.is_set.side_effect = [True] * 3 + [False]
         self.mock_channel_stdio.read.side_effect = [b"b", b"c", b"\n"]
         channel_to_shell_tap(
@@ -272,14 +274,14 @@ class ChannelToShellTapTest(unittest.TestCase):
             shell_replied_event=self.mock_shell_replied_event,
             run_srv=self.mock_run_srv,
         )
-        self.mock_channel_stdio.write.assert_any_call(b'b')
-        self.mock_channel_stdio.write.assert_any_call(b'c')
+        self.mock_channel_stdio.write.assert_any_call(b"b")
+        self.mock_channel_stdio.write.assert_any_call(b"c")
         self.assertEqual(self.mock_channel_stdio.write.call_count, 3)
 
         self.assertEqual(self.mock_shell_stdin.write.call_count, 1)
-    
+
     def test_channel_to_shell_tap_exit_run_srv(self):
-        """ Check that the ChannelToShellTap object exits the run_srv. """
+        """Check that the ChannelToShellTap object exits the run_srv."""
         self.mock_run_srv.is_set.side_effect = [True, False]
         self.mock_channel_stdio.read.side_effect = [b"\x00"]
         channel_to_shell_tap(
@@ -298,7 +300,7 @@ class ShellToChannelTapTest(unittest.TestCase):
     """
 
     def setUp(self):
-        """ Set up the ShellToChannelTap object. """
+        """Set up the ShellToChannelTap object."""
         self.mock_channel_stdio: Mock = Mock()
         self.mock_channel_stdio.closed = False
         self.mock_shell_stdout: Mock = Mock()
@@ -306,7 +308,7 @@ class ShellToChannelTapTest(unittest.TestCase):
         self.mock_run_srv: Mock = Mock()
 
     def test_shell_to_channel_tap_channel_stdio_closed(self):
-        """ Check that the ShellToChannelTap object closes the channel_stdio. """
+        """Check that the ShellToChannelTap object closes the channel_stdio."""
         self.mock_channel_stdio.closed = True
         shell_to_channel_tap(
             channel_stdio=self.mock_channel_stdio,
@@ -380,7 +382,7 @@ class ShellToChannelTapTest(unittest.TestCase):
         self.mock_channel_stdio.write.assert_called_once_with(b"b")
 
     def test_shell_to_channel_tap_socket_error(self):
-        """ Check that the ShellToChannelTap object breaks the loop if a socket error occurs. """
+        """Check that the ShellToChannelTap object breaks the loop if a socket error occurs."""
         self.mock_shell_stdout.readline.return_value = "b"
         self.mock_channel_stdio.write.side_effect = OSError(104, "Connection reset by peer")
         shell_to_channel_tap(
@@ -392,7 +394,7 @@ class ShellToChannelTapTest(unittest.TestCase):
         self.mock_run_srv.is_set.assert_called_once()
 
     def test_shell_to_channel_tap_set_replied_flag(self):
-        """ Check that the ShellToChannelTap object sets the replied flag. """
+        """Check that the ShellToChannelTap object sets the replied flag."""
         self.mock_run_srv.is_set.side_effect = [True, False]
         self.mock_shell_stdout.readline.return_value = "b"
         shell_to_channel_tap(
@@ -404,7 +406,7 @@ class ShellToChannelTapTest(unittest.TestCase):
         self.mock_shell_replied_event.set.assert_called_once()
 
     def test_shell_to_channel_tap_exit_run_srv(self):
-        """ Check that the ShellToChannelTap object exits the run_srv. """
+        """Check that the ShellToChannelTap object exits the run_srv."""
         self.mock_run_srv.is_set.side_effect = [True, False]
         self.mock_shell_stdout.readline.return_value = "b"
         shell_to_channel_tap(
@@ -415,13 +417,14 @@ class ShellToChannelTapTest(unittest.TestCase):
         )
         self.assertEqual(self.mock_run_srv.is_set.call_count, 2)
 
+
 class ParamikoSshServerTest(unittest.TestCase):
     """
     Test cases for the ParamikoSshServer class.
     """
 
     def setUp(self):
-        """ Set up the ParamikoSshServer tests. """
+        """Set up the ParamikoSshServer tests."""
         self.arguments: Dict = {
             "shell": Mock(),
             "nos": Mock(),
@@ -449,10 +452,7 @@ class ParamikoSshServerTest(unittest.TestCase):
         self.assertEqual(paramiko_server.timeout, 1)
         self.assertEqual(paramiko_server.watchdog_interval, 1)
         # pylint: disable=protected-access
-        self.assertEqual(
-            paramiko_server._ssh_server_key,
-            paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY))
-        )
+        self.assertEqual(paramiko_server._ssh_server_key, paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY)))
 
     def test_init_with_ssh_key_file(self):
         """
@@ -475,10 +475,7 @@ class ParamikoSshServerTest(unittest.TestCase):
         self.assertEqual(paramiko_server.timeout, 1)
         self.assertEqual(paramiko_server.watchdog_interval, 1)
         # pylint: disable=protected-access
-        self.assertEqual(
-            paramiko_server._ssh_server_key,
-            paramiko.RSAKey(filename="tests/assets/ssh_host_rsa_key")
-        )
+        self.assertEqual(paramiko_server._ssh_server_key, paramiko.RSAKey(filename="tests/assets/ssh_host_rsa_key"))
 
     def test_init_with_ssh_key_file_and_password(self):
         """
@@ -504,7 +501,7 @@ class ParamikoSshServerTest(unittest.TestCase):
         # pylint: disable=protected-access
         self.assertEqual(
             paramiko_server._ssh_server_key,
-            paramiko.RSAKey(filename="tests/assets/ssh_host_rsa_key_with_password", password="password")
+            paramiko.RSAKey(filename="tests/assets/ssh_host_rsa_key_with_password", password="password"),
         )
 
     def test_init_with_ssh_banner(self):
@@ -528,10 +525,7 @@ class ParamikoSshServerTest(unittest.TestCase):
         self.assertEqual(paramiko_server.timeout, 1)
         self.assertEqual(paramiko_server.watchdog_interval, 1)
         # pylint: disable=protected-access
-        self.assertEqual(
-            paramiko_server._ssh_server_key,
-            paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY))
-        )
+        self.assertEqual(paramiko_server._ssh_server_key, paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY)))
 
     def test_init_with_shell_configuration(self):
         """
@@ -554,10 +548,7 @@ class ParamikoSshServerTest(unittest.TestCase):
         self.assertEqual(paramiko_server.timeout, 1)
         self.assertEqual(paramiko_server.watchdog_interval, 1)
         # pylint: disable=protected-access
-        self.assertEqual(
-            paramiko_server._ssh_server_key,
-            paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY))
-        )
+        self.assertEqual(paramiko_server._ssh_server_key, paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY)))
 
     def test_init_with_address(self):
         """
@@ -580,10 +571,7 @@ class ParamikoSshServerTest(unittest.TestCase):
         self.assertEqual(paramiko_server.timeout, 1)
         self.assertEqual(paramiko_server.watchdog_interval, 1)
         # pylint: disable=protected-access
-        self.assertEqual(
-            paramiko_server._ssh_server_key,
-            paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY))
-        )
+        self.assertEqual(paramiko_server._ssh_server_key, paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY)))
 
     def test_init_with_timeout(self):
         """
@@ -606,10 +594,7 @@ class ParamikoSshServerTest(unittest.TestCase):
         self.assertEqual(paramiko_server.timeout, 2)
         self.assertEqual(paramiko_server.watchdog_interval, 1)
         # pylint: disable=protected-access
-        self.assertEqual(
-            paramiko_server._ssh_server_key,
-            paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY))
-        )
+        self.assertEqual(paramiko_server._ssh_server_key, paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY)))
 
     def test_init_with_watchdog_interval(self):
         """
@@ -632,10 +617,7 @@ class ParamikoSshServerTest(unittest.TestCase):
         self.assertEqual(paramiko_server.timeout, 1)
         self.assertEqual(paramiko_server.watchdog_interval, 2)
         # pylint: disable=protected-access
-        self.assertEqual(
-            paramiko_server._ssh_server_key,
-            paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY))
-        )
+        self.assertEqual(paramiko_server._ssh_server_key, paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY)))
 
     def test_init_with_all_parameters(self):
         """
@@ -662,13 +644,10 @@ class ParamikoSshServerTest(unittest.TestCase):
         self.assertEqual(paramiko_server.timeout, 2)
         self.assertEqual(paramiko_server.watchdog_interval, 2)
         # pylint: disable=protected-access
-        self.assertEqual(
-            paramiko_server._ssh_server_key,
-            paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY))
-        )
+        self.assertEqual(paramiko_server._ssh_server_key, paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY)))
 
     def test_watchdog_run_srv_loop(self):
-        """ Check that the watchdog run_srv loop is executed. """
+        """Check that the watchdog run_srv loop is executed."""
         paramiko_server: ParamikoSshServer = ParamikoSshServer(**self.arguments, watchdog_interval=0.01)
         mock_is_running: Mock = Mock()
         mock_run_srv: Mock = Mock()
@@ -679,7 +658,7 @@ class ParamikoSshServerTest(unittest.TestCase):
         self.assertEqual(mock_run_srv.is_set.call_count, 2)
 
     def test_watchdog_session_is_not_alive(self):
-        """ Check that the watchdog session is not alive. """
+        """Check that the watchdog session is not alive."""
         paramiko_server: ParamikoSshServer = ParamikoSshServer(**self.arguments, watchdog_interval=0.01)
         mock_is_running: Mock = Mock()
         mock_run_srv: Mock = Mock()
@@ -692,7 +671,7 @@ class ParamikoSshServerTest(unittest.TestCase):
         mock_shell.stop.assert_called_once()
 
     def test_watchdog_shell_stop_when_is_running_false(self):
-        """ Check that the watchdog shell is stopped when is_running is False. """
+        """Check that the watchdog shell is stopped when is_running is False."""
         paramiko_server: ParamikoSshServer = ParamikoSshServer(**self.arguments, watchdog_interval=0.01)
         mock_is_running: Mock = Mock()
         mock_run_srv: Mock = Mock()
@@ -704,7 +683,7 @@ class ParamikoSshServerTest(unittest.TestCase):
         mock_shell.stop.assert_called_once()
 
     def test_watchdog_shell_stop_when_session_is_alive_false(self):
-        """ Check that the watchdog shell is stopped when the session is alive is False. """
+        """Check that the watchdog shell is stopped when the session is alive is False."""
         paramiko_server: ParamikoSshServer = ParamikoSshServer(**self.arguments, watchdog_interval=0.01)
         mock_is_running: Mock = Mock()
         mock_run_srv: Mock = Mock()
@@ -719,12 +698,9 @@ class ParamikoSshServerTest(unittest.TestCase):
     @mock.patch("fakenos.plugins.servers.ssh_server_paramiko.shell_to_channel_tap")
     @mock.patch("paramiko.Transport")
     def test_connection_function(
-        self,
-        mock_transport: MagicMock,
-        mock_shell_to_channel_tap: MagicMock,
-        mock_channel_to_shell_tap: MagicMock
+        self, mock_transport: MagicMock, mock_shell_to_channel_tap: MagicMock, mock_channel_to_shell_tap: MagicMock
     ):
-        """ Check that the connection function is executed correctly. """
+        """Check that the connection function is executed correctly."""
         mock_client: MagicMock = MagicMock()
         mock_is_running = Mock()
         paramiko_server: ParamikoSshServer = ParamikoSshServer(**self.arguments)
@@ -733,5 +709,3 @@ class ParamikoSshServerTest(unittest.TestCase):
         mock_transport.assert_called_once()
         mock_shell_to_channel_tap.assert_called_once()
         mock_channel_to_shell_tap.assert_called_once()
-
-        

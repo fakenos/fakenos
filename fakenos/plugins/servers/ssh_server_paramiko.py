@@ -148,9 +148,7 @@ def channel_to_shell_tap(channel_stdio, shell_stdin, shell_replied_event, run_sr
         try:
             if byte in (b"\r", b"\n"):
                 channel_stdio.write(b"\r\n")
-                log.debug(
-                    "ssh_server.channel_to_shell_tap echoing new line to channel: %s", [b"\r\n"]
-                )
+                log.debug("ssh_server.channel_to_shell_tap echoing new line to channel: %s", [b"\r\n"])
                 buffer.write(byte)
                 buffer.seek(0)
                 line = buffer.read().decode(encoding="utf-8")
@@ -161,9 +159,7 @@ def channel_to_shell_tap(channel_stdio, shell_stdin, shell_replied_event, run_sr
                 shell_replied_event.clear()
             else:
                 channel_stdio.write(byte)
-                log.debug(
-                    "ssh_server.channel_to_shell_tap echoing byte to channel: %s", [byte]
-                )
+                log.debug("ssh_server.channel_to_shell_tap echoing byte to channel: %s", [byte])
                 if byte not in [b"\x00", b""]:
                     buffer.write(byte)
             time.sleep(0.01)
@@ -239,17 +235,13 @@ class ParamikoSshServer(TCPServerBase):
         self.watchdog_interval: int = watchdog_interval
 
         if ssh_key_file:
-            self._ssh_server_key: paramiko.rsakey.RSAKey = paramiko.RSAKey.from_private_key_file(ssh_key_file, ssh_key_file_password)
+            self._ssh_server_key: paramiko.rsakey.RSAKey = paramiko.RSAKey.from_private_key_file(
+                ssh_key_file, ssh_key_file_password
+            )
         else:
             self._ssh_server_key: paramiko.rsakey.RSAKey = paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY))
 
-    def watchdog(
-            self,
-            is_running: threading.Event,
-            run_srv: threading.Event,
-            session: paramiko.Transport,
-            shell: any
-        ):
+    def watchdog(self, is_running: threading.Event, run_srv: threading.Event, session: paramiko.Transport, shell: any):
         """
         Method to monitor server liveness and recover where possible.
         """
