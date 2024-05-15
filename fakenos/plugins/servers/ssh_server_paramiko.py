@@ -5,14 +5,17 @@ paramiko as the SSH connection library.
 
 import logging
 import io
+import socket
 import threading
 import time
-import socket
+from typing import Dict, List
 
 import paramiko
 import paramiko.channel
+import paramiko.rsakey
 import paramiko.transport
 
+from fakenos.core.nos import Nos
 from fakenos.core.servers import TCPServerBase
 
 log = logging.getLogger(__name__)
@@ -110,9 +113,9 @@ class TapIO(io.StringIO):
     and a list to buffer lines on write
     """
 
-    def __init__(self, run_srv, initial_value="", newline="\n"):
-        self.lines = []
-        self.run_srv = run_srv
+    def __init__(self, run_srv: threading.Event, initial_value: str = "", newline: str = "\n"):
+        self.lines: List[str] = []
+        self.run_srv: threading.Event = run_srv
         super().__init__(initial_value, newline)
 
     def readline(self):
@@ -123,7 +126,7 @@ class TapIO(io.StringIO):
             time.sleep(0.01)
         return None
 
-    def write(self, value):
+    def write(self, value: str):
         """
         :param value: line to add to self.lines buffer
         """
@@ -134,42 +137,39 @@ def channel_to_shell_tap(channel_stdio, shell_stdin, shell_replied_event, run_sr
     """
     Method to tap into the channel_stdio and send it to the shell
     """
-    buffer = io.BytesIO()
+    buffer: io.BytesIO = io.BytesIO()
     while run_srv.is_set():
-        byte = channel_stdio.read(1)
+        byte: bytes = channel_stdio.read(1)
         log.debug("ssh_server.channel_to_shell_tap received from channel: %s", [byte])
-        if byte in (b"\r", b"\n"):
-            shell_replied_event.wait(10)
-            if not channel_stdio.channel.active:
-                log.error("SSH channel is not active. Exiting.")
-                break
-            log.debug("ssh_server.channel_to_shell_tap echoing new line to channel: %s", [b"\r\n"])
-            try:
+        shell_replied_event.wait(10)
+        if not channel_stdio.channel.active:
+            log.error("SSH channel is not active. Exiting.")
+            break
+        try:
+            if byte in (b"\r", b"\n"):
                 channel_stdio.write(b"\r\n")
-            except (OSError, EOFError) as e:
-                log.error("ssh_server.channel_to_shell_tap channel write error: %s", e)
-                break
-            buffer.write(byte)
-            buffer.seek(0)
-            line = buffer.read().decode(encoding="utf-8")
-            buffer.seek(0)
-            buffer.truncate()
-            log.debug("ssh_server.channel_to_shell_tap sending line to shell: %s", [line])
-            shell_stdin.write(line)
-            shell_replied_event.clear()
-        else:
-            shell_replied_event.wait(10)
-            if not channel_stdio.channel.active:
-                log.error("SSH channel is not active. Exiting.")
-                break
-            try:
-                channel_stdio.write(byte)
-            except (OSError, EOFError) as e:
-                log.error("ssh_server.channel_to_shell_tap channel write error: %s", e)
-                break
-            if byte not in [b"\x00", b""]:
+                log.debug(
+                    "ssh_server.channel_to_shell_tap echoing new line to channel: %s", [b"\r\n"]
+                )
                 buffer.write(byte)
-        time.sleep(0.01)
+                buffer.seek(0)
+                line = buffer.read().decode(encoding="utf-8")
+                buffer.seek(0)
+                buffer.truncate()
+                log.debug("ssh_server.channel_to_shell_tap sending line to shell: %s", [line])
+                shell_stdin.write(line)
+                shell_replied_event.clear()
+            else:
+                channel_stdio.write(byte)
+                log.debug(
+                    "ssh_server.channel_to_shell_tap echoing byte to channel: %s", [byte]
+                )
+                if byte not in [b"\x00", b""]:
+                    buffer.write(byte)
+            time.sleep(0.01)
+        except (OSError, EOFError) as e:
+            log.error("ssh_server.channel_to_shell_tap channel write error: %s", e)
+            break
 
 
 def shell_to_channel_tap(
@@ -185,7 +185,6 @@ def shell_to_channel_tap(
         if channel_stdio.closed:
             break
         line = shell_stdout.readline()
-        # line is None we break the loop
         if line is None:
             break
         if "\r\n" not in line and "\n" in line:
@@ -193,9 +192,10 @@ def shell_to_channel_tap(
         log.debug("ssh_server.shell_to_channel_tap sending line to channel %s", [line])
         try:
             channel_stdio.write(line.encode(encoding="utf-8"))
-        except socket.error as e:
-            if e.errno == 104:  # Connection reset by peer
+        except OSError as e:
+            if e.errno == 104:
                 log.error("ssh_server.shell_to_channel_tap channel write error: %s", e)
+                log.error("Connection reset by peer, exiting")
                 break
         shell_replied_event.set()
 
@@ -210,45 +210,50 @@ class ParamikoSshServer(TCPServerBase):
     # pylint: disable=too-many-arguments
     def __init__(
         self,
-        shell,
-        nos,
-        nos_inventory_config,
-        port,
-        username,
-        password,
-        ssh_key_file=None,
-        ssh_key_file_password=None,
-        ssh_banner="FakeNOS Paramiko SSH Server",
-        shell_configuration=None,
-        address="127.0.0.1",
-        timeout=1,
-        watchdog_interval=1,
+        shell: type,
+        nos: Nos,
+        nos_inventory_config: Dict,
+        port: int,
+        username: str,
+        password: str,
+        ssh_key_file: paramiko.rsakey.RSAKey = None,
+        ssh_key_file_password: str = None,
+        ssh_banner: str = "FakeNOS Paramiko SSH Server",
+        shell_configuration: Dict = None,
+        address: str = "127.0.0.1",
+        timeout: int = 1,
+        watchdog_interval: int = 1,
     ):
         super().__init__()
 
-        self.nos = nos
-        self.nos_inventory_config = nos_inventory_config
-        self.shell = shell
-        self.shell_configuration = shell_configuration or {}
-        self.ssh_banner = ssh_banner
-        self.username = username
-        self.password = password
-        self.port = port
-        self.address = address
-        self.timeout = timeout
-        self.watchdog_interval = watchdog_interval
+        self.nos: Nos = nos
+        self.nos_inventory_config: Dict = nos_inventory_config
+        self.shell: type = shell
+        self.shell_configuration: Dict = shell_configuration or {}
+        self.ssh_banner: str = ssh_banner
+        self.username: str = username
+        self.password: str = password
+        self.port: int = port
+        self.address: str = address
+        self.timeout: int = timeout
+        self.watchdog_interval: int = watchdog_interval
 
         if ssh_key_file:
-            self._ssh_server_key = paramiko.RSAKey.from_private_key_file(ssh_key_file, ssh_key_file_password)
+            self._ssh_server_key: paramiko.rsakey.RSAKey = paramiko.RSAKey.from_private_key_file(ssh_key_file, ssh_key_file_password)
         else:
-            self._ssh_server_key = paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY))
+            self._ssh_server_key: paramiko.rsakey.RSAKey = paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY))
 
-    def watchdog(self, is_running, run_srv, session, shell):
+    def watchdog(
+            self,
+            is_running: threading.Event,
+            run_srv: threading.Event,
+            session: paramiko.Transport,
+            shell: any
+        ):
         """
         Method to monitor server liveness and recover where possible.
         """
         while run_srv.is_set():
-            # check if session is alive, stop shell if it is not
             if not session.is_alive():
                 log.warning(
                     "ParamikoSshServer.watchdog - \
@@ -257,13 +262,12 @@ class ParamikoSshServer(TCPServerBase):
                 shell.stop()
                 break
 
-            # exit the shell
             if not is_running.is_set():
                 shell.stop()
 
             time.sleep(self.watchdog_interval)
 
-    def connection_function(self, client, is_running):
+    def connection_function(self, client: socket.socket, is_running: threading.Event):
         shell_replied_event = threading.Event()
         run_srv = threading.Event()
         run_srv.set()
