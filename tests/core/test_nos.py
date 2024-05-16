@@ -3,6 +3,8 @@ Test module for fakenos.core.nos module.
 This module can be found at fakenos/core/nos.py
 """
 
+import glob
+import os
 import unittest
 
 from pydantic import ValidationError
@@ -10,6 +12,7 @@ import pytest
 import yaml
 
 from fakenos.core.nos import Nos
+from fakenos.plugins.nos import nos_plugins
 from tests.assets import module
 
 
@@ -306,3 +309,41 @@ class NosTest(unittest.TestCase):
         """
         with pytest.raises(ValidationError):
             Nos(commands={"show clock": {"output": 42}})
+
+    def test_yaml_file_command_is_overwritten_by_corresponding_module(self):
+        """
+        Test that when a command in a platform is defined
+        both in YAML and Python module, the Python module
+        is the one being used.
+        """
+        nos_yaml = Nos(filename="tests/assets/yaml_nos.yaml")
+        nos_py = Nos(filename="tests/assets/module.py")
+        nos_combined = Nos(filename="tests/assets/yaml_nos.yaml")
+        nos_combined.from_file("tests/assets/module.py")
+
+        combined_dict = dict(nos_yaml.commands)
+        combined_dict.update(nos_py.commands)
+
+        assert callable(nos_combined.commands["show clock"]["output"])
+        assert callable(combined_dict["show clock"]["output"])
+        assert len(combined_dict) == len(nos_combined.commands)
+
+    def test_yaml_file_command_is_overwritten_by_corresponding_module_in_init(self):
+        """
+        Test that when a command in a platform is defined
+        both in YAML and Python module, the Python module
+        is the one being used in the init.
+        """
+        # pylint: disable=duplicate-code
+        platforms_directory_py: str = "fakenos/plugins/nos/platforms_py"
+        py_files = glob.glob(os.path.join(platforms_directory_py, "*.py"))
+        py_files = [file for file in py_files if not file.endswith("__init__.py")]
+        for file in py_files:
+            nos_instance = Nos()
+            nos_instance.from_file(file)
+            for key, value in nos_instance.commands.items():
+                assert key in nos_plugins[nos_instance.name].commands
+                if "output" in value and callable(value["output"]):
+                    assert nos_plugins[nos_instance.name].commands[key]["output"].__name__ == value["output"].__name__
+                else:
+                    assert nos_plugins[nos_instance.name].commands[key] == value

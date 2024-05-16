@@ -197,7 +197,7 @@ class Nos:
         spec = importlib.util.spec_from_file_location("nos_module", data)
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
-        self.name = getattr(module, "name", self.name)
+        self.name = getattr(module, "NAME", self.name)
         self.commands.update(getattr(module, "commands", self.commands))
         self.initial_prompt = getattr(module, "INITIAL_PROMPT", self.initial_prompt)
 

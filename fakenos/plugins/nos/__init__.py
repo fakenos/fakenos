@@ -31,7 +31,11 @@ for file in yaml_files:
 # load NOS from python modules updating the NOS
 platforms_directory_py: str = os.path.join(current_directory, "platforms_py")
 py_files = glob.glob(os.path.join(platforms_directory_py, "*.py"))
+py_files = [file for file in py_files if not file.endswith("__init__.py")]
 for file in py_files:
     nos_instance = Nos()
     nos_instance.from_file(file)
-    nos_plugins[nos_instance.name] = nos_instance
+    if nos_instance.name not in nos_plugins:
+        nos_plugins[nos_instance.name] = nos_instance
+    else:
+        nos_plugins[nos_instance.name].commands.update(nos_instance.commands)
