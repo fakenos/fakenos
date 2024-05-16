@@ -1,9 +1,9 @@
 [tool.poetry]
 name = "fakenos"
-version = "0.2.1"
+version = "1.0.0"
 description = "Fake Network Operating System"
-authors = ["Denis Mulyalin <d.mulyalin@gmail.com>"]
-maintainers = ["Denis Mulyalin <d.mulyalin@gmail.com>"]
+authors = ["Denis Mulyalin <d.mulyalin@gmail.com>", "Enric Perpinyà Pitarch <eperpinyapitarch@gmail.com>"]
+maintainers = ["Denis Mulyalin <d.mulyalin@gmail.com>", "Enric Perpinyà Pitarch <eperpinyapitarch@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 keywords = ["NetworkAutomation", "Testing", "SSH"]
