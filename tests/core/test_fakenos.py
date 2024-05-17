@@ -438,3 +438,11 @@ class TestPlatforms:
         """
         platforms = get_platforms_from_md()
         assert platforms == sorted(platforms)
+
+    def test_with_works(self):
+        """
+        Test that the with statement works.
+        """
+        with FakeNOS() as net:
+            assert len(net.hosts) == 3
+        assert threading.active_count() == 1

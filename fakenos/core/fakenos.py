@@ -92,6 +92,21 @@ class FakeNOS:
         self._init()
         self._register_nos_plugins()
 
+    def __enter__(self):
+        """
+        Method to start the FakeNOS servers when entering the context manager.
+        It is meant to be used with the `with` statement.
+        """
+        self.start()
+        return self
+    
+    def __exit__(self, *args):
+        """
+        Method to stop the FakeNOS servers when exiting the context manager.
+        It is meant to be used with the `with` statement.
+        """
+        self.stop()
+
     def _is_inventory_in_yaml(self) -> bool:
         """method that checks if the inventory is a yaml file."""
         return isinstance(self.inventory, str) and self.inventory.endswith(".yaml")

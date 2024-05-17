@@ -100,3 +100,19 @@ En caso de testing automático, siempre se necesita seguir la misma estructura. 
     Hay planes para hacerlo con un decorador como `@fakenos(platform="cisco_ios")`, pero por ahora
     esta es la forma principal de hacerlo. ¡Los PR que hagan esto son más que bienvenidos! :smiley:
 
+## Implementado con el `with`
+!!! new
+    Implementado en la versión: v1.0.2
+
+El ejemplo anterior se puede implementar utilizando la declaración `with`. Esta es una forma más pythonica de hacerlo, y se recomienda usarla. El ejemplo anterior se puede reescribir de la siguiente manera:
+
+```python
+from fakenos import FakeNOS
+
+with FakeNOS(inventory=inventory) as net:
+    result = main.get_serial_number(0)
+    assert result == "1234567890ABCDEF"
+```
+
+
+

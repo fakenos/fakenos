@@ -99,3 +99,14 @@ In case of automatic testing, always needs to be followed the same structure. Th
 !!! note
     There are plans to make with a decorator like `@fakenos(platform="cisco_ios")`, but for now
     this is the main way to do it. PR doing this are more than welcome! :smiley:
+
+## Implemented using the `with`
+The previous example can be implemented using the `with` statement. This is a more pythonic way to do it, and it is recommended to use it. The previous example can be rewritten as follows:
+
+```python
+from fakenos import FakeNOS
+
+with FakeNOS(inventory=inventory) as net:
+    result = main.get_serial_number(0)
+    assert result == "1234567890ABCDEF"
+```
