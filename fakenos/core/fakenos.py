@@ -99,7 +99,7 @@ class FakeNOS:
         """
         self.start()
         return self
-    
+
     def __exit__(self, *args):
         """
         Method to stop the FakeNOS servers when exiting the context manager.
