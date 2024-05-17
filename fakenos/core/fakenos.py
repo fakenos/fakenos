@@ -5,6 +5,7 @@ It is the entry point to start, stop and list FakeNOS servers.
 
 import logging
 import copy
+import socket
 import threading
 import time
 import platform
@@ -325,3 +326,44 @@ class FakeNOS:
                 else:
                     raise TypeError(f"Unsupported NOS type {type(plugin)}, supported str, dict or Nos")
             self.nos_plugins[nos_instance.name] = nos_instance
+
+
+def _get_free_port() -> int:
+    """
+    Method to get a free port for the FakeNOS server.
+    """
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.bind(("", 0))
+        return s.getsockname()[1]
+
+
+def fakenos(platform: str = None, inventory: dict = None, return_instance: bool = False):
+    """
+    Decorator to run a test with FakeNOS server.
+    """
+    if platform and inventory:
+        raise ValueError("platform and inventory cannot be used together")
+    if not platform and not inventory:
+        raise ValueError("platform or inventory must be set")
+    if platform:
+        inventory = {
+            "hosts": {
+                "FakeNOS": {
+                    "username": "test",
+                    "password": "test",
+                    "port": _get_free_port(),
+                    "platform": platform,
+                }
+            }
+        }
+
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            with FakeNOS(inventory=inventory) as net:
+                if return_instance:
+                    return func(*args, net=net, **kwargs)
+                return func(*args, **kwargs)
+
+        return wrapper
+
+    return decorator
