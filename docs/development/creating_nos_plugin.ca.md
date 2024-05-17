@@ -2,9 +2,9 @@ Es poden crear plugins NOS personalitzats per a FakeNOS i registrar-los amb una 
 
 Hi ha diverses maneres de crear un plugin NOS:
 
-1. [Crear un plugin NOS des d'un fitxer YAML](creating_nos_plugin.md#crear-un-plugin-de-nos-a-partir-dun-arxiu-yaml)
-2. [Crear un plugin NOS des d'un fitxer Python](creating_nos_plugin.md#crear-un-plugin-de-nos-a-partir-dun-arxiu-py)
-3. [Crear un plugin NOS des de la classe Nos](creating_nos_plugin.md#crear-un-plugin-de-nos-des-de-la-classe-nos)
+1. [Crear un plugin NOS des d'un fitxer YAML](creating_nos_plugin.md#crear-un-plugin-nos-des-dun-fitxer-yaml)
+2. [Crear un plugin NOS des d'un fitxer Python](creating_nos_plugin.md#crear-un-plugin-nos-des-dun-fitxer-python)
+3. [Crear un plugin NOS des de la classe Nos](creating_nos_plugin.md#crear-un-plugin-nos-des-de-la-classe-nos)
 
 Cap d'aquestes maneres és millor que l'altra, totes elles tenen els seus propis casos d'ús. Però
 estan llistats en una seqüència de més senzill de crear/menys flexible a més involucrat/més
@@ -347,7 +347,7 @@ net.register_nos_plugin(plugin=nos)
 net.start()
 ```
 
-A més, els mètodes de classe Nos `from_dict` i `from_file` poden ser utilitzats per subministrar atributs Nos. Per exemple, es poden obtenir els resultats equivalents a la secció [Crear un plugin NOS des d'un fitxer Python](creating_nos_plugin.md#crear-un-plugin-de-nos-a-partir-dun-arxiu-py) utilitzant aquest codi:
+A més, els mètodes de classe Nos `from_dict` i `from_file` poden ser utilitzats per subministrar atributs Nos. Per exemple, es poden obtenir els resultats equivalents a la secció [Crear un plugin NOS des d'un fitxer Python](creating_nos_plugin.md#crear-un-plugin-nos-des-dun-fitxer-python) utilitzant aquest codi:
 
 ```python
 from fakenos import FakeNOS, Nos
