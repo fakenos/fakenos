@@ -4,6 +4,7 @@ FakeNOS Command Line Tool for running fake servers.
 
 import argparse
 import logging
+import os
 
 from fakenos import FakeNOS
 
@@ -40,15 +41,23 @@ opts.add_argument(
     help="Log level",
 )
 
+opts.add_argument(
+    "-r",
+    "--reload-commands",
+    action="store_true",
+    dest="RELOAD_COMMANDS",
+    default=False,
+    help="Dev mode: Reload commands",
+)
 
 args = argparser.parse_args()
 
 logging.basicConfig(level=args.LOG_LEVEL.upper())
 
+os.environ["FAKENOS_RELOAD_COMMANDS"] = "ON"
 
 def run_cli():
     """Function to start FakeNOS CLI"""
-    print("Initiating FakeNOS")
     fakenet = FakeNOS(inventory=args.INVENTORY)
     log.info("Initiating FakeNOS")
     fakenet.start()
@@ -59,6 +68,8 @@ def run_cli():
     except KeyboardInterrupt:
         log.info("Shutting down FakeNOS")
         fakenet.stop()
+        os.environ.pop("FAKENOS_RELOAD_COMMANDS")
+
 
 
 if __name__ == "__main__":

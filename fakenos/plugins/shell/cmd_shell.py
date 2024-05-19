@@ -6,9 +6,17 @@ from cmd import Cmd
 import logging
 import traceback
 import copy
+import os
 
 log = logging.getLogger(__name__)
 
+BASIC_COMMANDS: dict = {
+    "exit": {"output": True, "help": "Exit commands shell"},
+    "_default_": {
+        "output": "Unknown command",
+        "help": "Output to print for unknown commands",
+    },
+}
 
 # pylint: disable=too-many-instance-attributes
 class CMDShell(Cmd):
@@ -17,14 +25,6 @@ class CMDShell(Cmd):
     """
 
     use_rawinput = False
-
-    commands = {
-        "exit": {"output": True, "help": "Exit commands shell"},
-        "_default_": {
-            "output": "Unknown command",
-            "help": "Output to print for unknown commands",
-        },
-    }
 
     # pylint: disable=too-many-arguments
     def __init__(
@@ -50,10 +50,17 @@ class CMDShell(Cmd):
 
         # form commands
         self.commands = {
-            **copy.deepcopy(self.commands),
+            **copy.deepcopy(BASIC_COMMANDS),
             **copy.deepcopy(nos.commands or {}),
             **copy.deepcopy(nos_inventory_config.get("commands", {})),
         }
+
+        if os.environ.get("FAKENOS_RELOAD_COMMANDS"):
+            self.reload = True
+            self.filenames = self.get_files_with_prefix(
+                '/home/enric/fakenos/fakenos/plugins/nos', self.nos.name
+            )
+            self.file_lasttime_changed = {file: os.stat(file).st_mtime for file in self.filenames}
 
         # call the base constructor of cmd.Cmd, with our own stdin and stdout
         super().__init__(
@@ -61,6 +68,15 @@ class CMDShell(Cmd):
             stdin=stdin,
             stdout=stdout,
         )
+    
+    def get_files_with_prefix(self, directory, prefix):
+        """Method to get files with prefix"""
+        files = []
+        for root, _, filenames in os.walk(directory):
+            for filename in filenames:
+                if filename.startswith(prefix):
+                    files.append(os.path.join(root, filename))
+        return files
 
     def start(self):
         """Method to start the shell"""
@@ -78,7 +94,28 @@ class CMDShell(Cmd):
     def emptyline(self):
         """This method to do nothing if empty line entered"""
 
+    def reload_commands(self):
+        """Method to reload commands"""
+        for file in self.filenames:
+            self.nos.from_file(file)
+            self.commands.update(self.nos.commands)
+
+    def get_files_changed(self):
+        """Method to get files changed"""
+        changed_files = []
+        for file in self.filenames:
+            if os.stat(file).st_mtime != self.file_lasttime_changed[file]:
+                changed_files.append(file)
+                self.file_lasttime_changed[file] = os.stat(file).st_mtime
+        return changed_files
+
     def precmd(self, line):
+        """Method to return line before processing the command"""
+        if self.reload:
+            changed_files = self.get_files_changed()
+            if changed_files:
+                log.debug("Reloading... Files changed: %s", changed_files)
+                self.reload_commands()
         return line
 
     # pylint: disable=unused-argument
