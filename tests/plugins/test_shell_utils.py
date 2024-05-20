@@ -71,7 +71,7 @@ class ShellUtilsTest(TestCase):
         files = get_files_under_directory("fakenos/plugins/nos")
         self.assertTrue(files)
         self.assertTrue(all(not file.endswith("__init__.py") for file in files))
-        self.assertTrue(all(file for file in files if file.endswith((".py", ".jinja", ".yaml"))))
+        self.assertTrue(all(file for file in files if file.endswith((".py", ".j2", ".yaml"))))
 
     def test_get_files_lasttime_changed(self):
         """
@@ -95,27 +95,27 @@ class ShellUtilsTest(TestCase):
 
     def test_change_jinja_to_corresponding_py(self):
         """
-        Test to check if we change jinja files to corresponding py files
+        Test to check if we change j2 files to corresponding py files
         """
         files = get_files_under_directory("fakenos/plugins/nos")
         files = [file for file in files if "cisco_ios" in file]
-        files = [file for file in files if file.endswith(".jinja")]
+        files = [file for file in files if file.endswith(".j2")]
         files = change_jinja_to_corresponding_py(files)
         self.assertTrue(files)
-        self.assertTrue(all(not file.endswith(".jinja") for file in files))
+        self.assertTrue(all(not file.endswith(".j2") for file in files))
         self.assertTrue(all(file for file in files if file.endswith(".py")))
         self.assertTrue(all("cisco_ios" in file for file in files))
 
     def test_change_jinja_to_corresponding_py_null(self):
         """
-        Test to check if we don't change any jinja files to corresponding py files
+        Test to check if we don't change any j2 files to corresponding py files
         """
         files = get_files_under_directory("fakenos/plugins/nos")
         files = [file for file in files if "cisco_ios" in file]
         files = [file for file in files if file.endswith(".py")]
         files = change_jinja_to_corresponding_py(files)
         self.assertTrue(files)
-        self.assertTrue(all(not file.endswith(".jinja") for file in files))
+        self.assertTrue(all(not file.endswith(".j2") for file in files))
         self.assertTrue(all(file for file in files if file.endswith(".py")))
         self.assertTrue(all("cisco_ios" in file for file in files))
 

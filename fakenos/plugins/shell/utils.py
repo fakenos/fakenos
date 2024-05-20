@@ -15,7 +15,7 @@ def get_files_under_directory(directory):
             continue
         files += [os.path.join(root, filename) for filename in filenames]
     files = [file for file in files if os.path.isfile(file)]
-    files = [file for file in files if file.endswith((".py", ".jinja", ".yaml"))]
+    files = [file for file in files if file.endswith((".py", ".j2", ".yaml"))]
     files = [file for file in files if not file.endswith("__init__.py")]
     return files
 
@@ -36,9 +36,9 @@ def get_files_recently_modified(files: List[str], files_lasttime_changed_old: Di
 
 
 def change_jinja_to_corresponding_py(files: List[str]):
-    """Method to change jinja files to corresponding py files"""
-    jinja_files = [file for file in files if file.endswith(".jinja")]
-    files = [file for file in files if not file.endswith(".jinja")]
+    """Method to change j2 files to corresponding py files"""
+    jinja_files = [file for file in files if file.endswith(".j2")]
+    files = [file for file in files if not file.endswith(".j2")]
     for filepath in jinja_files:
         split: List[str] = filepath.rsplit("/", 3)
         corresponding_py_module = f"{split[0]}/{split[2]}.py"

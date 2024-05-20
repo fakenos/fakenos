@@ -401,8 +401,8 @@ class HotReloadTest(TestCase):
         """
         Test that the hot reload feature works correctly
         """
-        original_filename = "fakenos/plugins/nos/platforms_py/templates/cisco_ios/show_version.jinja"
-        copy_filename = "fakenos/plugins/nos/platforms_py/templates/cisco_ios/copy_show_version.jinja"
+        original_filename = "fakenos/plugins/nos/platforms_py/templates/cisco_ios/show_version.j2"
+        copy_filename = "fakenos/plugins/nos/platforms_py/templates/cisco_ios/copy_show_version.j2"
 
         def change_file():
             shutil.copyfile(original_filename, copy_filename)

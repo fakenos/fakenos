@@ -68,6 +68,7 @@ class Nos:
         name: str = "FakeNOS",
         commands: dict = None,
         initial_prompt: str = "FakeNOS>",
+        class_name: str = None,
         filename: Optional[str] = None,
         dict_args: Optional[dict] = None,
     ) -> None:
@@ -81,6 +82,8 @@ class Nos:
         self.name = name
         self.commands = commands or {}
         self.initial_prompt = initial_prompt
+        self.class_name = class_name or None
+        self.device = None
         if filename:
             self.from_file(filename)
         elif dict_args:
@@ -130,6 +133,7 @@ class Nos:
         self.name = data.get("name", self.name)
         self.commands.update(data.get("commands", self.commands))
         self.initial_prompt = data.get("initial_prompt", self.initial_prompt)
+        self.class_name = data.get("class_name", self.class_name)
 
     def _from_yaml(self, data: str) -> None:
         """
@@ -200,6 +204,10 @@ class Nos:
         self.name = getattr(module, "NAME", self.name)
         self.commands.update(getattr(module, "commands", self.commands))
         self.initial_prompt = getattr(module, "INITIAL_PROMPT", self.initial_prompt)
+        self.class_name = getattr(module, "DEVICE_NAME", self.class_name)
+        if self.class_name is not None:
+            log.debug("NOS class name %s", self.class_name)
+            self.device = getattr(module, self.class_name)
 
     def from_file(self, data: str) -> None:
         """
