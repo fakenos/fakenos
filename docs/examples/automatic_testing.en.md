@@ -99,3 +99,71 @@ In case of automatic testing, always needs to be followed the same structure. Th
 !!! note
     There are plans to make with a decorator like `@fakenos(platform="cisco_ios")`, but for now
     this is the main way to do it. PR doing this are more than welcome! :smiley:
+
+## Implemented using the `with`
+The previous example can be implemented using the `with` statement. This is a more pythonic way to do it, and it is recommended to use it. The previous example can be rewritten as follows:
+
+```python
+from fakenos import FakeNOS
+
+with FakeNOS(inventory=inventory) as net:
+    result = main.get_serial_number(0)
+    assert result == "1234567890ABCDEF"
+```
+
+## Implemented using a decorator
+!!! new
+    Implemented in version: v1.0.2
+
+Also, the previous example can be implemented using a decorator. This is even a more pythonic way to do it. Personally, it is my favorite way. The previous example can be rewritten as follows:
+
+```python
+from fakenos import fakenos
+
+@fakenos(platform="huawei_smartax")
+def test_get_serial_number():
+    """
+    It tests that the function get_serial_number() gets
+    the first ONT serial number correctly.
+    """
+    result = main.get_serial_number(0)
+    assert result == "1234567890ABCDEF"
+```
+
+The decorator handles the start and stop of the fake devices, creating the inventory before starts and stopping it after the test. This decorator is perfectly suited for only test over one platform. But also, over many platforms using your custom inventory. 
+
+```python
+from fakenos import fakenos
+
+@fakenos(inventory=inventory)
+def test_get_serial_number():
+    """
+    It tests that the function get_serial_number() gets
+    the first ONT serial number correctly.
+    """
+    result = main.get_serial_number(0)
+    assert result == "1234567890ABCDEF"
+```
+
+Finally, just in case you want to access the fake devices, you can do it adding the `return_instance` parameter to the decorator. This will return the instance of the fake devices to the test. This is useful when you want to do some extra testing over the fake devices or connecting directly to them.
+
+```python
+from fakenos import fakenos
+
+@fakenos(platform="huawei_smartax", return_instance=True)
+def get_ports_used_in_decorator():
+    """ We want to see the ports of the fake device """
+    host_ports = [host.port for hosts in net.hosts.values()]
+    print(host_ports)
+```
+
+In this case I get the following result:
+```bash
+>> [60231]
+```
+
+!!! note
+    By the default the `return_instance` is `False`, so if you want to use it, you need to set it to `True`.
+
+!!! note
+    When using the platform parameter, a random port will be assigned. This decision is intentional so that the tests does not affect other systems. If you want to use a specific port, you can specify it using the inventory.

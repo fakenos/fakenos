@@ -31,8 +31,6 @@ theme:
       primary: brown
       accent: deep orange
   language: en
-extra:
-  homepage: /overview/overview
 
 markdown_extensions:
   - admonition

@@ -99,3 +99,74 @@ En cas de testing automàtic, sempre cal seguir la mateixa estructura. Aquest sa
 !!! note
     Hi ha plans per fer-ho amb un decorador com `@fakenos(platform="cisco_ios")`, però per ara
     aquesta és la principal manera de fer-ho. Les PR que ho facin són més que benvingudes! :smiley:
+
+## Implementat amb el `with`
+
+!!! new
+    Implementat a la versió: v1.0.2
+
+L'exemple anterior es pot implementar utilitzant l'expressió `with`. Aquesta és una manera més pythonica de fer-ho, i es recomana utilitzar-la. L'exemple anterior es podria reescriure de la següent manera:
+
+```python
+from fakenos import FakeNOS
+
+with FakeNOS(inventory=inventory) as net:
+    result = main.get_serial_number(0)
+```
+
+## Implementat amb un decorador
+!!! new
+    Implementat a la versió: v1.0.2
+
+També es pot implementar amb un decorador. Aquesta és encara una manera més pythonica de fer-ho. Personalment, és la meva manera preferida. L'exemple anterior es podria reescriure de la següent manera:
+    
+```python
+from fakenos import fakenos
+
+@fakenos(platform="huawei_smartax")
+def test_get_serial_number():
+    """
+    It tests that the function get_serial_number() gets
+    the first ONT serial number correctly.
+    """
+    result = main.get_serial_number(0)
+    assert result == "1234567890ABCDEF"
+```
+
+El decorador gestiona l'inici i la parada dels dispositius falsos, creant l'inventari abans d'iniciar i aturant-lo després de la prova. Aquest decorador és perfectament adequat per a una sola plataforma. Però també per a moltes plataformes utilitzant el teu inventari personalitzat.
+
+```python
+from fakenos import fakenos
+
+@fakenos(inventory=inventory)
+def test_get_serial_number():
+    """
+    It tests that the function get_serial_number() gets
+    the first ONT serial number correctly.
+    """
+    result = main.get_serial_number(0)
+    assert result == "1234567890ABCDEF"
+```
+
+Finalment, només en cas que vulguis accedir als dispositius falsos, pots fer-ho afegint el paràmetre `return_instance` al decorador. Això retornarà la instància dels dispositius falsos a la prova. Això és útil quan vols fer alguna prova addicional sobre els dispositius falsos o connectar-hi directament.
+
+```python
+from fakenos import fakenos
+
+@fakenos(platform="huawei_smartax", return_instance=True)
+def get_ports_used_in_decorator():
+    """ Volem veure els ports del dispositiu fals """
+    host_ports = [host.port for hosts in net.hosts.values()]
+    print(host_ports)
+```
+
+En aquest cas obtinc el següent resultat:
+```bash
+>> [60231]
+```
+
+!!! note
+    Per defecte, el `return_instance` és `False`, així que si vols utilitzar-lo, has de posar-ho a `True`.
+
+!!! note
+    Quan utilitzes el paràmetre de la plataforma, s'assignarà un port aleatori. Aquesta decisió és intencional perquè les proves no afectin altres sistemes. Si vols utilitzar un port específic, pots especificar-lo utilitzant l'inventari.

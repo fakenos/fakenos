@@ -10,7 +10,7 @@ from unittest.mock import patch
 import pytest
 import detect
 from fakenos.core.nos import available_platforms
-from fakenos.core.fakenos import FakeNOS
+from fakenos.core.fakenos import FakeNOS, fakenos
 
 from tests.utils import get_platforms_from_md, get_running_hosts
 
@@ -438,3 +438,50 @@ class TestPlatforms:
         """
         platforms = get_platforms_from_md()
         assert platforms == sorted(platforms)
+
+    def test_with_works(self):
+        """
+        Test that the with statement works.
+        """
+        with FakeNOS() as net:
+            assert len(net.hosts) == 3
+        assert threading.active_count() == 1
+
+    @fakenos(platform="cisco_ios", return_instance=True)
+    def test_decorator_with_platform(self, net: FakeNOS):
+        """Test that the decorator works with a platform."""
+        platforms_used = [host.nos_plugin.name for host in net.hosts.values()]
+        assert len(net.hosts) == 1
+        assert "cisco_ios" in platforms_used
+        assert "huawei_smartax" not in platforms_used
+        assert "arista_eos" not in platforms_used
+
+        print([host.port for host in net.hosts.values()])
+
+    @fakenos(inventory="tests/assets/inventory.yaml")
+    def test_decorator_with_inventory(self):
+        """
+        Test that the decorator works with an inventory.
+        This test is empty on purpose. If it loads
+        correctly the inventory, it will work.
+        """
+
+    def test_decorator_raise_error_if_platform_and_inventory_provided(self):
+        """Test that the decorator raises an exception if both platform and inventory are set."""
+        with pytest.raises(ValueError):
+
+            @fakenos(platform="cisco_ios", inventory="tests/assets/inventory.yaml")
+            def dummy_function():
+                pass
+
+            dummy_function()
+
+    def test_decorator_raise_error_if_not_platform_or_inventory_provided(self):
+        """Test that the decorator raises an exception if neither platform nor inventory are set."""
+        with pytest.raises(ValueError):
+
+            @fakenos()
+            def dummy_function():
+                pass
+
+            dummy_function()
