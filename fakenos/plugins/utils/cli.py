@@ -56,6 +56,7 @@ logging.basicConfig(level=args.LOG_LEVEL.upper())
 
 os.environ["FAKENOS_RELOAD_COMMANDS"] = "ON"
 
+
 def run_cli():
     """Function to start FakeNOS CLI"""
     fakenet = FakeNOS(inventory=args.INVENTORY)
@@ -69,7 +70,6 @@ def run_cli():
         log.info("Shutting down FakeNOS")
         fakenet.stop()
         os.environ.pop("FAKENOS_RELOAD_COMMANDS")
-
 
 
 if __name__ == "__main__":

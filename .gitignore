@@ -139,3 +139,7 @@ tests/tofile_outputs/
 
 # act
 act
+
+# internal dev .yaml files
+fake_nos.yaml
+inventory.yaml

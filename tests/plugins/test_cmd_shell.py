@@ -2,12 +2,19 @@
 Module to test the cmd_shell plugin.
 """
 
+import os
+import shutil
 import threading
 import time
 from typing import List
 from unittest import TestCase
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
+import importlib
 
+from netmiko import ConnectHandler
+import yaml
+
+from fakenos.core.fakenos import FakeNOS, fakenos
 from fakenos.core.nos import Nos
 from fakenos.plugins.shell.cmd_shell import CMDShell
 
@@ -289,3 +296,136 @@ class TestCmdShell(TestCase):
         self.arguments["is_running"].set()
         shell = CMDShell(**self.arguments)
         self.assertTrue(shell.default("exit"))
+
+
+class HotReloadTest(TestCase):
+    """
+    Test class for the hot reload feature
+    """
+
+    def setUp(self):
+        self.arguments = {
+            "stdin": None,
+            "stdout": None,
+            "nos": Nos(filename="tests/assets/yaml_nos.yaml"),
+            "nos_inventory_config": {},
+            "base_prompt": "test",
+            "is_running": threading.Event(),
+        }
+        os.environ["FAKENOS_RELOAD_COMMANDS"] = "ON"
+
+    def tearDown(self):
+        if "FAKENOS_RELOAD_COMMANDS" in os.environ:
+            os.environ.pop("FAKENOS_RELOAD_COMMANDS")
+
+    def test_hot_reload_not_activated_doesnt_enter(self):
+        """Test that the if is not set  hot_reload method does nothing."""
+        os.environ.pop("FAKENOS_RELOAD_COMMANDS")
+        mock_get_files_changed = Mock()
+        shell = CMDShell(**self.arguments)
+        shell.get_files_changed = mock_get_files_changed
+        shell.precmd("show clock")
+        mock_get_files_changed.assert_not_called()
+
+    @patch("fakenos.plugins.shell.cmd_shell.get_files_changed")
+    def test_hot_reload_activated_does_enter(self, mock_get_files_changed):
+        """Test that if there are no changed files, nothing happens."""
+        mock_get_files_changed.return_value = []
+        shell = CMDShell(**self.arguments)
+        shell.precmd("show clock")
+        mock_get_files_changed.assert_called_once()
+
+    @patch("fakenos.core.nos.Nos.from_file")
+    @patch("fakenos.plugins.shell.cmd_shell.get_files_changed")
+    def test_hot_reload_activated_update_commands(self, mock_get_files_changed, mock_from_file):
+        """
+        Test that if there are change files,
+        the nos_from_file is called
+        and the commands are updated correctly.
+        """
+        changed_module = "fakenos.plugins.nos.platforms_py.cisco_ios"
+        mock_get_files_changed.return_value = [changed_module.replace(".", "/") + ".py"]
+        shell = CMDShell(**self.arguments)
+        shell.precmd("show clock")
+        importlib.invalidate_caches()
+        module = importlib.import_module(changed_module)
+        mock_from_file.assert_called_once()
+        mock_from_file.assert_called_once_with(module.__name__.replace(".", "/") + ".py")
+        assert all(key in shell.commands for key in module.commands.keys())
+
+    @fakenos(platform="cisco_ios", return_instance=True)
+    def test_hot_reload_integration_yaml(self, net: FakeNOS):
+        """
+        Test that the hot reload feature works correctly
+        """
+        original_filename = "fakenos/plugins/nos/platforms_yaml/cisco_ios.yaml"
+        copy_filename = "fakenos/plugins/nos/platforms_yaml/copy_ios.yaml"
+        test_commands = {
+            "test": {
+                "output": "test output",
+                "help": "test help",
+                "prompt": ["{base_prompt}>"],
+            }
+        }
+
+        def change_file():
+            shutil.copyfile(original_filename, copy_filename)
+            with open(original_filename, "r", encoding="utf-8") as file:
+                values = yaml.safe_load(file)
+            values["commands"].update(test_commands)
+            with open(original_filename, "w", encoding="utf-8") as file:
+                file.write(yaml.dump(values))
+
+        def undo_change_file():
+            os.remove(original_filename)
+            shutil.move(copy_filename, original_filename)
+
+        device = list(net.hosts.values())
+        credentials = {
+            "host": "localhost",
+            "username": device[0].username,
+            "password": device[0].password,
+            "port": device[0].port,
+            "device_type": "cisco_ios",
+        }
+        with ConnectHandler(**credentials) as conn:
+            output = conn.send_command("test")
+            assert output == "% Invalid input detected at '^' marker."
+            change_file()
+            output = conn.send_command("test")
+            undo_change_file()
+            assert output == "test output"
+
+    @fakenos(platform="cisco_ios", return_instance=True)
+    def test_hot_reload_integration_py_jinja(self, net: FakeNOS):
+        """
+        Test that the hot reload feature works correctly
+        """
+        original_filename = "fakenos/plugins/nos/platforms_py/templates/cisco_ios/show_version.jinja"
+        copy_filename = "fakenos/plugins/nos/platforms_py/templates/cisco_ios/copy_show_version.jinja"
+
+        def change_file():
+            shutil.copyfile(original_filename, copy_filename)
+            with open(original_filename, "w", encoding="utf-8") as file:
+                file.write("test output")
+
+        def undo_change_file():
+            os.remove(original_filename)
+            shutil.move(copy_filename, original_filename)
+
+        device = list(net.hosts.values())
+        credentials = {
+            "host": "localhost",
+            "username": device[0].username,
+            "password": device[0].password,
+            "port": device[0].port,
+            "device_type": "cisco_ios",
+        }
+        with ConnectHandler(**credentials) as conn:
+            conn.enable()
+            output = conn.send_command("show version")
+            assert output != "test output"
+            change_file()
+            output = conn.send_command("show version")
+            undo_change_file()
+            assert output == "test output"
