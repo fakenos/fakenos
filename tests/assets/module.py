@@ -4,14 +4,18 @@ This is a testing module
 
 import time
 
+from fakenos.plugins.nos.platforms_py.base_template import BaseDevice
+
 NAME: str = "test_module"
 INITIAL_PROMPT = "{base_prompt}>"
 ENABLE_PROMPT = "{base_prompt}#"
 DEVICE_NAME: str = "TestModule"
 
+DEFAULT_CONFIGURATION: str = "tests/assets/configurations/test_module.yaml.j2"
+
 
 # pylint: disable=unused-argument
-class TestModule:
+class TestModule(BaseDevice):
     """
     Class that keeps track of the state of the TestModule device.
     """

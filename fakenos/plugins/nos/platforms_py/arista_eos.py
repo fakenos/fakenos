@@ -4,7 +4,7 @@ NOS module for Arista EOS
 
 import time
 
-from jinja2 import Environment, PackageLoader, select_autoescape
+from fakenos.plugins.nos.platforms_py.base_template import BaseDevice
 
 NAME: str = "arista_eos"
 INITIAL_PROMPT: str = "{base_prompt}>"
@@ -12,22 +12,18 @@ ENABLE_PROMPT: str = "{base_prompt}#"
 CONFIG_PROMPT: str = "{base_prompt}(config)#"
 DEVICE_NAME: str = "AristaEOS"
 
-env = Environment(
-    loader=PackageLoader("fakenos.plugins.nos.platforms_py", "templates"),
-    autoescape=select_autoescape(["j2"]),
-)
+DEFAULT_CONFIGURATION: str = "arista_eos.yaml.j2"
 
 
 # pylint: disable=unused-argument
-class AristaEOS:
+class AristaEOS(BaseDevice):
     """
     Class that keeps track of the state of the Arista EOS device.
     """
 
     def make_show_clock(self, base_prompt, current_prompt, command):
         """Return the current time."""
-        template = env.get_template("arista_eos/show_clock.j2")
-        return template.render(time=time.strftime("%a %b %d %H:%M:%S %Y"))
+        return self.render("arista_eos/show_clock.j2", time=time.strftime("%a %b %d %H:%M:%S %Y"))
 
     def make_exit(self, base_prompt, current_prompt, command):
         """Exit the current level of the CLI."""
@@ -39,23 +35,19 @@ class AristaEOS:
 
     def make_running_configuration(self, base_prompt, current_prompt, command):
         """Return the running configuration."""
-        template = env.get_template("arista_eos/show_running-config.j2")
-        return template.render(base_prompt=base_prompt)
+        return self.render("arista_eos/show_running-config.j2", base_prompt=base_prompt)
 
     def make_show_ip_int_br(self, base_prompt, current_prompt, command):
         """Return the IP interface brief output."""
-        template = env.get_template("arista_eos/show_ip_int_br.j2")
-        return template.render(base_prompt=base_prompt)
+        return self.render("arista_eos/show_ip_int_br.j2", base_prompt=base_prompt)
 
     def make_show_running_config(self, base_prompt, current_prompt, command):
         """Return the running configuration."""
-        template = env.get_template("arista_eos/show_running-config.j2")
-        return template.render(base_prompt=base_prompt)
+        return self.render("arista_eos/show_running-config.j2", base_prompt=base_prompt)
 
     def make_show_version(self, base_prompt, current_prompt, command):
         """Return the system version."""
-        template = env.get_template("arista_eos/show_version.j2")
-        return template.render(base_prompt=base_prompt)
+        return self.render("arista_eos/show_version.j2", base_prompt=base_prompt)
 
 
 commands = {

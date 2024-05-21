@@ -24,7 +24,7 @@ def get_py_nos_modules() -> List[str]:
     return [
         f.split(".py", 1)[0]
         for f in os.listdir("fakenos/plugins/nos/platforms_py")
-        if f.endswith(".py") and f != "__init__.py"
+        if f.endswith(".py") and f != "__init__.py" and f != "base_template.py"
     ]
 
 

@@ -4,7 +4,7 @@ NOS module for Cisco IOS
 
 import time
 
-from jinja2 import Environment, PackageLoader, select_autoescape
+from fakenos.plugins.nos.platforms_py.base_template import BaseDevice
 
 NAME: str = "cisco_ios"
 INITIAL_PROMPT: str = "{base_prompt}>"
@@ -12,14 +12,11 @@ ENABLE_PROMPT: str = "{base_prompt}#"
 CONFIG_PROMPT: str = "{base_prompt}(config)#"
 DEVICE_NAME: str = "CiscoIOS"
 
-env = Environment(
-    loader=PackageLoader("fakenos.plugins.nos.platforms_py", "templates"),
-    autoescape=select_autoescape(["j2"]),
-)
+DEFAULT_CONFIGURATION: str = "cisco_ios.yaml.j2"
 
 
 # pylint: disable=unused-argument
-class CiscoIOS:
+class CiscoIOS(BaseDevice):
     """
     Class that keeps track of the state of the Cisco IOS device.
     """
@@ -32,13 +29,11 @@ class CiscoIOS:
 
     def make_show_running_config(self, base_prompt, current_prompt, command):
         "Return String of running configuration"
-        template = env.get_template("cisco_ios/show_running-config.j2")
-        return template.render(base_prompt=base_prompt)
+        return self.render("cisco_ios/show_running-config.j2", base_prompt=base_prompt)
 
     def make_show_version(self, base_prompt, current_prompt, command):
         "Return String of system hardware and software status"
-        template = env.get_template("cisco_ios/show_version.j2")
-        return template.render(base_prompt=base_prompt)
+        return self.render("cisco_ios/show_version.j2", base_prompt=base_prompt)
 
 
 commands = {

@@ -83,7 +83,7 @@ class Nos:
         self.commands = commands or {}
         self.initial_prompt = initial_prompt
         self.device = None
-        self.configuration_file = None
+        self.configuration_file = configuration_file
         if isinstance(filename, str):
             self.from_file(filename)
         elif isinstance(filename, list):

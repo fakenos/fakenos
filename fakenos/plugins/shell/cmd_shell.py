@@ -140,6 +140,7 @@ class CMDShell(Cmd):
             return any(self.prompt == i.format(base_prompt=self.base_prompt) for i in prompt_)
         return False
 
+    # pylint: disable=too-many-branches
     def default(self, line):
         """Method called if no do_xyz methods found"""
         log.debug("shell.default '%s' running command '%s'", self.base_prompt, [line])
