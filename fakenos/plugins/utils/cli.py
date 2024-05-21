@@ -54,7 +54,8 @@ args = argparser.parse_args()
 
 logging.basicConfig(level=args.LOG_LEVEL.upper())
 
-os.environ["FAKENOS_RELOAD_COMMANDS"] = "ON"
+if args.RELOAD_COMMANDS:
+    os.environ["FAKENOS_RELOAD_COMMANDS"] = "ON"
 
 
 def run_cli():
@@ -69,7 +70,8 @@ def run_cli():
     except KeyboardInterrupt:
         log.info("Shutting down FakeNOS")
         fakenet.stop()
-        os.environ.pop("FAKENOS_RELOAD_COMMANDS")
+        if args.RELOAD_COMMANDS:
+            os.environ.pop("FAKENOS_RELOAD_COMMANDS")
 
 
 if __name__ == "__main__":

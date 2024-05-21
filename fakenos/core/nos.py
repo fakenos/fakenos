@@ -3,7 +3,7 @@ Network Operating Systems (NOS). Base class to build NOS plugins instances to us
 """
 
 import logging
-from typing import Optional, List
+from typing import Optional, List, Union
 import importlib.util
 import os
 import yaml
@@ -68,8 +68,8 @@ class Nos:
         name: str = "FakeNOS",
         commands: dict = None,
         initial_prompt: str = "FakeNOS>",
-        class_name: str = None,
-        filename: Optional[str] = None,
+        filename: Optional[Union[str, List[str]]] = None,
+        configuration_file: Optional[str] = None,
         dict_args: Optional[dict] = None,
     ) -> None:
         """
@@ -82,10 +82,13 @@ class Nos:
         self.name = name
         self.commands = commands or {}
         self.initial_prompt = initial_prompt
-        self.class_name = class_name or None
         self.device = None
-        if filename:
+        self.configuration_file = None
+        if isinstance(filename, str):
             self.from_file(filename)
+        elif isinstance(filename, list):
+            for file in filename:
+                self.from_file(file)
         elif dict_args:
             self.from_dict(dict_args)
 
@@ -133,7 +136,6 @@ class Nos:
         self.name = data.get("name", self.name)
         self.commands.update(data.get("commands", self.commands))
         self.initial_prompt = data.get("initial_prompt", self.initial_prompt)
-        self.class_name = data.get("class_name", self.class_name)
 
     def _from_yaml(self, data: str) -> None:
         """
@@ -165,7 +167,7 @@ class Nos:
         with open(data, "r", encoding="utf-8") as f:
             self.from_dict(yaml.safe_load(f))
 
-    def _from_module(self, data: str) -> None:
+    def _from_module(self, filename: str) -> None:
         """
         Method to import NOS data from python file or python module.
 
@@ -198,38 +200,37 @@ class Nos:
 
         :param data: OS path string to Python .py file
         """
-        spec = importlib.util.spec_from_file_location("nos_module", data)
+        spec = importlib.util.spec_from_file_location("module.name", filename)
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
         self.name = getattr(module, "NAME", self.name)
         self.commands.update(getattr(module, "commands", self.commands))
         self.initial_prompt = getattr(module, "INITIAL_PROMPT", self.initial_prompt)
-        self.class_name = getattr(module, "DEVICE_NAME", self.class_name)
-        if self.class_name is not None:
-            log.debug("NOS class name %s", self.class_name)
-            self.device = getattr(module, self.class_name)
+        classname = getattr(module, "DEVICE_NAME", None)
+        configuration_file = getattr(module, "DEFAULT_CONFIGURATION", self.configuration_file)
+        self.device = getattr(module, classname)(configuration_file=configuration_file)
 
-    def from_file(self, data: str) -> None:
+    def from_file(self, filename: str) -> None:
         """
         Method to load NOS from YAML or Python file
 
         :param data: OS path string to `.yaml/.yml` or `.py` file with NOS data
         """
-        if not self.is_file_ending_correct(data):
+        if not self.is_file_ending_correct(filename):
             raise ValueError(
-                f'Unsupported "{data}" file extension.\
+                f'Unsupported "{filename}" file extension.\
                               Supported: .py, .yml, .yaml'
             )
-        if not os.path.isfile(data):
-            raise FileNotFoundError(data)
-        if data.endswith((".yaml", ".yml")):
-            self._from_yaml(data)
-        elif data.endswith(".py"):
-            self._from_module(data)
+        if not os.path.isfile(filename):
+            raise FileNotFoundError(filename)
+        if filename.endswith((".yaml", ".yml")):
+            self._from_yaml(filename)
+        elif filename.endswith(".py"):
+            self._from_module(filename)
 
-    def is_file_ending_correct(self, data: str) -> None:
+    def is_file_ending_correct(self, filename: str) -> None:
         """
         Method to check if file extension is correct and load NOS data.
         Correct types are: .yaml, .yml and .py
         """
-        return data.endswith((".yaml", ".yml", ".py"))
+        return filename.endswith((".yaml", ".yml", ".py"))

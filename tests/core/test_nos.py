@@ -3,8 +3,6 @@ Test module for fakenos.core.nos module.
 This module can be found at fakenos/core/nos.py
 """
 
-import glob
-import os
 import unittest
 
 from pydantic import ValidationError
@@ -188,10 +186,9 @@ class NosTest(unittest.TestCase):
         """
         nos = Nos()
         nos.from_file("tests/assets/module.py")
-        assert nos.name == "FakeNOS"
+        assert nos.name == "test_module"
         assert nos.initial_prompt == "{base_prompt}>"
-        print(module.commands.items())
-        print(nos.commands.items())
+        assert nos.device.__name__ == "TestModule"
         self.assertTrue(
             all(item in nos.commands.items() for item in module.commands.items() if not callable(item[1]["output"]))
         )
@@ -212,7 +209,7 @@ class NosTest(unittest.TestCase):
         nos = Nos()
         # pylint: disable=protected-access
         nos._from_module("tests/assets/module.py")
-        assert nos.name == "FakeNOS"
+        assert nos.name == "test_module"
         assert nos.initial_prompt == "{base_prompt}>"
         self.assertTrue(
             all(item in nos.commands.items() for item in module.commands.items() if not callable(item[1]["output"]))
@@ -286,7 +283,7 @@ class NosTest(unittest.TestCase):
                 name="MyFakeNOSPlugin",
                 initial_prompt="{base_prompt}>",
                 commands={
-                    "show clock": {"output": True},
+                    "show clock": {"output": 37},
                 },
             )
 
@@ -335,15 +332,11 @@ class NosTest(unittest.TestCase):
         is the one being used in the init.
         """
         # pylint: disable=duplicate-code
-        platforms_directory_py: str = "fakenos/plugins/nos/platforms_py"
-        py_files = glob.glob(os.path.join(platforms_directory_py, "*.py"))
-        py_files = [file for file in py_files if not file.endswith("__init__.py")]
-        for file in py_files:
-            nos_instance = Nos()
-            nos_instance.from_file(file)
-            for key, value in nos_instance.commands.items():
-                assert key in nos_plugins[nos_instance.name].commands
-                if "output" in value and callable(value["output"]):
-                    assert nos_plugins[nos_instance.name].commands[key]["output"].__name__ == value["output"].__name__
-                else:
-                    assert nos_plugins[nos_instance.name].commands[key] == value
+        for filenames in nos_plugins.values():
+            for filename in filenames:
+                assert isinstance(filename, str)
+                assert filename.endswith(".yaml") or filename.endswith(".py")
+            assert len(filenames) <= 2
+            if len(filenames) == 2:
+                assert filenames[0].endswith(".yaml")
+                assert filenames[1].endswith(".py")

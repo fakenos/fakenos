@@ -151,6 +151,7 @@ class CMDShell(Cmd):
                 ret = cmd_data["output"]
                 if callable(ret):
                     ret = ret(
+                        self.nos.device,
                         base_prompt=self.base_prompt,
                         current_prompt=self.prompt,
                         command=line,
@@ -170,7 +171,12 @@ class CMDShell(Cmd):
                 )
         except KeyError:
             log.error("shell.default '%s' command '%s' not found", self.base_prompt, [line])
+            if callable(ret):
+                ret = "An error occurred related to the command function"
         # pylint: disable=broad-except
+        except ValueError:
+            log.error("Output is still a callable")
+            ret = "An error occurred"
         except (Exception,) as e:
             log.error("An error occurred: %s", str(e))
             ret = traceback.format_exc()

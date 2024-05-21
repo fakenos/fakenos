@@ -404,11 +404,11 @@ class TestFakeNOS:
     def test_nos_load_inventory_from_py_and_yaml(self):
         """
         Test cisco_ios NOS loaded correctly as it has both
-        cisco_ios.py and cisco_io.yaml definitions
+        cisco_ios.py and cisco_ios.yaml definitions
         """
         inventory = {"hosts": {"R1": {"port": 5001, "platform": "cisco_ios"}}}
         net = FakeNOS(inventory)
-        assert len(net.nos_plugins["cisco_ios"].commands) > 6, "Not all commands loaded"
+        assert len(net.nos_plugins["cisco_ios"]) == 2, "Not all files detected"
 
 
 class TestPlatforms:
@@ -450,13 +450,11 @@ class TestPlatforms:
     @fakenos(platform="cisco_ios", return_instance=True)
     def test_decorator_with_platform(self, net: FakeNOS):
         """Test that the decorator works with a platform."""
-        platforms_used = [host.nos_plugin.name for host in net.hosts.values()]
+        platforms_used = [host.nos.name for host in net.hosts.values()]
         assert len(net.hosts) == 1
         assert "cisco_ios" in platforms_used
         assert "huawei_smartax" not in platforms_used
         assert "arista_eos" not in platforms_used
-
-        print([host.port for host in net.hosts.values()])
 
     @fakenos(inventory="tests/assets/inventory.yaml")
     def test_decorator_with_inventory(self):

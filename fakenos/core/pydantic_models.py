@@ -7,7 +7,7 @@ import sys
 
 from typing import Union, Optional, List, Dict, Callable
 
-from pydantic import model_validator, BaseModel, StrictStr, StrictInt, IPvAnyAddress
+from pydantic import StrictBool, model_validator, BaseModel, StrictStr, StrictInt, IPvAnyAddress
 
 if sys.version_info >= (3, 8):
     from typing import Literal  # works with >=py3.8
@@ -24,7 +24,7 @@ class ModelNosCommand(BaseModel):
     Pydantic model for NOS command attributes.
     """
 
-    output: Optional[Union[StrictStr, None, Callable]] = None
+    output: Optional[Union[StrictStr, None, Callable, StrictBool]] = None
     help: Optional[StrictStr] = None
     prompt: Optional[Union[StrictStr, List[StrictStr]]] = None
     new_prompt: Optional[StrictStr] = None

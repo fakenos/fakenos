@@ -87,6 +87,12 @@ test = ["pytest"]
 [tool.pylint.master]
 ignore = ".venv"
 
+[tool.pylint.'fakenos/plugins/nos/platforms_py']
+disable = [
+    "unused-argument",
+    "similarities"
+]
+
 [tool.pylint.basic]
 # No docstrings required for private methods (Pylint default), or for test_ functions, or for inner Meta classes.
 no-docstring-rgx = "^(_|test_|Meta$)"

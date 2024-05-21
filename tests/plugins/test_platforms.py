@@ -7,6 +7,7 @@ in the yaml and python files.
 import re
 import os
 from importlib import import_module
+import types
 from typing import Any, List
 
 import pytest
@@ -103,6 +104,8 @@ class TestPlatforms:
         assert module.__name__ == f"fakenos.plugins.nos.platforms_py.{platform}"
         assert hasattr(module, "commands")
         assert hasattr(module, "INITIAL_PROMPT")
+        assert hasattr(module, "DEVICE_NAME")
+        assert hasattr(module, module.DEVICE_NAME)
 
     @pytest.mark.parametrize("platform", get_py_nos_modules())
     def test_platforms_py_commands_has_correct_format(self, platform: str):
@@ -118,16 +121,22 @@ class TestPlatforms:
         except ImportError:
             pytest.fail(f"Failed to import platform module for {platform}")
 
-        for _, values in module.commands.items():
-            if "alias" in values:
+        module_class = getattr(module, module.DEVICE_NAME)
+
+        for value in module.commands.values():
+            if "alias" in value:
                 continue
             exceptions: List[str] = [module.INITIAL_PROMPT]
             if hasattr(module, "ENABLE_PROMPT"):
                 exceptions.append(module.ENABLE_PROMPT)
             if hasattr(module, "CONFIG_PROMPT"):
                 exceptions.append(module.CONFIG_PROMPT)
-            assert "output" in values
-            assert has_single_curly_brackets(values["output"], exceptions) is False
-            assert "help" in values
-            assert has_single_curly_brackets(values["help"], exceptions) is False
-            assert "prompt" in values
+            assert "output" in value
+            if callable(value["output"]):
+                assert isinstance(value["output"], types.FunctionType)
+                assert value["output"].__name__ in dir(module_class)
+            else:
+                assert has_single_curly_brackets(value["output"], exceptions) is False
+            assert "help" in value
+            assert has_single_curly_brackets(value["help"], exceptions) is False
+            assert "prompt" in value

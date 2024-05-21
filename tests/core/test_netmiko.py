@@ -3,6 +3,7 @@ Test the Netmiko compatibility as this library can be used
 as a testing tool for Netmiko.
 """
 
+import re
 import threading
 import random
 
@@ -154,3 +155,29 @@ class TestNetmiko:
                     assert net.hosts[router].running is False
 
         net.stop()
+
+    def test_testing_module(self):
+        free_port: int = get_free_port()
+        inventory: dict = {
+            "hosts": {
+                "R1": {
+                    "username": "user",
+                    "password": "user",
+                    "port": free_port,
+                    "nos": {
+                        "plugin": "tests/assets/module.py",
+                    },
+                }
+            }
+        }
+        credentials: dict = {
+            "host": "localhost",
+            "username": "user",
+            "password": "user",
+            "port": free_port,
+            "device_type": "generic",
+        }
+        with FakeNOS(inventory=inventory):
+            with ConnectHandler(**credentials) as conn:
+                output = conn.send_command("show clock")
+                assert re.match(r"^\w{3} \w{3} \d{2} \d{2}:\d{2}:\d{2} \d{4}$", output)

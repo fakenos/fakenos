@@ -7,7 +7,7 @@ It also validates the host object using pydantic.
 import logging
 
 from fakenos.core.pydantic_models import ModelHost
-from fakenos.core.nos import available_platforms
+from fakenos.core.nos import Nos, available_platforms
 
 log = logging.getLogger(__name__)
 
@@ -45,6 +45,7 @@ class Host:
         self.server_plugin = None
         self.shell_plugin = None
         self.nos_plugin = None
+        self.nos = None
         self.platform: str = platform
 
         if self.platform:
@@ -58,11 +59,12 @@ class Host:
         self.shell_plugin = self.fakenos.shell_plugins[self.shell_inventory["plugin"]]
         if self.platform:
             self.nos_inventory["plugin"] = self.platform
-        self.nos_plugin = self.fakenos.nos_plugins[self.nos_inventory["plugin"]]
+        self.nos_plugin = self.fakenos.nos_plugins.get(self.nos_inventory["plugin"], self.nos_inventory["plugin"])
+        self.nos = Nos(filename=self.nos_plugin)
         self.server = self.server_plugin(
             shell=self.shell_plugin,
             shell_configuration=self.shell_inventory["configuration"],
-            nos=self.nos_plugin,
+            nos=self.nos,
             nos_inventory_config=self.nos_inventory.get("configuration", {}),
             port=self.port,
             username=self.username,
@@ -80,7 +82,8 @@ class Host:
 
     def _validate(self):
         """Validate that the host has the required attributes using pydantic"""
-        self._check_if_platform_is_supported(self.platform)
+        if self.platform:
+            self._check_if_platform_is_supported(self.platform)
         ModelHost(**self.__dict__)
 
     def _check_if_platform_is_supported(self, platform: str):
