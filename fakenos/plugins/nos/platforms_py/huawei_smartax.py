@@ -32,26 +32,26 @@ class HuaweiSmartAX(BaseDevice):
 
     def make_display_board(self, base_prompt, current_prompt, command):
         "Return String of board information"
-        titles = ["SlotID", "BoardType", "Status", "SubType0", "SubType1", "Online/Offline"]
+        titles = ["SlotID", "BoardName", "Status", "SubType0", "SubType1", "Online/Offline"]
         boards = []
         for board in range(self.configurations["boards"]["num"]):
             boards.append({
-                "SlotID": self.configurations["boards"]["slots"][board]["slot_id"],
-                "BoardName": self.configurations["boards"]["slots"][board]["boardname"],
-                "Status": self.configurations["boards"]["slots"][board]["status"],
-                "SubType0": self.configurations["boards"]["slots"][board]["subtype0"],
-                "SubType1": self.configurations["boards"]["slots"][board]["subtype1"],
-                "Online/Offline": self.configurations["boards"]["slots"][board]["online_offline"],
+                titles[0]: self.configurations["boards"]["slots"][board]["slot_id"],
+                titles[1]: self.configurations["boards"]["slots"][board]["boardname"],
+                titles[2]: self.configurations["boards"]["slots"][board]["status"],
+                titles[3]: self.configurations["boards"]["slots"][board]["subtype0"],
+                titles[4]: self.configurations["boards"]["slots"][board]["subtype1"],
+                titles[5]: self.configurations["boards"]["slots"][board]["online_offline"],
             })
         for index, title in enumerate(titles):
             board_column = [board[title] for board in boards]
             results = self._add_whitespaces([title] + board_column)
-            title = results[0]
             board_column = results[1:]
-            titles[index] = title
-            for i, board in enumerate(boards):
-                board[title] = board_column[i]
-        return self.render("huawei_smartax/display_board.j2", boards=boards)
+            titles[index] = results[0]
+            for board in boards:
+                board[title] = board_column[boards.index(board)]
+        rows = [list(board.values()) for board in boards]
+        return self.render("huawei_smartax/display_board.j2", titles=titles, rows=rows)
 
 
 commands = {

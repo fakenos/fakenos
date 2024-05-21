@@ -38,12 +38,17 @@ def get_files_recently_modified(files: List[str], files_lasttime_changed_old: Di
 def change_jinja_to_corresponding_py(files: List[str]):
     """Method to change j2 files to corresponding py files"""
     jinja_files = [file for file in files if file.endswith(".j2")]
-    files = [file for file in files if not file.endswith(".j2")]
+    files: set = {file for file in files if not file.endswith(".j2")}
     for filepath in jinja_files:
-        split: List[str] = filepath.rsplit("/", 3)
-        corresponding_py_module = f"{split[0]}/{split[2]}.py"
-        files.append(corresponding_py_module)
-    return files
+        if "configurations" in filepath:
+            base_filepath = filepath.rsplit("/", 2)[0]
+            platform = os.path.basename(filepath).replace(".yaml.j2", "").replace(".yaml", "")
+            files.add(f"{base_filepath}/{platform}.py")
+        else:
+            split: List[str] = filepath.rsplit("/", 3)
+            corresponding_py_module = f"{split[0]}/{split[2]}.py"
+            files.add(corresponding_py_module)
+    return list(files)
 
 
 def get_files_changed(directory: str):

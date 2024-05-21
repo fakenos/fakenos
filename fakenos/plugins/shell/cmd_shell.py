@@ -8,6 +8,7 @@ import traceback
 import copy
 import os
 
+from fakenos.core.nos import Nos
 from fakenos.plugins import nos
 
 from fakenos.plugins.shell.utils import get_files_changed
@@ -45,7 +46,7 @@ class CMDShell(Cmd):
         completekey="tab",
         newline="\r\n",
     ):
-        self.nos = nos
+        self.nos: Nos = nos
         self.ruler = ruler
         self.intro = intro
         self.base_prompt = base_prompt
@@ -185,6 +186,9 @@ class CMDShell(Cmd):
         if ret is True or not self.is_running.is_set():
             return True
         if ret is not None:
-            ret = ret.format(base_prompt=self.base_prompt)
+            try:
+                ret = ret.format(base_prompt=self.base_prompt)
+            except KeyError:
+                log.error("Error in formatting output")
             self.writeline(ret)
         return False
