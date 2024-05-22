@@ -3,6 +3,11 @@ FakeNOS está diseñado para ser fácilmente extensible. Está diseñado de tal 
 que añadir nuevas plataformas es simple y se puede hacer utilizando diferentes
 métodos. Por el momento, solo es posible utilizar módulos de Python o archivos YAML.
 
+!!! tip 
+    Hay implementado un hot-reloader que recarga automáticamente los módulos de Python
+    y YAML cuando se modifican dentro de `fakenos/plugins/nos`. Para ejecutarlo
+    simplemente hacer `fakenos --reload-commands`.
+
 ## Archivos YAML
 Este es el método preferido en caso de que la plataforma que desea implementar no
 exista todavía. La gran ventaja de este método es que es bastante simple

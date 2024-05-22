@@ -345,7 +345,7 @@ class NosTest(unittest.TestCase):
         """
         Test that the configuration file is loaded.
         """
-        configuration_file = "tests/assets/configurations/test_module.yaml.j2"
+        configuration_file = "tests/assets/test_module.yaml.j2"
         with open(configuration_file, "r", encoding="utf-8") as file:
             data = file.read()
         nos = Nos(filename="tests/assets/module.py", configuration_file=configuration_file)

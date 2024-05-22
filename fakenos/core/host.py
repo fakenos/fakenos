@@ -30,6 +30,7 @@ class Host:
         nos: dict,
         fakenos,
         platform: str = None,
+        configuration_file: str = None,
     ) -> None:
         self.name: str = name
         self.server_inventory: dict = server
@@ -47,6 +48,7 @@ class Host:
         self.nos_plugin = None
         self.nos = None
         self.platform: str = platform
+        self.configuration_file: str = configuration_file
 
         if self.platform:
             self.nos_inventory["plugin"] = self.platform
@@ -60,7 +62,7 @@ class Host:
         if self.platform:
             self.nos_inventory["plugin"] = self.platform
         self.nos_plugin = self.fakenos.nos_plugins.get(self.nos_inventory["plugin"], self.nos_inventory["plugin"])
-        self.nos = Nos(filename=self.nos_plugin)
+        self.nos = Nos(filename=self.nos_plugin, configuration_file=self.configuration_file)
         self.server = self.server_plugin(
             shell=self.shell_plugin,
             shell_configuration=self.shell_inventory["configuration"],

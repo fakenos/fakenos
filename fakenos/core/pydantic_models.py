@@ -130,6 +130,7 @@ class InventoryDefaultSection(BaseModel):
     # use this for now, mkdocstring having issue with pydantic
     # https://github.com/mkdocstrings/griffe/issues/66
     port: Optional[Union[StrictInt, List[StrictInt]]] = None
+    configuration_file: Optional[StrictStr] = None
     server: Optional[Union[ParamikoSshServerPlugin]] = None
     shell: Optional[Union[CMDShellPlugin]] = None
     nos: Optional[NosPlugin] = None

@@ -15,50 +15,26 @@ Los plugins NOS pueden tener estos atributos definidos:
 
 - `name` - nombre de referencia del plugin para usar en el inventario
 - `initial_prompt` - se utiliza para definir o alterar el indicador de shell que se muestra
-- `enable_prompt` - se utiliza para definir o alterar el indicador de shell que se muestra después de habilitar el modo de ejecución privilegiado.
+- `enable_prompt` - se utiliza para entrar el modo `enable` (opcional)
+- `config_prompt` - se utiliza para entrar el modo `config` (opcional)
 - `commands` - diccionario de comandos que este plugin NOS es capaz de devolver la salida
 
-Cada vez que se crea un plugin NOS personalizado a partir de la clase Nos o utilizando uno de los métodos `from_x` de Nos, se realiza una validación de los atributos utilizando modelos Pydantic para asegurarse de que cumplan con el formato previsto.
+## Prompt inicial de la shell NOS
+El prompt inicial de la shell NOS es el indicador que se muestra al usuario cuando se inicia la shell.
+En el caso de que este definido entre corchetes `{}` se puede utilizar el formateador `base_prompt` para
+hacer referencia al nombre del host del inventario.
 
-## Indicador de shell inicial NOS
-
-La cadena de indicador inicial utilizada por el plugin de shell para formar el indicador inicial mostrado al usuario de la CLI.
-
-El atributo de indicador inicial es una cadena que tiene un método de formato de Python llamado
-para derivar el valor final del indicador a usar por el plugin de shell, como resultado, estos formateadores
-son compatibles:
-
-- `base_prompt` - valor establecido igual al nombre del host del inventario
-
-Por ejemplo, estos son los datos del inventario:
-
-```yaml
-hosts:
-  R1:
-    port: 6000
-  R2:
-    port: 6001
-```
-
-En el inventario anterior, `R1` y `R2` son los nombres de los hosts y si `initial_prompt` se establece en
-`RP0/CPU0:{base_prompt}#`, después de aplicar el método de formato, los indicadores finales serán
-`RP0/CPU0:R1#` y `RP0/CPU0:R2#` para R1 y R2 respectivamente.
+Por ejemplo, si el prompt inicial se establece en `{base_prompt}>`, después de aplicar el método de formato,
+el indicador final será `R1>` para el host `R1` en el inventario.
 
 ## Comandos NOS
-
-Comandos NOS que manejan una de las principales fortalezas de FakeNOS.
-
 Los comandos son un diccionario indexado por una cadena de comando con un valor que es otro diccionario
-conteniendo detalles del comando como la salida a devolver, sugerencias de manejo de indicadores, comando
-mensaje de ayuda y otros.
+conteniendo detalles del comando como el output, la ayuda de este o los prompts necesario para que 
+se llame correctamente.
 
 Contenido de muestra del diccionario Python de comandos:
 
 ```{ .python .annotate }
-def make_show_clock(base_prompt, current_prompt, command): # (1)
-    "Return String in format '*11:54:03.018 UTC Sat Apr 16 2022'"
-    return time.strftime("*%H:%M:%S.000 %Z %a %b %d %Y")
-    
 commands = {
     "enable": {
         "output": None, # (6)
@@ -67,7 +43,7 @@ commands = {
         "prompt": "{base_prompt}>", # (10)
     },
     "show clock": {
-        "output": make_show_clock, # (9)
+        "output": MyDevice.make_show_clock, # (9)
         "help": "Display the system clock",
         "prompt": ["{base_prompt}>", "{base_prompt}#"], # (3)
     },
@@ -127,26 +103,21 @@ Configuration register is 0x2102
 
 Atributos admitidos por el diccionario de comandos:
 
-| Atributo      | Descripción                                                                                 |
-| -------------- | ------------------------------------------------------------------------------------------- |
-| `output`       | :material-text-box-multiple-outline:  Salida del comando para devolver en la respuesta      |
-| `help`         | :material-help:                       Contenido del mensaje de ayuda del comando          |
-| `prompt`       | :material-console-line:               Indicador o lista de indicadores donde este comando es válido |
-| `new_prompt`   | :material-line-scan:                  Nuevo indicador para mostrar después de la respuesta del comando |
+| Atributo       | Emoji                            | Descripción                                               |
+| -------------- | ---------------------------------| --------------------------------------------------------- |
+| `output`       | :octicons-command-palette-16:    | Salida del comando para devolver en la respuesta         |
+| `help`         | :material-help-box:              |         Contenido del mensaje de ayuda del comando       |
+| `prompt`       | :simple-powershell:              | Indicador o lista de indicadores donde este comando es válido |
+| `new_prompt`   | :simple-nushell:                |  Nuevo indicador para mostrar después de la respuesta del comando |
+| `alias`        | :material-drama-masks:              |     Salida del comando como una función llamable          |
 
 El valor del atributo `output` del diccionario de comandos puede ser de estos tipos:
 
 - `string` - cadena de una o varias líneas para devolver en la respuesta, esa cadena
    puede contener el formateador `base_prompt`.
 - `None` - no se devuelve ninguna respuesta
-- `True` - cerrará la shell y detendrá la instancia de este servidor
+- `True` - cerrará la shell
 - `callable` - la salida puede referirse a un objeto llamable, como una función, que se ejecutará por el complemento de la shell para producir el contenido de la respuesta
-
-La función llamable a la que se refiere el comando `output` debe aceptar estos argumentos:
-
-- `base_prompt` - valor del nombre del host del inventario
-- `current_prompt` - valor del indicador actual de la shell
-- `command` - cadena de comando ingresada
 
 Algunas notas sobre los atributos `prompt` y `new_prompt`.
 
@@ -230,69 +201,73 @@ net.start()
 2. Proporcionar la ruta absoluta o relativa al archivo YAML con la definición de NOS
 
 ## Crear un plugin NOS a partir de un archivo Python
+Los comandos NOS creados en los módulos Python son un de las principales fortalezas de FakeNOS. La idea de los comandos es que el output de estos en vez de ser una salida predefinida, es que puedes definir una función que devuelva la salida del comando. Esto permite que la salida del comando sea dinámica y pueda cambiar en función de la hora, el día, el host, etc. Si estás desarrollando un módulo Python de NOS, entonces merece la pena leer detenidamente esta sección.
 
-Cree un archivo Python con este contenido de muestra en `path/to/my_nos.py`:
-
+El siguiente código es un módulo Python que utilizamos durantes los tests, pero es completamente funcional (en Netmiko el objeto es generic):
 ```python
-name = "MyFakeNOSPlugin"
-
-initial_prompt = "{base_prompt}>"
-
-def make_show_clock(base_prompt, current_prompt, command):
-    "Return String in format '*11:54:03.018 UTC Sat Apr 16 2022'"
-    return time.strftime("*%H:%M:%S.000 %Z %a %b %d %Y")
-
-running_configuration = """
-service timestamps debug datetime msec
-service timestamps log datetime msec
-no service password-encryption
-!
-hostname {base_prompt}
-!
-boot-start-marker
-boot-end-marker
+"""
+This is a testing module
 """
 
-show_version = """
-Version: 0.1.0
-{base_prompt} uptime is 1 day, 17 hours, 32 minutes
-Uptime for this control processor is 1 day, 17 hours, 33 minutes
+import time
 
-Configuration register is 0x2102
-"""
+from fakenos.plugins.nos.platforms_py.base_template import BaseDevice
+
+NAME: str = "test_module"
+INITIAL_PROMPT = "{base_prompt}>"
+ENABLE_PROMPT = "{base_prompt}#"
+CONFIG_PROMPT = "{base_prompt}(config)#"
+DEVICE_NAME: str = "TestModule"
+
+DEFAULT_CONFIGURATION: str = "tests/assets/test_module.yaml.j2"
+
+
+# pylint: disable=unused-argument
+class TestModule(BaseDevice):
+    """
+    Class that keeps track of the state of the TestModule device.
+    """
+
+    def make_show_clock(self, base_prompt, current_prompt, command):
+        """Return the current time."""
+        return str(time.ctime())
+
+    def make_show_version(self, base_prompt, current_prompt, command):
+        """Return the system version."""
+        return "TestModule version 1.0"
+
 
 commands = {
     "enable": {
         "output": None,
         "new_prompt": "{base_prompt}#",
         "help": "enter exec prompt",
-        "prompt": initial_prompt,
+        "prompt": INITIAL_PROMPT,
     },
     "show clock": {
-        "output": make_show_clock,
-        "help": "Display the system clock",
-        "prompt": [initial_prompt, "{base_prompt}#"],
-    },
-    "show running-config": {
-        "output": running_configuration,
-        "help": "Current operating configuration",
-        "prompt": "{base_prompt}#",
+        "output": TestModule.make_show_clock,
+        "help": "show current time",
+        "prompt": ["{base_prompt}#", "{base_prompt}>"],
     },
     "show version": {
-        "output": show_version,
-        "help": "System hardware and software status",
+        "output": TestModule.make_show_version,
+        "help": "show system version",
         "prompt": "{base_prompt}#",
     },
-    "_default_": {
-        "output": "% Invalid input detected at '^' marker.",
-        "help": "Output to print for unknown commands",
-    },
-    "terminal width 511": {"output": "", "help": "Set terminal width to 511"},
-    "terminal length 0": {"output": "", "help": "Set terminal length to 0"},
 }
 ```
 
-Código de muestra para registrar el plugin NOS con FakeNOS usando el archivo Python anterior:
+Vayamos por partes. FakeNOS permite cargar los módulos de manera dinámica, pero necesita que el módulo tenga cierta estructura. Por una parte debe tener unas constantes (NAME, INITIAL_PROMPT, ENABLE_PROMPT, CONFIG_PROMPT y DEVICE_NAME), por otra parte un diccionario de comandos y por último una clase que herede de BaseDevice. Esto es obligatorio para que FakeNOS pueda cargar el módulo.
+
+En primer lugar, tenemos los atributos NAME, INITIAL_PROMPT, ENABLE_PROMPT (opcional), CONFIG_PROMPT (opcional) y DEVICE_NAME. Estos atributos son necesarios para que FakeNOS pueda registrar el plugin NOS. NAME es el nombre del plugin, INITIAL_PROMPT es el indicador de shell inicial, ENABLE_PROMPT es el indicador de shell para el modo enable, CONFIG_PROMPT es el indicador de shell para el modo config y DEVICE_NAME es el nombre del dispositivo.
+
+En segundo lugar, tenemos el diccionario de comandos. Este diccionario es un diccionario de Python que contiene los comandos que el plugin NOS es capaz de devolver la salida. Cada comando es un diccionario con los siguientes atributos: "output", "help" y "prompt". El output puede ser un string o una función que devuelva un string. El help es la ayuda que se mostrará al usuario si se introduce el comando `?` o `help`. El prompt es el indicador de shell en el que el comando es válido.
+
+Por último, tenemos un clase que hereda de BaseDevice. Esta clase es necesaria para que FakeNOS pueda cargar el módulo correctamente. Internamente ya inicializa el módulo con un atributo `self.configurations` donde se cargará como un diccionario los datos del archivo de (configuración)[usage/configurations.md] que se haya definido en el atributo `DEFAULT_CONFIGURATION` por defecto. También incluye un método `render (self, template: str, **kwargs) -> str` que permite renderizar un template Jinja2 bajo la dirección `fakenos/plugins/nos/platforms_py/templates/`. El tener esta clase con estos atributos ayuda a estadarizar los módulos. Al mismo, el tenerlo en una clase en vez de funciones sueltas permite que se puedan compartir variables entre los comandos o incluso modificar el estado del dispositivo. Por ejemplo si hago creo un comando para modificar la ip del dispositivo, puedo modificar el estado del dispositivo en la clase y que el resto de comandos tengan en cuenta este cambio, devolviendo el string con la nueva ip.
+
+Obviamente, también puedes crear tu propio módulo Python con tus propios comandos y lógica. Simplemente asegúrate de que tenga la estructura correcta y que se pueda cargar correctamente. Lo has de indicar en el inventario de FakeNOS y FakeNOS se encargará de cargarlo y registrar los comandos.
+
+Código de muestra para registrar el plugin NOS con FakeNOS usando el archivo:
 
 ```{ .python .annotate }
 from fakenos import FakeNOS
@@ -312,11 +287,9 @@ net.register_nos_plugin(plugin="path/to/my_nos.py") # (2)
 
 net.start()    
 ```
-
-1. Hacer referencia al atributo de nombre definido en el archivo `path/to/my_nos.py`
-2. Proporcionar la ruta absoluta o relativa al archivo Python con la definición de NOS
-
 ## Crear un plugin NOS a partir de la clase Nos
+!!! warning
+    Se desaconseja desarrollar plugins NOS utilizando la clase NOS directamente, ya que es más complicado de mantener. En su lugar, se recomienda utilizar el módulo Python.
 
 El paquete FakeNOS viene con la clase base Nos que se puede utilizar para crear
 plugins NOS para registrarlos con una instancia de FakeNOS.
@@ -331,8 +304,8 @@ nos = Nos(
     name="MyFakeNOSPlugin",
     initial_prompt="{base_prompt}>",
     commands={
-        "terminal length 0": {"output": "", "help": "Set terminal length to 0"},
-        "show clock": {"output": "MyFakeNOSPlugin system time is 00:00:00"},
+        "terminal length 0": {"output": "", "help": "Set terminal length to 0", "prompt": "{base_prompt}>"},
+        "show clock": {"output": "MyFakeNOSPlugin system time is 00:00:00", "help": "Display the system clock", "prompt": "{base_prompt}>"},
     },
 )
 

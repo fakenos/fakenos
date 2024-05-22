@@ -9,6 +9,8 @@ import threading
 from unittest.mock import patch
 import pytest
 import detect
+import yaml
+from fakenos.core.host import Host
 from fakenos.core.nos import available_platforms
 from fakenos.core.fakenos import FakeNOS, fakenos
 
@@ -330,6 +332,41 @@ class TestFakeNOS:
         }
         net = FakeNOS(inventory=inventory)
         assert net.inventory["hosts"]["R1"]["shell"]["plugin"] == "CMDShell"
+
+    def test_inventory_configuration_dict(self):
+        """
+        Test that the inventory is validated when
+        it contains a configuration.
+        """
+        configurations: dict = {}
+        with open("tests/assets/test_module.yaml.j2", "r", encoding="utf-8") as file:
+            data = file.read()
+            configurations = yaml.safe_load(data)
+        inventory = {
+            "hosts": {
+                "R1": {
+                    "port": 6000,
+                    "platform": "huawei_smartax",
+                    "configuration_file": "tests/assets/test_module.yaml.j2",
+                }
+            }
+        }
+        with FakeNOS(inventory=inventory) as net:
+            host: Host = list(net.hosts.values())[0]
+            assert host.nos.device.configurations == configurations
+
+    def test_inventory_configuration_yaml(self):
+        """
+        Test that the inventory is validated when
+        it contains a configuration_file.
+        """
+        configurations: dict = {}
+        with open("tests/assets/test_module.yaml.j2", "r", encoding="utf-8") as file:
+            data = file.read()
+            configurations = yaml.safe_load(data)
+        with FakeNOS(inventory="tests/assets/inventory_configuration.yaml") as net:
+            host: Host = list(net.hosts.values())[0]
+            assert host.nos.device.configurations == configurations
 
     def test_fakenos_start_stop_hosts(self):
         """

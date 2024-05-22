@@ -1,6 +1,8 @@
 # huawei_smartax
 
-## Platforms:
+Some commands have configurable outputs. This is indicated by the :gear: emoji. You can modify the output of these commands by changing the values in the `configurations` file. If you want to see the defaults look at `fakenos/plugins/nos/platforms_py/configurations/huawei_smartax.yaml.j2`.
+
+## Specific devices
 -  [Huawei OptiXaccess MA5800](
 https://e.huawei.com/es/products/optical-access/ma5800)
 -  [Huawei SmartAX MA5801-FL16](
@@ -68,7 +70,7 @@ https://e.huawei.com/es/products/optical-access/optixaccess-s1016-l)
 - huawei_smartax>
 - huawei_smartax#
 
-### display board
+### display board :gear:
 
 **Output:**
 ```

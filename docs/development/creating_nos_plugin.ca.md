@@ -14,7 +14,8 @@ Els plugins NOS poden tenir aquests atributs definits:
 
 - `name` - nom de referència del plugin per utilitzar a l'inventari
 - `initial_prompt` - s'utilitza per definir o alterar el prompt de la consola mostrat
-- `enable_prompt` - prompt de la consola d'habilitació
+- `enable_prompt` - prompt de la consola d'habilitació (opcional)
+- `config_prompt` - prompt de la consola de configuració (opcional)
 - `commands` - diccionari de comandes que aquest plugin NOS és capaç de retornar la sortida
 
 Cada vegada que es crea un plugin NOS personalitzat a partir de la classe Nos o utilitzant una de les mètodes `from_x` de la classe Nos, es realitza una validació dels atributs utilitzant models Pydantic per assegurar-se que són compatibles amb el format previst.
@@ -40,8 +41,8 @@ hosts:
 ```
 
 En l'inventari anterior, `R1` i `R2` són els noms dels amfitrions i si `initial_prompt` s'estableix a
-`RP0/CPU0:{base_prompt}#` valor, després d'aplicar el mètode de format, els indicadors finals seran
-`RP0/CPU0:R1#` i `RP0/CPU0:R2#` per a R1 i R2 respectivament.
+`{base_prompt}#` valor, després d'aplicar el mètode de format, els indicadors finals seran
+`R1#` i `R2#` per a R1 i R2 respectivament.
 
 ## Comandes NOS
 

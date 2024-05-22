@@ -15,7 +15,8 @@ NOS plugins could have these attributes defined:
 
 - `name` - reference plugin name to use in inventory
 - `initial_prompt` - used to define or alter displayed shell prompt
-- `enable_prompt` - prompt to display after `enable` or similar command entered
+- `enable_prompt` - prompt to enter the `enable` mode (optional)
+- `config_prompt` - prompt to enter the `config` mode (optional)
 - `commands` - dictionary of commands this NOS plugin capable of returning output for
 
 Each time custom NOS plugin created out of Nos class or using one of Nos class 
@@ -44,8 +45,8 @@ hosts:
 ```
 
 In above inventory `R1` and `R2` are the host names and if `initial_prompt` set to
-`RP0/CPU0:{base_prompt}#` value, after applying format method final prompts will be 
-`RP0/CPU0:R1#` and `RP0/CPU0:R2#` for R1 and R2 respectively.
+`{base_prompt}#` value, after applying format method final prompts will be 
+`R1#` and `R2#` for R1 and R2 respectively.
 
 ## NOS Commands
 
