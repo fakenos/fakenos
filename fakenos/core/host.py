@@ -62,7 +62,11 @@ class Host:
         if self.platform:
             self.nos_inventory["plugin"] = self.platform
         self.nos_plugin = self.fakenos.nos_plugins.get(self.nos_inventory["plugin"], self.nos_inventory["plugin"])
-        self.nos = Nos(filename=self.nos_plugin, configuration_file=self.configuration_file)
+        self.nos = (
+            Nos(filename=self.nos_plugin, configuration_file=self.configuration_file)
+            if not isinstance(self.nos_plugin, Nos)
+            else self.nos_plugin
+        )
         self.server = self.server_plugin(
             shell=self.shell_plugin,
             shell_configuration=self.shell_inventory["configuration"],

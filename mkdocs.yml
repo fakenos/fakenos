@@ -90,6 +90,7 @@ plugins:
             Getting Started: Empezar
             Inventory: Inventario
             Running in Docker Container: Ejecutar en contenedor Docker
+            Configurations: Configuraciones
             Platforms: Plataformas
             Development: Desarrollo
             Main: Principal
@@ -117,6 +118,7 @@ plugins:
             Getting Started: Començar
             Inventory: Inventario
             Running in Docker Container: Executar en contenidor Docker
+            Configurations: Configuracions
             Platforms: Plataformes
             Development: Desenvolupament
             Main: Principal
@@ -145,6 +147,7 @@ nav:
     - Getting Started: usage/getting_started.md
     - Inventory: usage/fakenos_inventory.md
     - Running in Docker Container: usage/running_in_docker.md
+    - Configurations: usage/configurations.md
   - Platforms: platforms.md
   - Development:
     - Main: development.md

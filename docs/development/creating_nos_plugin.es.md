@@ -176,32 +176,24 @@ commands:
   terminal length 0: {"output": "", "help": "Set terminal length to 0"}
 ```
 
-Código de muestra para registrar el plugin NOS con FakeNOS usando el archivo YAML anterior:
-
-```{ .python .annotate }
-from fakenos import FakeNOS
-
-inventory = {
-    "hosts": {
-        "router1": {
-            "port": 6005,
-            "nos": {"plugin": "MyFakeNOSPlugin"} # (1)
-        }
-    }
-}
-
-net = FakeNOS(inventory)
-
-net.register_nos_plugin(plugin="path/to/my_nos.yaml") # (2)
-
-net.start()    
+Con este archivo YAML, se podría registrar un plugin NOS de la siguiente manera:
+```yaml
+hosts:
+    R1:
+        username: user
+        password: user
+        port: 6000
+        nos:
+            plugin: path/to/my_nos.yaml
 ```
 
-1. Hacer referencia al atributo de nombre definido en el archivo `path/to/my_nos.yaml`
-2. Proporcionar la ruta absoluta o relativa al archivo YAML con la definición de NOS
+Y para probarlo de manera rápida podemos ejecutar el siguiente comando en el terminal:
+```bash
+fakenos -i path/to/inventory.yaml
+```
 
 ## Crear un plugin NOS a partir de un archivo Python
-Los comandos NOS creados en los módulos Python son un de las principales fortalezas de FakeNOS. La idea de los comandos es que el output de estos en vez de ser una salida predefinida, es que puedes definir una función que devuelva la salida del comando. Esto permite que la salida del comando sea dinámica y pueda cambiar en función de la hora, el día, el host, etc. Si estás desarrollando un módulo Python de NOS, entonces merece la pena leer detenidamente esta sección.
+Los plugins NOS creados a partir módulos Python son un de las principales fortalezas de FakeNOS ya que permiten una interactividad. La idea de los comandos es que el output de estos en vez de ser una salida predefinida, es que puedes definir una función que devuelva la salida del comando. Esto permite que la salida del comando sea dinámica y pueda cambiar en función de la hora, el día, el host, etc. Si estás desarrollando un módulo Python de NOS, entonces merece la pena leer detenidamente esta sección.
 
 El siguiente código es un módulo Python que utilizamos durantes los tests, pero es completamente funcional (en Netmiko el objeto es generic):
 ```python
@@ -267,32 +259,31 @@ Por último, tenemos un clase que hereda de BaseDevice. Esta clase es necesaria 
 
 Obviamente, también puedes crear tu propio módulo Python con tus propios comandos y lógica. Simplemente asegúrate de que tenga la estructura correcta y que se pueda cargar correctamente. Lo has de indicar en el inventario de FakeNOS y FakeNOS se encargará de cargarlo y registrar los comandos.
 
-Código de muestra para registrar el plugin NOS con FakeNOS usando el archivo:
-
-```{ .python .annotate }
-from fakenos import FakeNOS
-
-inventory = {
-    "hosts": {
-        "router1": {
-            "port": 6005,
-            "nos": {"plugin": "MyFakeNOSPlugin"} # (1)
-        }
-    }
-}
-
-net = FakeNOS(inventory)
-
-net.register_nos_plugin(plugin="path/to/my_nos.py") # (2)
-
-net.start()    
+Para poder comprobar el código anterior, podemos crear un YAML con el inventario tal como hemos hecho anteriormente:
+```yaml
+hosts:
+    R1:
+        username: user
+        password: user
+        port: 6000
+        nos:
+            plugin: path/to/my_nos.py
 ```
+
+Y para probarlo de manera rápida podemos ejecutar el siguiente comando en el terminal:
+```bash
+fakenos -i path/to/inventory.yaml
+```
+
 ## Crear un plugin NOS a partir de la clase Nos
 !!! warning
     Se desaconseja desarrollar plugins NOS utilizando la clase NOS directamente, ya que es más complicado de mantener. En su lugar, se recomienda utilizar el módulo Python.
 
 El paquete FakeNOS viene con la clase base Nos que se puede utilizar para crear
-plugins NOS para registrarlos con una instancia de FakeNOS.
+plugins NOS para registrarlos con una instancia de FakeNOS. Al final y al cabo,
+anteriormente hemos hecho lo mismo pero en vez de nosotros crear directamente hemos dejado que FakeNOS lo haga por nosotros.
+
+
 
 Núcleo de muestra para definir un plugin NOS personalizado utilizando
 la clase Nos suministrando los atributos requeridos en la instanciación:
@@ -323,6 +314,12 @@ net = FakeNOS(inventory)
 net.register_nos_plugin(plugin=nos)
 
 net.start()
+
+try:
+    while True:
+        pass
+except KeyboardInterrupt:
+    net.stop()
 ```
 
 En este ejemplo, se crea un objeto Nos con los atributos requeridos y se registra con
@@ -334,11 +331,7 @@ se pueden utilizar para suministrar atributos Nos. Por ejemplo, se pueden obtene
 sección utilizando este código:
 
 ```python
-from fakenos import FakeNOS, Nos
-
-nos = Nos() # instantiate empty Nos object
-
-nos.from_file("path/to/my_nos.py") # source NOS attributes from file
+nos = Nos(filename="path/to/my_nos.py")
 
 inventory = {
     "hosts": {
@@ -348,14 +341,8 @@ inventory = {
         },
     }
 }
-
-net = FakeNOS(inventory)
-
-net.register_nos_plugin(plugin=nos)
-
-net.start()
 ```
 
 !!! note
-    Llamar a cualquiera de los métodos `from_x` reemplaza los atributos existentes, no se realiza ninguna fusión.
-	
+    Si dos comandos coinciden con el mismo nombre, el último comando que hayas cargado será el que se utilice.
+

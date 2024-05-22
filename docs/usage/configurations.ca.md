@@ -16,6 +16,7 @@ hosts:
 En aquest cas, l'arxiu de configuració es troba a la carpeta `my_configurations` i es diu `cisco_ios.yaml.j2`.
 
 Actualment FakeNOS accepta les configuracions en les següents plataformes:
+
 - [cisco_ios](https://github.com/fakenos/fakenos/tree/master/fakenos/plugins/nos/platforms_py/configurations/cisco_ios.yaml.j2)
 - [huawei_smartax](https://github.com/fakenos/fakenos/tree/master/fakenos/plugins/nos/platforms_py/configurations/huawei_smartax.yaml.j2) 
 - [arista_eos](https://github.com/fakenos/fakenos/tree/master/fakenos/plugins/nos/platforms_py/configurations/arista_eos.yaml.j2)
