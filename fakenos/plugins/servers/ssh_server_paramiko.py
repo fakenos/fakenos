@@ -193,6 +193,9 @@ def shell_to_channel_tap(
                 log.error("ssh_server.shell_to_channel_tap channel write error: %s", e)
                 log.error("Connection reset by peer, exiting")
                 break
+        except EOFError as e:
+            log.error("ssh_server.shell_to_channel_tap channel write error: %s", e)
+            break
         shell_replied_event.set()
 
 

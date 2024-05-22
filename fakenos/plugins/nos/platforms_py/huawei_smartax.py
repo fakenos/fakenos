@@ -14,7 +14,7 @@ ENABLE_PROMPT: str = "{base_prompt}#"
 CONFIG_PROMPT: str = "{base_prompt}(config)#"
 DEVICE_NAME: str = "HuaweiSmartAX"
 
-DEFAULT_CONFIGURATION: str = "huawei_smartax.yaml.j2"
+DEFAULT_CONFIGURATION: str = "fakenos/plugins/nos/platforms_py/configurations/huawei_smartax.yaml.j2"
 
 
 class HuaweiSmartAX(BaseDevice):

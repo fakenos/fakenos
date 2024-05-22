@@ -6,9 +6,8 @@ generally common to all devices.
 """
 
 from abc import ABC
-import os
 
-from jinja2 import Environment, PackageLoader, select_autoescape
+from jinja2 import Environment, PackageLoader, Template, select_autoescape
 import yaml
 
 
@@ -23,22 +22,19 @@ class BaseDevice(ABC):
         )
 
     def load_configurations(self, configuration_file: str) -> dict:
-        """Load configurations from a file."""
+        """
+        Load configurations from a file.
+        The file can be either a YAML file or a Jinja2 template.
+        """
         if not configuration_file:
             return {}
+        if not configuration_file.endswith((".yaml", ".j2")):
+            raise ValueError("Configuration file must be a YAML file or a Jinja2 template.")
         if configuration_file.endswith(".j2"):
-            if os.path.basename(configuration_file) == configuration_file:
-                config_env = Environment(
-                    loader=PackageLoader("fakenos.plugins.nos.platforms_py", "configurations"),
-                    autoescape=select_autoescape(["j2"]),
-                )
-            else:
-                config_env = Environment(
-                    loader=PackageLoader(os.path.dirname(configuration_file)),
-                    autoescape=select_autoescape(["j2"]),
-                )
-            template = config_env.get_template(configuration_file)
-            data_j2 = template.render()
+            data: str = ""
+            with open(configuration_file, "r", encoding="utf-8") as file:
+                data = file.read()
+            data_j2 = Template(data, autoescape=False, trim_blocks=True, lstrip_blocks=True).render()
             data = yaml.safe_load(data_j2)
             return data
 

@@ -12,7 +12,7 @@ ENABLE_PROMPT: str = "{base_prompt}#"
 CONFIG_PROMPT: str = "{base_prompt}(config)#"
 DEVICE_NAME: str = "CiscoIOS"
 
-DEFAULT_CONFIGURATION: str = "cisco_ios.yaml.j2"
+DEFAULT_CONFIGURATION: str = "fakenos/plugins/nos/platforms_py/configurations/cisco_ios.yaml.j2"
 
 
 # pylint: disable=unused-argument

@@ -10,10 +10,13 @@ from importlib import import_module
 import types
 from typing import Any, List
 
+from netmiko import ConnectHandler
 import pytest
 import yaml
 
+from fakenos.core.fakenos import FakeNOS
 from fakenos.core.nos import available_platforms
+from tests.utils import get_free_port, get_host_commands
 
 
 def get_py_nos_modules() -> List[str]:
@@ -140,3 +143,49 @@ class TestPlatforms:
             assert "help" in value
             assert has_single_curly_brackets(value["help"], exceptions) is False
             assert "prompt" in value
+
+    @pytest.mark.parametrize("platform", get_py_nos_modules())
+    def test_platforms_py_all_commands_are_running(self, platform: str):
+        """
+        Test that all the platforms commands can
+        run without any error.
+        """
+        free_port: int = get_free_port()
+        credentials: dict = {
+            "host": "localhost",
+            "username": "test_user",
+            "password": "test_password",
+            "port": free_port,
+            "device_type": platform,
+        }
+        inventory: dict = {
+            "hosts": {
+                "test_device": {
+                    "username": credentials["username"],
+                    "password": credentials["password"],
+                    "port": credentials["port"],
+                    "platform": platform,
+                }
+            }
+        }
+        initial_commands, enable_commands, config_commands = [], [], []
+        initial_commands: List[str] = []
+        enable_commands: List[str] = []
+        config_commands: List[str] = []
+        with FakeNOS(inventory=inventory) as net:
+            host = list(net.hosts.values())[0]
+            initial_commands, enable_commands, config_commands = get_host_commands(host)
+            with ConnectHandler(**credentials) as conn:
+                for command in initial_commands:
+                    output = conn.send_command(command)
+                    assert output or output == ""
+                if enable_commands:
+                    conn.enable()
+                    for command in enable_commands:
+                        output = conn.send_command(command)
+                        assert output or output == ""
+                if config_commands:
+                    conn.config_mode()
+                    for command in config_commands:
+                        output = conn.send_command(command)
+                        assert output or output == ""

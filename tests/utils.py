@@ -5,7 +5,7 @@ This module contains utility functions for the tests.
 import random
 import socket
 import string
-from typing import Dict, List
+from typing import Dict, List, Tuple
 
 from fakenos.core.host import Host
 
@@ -49,3 +49,33 @@ def get_platforms_from_md() -> List[str]:
                 platform = platform.split("[")[1].split("]")[0]
                 platforms.append(platform)
     return platforms
+
+
+def get_host_commands(host: Host) -> Tuple:
+    """
+    Get the commands of the host.
+    It gets the initial, enable and config commands.
+    """
+    initial_commands, enable_commands, config_commands = [], [], []
+    for command, options in host.nos.commands.items():
+        if not hasattr(options, "prompt"):
+            continue
+        prompts = options["prompt"]
+        new_prompt = options.get("new_prompt", None)
+        if (
+            new_prompt
+            or "alias" in options
+            or isinstance(options.get("output", ""), bool)
+            or command in ["exit", "quit", "logout"]
+        ):
+            continue
+        if isinstance(prompts, str):
+            prompts = [prompts]
+        for prompt in prompts:
+            if prompt == host.nos.initial_prompt:
+                initial_commands.append(command)
+            elif host.nos.enable_prompt and prompt == host.nos.enable_prompt:
+                enable_commands.append(command)
+            elif host.nos.config_prompt and prompt == host.nos.config_prompt:
+                config_commands.append(command)
+    return initial_commands, enable_commands, config_commands

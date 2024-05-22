@@ -188,7 +188,7 @@ class NosTest(unittest.TestCase):
         nos.from_file("tests/assets/module.py")
         assert nos.name == "test_module"
         assert nos.initial_prompt == "{base_prompt}>"
-        assert nos.device.__name__ == "TestModule"
+        assert nos.device.__class__.__name__ == "TestModule"
         self.assertTrue(
             all(item in nos.commands.items() for item in module.commands.items() if not callable(item[1]["output"]))
         )
@@ -340,3 +340,14 @@ class NosTest(unittest.TestCase):
             if len(filenames) == 2:
                 assert filenames[0].endswith(".yaml")
                 assert filenames[1].endswith(".py")
+
+    def test_configuration_file_is_loaded(self):
+        """
+        Test that the configuration file is loaded.
+        """
+        configuration_file = "tests/assets/configurations/test_module.yaml.j2"
+        with open(configuration_file, "r", encoding="utf-8") as file:
+            data = file.read()
+        nos = Nos(filename="tests/assets/module.py", configuration_file=configuration_file)
+        assert nos.configuration_file == configuration_file
+        assert nos.device.configurations == yaml.safe_load(data)

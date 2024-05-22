@@ -82,6 +82,8 @@ class Nos:
         self.name = name
         self.commands = commands or {}
         self.initial_prompt = initial_prompt
+        self.enable_prompt = None
+        self.config_prompt = None
         self.device = None
         self.configuration_file = configuration_file
         if isinstance(filename, str):
@@ -206,6 +208,8 @@ class Nos:
         self.name = getattr(module, "NAME", self.name)
         self.commands.update(getattr(module, "commands", self.commands))
         self.initial_prompt = getattr(module, "INITIAL_PROMPT", self.initial_prompt)
+        self.enable_prompt = getattr(module, "ENABLE_PROMPT", None)
+        self.config_prompt = getattr(module, "CONFIG_PROMPT", None)
         classname = getattr(module, "DEVICE_NAME", None)
         configuration_file = getattr(module, "DEFAULT_CONFIGURATION", self.configuration_file)
         self.device = getattr(module, classname)(configuration_file=configuration_file)

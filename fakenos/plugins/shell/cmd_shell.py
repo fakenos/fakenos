@@ -7,6 +7,7 @@ import logging
 import traceback
 import copy
 import os
+from typing import List, Union
 
 from fakenos.core.nos import Nos
 from fakenos.plugins import nos
@@ -125,7 +126,7 @@ class CMDShell(Cmd):
             help_msg.append(f"{k}{padding}{v}")
         self.writeline(self.newline.join(help_msg))
 
-    def _check_prompt(self, prompt_):
+    def _check_prompt(self, prompt_: Union[str, List[str]]):
         """
         Helper method to check if prompt_ matches current prompt
 
@@ -136,9 +137,7 @@ class CMDShell(Cmd):
             return True
         if isinstance(prompt_, str):
             return self.prompt == prompt_.format(base_prompt=self.base_prompt)
-        if isinstance(prompt_, list):
-            return any(self.prompt == i.format(base_prompt=self.base_prompt) for i in prompt_)
-        return False
+        return any(self.prompt == i.format(base_prompt=self.base_prompt) for i in prompt_)
 
     # pylint: disable=too-many-branches
     def default(self, line):
@@ -165,10 +164,15 @@ class CMDShell(Cmd):
                 if "new_prompt" in cmd_data:
                     self.prompt = cmd_data["new_prompt"].format(base_prompt=self.base_prompt)
             else:
+
                 log.warning(
                     "'%s' command prompt '%s' not matching current prompt '%s'",
                     line,
-                    cmd_data.get("prompt", "").format(base_prompt=self.base_prompt),
+                    (
+                        ", ".join(cmd_data.get("prompt", []))
+                        if isinstance(cmd_data.get("prompt"), list)
+                        else cmd_data.get("prompt", "")
+                    ),
                     self.prompt,
                 )
         except KeyError:

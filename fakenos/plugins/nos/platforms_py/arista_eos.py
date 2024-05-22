@@ -12,7 +12,7 @@ ENABLE_PROMPT: str = "{base_prompt}#"
 CONFIG_PROMPT: str = "{base_prompt}(config)#"
 DEVICE_NAME: str = "AristaEOS"
 
-DEFAULT_CONFIGURATION: str = "arista_eos.yaml.j2"
+DEFAULT_CONFIGURATION: str = "fakenos/plugins/nos/platforms_py/configurations/arista_eos.yaml.j2"
 
 
 # pylint: disable=unused-argument
@@ -27,9 +27,12 @@ class AristaEOS(BaseDevice):
 
     def make_exit(self, base_prompt, current_prompt, command):
         """Exit the current level of the CLI."""
-        if current_prompt in [INITIAL_PROMPT, ENABLE_PROMPT]:
+        initial_prompt = INITIAL_PROMPT.format(base_prompt=base_prompt)
+        enable_prompt = ENABLE_PROMPT.format(base_prompt=base_prompt)
+        config_prompt = CONFIG_PROMPT.format(base_prompt=base_prompt)
+        if current_prompt in [initial_prompt, enable_prompt]:
             return True  # close session
-        if current_prompt in [CONFIG_PROMPT]:
+        if current_prompt in config_prompt:
             return {"output": "", "new_prompt": ENABLE_PROMPT}
         raise RuntimeError(f"make_exit does not know how to handle '{current_prompt}' prompt")
 
@@ -110,7 +113,11 @@ commands = {
     "config term": {"alias": "conf t"},
     "configure terminal": {"alias": "conf t"},
     "do show ip int brief": {"alias": "show ip int brief", "prompt": CONFIG_PROMPT},
-    "exit": {"output": AristaEOS.make_exit, "help": "Leave Exec mode", "prompt": [ENABLE_PROMPT, CONFIG_PROMPT]},
+    "exit": {
+        "output": AristaEOS.make_exit,
+        "help": "Leave Exec mode",
+        "prompt": [INITIAL_PROMPT, ENABLE_PROMPT, CONFIG_PROMPT],
+    },
     "show hostname": {
         "output": """Hostname: {{base_prompt}}
 FQDN:     {{base_prompt}}""",
