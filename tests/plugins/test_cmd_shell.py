@@ -354,10 +354,7 @@ class HotReloadTest(TestCase):
         mock_from_file.assert_called_once_with(module.__name__.replace(".", "/") + ".py")
         assert all(key in shell.commands for key in module.commands.keys())
 
-    @pytest.mark.skipif(
-            detect.windows,
-            reason="Windows does not allow file movement on Github runners"
-        )
+    @pytest.mark.skipif(detect.windows, reason="Windows does not allow file movement on Github runners")
     @fakenos(platform="cisco_ios", return_instance=True)
     def test_hot_reload_integration_yaml(self, net: FakeNOS):
         """
@@ -401,10 +398,7 @@ class HotReloadTest(TestCase):
             undo_change_file()
             assert output == "test output"
 
-    @pytest.mark.skipif(
-            detect.windows,
-            reason="Windows does not allow file movement on Github runners"
-        )
+    @pytest.mark.skipif(detect.windows, reason="Windows does not allow file movement on Github runners")
     @fakenos(platform="cisco_ios", return_instance=True)
     def test_hot_reload_integration_py_jinja(self, net: FakeNOS):
         """
