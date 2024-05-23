@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fakenos"
-version = "1.0.0"
+version = "1.0.1"
 description = "Fake Network Operating System"
 authors = ["Denis Mulyalin <d.mulyalin@gmail.com>", "Enric Perpinyà Pitarch <eperpinyapitarch@gmail.com>"]
 maintainers = ["Denis Mulyalin <d.mulyalin@gmail.com>", "Enric Perpinyà Pitarch <eperpinyapitarch@gmail.com>"]

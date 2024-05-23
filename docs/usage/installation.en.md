@@ -12,7 +12,7 @@ The following methods are not recommended unless you are doing development. If t
 ### Using pip
 Before installing this way, you need to download and install [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git). If you have already installed `git` just run the following command:
 ```bash
-python3 -m pip install git+https://github.com/dmulyalin/fakenos
+python3 -m pip install git+https://github.com/fakenos/fakenos
 ```
 
 # Using poetry (Recommended for dev)
@@ -21,7 +21,7 @@ virtual environments. Follow steps below to install FakeNOS using Poetry:
 
 ```{ .bash .annotate }
 python3 -m pip install poetry                  # (1)
-git clone https://github.com/dmulyalin/fakenos # (2)
+git clone https://github.com/fakenos/fakenos # (2)
 cd fakenos                                     # (3)
 poetry install                                 # (4)
 ```

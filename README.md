@@ -13,7 +13,7 @@
 
 FakeNOS created to simulate Network Operating Systems interactions.
 
-[Documentation](https://dmulyalin.github.io/fakenos/)
+[Documentation](https://fakenos.github.io/fakenos/)
 
 ## Why?
 
@@ -75,7 +75,7 @@ with predefined output.
 - [fake-switches](https://github.com/internap/fake-switches) - pluggable switch/router command-line simulator
 - [ncs-netsim](https://developer.cisco.com/docs/nso/guides/#!the-network-simulator) - tool to simulate a network of devices
 - [cisshgo](https://github.com/tbotnz/cisshgo) - concurrent SSH server to emulate network equipment for testing purposes
-- [scrapli-replay](https://pypi.org/project/scrapli-replay/) - tools to enable easy testing of SSH programs and to create semi-interactive SSH servers
+- [scrapli-replay](https://pypi.org/project/scrapli-replay/) - tools to enable fdeasy testing of SSH programs and to create semi-interactive SSH servers
 
 
 [github-discussions-link]:     https://github.com/fakenos/fakenos/discussions
