@@ -347,7 +347,6 @@ class HotReloadTest(TestCase):
         mock_get_files_changed.return_value = [changed_module.replace(".", "/") + ".py"]
         shell = CMDShell(**self.arguments)
         shell.precmd("show clock")
-        importlib.invalidate_caches()
         module = importlib.import_module(changed_module)
         mock_from_file.assert_called_once()
         mock_from_file.assert_called_once_with(module.__name__.replace(".", "/") + ".py")
