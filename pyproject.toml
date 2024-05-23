@@ -1,13 +1,24 @@
 [tool.poetry]
 name = "fakenos"
-version = "1.0.1"
+version = "1.1.0"
 description = "Fake Network Operating System"
 authors = ["Denis Mulyalin <d.mulyalin@gmail.com>", "Enric Perpinyà Pitarch <eperpinyapitarch@gmail.com>"]
 maintainers = ["Denis Mulyalin <d.mulyalin@gmail.com>", "Enric Perpinyà Pitarch <eperpinyapitarch@gmail.com>"]
+homepage = "https://github.com/fakenos/fakenos/"
+documentation = "https://fakenos.github.io/fakenos/"
 license = "MIT"
 readme = "README.md"
-keywords = ["NetworkAutomation", "Testing", "SSH"]
+keywords = ["NetworkAutomation", "Testing", "SSH", "Integration", "NOS"]
 classifiers = [
+    "Intended Audience :: Telecommunications Industry",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: System Administrators",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: Unix",
+    "Operating System :: MacOS",
     "Topic :: Utilities",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.8",
