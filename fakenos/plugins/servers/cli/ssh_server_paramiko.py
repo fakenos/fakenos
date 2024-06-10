@@ -19,7 +19,7 @@ import paramiko.transport
 
 from fakenos.core.nos import Nos
 from fakenos.core.servers import TCPServerBase
-from fakenos.plugins.nos.platforms_py.cli.base_template import BaseCLI
+from fakenos.plugins.nos.cli.base_template import NosCLI
 from fakenos.plugins.servers.cli.shell import shell_plugins
 
 log = logging.getLogger(__name__)
@@ -248,7 +248,6 @@ class ParamikoSshServer(TCPServerBase):
         super().__init__()
         self.service_name: str = "SSH"
         self.nos: Nos = nos
-        self.nos_cli: BaseCLI = self._load_nos_cli(nos)
         self.shell: type = shell_plugins[configuration["shell"]["plugin"]]
         self.shell_configuration: dict = configuration["shell"]["configuration"]
         self.shell_configuration["base_prompt"] = self.nos.name

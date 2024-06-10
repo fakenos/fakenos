@@ -100,7 +100,7 @@ class Nos:
         """
         Load the basic configurations under platforms.
         """
-        module_path = f"fakenos.plugins.nos.platforms_py.platforms.{platform}"
+        module_path = f"fakenos.plugins.nos.platforms.{platform}"
         platform_module = importlib.import_module(module_path)
         for constant in dir(platform_module):
             if constant.isupper():

@@ -13,7 +13,7 @@ import re
 from fakenos.core.nos import Nos
 from fakenos.plugins import nos
 
-from fakenos.plugins.nos.platforms_py.cli.base_template import NosCLI
+from fakenos.plugins.nos.cli.base_template import NosCLI
 from fakenos.plugins.servers.cli.shell.utils import get_files_changed
 
 log = logging.getLogger(__name__)
@@ -40,7 +40,7 @@ class CMDShell(Cmd):
         self,
         stdin,
         stdout,
-        nos_cli: NosCLI,
+        nos: Nos,
         base_prompt,
         is_running,
         intro="Custom SSH Shell",
@@ -48,12 +48,13 @@ class CMDShell(Cmd):
         completekey="tab",
         newline="\r\n",
     ):
-        self.nos_cli: NosCLI = nos_cli
+        self.nos: Nos = nos
+        self.nos_cli: NosCLI = NosCLI.get_nos(nos)
         self.ruler = ruler
         self.intro = intro
         self.base_prompt = base_prompt
         self.newline = newline
-        self.prompt = nos.initial_prompt.format(base_prompt=base_prompt)
+        # self.prompt = nos.initial_prompt.format(base_prompt=base_prompt)
         self.is_running = is_running
 
         # form commands
@@ -99,9 +100,9 @@ class CMDShell(Cmd):
     def reload_commands(self, changed_files: list):
         """Method to reload commands"""
         for file in changed_files:
-            self.nos.from_file(file)
+            # self.nos.from_file(file)
             self.commands.clear()
-            self.commands.update(self.nos.commands)
+            # self.commands.update(self.nos.commands)
             self.commands = self.get_commands_formatted()
 
     def precmd(self, line):
@@ -198,7 +199,7 @@ class CMDShell(Cmd):
             response = cmd_data["output"]
             if callable(response):
                 response = response(
-                    self.nos.device,
+                    # self.nos.device,
                     base_prompt=self.base_prompt,
                     current_prompt=self.prompt,
                     args=args,

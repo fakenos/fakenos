@@ -12,7 +12,7 @@ from datetime import datetime, timedelta
 import random
 from typing import Dict, List
 
-from fakenos.plugins.nos.platforms_py.cli.base_template import NosCLI
+from fakenos.plugins.nos.cli.base_template import NosCLI
 
 DEVICE_NAME: str = "HuaweiSmartAX"
 INITIAL_PROMPT: str = "{base_prompt}>"
@@ -318,7 +318,7 @@ class HuaweiSmartAX(NosCLI):
     def _get_onts_autofind(self):
         """ Return the ONTs information that are not registered yet. """
         frames = copy.deepcopy(self.configurations["frames"])
-        autofind_time = datetime.datetime.now().astimezone().strftime("%Y-%m-%d %H:%M:%S%z")
+        autofind_time = datetime.now().astimezone().strftime("%Y-%m-%d %H:%M:%S%z")
         onts_autofind: List = []
         for frame in frames:
             for slot in frame["slots"]:
@@ -379,7 +379,7 @@ class HuaweiSmartAX(NosCLI):
 
     def make_display_sysuptime(self, **kwargs):
         """ Return the system uptime. """
-        uptime: datetime = datetime.datetime.now() - self.SYSTEM_STARTUP_TIME
+        uptime: datetime = datetime.now() - self.SYSTEM_STARTUP_TIME
         days: int = uptime.days
         hours: int = uptime.seconds // 3600
         minutes: int = (uptime.seconds // 60) % 60
