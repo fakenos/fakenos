@@ -11,7 +11,7 @@ from unittest.mock import MagicMock, Mock
 
 import paramiko
 
-from fakenos.plugins.servers.ssh_server_paramiko import (
+from fakenos.plugins.servers.cli.ssh_server_paramiko import (
     ParamikoSshServerInterface,
     ParamikoSshServer,
     TapIO,

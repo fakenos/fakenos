@@ -2,13 +2,17 @@
 Network Operating Systems (NOS). Base class to build NOS plugins instances to use with FakeNOS.
 """
 
+from datetime import datetime, timedelta
 import logging
+import random
 from typing import Optional, List, Union
 import importlib.util
-import os
+# import os
+from jinja2 import Template
+from pydantic import BaseModel
 import yaml
 
-from fakenos.core.pydantic_models import ModelNosAttributes
+# from fakenos.core.pydantic_models import ModelNosAttributes
 
 log = logging.getLogger(__name__)
 
@@ -66,177 +70,88 @@ class Nos:
     def __init__(
         self,
         name: str = "FakeNOS",
-        commands: dict = None,
-        initial_prompt: str = "FakeNOS>",
-        filename: Optional[Union[str, List[str]]] = None,
         configuration_file: Optional[str] = None,
-        dict_args: Optional[dict] = None,
+        platform: Optional[str] = None,
+        nos_plugins: Optional[Union[str, List[str]]] = None,
     ) -> None:
         """
         Method to instantiate Nos Instance
 
         :param name: NOS plugin name
-        :param commands: dictionary of NOS commands
-        :param initial_prompt: NOS initial prompt
+        :param configuration_file: file with the configurations
+        :param platform: platform name
         """
         self.name = name
-        self.commands = commands or {}
-        self.initial_prompt = initial_prompt
-        self.enable_prompt = None
-        self.config_prompt = None
-        self.device = None
         self.configuration_file = configuration_file
-        if isinstance(filename, str):
-            self.from_file(filename)
-        elif isinstance(filename, list):
-            for file in filename:
-                self.from_file(file)
-        elif dict_args:
-            self.from_dict(dict_args)
-
-        self.validate()
-
-    def validate(self) -> None:
+        self.platform = platform
+        self.nos_plugins = nos_plugins
+        if platform:
+            self._load_constants(platform)
+            self.configurations = self._load_basic_configurations(platform)
+        self.configurations.update(self.load_configurations(configuration_file))
+        self.configurations["system_startup_time"] = datetime.now() \
+            - timedelta(days=random.randint(1, 365),
+                        hours=random.randint(1, 24),
+                        minutes=random.randint(1, 60),
+                        seconds=random.randint(1, 60))
+        
+        
+    def _load_constants(self, platform: str) -> None:
         """
-        Method to validate NOS attributes: commands, name,
-        initial prompt - using Pydantic models,
-        raises ValidationError on failure.
+        Load the basic configurations under platforms.
         """
-        ModelNosAttributes(**self.__dict__)
-        log.debug("%s NOS attributes validation succeeded", self.name)
-
-    def from_dict(self, data: dict) -> None:
+        module_path = f"fakenos.plugins.nos.platforms_py.platforms.{platform}"
+        platform_module = importlib.import_module(module_path)
+        for constant in dir(platform_module):
+            if constant.isupper():
+                setattr(self, constant, getattr(platform_module, constant))
+        
+    def _load_basic_configurations(self, platform: str) -> dict:
         """
-        Method to build NOS from dictionary data.
-
-        Sample NOS dictionary::
-
-            nos_plugin_dict = {
-                "name": "MyFakeNOSPlugin",
-                "initial_prompt": "{base_prompt}>",
-                "commands": {
-                    "terminal width 511": {
-                        "output": "",
-                        "help": "Set terminal width to 511",
-                        "prompt": "{base_prompt}>",
-                    },
-                    "terminal length 0": {
-                        "output": "",
-                        "help": "Set terminal length to 0",
-                        "prompt": "{base_prompt}>",
-                    },
-                    "show clock": {
-                        "output": "MyFakeNOSPlugin system time is 00:00:00",
-                        "help": "Show system time",
-                        "prompt": "{base_prompt}>",
-                    },
-                },
-            }
-
-        :param data: NOS dictionary
+        Load the basic configurations.
         """
-        self.name = data.get("name", self.name)
-        self.commands.update(data.get("commands", self.commands))
-        self.initial_prompt = data.get("initial_prompt", self.initial_prompt)
+        default_configurations_filename = getattr(self, "DEFAULT_CONFIGURATION", None)
+        if not default_configurations_filename:
+            return {}
+        return self.load_configurations(default_configurations_filename)
 
-    def _from_yaml(self, data: str) -> None:
+    def load_configurations(self, configuration_file: str) -> dict:
         """
-        Method to build NOS from YAML data.
-
-        Sample NOS YAML file content::
-
-            name: "MyFakeNOSPlugin"
-            initial_prompt: "{base_prompt}>"
-            commands:
-                terminal width 511: {
-                    "output": "",
-                    "help": "Set terminal width to 511",
-                    "prompt": "{base_prompt}>",
-                }
-                terminal length 0: {
-                    "output": "",
-                    "help": "Set terminal length to 0",
-                    "prompt": "{base_prompt}>",
-                }
-                show clock: {
-                    "output": "MyFakeNOSPlugin system time is 00:00:00",
-                    "help": "Show system time",
-                    "prompt": "{base_prompt}>",
-                }
-
-        :param data: YAML structured text
+        Load configurations from a file.
+        The file can be either a YAML file or a Jinja2 template.
         """
-        with open(data, "r", encoding="utf-8") as f:
-            self.from_dict(yaml.safe_load(f))
+        if not configuration_file:
+            return {}
+        if not configuration_file.endswith((".yaml", ".j2")):
+            raise ValueError("Configuration file must be a YAML file or a Jinja2 template.")
+        # TODO: Partial Configurations
+        if configuration_file.endswith(".j2"):
+            return self._load_jinja2_configuration(configuration_file)
+        return self._load_yaml_configuration(configuration_file)
+    
+    def _load_jinja2_configuration(self, configuration_file: str) -> dict:
+        """Load configurations from a Jinja2 template."""
+        data: str = ""
+        with open(configuration_file, "r", encoding="utf-8") as file:
+            data = file.read()
+        data_j2 = Template(data, autoescape=False, trim_blocks=True, lstrip_blocks=True).render()
+        data = yaml.safe_load(data_j2)
+        return data
 
-    def _from_module(self, filename: str) -> None:
-        """
-        Method to import NOS data from python file or python module.
+    def _load_yaml_configuration(self, configuration_file: str) -> dict:
+        """Load configurations from a YAML file."""
+        with open(configuration_file, "r", encoding="utf-8") as file:
+            data = yaml.safe_load(file)
+        return data
 
-        Loads from the .py file using the recipe:
-        https://docs.python.org/3/library/importlib.html#importing-a-source-file-directly
-
-        Sample Python NOS plugin file::
-
-            name = "MyFakeNOSPlugin"
-
-            INITIAL_PROMPT = "{base_prompt}>"
-
-            commands = {
-                "terminal width 511": {
-                    "output": "",
-                    "help": "Set terminal width to 511",
-                    "prompt": "{base_prompt}>",
-                },
-                "terminal length 0": {
-                    "output": "",
-                    "help": "Set terminal length to 0",
-                    "prompt": "{base_prompt}>",
-                },
-                "show clock": {
-                    "output": "MyFakeNOSPlugin system time is 00:00:00",
-                    "help": "Show system time",
-                    "prompt": "{base_prompt}>",
-                },
-            }
-
-        :param data: OS path string to Python .py file
-        """
+    def _verify_configurations(self) -> None:
+        """Verify configurations."""
+        filename: str = getattr(self, "PYDANTIC_FILE", None)
+        if not filename:
+            return
         spec = importlib.util.spec_from_file_location("module.name", filename)
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
-        self.name = getattr(module, "NAME", self.name)
-        self.commands.update(getattr(module, "commands", self.commands))
-        self.initial_prompt = getattr(module, "INITIAL_PROMPT", self.initial_prompt)
-        self.enable_prompt = getattr(module, "ENABLE_PROMPT", None)
-        self.config_prompt = getattr(module, "CONFIG_PROMPT", None)
-        classname = getattr(module, "DEVICE_NAME", None)
-        configuration_file = self.configuration_file
-        if not self.configuration_file:
-            configuration_file = getattr(module, "DEFAULT_CONFIGURATION", None)
-        self.device = getattr(module, classname)(configuration_file=configuration_file)
-
-    def from_file(self, filename: str) -> None:
-        """
-        Method to load NOS from YAML or Python file
-
-        :param data: OS path string to `.yaml/.yml` or `.py` file with NOS data
-        """
-        if not self.is_file_ending_correct(filename):
-            raise ValueError(
-                f'Unsupported "{filename}" file extension.\
-                              Supported: .py, .yml, .yaml'
-            )
-        if not os.path.isfile(filename):
-            raise FileNotFoundError(filename)
-        if filename.endswith((".yaml", ".yml")):
-            self._from_yaml(filename)
-        elif filename.endswith(".py"):
-            self._from_module(filename)
-
-    def is_file_ending_correct(self, filename: str) -> None:
-        """
-        Method to check if file extension is correct and load NOS data.
-        Correct types are: .yaml, .yml and .py
-        """
-        return filename.endswith((".yaml", ".yml", ".py"))
+        pydantic_model: str = getattr(module, "PYDANTIC_MODEL", None)
+        pydantic_class: BaseModel = getattr(module, pydantic_model)
+        pydantic_class.model_validate(self.configurations)

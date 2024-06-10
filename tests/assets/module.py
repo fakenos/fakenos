@@ -4,7 +4,7 @@ This is a testing module
 
 import time
 
-from fakenos.plugins.nos.platforms_py.base_template import BaseDevice
+from fakenos.plugins.nos.platforms_py.platforms.base_template import BaseDevice
 
 NAME: str = "test_module"
 INITIAL_PROMPT = "{base_prompt}>"
@@ -29,6 +29,10 @@ class TestModule(BaseDevice):
         """Return the system version."""
         return "TestModule version 1.0"
 
+    def make_show_interface_status(self, **kwargs):
+        """Return the interface status."""
+        return f"Interface status {kwargs['args']}: up"
+
 
 commands = {
     "enable": {
@@ -37,14 +41,23 @@ commands = {
         "help": "enter exec prompt",
         "prompt": INITIAL_PROMPT,
     },
-    "show clock": {
+    "sh[[ow]] int[[erface]] st[[atus]] \\S+": {
+        "output": TestModule.make_show_interface_status,
+        "help": "show interface status",
+        "prompt": [INITIAL_PROMPT, ENABLE_PROMPT],
+    },
+    "sh[[ow]] cl[[ock]]": {
         "output": TestModule.make_show_clock,
         "help": "show current time",
-        "prompt": ["{base_prompt}#", "{base_prompt}>"],
+        "prompt": [INITIAL_PROMPT, ENABLE_PROMPT],
     },
     "show version": {
         "output": TestModule.make_show_version,
         "help": "show system version",
-        "prompt": "{base_prompt}#",
+        "prompt": [INITIAL_PROMPT, ENABLE_PROMPT],
     },
+    "_default_": {
+        "output": "Unknown command",
+        "help": "Output to print for unknown commands",
+    }
 }

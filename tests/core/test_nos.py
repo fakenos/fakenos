@@ -351,3 +351,38 @@ class NosTest(unittest.TestCase):
         nos = Nos(filename="tests/assets/module.py", configuration_file=configuration_file)
         assert nos.configuration_file == configuration_file
         assert nos.device.configurations == yaml.safe_load(data)
+
+    def test_partial_configuration_file_is_loaded(self):
+        """
+        Test that the configurations, even if it
+        is partial is loaded, overwriting the default.
+        """
+        pass
+
+    def test_configurations_pass_pydantic_if_correct(self):
+        """
+        Test that the configurations are passed to Pydantic
+        if they are correct.
+        """
+        pass
+
+    def test_configuration_fails_pydantic_if_wrong(self):
+        """
+        Test that the configurations are not passed to Pydantic
+        if they are wrong.
+        """
+        pass
+
+    def test_partial_configuration_pass_pydantic_if_correct(self):
+        """
+        Test that the partial configurations are passed to Pydantic
+        if they are correct.
+        """
+        pass
+
+    def test_partial_configuration_fails_pydantic_if_wrong(self):
+        """
+        Test that the partial configurations are not passed to Pydantic
+        if they are wrong.
+        """
+        pass

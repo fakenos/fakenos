@@ -252,14 +252,6 @@ class TestCmdShell(TestCase):
         shell.default("show clock")
         shell.writeline.assert_called_once_with("*21:01:33.000 AET 01 01 01 2022")
 
-    def test_default_command_with_alias(self):
-        """Test that the default method does nothing."""
-        self.arguments["is_running"].set()
-        shell = CMDShell(**self.arguments)
-        shell.writeline = Mock()
-        shell.default("sh clock")
-        shell.writeline.assert_called_once_with("*21:01:33.000 AET 01 01 01 2022")
-
     def test_default_command_is_function(self):
         """Test that the default method does nothing."""
         self.arguments["is_running"].set()
@@ -299,6 +291,32 @@ class TestCmdShell(TestCase):
         shell = CMDShell(**self.arguments)
         self.assertTrue(shell.default("exit"))
 
+    def test_command_with_args(self):
+        """Test that if the commands contains args, those are passed to function."""
+        self.arguments["is_running"].set()
+        self.arguments['nos'] = Nos(filename="tests/assets/module.py")
+        shell = CMDShell(**self.arguments)
+        shell.writeline = Mock()
+        shell.default("show interface status eth0")
+        shell.writeline.assert_called_once_with("Interface status eth0: up")
+    
+    def test_regex_matching_command(self):
+        """Test that the command matches correctly with the regex."""
+        self.arguments["is_running"].set()
+        self.arguments['nos'] = Nos(filename="tests/assets/module.py")
+        shell = CMDShell(**self.arguments)
+        shell.writeline = Mock()
+        shell.default("sh int st eth0")
+        shell.writeline.assert_called_once_with("Interface status eth0: up")
+
+    def test_regex_not_matching_command(self):
+        """ Test that the command does not match with any regex correctly. """
+        self.arguments['is_running'].set()
+        self.arguments['nos'] = Nos(filename="tests/assets/module.py")
+        shell = CMDShell(**self.arguments)
+        shell.writeline = Mock()
+        shell.default("sh int eth0")
+        shell.writeline.assert_called_once_with("Unknown command")
 
 class HotReloadTest(TestCase):
     """
@@ -400,9 +418,11 @@ class HotReloadTest(TestCase):
 
     @pytest.mark.skipif(detect.windows, reason="Windows does not allow file movement on Github runners")
     @fakenos(platform="cisco_ios", return_instance=True)
-    def test_hot_reload_integration_py_jinja(self, net: FakeNOS):
+    def test_hot_reload_integration_py_jinja_configurations(self, net: FakeNOS):
         """
-        Test that the hot reload feature works correctly
+        Test that the hot reload feature works correctly.
+        In this case, the hot-reloaders does not change anything,
+        instead the template is hot-reloaded by the jinja2 template system.
         """
         original_filename = "fakenos/plugins/nos/platforms_py/templates/cisco_ios/show_version.j2"
         copy_filename = "fakenos/plugins/nos/platforms_py/templates/cisco_ios/copy_show_version.j2"
@@ -432,3 +452,23 @@ class HotReloadTest(TestCase):
             output = conn.send_command("show version")
             undo_change_file()
             assert output == "test output"
+
+    @pytest.mark.skipif(detect.windows, reason="Windows does not allow file movement on Github runners")
+    @fakenos(platform="cisco_ios", return_instance=True)
+    def test_hot_reload_jinja2_configurations(self, net: FakeNOS):
+        pass
+
+    @pytest.mark.skipif(detect.windows, reason="Windows does not allow file movement on Github runners")
+    @fakenos(platform="cisco_ios", return_instance=True)
+    def test_hot_reload_personal_configuration_file(self, net: FakeNOS):
+        pass
+
+    @pytest.mark.skipif(detect.windows, reason="Windows does not allow file movement on Github runners")
+    @fakenos(platform="cisco_ios", return_instance=True)
+    def test_hot_reload_jinja2_partial_configurations(self, net: FakeNOS):
+        pass
+
+    @pytest.mark.skipif(detect.windows, reason="Windows does not allow file movement on Github runners")
+    @fakenos(platform="cisco_ios", return_instance=True)
+    def test_hot_reload_jinja2_personal_partial_configurations(self, net: FakeNOS):
+        pass

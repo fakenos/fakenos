@@ -15,12 +15,7 @@ import yaml
 import detect
 
 from fakenos.core.host import Host
-from fakenos.core.nos import Nos
 from fakenos.core.pydantic_models import ModelFakenosInventory
-
-from fakenos.plugins.servers import servers_plugins
-from fakenos.plugins.nos import nos_plugins
-from fakenos.plugins.shell import shell_plugins
 
 
 log = logging.getLogger(__name__)
@@ -30,14 +25,35 @@ default_inventory = {
         "username": "user",
         "password": "user",
         "port": 6000,
-        "server": {
-            "plugin": "ParamikoSshServer",
-            "configuration": {
-                "address": "127.0.0.1",
-                "timeout": 1,
+        "servers": [
+            {
+                "name": "SSH",
+                "plugin": "ParamikoSshServer",
+                "configuration": {
+                    "shell": {
+                        "plugin": "CMDShell", 
+                        "configuration": {}
+                    },
+                },
             },
+            {
+                "name": "SNMP",
+                "plugin": "SNMPServer",
+                "configuration": {
+                    "port": 7000
+                }
+            },
+            {
+                "name": "NETCONF",
+                "plugin": "NETCONFServer",
+                "configuration": {
+                    "port": 9000
+                }
+            }
+        ],
+        "servers_configuration": {
+            "address": "127.0.0.1",
         },
-        "shell": {"plugin": "CMDShell", "configuration": {}},
         "nos": {"plugin": "cisco_ios", "configuration": {}},
     },
     "hosts": {
@@ -50,8 +66,9 @@ default_inventory = {
 # If Windows or WSL, the configuration address is 0.0.0.0
 # WSL Bug: https://github.com/microsoft/WSL/issues/4983
 if detect.docker and "WSL2" in platform.release():
-    server_config = default_inventory["default"]["server"]["configuration"]
-    server_config["address"] = "0.0.0.0"
+    for server_config in default_inventory["default"]["servers"]:
+        if "configuration" in server_config:
+            server_config["configuration"]["address"] = "0.0.0.0"
 
 
 class FakeNOS:
@@ -81,17 +98,14 @@ class FakeNOS:
     ) -> None:
         self.inventory: dict = inventory or default_inventory
         self.plugins: list = plugins or []
+        self.nos_plugins: list = []
 
         self.hosts: Dict[str, Host] = {}
         self.allocated_ports: Set[str] = set()
 
-        self.shell_plugins = shell_plugins
-        self.nos_plugins = nos_plugins
-        self.servers_plugins = servers_plugins
-
         self._load_inventory()
         self._init()
-        self._register_nos_plugins()
+        # self._register_nos_plugins()
 
     def __enter__(self):
         """
@@ -141,50 +155,88 @@ class FakeNOS:
                 **copy.deepcopy(self.inventory["default"]),
                 **copy.deepcopy(host_config),
             }
-            port: Union[int, list] = params.pop("port")
+            params = self._add_config_to_cli(params)
+            params = self._add_config_general_params(params)
             replicas: int = params.pop("replicas", None)
-            self._check_ports_and_replicas_are_okey(port, replicas)
-            self._instantiate_host_object(host_name, port, replicas, params)
+            self._check_ports_and_replicas_are_okey(params["servers"], replicas)
+            self._instantiate_host_object(host_name, replicas, params)
 
-    def _check_ports_and_replicas_are_okey(self, port, replicas):
+    def _add_config_to_cli(self, params: dict):
+        """
+        Method that changes the port, username and password
+        to the corresponding CLI server.
+
+        This is a helper method as before you could create
+        a NOS like so:
+        hosts:
+          R1:
+            username: user                  -> cli_username
+            password: user                  -> cli_password
+            port: 6000                      -> cli_port
+            configuration_file: filename    -> configuration_file
+        """
+        new_params = copy.deepcopy(params)
+        for server in new_params["servers"]:
+            if "configuration" in server and "shell" in server["configuration"]:
+                server["configuration"] = {
+                    "port": new_params.pop("port"),
+                    "username": new_params.pop("username"),
+                    "password": new_params.pop("password"),
+                    "configuration_file": new_params.pop("configuration_file", None),
+                    **server["configuration"]
+                }
+        return new_params
+
+
+    def _add_config_general_params(self, params: dict):
+        """ Method to add the general params to each server. """
+        new_params = copy.deepcopy(params)
+        general_server_configurations: dict = new_params.pop("servers_configuration")
+        for server in new_params["servers"]:
+            server["configuration"].update(general_server_configurations)
+        return new_params
+
+
+    def _check_ports_and_replicas_are_okey(self, servers: dict, replicas):
         """
         Method to check if the port and replicas are okey
 
         :param port: integer or list of two integers - port to allocate
         :param replicas: integer - number of hosts to create
         """
-        if not replicas and isinstance(port, list):
-            raise ValueError("If replicas is not set, port must be an integer.")
-        if replicas and not isinstance(port, list):
-            raise ValueError("If replicas is set, port must be a list of two integers.")
-        if replicas and len(port) != 2:
-            raise ValueError("If replicas is set, port must be a list of two integers.")
-        if replicas and port[0] >= port[1]:
-            raise ValueError("If replicas is set, port[0] must be less than port[1].")
-        if replicas and replicas < 1:
-            raise ValueError("If replicas is set, replicas must be greater than 0.")
-        if replicas and port[1] - port[0] + 1 != replicas:
-            raise ValueError(
-                "If replicas is set, port range \
-                    must be equal to the number of replicas."
-            )
+        for server in servers:
+            port = server["configuration"]["port"]
+            if not replicas and isinstance(port, list):
+                raise ValueError("If replicas is not set, port must be an integer.")
+            if replicas and not isinstance(port, list):
+                raise ValueError("If replicas is set, port must be a list of two integers.")
+            if replicas and len(port) != 2:
+                raise ValueError("If replicas is set, port must be a list of two integers.")
+            if replicas and port[0] >= port[1]:
+                raise ValueError("If replicas is set, port[0] must be less than port[1].")
+            if replicas and replicas < 1:
+                raise ValueError("If replicas is set, replicas must be greater than 0.")
+            if replicas and port[1] - port[0] + 1 != replicas:
+                raise ValueError(
+                    "If replicas is set, port range \
+                        must be equal to the number of replicas."
+                )
 
-    def _instantiate_host_object(self, host_name: str, port: Union[int, List[int]], replicas: int, params: dict):
+    def _instantiate_host_object(self, host_name: str, replicas: int, params: dict):
         """
         Method that instantiate the host objects. It initializes the hosts
         with the corresponding name, port and network operating system
 
         :param host: string - name of the host
-        :param port: integer or list of two integers - port to allocate
         :param count: integer - number of hosts to create
         :param params: dictionary - parameters to pass to
                                     the host like configurations
         """
-        hosts_name, ports = self._get_hosts_and_ports(host_name, port, replicas)
-        for h_name, p in zip(hosts_name, ports):
-            self._instantiate_single_host_object(h_name, p, params)
+        hosts_name= self._get_hosts(host_name, replicas)
+        for h_name in hosts_name:
+            self._instantiate_single_host_object(h_name, params)
 
-    def _get_hosts_and_ports(self, host_name: str, port: Union[int, List[int]], replicas: int = None):
+    def _get_hosts(self, host_name: str, replicas: int = None):
         """
         Method to get hosts and ports correctly
         depending on the number of replicas (if exists).
@@ -194,17 +246,14 @@ class FakeNOS:
         :param replicas: integer - number of hosts to create
         """
         hosts_name: Set[str] = {}
-        ports: Set[int] = {}
 
         if replicas:
             hosts_name = {f"{host_name}{i}" for i in range(replicas)}
-            ports = set(range(port[0], port[1] + 1))
         else:
             hosts_name = {host_name}
-            ports = {port}
-        return hosts_name, ports
+        return hosts_name
 
-    def _instantiate_single_host_object(self, host, port, params):
+    def _instantiate_single_host_object(self, host, params):
         """
         Method that instantiate the host objects. It initializes the hosts
 
@@ -213,8 +262,9 @@ class FakeNOS:
         :param params: dictionary - parameters to pass to
                                     the host like configurations
         """
-        self._allocate_port(port)
-        self.hosts[host] = Host(name=host, port=port, fakenos=self, **params)
+        for server in params["servers"]:
+            self._allocate_port(server["configuration"]["port"])
+        self.hosts[host] = Host(name=host, fakenos=self, **params)
 
     def _allocate_port(self, port: Union[int, List[int]]) -> None:
         """
@@ -266,7 +316,9 @@ class FakeNOS:
         self._execute_function_over_hosts(hosts, "start", host_running=False)
         log.info("The following devices has been initiated: %s", [host.name for host in hosts])
         for host in hosts:
-            log.info("Device %s is running on port %s", host.name, host.port)
+            for server in host.servers:
+                log.info("Device %s - %s is running on port %s",
+                         host.name, server.service_name, server.port)
 
     def stop(self, hosts: Union[str, List[str]] = None) -> None:
         """
@@ -306,26 +358,26 @@ class FakeNOS:
             if host.running == host_running:
                 getattr(host, func)()
 
-    def _register_nos_plugins(self) -> None:
-        """
-        Method to register NOS plugin with FakeNOS object, all plugins
-        must be registered before calling start method.
+    # def _register_nos_plugins(self) -> None:
+    #     """
+    #     Method to register NOS plugin with FakeNOS object, all plugins
+    #     must be registered before calling start method.
 
-        :param plugin: OS path string to NOS plugin `.yaml/.yml` or `.py` file,
-          dictionary or instance if Nos class
-        """
-        for plugin in self.plugins:
-            if isinstance(plugin, Nos):
-                nos_instance = plugin
-            else:
-                nos_instance = Nos()
-                if isinstance(plugin, dict):
-                    nos_instance.from_dict(plugin)
-                elif isinstance(plugin, str):
-                    nos_instance.from_file(plugin)
-                else:
-                    raise TypeError(f"Unsupported NOS type {type(plugin)}, supported str, dict or Nos")
-            self.nos_plugins[nos_instance.name] = nos_instance
+    #     :param plugin: OS path string to NOS plugin `.yaml/.yml` or `.py` file,
+    #       dictionary or instance if Nos class
+    #     """
+    #     for plugin in self.plugins:
+    #         if isinstance(plugin, Nos):
+    #             nos_instance = plugin
+    #         else:
+    #             nos_instance = Nos()
+    #             if isinstance(plugin, dict):
+    #                 nos_instance.from_dict(plugin)
+    #             elif isinstance(plugin, str):
+    #                 nos_instance.from_file(plugin)
+    #             else:
+    #                 raise TypeError(f"Unsupported NOS type {type(plugin)}, supported str, dict or Nos")
+    #         self.nos_plugins[nos_instance.name] = nos_instance
 
 
 def _get_free_port() -> int:

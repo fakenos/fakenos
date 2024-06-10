@@ -3,32 +3,25 @@ File to contain pydantic models for plugins input/output data validation
 """
 
 from __future__ import annotations
-import sys
-
-from typing import Union, Optional, List, Dict, Callable
+from typing import Union, Optional, List, Dict, Callable, Literal
 
 from pydantic import StrictBool, model_validator, BaseModel, StrictStr, StrictInt, IPvAnyAddress
-
-if sys.version_info >= (3, 8):
-    from typing import Literal  # works with >=py3.8
-else:
-    from typing_extensions import Literal  # works with <py3.8I
 
 # ---------------------------------------------------------------------------------------
 # NOS plugin commands model
 # ---------------------------------------------------------------------------------------
 
 
-class ModelNosCommand(BaseModel):
-    """
-    Pydantic model for NOS command attributes.
-    """
+# class ModelNosCommand(BaseModel):
+#     """
+#     Pydantic model for NOS command attributes.
+#     """
 
-    output: Optional[Union[StrictStr, None, Callable, StrictBool]] = None
-    help: Optional[StrictStr] = None
-    prompt: Optional[Union[StrictStr, List[StrictStr]]] = None
-    new_prompt: Optional[StrictStr] = None
-    alias: Optional[StrictStr] = None
+#     output: Optional[Union[StrictStr, None, Callable, StrictBool]] = None
+#     help: Optional[StrictStr] = None
+#     prompt: Optional[Union[StrictStr, List[StrictStr]]] = None
+#     new_prompt: Optional[StrictStr] = None
+#     alias: Optional[StrictStr] = None
 
 
 class ModelNosAttributes(BaseModel):
@@ -36,43 +29,58 @@ class ModelNosAttributes(BaseModel):
     Pydantic model for NOS attributes.
     """
 
-    commands: Dict[StrictStr, ModelNosCommand]
-    name: StrictStr
-    initial_prompt: StrictStr
+    # commands: Dict[StrictStr, ModelNosCommand]
+    name: str
+    # initial_prompt: StrictStr
+    configuration_file: Optional[str]
+    platform: Optional[str]
 
 
 class ModelHost(BaseModel):
     """
     Pydantic model for Host Attributes
     """
-
-    name: StrictStr
-    username: StrictStr
-    password: StrictStr
-    port: StrictInt
-    platform: Optional[StrictStr] = None
+    platform: Optional[str] = None
+    servers_inventory: List[Server]
 
 
+class Server(BaseModel):
+    """
+    Pydantic model for Server Attributes.
+    """
+    name: str
+    plugin: str
+    configuration: ServerConfiguration
+
+class ServerConfiguration(BaseModel):
+    """
+    Pydantic model for Server in Host.
+    """
+    port: Union[int, List[int]]
+    address: Union[Literal["localhost"], IPvAnyAddress]
+    username: Optional[str] = None
+    password: Optional[str] = None
+    port: Optional[int] = None
 # ---------------------------------------------------------------------------------------
 # FakeNOS inventory data model components
 # ---------------------------------------------------------------------------------------
 
 
-class NosPluginConfig(BaseModel):
-    """
-    Pydantic model for NOS plugin configuration.
-    """
+# class NosPluginConfig(BaseModel):
+#     """
+#     Pydantic model for NOS plugin configuration.
+#     """
 
-    commands: Optional[Dict[StrictStr, ModelNosCommand]] = None
+#     commands: Optional[Dict[StrictStr, ModelNosCommand]] = None
 
 
-class NosPlugin(BaseModel):
-    """
-    Pydantic model for NOS plugin.
-    """
+# class NosPlugin(BaseModel):
+#     """
+#     Pydantic model for NOS plugin.
+#     """
 
-    plugin: StrictStr
-    configuration: Optional[NosPluginConfig] = None
+#     plugin: StrictStr
+    # configuration: Optional[NosPluginConfig] = None
 
 
 class ParamikoSshServerConfig(BaseModel):
@@ -133,7 +141,7 @@ class InventoryDefaultSection(BaseModel):
     configuration_file: Optional[StrictStr] = None
     server: Optional[Union[ParamikoSshServerPlugin]] = None
     shell: Optional[Union[CMDShellPlugin]] = None
-    nos: Optional[NosPlugin] = None
+    # nos: Optional[NosPlugin] = None
 
 
 class HostConfig(InventoryDefaultSection):

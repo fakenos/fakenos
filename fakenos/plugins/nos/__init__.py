@@ -1,5 +1,5 @@
 """
-This module is the point of entry for all NOS plugins.
+This module is the point of entry for all CLI NOS plugins.
 
 It gets the names and filenames to load the NOS plugins
 later whenever needed (lazy loading).
@@ -26,7 +26,7 @@ for file in yaml_files:
     nos_plugins[platform_name] = [file]
 
 # load NOS from python modules updating the NOS
-platforms_directory_py: str = os.path.join(current_directory, "platforms_py")
+platforms_directory_py: str = os.path.join(current_directory, "platforms_py", "platforms")
 py_files = glob.glob(os.path.join(platforms_directory_py, "*.py"))
 py_files = [file for file in py_files if not file.endswith("__init__.py")]
 for file in py_files:

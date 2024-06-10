@@ -8,6 +8,7 @@ import logging
 
 from fakenos.core.pydantic_models import ModelHost
 from fakenos.core.nos import Nos, available_platforms
+from fakenos.plugins.servers import servers_plugins
 
 log = logging.getLogger(__name__)
 
@@ -22,33 +23,22 @@ class Host:
     def __init__(
         self,
         name: str,
-        username: str,
-        password: str,
-        port: int,
-        server: dict,
-        shell: dict,
+        servers: dict,
         nos: dict,
         fakenos,
         platform: str = None,
         configuration_file: str = None,
     ) -> None:
         self.name: str = name
-        self.server_inventory: dict = server
-        self.shell_inventory: dict = shell
+        self.servers_inventory: dict = servers
         self.nos_inventory: dict = nos
-        self.username: str = username
-        self.password: str = password
-        self.port: int = port
-        self.fakenos = fakenos  # FakeNOS object
-        self.shell_inventory["configuration"].setdefault("base_prompt", self.name)
+        self.fakenos = fakenos
+        self.servers: list = []
         self.running = False
-        self.server = None
-        self.server_plugin = None
-        self.shell_plugin = None
         self.nos_plugin = None
         self.nos = None
-        self.platform: str = platform
         self.configuration_file: str = configuration_file
+        self.platform: str = platform
 
         if self.platform:
             self.nos_inventory["plugin"] = self.platform
@@ -56,34 +46,28 @@ class Host:
         self._validate()
 
     def start(self):
-        """Method to start server instance for this hosts"""
-        self.server_plugin = self.fakenos.servers_plugins[self.server_inventory["plugin"]]
-        self.shell_plugin = self.fakenos.shell_plugins[self.shell_inventory["plugin"]]
+        """
+        Method to start server instances for this hosts.
+        Here it starts services like SSH, SNMP or NETCONF.
+        """
         if self.platform:
             self.nos_inventory["plugin"] = self.platform
-        self.nos_plugin = self.fakenos.nos_plugins.get(self.nos_inventory["plugin"], self.nos_inventory["plugin"])
-        self.nos = (
-            Nos(filename=self.nos_plugin, configuration_file=self.configuration_file)
-            if not isinstance(self.nos_plugin, Nos)
-            else self.nos_plugin
-        )
-        self.server = self.server_plugin(
-            shell=self.shell_plugin,
-            shell_configuration=self.shell_inventory["configuration"],
-            nos=self.nos,
-            nos_inventory_config=self.nos_inventory.get("configuration", {}),
-            port=self.port,
-            username=self.username,
-            password=self.password,
-            **self.server_inventory["configuration"],
-        )
-        self.server.start()
+        self.nos=Nos(
+                    configuration_file=self.configuration_file,
+                    platform=self.platform
+                )
+        for server in self.servers_inventory:
+            serv_obj = servers_plugins[server["plugin"]]
+            serv = serv_obj(nos=self.nos, configuration=server["configuration"])
+            serv.start()
+            self.servers.append(serv)
         self.running = True
 
     def stop(self):
         """Method to stop server instance of this host"""
-        self.server.stop()
-        self.server = None
+        for server in self.servers:
+            server.stop()
+        self.servers.clear()
         self.running = False
 
     def _validate(self):
