@@ -13,7 +13,7 @@
 
 FakeNOS created to simulate Network Operating Systems interactions.
 
-[Documentation](https://dmulyalin.github.io/fakenos/)
+[Documentation](https://fakenos.github.io/fakenos/)
 
 ## Why?
 
