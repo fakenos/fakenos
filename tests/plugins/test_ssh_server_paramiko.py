@@ -296,7 +296,7 @@ class ChannelToShellTapTest(unittest.TestCase):
     def test_backspace_works_if_buffer_empty(self):
         """Check that the backspace works when buffer is empty."""
         self.mock_run_srv.is_set.side_effect = [True, False]
-        self.mock_channel_stdio.read.side_effect = [b'\x7f']
+        self.mock_channel_stdio.read.side_effect = [b"\x7f"]
         channel_to_shell_tap(
             channel_stdio=self.mock_channel_stdio,
             shell_stdin=self.mock_shell_stdin,
@@ -308,7 +308,7 @@ class ChannelToShellTapTest(unittest.TestCase):
     def test_backspace_works_if_buffer_not_empty(self):
         """Check that the backspace works when buffer is not empty."""
         self.mock_run_srv.is_set.side_effect = [True, True, False]
-        self.mock_channel_stdio.read.side_effect = [b'a', b'\x7f']
+        self.mock_channel_stdio.read.side_effect = [b"a", b"\x7f"]
         channel_to_shell_tap(
             channel_stdio=self.mock_channel_stdio,
             shell_stdin=self.mock_shell_stdin,
@@ -316,13 +316,12 @@ class ChannelToShellTapTest(unittest.TestCase):
             run_srv=self.mock_run_srv,
         )
         self.assertEqual(self.mock_channel_stdio.write.call_count, 2)
-        self.mock_channel_stdio.write.assert_called_with(b'\x08 \x08')
+        self.mock_channel_stdio.write.assert_called_with(b"\x08 \x08")
 
     def test_arrow_keys_does_not_work(self):
-        """ Check that when pressing any arrow key, the cursor does not move. """
+        """Check that when pressing any arrow key, the cursor does not move."""
         self.mock_run_srv.is_set.side_effect = [True] * 4 + [False]
-        self.mock_channel_stdio.read.side_effect = \
-            [b'\x1b', b'[A', b'\x1b', b'[B', b'\x1b', b'[C', b'\x1b', b'[D']
+        self.mock_channel_stdio.read.side_effect = [b"\x1b", b"[A", b"\x1b", b"[B", b"\x1b", b"[C", b"\x1b", b"[D"]
         channel_to_shell_tap(
             channel_stdio=self.mock_channel_stdio,
             shell_stdin=self.mock_shell_stdin,
@@ -334,9 +333,9 @@ class ChannelToShellTapTest(unittest.TestCase):
         self.mock_channel_stdio.write.assert_not_called()
 
     def test_help_or_question_mark_goes_to_help(self):
-        """ Check that when pressing 'help' or '?' the shell goes to the help command. """
+        """Check that when pressing 'help' or '?' the shell goes to the help command."""
         self.mock_run_srv.is_set.side_effect = [True] * 2 + [False]
-        self.mock_channel_stdio.read.side_effect = [b'?', b'\n']
+        self.mock_channel_stdio.read.side_effect = [b"?", b"\n"]
         channel_to_shell_tap(
             channel_stdio=self.mock_channel_stdio,
             shell_stdin=self.mock_shell_stdin,
