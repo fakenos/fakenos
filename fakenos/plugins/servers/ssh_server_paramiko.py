@@ -146,26 +146,47 @@ def channel_to_shell_tap(channel_stdio, shell_stdin, shell_replied_event, run_sr
             log.error("SSH channel is not active. Exiting.")
             break
         try:
-            if byte in (b"\r", b"\n"):
-                channel_stdio.write(b"\r\n")
-                log.debug("ssh_server.channel_to_shell_tap echoing new line to channel: %s", [b"\r\n"])
-                buffer.write(byte)
-                buffer.seek(0)
-                line = buffer.read().decode(encoding="utf-8")
-                buffer.seek(0)
-                buffer.truncate()
-                log.debug("ssh_server.channel_to_shell_tap sending line to shell: %s", [line])
-                shell_stdin.write(line)
-                shell_replied_event.clear()
-            else:
-                channel_stdio.write(byte)
-                log.debug("ssh_server.channel_to_shell_tap echoing byte to channel: %s", [byte])
-                if byte not in [b"\x00", b""]:
+            match byte:
+                case b'\x1b':  # arrows
+                    channel_stdio.read(2)
+                case b'\r' | b'\n':
+                    channel_stdio.write(b"\r\n")
+                    log.debug("ssh_server.channel_to_shell_tap echoing new line to channel: %s", [b"\r\n"])
                     buffer.write(byte)
+                    buffer.seek(0)
+                    line = buffer.read().decode(encoding="utf-8")
+                    buffer.seek(0)
+                    buffer.truncate()
+                    log.debug("ssh_server.channel_to_shell_tap sending line to shell: %s", [line])
+                    shell_stdin.write(line)
+                    shell_replied_event.clear()
+                case b'\x7f':   # backspace
+                    if buffer.tell() > 0:
+                        channel_stdio.write(b"\b \b")
+                        log.debug("ssh_server.channel_to_shell_tap echoing backspace to channel: %s", [b"\b \b"])
+                        buffer.seek(buffer.tell() - 1)
+                        buffer.truncate()
+                case _:
+                    channel_stdio.write(byte)
+                    log.debug("ssh_server.channel_to_shell_tap echoing byte to channel: %s", [byte])
+                    if __is_byte_permitted(byte):
+                        buffer.write(byte)
             time.sleep(0.01)
         except (OSError, EOFError) as e:
             log.error("ssh_server.channel_to_shell_tap channel write error: %s", e)
             break
+
+
+def __is_byte_permitted(byte: bytes) -> bool:
+    """
+    Method to return the list of permitted bytes
+    """
+    permitted_bytes = []
+    permitted_bytes += [bytes([i]) for i in range(48, 58)]  # b'0' to b'9'
+    permitted_bytes += [bytes([i]) for i in range(65, 91)]  # b'A' to b'Z'
+    permitted_bytes += [bytes([i]) for i in range(97, 123)]  # b'a' to b'z'
+    permitted_bytes += [b'-', b' ', b'_', b'/', b'?']
+    return byte in permitted_bytes
 
 
 def shell_to_channel_tap(
