@@ -12,12 +12,12 @@ from unittest.mock import MagicMock, Mock
 import paramiko
 
 from fakenos.plugins.servers.ssh_server_paramiko import (
-    ParamikoSshServerInterface,
-    ParamikoSshServer,
-    TapIO,
     channel_to_shell_tap,
-    shell_to_channel_tap,
     DEFAULT_SSH_KEY,
+    ParamikoSshServer,
+    ParamikoSshServerInterface,
+    shell_to_channel_tap,
+    TapIO,
 )
 
 
@@ -59,7 +59,10 @@ class ParamikoSSHServerInterfaceTest(unittest.TestCase):
     def test_check_channel_request_is_correct_when_session_request(self):
         """Check that the channel request is correct when the session request is made."""
         paramiko_server: ParamikoSshServerInterface = ParamikoSshServerInterface()
-        self.assertEqual(paramiko_server.check_channel_request(kind="session", chanid=1), paramiko.OPEN_SUCCEEDED)
+        self.assertEqual(
+            paramiko_server.check_channel_request(kind="session", chanid=1),
+            paramiko.OPEN_SUCCEEDED,
+        )
 
     def test_check_channel_request_is_incorrect_when_session_is_not_request(self):
         """Check that the channel request is incorrect when the session request is not made."""
@@ -74,7 +77,13 @@ class ParamikoSSHServerInterfaceTest(unittest.TestCase):
         paramiko_server: ParamikoSshServerInterface = ParamikoSshServerInterface()
         self.assertTrue(
             paramiko_server.check_channel_pty_request(
-                channel=1, term="xterm", width=80, height=24, pixelwidth=0, pixelheight=0, modes=None
+                channel=1,
+                term="xterm",
+                width=80,
+                height=24,
+                pixelwidth=0,
+                pixelheight=0,
+                modes=None,
             )
         )
 
@@ -89,7 +98,8 @@ class ParamikoSSHServerInterfaceTest(unittest.TestCase):
             username="username", password="password"
         )
         self.assertEqual(
-            paramiko_server.check_auth_password(username="incorrect", password="password"), paramiko.AUTH_FAILED
+            paramiko_server.check_auth_password(username="incorrect", password="password"),
+            paramiko.AUTH_FAILED,
         )
 
     def test_check_auth_password_incorrect(self):
@@ -98,7 +108,8 @@ class ParamikoSSHServerInterfaceTest(unittest.TestCase):
             username="username", password="password"
         )
         self.assertEqual(
-            paramiko_server.check_auth_password(username="username", password="incorrect"), paramiko.AUTH_FAILED
+            paramiko_server.check_auth_password(username="username", password="incorrect"),
+            paramiko.AUTH_FAILED,
         )
 
     def test_check_auth_username_and_password_incorrect(self):
@@ -107,7 +118,8 @@ class ParamikoSSHServerInterfaceTest(unittest.TestCase):
             username="username", password="password"
         )
         self.assertEqual(
-            paramiko_server.check_auth_password(username="incorrect", password="incorrect"), paramiko.AUTH_FAILED
+            paramiko_server.check_auth_password(username="incorrect", password="incorrect"),
+            paramiko.AUTH_FAILED,
         )
 
     def test_check_auth_correct(self):
@@ -116,7 +128,8 @@ class ParamikoSSHServerInterfaceTest(unittest.TestCase):
             username="username", password="password"
         )
         self.assertEqual(
-            paramiko_server.check_auth_password(username="username", password="password"), paramiko.AUTH_SUCCESSFUL
+            paramiko_server.check_auth_password(username="username", password="password"),
+            paramiko.AUTH_SUCCESSFUL,
         )
 
     def test_get_banner(self):
@@ -452,7 +465,10 @@ class ParamikoSshServerTest(unittest.TestCase):
         self.assertEqual(paramiko_server.timeout, 1)
         self.assertEqual(paramiko_server.watchdog_interval, 1)
         # pylint: disable=protected-access
-        self.assertEqual(paramiko_server._ssh_server_key, paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY)))
+        self.assertEqual(
+            paramiko_server._ssh_server_key,
+            paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY)),
+        )
 
     def test_init_with_ssh_key_file(self):
         """
@@ -475,7 +491,10 @@ class ParamikoSshServerTest(unittest.TestCase):
         self.assertEqual(paramiko_server.timeout, 1)
         self.assertEqual(paramiko_server.watchdog_interval, 1)
         # pylint: disable=protected-access
-        self.assertEqual(paramiko_server._ssh_server_key, paramiko.RSAKey(filename="tests/assets/ssh_host_rsa_key"))
+        self.assertEqual(
+            paramiko_server._ssh_server_key,
+            paramiko.RSAKey(filename="tests/assets/ssh_host_rsa_key"),
+        )
 
     def test_init_with_ssh_key_file_and_password(self):
         """
@@ -501,7 +520,10 @@ class ParamikoSshServerTest(unittest.TestCase):
         # pylint: disable=protected-access
         self.assertEqual(
             paramiko_server._ssh_server_key,
-            paramiko.RSAKey(filename="tests/assets/ssh_host_rsa_key_with_password", password="password"),
+            paramiko.RSAKey(
+                filename="tests/assets/ssh_host_rsa_key_with_password",
+                password="password",
+            ),
         )
 
     def test_init_with_ssh_banner(self):
@@ -525,7 +547,10 @@ class ParamikoSshServerTest(unittest.TestCase):
         self.assertEqual(paramiko_server.timeout, 1)
         self.assertEqual(paramiko_server.watchdog_interval, 1)
         # pylint: disable=protected-access
-        self.assertEqual(paramiko_server._ssh_server_key, paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY)))
+        self.assertEqual(
+            paramiko_server._ssh_server_key,
+            paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY)),
+        )
 
     def test_init_with_shell_configuration(self):
         """
@@ -548,7 +573,10 @@ class ParamikoSshServerTest(unittest.TestCase):
         self.assertEqual(paramiko_server.timeout, 1)
         self.assertEqual(paramiko_server.watchdog_interval, 1)
         # pylint: disable=protected-access
-        self.assertEqual(paramiko_server._ssh_server_key, paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY)))
+        self.assertEqual(
+            paramiko_server._ssh_server_key,
+            paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY)),
+        )
 
     def test_init_with_address(self):
         """
@@ -571,7 +599,10 @@ class ParamikoSshServerTest(unittest.TestCase):
         self.assertEqual(paramiko_server.timeout, 1)
         self.assertEqual(paramiko_server.watchdog_interval, 1)
         # pylint: disable=protected-access
-        self.assertEqual(paramiko_server._ssh_server_key, paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY)))
+        self.assertEqual(
+            paramiko_server._ssh_server_key,
+            paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY)),
+        )
 
     def test_init_with_timeout(self):
         """
@@ -594,7 +625,10 @@ class ParamikoSshServerTest(unittest.TestCase):
         self.assertEqual(paramiko_server.timeout, 2)
         self.assertEqual(paramiko_server.watchdog_interval, 1)
         # pylint: disable=protected-access
-        self.assertEqual(paramiko_server._ssh_server_key, paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY)))
+        self.assertEqual(
+            paramiko_server._ssh_server_key,
+            paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY)),
+        )
 
     def test_init_with_watchdog_interval(self):
         """
@@ -617,7 +651,10 @@ class ParamikoSshServerTest(unittest.TestCase):
         self.assertEqual(paramiko_server.timeout, 1)
         self.assertEqual(paramiko_server.watchdog_interval, 2)
         # pylint: disable=protected-access
-        self.assertEqual(paramiko_server._ssh_server_key, paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY)))
+        self.assertEqual(
+            paramiko_server._ssh_server_key,
+            paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY)),
+        )
 
     def test_init_with_all_parameters(self):
         """
@@ -644,7 +681,10 @@ class ParamikoSshServerTest(unittest.TestCase):
         self.assertEqual(paramiko_server.timeout, 2)
         self.assertEqual(paramiko_server.watchdog_interval, 2)
         # pylint: disable=protected-access
-        self.assertEqual(paramiko_server._ssh_server_key, paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY)))
+        self.assertEqual(
+            paramiko_server._ssh_server_key,
+            paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY)),
+        )
 
     def test_watchdog_run_srv_loop(self):
         """Check that the watchdog run_srv loop is executed."""
@@ -698,7 +738,10 @@ class ParamikoSshServerTest(unittest.TestCase):
     @mock.patch("fakenos.plugins.servers.ssh_server_paramiko.shell_to_channel_tap")
     @mock.patch("paramiko.Transport")
     def test_connection_function(
-        self, mock_transport: MagicMock, mock_shell_to_channel_tap: MagicMock, mock_channel_to_shell_tap: MagicMock
+        self,
+        mock_transport: MagicMock,
+        mock_shell_to_channel_tap: MagicMock,
+        mock_channel_to_shell_tap: MagicMock,
     ):
         """Check that the connection function is executed correctly."""
         mock_client: MagicMock = MagicMock()

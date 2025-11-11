@@ -10,36 +10,23 @@ jobs:
   docs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Configure Git Credentials
         run: |
             git config user.name github-actions[bot]
             git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-      - uses: actions/setup-python@v5
+      - name: "Install uv"
+        uses: "astral-sh/setup-uv@v7"
         with:
-          python-version: '3.11'
-      - name: "Install Poetry"
-        run: "curl -sSL https://install.python-poetry.org | python -"
-        shell: "bash"
-      - name: "Add poetry to PATH"
-        run: "ln -s /root/.local/bin/poetry /usr/local/bin/poetry"
-        shell: "bash"
-      - name: "Log: Check cache"
-        run: "echo Checking cache"
-        shell: "bash"
-      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
+          version: "0.9.8"
+          activate-environment: true
+          python-version: "3.13"
       - name: "Cache"
         uses: "actions/cache@v4"
-        id: "cached-poetry"
+        id: "cached-uv"
         with:
           key: mkdocs-material-${{ env.cache_id }}
           path: ".cache"
           restore-keys: |
             mkdocs-material-
-      - name: "Install environment"
-        run: "poetry install"
-        shell: "bash"
-      - name: "Log: Check poetry"
-        run: "echo "
-        shell: "bash"
-      - run: poetry run mkdocs gh-deploy --force
+      - run: uv run mkdocs gh-deploy --force

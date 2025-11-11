@@ -9,11 +9,11 @@ from unittest import TestCase
 from unittest.mock import patch
 
 from fakenos.plugins.shell.utils import (
-    get_files_lasttime_changed,
-    get_files_under_directory,
-    get_files_changed,
     change_jinja_to_corresponding_py,
+    get_files_changed,
+    get_files_lasttime_changed,
     get_files_recently_modified,
+    get_files_under_directory,
     get_new_files,
 )
 

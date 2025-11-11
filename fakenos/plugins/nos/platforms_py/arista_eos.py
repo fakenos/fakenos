@@ -124,7 +124,11 @@ FQDN:     {{base_prompt}}""",
         "help": "Show the system hostname",
         "prompt": ENABLE_PROMPT,
     },
-    "no logging console": {"output": "", "help": "Set console logging parameters", "prompt": CONFIG_PROMPT},
+    "no logging console": {
+        "output": "",
+        "help": "Set console logging parameters",
+        "prompt": CONFIG_PROMPT,
+    },
     "end": {
         "output": "",
         "help": "Leave config mode",

@@ -1,14 +1,24 @@
-[tool.poetry]
+[project]
 name = "fakenos"
 version = "1.1.0"
 description = "Fake Network Operating System"
-authors = ["Denis Mulyalin <d.mulyalin@gmail.com>", "Enric Perpinyà Pitarch <eperpinyapitarch@gmail.com>"]
-maintainers = ["Denis Mulyalin <d.mulyalin@gmail.com>", "Enric Perpinyà Pitarch <eperpinyapitarch@gmail.com>"]
-homepage = "https://github.com/fakenos/fakenos/"
-documentation = "https://fakenos.github.io/fakenos/"
-license = "MIT"
+authors = [
+    { name = "Denis Mulyalin", email = "d.mulyalin@gmail.com" },
+    { name = "Enric Perpinyà Pitarch", email = "eperpinyapitarch@gmail.com" }
+]
+maintainers = [
+    { name = "Denis Mulyalin", email = "d.mulyalin@gmail.com" },
+    { name = "Enric Perpinyà Pitarch", email = "eperpinyapitarch@gmail.com" }
+]
+license = { text = "MIT" }
 readme = "README.md"
-keywords = ["NetworkAutomation", "Testing", "SSH", "Integration", "NOS"]
+keywords = [
+    "NetworkAutomation",
+    "Testing",
+    "SSH",
+    "Integration",
+    "NOS"
+]
 classifiers = [
     "Intended Audience :: Telecommunications Industry",
     "Intended Audience :: Developers",
@@ -21,122 +31,128 @@ classifiers = [
     "Operating System :: MacOS",
     "Topic :: Utilities",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "License :: OSI Approved :: MIT License",
-    "Operating System :: POSIX :: Linux",
 ]
-include = [
-    "LICENSE",
-    "README.md",
+requires-python = ">=3.11,<3.14"
+dependencies = [
+    "paramiko<4.0",
+    "pyyaml<7.0",
+    "pydantic<3.0",
+    "detect==2020.12.*",
+    "jinja2>=3.1.6",
+    "tomli>=2.3.0",
 ]
 
-[tool.poetry.dependencies]
-python = ">=3.8,<3.14"
-paramiko = "<4.0"
-pyyaml = "<7.0"
-pydantic = "<3.0"
-detect = "2020.12.*"
 
-[tool.poetry.dev-dependencies]
-pymdown-extensions = "*"
-mkdocs-material = "*"
-pytest-timeout = "*"
-mkdocstrings = {version = "*", extras = ["cystal", "python"]}
-bandit = "*"
-black = "*"
-coverage = "*"
-invoke = "*"
-flake8 = "*"
-pylint = "*"
-pytest = "*"
-toml = "*"
-yamllint = "*"
-pre-commit = "2.15.*"
-pyenchant = "*"
-netmiko = "*"
-requests = "*"
-psutil = "*"
-ruamel-yaml = "*"
-mkdocs-static-i18n = "*"
-pytest-repeat = "*"
+[project.urls]
+Homepage = "https://github.com/fakenos/fakenos/"
+Documentation = "https://docs.fakenos.com/"
 
-[tool.black]
+[project.scripts]
+fakenos = "fakenos.plugins.utils.cli:run_cli"
+
+[tool.ruff]
 line-length = 120
-target-version = ['py38']
-include = '\.pyi?$'
-exclude = '''
-(
-  /(
-      \.eggs         # exclude a few common directories in the
-    | \.git          # root of the project
-    | \.hg
-    | \.mypy_cache
-    | \.tox
-    | \.venv
-    | _build
-    | buck-out
-    | build
-    | dist
-  )/
-  | settings.py     # This is where you define files that should not be stylized by black
-                     # the root of the project
-)
-'''
+target-version = "py313"
+extend-exclude = [
+    # Intentionally malformed files
+]
+
+[tool.ruff.lint]
+select = [
+    "DJ",  # flake8-django
+    "E",  # pycodestyle
+    "F",  # pyflakes
+    "I",  # isort
+    "PIE",  # flake8-pie
+    "PLE",  # pylint errors
+    "RUF",  # ruff itself
+    "S",  # flake8-bandit
+    "W",  # pycodestyle
+]
+ignore = [
+    "E501",  # pycodestyle: line-too-long
+    "PIE808",  # unnecessary-range-start
+    "RUF012",  # mutable-class-default - see https://github.com/astral-sh/ruff/issues/5243
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = [
+    "S101",  # Allow the use of random in tests
+    "S311",  # Allow use of assert in tests
+    "S105",  # Allow use of hardcoded password to "password"
+    "S106",  # Allow use of hardcoded password in tests
+    "S104",  # Allow binding to all interfaces in tests
+    "S607",  # Allow starting a process with a partial executable path in tests
+]
+"update_platforms.py" = [
+    "S108",  # Probably insecure usage of temp file/directory - this is a script
+    "S603",  # Use of subprocess without shell=True - this is a script
+    "S607",  # Starting a process with a partial executable path - this is a script
+    
+]
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+force-sort-within-sections = true
+known-local-folder = ["example_app"]
+order-by-type = false
 
 [tool.bandit]
 exclude_dirs = ["./tests/", "./.venv", "./update_platforms.py"]
 tests = ["B201", "B301"]
 skips = ["B101", "B601"]
 
-[tool.poetry.extras]
-test = ["pytest"]
-
-[tool.pylint.master]
-ignore = ".venv"
-
-[tool.pylint.'fakenos/plugins/nos/platforms_py']
-disable = [
-    "unused-argument",
-    "similarities"
-]
-
-[tool.pylint.basic]
-# No docstrings required for private methods (Pylint default), or for test_ functions, or for inner Meta classes.
-no-docstring-rgx = "^(_|test_|Meta$)"
-min-public-methods = 1
-
-[tool.pylint.messages_control]
-# Line length is enforced by Black, so pylint doesn't need to check it.
-# Pylint and Black disagree about how to format multi-line arrays; Black wins.
-disable = """,
-    line-too-long,
-    redefined-outer-name
-    """
 
 [tool.coverage.run]
 branch = true
 omit = [".*", ".venv"]
 command_line = "-m pytest"
 
-[tools.coverage.report]
+[tool.coverage.report]
 fail_under = 80
 show_missing = true
 
-[tools.coverage.html]
+[tool.coverage.html]
 directory = "coverage_html_report"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-vv"
 
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+[tool.uv.build-backend]
+module-name = "fakenos"
+module-root = ""
 
-[tool.poetry.scripts]
-fakenos = 'fakenos.plugins.utils.cli:run_cli'
+[build-system]
+requires = ["uv_build>=0.9.6,<0.10.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.14.4",  # Linter
+    "ruamel-yaml",  # YAML parser
+    "ty>=0.0.1a26",  # Type checkers
+    "pytest",  # Testing framework
+    "pytest-repeat",  # Pytest: Repeat tests
+    "pytest-timeout",  # Pytest: Timeout tests
+    "bandit",
+    "coverage",
+    "invoke",
+    "pre-commit==2.15.*",
+    "pyenchant",
+    "netmiko",
+    "requests",
+    "psutil",
+    "mkdocstrings[crystal,python]",
+    "mkdocs-material",
+    "mkdocs-static-i18n",
+    "pymdown-extensions",
+    "toml",  # Toml parser (only upto 3.10)
+    "yamllint",  # YAML linter
+]

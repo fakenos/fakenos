@@ -6,10 +6,10 @@ look for fakenos/plugins/servers/ssh_server_paramiko.py
 
 # pylint: disable=no-name-in-module
 from abc import ABC, abstractmethod
-import sys
-import socket
-import threading
 import logging
+import socket
+import sys
+import threading
 
 log = logging.getLogger(__name__)
 

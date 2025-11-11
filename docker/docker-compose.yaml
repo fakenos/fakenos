@@ -1,12 +1,9 @@
-version: '3.9'
-
 services:
   fakenos:
     hostname: 'fakenos'
     build:
       context: ..
       dockerfile: docker/Dockerfile
-    command: poetry run fakenos -i /app/docker/inventory.yaml
     ports:
       - "12723:6001"
       - "12724:6002"

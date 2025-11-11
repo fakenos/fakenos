@@ -218,7 +218,8 @@ class ServersTest(unittest.TestCase):
         mock_socket().listen.assert_called_once()
         mock_socket().accept.assert_called_once()
         mock_thread.assert_called_once_with(
-            target=servers.connection_function, args=(mock_socket().accept.return_value[0], servers._is_running)
+            target=servers.connection_function,
+            args=(mock_socket().accept.return_value[0], servers._is_running),
         )
         mock_thread().start.assert_called_once()
         self.assertEqual(len(servers._connection_threads), 1)

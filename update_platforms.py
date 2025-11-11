@@ -15,7 +15,7 @@ and the output for each device.
 import os
 import re
 import subprocess
-from typing import List, Dict, Tuple
+from typing import Dict, List, Tuple
 
 import requests
 
@@ -148,7 +148,11 @@ def generate_platform_yaml(platform_name: str, commands: dict):
     """
     commands = get_commands_parsed(platform_name, commands)
     yaml = YAML()
-    yaml_content = {"name": platform_name, "initial_prompt": f"{platform_name}>", "commands": commands}
+    yaml_content = {
+        "name": platform_name,
+        "initial_prompt": f"{platform_name}>",
+        "commands": commands,
+    }
     with open(f"{platforms_folder}/{platform_name}.yaml", "w", encoding="utf-8") as file:
         yaml.dump(yaml_content, file)
 

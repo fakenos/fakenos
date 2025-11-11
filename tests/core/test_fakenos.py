@@ -7,13 +7,14 @@ The file can be found in fakenos/core/fakenos.py
 import platform
 import threading
 from unittest.mock import patch
-import pytest
+
 import detect
+import pytest
 import yaml
+
+from fakenos.core.fakenos import FakeNOS, fakenos
 from fakenos.core.host import Host
 from fakenos.core.nos import available_platforms
-from fakenos.core.fakenos import FakeNOS, fakenos
-
 from tests.utils import get_platforms_from_md, get_running_hosts
 
 
@@ -40,7 +41,11 @@ class TestFakeNOS:
         net = FakeNOS()
         assert len(net.hosts) == 3
         for router_name, host in net.hosts.items():
-            assert router_name in ["router_cisco_ios", "router_huawei_smartax", "router_arista_eos"]
+            assert router_name in [
+                "router_cisco_ios",
+                "router_huawei_smartax",
+                "router_arista_eos",
+            ]
             assert host.username in ["user"]
             assert host.password in ["user"]
             assert host.port in {6000, 6001, 6002}
@@ -264,7 +269,10 @@ class TestFakeNOS:
         Test that the function _check_ports_and_replicas_are_okey raises an exception
         when replicas is set and there are too many ports.
         """
-        inventory = {"default": {"port": [5000, 5001, 5002], "replicas": 2}, "hosts": {"R1": {}}}
+        inventory = {
+            "default": {"port": [5000, 5001, 5002], "replicas": 2},
+            "hosts": {"R1": {}},
+        }
         with pytest.raises(ValueError):
             FakeNOS(inventory=inventory)
 
@@ -273,7 +281,10 @@ class TestFakeNOS:
         Test that the function _check_ports_and_replicas_are_okey raises an exception
         when replicas is set and the first port is larger than the second port.
         """
-        inventory = {"default": {"port": [5001, 5000], "replicas": 2}, "hosts": {"R1": {}}}
+        inventory = {
+            "default": {"port": [5001, 5000], "replicas": 2},
+            "hosts": {"R1": {}},
+        }
         with pytest.raises(ValueError):
             FakeNOS(inventory=inventory)
 
@@ -282,7 +293,10 @@ class TestFakeNOS:
         Test that the function _check_ports_and_replicas_are_okey raises an exception
         when replicas is set and the replicas are less than 1.
         """
-        inventory = {"default": {"port": [5000, 5001], "replicas": 0}, "hosts": {"R1": {}}}
+        inventory = {
+            "default": {"port": [5000, 5001], "replicas": 0},
+            "hosts": {"R1": {}},
+        }
         with pytest.raises(ValueError):
             FakeNOS(inventory=inventory)
 
@@ -291,7 +305,10 @@ class TestFakeNOS:
         Test that the function _check_ports_and_replicas_are_okey raises an exception
         when replicas is set and the ports are not the same length.
         """
-        inventory = {"default": {"port": [5000, 5001], "replicas": 3}, "hosts": {"R1": {}}}
+        inventory = {
+            "default": {"port": [5000, 5001], "replicas": 3},
+            "hosts": {"R1": {}},
+        }
         with pytest.raises(ValueError):
             FakeNOS(inventory=inventory)
 
@@ -352,7 +369,7 @@ class TestFakeNOS:
             }
         }
         with FakeNOS(inventory=inventory) as net:
-            host: Host = list(net.hosts.values())[0]
+            host: Host = next(iter(net.hosts.values()))
             assert host.nos.device.configurations == configurations
 
     def test_inventory_configuration_yaml(self):
@@ -365,7 +382,7 @@ class TestFakeNOS:
             data = file.read()
             configurations = yaml.safe_load(data)
         with FakeNOS(inventory="tests/assets/inventory_configuration.yaml") as net:
-            host: Host = list(net.hosts.values())[0]
+            host: Host = next(iter(net.hosts.values()))
             assert host.nos.device.configurations == configurations
 
     def test_fakenos_start_stop_hosts(self):

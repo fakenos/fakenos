@@ -3,18 +3,21 @@ Test the Netmiko compatibility as this library can be used
 as a testing tool for Netmiko.
 """
 
+import random
 import re
 import threading
-import random
 
-import pytest
 import detect
-from netmiko import ConnectHandler, NetMikoAuthenticationException, NetMikoTimeoutException
-from fakenos.core.nos import available_platforms
+from netmiko import (
+    ConnectHandler,
+    NetMikoAuthenticationException,
+    NetMikoTimeoutException,
+)
+import pytest
+
 from fakenos import FakeNOS
-
-from tests.utils import get_platforms_from_md, get_free_port, generate_random_string
-
+from fakenos.core.nos import available_platforms
+from tests.utils import generate_random_string, get_free_port, get_platforms_from_md
 
 fake_network = {
     "default": {
@@ -67,6 +70,7 @@ class TestNetmiko:
         ready to used with Netmiko. We only look if any error
         has raised.
         """
+        print("HOLAAA")
         try:
             free_port = get_free_port()
             inventory = {
@@ -90,9 +94,10 @@ class TestNetmiko:
                 "port": free_port,
                 "device_type": device_type,
             }
-
+            print(f"Testing device_type: {device_type}")
             with ConnectHandler(**device_credentials):
                 pass
+            print(f"Success device_type: {device_type}")
             net.stop()
 
             n_threads: int = 2 if detect.windows else 1

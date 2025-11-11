@@ -3,15 +3,14 @@ Custom shell class to interact with NOS.
 """
 
 from cmd import Cmd
-import logging
-import traceback
 import copy
+import logging
 import os
+import traceback
 from typing import List, Union
 
 from fakenos.core.nos import Nos
 from fakenos.plugins import nos
-
 from fakenos.plugins.shell.utils import get_files_changed
 
 log = logging.getLogger(__name__)
@@ -164,7 +163,6 @@ class CMDShell(Cmd):
                 if "new_prompt" in cmd_data:
                     self.prompt = cmd_data["new_prompt"].format(base_prompt=self.base_prompt)
             else:
-
                 log.warning(
                     "'%s' command prompt '%s' not matching current prompt '%s'",
                     line,

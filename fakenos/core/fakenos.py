@@ -3,25 +3,23 @@ Main module to interact with FakeNOS servers.
 It is the entry point to start, stop and list FakeNOS servers.
 """
 
-import logging
 import copy
+import logging
+import platform
 import socket
 import threading
 import time
-import platform
-from typing import Union, List, Dict, Set
+from typing import Dict, List, Optional, Set, Union
 
-import yaml
 import detect
+import yaml
 
 from fakenos.core.host import Host
 from fakenos.core.nos import Nos
 from fakenos.core.pydantic_models import ModelFakenosInventory
-
-from fakenos.plugins.servers import servers_plugins
 from fakenos.plugins.nos import nos_plugins
+from fakenos.plugins.servers import servers_plugins
 from fakenos.plugins.shell import shell_plugins
-
 
 log = logging.getLogger(__name__)
 
@@ -51,7 +49,7 @@ default_inventory = {
 # WSL Bug: https://github.com/microsoft/WSL/issues/4983
 if detect.docker and "WSL2" in platform.release():
     server_config = default_inventory["default"]["server"]["configuration"]
-    server_config["address"] = "0.0.0.0"
+    server_config["address"] = "0.0.0.0"  # noqa: S104
 
 
 class FakeNOS:
@@ -76,8 +74,8 @@ class FakeNOS:
 
     def __init__(
         self,
-        inventory: dict = None,
-        plugins: list = None,
+        inventory: Optional[dict] = None,
+        plugins: Optional[list] = None,
     ) -> None:
         self.inventory: dict = inventory or default_inventory
         self.plugins: list = plugins or []
@@ -126,7 +124,6 @@ class FakeNOS:
             **default_inventory["default"],
             **self.inventory.get("default", {}),
         }
-
         ModelFakenosInventory(**self.inventory)
         log.debug("FakeNOS inventory validation succeeded")
 
@@ -184,7 +181,7 @@ class FakeNOS:
         for h_name, p in zip(hosts_name, ports):
             self._instantiate_single_host_object(h_name, p, params)
 
-    def _get_hosts_and_ports(self, host_name: str, port: Union[int, List[int]], replicas: int = None):
+    def _get_hosts_and_ports(self, host_name: str, port: Union[int, List[int]], replicas: Optional[int] = None):
         """
         Method to get hosts and ports correctly
         depending on the number of replicas (if exists).
@@ -241,7 +238,7 @@ class FakeNOS:
         self.allocated_ports.add(port)
         return port
 
-    def _get_hosts_as_list(self, hosts: Union[str, List[str]] = None) -> List[Host]:
+    def _get_hosts_as_list(self, hosts: Optional[Union[str, List[str]]] = None) -> List[Host]:
         """
         Helper method to get hosts as list
 
@@ -256,7 +253,7 @@ class FakeNOS:
         hosts_list = [self.hosts[host] for host in hosts]
         return hosts_list
 
-    def start(self, hosts: Union[str, list] = None) -> None:  # type: ignore
+    def start(self, hosts: Optional[Union[str, list]] = None) -> None:  # type: ignore
         """
         Function to start NOS servers instances
 
@@ -264,11 +261,14 @@ class FakeNOS:
         """
         hosts: List[str] = self._get_hosts_as_list(hosts)
         self._execute_function_over_hosts(hosts, "start", host_running=False)
-        log.info("The following devices has been initiated: %s", [host.name for host in hosts])
+        log.info(
+            "The following devices has been initiated: %s",
+            [host.name for host in hosts],
+        )
         for host in hosts:
             log.info("Device %s is running on port %s", host.name, host.port)
 
-    def stop(self, hosts: Union[str, List[str]] = None) -> None:
+    def stop(self, hosts: Optional[Union[str, List[str]]] = None) -> None:
         """
         Function to stop NOS servers instances. It waits 2 seconds
         just in case that there is any thread doing something.
@@ -337,7 +337,7 @@ def _get_free_port() -> int:
         return s.getsockname()[1]
 
 
-def fakenos(platform: str = None, inventory: dict = None, return_instance: bool = False):
+def fakenos(platform: Optional[str] = None, inventory: Optional[dict] = None, return_instance: bool = False):
     """
     Decorator to run a test with FakeNOS server.
     """

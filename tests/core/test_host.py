@@ -7,9 +7,9 @@ from unittest.mock import MagicMock, Mock, patch
 
 import pytest
 
+from fakenos import FakeNOS
 from fakenos.core.host import Host
 from fakenos.core.nos import available_platforms
-from fakenos import FakeNOS
 
 
 class TestHost:
@@ -41,7 +41,10 @@ class TestHost:
         assert host.password == "password"
         assert host.port == 22
         assert host.server_inventory == {"plugin": "server_plugin", "configuration": {}}
-        assert host.shell_inventory == {"plugin": "shell_plugin", "configuration": {"base_prompt": "name"}}
+        assert host.shell_inventory == {
+            "plugin": "shell_plugin",
+            "configuration": {"base_prompt": "name"},
+        }
         assert host.nos_inventory == {"plugin": "nos_plugin", "configuration": {}}
         assert not host.running
 

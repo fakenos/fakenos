@@ -2,6 +2,7 @@
 Module to test the cmd_shell plugin.
 """
 
+import importlib
 import os
 import shutil
 import threading
@@ -9,12 +10,11 @@ import time
 from typing import List
 from unittest import TestCase
 from unittest.mock import Mock, patch
-import importlib
 
-from netmiko import ConnectHandler
-import yaml
 import detect
+from netmiko import ConnectHandler
 import pytest
+import yaml
 
 from fakenos.core.fakenos import FakeNOS, fakenos
 from fakenos.core.nos import Nos

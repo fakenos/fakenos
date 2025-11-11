@@ -2,10 +2,11 @@
 Network Operating Systems (NOS). Base class to build NOS plugins instances to use with FakeNOS.
 """
 
-import logging
-from typing import Optional, List, Union
 import importlib.util
+import logging
 import os
+from typing import List, Optional, Union
+
 import yaml
 
 from fakenos.core.pydantic_models import ModelNosAttributes
@@ -66,7 +67,7 @@ class Nos:
     def __init__(
         self,
         name: str = "FakeNOS",
-        commands: dict = None,
+        commands: Optional[dict] = None,
         initial_prompt: str = "FakeNOS>",
         filename: Optional[Union[str, List[str]]] = None,
         configuration_file: Optional[str] = None,

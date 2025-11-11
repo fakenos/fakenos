@@ -7,7 +7,7 @@ generally common to all devices.
 
 from abc import ABC
 
-from jinja2 import Environment, PackageLoader, Template, select_autoescape
+from jinja2 import Environment, PackageLoader, select_autoescape, Template
 import yaml
 
 

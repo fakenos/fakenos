@@ -4,9 +4,9 @@ Currently, it checks if the platforms are correctly set
 in the yaml and python files.
 """
 
-import re
-import os
 from importlib import import_module
+import os
+import re
 import types
 from typing import Any, List
 
@@ -68,7 +68,13 @@ class TestPlatforms:
         with open(f"fakenos/plugins/nos/platforms_yaml/{platform}.yaml", "r", encoding="utf-8") as file:
             data: dict = yaml.safe_load(file)
             for key in data.keys():
-                assert key in ["name", "initial_prompt", "enable_prompt", "config_prompt", "commands"]
+                assert key in [
+                    "name",
+                    "initial_prompt",
+                    "enable_prompt",
+                    "config_prompt",
+                    "commands",
+                ]
 
     @pytest.mark.parametrize("platform", available_platforms)
     def test_platforms_yaml_commands_has_correct_format(self, platform: str):
@@ -173,7 +179,7 @@ class TestPlatforms:
         enable_commands: List[str] = []
         config_commands: List[str] = []
         with FakeNOS(inventory=inventory) as net:
-            host = list(net.hosts.values())[0]
+            host = next(iter(net.hosts.values()))
             initial_commands, enable_commands, config_commands = get_host_commands(host)
             with ConnectHandler(**credentials) as conn:
                 for command in initial_commands:

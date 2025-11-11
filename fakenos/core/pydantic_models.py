@@ -3,11 +3,18 @@ File to contain pydantic models for plugins input/output data validation
 """
 
 from __future__ import annotations
+
 import sys
+from typing import Callable, Dict, List, Optional, Union
 
-from typing import Union, Optional, List, Dict, Callable
-
-from pydantic import StrictBool, model_validator, BaseModel, StrictStr, StrictInt, IPvAnyAddress
+from pydantic import (
+    BaseModel,
+    IPvAnyAddress,
+    model_validator,
+    StrictBool,
+    StrictInt,
+    StrictStr,
+)
 
 if sys.version_info >= (3, 8):
     from typing import Literal  # works with >=py3.8
@@ -154,9 +161,11 @@ class HostConfig(InventoryDefaultSection):
         """
         port = values.get("port")
         if "replicas" not in values and port:
-            assert isinstance(port, int), "If no host 'replicas' given, port must be an integer"
+            if not isinstance(port, int):
+                raise ValueError("If no host 'replicas' given, port must be an integer")
         elif "replicas" in values and port:
-            assert isinstance(port, list), "If host 'replicas' given, port must be a list"
+            if not isinstance(port, list):
+                raise ValueError("If host 'replicas' given, port must be a list")
         return values
 
 

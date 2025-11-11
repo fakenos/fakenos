@@ -8,7 +8,6 @@ import subprocess
 import time
 from typing import List
 
-import psutil
 from netmiko import ConnectHandler
 import pytest
 
@@ -31,22 +30,38 @@ fakerouter2 = {
 }
 
 
-def check_docker_is_running() -> False:
+def check_docker_is_running() -> bool:
     """Checks if Docker is running."""
     if IN_GITHUB_ACTIONS:
         return True
-    return "docker" not in (i.name() for i in psutil.process_iter())
+    try:
+        # Run `docker info` and check the return code
+        subprocess.run(
+            ["docker", "info"],
+            check=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+        )
+        return False
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return True
 
 
 @pytest.fixture
 def setup():
     """Starts the docker containers."""
     try:
-        subprocess.run(["docker", "compose", "-f", "docker/docker-compose.yaml", "up", "-d"], check=True)
+        subprocess.run(
+            ["docker", "compose", "-f", "docker/docker-compose.yaml", "up", "-d"],
+            check=True,
+        )
         time.sleep(5)
         yield
     finally:
-        subprocess.run(["docker", "compose", "-f", "docker/docker-compose.yaml", "down"], check=True)
+        subprocess.run(
+            ["docker", "compose", "-f", "docker/docker-compose.yaml", "down"],
+            check=True,
+        )
 
 
 @pytest.mark.skipif(IN_GITHUB_ACTIONS, reason="Skipping test in GitHub Actions.")

@@ -3,17 +3,16 @@ This module implements an SSH server done using
 paramiko as the SSH connection library.
 """
 
-import logging
 import io
+import logging
 import socket
 import threading
 import time
-from typing import Dict, List
+from typing import Optional
 
 import paramiko
 import paramiko.channel
 import paramiko.rsakey
-import paramiko.transport
 
 from fakenos.core.nos import Nos
 from fakenos.core.servers import TCPServerBase
@@ -114,7 +113,7 @@ class TapIO(io.StringIO):
     """
 
     def __init__(self, run_srv: threading.Event, initial_value: str = "", newline: str = "\n"):
-        self.lines: List[str] = []
+        self.lines: list[str] = []
         self.run_srv: threading.Event = run_srv
         super().__init__(initial_value, newline)
 
@@ -148,7 +147,10 @@ def channel_to_shell_tap(channel_stdio, shell_stdin, shell_replied_event, run_sr
         try:
             if byte in (b"\r", b"\n"):
                 channel_stdio.write(b"\r\n")
-                log.debug("ssh_server.channel_to_shell_tap echoing new line to channel: %s", [b"\r\n"])
+                log.debug(
+                    "ssh_server.channel_to_shell_tap echoing new line to channel: %s",
+                    [b"\r\n"],
+                )
                 buffer.write(byte)
                 buffer.seek(0)
                 line = buffer.read().decode(encoding="utf-8")
@@ -159,7 +161,10 @@ def channel_to_shell_tap(channel_stdio, shell_stdin, shell_replied_event, run_sr
                 shell_replied_event.clear()
             else:
                 channel_stdio.write(byte)
-                log.debug("ssh_server.channel_to_shell_tap echoing byte to channel: %s", [byte])
+                log.debug(
+                    "ssh_server.channel_to_shell_tap echoing byte to channel: %s",
+                    [byte],
+                )
                 if byte not in [b"\x00", b""]:
                     buffer.write(byte)
             time.sleep(0.01)
@@ -211,24 +216,24 @@ class ParamikoSshServer(TCPServerBase):
         self,
         shell: type,
         nos: Nos,
-        nos_inventory_config: Dict,
+        nos_inventory_config: dict,
         port: int,
         username: str,
         password: str,
-        ssh_key_file: paramiko.rsakey.RSAKey = None,
-        ssh_key_file_password: str = None,
+        ssh_key_file: Optional[paramiko.rsakey.RSAKey] = None,
+        ssh_key_file_password: Optional[str] = None,
         ssh_banner: str = "FakeNOS Paramiko SSH Server",
-        shell_configuration: Dict = None,
+        shell_configuration: Optional[dict] = None,
         address: str = "127.0.0.1",
         timeout: int = 1,
-        watchdog_interval: int = 1,
+        watchdog_interval: float = 1,
     ):
         super().__init__()
 
         self.nos: Nos = nos
-        self.nos_inventory_config: Dict = nos_inventory_config
+        self.nos_inventory_config: dict = nos_inventory_config
         self.shell: type = shell
-        self.shell_configuration: Dict = shell_configuration or {}
+        self.shell_configuration: Optional[dict] = shell_configuration or {}
         self.ssh_banner: str = ssh_banner
         self.username: str = username
         self.password: str = password
@@ -244,7 +249,13 @@ class ParamikoSshServer(TCPServerBase):
         else:
             self._ssh_server_key: paramiko.rsakey.RSAKey = paramiko.RSAKey(file_obj=io.StringIO(DEFAULT_SSH_KEY))
 
-    def watchdog(self, is_running: threading.Event, run_srv: threading.Event, session: paramiko.Transport, shell: any):
+    def watchdog(
+        self,
+        is_running: threading.Event,
+        run_srv: threading.Event,
+        session: paramiko.Transport,
+        shell: any,
+    ):
         """
         Method to monitor server liveness and recover where possible.
         """

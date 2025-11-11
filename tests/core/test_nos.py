@@ -90,7 +90,13 @@ class NosTest(unittest.TestCase):
         Test that the from_dict method works when the data is correct.
         """
         nos = Nos()
-        nos.from_dict({"name": "MyFakeNOS", "initial_prompt": "MyFakeNOS>", "commands": self.commands})
+        nos.from_dict(
+            {
+                "name": "MyFakeNOS",
+                "initial_prompt": "MyFakeNOS>",
+                "commands": self.commands,
+            }
+        )
         assert nos.name == "MyFakeNOS"
         assert nos.initial_prompt == "MyFakeNOS>"
         assert nos.commands == self.commands
@@ -117,7 +123,13 @@ class NosTest(unittest.TestCase):
         ValidationError when the commands are incorrect.
         """
         with pytest.raises(ValidationError):
-            Nos({"name": "MyFakeNOS", "initial_prompt": "MyFakeNOS>", "commands": "invalid_commands"})
+            Nos(
+                {
+                    "name": "MyFakeNOS",
+                    "initial_prompt": "MyFakeNOS>",
+                    "commands": "invalid_commands",
+                }
+            )
 
     def test_from_dict_only_name(self):
         """
@@ -252,7 +264,10 @@ class NosTest(unittest.TestCase):
             "name": "MyFakeNOSPlugin",
             "initial_prompt": "{base_prompt}>",
             "commands": {
-                "terminal width 511": {"output": "", "help": "Set terminal width to 511"},
+                "terminal width 511": {
+                    "output": "",
+                    "help": "Set terminal width to 511",
+                },
                 "terminal length 0": {"output": "", "help": "Set terminal length to 0"},
                 "show clock": {"output": "MyFakeNOSPlugin system time is 00:00:00"},
             },
@@ -335,7 +350,7 @@ class NosTest(unittest.TestCase):
         for filenames in nos_plugins.values():
             for filename in filenames:
                 assert isinstance(filename, str)
-                assert filename.endswith(".yaml") or filename.endswith(".py")
+                assert filename.endswith((".yaml", ".py"))
             assert len(filenames) <= 2
             if len(filenames) == 2:
                 assert filenames[0].endswith(".yaml")

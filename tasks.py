@@ -8,20 +8,16 @@ run locally or within the Docker container.
 import os
 import sys
 import time
-from typing import List
+import tomllib
 
-import yaml
 from invoke import task
 from netmiko import ConnectHandler
+import yaml
+
 from fakenos import FakeNOS
 
-try:
-    import toml
-except ImportError:
-    sys.exit(
-        "Please make sure to `pip install toml` or \
-             enable the Poetry shell and run `poetry install`."
-    )
+if sys.version_info < (3, 11):
+    sys.exit("Please make sure to run this with Python 3.11 or higher.")
 
 
 def strtobool(val: str) -> bool:
@@ -47,7 +43,7 @@ def strtobool(val: str) -> bool:
     raise ValueError(f"Invalid truth value: {val}")
 
 
-def is_truthy(arg):
+def is_truthy(arg: str | bool) -> bool:
     """Convert "truthy" strings into Booleans.
 
     Examples:
@@ -64,12 +60,13 @@ def is_truthy(arg):
     return bool(strtobool(arg))
 
 
-PYPROJECT_CONFIG = toml.load("pyproject.toml")
-TOOL_CONFIG = PYPROJECT_CONFIG["tool"]["poetry"]
+with open("pyproject.toml", "rb") as f:
+    PYPROJECT_CONFIG = tomllib.load(f)
+TOOL_CONFIG = PYPROJECT_CONFIG["project"]
 
 # Can be set to a separate Python version to be used
 # for launching or building image
-PYTHON_VER = os.getenv("PYTHON_VER", "3.11")
+PYTHON_VER = os.getenv("PYTHON_VER", "3.13")
 # Name of the docker image/image
 IMAGE_NAME = os.getenv("IMAGE_NAME", TOOL_CONFIG["name"])
 # Tag for the image
@@ -164,23 +161,11 @@ def pytest(context, local=INVOKE_LOCAL):
 
 
 @task(help={"local": "Run locally or within the Docker container"})
-def black(context, local=INVOKE_LOCAL):
-    """Run black to check that Python files adherence to black standards."""
-    exec_cmd = "black --check --diff ."
+def ruff(context, local=INVOKE_LOCAL):
+    """Run ruff to check that Python files adherence to ruff standards."""
+    exec_cmd = "ruff check --diff"
     run_cmd(context, exec_cmd, local=local)
-
-
-@task(help={"local": "Run locally or within the Docker container"})
-def flake8(context, local=INVOKE_LOCAL):
-    """Run flake8 code analysis."""
-    exec_cmd = "flake8 ."
-    run_cmd(context, exec_cmd, local=local)
-
-
-@task(help={"local": "Run locally or within the Docker container"})
-def pylint(context, local=INVOKE_LOCAL):
-    """Run pylint code analysis excluding .venv directory."""
-    exec_cmd = 'find . -name "*.py" -not -path "./.venv/*" | xargs pylint'
+    exec_cmd = "ruff format --diff"
     run_cmd(context, exec_cmd, local=local)
 
 
@@ -208,9 +193,7 @@ def cli(context):
 @task(help={"local": "Run locally or within the Docker container"})
 def tests(context, local=INVOKE_LOCAL):
     """Run all tests."""
-    black(context, local=local)
-    flake8(context, local=local)
-    pylint(context, local=local)
+    ruff(context, local=local)
     # yamllint(context, local=local)
     bandit(context, local=local)
     pytest(context, local=local)
@@ -240,15 +223,15 @@ def gen_docs_platform_commands(ctx):
     Generate platform specific commands in the docs.
     """
     platforms_folder: str = "fakenos/plugins/nos/platforms"
-    files: List[str] = os.listdir(platforms_folder)
-    platforms: List[str] = [platform.split(".yaml")[0] for platform in files]
+    files: list[str] = os.listdir(platforms_folder)
+    platforms: list[str] = [platform.split(".yaml")[0] for platform in files]
 
     for platform in platforms:
         print(f"Generating Platform: {platform}")
         if os.path.exists(f"docs/platforms/{platform}.md"):
             continue
         with open(f"{platforms_folder}/{platform}.yaml", "r", encoding="utf-8") as file:
-            data = yaml.load(file, Loader=yaml.FullLoader)
+            data = yaml.safe_load(file)
         with open(f"docs/platforms/{platform}.md", "w", encoding="utf-8") as platforms_file:
             platforms_file.write(f"# {platform}\n\n")
             platforms_file.write(WARNING_MESSAGE)
@@ -264,7 +247,7 @@ def gen_docs_platform_commands(ctx):
                 platforms_file.write(f"**Help:** {details['help']}\n\n")
                 platforms_file.write("**Prompt:**\n")
                 prompts = details["prompt"]
-                if not isinstance(prompts, List):
+                if not isinstance(prompts, list):
                     prompts = [prompts]
                 for prompt in prompts:
                     platforms_file.write(f"- {prompt}\n")
@@ -278,7 +261,16 @@ def netmiko_check(ctx, device_type: str):
     This is a task for debugging possible problems with Netmiko logins.
     """
     init_time = time.time()
-    inventory = {"hosts": {"host1": {"username": "user", "password": "user", "platform": device_type, "port": 6000}}}
+    inventory = {
+        "hosts": {
+            "host1": {
+                "username": "user",
+                "password": "user",
+                "platform": device_type,
+                "port": 6000,
+            }
+        }
+    }
 
     credentials = {
         "host": "localhost",
@@ -297,4 +289,4 @@ def netmiko_check(ctx, device_type: str):
     net.stop()
 
     print("Everything is OK! ✅")
-    print(f"Time spent: {time.time()-init_time:.2f}s")
+    print(f"Time spent: {time.time() - init_time:.2f}s")
