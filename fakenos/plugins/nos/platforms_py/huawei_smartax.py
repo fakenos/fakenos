@@ -6,8 +6,6 @@ NOS module for Huawei SmartAX
 # import os
 from typing import List
 
-from click import command
-
 from fakenos.plugins.nos.platforms_py.base_template import BaseDevice
 
 NAME: str = "huawei_smartax"
@@ -81,6 +79,7 @@ class HuaweiSmartAX(BaseDevice):
         if current_prompt.endswith("#"):
             return {"output": "", "new_prompt": INITIAL_PROMPT}
         return {"output": "", "new_prompt": current_prompt}
+
 
 commands = {
     "enable": {
