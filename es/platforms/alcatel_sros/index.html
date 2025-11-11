@@ -1,0 +1,2439 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="FakeNOS, Network, SSH">
+      
+      
+        <meta name="author" content="Denis Mulyalin">
+      
+      
+        <link rel="canonical" href="https://fakenos.github.io/fakenos/es/platforms/alcatel_sros/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>alcatel_sros - FakeNOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="brown" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#alcatel_sros" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../" title="FakeNOS" class="md-header__button md-logo" aria-label="FakeNOS" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            FakeNOS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              alcatel_sros
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="brown" data-md-color-accent="deep-orange"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="brown" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Seleccionar idioma">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../platforms/alcatel_sros/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="es" class="md-select__link">
+              Español
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../../ca/platforms/alcatel_sros/" hreflang="ca" class="md-select__link">
+              Català
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/fakenos/fakenos" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    fakenos/fakenos
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+  Resumen
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../examples/" class="md-tabs__link">
+          
+  
+  
+  Ejemplos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../usage/installation/" class="md-tabs__link">
+          
+  
+  
+  Uso
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Plataformas
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../development/" class="md-tabs__link">
+          
+  
+  
+  Desarrollo
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../collaborators/" class="md-tabs__link">
+          
+  
+  
+  Colaboradores
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api/core_api_reference/" class="md-tabs__link">
+          
+  
+  
+  API
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="FakeNOS" class="md-nav__button md-logo" aria-label="FakeNOS" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    FakeNOS
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/fakenos/fakenos" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    fakenos/fakenos
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Resumen
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Resumen
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resumen
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/why/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ¿Por qué?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/what/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ¿Qué?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/how/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ¿Cómo?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/what_not/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ¿Qué no?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Referencias
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Ejemplos
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Ejemplos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ejemplos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/developing_scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Desarrollo de scripts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/automatic_testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pruebas automáticas - CI/CD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Uso
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Uso
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Instalación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/getting_started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Empezar
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/fakenos_inventory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Inventario
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/running_in_docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ejecutar en contenedor Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/configurations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuraciones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Plataformas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Desarrollo
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Desarrollo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Principal
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/conventions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Convenciones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/tasks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tareas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/creating_new_platforms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Crear una nueva plataforma
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/creating_nos_plugin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Crear un complemento NOS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/github_actions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Acciones de Github
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/extras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extras
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Colaboradores
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Colaboradores
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collaborators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Colaboradores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    API
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            API
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/core_api_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Core API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/builtin_plugins_api_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Built-in Plugins API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#platforms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Platforms:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable" class="md-nav__link">
+    <span class="md-ellipsis">
+      enable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-router-pim-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      show router pim interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-router-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      show router interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-router-mpls-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      show router mpls interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-service-sdp" class="md-nav__link">
+    <span class="md-ellipsis">
+      show service sdp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-router-isis-adjacency" class="md-nav__link">
+    <span class="md-ellipsis">
+      show router isis adjacency
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-service-sdp-using" class="md-nav__link">
+    <span class="md-ellipsis">
+      show service sdp-using
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-router-isis-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      show router isis interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-router-mpls-lsp" class="md-nav__link">
+    <span class="md-ellipsis">
+      show router mpls lsp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-lag" class="md-nav__link">
+    <span class="md-ellipsis">
+      show lag
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-service-sap-using" class="md-nav__link">
+    <span class="md-ellipsis">
+      show service sap-using
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-router-ldp-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      show router ldp interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oam-mac-ping" class="md-nav__link">
+    <span class="md-ellipsis">
+      oam mac-ping
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-service-id-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      show service id base
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-router-bgp-summary-family" class="md-nav__link">
+    <span class="md-ellipsis">
+      show router bgp summary family
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-system-cpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      show system cpu
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-router-rsvp-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      show router rsvp interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-router-bgp-routes-vpn-ipv4" class="md-nav__link">
+    <span class="md-ellipsis">
+      show router bgp routes vpn-ipv4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-port" class="md-nav__link">
+    <span class="md-ellipsis">
+      show port
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-router-ospf-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      show router ospf interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-no-more" class="md-nav__link">
+    <span class="md-ellipsis">
+      environment no more
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-more-false" class="md-nav__link">
+    <span class="md-ellipsis">
+      //environment more false
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="alcatel_sros">alcatel_sros<a class="headerlink" href="#alcatel_sros" title="Permanent link">#</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is automatically generated. In case of any issues, 
+please refer to the source code or, even better, 
+open an issue on the GitHub repository. Thanks! 🤗📖</p>
+</div>
+<h2 id="platforms">Platforms:<a class="headerlink" href="#platforms" title="Permanent link">#</a></h2>
+<h2 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">#</a></h2>
+<h3 id="enable">enable<a class="headerlink" href="#enable" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>null
+</code></pre></div></p>
+<p><strong>Help:</strong> enter enable mode</p>
+<p><strong>Prompt:</strong>
+- alcatel_sros&gt;</p>
+<h3 id="show-router-pim-interface">show router pim interface<a class="headerlink" href="#show-router-pim-interface" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>===============================================================================
+ PIM Interfaces ipv4
+===============================================================================
+Interface                   Adm  Opr  DR Prty         Hello Intvl  Mcast Send
+   DR
+-------------------------------------------------------------------------------
+R1_R2                       Up   Up   1               30           auto
+   192.0.2.245
+R1_R3                       Up   Up   1               30           auto
+   192.0.2.42
+R1_R4                       Up   Down 10              30           auto
+   N/A
+R1_R5                       Up   Down 5               30           auto
+   N/A
+R1_R6                       Up   Down N/A             30           auto
+   N/A
+-------------------------------------------------------------------------------
+ Interfaces : 5 Tunnel-Interfaces : 0
+===============================================================================
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show router pim interface"</p>
+<p><strong>Prompt:</strong>
+- alcatel_sros&gt;
+- alcatel_sros#</p>
+<h3 id="show-router-interface">show router interface<a class="headerlink" href="#show-router-interface" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>===============================================================================
+ Interface Table (Router: Base)
+===============================================================================
+Interface-Name                   Adm       Opr(v4/v6)  Mode    Port/SapId
+   IP-Address                                                  PfxState
+-------------------------------------------------------------------------------
+L3-Telecom-IXR01-1               Up        Down/Up     IES     lag-21:300
+   2001:4888:2062:357a:645:400:0:2/64                          PREFERRED
+   fe80::645:400:0:2/64                                        PREFERRED
+L3-Telecom-IXR02-1               Up        Down/Up     IES     lag-22:300
+   2001:4888:2062:3591:645:400:0:2/64                          PREFERRED
+   fe80::645:400:0:2/64                                        PREFERRED
+TO_EDGE_IXR01                    Up        Down/Down   Network n/a
+   192.168.28.1/24                                             n/a
+   192.168.47.1/24                                             n/a
+system                           Up        Up/Up       Network system
+   10.115.43.64/32                                             n/a
+   2001:4888:2062:3000:645:400:0:1a0/128                       PREFERRED
+to-7750-02                       Up        Up/Up       Network 1/1/c4/1:2415
+   172.25.214.121/31                                           n/a
+   2001:4888:206a:335c:645:400:0:1/64                          PREFERRED
+   fe80::c9:ffff:fe00:0/64                                     PREFERRED
+to-BTS0415-7750-H1               Up        Down/Down   Network lag-11:4094
+   172.25.198.123/31                                           n/a
+   2001:4888:206a:335f:645:400:0:1/64                          INACCESSIBLE
+   fe80::c9:ffff:fe00:14b/64                                   INACCESSIBLE
+-------------------------------------------------------------------------------
+ Interfaces : 6
+===============================================================================
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show router interface"</p>
+<p><strong>Prompt:</strong>
+- alcatel_sros&gt;
+- alcatel_sros#</p>
+<h3 id="show-router-mpls-interface">show router mpls interface<a class="headerlink" href="#show-router-mpls-interface" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>===============================================================================
+ MPLS Interfaces
+===============================================================================
+Interface                           Port-id           Adm  Opr(V4/V6) TE-
+                                                                      metric
+-------------------------------------------------------------------------------
+system                              system            Up   Up/Down    None
+  Admin Groups                      None
+  SRLG Groups                       None
+TO_IOSXR                            1/1/c4/1          Up   Up/Down    98999
+  Admin Groups                      RED
+                                    GREEN
+  SRLG Groups                       None
+TO_R1                               1/1/c1/1          Up   Up/Down    65660
+  Admin Groups                      None
+  SRLG Groups                       None
+TO_R4                               1/1/c2/1          Up   Up/Down    None
+  Admin Groups                      None
+  SRLG Groups                       PURPLE
+                                    WHITE
+-------------------------------------------------------------------------------
+ Interfaces : 4
+===============================================================================
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show router mpls interface"</p>
+<p><strong>Prompt:</strong>
+- alcatel_sros&gt;
+- alcatel_sros#</p>
+<h3 id="show-service-sdp">show service sdp<a class="headerlink" href="#show-service-sdp" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>============================================================================
+ Services: Service Destination Points
+============================================================================
+SdpId  AdmMTU  OprMTU  Far End          Adm  Opr         Del     LSP   Sig
+----------------------------------------------------------------------------
+1      0       9170    192.168.0.1      Down Down        GRE     n/a   TLDP
+31     0       0       10.10.10.1       Up   Down        MPLS    R     TLDP
+32     0       0       10.10.10.2       Up   Down        MPLS    R     TLDP
+34     0       0       10.10.10.4       Up   Down        MPLS    R     TLDP
+38     0       492     10.10.10.8       Up   Down        MPLS    R     TLDP
+2000   0       0                        Down Down        GRE     n/a   TLDP
+ ----------------------------------------------------------------------------
+ Number of SDPs : 6
+----------------------------------------------------------------------------
+ Legend: R = RSVP, L = LDP, B = BGP, M = MPLS-TP, n/a = Not Applicable
+        I = SR-ISIS, O = SR-OSPF, T = SR-TE, F = FPE
+============================================================================
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show service sdp"</p>
+<p><strong>Prompt:</strong>
+- alcatel_sros&gt;
+- alcatel_sros#</p>
+<h3 id="show-router-isis-adjacency">show router isis adjacency<a class="headerlink" href="#show-router-isis-adjacency" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>===============================================================================
+ Rtr Base ISIS Instance 0 Adjacency
+===============================================================================
+ System ID                Usage State Hold Interface                     MT-ID
+-------------------------------------------------------------------------------
+R2                       L2    Up    27   R1_R2                         0,2
+R3                       L2    Up    19   R1_R3                         0,2
+ -------------------------------------------------------------------------------
+ Adjacencies : 2
+===============================================================================
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show router isis adjacency"</p>
+<p><strong>Prompt:</strong>
+- alcatel_sros&gt;
+- alcatel_sros#</p>
+<h3 id="show-service-sdp-using">show service sdp-using<a class="headerlink" href="#show-service-sdp-using" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>===============================================================================
+ SDP Using
+===============================================================================
+SvcId      SdpId              Type   Far End              Opr   I.Label E.Label
+                                                          State         
+-------------------------------------------------------------------------------
+200        31:200             Spok   10.10.10.1           Up    524281  524283
+200        34:200             Mesh   10.10.10.4           Down  None    None
+310        32767:4294967295   BgpAd  10.10.10.1           Up    524278  524280
+400        32767:4294967294   BgpAd  10.10.10.1           Up    524277  524279
+401        32767:4294967293   BgpAd  10.10.10.1           Up    524276  524278
+ -------------------------------------------------------------------------------
+ Number of SDPs : 5
+-------------------------------------------------------------------------------
+===============================================================================
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show service sdp-using"</p>
+<p><strong>Prompt:</strong>
+- alcatel_sros&gt;
+- alcatel_sros#</p>
+<h3 id="show-router-isis-interface">show router isis interface<a class="headerlink" href="#show-router-isis-interface" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>===============================================================================
+ Rtr Base ISIS Instance 0 Interfaces
+===============================================================================
+Interface                        Level CircID  Oper State   L1/L2 Metric
+-------------------------------------------------------------------------------
+system                           L1L2  1       Up           0/0
+R1_R2                            L2    18      Up           10/10
+R1_R3                            L1    21      Down         10/1000
+-------------------------------------------------------------------------------
+ Interfaces : 3
+===============================================================================
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show router isis interface"</p>
+<p><strong>Prompt:</strong>
+- alcatel_sros&gt;
+- alcatel_sros#</p>
+<h3 id="show-router-mpls-lsp">show router mpls lsp<a class="headerlink" href="#show-router-mpls-lsp" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>===============================================================================
+ MPLS LSPs (Originating)
+===============================================================================
+ LSP Name                                            Tun     Fastfail  Adm  Opr
+  To                                                Id      Config         
+-------------------------------------------------------------------------------
+TO_IOSXR                                            1       Yes       Up   Up
+  10.10.10.8                                                               
+TO_R1                                               2       Yes       Up   Up
+  10.10.10.1                                                               
+TO_R2                                               3       Yes       Up   Dwn
+  10.10.10.2                                                               
+TO_R4                                               4       Yes       Up   Dwn
+  10.10.10.4                                                               
+Full-Mesh-10.10.10.8-61441                          61441   Yes       Up   Up
+  10.10.10.8                                                               
+Full-Mesh-10.10.10.1-65240                          65240   Yes       Up   Up
+  10.10.10.1                                                               
+-------------------------------------------------------------------------------
+ LSPs : 6
+===============================================================================
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show router mpls lsp"</p>
+<p><strong>Prompt:</strong>
+- alcatel_sros&gt;
+- alcatel_sros#</p>
+<h3 id="show-lag">show lag<a class="headerlink" href="#show-lag" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>===============================================================================
+ Lag Data
+===============================================================================
+Lag-id         Adm     Opr     Weighted Threshold Up-Count MC Act/Stdby
+-------------------------------------------------------------------------------
+1              up      up      No       0         2        N/A
+2              up      up      No       0         2        N/A
+3              up      up      No       0         1        N/A
+4              down    down    No       0         0        N/A
+5              down    down    No       0         0        N/A
+10             down    down    No       0         0        N/A
+20             up      down    No       0         0        standby
+70             down    down    No       0         0        N/A
+80             up      down    No       0         0        N/A
+90             down    down    No       0         0        N/A
+100            up      up      No       0         1        N/A
+101            up      up      No       0         1        N/A
+102            up      up      No       0         1        N/A
+103            up      up      No       0         1        active
+104            up      up      No       0         1        N/A
+105            up      up      No       0         1        N/A
+106            up      up      No       0         1        N/A
+107            up      up      No       0         1        N/A
+108            up      up      No       0         1        N/A
+109            up      up      No       0         1        N/A
+110            up      up      No       0         1        active
+111            up      up      No       0         1        N/A
+112            up      up      No       0         1        N/A
+114            up      up      No       0         1        N/A
+115            up      up      No       0         1        N/A
+120            up      up      No       0         1        N/A
+124            down    down    No       0         0        N/A
+140            up      up      No       0         1        N/A
+150            down    down    No       0         0        N/A
+153            up      up      No       0         1        active
+180            down    down    No       0         0        N/A
+-------------------------------------------------------------------------------
+ Total Lag-ids: 31      Single Chassis: 27       MC Act: 3       MC Stdby: 1
+===============================================================================
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show lag"</p>
+<p><strong>Prompt:</strong>
+- alcatel_sros&gt;
+- alcatel_sros#</p>
+<h3 id="show-service-sap-using">show service sap-using<a class="headerlink" href="#show-service-sap-using" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>===============================================================================
+ Service Access Points 
+===============================================================================
+PortId                          SvcId      Ing.  Ing.    Egr.  Egr.   Adm  Opr
+                                           QoS   Fltr    QoS   Fltr        
+-------------------------------------------------------------------------------
+lag-21:300                      1          11130 none    11140 none   Up   Up
+lag-22:300                      1          11130 ip4     11140 none   Up   Up
+1/1/c6/1:234                    400        1     none    1     none   Up   Down
+lag-21:400                      76415001   10    none    1     none   Up   Up
+lag-22:400                      76415002   10    none    1     none   Up   Up
+ -------------------------------------------------------------------------------
+ Number of SAPs : 5
+-------------------------------------------------------------------------------
+===============================================================================
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show service sap-using"</p>
+<p><strong>Prompt:</strong>
+- alcatel_sros&gt;
+- alcatel_sros#</p>
+<h3 id="show-router-ldp-interface">show router ldp interface<a class="headerlink" href="#show-router-ldp-interface" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>===============================================================================
+ LDP Interfaces
+===============================================================================
+Interface                         Adm/Opr
+ Sub-Interface(s)                  Adm/Opr  Hello Hold  KA    KA    Transport
+                                            Fctr  Time  Fctr  Time  Address
+-------------------------------------------------------------------------------
+R1_R2                             Up/Up
+  ipv4                              Up/Up   3     15    3     30    System
+R1_R3                             Up/Up
+  ipv4                              Up/Up   3     15    3     30    System
+  ipv6                              Up/Up   3     15    3     30    System
+R1_R4                             Up/Up
+  ipv4                              Up/Dwn  3     15    3     30    System
+-------------------------------------------------------------------------------
+ No. of Interfaces: 3
+===============================================================================
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show router ldp interface"</p>
+<p><strong>Prompt:</strong>
+- alcatel_sros&gt;
+- alcatel_sros#</p>
+<h3 id="oam-mac-ping">oam mac-ping<a class="headerlink" href="#oam-mac-ping" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>Seq Node-id                                                    Path     RTT
+----------------------------------------------------------------------------
+ [Send request Seq. 1, Size 126]
+1   192.0.2.4:sap1/1/2:100                 No FIB on Egress In-Band  0.153ms
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "oam mac-ping"</p>
+<p><strong>Prompt:</strong>
+- alcatel_sros&gt;
+- alcatel_sros#</p>
+<h3 id="show-service-id-base">show service id base<a class="headerlink" href="#show-service-id-base" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>===============================================================================
+ Service Basic Information
+===============================================================================
+ Service Id        : 1099                Vpn Id            : 0
+Service Type      : VPLS                
+Name              : (Not Specified)
+Description       : this_is_a_description
+Customer Id       : 4                   
+ Last Status Change: 10/31/2016 14:44:10 
+Last Mgmt Change  : 11/01/2016 11:04:36 
+Admin State       : Up                  Oper State        : Down
+MTU               : 5000                Def. Mesh VC Id   : 1099
+SAP Count         : 1                   SDP Bind Count    : 1
+Snd Flush on Fail : Disabled            Host Conn Verify  : Disabled
+Propagate MacFlush: Disabled            Per Svc Hashing   : Disabled
+Allow IP Intf Bind: Disabled            
+Def. Gateway IP   : None                
+Def. Gateway MAC  : None                
+Temp Flood Time   : Disabled            Temp Flood        : Inactive
+Temp Flood Chg Cnt: 0                   
+
+-------------------------------------------------------------------------------
+ Service Access &amp; Destination Points
+-------------------------------------------------------------------------------
+Identifier                               Type         AdmMTU  OprMTU  Adm  Opr
+-------------------------------------------------------------------------------
+sap:1/1/6:100                            q-tag        9212    9212    Up   Down
+ sdp:4:1099 M(192.0.2.4)                  Mesh         0       9190    Up   Down
+===============================================================================
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show service id base"</p>
+<p><strong>Prompt:</strong>
+- alcatel_sros&gt;
+- alcatel_sros#</p>
+<h3 id="show-router-bgp-summary-family">show router bgp summary family<a class="headerlink" href="#show-router-bgp-summary-family" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>[kvanlang@steffi upgrade-support]$ cat ../ntc-templates-test/lib/test-bgp-sum-family.raw
+ A:SRHERE01# show router &quot;Base&quot; bgp summary family ipv4
+===============================================================================
+ BGP Router ID:192.0.2.11   AS:6848        Local AS:65535
+===============================================================================
+ BGP Admin State         : Up          BGP Oper State              : Up
+Total Peer Groups       : 6           Total Peers                 : 150
+Total VPN Peer Groups   : 79          Total VPN Peers             : 207
+Total BGP Paths         : 407944      Total Path Memory           : 160791243
+
+Total IPv4 Remote Rts   : 1725031     Total IPv4 Rem. Active Rts  : 862201
+Total IPv6 Remote Rts   : 0           Total IPv6 Rem. Active Rts  : 0
+Total IPv4 Backup Rts   : 0           Total IPv6 Backup Rts       : 0
+Total LblIpv4 Rem Rts   : 2844        Total LblIpv4 Rem. Act Rts  : 311
+Total LblIpv6 Rem Rts   : 196896      Total LblIpv6 Rem. Act Rts  : 98446
+Total LblIpv4 Bkp Rts   : 0           Total LblIpv6 Bkp Rts       : 0
+Total Supressed Rts     : 0           Total Hist. Rts             : 0
+Total Decay Rts         : 0
+
+ Total VPN-IPv4 Rem. Rts : 93000       Total VPN-IPv4 Rem. Act. Rts: 45689
+ Total VPN-IPv6 Rem. Rts : 0           Total VPN-IPv6 Rem. Act. Rts: 0
+Total VPN-IPv4 Bkup Rts : 0           Total VPN-IPv6 Bkup Rts     : 0
+Total VPN Local Rts     : 1147        Total VPN Supp. Rts         : 0
+Total VPN Hist. Rts     : 0           Total VPN Decay Rts         : 0
+
+Total MVPN-IPv4 Rem Rts : 0           Total MVPN-IPv4 Rem Act Rts : 0
+Total MVPN-IPv6 Rem Rts : 0           Total MVPN-IPv6 Rem Act Rts : 0
+Total MDT-SAFI Rem Rts  : 0           Total MDT-SAFI Rem Act Rts  : 0
+Total McIPv4 Remote Rts : 0           Total McIPv4 Rem. Active Rts: 0
+Total McIPv6 Remote Rts : 0           Total McIPv6 Rem. Active Rts: 0
+Total McVpnIPv4 Rem Rts : 0           Total McVpnIPv4 Rem Act Rts : 0
+Total McVpnIPv6 Rem Rts : 0           Total McVpnIPv6 Rem Act Rts : 0
+
+Total EVPN Rem Rts      : 692         Total EVPN Rem Act Rts      : 338
+Total L2-VPN Rem. Rts   : 0           Total L2VPN Rem. Act. Rts   : 0
+Total MSPW Rem Rts      : 0           Total MSPW Rem Act Rts      : 0
+Total RouteTgt Rem Rts  : 1546        Total RouteTgt Rem Act Rts  : 1546
+Total FlowIpv4 Rem Rts  : 0           Total FlowIpv4 Rem Act Rts  : 0
+ Total FlowIpv6 Rem Rts  : 0           Total FlowIpv6 Rem Act Rts  : 0
+Total Link State Rem Rts: 0           Total Link State Rem Act Rts: 0
+Total SrPlcyIpv4 Rem Rts: 0           Total SrPlcyIpv4 Rem Act Rts: 0
+
+===============================================================================
+ BGP IPv4 Summary
+===============================================================================
+ Legend : D - Dynamic Neighbor
+===============================================================================
+Neighbor
+                   AS PktRcvd PktSent  InQ OutQ Up/Down   State|Recv/Actv/Sent
+-------------------------------------------------------------------------------
+192.0.2.118
+               42598*  228872  215409    0    0 25d10h18m 2/2/1
+192.0.2.110
+               42598   271035  249777    0    0 29d11h41m 1/1/1
+192.0.2.126
+               42598*       0       0    0    0 54d18h43m Connect
+192.0.2.254
+               42598*       0       0    0    0 36d13h37m Active
+192.0.2.103
+               65535  390698*  749512    0    0 54d18h40m 862440/627895/373
+192.0.2.104
+               65535  355316*  749512    0    0 54d18h40m 862439/234172/373
+ -------------------------------------------------------------------------------
+ * indicates that the corresponding row element may have been truncated.
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show router bgp summary family"</p>
+<p><strong>Prompt:</strong>
+- alcatel_sros&gt;
+- alcatel_sros#</p>
+<h3 id="show-system-cpu">show system cpu<a class="headerlink" href="#show-system-cpu" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>===============================================================================
+ CPU Utilization (Sample period: 1 second)
+===============================================================================
+Name                                   CPU Time       CPU Usage        Capacity
+                                         (uSec)                           Usage
+-------------------------------------------------------------------------------
+BFD                                         189           0.01%           0.01%
+BGP                                          20          ~0.00%          ~0.00%
+ BGP PE-CE                                     0           0.00%           0.00%
+BIER                                          0           0.00%           0.00%
+CFLOWD                                       48          ~0.00%          ~0.00%
+ Cards &amp; Ports                             2,311           0.23%           0.10%
+ DHCP Server                                  11          ~0.00%          ~0.00%
+ETH-CFM                                     244           0.02%           0.02%
+ HQoS Algorithm                              102           0.01%           0.01%
+ HQoS Statistics                             653           0.06%           0.06%
+ICC                                         524           0.05%           0.03%
+IGMP/MLD                                     78          ~0.00%          ~0.00%
+ IMSI Db Appl                                128           0.01%           0.01%
+IOM                                      37,866           3.78%           2.15%
+ IP Stack                                  3,554           0.35%           0.22%
+IS-IS                                       298           0.02%           0.01%
+ISA                                       1,093           0.10%           0.03%
+LDP                                         433           0.04%           0.02%
+Logging                                      15          ~0.00%          ~0.00%
+MBUF                                          0           0.00%           0.00%
+MCS                                          83          ~0.00%          ~0.00%
+MPLS/RSVP                                 1,230           0.12%           0.05%
+MSCP                                          0           0.00%           0.00%
+MSDP                                          0           0.00%           0.00%
+Management                               25,404           2.53%           1.84%
+OAM                                       1,759           0.17%           0.05%
+OSPF                                        815           0.08%           0.02%
+OpenFlow                                     30          ~0.00%          ~0.00%
+PIM/L2Mcast                                   0           0.00%           0.00%
+PKI                                          24          ~0.00%          ~0.00%
+PTP                                           8          ~0.00%          ~0.00%
+RIP                                           0           0.00%           0.00%
+RTM/Policies                                  0           0.00%           0.00%
+Redundancy                                    0           0.00%           0.00%
+SIM                                       4,086           0.40%           0.39%
+ SNMP Daemon                                   0           0.00%           0.00%
+Security                                      0           0.00%           0.00%
+Services                                  1,246           0.12%           0.04%
+Stats                                         0           0.00%           0.00%
+Stats-Extended                                0           0.00%           0.00%
+ Subscriber Mgmt                             834           0.08%           0.01%
+System                                   52,774           5.27%           2.63%
+ Traffic Eng                                   0           0.00%           0.00%
+ Tree Sid                                      0           0.00%           0.00%
+VRRP                                        227           0.02%           0.01%
+ WEB Redirect                                107           0.01%          ~0.00%
+-------------------------------------------------------------------------------
+Total                                 1,001,337         100.00%                
+   Idle                                 865,143          86.39%                
+   Usage                                136,194          13.60%                
+Busiest Core Utilization                136,194          13.60%                
+===============================================================================
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show system cpu"</p>
+<p><strong>Prompt:</strong>
+- alcatel_sros&gt;
+- alcatel_sros#</p>
+<h3 id="show-router-rsvp-interface">show router rsvp interface<a class="headerlink" href="#show-router-rsvp-interface" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>===============================================================================
+ RSVP Interfaces
+===============================================================================
+Interface                        Total    Active    Total BW  Resv BW   Adm Opr
+                                 Sessions Sessions  (Mbps)    (Mbps)        
+-------------------------------------------------------------------------------
+system                           -        -         -         -         Up  Up
+TO_IOSXR                         0        0         10000     0         Dwn Dwn
+TO_R1                            0        0         10000     0         Up  Up
+TO_R4                            0        0         10000     0         Up  Up
+-------------------------------------------------------------------------------
+ Interfaces : 4
+===============================================================================
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show router rsvp interface"</p>
+<p><strong>Prompt:</strong>
+- alcatel_sros&gt;
+- alcatel_sros#</p>
+<h3 id="show-router-bgp-routes-vpn-ipv4">show router bgp routes vpn-ipv4<a class="headerlink" href="#show-router-bgp-routes-vpn-ipv4" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>===============================================================================
+ BGP Router ID:192.0.2.1        AS:65500       Local AS:65500      
+===============================================================================
+ Legend -
+ Status codes  : u - used, s - suppressed, h - history, d - decayed, * - valid
+                 l - leaked, x - stale, &gt; - best, b - backup, p - purge
+ Origin codes  : i - IGP, e - EGP, ? - incomplete
+
+===============================================================================
+ BGP VPN-IPv4 Routes
+===============================================================================
+Flag  Network                                            LocalPref   MED
+      Nexthop (Router)                                   Path-Id     Label
+      As-Path                                                        
+-------------------------------------------------------------------------------
+*&gt;i   65500:11:192.0.2.4/32                              100         None
+      10.11.5.5                                          None        262132
+      No As-Path                                                      
+u*&gt;i  65500:11:192.0.2.14/32                             100         None
+      192.0.2.2                                          None        262132
+      No As-Path                                                      
+-------------------------------------------------------------------------------
+ Routes : 2
+===============================================================================
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show router bgp routes vpn-ipv4"</p>
+<p><strong>Prompt:</strong>
+- alcatel_sros&gt;
+- alcatel_sros#</p>
+<h3 id="show-port">show port<a class="headerlink" href="#show-port" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>===============================================================================
+ Ports on Slot 1
+===============================================================================
+Port          Admin Link Port    Cfg  Oper LAG/ Port Port Port   C/QS/S/XFP/
+Id            State      State   MTU  MTU  Bndl Mode Encp Type   MDIMDX
+-------------------------------------------------------------------------------
+1/1/1         Up    Yes  Up      9212 9212    - hybr dotq xcme   GIGE-SX
+1/1/2         Up    Yes  Up      1518 1518    - accs dotq xcme   MDI GIGE-T
+1/1/3         Up    Yes  Up      1518 1518    - accs dotq xcme   MDX GIGE-T
+1/1/4         Up    Yes  Up      9212 9212    1 netw null xcme   GIGE-SX
+1/1/5         Up    Yes  Up      9212 9212    - netw null xcme   GIGE-SX
+1/1/6         Up    Yes  Up      9212 9212    - netw null xcme   GIGE-SX
+1/1/7         Up    Yes  Up      1518 1518    - accs dotq xcme   MDX GIGE-T
+1/1/8         Up    Yes  Up      1514 1514    - accs null xcme   MDX GIGE-T
+1/1/9         Up    Yes  Up      9212 9212    - netw null xcme   GIGE-SX
+1/1/10        Up    No   Down    1518 1518    - accs dotq xcme   GIGE-SX
+1/1/11        Up    No   Down    1518 1518    - accs dotq xcme   GIGE-T
+1/1/12        Up    Yes  Up      9000 9000    - accs null xcme   MDX GIGE-T
+1/1/13        Up    Yes  Up      1514 1514    - accs null xcme   GIGE-SX
+1/1/14        Up    Yes  Up      1514 1514    - accs null xcme   MDI GIGE-T
+1/1/15        Up    Yes  Up      9000 9000    - accs null xcme   MDI GIGE-T
+1/1/16        Up    Yes  Up      1514 1514    - accs null xcme   GIGE-SX
+1/1/17        Up    No   Down    1518 1518    - accs dotq xcme   GIGE-T
+1/1/18        Up    Yes  Up      1518 1518    - accs dotq xcme   MDI GIGE-T
+1/1/19        Up    Yes  Up      1514 1514    - accs null xcme   MDI GIGE-T
+1/1/20        Up    Yes  Up      9212 9212    - hybr dotq xcme   MDX GIGE-T
+1/1/21        Up    Yes  Up      1518 1518    - accs dotq xcme   GIGE-SX
+1/1/22        Up    Yes  Up      1518 1518    - accs dotq xcme   GIGE-SX
+1/1/23        Up    Yes  Up      1518 1518    - accs dotq xcme   MDI GIGE-T
+1/1/24        Up    Yes  Up      1518 1518    - accs dotq xcme   MDX GIGE-T
+1/2/1         Up    No   Down    1518 1518    - accs dotq xcme   GIGE-SX
+1/2/2         Up    Yes  Up      1514 1514    - accs null xcme   MDI GIGE-T
+1/2/3         Up    Yes  Up      1514 1514    - accs null xcme   MDI GIGE-T
+1/2/4         Up    No   Down    1514 1514    - accs null xcme   GIGE-T
+1/2/5         Up    Yes  Up      9212 9212    - hybr dotq xcme   MDX GIGE-T
+1/2/6         Up    No   Down    9022 9022    - accs null xcme   GIGE-T
+1/2/7         Up    Yes  Up      1514 1514    - accs null xcme   MDX GIGE-T
+1/2/8         Up    No   Down    1514 1514    - accs null xcme
+1/2/9         Up    No   Down    1518 1518   99 accs dotq xcme   GIGE-SX
+1/2/10        Up    Yes  Up      1514 1514    - accs null xcme   MDI GIGE-T
+1/2/11        Up    Yes  Up      1514 1514    - accs null xcme   MDI GIGE-T
+1/2/12        Up    No   Down    1514 1514    - accs null xcme   GIGE-T
+1/2/13        Up    Yes  Up      1514 1514    - accs null xcme   MDX GIGE-T
+1/2/14        Up    No   Down    1514 1514    - accs null xcme   GIGE-T
+1/2/15        Up    No   Down    1570 1570    - accs dotq xcme   GIGE-T
+1/2/16        Up    Yes  Up      9022 9022    - accs null xcme   MDX GIGE-T
+1/2/17        Up    Yes  Up      1538 1538    - accs dotq xcme   MDX GIGE-T
+1/2/18        Up    No   Down    1514 1514    - accs null xcme   GIGE-T
+1/2/19        Up    No   Down    1518 1518    - accs dotq xcme   GIGE-T
+1/2/20        Up    No   Down    1514 1514    - accs null xcme   GIGE-T
+1/2/21        Up    Yes  Up      1514 1514    - accs null xcme   MDI GIGE-T
+1/2/22        Up    Yes  Up      1518 1518    - accs dotq xcme   MDX GIGE-T
+1/2/23        Up    Yes  Up      1518 1518    - accs dotq xcme   MDX GIGE-T
+1/2/24        Up    Yes  Up      9212 9212    7 netw null xcme   GIGE-SX
+
+===============================================================================
+ Ports on Slot A
+===============================================================================
+Port          Admin Link Port    Cfg  Oper LAG/ Port Port Port   C/QS/S/XFP/
+Id            State      State   MTU  MTU  Bndl Mode Encp Type   MDIMDX
+-------------------------------------------------------------------------------
+A/1           Up    Yes  Up      1514 1514    - netw null faste  MDI
+A/4           Up    No   Down    1514 1514    - netw null faste
+
+===============================================================================
+ Ports on Slot B
+===============================================================================
+Port          Admin Link Port    Cfg  Oper LAG/ Port Port Port   C/QS/S/XFP/
+Id            State      State   MTU  MTU  Bndl Mode Encp Type   MDIMDX
+-------------------------------------------------------------------------------
+B/1           Up    No   Down    1514 1514    - netw null faste
+B/4           Up    No   Down    1514 1514    - netw null faste
+
+
+===============================================================================
+ Ports on Satellite esat-1
+===============================================================================
+Port          Admin Link Port    Cfg  Oper LAG/ Port Port Port   C/QS/S/XFP/
+Id            State      State   MTU  MTU  Bndl Mode Encp Type   MDIMDX
+-------------------------------------------------------------------------------
+esat-1/1/1    Up    Yes  Up      1518 1518    5 accs dotq xcme   MDI GIGE-T
+esat-1/1/2    Up    Yes  Up      1518 1518    - accs dotq xcme   MDI GIGE-T
+esat-1/1/3    Up    Yes  Up      1518 1518    - accs dotq xcme   MDX GIGE-T
+esat-1/1/4    Up    Yes  Up      1538 1538    - accs dotq xcme   MDX GIGE-T
+esat-1/1/5    Up    Yes  Up      9022 9022    - accs null xcme   MDX GIGE-T
+esat-1/1/6    Up    Yes  Up      1514 1514    - accs null xcme   MDI GIGE-T
+esat-1/1/7    Up    Yes  Up      9022 9022    - accs null xcme   MDI GIGE-T
+esat-1/1/8    Up    No   Down    9022 9022    - accs null xcme   GIGE-T
+esat-1/1/9    Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/10   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/11   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/12   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/13   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/14   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/15   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/16   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/17   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/18   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/19   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/20   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/21   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/22   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/23   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/24   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/25   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/26   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/27   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/28   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/29   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/30   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/31   Up    No   Down    9208 9208    - netw null xcme
+esat-1/1/32   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/33   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/34   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/35   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/36   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/37   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/38   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/39   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/40   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/41   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/42   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/43   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/44   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/45   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/46   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/47   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/48   Down  No   Down    9208 9208    - netw null xcme
+esat-1/1/u1   Up    Yes  Up      9212 9212    - accs dotq xgige  10GBASE-LR  *
+esat-1/1/u2   Up    No   Down    9212 9212    - accs dotq xgige
+esat-1/1/u3   Up    No   Down    9212 9212    - accs dotq xgige
+esat-1/1/u4   Up    No   Down    9212 9212    - accs dotq xgige
+
+===============================================================================
+ Ports on Satellite esat-2
+===============================================================================
+Port          Admin Link Port    Cfg  Oper LAG/ Port Port Port   C/QS/S/XFP/
+Id            State      State   MTU  MTU  Bndl Mode Encp Type   MDIMDX
+-------------------------------------------------------------------------------
+esat-2/1/1    Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/2    Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/3    Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/4    Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/5    Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/6    Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/7    Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/8    Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/9    Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/10   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/11   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/12   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/13   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/14   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/15   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/16   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/17   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/18   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/19   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/20   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/21   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/22   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/23   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/24   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/25   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/26   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/27   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/28   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/29   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/30   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/31   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/32   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/33   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/34   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/35   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/36   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/37   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/38   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/39   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/40   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/41   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/42   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/43   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/44   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/45   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/46   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/47   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/48   Down  No   Ghost   9208 9208    - netw null xcme
+esat-2/1/u1   Up    No   Ghost   9212 9212    - accs dotq xgige
+esat-2/1/u2   Up    No   Ghost   9212 9212    - accs dotq xgige
+esat-2/1/u3   Up    No   Ghost   9212 9212    - accs dotq xgige
+esat-2/1/u4   Up    No   Ghost   9212 9212    - accs dotq xgige
+
+===============================================================================
+ Ports on Slot 10
+===============================================================================
+Port          Admin Link Port    Cfg  Oper LAG/ Port Port Port   C/QS/S/XFP/
+Id            State      State   MTU  MTU  Bndl Mode Encp Type   MDIMDX
+-------------------------------------------------------------------------------
+10/2/c1       Up         Link Up                          conn   100GBASE-LR4*
+10/2/c1/1     Up    Yes  Up      9192 9192   10 accs null cgige
+10/2/c2       Up         Link Up                          conn   100GBASE-LR4*
+10/2/c2/1     Up    Yes  Up      9192 9192   10 accs null cgige
+10/2/c3       Up         Link Up                          conn   100GBASE-LR4*
+10/2/c3/1     Up    Yes  Up      9192 9192   10 accs null cgige
+10/2/c4       Down       Down                             conn   100GBASE-LR4*
+10/2/c5       Down       Down                             conn
+10/2/c6       Down       Down                             conn
+10/2/c7       Up         Link Up                          conn   100GBASE-LR4*
+10/2/c7/1     Up    Yes  Up      9192 9192   15 accs null cgige
+10/2/c8       Up         Link Up                          conn   100GBASE-LR4*
+10/2/c8/1     Up    Yes  Up      9192 9192   30 accs null cgige
+10/2/c9       Down       Down                             conn   100GBASE-LR4*
+10/2/c10      Up         Link Up                          conn   100GBASE-LR4*
+10/2/c10/1    Up    Yes  Up      9192 9192   24 accs null cgige
+10/2/c11      Down       Down                             conn
+10/2/c12      Down       Down                             conn
+10/2/c13      Up         Link Up                          conn   100GBASE-LR4*
+10/2/c13/1    Up    Yes  Up      9192 9192   14 accs null cgige
+10/2/c14      Up         Link Up                          conn   100GBASE-LR4*
+10/2/c14/1    Up    Yes  Link Up 9192 9192   14 accs null cgige
+10/2/c15      Up         Link Up                          conn   100GBASE-LR4*
+10/2/c15/1    Down  No   Down    9192 9192    - accs null cgige
+10/2/c16      Down       Down                             conn   100GBASE-LR4*
+10/2/c17      Down       Down                             conn
+10/2/c18      Down       Down                             conn
+10/2/c19      Up         Link Up                          conn   100GBASE-LR4*
+10/2/c19/1    Up    Yes  Up      9212 9212    7 netw null cgige
+10/2/c20      Up         Link Up                          conn   100GBASE-LR4*
+10/2/c20/1    Up    Yes  Up      9212 9212    3 netw null cgige
+10/2/c21      Up         Link Up                          conn   100GBASE-LR4*
+10/2/c21/1    Up    Yes  Up      9212 9212    7 netw null cgige
+10/2/c22      Down       Down                             conn
+10/2/c23      Down       Down                             conn
+10/2/c24      Down       Down                             conn
+===============================================================================
+ * indicates that the corresponding row element may have been truncated.
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show port"</p>
+<p><strong>Prompt:</strong>
+- alcatel_sros&gt;
+- alcatel_sros#</p>
+<h3 id="show-router-ospf-interface">show router ospf interface<a class="headerlink" href="#show-router-ospf-interface" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>===============================================================================
+ Rtr Base OSPFv2 Instance 0 Interfaces
+===============================================================================
+ If Name               Area Id         Designated Rtr  Bkup Desig Rtr  Adm  Oper
+-------------------------------------------------------------------------------
+system                0.0.0.0         10.10.10.3      0.0.0.0         Up   DR
+TO_IOSXR              0.0.0.0         0.0.0.0         0.0.0.0         Up   PToP
+TO_R1                 0.0.0.0         0.0.0.0         0.0.0.0         Up   PToP
+TO_R4                 0.0.0.0         0.0.0.0         0.0.0.0         Up   PToP
+ -------------------------------------------------------------------------------
+ No. of OSPF Interfaces: 4
+===============================================================================
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show router ospf interface"</p>
+<p><strong>Prompt:</strong>
+- alcatel_sros&gt;
+- alcatel_sros#</p>
+<h3 id="environment-no-more">environment no more<a class="headerlink" href="#environment-no-more" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong> None</p>
+<p><strong>Help:</strong> Execute the command environment no more. This automatically generated. Feel free to change it!</p>
+<p><strong>Prompt:</strong>
+- alcatel_sros&gt;
+- alcatel_sros#</p>
+<h3 id="environment-more-false">//environment more false<a class="headerlink" href="#environment-more-false" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong> None</p>
+<p><strong>Help:</strong> Execute the command //environment more false. This automatically generated. Feel free to change it!</p>
+<p><strong>Prompt:</strong>
+- alcatel_sros&gt;
+- alcatel_sros#</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.instant", "navigation.instant.progress", "content.tabs.link", "content.footnote.tooltips"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

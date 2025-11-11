@@ -1,0 +1,2878 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="FakeNOS, Network, SSH">
+      
+      
+        <meta name="author" content="Denis Mulyalin">
+      
+      
+        <link rel="canonical" href="https://fakenos.github.io/fakenos/es/platforms/brocade_fastiron/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>brocade_fastiron - FakeNOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="brown" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#brocade_fastiron" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../" title="FakeNOS" class="md-header__button md-logo" aria-label="FakeNOS" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            FakeNOS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              brocade_fastiron
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="brown" data-md-color-accent="deep-orange"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="brown" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Seleccionar idioma">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../platforms/brocade_fastiron/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="es" class="md-select__link">
+              Español
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../../ca/platforms/brocade_fastiron/" hreflang="ca" class="md-select__link">
+              Català
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/fakenos/fakenos" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    fakenos/fakenos
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+  Resumen
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../examples/" class="md-tabs__link">
+          
+  
+  
+  Ejemplos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../usage/installation/" class="md-tabs__link">
+          
+  
+  
+  Uso
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Plataformas
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../development/" class="md-tabs__link">
+          
+  
+  
+  Desarrollo
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../collaborators/" class="md-tabs__link">
+          
+  
+  
+  Colaboradores
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api/core_api_reference/" class="md-tabs__link">
+          
+  
+  
+  API
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="FakeNOS" class="md-nav__button md-logo" aria-label="FakeNOS" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    FakeNOS
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/fakenos/fakenos" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    fakenos/fakenos
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Resumen
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Resumen
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resumen
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/why/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ¿Por qué?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/what/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ¿Qué?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/how/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ¿Cómo?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/what_not/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ¿Qué no?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Referencias
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Ejemplos
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Ejemplos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ejemplos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/developing_scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Desarrollo de scripts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/automatic_testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pruebas automáticas - CI/CD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Uso
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Uso
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Instalación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/getting_started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Empezar
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/fakenos_inventory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Inventario
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/running_in_docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ejecutar en contenedor Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/configurations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuraciones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Plataformas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Desarrollo
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Desarrollo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Principal
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/conventions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Convenciones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/tasks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tareas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/creating_new_platforms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Crear una nueva plataforma
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/creating_nos_plugin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Crear un complemento NOS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/github_actions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Acciones de Github
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/extras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extras
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Colaboradores
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Colaboradores
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collaborators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Colaboradores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    API
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            API
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/core_api_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Core API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/builtin_plugins_api_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Built-in Plugins API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#platforms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Platforms:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable" class="md-nav__link">
+    <span class="md-ellipsis">
+      enable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      configure terminal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-monitor" class="md-nav__link">
+    <span class="md-ellipsis">
+      show monitor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      show interfaces
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-lldp-neighbors-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      show lldp neighbors detail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-arp" class="md-nav__link">
+    <span class="md-ellipsis">
+      show arp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-running-config-vlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      show running-config vlan
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-lag-brief" class="md-nav__link">
+    <span class="md-ellipsis">
+      show lag brief
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-trunk" class="md-nav__link">
+    <span class="md-ellipsis">
+      show trunk
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-interfaces-brief" class="md-nav__link">
+    <span class="md-ellipsis">
+      show interfaces brief
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-topo" class="md-nav__link">
+    <span class="md-ellipsis">
+      show topo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-span" class="md-nav__link">
+    <span class="md-ellipsis">
+      show span
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-mac-address" class="md-nav__link">
+    <span class="md-ellipsis">
+      show mac-address
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-metro" class="md-nav__link">
+    <span class="md-ellipsis">
+      show metro
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-lldp-neighbors" class="md-nav__link">
+    <span class="md-ellipsis">
+      show lldp neighbors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      show version
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="brocade_fastiron">brocade_fastiron<a class="headerlink" href="#brocade_fastiron" title="Permanent link">#</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is automatically generated. In case of any issues, 
+please refer to the source code or, even better, 
+open an issue on the GitHub repository. Thanks! 🤗📖</p>
+</div>
+<h2 id="platforms">Platforms:<a class="headerlink" href="#platforms" title="Permanent link">#</a></h2>
+<h2 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">#</a></h2>
+<h3 id="enable">enable<a class="headerlink" href="#enable" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong> None</p>
+<p><strong>Help:</strong> enter enable mode</p>
+<p><strong>Prompt:</strong>
+- brocade_fastiron&gt;</p>
+<h3 id="configure-terminal">configure terminal<a class="headerlink" href="#configure-terminal" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong> None</p>
+<p><strong>Help:</strong> enter the config mode</p>
+<p><strong>Prompt:</strong>
+- brocade_fastiron#</p>
+<h3 id="show-monitor">show monitor<a class="headerlink" href="#show-monitor" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>Monitored Port 10
+  Input mirrored by :  18
+  Output mirrored by    :  18
+Monitored Port 16
+  Input mirrored by :  18
+  Output mirrored by    :  18
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show monitor"</p>
+<p><strong>Prompt:</strong>
+- brocade_fastiron&gt;
+- brocade_fastiron#
+- brocade_fastiron(config)#</p>
+<h3 id="show-interfaces">show interfaces<a class="headerlink" href="#show-interfaces" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>GigabitEthernet1 is up, line protocol is up 
+  Hardware is GigabitEthernet, address is 001b.ed6b.2000 (bia 001b.ed6b.2000)
+  Configured speed auto, actual 1Gbit, configured duplex fdx, actual fdx
+  Configured mdi mode AUTO, actual MDI
+  Member of 33 L2 VLANs, port is tagged, port state is FORWARDING
+  BPDU guard is Disabled, ROOT protect is Disabled
+  Link Error Dampening is Disabled
+  STP configured to ON, priority is level0
+  Flow Control is config enabled, oper enabled, negotiation disabled
+  Mirror disabled, Monitor disabled
+  Not member of any active trunks
+  Not member of any configured trunks
+  Port name is to MLX1-CLMAMOFW e2/2
+  IPG MII 96 bits-time, IPG GMII 96 bits-time
+  IP MTU 10240 bytes
+  300 second input rate: 36132912 bits/sec, 7764 packets/sec, 3.73% utilization
+  300 second output rate: 81419992 bits/sec, 10603 packets/sec, 8.30% utilization
+  1062555728308 packets input, 765022677409544 bytes, 0 no buffer
+  Received 2859573621 broadcasts, 859758753 multicasts, 1058836395934 unicasts
+  8 input errors, 1 CRC, 0 frame, 0 ignored
+  0 runts, 0 giants
+  1011812222301 packets output, 722190810166867 bytes, 0 underruns
+  Transmitted 8889886882 broadcasts, 3251477712 multicasts, 999670857707 unicasts
+  0 output errors, 0 collisions                                   
+  Relay Agent Information option: Disabled
+GigabitEthernet2 is up, line protocol is up 
+  Hardware is GigabitEthernet, address is 001b.ed6b.2001 (bia 001b.ed6b.2001)
+  Configured speed auto, actual 1Gbit, configured duplex fdx, actual fdx
+  Configured mdi mode AUTO, actual MDIX
+  Member of 102 L2 VLANs, port is dual mode in Vlan 1, port state is FORWARDING
+  BPDU guard is Disabled, ROOT protect is Disabled
+  Link Error Dampening is Disabled
+  STP configured to ON, priority is level0
+  Flow Control is config enabled, oper enabled, negotiation disabled
+  Mirror disabled, Monitor disabled
+  Not member of any active trunks
+  Not member of any configured trunks
+  Port name is switch1b-3
+  IPG MII 96 bits-time, IPG GMII 96 bits-time
+  IP MTU 10240 bytes
+  300 second input rate: 146823488 bits/sec, 28327 packets/sec, 15.13% utilization
+  300 second output rate: 141339864 bits/sec, 26502 packets/sec, 14.55% utilization
+  5491087012866 packets input, 3457816108549760 bytes, 0 no buffer
+  Received 12860884133 broadcasts, 8441893951 multicasts, 5469784234782 unicasts
+  2 input errors, 1 CRC, 0 frame, 0 ignored
+  0 runts, 0 giants
+  5813899509422 packets output, 4120086470555896 bytes, 0 underruns
+  Transmitted 18098146569 broadcasts, 6209711839 multicasts, 5789591651014 unicasts
+  0 output errors, 0 collisions
+  Relay Agent Information option: Disabled
+GigabitEthernet3 is disabled, line protocol is down 
+  Hardware is GigabitEthernet, address is 001b.ed6b.2002 (bia 001b.ed6b.2002)
+  Configured speed auto, actual unknown, configured duplex fdx, actual unknown
+  Configured mdi mode AUTO, actual unknown
+  Member of L2 VLAN ID 1, port is untagged, port state is DISABLED
+  BPDU guard is Disabled, ROOT protect is Disabled
+  Link Error Dampening is Disabled
+  STP configured to ON, priority is level0
+  Flow Control is config enabled, oper disabled, negotiation disabled
+  Mirror disabled, Monitor disabled
+  Not member of any active trunks
+  Not member of any configured trunks
+  No port name
+  IPG MII 96 bits-time, IPG GMII 96 bits-time
+  IP MTU 10240 bytes
+  300 second input rate: 0 bits/sec, 0 packets/sec, 0.00% utilization
+  300 second output rate: 0 bits/sec, 0 packets/sec, 0.00% utilization
+  33390937805 packets input, 24077492513601 bytes, 0 no buffer
+  Received 17757401 broadcasts, 159518105 multicasts, 33213662299 unicasts
+  0 input errors, 0 CRC, 0 frame, 0 ignored                       
+  0 runts, 0 giants
+  397596845452 packets output, 196556265907165 bytes, 0 underruns
+  Transmitted 88287163 broadcasts, 1149908125 multicasts, 396358650164 unicasts
+  0 output errors, 0 collisions
+  Relay Agent Information option: Disabled
+GigabitEthernet4 is disabled, line protocol is down 
+  Hardware is GigabitEthernet, address is 001b.ed6b.2003 (bia 001b.ed6b.2003)
+  Configured speed 1Gbit, actual unknown, configured duplex fdx, actual unknown
+  Configured mdi mode AUTO, actual unknown
+  Member of L2 VLAN ID 2033, port is untagged, port state is DISABLED
+  BPDU guard is Disabled, ROOT protect is Disabled
+  Link Error Dampening is Disabled
+  STP configured to ON, priority is level0
+  Flow Control is config enabled, oper enabled, negotiation disabled
+  Mirror disabled, Monitor disabled
+  Not member of any active trunks
+  Not member of any configured trunks
+  Port name is Boyce&amp;Bynum INET Fiber 200 Portland, CLMA, MO
+  IPG MII 96 bits-time, IPG GMII 96 bits-time
+  IP MTU 10240 bytes
+  30 second input rate: 0 bits/sec, 0 packets/sec, 0.00% utilization
+  30 second output rate: 0 bits/sec, 0 packets/sec, 0.00% utilization
+  17293294617 packets input, 6427258200678 bytes, 0 no buffer     
+  Received 559796 broadcasts, 44454276 multicasts, 17248280545 unicasts
+  6 input errors, 0 CRC, 0 frame, 0 ignored
+  0 runts, 0 giants
+  16334048713 packets output, 7618482738879 bytes, 0 underruns
+  Transmitted 38137232 broadcasts, 276213 multicasts, 16295635268 unicasts
+  0 output errors, 0 collisions
+  Relay Agent Information option: Disabled
+GigabitEthernet5 is disabled, line protocol is down 
+  Hardware is GigabitEthernet, address is 001b.ed6b.2004 (bia 001b.ed6b.2004)
+  Configured speed 100Mbit, actual unknown, configured duplex fdx, actual unknown
+  Configured mdi mode AUTO, actual unknown
+  Member of L2 VLAN ID 1, port is untagged, port state is DISABLED
+  BPDU guard is Disabled, ROOT protect is Disabled
+  Link Error Dampening is Disabled
+  STP configured to ON, priority is level0
+  Flow Control is config enabled, oper enabled, negotiation disabled
+  Mirror disabled, Monitor disabled
+  Not member of any active trunks
+  Not member of any configured trunks
+  No port name
+  IPG MII 96 bits-time, IPG GMII 96 bits-time
+  IP MTU 10240 bytes
+  300 second input rate: 0 bits/sec, 0 packets/sec, 0.00% utilization
+  300 second output rate: 0 bits/sec, 0 packets/sec, 0.00% utilization
+  136280016 packets input, 22867608813 bytes, 0 no buffer
+  Received 52700 broadcasts, 2376874 multicasts, 133850442 unicasts
+  50639 input errors, 16113 CRC, 0 frame, 0 ignored
+  0 runts, 0 giants
+  378915648 packets output, 39836205125 bytes, 0 underruns
+  Transmitted 4375536 broadcasts, 363833 multicasts, 374176279 unicasts
+  0 output errors, 0 collisions
+  Relay Agent Information option: Disabled
+GigabitEthernet6 is disabled, line protocol is down 
+  Hardware is GigabitEthernet, address is 001b.ed6b.2005 (bia 001b.ed6b.2005)
+  Configured speed auto, actual unknown, configured duplex fdx, actual unknown
+  Configured mdi mode AUTO, actual unknown
+  Member of L2 VLAN ID 1, port is untagged, port state is DISABLED
+  BPDU guard is Disabled, ROOT protect is Disabled
+  Link Error Dampening is Disabled
+  STP configured to ON, priority is level0
+  Flow Control is config enabled, oper disabled, negotiation disabled
+  Mirror disabled, Monitor disabled
+  Not member of any active trunks
+  Not member of any configured trunks
+  No port name
+  IPG MII 96 bits-time, IPG GMII 96 bits-time                     
+  IP MTU 10240 bytes
+  30 second input rate: 0 bits/sec, 0 packets/sec, 0.00% utilization
+  30 second output rate: 0 bits/sec, 0 packets/sec, 0.00% utilization
+  365382054 packets input, 66047121122 bytes, 0 no buffer
+  Received 618017 broadcasts, 8237 multicasts, 364755800 unicasts
+  1352100 input errors, 486478 CRC, 0 frame, 0 ignored
+  0 runts, 0 giants
+  118120992828 packets output, 26874943907634 bytes, 0 underruns
+  Transmitted 38604580 broadcasts, 33427120 multicasts, 118048961128 unicasts
+  0 output errors, 0 collisions
+  Relay Agent Information option: Disabled
+GigabitEthernet7 is up, line protocol is up 
+  Hardware is GigabitEthernet, address is 001b.ed6b.2006 (bia 001b.ed6b.2006)
+  Configured speed auto, actual 1Gbit, configured duplex fdx, actual fdx
+  Configured mdi mode AUTO, actual MDIX
+  Member of 1 L2 VLANs, port is tagged, port state is FORWARDING
+  BPDU guard is Disabled, ROOT protect is Disabled
+  Link Error Dampening is Disabled
+  STP configured to ON, priority is level0
+  Flow Control is config enabled, oper enabled, negotiation disabled
+  Mirror disabled, Monitor disabled
+  Not member of any active trunks
+  Not member of any configured trunks                             
+  Port name is ms1a (4B-7)
+  IPG MII 96 bits-time, IPG GMII 96 bits-time
+  IP MTU 10240 bytes
+  30 second input rate: 95952 bits/sec, 134 packets/sec, 0.00% utilization
+  30 second output rate: 3006184 bits/sec, 403 packets/sec, 0.30% utilization
+  224220415361 packets input, 273827759119157 bytes, 0 no buffer
+  Received 208722 broadcasts, 277126 multicasts, 224219929513 unicasts
+  0 input errors, 0 CRC, 0 frame, 0 ignored
+  0 runts, 0 giants
+  196413848432 packets output, 60402291469127 bytes, 0 underruns
+  Transmitted 5149342419 broadcasts, 432774605 multicasts, 190831731408 unicasts
+  0 output errors, 0 collisions
+  Relay Agent Information option: Disabled
+GigabitEthernet8 is disabled, line protocol is down 
+  Hardware is GigabitEthernet, address is 001b.ed6b.2007 (bia 001b.ed6b.2007)
+  Configured speed auto, actual unknown, configured duplex fdx, actual unknown
+  Configured mdi mode AUTO, actual unknown
+  Member of L2 VLAN ID 1, port is untagged, port state is DISABLED
+  BPDU guard is Disabled, ROOT protect is Disabled
+  Link Error Dampening is Disabled
+  STP configured to ON, priority is level0
+  Flow Control is config enabled, oper disabled, negotiation disabled
+  Mirror disabled, Monitor disabled                               
+  Not member of any active trunks
+  Not member of any configured trunks
+  No port name
+  IPG MII 96 bits-time, IPG GMII 96 bits-time
+  IP MTU 10240 bytes
+  300 second input rate: 0 bits/sec, 0 packets/sec, 0.00% utilization
+  300 second output rate: 0 bits/sec, 0 packets/sec, 0.00% utilization
+  1866090726 packets input, 1347732480937 bytes, 0 no buffer
+  Received 4921358 broadcasts, 4074011 multicasts, 1857095357 unicasts
+  0 input errors, 0 CRC, 0 frame, 0 ignored
+  0 runts, 0 giants
+  33026732592 packets output, 9461647968648 bytes, 0 underruns
+  Transmitted 811305665 broadcasts, 359636667 multicasts, 31855790260 unicasts
+  0 output errors, 0 collisions
+  Relay Agent Information option: Disabled
+GigabitEthernet9 is up, line protocol is up 
+  Hardware is GigabitEthernet, address is 001b.ed6b.2008 (bia 001b.ed6b.2008)
+  Configured speed auto, actual 1Gbit, configured duplex fdx, actual fdx
+  Configured mdi mode AUTO, actual MDIX
+  Member of L2 VLAN ID 450, port is untagged, port state is FORWARDING
+  BPDU guard is Disabled, ROOT protect is Disabled
+  Link Error Dampening is Disabled
+  STP configured to ON, priority is level0                        
+  Flow Control is config enabled, oper enabled, negotiation disabled
+  Mirror disabled, Monitor disabled
+  Not member of any active trunks
+  Not member of any configured trunks
+  Port name is warehouse1
+  IPG MII 96 bits-time, IPG GMII 96 bits-time
+  IP MTU 10240 bytes
+  300 second input rate: 27576 bits/sec, 3 packets/sec, 0.00% utilization
+  300 second output rate: 47872 bits/sec, 74 packets/sec, 0.00% utilization
+  59426196640 packets input, 80817825988147 bytes, 0 no buffer
+  Received 1997812 broadcasts, 444136 multicasts, 59423754692 unicasts
+  0 input errors, 0 CRC, 0 frame, 0 ignored
+  0 runts, 0 giants
+  34732344432 packets output, 3429657691197 bytes, 0 underruns
+  Transmitted 5967219873 broadcasts, 704148686 multicasts, 28060975873 unicasts
+  0 output errors, 0 collisions
+  Relay Agent Information option: Disabled
+GigabitEthernet10 is up, line protocol is up 
+  Hardware is GigabitEthernet, address is 001b.ed6b.2009 (bia 001b.ed6b.2009)
+  Configured speed auto, actual 1Gbit, configured duplex fdx, actual fdx
+  Configured mdi mode AUTO, actual MDI
+  Member of L2 VLAN ID 152, port is untagged, port state is FORWARDING
+  BPDU guard is Disabled, ROOT protect is Disabled                
+  Link Error Dampening is Disabled
+  STP configured to ON, priority is level0
+  Flow Control is config enabled, oper enabled, negotiation disabled
+  Mirror disabled, Monitor enabled (input and output)
+  Not member of any active trunks
+  Not member of any configured trunks
+  Port name is sbc1.voip.sockettelecom.com-VoIP
+  IPG MII 96 bits-time, IPG GMII 96 bits-time
+  IP MTU 10240 bytes
+  300 second input rate: 42858536 bits/sec, 24456 packets/sec, 4.67% utilization
+  300 second output rate: 43002584 bits/sec, 24589 packets/sec, 4.68% utilization
+  434184856717 packets input, 95128491268061 bytes, 0 no buffer
+  Received 7297822 broadcasts, 238122 multicasts, 434177320773 unicasts
+  106 input errors, 38 CRC, 0 frame, 0 ignored
+  0 runts, 0 giants
+  437616203913 packets output, 95510650536391 bytes, 0 underruns
+  Transmitted 50386350 broadcasts, 50385910 multicasts, 437515431653 unicasts
+  0 output errors, 0 collisions
+  Relay Agent Information option: Disabled
+GigabitEthernet11 is up, line protocol is up 
+  Hardware is GigabitEthernet, address is 001b.ed6b.200a (bia 001b.ed6b.200a)
+  Configured speed auto, actual 1Gbit, configured duplex fdx, actual fdx
+  Configured mdi mode AUTO, actual MDIX                           
+  Member of 69 L2 VLANs, port is dual mode in Vlan 1, port state is FORWARDING
+  BPDU guard is Disabled, ROOT protect is Disabled
+  Link Error Dampening is Disabled
+  STP configured to ON, priority is level0
+  Flow Control is config enabled, oper enabled, negotiation disabled
+  Mirror disabled, Monitor disabled
+  Not member of any active trunks
+  Not member of any configured trunks
+  Port name is OPTI1-MS13-1 to XO
+  IPG MII 96 bits-time, IPG GMII 96 bits-time
+  IP MTU 10240 bytes
+  30 second input rate: 251200424 bits/sec, 86193 packets/sec, 26.49% utilization
+  30 second output rate: 229451128 bits/sec, 86435 packets/sec, 24.32% utilization
+  5873913848979 packets input, 3442283177781007 bytes, 0 no buffer
+  Received 13369699781 broadcasts, 5083498868 multicasts, 5855460650330 unicasts
+  0 input errors, 0 CRC, 0 frame, 0 ignored
+  0 runts, 0 giants
+  6089793610508 packets output, 3506587229877936 bytes, 0 underruns
+  Transmitted 5852894414 broadcasts, 5681533710 multicasts, 6078259182384 unicasts
+  0 output errors, 0 collisions
+  Relay Agent Information option: Disabled
+GigabitEthernet12 is disabled, line protocol is down 
+  Hardware is GigabitEthernet, address is 001b.ed6b.200b (bia 001b.ed6b.200b)
+  Configured speed auto, actual unknown, configured duplex fdx, actual unknown
+  Configured mdi mode AUTO, actual unknown
+  Member of L2 VLAN ID 1, port is untagged, port state is DISABLED
+  BPDU guard is Disabled, ROOT protect is Disabled
+  Link Error Dampening is Disabled
+  STP configured to ON, priority is level0
+  Flow Control is config enabled, oper disabled, negotiation disabled
+  Mirror disabled, Monitor disabled
+  Not member of any active trunks
+  Not member of any configured trunks
+  No port name
+  IPG MII 96 bits-time, IPG GMII 96 bits-time
+  IP MTU 10240 bytes
+  300 second input rate: 0 bits/sec, 0 packets/sec, 0.00% utilization
+  300 second output rate: 0 bits/sec, 0 packets/sec, 0.00% utilization
+  57522699855 packets input, 24508739775548 bytes, 0 no buffer
+  Received 5443757 broadcasts, 1560252 multicasts, 57515695846 unicasts
+  0 input errors, 0 CRC, 0 frame, 0 ignored
+  0 runts, 0 giants
+  44453437300 packets output, 10271900455982 bytes, 0 underruns
+  Transmitted 18130416 broadcasts, 5920878 multicasts, 44429386006 unicasts
+  0 output errors, 0 collisions
+  Relay Agent Information option: Disabled                        
+GigabitEthernet13 is disabled, line protocol is down 
+  Hardware is GigabitEthernet, address is 001b.ed6b.200c (bia 001b.ed6b.200c)
+  Configured speed 1Gbit, actual unknown, configured duplex fdx, actual unknown
+  Configured mdi mode AUTO, actual unknown
+  Member of L2 VLAN ID 1, port is untagged, port state is DISABLED
+  BPDU guard is Disabled, ROOT protect is Disabled
+  Link Error Dampening is Disabled
+  STP configured to ON, priority is level0
+  Flow Control is config enabled, oper enabled, negotiation disabled
+  Mirror disabled, Monitor disabled
+  Not member of any active trunks
+  Not member of any configured trunks
+  No port name
+  IPG MII 96 bits-time, IPG GMII 96 bits-time
+  IP MTU 10240 bytes
+  300 second input rate: 0 bits/sec, 0 packets/sec, 0.00% utilization
+  300 second output rate: 0 bits/sec, 0 packets/sec, 0.00% utilization
+  574462764093 packets input, 402613835806904 bytes, 0 no buffer
+  Received 25702257 broadcasts, 218863600 multicasts, 574218198236 unicasts
+  4 input errors, 2 CRC, 0 frame, 0 ignored
+  0 runts, 0 giants
+  307428412392 packets output, 123203150572196 bytes, 0 underruns
+  Transmitted 148790455 broadcasts, 1158554078 multicasts, 306121067859 unicasts
+  0 output errors, 0 collisions
+  Relay Agent Information option: Disabled
+GigabitEthernet14 is down, line protocol is down 
+  Hardware is GigabitEthernet, address is 001b.ed6b.200d (bia 001b.ed6b.200d)
+  Configured speed auto, actual unknown, configured duplex fdx, actual unknown
+  Configured mdi mode AUTO, actual unknown
+  Member of L2 VLAN ID 154, port is untagged, port state is BLOCKING
+  BPDU guard is Disabled, ROOT protect is Disabled
+  Link Error Dampening is Disabled
+  STP configured to ON, priority is level0
+  Flow Control is config enabled, oper disabled, negotiation disabled
+  Mirror disabled, Monitor disabled
+  Not member of any active trunks
+  Not member of any configured trunks
+  Port name is SocketVoIP-DBS1
+  IPG MII 96 bits-time, IPG GMII 96 bits-time
+  IP MTU 10240 bytes
+  30 second input rate: 0 bits/sec, 0 packets/sec, 0.00% utilization
+  30 second output rate: 0 bits/sec, 0 packets/sec, 0.00% utilization
+  4007809813 packets input, 2598671668225 bytes, 0 no buffer
+  Received 732505 broadcasts, 796397 multicasts, 4006280911 unicasts
+  61 input errors, 30 CRC, 0 frame, 0 ignored
+  0 runts, 0 giants                                               
+  4281434344 packets output, 3069521551725 bytes, 0 underruns
+  Transmitted 35488631 broadcasts, 7395902 multicasts, 4238549811 unicasts
+  0 output errors, 0 collisions
+  Relay Agent Information option: Disabled
+GigabitEthernet15 is disabled, line protocol is down 
+  Hardware is GigabitEthernet, address is 001b.ed6b.200e (bia 001b.ed6b.200e)
+  Configured speed auto, actual unknown, configured duplex fdx, actual unknown
+  Configured mdi mode AUTO, actual unknown
+  Member of L2 VLAN ID 1, port is untagged, port state is DISABLED
+  BPDU guard is Disabled, ROOT protect is Disabled
+  Link Error Dampening is Disabled
+  STP configured to ON, priority is level0
+  Flow Control is config enabled, oper disabled, negotiation disabled
+  Mirror disabled, Monitor disabled
+  Not member of any active trunks
+  Not member of any configured trunks
+  No port name
+  IPG MII 96 bits-time, IPG GMII 96 bits-time
+  IP MTU 10240 bytes
+  300 second input rate: 0 bits/sec, 0 packets/sec, 0.00% utilization
+  300 second output rate: 0 bits/sec, 0 packets/sec, 0.00% utilization
+  425136597160 packets input, 224837228841386 bytes, 0 no buffer
+  Received 1784872332 broadcasts, 14229303 multicasts, 423337495525 unicasts
+  0 input errors, 0 CRC, 0 frame, 0 ignored
+  0 runts, 0 giants
+  67426866239 packets output, 56310572280892 bytes, 0 underruns
+  Transmitted 1195449599 broadcasts, 636407794 multicasts, 65595008846 unicasts
+  0 output errors, 0 collisions
+  Relay Agent Information option: Disabled
+GigabitEthernet16 is up, line protocol is up 
+  Hardware is GigabitEthernet, address is 001b.ed6b.200f (bia 001b.ed6b.200f)
+  Configured speed auto, actual 1Gbit, configured duplex fdx, actual fdx
+  Configured mdi mode AUTO, actual MDI
+  Member of L2 VLAN ID 149, port is untagged, port state is FORWARDING
+  BPDU guard is Disabled, ROOT protect is Disabled
+  Link Error Dampening is Disabled
+  STP configured to ON, priority is level0
+  Flow Control is config enabled, oper enabled, negotiation disabled
+  Mirror disabled, Monitor enabled (input and output)
+  Not member of any active trunks
+  Not member of any configured trunks
+  Port name is sbc1.voip.sockettelecom.com-Public
+  IPG MII 96 bits-time, IPG GMII 96 bits-time
+  IP MTU 10240 bytes
+  300 second input rate: 56531256 bits/sec, 32360 packets/sec, 6.16% utilization
+  300 second output rate: 56512912 bits/sec, 32356 packets/sec, 6.16% utilization
+  524015863289 packets input, 116094187547734 bytes, 0 no buffer
+  Received 53833717 broadcasts, 238134 multicasts, 523961791438 unicasts
+  42 input errors, 17 CRC, 0 frame, 0 ignored
+  0 runts, 0 giants
+  523743357542 packets output, 115906867765047 bytes, 0 underruns
+  Transmitted 183579591 broadcasts, 46484853 multicasts, 523513293098 unicasts
+  0 output errors, 0 collisions
+  Relay Agent Information option: Disabled
+ GigabitEthernet17 is up, line protocol is up 
+  Hardware is GigabitEthernet, address is 001b.ed6b.2010 (bia 001b.ed6b.2010)
+  Configured speed 100Mbit, actual 100Mbit, configured duplex fdx, actual fdx
+  Configured mdi mode AUTO, actual MDI
+  Member of L2 VLAN ID 2277, port is untagged, port state is FORWARDING
+  BPDU guard is Disabled, ROOT protect is Disabled
+  Link Error Dampening is Disabled
+  STP configured to ON, priority is level0
+  Flow Control is config enabled, oper enabled, negotiation disabled
+  Mirror disabled, Monitor disabled
+  Not member of any active trunks
+  Not member of any configured trunks
+  Port name is Memory Book INET
+  IPG MII 96 bits-time, IPG GMII 96 bits-time
+  IP MTU 10240 bytes                                              
+  30 second input rate: 163104 bits/sec, 287 packets/sec, 0.20% utilization
+  30 second output rate: 6878392 bits/sec, 590 packets/sec, 6.96% utilization
+  67457723991 packets input, 65859234276036 bytes, 0 no buffer
+  Received 696887484 broadcasts, 294342200 multicasts, 66466494307 unicasts
+  550394678 input errors, 97937713 CRC, 0 frame, 0 ignored
+  0 runts, 0 giants
+  51840520968 packets output, 27141276257128 bytes, 0 underruns
+  Transmitted 20614211 broadcasts, 1422508 multicasts, 51818484249 unicasts
+  0 output errors, 0 collisions
+  Relay Agent Information option: Disabled
+GigabitEthernet18 is up, line protocol is up 
+  Hardware is GigabitEthernet, address is 001b.ed6b.2011 (bia 001b.ed6b.2011)
+  Configured speed auto, actual 1Gbit, configured duplex fdx, actual fdx
+  Configured mdi mode AUTO, actual MDIX
+  Member of L2 VLAN ID 1, port is untagged, port state is FORWARDING
+  BPDU guard is Disabled, ROOT protect is Disabled
+  Link Error Dampening is Disabled
+  STP configured to ON, priority is level0
+  Flow Control is config enabled, oper enabled, negotiation disabled
+  Mirror enabled, Monitor disabled
+  Not member of any active trunks
+  Not member of any configured trunks
+  Port name is voipmon1-p1p2                                      
+  IPG MII 96 bits-time, IPG GMII 96 bits-time
+  IP MTU 10240 bytes
+  30 second input rate: 0 bits/sec, 0 packets/sec, 0.00% utilization
+  30 second output rate: 214333840 bits/sec, 120313 packets/sec, 23.35% utilization
+  47421168960 packets input, 21330444001424 bytes, 0 no buffer
+  Received 11319269 broadcasts, 100537 multicasts, 47409749154 unicasts
+  14 input errors, 6 CRC, 0 frame, 0 ignored
+  0 runts, 0 giants
+  1381311191190 packets output, 366733951388972 bytes, 0 underruns
+  Transmitted 1026021322 broadcasts, 434328968 multicasts, 1379850840900 unicasts
+  0 output errors, 0 collisions
+  Relay Agent Information option: Disabled
+GigabitEthernet19 is up, line protocol is up 
+  Hardware is GigabitEthernet, address is 001b.ed6b.2012 (bia 001b.ed6b.2012)
+  Configured speed auto, actual 1Gbit, configured duplex fdx, actual fdx
+  Configured mdi mode AUTO, actual MDIX
+  Member of 1 L2 VLANs, port is tagged, port state is FORWARDING
+  BPDU guard is Disabled, ROOT protect is Disabled
+  Link Error Dampening is Disabled
+  STP configured to ON, priority is level0
+  Flow Control is config enabled, oper enabled, negotiation disabled
+  Mirror disabled, Monitor disabled
+  Not member of any active trunks                                 
+  Not member of any configured trunks
+  Port name is vmail1.voip
+  IPG MII 96 bits-time, IPG GMII 96 bits-time
+  IP MTU 10240 bytes
+  300 second input rate: 818984 bits/sec, 88 packets/sec, 0.07% utilization
+  300 second output rate: 129120 bits/sec, 54 packets/sec, 0.01% utilization
+  17243558469 packets input, 22434976239119 bytes, 0 no buffer
+  Received 143775 broadcasts, 234508 multicasts, 17243180186 unicasts
+  0 input errors, 0 CRC, 0 frame, 0 ignored
+  0 runts, 0 giants
+  9809188575 packets output, 2060714655702 bytes, 0 underruns
+  Transmitted 42232043 broadcasts, 8108467 multicasts, 9758848065 unicasts
+  0 output errors, 0 collisions
+  Relay Agent Information option: Disabled
+GigabitEthernet20 is up, line protocol is up 
+  Hardware is GigabitEthernet, address is 001b.ed6b.2013 (bia 001b.ed6b.2013)
+  Configured speed 100Mbit, actual 100Mbit, configured duplex fdx, actual fdx
+  Configured mdi mode AUTO, actual MDIX
+  Member of L2 VLAN ID 152, port is untagged, port state is FORWARDING
+  BPDU guard is Disabled, ROOT protect is Disabled
+  Link Error Dampening is Disabled
+  STP configured to ON, priority is level0
+  Flow Control is config enabled, oper enabled, negotiation disabled
+  Mirror disabled, Monitor disabled
+  Not member of any active trunks
+  Not member of any configured trunks
+  Port name is VoIP-ASA-Internal
+  IPG MII 96 bits-time, IPG GMII 96 bits-time
+  IP MTU 10240 bytes
+  300 second input rate: 604816 bits/sec, 96 packets/sec, 0.61% utilization
+  300 second output rate: 381696 bits/sec, 93 packets/sec, 0.39% utilization
+  19358089965 packets input, 5913888345210 bytes, 0 no buffer
+  Received 142540 broadcasts, 14939793 multicasts, 19343007632 unicasts
+  2 input errors, 0 CRC, 0 frame, 0 ignored
+  0 runts, 0 giants
+  31825930639 packets output, 38028095856602 bytes, 0 underruns
+  Transmitted 58935076 broadcasts, 36437328 multicasts, 31730558235 unicasts
+  0 output errors, 0 collisions
+  Relay Agent Information option: Disabled
+GigabitEthernet21 is up, line protocol is up 
+  Hardware is GigabitEthernet, address is 001b.ed6b.2014 (bia 001b.ed6b.2014)
+  Configured speed 100Mbit, actual 100Mbit, configured duplex fdx, actual fdx
+  Configured mdi mode AUTO, actual MDIX
+  Member of L2 VLAN ID 149, port is untagged, port state is FORWARDING
+  BPDU guard is Disabled, ROOT protect is Disabled
+  Link Error Dampening is Disabled                                
+  STP configured to ON, priority is level0
+  Flow Control is config enabled, oper enabled, negotiation disabled
+  Mirror disabled, Monitor disabled
+  Not member of any active trunks
+  Not member of any configured trunks
+  Port name is VoIP-ASA-External
+  IPG MII 96 bits-time, IPG GMII 96 bits-time
+  IP MTU 10240 bytes
+  300 second input rate: 381296 bits/sec, 93 packets/sec, 0.39% utilization
+  300 second output rate: 607304 bits/sec, 100 packets/sec, 0.61% utilization
+  31736519059 packets input, 38022380885593 bytes, 0 no buffer
+  Received 22277 broadcasts, 0 multicasts, 31736496782 unicasts
+  0 input errors, 0 CRC, 0 frame, 0 ignored
+  0 runts, 0 giants
+  19672648738 packets output, 5937049134598 bytes, 0 underruns
+  Transmitted 241311821 broadcasts, 47443808 multicasts, 19383893109 unicasts
+  0 output errors, 0 collisions
+  Relay Agent Information option: Disabled
+ GigabitEthernet22 is up, line protocol is up 
+  Hardware is GigabitEthernet, address is 001b.ed6b.2015 (bia 001b.ed6b.2015)
+  Configured speed auto, actual 1Gbit, configured duplex fdx, actual fdx
+  Configured mdi mode AUTO, actual MDI
+  Member of 1 L2 VLANs, port is tagged, port state is FORWARDING  
+  BPDU guard is Disabled, ROOT protect is Disabled
+  Link Error Dampening is Disabled
+  STP configured to ON, priority is level0
+  Flow Control is config enabled, oper enabled, negotiation disabled
+  Mirror disabled, Monitor disabled
+  Not member of any active trunks
+  Not member of any configured trunks
+  Port name is md1a (2B-1)
+  IPG MII 96 bits-time, IPG GMII 96 bits-time
+  IP MTU 10240 bytes
+  300 second input rate: 5098944 bits/sec, 715 packets/sec, 0.51% utilization
+  300 second output rate: 5116928 bits/sec, 976 packets/sec, 0.52% utilization
+  68111921559 packets input, 75022095965149 bytes, 0 no buffer
+  Received 60304 broadcasts, 277247 multicasts, 68111584008 unicasts
+  0 input errors, 0 CRC, 0 frame, 0 ignored
+  0 runts, 0 giants
+  118435866121 packets output, 44194584961407 bytes, 0 underruns
+  Transmitted 5149570277 broadcasts, 432776444 multicasts, 112853519400 unicasts
+  0 output errors, 0 collisions
+  Relay Agent Information option: Disabled
+GigabitEthernet23 is up, line protocol is up 
+  Hardware is GigabitEthernet, address is 001b.ed6b.2016 (bia 001b.ed6b.2016)
+  Configured speed auto, actual 1Gbit, configured duplex fdx, actual fdx
+  Configured mdi mode AUTO, actual MDIX
+  Member of 16 L2 VLANs, port is dual mode in Vlan 1, port state is FORWARDING
+  BPDU guard is Disabled, ROOT protect is Disabled
+  Link Error Dampening is Disabled
+  STP configured to ON, priority is level0
+  Flow Control is config enabled, oper enabled, negotiation disabled
+  Mirror disabled, Monitor disabled
+  Not member of any active trunks
+  Not member of any configured trunks
+  Port name is MPLSPPP1-G0/1
+  IPG MII 96 bits-time, IPG GMII 96 bits-time
+  IP MTU 10240 bytes
+  300 second input rate: 22374504 bits/sec, 3857 packets/sec, 2.29% utilization
+  300 second output rate: 22465040 bits/sec, 3866 packets/sec, 2.30% utilization
+  41020960466 packets input, 23447533535742 bytes, 0 no buffer
+  Received 9510500 broadcasts, 263946197 multicasts, 40747503769 unicasts
+  38 input errors, 0 CRC, 0 frame, 0 ignored
+  0 runts, 0 giants
+  39448761031 packets output, 24063276149536 bytes, 0 underruns
+  Transmitted 369728855 broadcasts, 1376474576 multicasts, 37702557600 unicasts
+  0 output errors, 0 collisions
+  Relay Agent Information option: Disabled
+GigabitEthernet24 is up, line protocol is up                      
+  Hardware is GigabitEthernet, address is 001b.ed6b.2017 (bia 001b.ed6b.2017)
+  Configured speed auto, actual 100Mbit, configured duplex fdx, actual fdx
+  Configured mdi mode AUTO, actual MDIX
+  Member of L2 VLAN ID 450, port is untagged, port state is FORWARDING
+  BPDU guard is Disabled, ROOT protect is Disabled
+  Link Error Dampening is Disabled
+  STP configured to ON, priority is level0
+  Flow Control is config enabled, oper enabled, negotiation disabled
+  Mirror disabled, Monitor disabled
+  Not member of any active trunks
+  Not member of any configured trunks
+  Port name is Socket Office MPLS
+  IPG MII 96 bits-time, IPG GMII 96 bits-time
+  IP MTU 10240 bytes
+  30 second input rate: 8504 bits/sec, 3 packets/sec, 0.00% utilization
+  30 second output rate: 64928 bits/sec, 108 packets/sec, 0.07% utilization
+  1819852606 packets input, 434041256645 bytes, 0 no buffer
+  Received 34 broadcasts, 2546245 multicasts, 1817306327 unicasts
+  0 input errors, 0 CRC, 0 frame, 0 ignored
+  0 runts, 0 giants
+  9148279772 packets output, 3489842845205 bytes, 0 underruns
+  Transmitted 5954167784 broadcasts, 678793901 multicasts, 2515318087 unicasts
+  0 output errors, 0 collisions                                   
+  Relay Agent Information option: Disabled
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show interfaces"</p>
+<p><strong>Prompt:</strong>
+- brocade_fastiron&gt;
+- brocade_fastiron#
+- brocade_fastiron(config)#</p>
+<h3 id="show-lldp-neighbors-detail">show lldp neighbors detail<a class="headerlink" href="#show-lldp-neighbors-detail" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>Local port: 1/1/2
+  Neighbor: 00a0.c85a.a3dd, TTL 118 seconds
+    + Chassis ID (MAC address): 00a0.c836.37c8
+    + Port ID (locally assigned): &quot;Gigabit-Ethernet 1/A/1&quot;
+    + Time to live: 120 seconds
+    + Management address (IPv4): 10.255.5.98
+    + System name         : &quot;CLMAMOXR-TA5000B&quot;
+    + System capabilities : bridge
+      Enabled capabilities: bridge
+
+ Local port: 1/1/24
+  Neighbor: 609c.9f44.bbf0, TTL 97 seconds
+    + Chassis ID (MAC address): cc4e.24c5.57fc
+    + Port ID (MAC address): 609c.9f44.bbf0
+    + Time to live: 120 seconds
+    + System name         : &quot;switch2.clmamoxi&quot;
+    + Port description    : &quot;GigabitEthernet2/1/1&quot;
+    + System capabilities : bridge
+      Enabled capabilities: bridge
+    + 802.3 MAC/PHY          : auto-negotiation enabled
+      Advertised capabilities: fdxSPause, fdxBPause
+      Operational MAU type   : 1000BaseT-FD
+    + Link aggregation: aggregated (aggregated port ifIndex: 257)
+    + Maximum frame size: 10200 octets                            
+    + Port VLAN ID: none
+    + Management address (IPv4): 10.255.13.22
+
+Local port: 1/3/1
+  Neighbor: 609c.9f44.bc13, TTL 113 seconds
+    + Chassis ID (MAC address): cc4e.24c5.57fc
+    + Port ID (MAC address): 609c.9f44.bc13
+    + Time to live: 120 seconds
+    + System name         : &quot;switch2.clmamoxi&quot;
+    + Port description    : &quot;10GigabitEthernet2/3/1&quot;
+    + System capabilities : bridge
+      Enabled capabilities: bridge
+    + 802.3 MAC/PHY          : auto-negotiation supported, but disabled
+      Operational MAU type   : 10GigBaseER
+    + Link aggregation: aggregated (aggregated port ifIndex: 385)
+    + Maximum frame size: 10200 octets
+    + Port VLAN ID: none
+    + Management address (IPv4): 10.255.13.22
+
+Local port: 1/3/2
+  Neighbor: 609c.9f44.bc14, TTL 113 seconds
+    + Chassis ID (MAC address): cc4e.24c5.57fc
+    + Port ID (MAC address): 609c.9f44.bc14                       
+    + Time to live: 120 seconds
+    + System name         : &quot;switch2.clmamoxi&quot;
+    + Port description    : &quot;10GigabitEthernet2/3/2&quot;
+    + System capabilities : bridge
+      Enabled capabilities: bridge
+    + 802.3 MAC/PHY          : auto-negotiation supported, but disabled
+      Operational MAU type   : 10GigBaseER
+    + Link aggregation: aggregated (aggregated port ifIndex: 385)
+    + Maximum frame size: 10200 octets
+    + Port VLAN ID: none
+    + Management address (IPv4): 10.255.13.22
+
+Local port: 2/1/1
+  Neighbor: cc4e.24c7.ccd4, TTL 107 seconds
+    + Chassis ID (MAC address): cc4e.24c7.ccd4
+    + Port ID (MAC address): cc4e.24c7.ccd4
+    + Time to live: 120 seconds
+    + System name         : &quot;Switch2.CLMAMOXH&quot;
+    + Port description    : &quot;GigabitEthernet1/1/1&quot;
+    + System capabilities : bridge
+      Enabled capabilities: bridge
+    + 802.3 MAC/PHY          : auto-negotiation enabled
+      Advertised capabilities:                                    
+      Operational MAU type   : 1000BaseT-FD
+    + Link aggregation: aggregated (aggregated port ifIndex: 1)
+    + Maximum frame size: 10200 octets
+    + Port VLAN ID: none
+    + Management address (IPv4): 10.255.13.2
+
+Local port: 2/3/1
+  Neighbor: cc4e.24c7.af6f, TTL 112 seconds
+    + Chassis ID (MAC address): cc4e.24c7.ccd4
+    + Port ID (MAC address): cc4e.24c7.af6f
+    + Time to live: 120 seconds
+    + System name         : &quot;Switch2.CLMAMOXH&quot;
+    + Port description    : &quot;10GigabitEthernet2/3/1&quot;
+    + System capabilities : bridge
+      Enabled capabilities: bridge
+    + 802.3 MAC/PHY          : auto-negotiation supported, but disabled
+      Operational MAU type   : 10GigBaseER
+    + Link aggregation: aggregated (aggregated port ifIndex: 385)
+    + Maximum frame size: 10200 octets
+    + Port VLAN ID: none
+    + Management address (IPv4): 10.255.13.2
+
+Local port: 2/3/2                                                 
+  Neighbor: cc4e.24c7.af71, TTL 112 seconds
+    + Chassis ID (MAC address): cc4e.24c7.ccd4
+    + Port ID (MAC address): cc4e.24c7.af71
+    + Time to live: 120 seconds
+    + System name         : &quot;Switch2.CLMAMOXH&quot;
+    + Port description    : &quot;10GigabitEthernet2/3/3&quot;
+    + System capabilities : bridge
+      Enabled capabilities: bridge
+    + 802.3 MAC/PHY          : auto-negotiation supported, but disabled
+      Operational MAU type   : 10GigBaseER
+    + Link aggregation: aggregated (aggregated port ifIndex: 385)
+    + Maximum frame size: 10200 octets
+    + Port VLAN ID: none
+    + Management address (IPv4): 10.255.13.2
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show lldp neighbors detail"</p>
+<p><strong>Prompt:</strong>
+- brocade_fastiron&gt;
+- brocade_fastiron#
+- brocade_fastiron(config)#</p>
+<h3 id="show-arp">show arp<a class="headerlink" href="#show-arp" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>Protocol  Address          Age (min)  Hardware Addr   Type   Interface
+Internet  10.51.250.70           94   64f6.9d1e.a4bf  ARPA   Vlan10
+Internet  10.51.250.120           -   fc5b.394a.5a7f  ARPA   Vlan10
+Internet  10.51.250.1             0   0010.dbff.1002  ARPA   Vlan10
+Internet  10.51.250.7            81   046c.9d67.7746  ARPA   Vlan10
+Internet  10.51.250.8            67   9c57.ad1e.4b46  ARPA   Vlan10
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show arp"</p>
+<p><strong>Prompt:</strong>
+- brocade_fastiron&gt;
+- brocade_fastiron#
+- brocade_fastiron(config)#</p>
+<h3 id="show-running-config-vlan">show running-config vlan<a class="headerlink" href="#show-running-config-vlan" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>vlan 1 name DEFAULT-VLAN by port
+ no spanning-tree
+!
+vlan 10 name CLMAMO-RING-1 by port
+ tagged ethe 2 ethe 11 
+ no spanning-tree
+ metro-ring 10
+  ring-interfaces  ethernet 11  ethernet 2
+  enable
+!
+vlan 13 name SocketPublicWifi by port
+ tagged ethe 1 to 2 
+ no spanning-tree
+!
+vlan 14 name CLMAMOFW-Ring by port
+ tagged ethe 1 to 2 
+ no spanning-tree
+ metro-ring 14
+  ring-interfaces  ethernet 1  ethernet 2
+  enable
+!
+vlan 100 by port
+ tagged ethe 1 to 2 
+ no spanning-tree                                                 
+!
+ vlan 146 name LabSBC-External by port
+ tagged ethe 2 ethe 11 
+ no spanning-tree
+ !
+vlan 149 name SBC-External by port
+ tagged ethe 2 ethe 11 
+ untagged ethe 16 ethe 21 
+ no spanning-tree
+!
+vlan 151 name LabSBC-Internal by port
+ tagged ethe 2 ethe 11 
+ no spanning-tree
+!
+vlan 152 name SBC-Inside by port
+ tagged ethe 2 ethe 11 
+ untagged ethe 10 ethe 20 
+ no spanning-tree
+!
+vlan 154 name SocketVoIP-Svr by port
+ tagged ethe 2 ethe 11 ethe 19 
+ untagged ethe 14 
+ no spanning-tree                                                 
+!
+ vlan 175 name CLMAMO10G-to-FW by port
+ tagged ethe 1 to 2 
+ no spanning-tree
+ metro-ring 176
+  ring-interfaces  ethernet 1  ethernet 2
+  enable
+  name CLMAMOFW-to-CLMAMO10G
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show running-config vlan"</p>
+<p><strong>Prompt:</strong>
+- brocade_fastiron&gt;
+- brocade_fastiron#
+- brocade_fastiron(config)#</p>
+<h3 id="show-lag-brief">show lag brief<a class="headerlink" href="#show-lag-brief" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>Total number of LAGs:          4
+Total number of deployed LAGs: 4
+ Total number of trunks created:4 (116 available)
+LACP System Priority / ID:     1 / cc4e.2415.015e
+LACP Long timeout:             90, default: 90
+LACP Short timeout:            3, default: 3
+
+LAG           Type   Deploy Trunk Primary  Port List
+10G-Lag2      dynamic  Y    5     2/3/1    e 2/3/1 to 2/3/2
+1G-Lag        dynamic  Y    3     1/1/24   e 1/1/24
+1G-Lag-2      dynamic  Y    4     2/1/1    e 2/1/1
+SW2.XR-SW1A.TEdynamic  Y    1     1/3/1    e 1/3/1 to 1/3/2
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show lag brief"</p>
+<p><strong>Prompt:</strong>
+- brocade_fastiron&gt;
+- brocade_fastiron#
+- brocade_fastiron(config)#</p>
+<h3 id="show-trunk">show trunk<a class="headerlink" href="#show-trunk" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>Configured trunks:
+
+Trunk ID: 5
+Hw Trunk ID: 1
+Ports_Configured: 2
+Primary Port Monitored: Jointly
+
+Ports         5       23      
+Port Names    none    none    
+Port_Status   enable  enable  
+Monitor       off     off     
+Rx Mirr Port  N/A     N/A     
+Tx Mirr Port  N/A     N/A     
+ Monitor Dir   N/A     N/A     
+
+Operational trunks:
+
+Trunk ID: 5
+Hw Trunk ID: 1
+Duplex: Full
+Speed: 1G
+Tag: Yes
+Priority: level0                                                  
+Active Ports: 2
+
+Ports         5       23      
+Link_Status   active  active  
+port_state    Forward Forward 
+LACP_Status   ready   ready   
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show trunk"</p>
+<p><strong>Prompt:</strong>
+- brocade_fastiron&gt;
+- brocade_fastiron#
+- brocade_fastiron(config)#</p>
+<h3 id="show-interfaces-brief">show interfaces brief<a class="headerlink" href="#show-interfaces-brief" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>Port    Link    State   Dupl Speed Trunk Tag Pvid Pri MAC            Name      
+1       Up      Forward Full 1G    None  Yes N/A  0   001b.ed6b.2000  to MLX1-
+2       Up      Forward Full 1G    None  Yes 1    0   001b.ed6b.2001  switch1b
+3       Disable None    None None  None  No  1    0   001b.ed6b.2002          
+4       Disable None    None None  None  No  2033 0   001b.ed6b.2003  Boyce&amp;By
+5       Disable None    None None  None  No  1    0   001b.ed6b.2004          
+6       Disable None    None None  None  No  1    0   001b.ed6b.2005          
+7       Up      Forward Full 1G    None  Yes N/A  0   001b.ed6b.2006  ms1a (4B
+8       Disable None    None None  None  No  1    0   001b.ed6b.2007          
+9       Up      Forward Full 1G    None  No  450  0   001b.ed6b.2008  warehous
+10      Up      Forward Full 1G    None  No  152  0   001b.ed6b.2009  sbc1.voi
+11      Up      Forward Full 1G    None  Yes 1    0   001b.ed6b.200a  OPTI1-MS
+12      Disable None    None None  None  No  1    0   001b.ed6b.200b          
+13      Disable None    None None  None  No  1    0   001b.ed6b.200c          
+14      Down    None    None None  None  No  154  0   001b.ed6b.200d  SocketVo
+15      Disable None    None None  None  No  1    0   001b.ed6b.200e          
+16      Up      Forward Full 1G    None  No  149  0   001b.ed6b.200f  sbc1.voi
+17      Up      Forward Full 100M  None  No  2277 0   001b.ed6b.2010  Memory B
+18      Up      Forward Full 1G    None  No  1    0   001b.ed6b.2011  voipmon1
+19      Up      Forward Full 1G    None  Yes N/A  0   001b.ed6b.2012  vmail1.v
+20      Up      Forward Full 100M  None  No  152  0   001b.ed6b.2013  VoIP-ASA
+21      Up      Forward Full 100M  None  No  149  0   001b.ed6b.2014  VoIP-ASA
+22      Up      Forward Full 1G    None  Yes N/A  0   001b.ed6b.2015  md1a (2B
+23      Up      Forward Full 1G    None  Yes 1    0   001b.ed6b.2016  MPLSPPP1
+24      Up      Forward Full 100M  None  No  450  0   001b.ed6b.2017  Socket O
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show interfaces brief"</p>
+<p><strong>Prompt:</strong>
+- brocade_fastiron&gt;
+- brocade_fastiron#
+- brocade_fastiron(config)#</p>
+<h3 id="show-topo">show topo<a class="headerlink" href="#show-topo" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>Topology Group 10
+=================
+ master-vlan 10
+ member-vlan 146 149 151 to 152 154 200 300 to 303 350 400 453 1280 to 1283
+ member-vlan 1295 1335 1395 2005 2022 2024 2030 2033 2035 2039 2049 to 2050
+ member-vlan 2054 2069 to 2070 2086 2091 to 2092 2096 to 2097 2099 to 2100
+ member-vlan 2129 2184 2188 to 2189 2204 2215 2226 2241 to 2242 2250 2253
+ member-vlan 2277 2325 to 2326 2340 2342 2349 to 2351 2360 2367 2414 to 2415
+ member-vlan 2442 2895 3008 3840 4001
+
+ Common control ports           L2 protocol         
+ ethernet 1/1/24                MRP                 
+ ethernet 2/1/1                 MRP                 
+ Per vlan free ports                                
+ ethernet 1/1/3                  Vlan 10            
+ ethernet 1/1/4                  Vlan 10            
+ ethernet 1/1/5                  Vlan 10            
+ ethernet 1/1/7                  Vlan 10            
+ ethernet 1/1/8                  Vlan 10            
+ ethernet 1/1/2                  Vlan 400           
+ ethernet 2/1/2                  Vlan 400           
+ ethernet 1/1/2                  Vlan 2342          
+ ethernet 2/1/2                  Vlan 2342          
+
+Topology Group 13
+=================
+ master-vlan 513
+ member-vlan 94 207 223 to 224 280 to 282 290 310 to 311 320 to 321 330 to 331
+ member-vlan 340 345 355 360 365 375 380 385 390 401 517 to 518 619 623 999
+ member-vlan 1290 1345 1355 to 1356 1380 1385 1390 2004 2006 2011 2018 2043
+ member-vlan 2045 to 2046 2058 to 2059 2063 to 2065 2072 2075 2102 2104 to 2107
+ member-vlan 2133 2137 2173 2180 to 2181 2190 2195 2197 2199 to 2200 2235
+ member-vlan 2257 2261 2265 2267 2270 to 2272 2274 2278 2282 2284 to 2287
+ member-vlan 2293 to 2296 2298 2301 to 2302 2305 to 2306 2314 to 2317
+ member-vlan 2320 2323 to 2324 2329 2332 2343 to 2345 2352 to 2353 2355
+ member-vlan 2357 2359 2362 to 2363 2366 2368 to 2369 2372 2374 to 2376
+ member-vlan 2379 2381 2384 2386 to 2387 2393 2395 2399 to 2401 2403 2408
+ member-vlan 2412 2416 2418 to 2420 2435 to 2440 2443 to 2446 2449 to 2451
+ member-vlan 2453 to 2456 2460 2466 to 2470 2472 2475 2483 2571 2575 to 2576
+ member-vlan 2718 2766 3004 3006 to 3007
+
+ Common control ports           L2 protocol         
+ ethernet 1/3/1                 MRP                 
+ ethernet 1/3/2                 MRP                 
+ ethernet 2/3/1                 MRP                 
+ ethernet 2/3/2                 MRP                 
+ Per vlan free ports                                              
+ ethernet 1/1/2                  Vlan 330           
+ ethernet 1/1/6                  Vlan 330           
+ ethernet 2/1/2                  Vlan 330           
+ ethernet 1/1/2                  Vlan 331           
+ ethernet 2/1/2                  Vlan 331           
+ ethernet 1/1/24                 Vlan 360           
+ ethernet 2/1/1                  Vlan 360           
+ ethernet 1/1/2                  Vlan 2006          
+ ethernet 2/1/2                  Vlan 2006          
+ ethernet 1/1/2                  Vlan 2058          
+ ethernet 2/1/2                  Vlan 2058          
+ ethernet 2/1/1                  Vlan 2063          
+ ethernet 1/1/2                  Vlan 2282          
+ ethernet 2/1/2                  Vlan 2282          
+ ethernet 1/1/2                  Vlan 2352          
+ ethernet 2/1/2                  Vlan 2352          
+ ethernet 1/1/24                 Vlan 2403          
+ ethernet 2/1/1                  Vlan 2403          
+
+Topology Group 60
+=================
+ master-vlan 60
+ member-vlan 2371 2481                                            
+
+ Common control ports           L2 protocol         
+ ethernet 1/3/1                 MRP                 
+ ethernet 1/3/2                 MRP                 
+ ethernet 2/3/1                 MRP                 
+ ethernet 2/3/2                 MRP                 
+ Per vlan free ports                                
+
+Topology Group 170
+=================
+ master-vlan 170
+ member-vlan 144 to 145 220 454 2040 2191 2422 2459
+
+ Common control ports           L2 protocol         
+ ethernet 1/3/1                 MRP                 
+ ethernet 1/3/2                 MRP                 
+ ethernet 2/3/1                 MRP                 
+ ethernet 2/3/2                 MRP                 
+ Per vlan free ports                                
+
+Topology Group 175
+=================
+ master-vlan 175                                                  
+ member-vlan 100 450 850 2206 2752 to 2753
+
+ Common control ports           L2 protocol         
+ ethernet 1/3/1                 MRP                 
+ ethernet 1/3/2                 MRP                 
+ ethernet 2/3/1                 MRP                 
+ ethernet 2/3/2                 MRP                 
+ Per vlan free ports                                
+ ethernet 1/1/2                  Vlan 850           
+ ethernet 2/1/1                  Vlan 850           
+ ethernet 2/1/2                  Vlan 850           
+
+Topology Group 215
+=================
+ master-vlan 215
+ member-vlan none
+
+ Common control ports           L2 protocol         
+ ethernet 1/3/1                 MRP                 
+ ethernet 2/3/1                 MRP                 
+ Per vlan free ports                                
+ ethernet 1/3/2                  Vlan 215           
+ ethernet 2/3/2                  Vlan 215     
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show topo"</p>
+<p><strong>Prompt:</strong>
+- brocade_fastiron&gt;
+- brocade_fastiron#
+- brocade_fastiron(config)#</p>
+<h3 id="show-span">show span<a class="headerlink" href="#show-span" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>STP instance owned by VLAN 1
+
+Global STP (IEEE 802.1D) Parameters:
+
+VLAN Root             Root Root   Prio Max He- Ho- Fwd Last    Chg Bridge      
+ ID   ID              Cost Port   rity Age llo ld  dly Chang   cnt Address     
+                                  Hex  sec sec sec sec sec                     
+   1 8000cc4e2415015e 0    Root   8000 20  2   1   15  265591169   cc4e2415015e
+
+Port STP Parameters:
+
+Port   Prio Path  State       Fwd    Design  Designated       Designated       
+Num    rity Cost              Trans  Cost    Root             Bridge           
+       Hex                                                                     
+1/1/1  80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+1/1/9  80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+1/1/10 80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+1/1/11 80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+1/1/12 80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+1/1/13 80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+1/1/14 80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+1/1/15 80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+1/1/16 80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+1/1/17 80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+1/1/18 80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+1/1/19 80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+1/1/20 80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+1/1/21 80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+1/1/22 80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+1/1/23 80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+1/3/3  80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+1/3/4  80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+1/3/5  80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+1/3/6  80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+1/3/7  80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+1/3/8  80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+2/1/3  80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+2/1/4  80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+2/1/5  80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+2/1/6  80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+2/1/7  80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+2/1/8  80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+2/1/9  80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+2/1/10 80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+2/1/11 80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+2/1/12 80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+2/1/13 80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+2/1/14 80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+2/1/15 80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+2/1/16 80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+2/1/17 80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+2/1/18 80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+2/1/19 80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+2/1/20 80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+2/1/21 80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+2/1/22 80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+2/1/23 80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+2/1/24 80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+2/3/3  80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+2/3/4  80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+2/3/5  80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+2/3/6  80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+2/3/7  80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+2/3/8  80   0     DISABLED    0      0       0000000000000000 0000000000000000 
+
+Spanning-tree is not configured on port-vlan 385
+
+Spanning-tree is not configured on port-vlan 10
+
+Spanning-tree is not configured on port-vlan 94
+
+Spanning-tree is not configured on port-vlan 144
+
+Spanning-tree is not configured on port-vlan 145
+
+Spanning-tree is not configured on port-vlan 146
+
+Spanning-tree is not configured on port-vlan 149
+
+Spanning-tree is not configured on port-vlan 151
+
+Spanning-tree is not configured on port-vlan 152
+
+Spanning-tree is not configured on port-vlan 154
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show span"</p>
+<p><strong>Prompt:</strong>
+- brocade_fastiron&gt;
+- brocade_fastiron#
+- brocade_fastiron(config)#</p>
+<h3 id="show-mac-address">show mac-address<a class="headerlink" href="#show-mac-address" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>Total active entries from all ports = 236
+MAC Address     Port      Age      VLAN    Type
+
+6cae.8b2d.c979   2/1        0      1000
+3440.b5be.e3ac   2/1        0      1000
+90e2.ba5a.ab8c   2/1        0      1000
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show mac-address"</p>
+<p><strong>Prompt:</strong>
+- brocade_fastiron&gt;
+- brocade_fastiron#
+- brocade_fastiron(config)#</p>
+<h3 id="show-metro">show metro<a class="headerlink" href="#show-metro" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>Metro Ring 10
+=============
+Ring       State      Ring       Master     Topo       Hello      Prefwing
+id                    role       vlan       group      time(ms)   time(ms)
+10         enabled    member     10         10         100        300
+
+Ring interfaces Interface role Forwarding state Active interface interface type 
+ethernet 11     primary        forwarding       ethernet 11      regular        
+ethernet 2      secondary      forwarding       ethernet 2       regular        
+
+RHPs sent            RHPs rcvd            TC RBPDUs rcvd       State changes
+0                    1432850207           7970                 154
+
+
+Metro Ring 14
+=============
+Ring       State      Ring       Master     Topo       Hello      Prefwing
+id                    role       vlan       group      time(ms)   time(ms)
+14         enabled    member     14         14         100        300
+
+Ring interfaces Interface role Forwarding state Active interface interface type 
+ ethernet 1      primary        forwarding       ethernet 1       regular        
+ethernet 2      secondary      forwarding       ethernet 2       regular        
+
+RHPs sent            RHPs rcvd            TC RBPDUs rcvd       State changes
+0                    1441064488           1728                 86
+
+
+Metro Ring 176 - CLMAMOFW-to-CLMAMO10G
+=============
+Ring       State      Ring       Master     Topo       Hello      Prefwing
+id                    role       vlan       group      time(ms)   time(ms)
+176        enabled    member     175        175        100        300
+
+Ring interfaces Interface role Forwarding state Active interface interface type 
+ ethernet 1      primary        forwarding       ethernet 1       regular        
+ethernet 2      secondary      forwarding       ethernet 2       regular        
+
+RHPs sent            RHPs rcvd            TC RBPDUs rcvd       State changes
+0                    355056325            689                  9
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show metro"</p>
+<p><strong>Prompt:</strong>
+- brocade_fastiron&gt;
+- brocade_fastiron#
+- brocade_fastiron(config)#</p>
+<h3 id="show-lldp-neighbors">show lldp neighbors<a class="headerlink" href="#show-lldp-neighbors" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>Capability codes:
+    (R) Router, (B) Bridge, (T) Telephone, (C) DOCSIS Cable Device
+    (W) WLAN Access Point, (P) Repeater, (S) Station, (O) Other
+ Device ID           Local Intf     Hold-time  Capability      Port ID
+core-sw01           Gi1/3          120        B,R             Gi0/3
+Total entries displayed: 1
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show lldp neighbors"</p>
+<p><strong>Prompt:</strong>
+- brocade_fastiron&gt;
+- brocade_fastiron#
+- brocade_fastiron(config)#</p>
+<h3 id="show-version">show version<a class="headerlink" href="#show-version" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>show version
+
+  Copyright (c) 1996-2016 Brocade Communications Systems, Inc. All rights reserved.
+    UNIT 1: compiled on May 19 2016 at 01:15:45 labeled as ICX64S08030h
+        (8500344 bytes) from Primary ICX64S08030h.bin
+        SW: Version 08.0.30hT311
+    UNIT 2: compiled on May 19 2016 at 01:15:45 labeled as ICX64S08030h
+        (8500344 bytes) from Primary ICX64S08030h.bin
+        SW: Version 08.0.30hT311
+    UNIT 3: compiled on May 19 2016 at 01:15:45 labeled as ICX64S08030h
+        (8500344 bytes) from Primary ICX64S08030h.bin
+        SW: Version 08.0.30hT311
+    UNIT 4: compiled on May 19 2016 at 01:15:45 labeled as ICX64S08030h
+        (8500344 bytes) from Primary ICX64S08030h.bin
+        SW: Version 08.0.30hT311
+    UNIT 5: compiled on May 19 2016 at 01:15:45 labeled as ICX64S08030h
+        (8500344 bytes) from Primary ICX64S08030h.bin
+        SW: Version 08.0.30hT311
+    UNIT 6: compiled on May 19 2016 at 01:15:45 labeled as ICX64S08030h
+        (8500344 bytes) from Primary ICX64S08030h.bin
+        SW: Version 08.0.30hT311
+  Boot-Monitor Image size = 786944, Version:10.1.05T310 (kxz10105)
+  HW: Stackable ICX6450-48-HPOE
+==========================================================================
+ UNIT 1: SL 1: ICX6450-48P POE 48-port Management Module
+     Serial  #: BZT3217M025
+     License: BASE_SOFT_PACKAGE   (LID: dbvIHGMoFHK)
+     P-ENGINE  0: type DEF0, rev 01
+     P-ENGINE  1: type DEF0, rev 01
+==========================================================================
+ UNIT 1: SL 2: ICX6450-SFP-Plus 4port 40G Module
+==========================================================================
+ UNIT 2: SL 1: ICX6450-48P POE 48-port Management Module
+     Serial  #: BZT3217M033
+     License: BASE_SOFT_PACKAGE   (LID: dbvIHGMoFII)
+     P-ENGINE  0: type DEF0, rev 01
+     P-ENGINE  1: type DEF0, rev 01
+==========================================================================
+ UNIT 2: SL 2: ICX6450-SFP-Plus 4port 40G Module
+==========================================================================
+ UNIT 3: SL 1: ICX6450-48P POE 48-port Management Module
+     Serial  #: BZT3217M036
+     License: BASE_SOFT_PACKAGE   (LID: dbvIHGMoFIL)
+     P-ENGINE  0: type DEF0, rev 01
+     P-ENGINE  1: type DEF0, rev 01
+
+==========================================================================
+ UNIT 3: SL 2: ICX6450-SFP-Plus 4port 40G Module
+==========================================================================
+ UNIT 4: SL 1: ICX6450-48P POE 48-port Management Module
+     Serial  #: BZT3217M038
+     License: BASE_SOFT_PACKAGE   (LID: dbvIHGMoFIN)
+     P-ENGINE  0: type DEF0, rev 01
+     P-ENGINE  1: type DEF0, rev 01
+==========================================================================
+ UNIT 4: SL 2: ICX6450-SFP-Plus 4port 40G Module
+==========================================================================
+ UNIT 5: SL 1: ICX6450-48P POE 48-port Management Module
+     Serial  #: BZT3215M02V
+     License: BASE_SOFT_PACKAGE   (LID: dbvIHGKoFHx)
+     P-ENGINE  0: type DEF0, rev 01
+     P-ENGINE  1: type DEF0, rev 01
+==========================================================================
+ UNIT 5: SL 2: ICX6450-SFP-Plus 4port 40G Module
+==========================================================================
+ UNIT 6: SL 1: ICX6450-48P POE 48-port Management Module
+     Serial  #: BZT3217M02G
+     License: BASE_SOFT_PACKAGE   (LID: dbvIHGMoFHi)
+     P-ENGINE  0: type DEF0, rev 01
+     P-ENGINE  1: type DEF0, rev 01
+==========================================================================
+ UNIT 6: SL 2: ICX6450-SFP-Plus 4port 40G Module
+==========================================================================
+
+  800 MHz ARM processor ARMv5TE, 400 MHz bus
+65536 KB flash memory
+  512 MB DRAM
+STACKID 1  system uptime is 730 day(s) 11 hour(s) 11 second(s)
+STACKID 2  system uptime is 707 day(s) 8 hour(s) 13 minute(s) 32 second(s)
+STACKID 3  system uptime is 707 day(s) 8 hour(s) 13 minute(s) 32 second(s)
+STACKID 4  system uptime is 707 day(s) 8 hour(s) 13 minute(s) 32 second(s)
+STACKID 5  system uptime is 707 day(s) 8 hour(s) 13 minute(s) 31 second(s)
+STACKID 6  system uptime is 730 day(s) 10 hour(s) 59 minute(s) 40 second(s)
+The system started at 15:56:16 Pacific Fri Jul 08 2016
+
+ The system : started=cold start
+ My stack unit ID = 1, bootup role = active
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show version"</p>
+<p><strong>Prompt:</strong>
+- brocade_fastiron&gt;
+- brocade_fastiron#
+- brocade_fastiron(config)#</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.instant", "navigation.instant.progress", "content.tabs.link", "content.footnote.tooltips"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

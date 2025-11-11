@@ -1,0 +1,2561 @@
+
+<!doctype html>
+<html lang="ca" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="FakeNOS, Network, SSH">
+      
+      
+        <meta name="author" content="Denis Mulyalin">
+      
+      
+        <link rel="canonical" href="https://fakenos.github.io/fakenos/ca/platforms/huawei_vrp/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>huawei_vrp - FakeNOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="brown" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#huawei_vrp" class="md-skip">
+          Salta el contingut
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Capçalera">
+    <a href="../../" title="FakeNOS" class="md-header__button md-logo" aria-label="FakeNOS" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            FakeNOS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              huawei_vrp
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="brown" data-md-color-accent="deep-orange"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="brown" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Selecciona la llengua">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../platforms/huawei_vrp/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../../es/platforms/huawei_vrp/" hreflang="es" class="md-select__link">
+              Español
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="ca" class="md-select__link">
+              Català
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Cerca" placeholder="Cerca" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Cerca">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Neteja" aria-label="Neteja" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicialitzant cerca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/fakenos/fakenos" title="Ves al repositori" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    fakenos/fakenos
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestanyes" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+  Resum
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../examples/" class="md-tabs__link">
+          
+  
+  
+  Exemples
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../usage/installation/" class="md-tabs__link">
+          
+  
+  
+  Ús
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Plataformes
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../development/" class="md-tabs__link">
+          
+  
+  
+  Desenvolupament
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../collaborators/" class="md-tabs__link">
+          
+  
+  
+  Col·laboradors
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api/core_api_reference/" class="md-tabs__link">
+          
+  
+  
+  API
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegació" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="FakeNOS" class="md-nav__button md-logo" aria-label="FakeNOS" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    FakeNOS
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/fakenos/fakenos" title="Ves al repositori" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    fakenos/fakenos
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Resum
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Resum
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resum
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/why/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Per què?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/what/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Què?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/how/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Com?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/what_not/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Què no?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Referències
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Exemples
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Exemples
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Exemples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/developing_scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Desenvolupament de scripts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/automatic_testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Proves automàtiques - CI/CD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Ús
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Ús
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Instal·lació
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/getting_started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Començar
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/fakenos_inventory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Inventario
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/running_in_docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Executar en contenidor Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/configurations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuracions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Plataformes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Desenvolupament
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Desenvolupament
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Principal
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/conventions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Convencions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/tasks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tasques
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/creating_new_platforms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Crear una nova plataforma
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/creating_nos_plugin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Crear un complement NOS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/github_actions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accions de Github
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/extras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extras
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Col·laboradors
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Col·laboradors
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collaborators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Col·laboradors
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    API
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            API
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/core_api_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Core API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/builtin_plugins_api_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Built-in Plugins API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Taula de continguts">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Taula de continguts
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#platforms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Platforms:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable" class="md-nav__link">
+    <span class="md-ellipsis">
+      enable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-arp-brief" class="md-nav__link">
+    <span class="md-ellipsis">
+      display arp brief
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-ip-vpn-instance-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      display ip vpn-instance interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      display version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-interface-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      display interface description
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-interface-brief" class="md-nav__link">
+    <span class="md-ellipsis">
+      display interface brief
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-port-vlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      display port vlan
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-ipv6-neighbors" class="md-nav__link">
+    <span class="md-ellipsis">
+      display ipv6 neighbors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-service-set-id-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      display service-set id id
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-traffic-filter-applied-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      display traffic-filter applied-record
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-acl-all" class="md-nav__link">
+    <span class="md-ellipsis">
+      display acl all
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-arp-all" class="md-nav__link">
+    <span class="md-ellipsis">
+      display arp all
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-ip-routing-table-verbose" class="md-nav__link">
+    <span class="md-ellipsis">
+      display ip routing-table verbose
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-ip-vpn-instance" class="md-nav__link">
+    <span class="md-ellipsis">
+      display ip vpn-instance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-lldp-neighbor" class="md-nav__link">
+    <span class="md-ellipsis">
+      display lldp neighbor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-nat-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      display nat server
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-isis-peer" class="md-nav__link">
+    <span class="md-ellipsis">
+      display isis peer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-temperature" class="md-nav__link">
+    <span class="md-ellipsis">
+      display temperature
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-sn-license" class="md-nav__link">
+    <span class="md-ellipsis">
+      display sn license
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-service-set-all" class="md-nav__link">
+    <span class="md-ellipsis">
+      display service-set all
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-startup" class="md-nav__link">
+    <span class="md-ellipsis">
+      display startup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-vlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      display vlan
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      display interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-snmp-agent-community-read" class="md-nav__link">
+    <span class="md-ellipsis">
+      display snmp-agent community read
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-mac-address" class="md-nav__link">
+    <span class="md-ellipsis">
+      display mac-address
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#screen-length-0-temporary" class="md-nav__link">
+    <span class="md-ellipsis">
+      screen-length 0 temporary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="huawei_vrp">huawei_vrp<a class="headerlink" href="#huawei_vrp" title="Permanent link">#</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is automatically generated. In case of any issues, 
+please refer to the source code or, even better, 
+open an issue on the GitHub repository. Thanks! 🤗📖</p>
+</div>
+<h2 id="platforms">Platforms:<a class="headerlink" href="#platforms" title="Permanent link">#</a></h2>
+<h2 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">#</a></h2>
+<h3 id="enable">enable<a class="headerlink" href="#enable" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>null
+</code></pre></div></p>
+<p><strong>Help:</strong> enter enable mode</p>
+<p><strong>Prompt:</strong>
+- huawei_vrp&gt;</p>
+<h3 id="display-arp-brief">display arp brief<a class="headerlink" href="#display-arp-brief" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>IP ADDRESS      MAC ADDRESS    EXPIRE(M) TYPE  INTERFACE           VLAN/CEVLAN  
+------------------------------------------------------------------------------  
+192.168.120.251 60de-4474-9640           I -   Vlanif1                          
+192.168.120.1   7054-f5df-9b40 3         D-0   GE0/0/0                1/-       
+192.168.120.252 04f9-3895-8300 19        D-0   GE0/0/0                1/-       
+------------------------------------------------------------------------------  
+Total:3         Dynamic:2       Static:0     Interface:1  
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display arp brief"</p>
+<p><strong>Prompt:</strong>
+- huawei_vrp&gt;
+- huawei_vrp#</p>
+<h3 id="display-ip-vpn-instance-interface">display ip vpn-instance interface<a class="headerlink" href="#display-ip-vpn-instance-interface" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code> Total VPN-Instances configured      : 3
+
+ VPN-Instance Name and ID : cftv, 1
+  Interface Number : 3 
+  Interface list : Vlanif1823, 
+                   Vlanif1847, 
+                   LoopBack5
+
+ VPN-Instance Name and ID : met, 2
+  Interface Number : 5 
+  Interface list : 40GE0/0/3, 
+                   Vlanif1774, 
+                   Vlanif1797, 
+                   LoopBack2, 
+                   Vlanif1769
+
+ VPN-Instance Name and ID : tel, 3
+  Interface Number : 4 
+  Interface list : Vlanif755, 
+                   Vlanif773, 
+                   Vlanif797, 
+                   LoopBack1
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display ip vpn-instance interface"</p>
+<p><strong>Prompt:</strong>
+- huawei_vrp&gt;
+- huawei_vrp#</p>
+<h3 id="display-version">display version<a class="headerlink" href="#display-version" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>Huawei Versatile Routing Platform Software
+VRP (R) software, Version 8.180 (ATN 910C-B V300R003C10SPC500)
+Copyright (C) 2012-2018 Huawei Technologies Co., Ltd.
+HUAWEI ATN 910C-B uptime is 358 days, 16 hours, 59 minutes
+
+ATN 910C-B version information:
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+CXP version information:
+
+CXP (Master) 2  : uptime is 358 days, 16 hours, 58 minutes
+  StartupTime   2019/02/24   17:20:13
+  SDRAM Memory Size   : 4096M bytes
+  FLASH Memory Size   : 64M bytes
+  CFCARD Memory Size  : 800M bytes
+  CFCARD2 Memory Size : 800M bytes
+  ANGMHSTA0211 version information
+  PCB         Version : ANG1CXPH REV A
+  EPLD        Version : V120
+  FPGA1       Version : V110
+  PE          Version : 000
+  BootROM     Version : 08.84
+  BootLoad    Version : 08.84
+  Software    Version : Version 8.180 RELEASE 0001
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+PWR version information:
+
+PWR5&#39;s  version information:
+  PCB         Version : ES5MPSD17 REV D
+
+PWR6&#39;s  version information:
+  PCB         Version : ES5MPSD17 REV D
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display version"</p>
+<p><strong>Prompt:</strong>
+- huawei_vrp&gt;
+- huawei_vrp#</p>
+<h3 id="display-interface-description">display interface description<a class="headerlink" href="#display-interface-description" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>PHY: Physical
+*down: administratively down
+#down: LBDT down
+(l): loopback
+ (s): spoofing
+(E): E-Trunk down
+(b): BFD down
+(e): ETHOAM down
+(dl): DLDP down
+(lb): LBDT block
+Interface                     PHY     Protocol Description
+GE0/0/1                       up      up       &lt;C4&gt; work - station 1
+GE0/0/2                       up      up       &lt;C4&gt; work - station 1
+GE0/0/3                       up      up       &lt;C4&gt; work - station 1
+GE0/0/4                       up      up       &lt;C4&gt; work - station 1
+GE0/0/5                       up      up       &lt;C4&gt; work - station 1
+GE0/0/6                       up      up       &lt;C4&gt; work - station 1
+GE0/0/7                       up      up       &lt;C4&gt; work - station 1
+GE0/0/8                       up      up       &lt;C4&gt; work - station 1
+GE0/0/9                       up      up       &lt;C4&gt; work - station 1
+GE0/0/10                      up      up       &lt;C4&gt; work - station 1
+GE0/0/11                      up      up       &lt;C4&gt; work - station 1
+GE0/0/12                      up      up       &lt;C4&gt; work - station 1
+GE0/0/13                      up      up       &lt;C4&gt; work - station 1
+GE0/0/14                      up      up       &lt;C4&gt; work - station 1
+GE0/0/15                      up      up       &lt;C4&gt; work - station 1
+GE0/0/16                      down    down     &lt;C4&gt; work - station 1
+GE0/0/17                      up      up       &lt;C4&gt; work - station 1
+GE0/0/18                      up      up       &lt;C4&gt; work - station 1
+GE0/0/19                      down    down     &lt;C4&gt; work - station 1
+GE0/0/20                      up      up       &lt;C4&gt; work - station 1
+GE0/0/21                      down    down     &lt;C4&gt; work - station 1
+GE0/0/22                      up      up       &lt;C4&gt; work - station 1
+GE0/0/23                      up      up       &lt;C4&gt; work - station 1
+GE0/0/24                      up      up       &lt;C4&gt; work - station 1
+GE0/0/25                      *down   down
+GE0/0/26                      *down   down
+GE0/0/27                      up      up       spine Uplink
+GE0/0/28                      up      up       spine Uplink 2
+NULL0                         up      up(s)
+Vlanif1                       up      up
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display interface description"</p>
+<p><strong>Prompt:</strong>
+- huawei_vrp&gt;
+- huawei_vrp#</p>
+<h3 id="display-interface-brief">display interface brief<a class="headerlink" href="#display-interface-brief" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>PHY: Physical
+*down: administratively down
+^down: standby
+(l): loopback
+ (s): spoofing
+(E): E-Trunk down
+(b): BFD down
+(B): Bit-error-detection down
+ (e): ETHOAM down
+(d): Dampening Suppressed
+InUti/OutUti: input utility/output utility
+Interface                   PHY   Protocol  InUti OutUti   inErrors  outErrors
+Aux0/0/1                    down  down         0%     0%          0          0
+Eth-Trunk2                  up    up           0%  0.38%          0          0
+  GigabitEthernet8/1/16     up    up           0%  0.04%          0          0
+  GigabitEthernet8/1/17     up    up           0%  1.66%          0          0
+  GigabitEthernet8/1/18     up    up           0%  0.01%          0          0
+  GigabitEthernet8/1/19     up    up           0%     0%          0          0
+  GigabitEthernet8/1/20     up    up           0%  0.47%          0          0
+Eth-Trunk3                  up    up           0%     0%          0          0
+  GigabitEthernet8/1/21     up    up           0%     0%          0          0
+  GigabitEthernet8/1/22     up    up           0%     0%          0          0
+  GigabitEthernet8/1/23     up    up        0.01%  0.01%          0          0
+Eth-Trunk4                  up    down      0.69% 13.57%       4625          0
+  GigabitEthernet15/1/0(10G) up    up        0.69% 14.30%          0          0
+  GigabitEthernet16/0/1(10G) up    up        0.71% 12.84%       4625          0
+Eth-Trunk4.10               up    up        0.69% 13.57%          0          0
+Eth-Trunk5                  up    down      0.01%     0%          0          0
+  GigabitEthernet4/0/4(10G) up    up        0.01%     0%          0          0
+Eth-Trunk5.100              up    up           0%     0%          0          0
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display interface brief"</p>
+<p><strong>Prompt:</strong>
+- huawei_vrp&gt;
+- huawei_vrp#</p>
+<h3 id="display-port-vlan">display port vlan<a class="headerlink" href="#display-port-vlan" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>Port                        Link Type    PVID  Trunk VLAN List
+-------------------------------------------------------------------------------
+GigabitEthernet0/0/1        trunk        1     1 191 212 214 218 224 238
+                                               250-255 300-301 303 306 330
+                                               332-333 335 350 400 450 999
+GigabitEthernet0/0/2        trunk        1     1 191 212 214 218 224 238
+                                               250-255 300-301 303 306 330
+                                               332-333 335 350 400 450 999
+GigabitEthernet0/0/3        trunk        1     1 191 212 214 218 224 238
+                                               250-255 300-301 303 306 330
+                                               332-333 335 350 400 450 999
+GigabitEthernet0/0/4        trunk        1     1 191 212 214 218 224 238
+                                               250-255 300-301 303 306 330
+                                               332-333 335 350 400 450 999
+GigabitEthernet0/0/5        trunk        1     1 191 212 214 218 224 238
+                                               250-255 300-301 303 306 330
+                                               332-333 335 350 400 450 999
+GigabitEthernet0/0/6        trunk        1     1 191 212 214 218 224 238
+                                               250-255 300-301 303 306 330
+                                               332-333 335 350 400 450 999
+GigabitEthernet0/0/7        trunk        1     1 191 212 214 218 224 238
+                                               250-255 300-301 303 306 330
+                                               332-333 335 350 400 450 999
+GigabitEthernet0/0/8        trunk        1     1 191 212 214 218 224 238
+                                               250-255 300-301 303 306 330
+                                               332-333 335 350 400 450 999
+GigabitEthernet0/0/9        trunk        1     1 191 212 214 218 224 238
+                                               250-255 300-301 303 306 330
+                                               332-333 335 350 400 450 999
+GigabitEthernet0/0/10       trunk        1     1 191 212 214 218 224 238
+                                               250-255 300-301 303 306 330
+                                               332-333 335 350 400 450 999
+GigabitEthernet0/0/11       trunk        1     1 191 212 214 218 224 238
+                                               250-255 300-301 303 306 330
+                                               332-333 335 350 400 450 999
+GigabitEthernet0/0/12       trunk        1     1 191 212 214 218 224 238
+                                               250-255 300-301 303 306 330
+                                               332-333 335 350 400 450 999
+GigabitEthernet0/0/13       access       2     -
+GigabitEthernet0/0/14       access       2     -
+GigabitEthernet0/0/15       hybrid       1     2
+GigabitEthernet0/0/16       hybrid       69    2
+GigabitEthernet0/0/17       access       160   -
+GigabitEthernet0/0/18       access       160   -
+GigabitEthernet0/0/19       access       160   -
+GigabitEthernet0/0/20       access       160   -
+GigabitEthernet0/0/21       access       160   -
+GigabitEthernet0/0/22       hybrid       1     2
+GigabitEthernet0/0/23       hybrid       1     2
+GigabitEthernet0/0/24       hybrid       1     2
+GigabitEthernet0/0/25       auto         1     1-4094
+GigabitEthernet0/0/26       auto         1     1-4094
+GigabitEthernet0/0/27       trunk        1     1-4094
+GigabitEthernet0/0/28       trunk        1     1-4094
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display port vlan"</p>
+<p><strong>Prompt:</strong>
+- huawei_vrp&gt;
+- huawei_vrp#</p>
+<h3 id="display-ipv6-neighbors">display ipv6 neighbors<a class="headerlink" href="#display-ipv6-neighbors" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>-----------------------------------------------------------------------------
+ IPv6 Address : FC00:1::2
+Link-layer   : 0025-9e01-020a                     State   : STALE
+Interface    : 10GE4/17/6                          Age     : 75
+VLAN         : 35                                 CEVLAN  : -
+VPN name     : -                                  Is Router: TRUE
+Secure FLAG  : UNSECURE                           Nickname  : -
+
+IPv6 Address : FE80::225:9EFF:FE01:20A
+Link-layer   : 0025-9e01-020a                     State   : STALE
+Interface    : 10GE4/17/6                          Age     : 38
+VLAN         : 35                                 CEVLAN  : -
+VPN name     : -                                  Is Router: TRUE
+Secure FLAG  : UNSECURE                           Nickname  : -
+
+IPv6 Address : FC00:2::1
+Link-layer   : 0023-0045-0067                     State   : INCMP
+Interface    : 10GE4/17/3                          Age     : -
+VLAN         : -                                  CEVLAN  : -
+VPN name     : -                                  Is Router: TRUE
+Secure FLAG  : SECURE                             Nickname  : -
+
+-----------------------------------------------------------------------------
+ Total: 3        Dynamic: 2      Static: 1
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display ipv6 neighbors"</p>
+<p><strong>Prompt:</strong>
+- huawei_vrp&gt;
+- huawei_vrp#</p>
+<h3 id="display-service-set-id-id">display service-set id id<a class="headerlink" href="#display-service-set-id-id" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>  ----------------------------------------------------------------------------
+  Service-set ID                   : 1
+  Service-Set name                 : Livebox_5ad8__5G
+  SSID                             : Livebox_5ad8
+  Hide SSID                        : disable
+  User isolate                     : disable
+  Type                             : service
+  Maximum number of user           : 32
+  Association timeout(min)         : 5
+  Traffic profile name             : traf
+  Security profile name            : Security_Livebox_5ad8
+  Wlan-bss interface               : Wlan-bss7
+  Igmp mode                        : off
+  Forward mode                     : direct-forward
+  ----------------------------------------------------------------------------
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display service-set id id"</p>
+<p><strong>Prompt:</strong>
+- huawei_vrp&gt;
+- huawei_vrp#</p>
+<h3 id="display-traffic-filter-applied-record">display traffic-filter applied-record<a class="headerlink" href="#display-traffic-filter-applied-record" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>-----------------------------------------------------------
+Interface                   Direction  AppliedRecord       
+-----------------------------------------------------------
+Vlanif1                     inbound    acl name ACL_Test
+Vlanif1                     outbound   ipv6 acl name MyACL_IPv6
+Vlanif3                     inbound    acl 3998
+Vlanif3                     inbound    ipv6 acl name MyACL_IPv6
+Wlan-Bss0                   outbound   IPv4 ACL 4000
+Wlan-Bss1                   outbound   IPv4 ACL 4000
+-----------------------------------------------------------             
+Total:6                                                                         
+-----------------------------------------------------------             
+Traffic profile             Direction  AppliedRecord                    
+-----------------------------------------------------------             
+p1                          inbound    IPv4 ACL 3000                         
+p2                          outbound   IPv6 ACL 3001                    
+-----------------------------------------------------------             
+Total:2 
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display traffic-filter applied-record"</p>
+<p><strong>Prompt:</strong>
+- huawei_vrp&gt;
+- huawei_vrp#</p>
+<h3 id="display-acl-all">display acl all<a class="headerlink" href="#display-acl-all" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code> Total quantity of nonempty ACL number is 3 
+
+Basic ACL 2000, 7 rules
+Acl&#39;s step is 5
+ rule 5 permit source 85.14.167.234 0 (94 matches)
+ rule 10 permit source 85.14.167.193 0 (26939 matches)
+ rule 15 permit source 5.10.130.152 0.0.0.3 (24 matches)
+ rule 20 permit source 185.48.254.19 0 
+ rule 25 permit source 10.0.0.0 0.255.255.255 
+ rule 30 permit source 172.0.0.0 0.15.255.255 
+ rule 35 permit source 192.168.0.0 0.0.255.255 
+
+Basic ACL 2500, 1 rule
+Acl&#39;s step is 5
+ rule 35 permit source 192.168.0.0 0.0.255.255 (5431 matches)
+
+Advanced ACL 3997, 1 rule
+Acl&#39;s step is 5
+ rule 5 permit ip source 192.165.3.5 0 
+ rule 5 description &quot;qsdqsdqsdqsdqsdqsdqs az&quot;
+
+Advanced ACL REGLE_NAT 3998, 3 rules
+Acl&#39;s step is 5
+ rule 5 permit tcp source 85.14.167.234 0 destination 192.214.198.156 0 destination-port eq 8022 (18 matches)
+ rule 10 deny tcp destination 192.214.198.156 0 destination-port eq www (8 matches)
+ rule 15 deny tcp destination 192.23.26.1 0.0.255.255 destination-port range 50 80 (8 matches)
+ rule 20 permit ip (278450 matches)
+
+Advanced ACL qsdqsd 3999, 0 rule
+Acl&#39;s step is 5
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display acl all"</p>
+<p><strong>Prompt:</strong>
+- huawei_vrp&gt;
+- huawei_vrp#</p>
+<h3 id="display-arp-all">display arp all<a class="headerlink" href="#display-arp-all" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>IP ADDRESS      MAC ADDRESS     EXPIRE(M) TYPE        INTERFACE   VPN-INSTANCE
+                                    VLAN/CEVLAN(SIP/DIP)
+------------------------------------------------------------------------------
+192.168.1.253   b076-1b65-6a40            I -         MEth0/0/1
+10.10.10.1      b076-1b65-6a4b            I -         Vlanif10
+10.10.10.2      b8d6-f6ff-739b  17        D-0         XGE0/0/1
+                                            10/-
+10.10.20.1      b076-1b65-6a46            I -         Vlanif20
+10.10.20.2      b8d6-f6ff-7396  17        D-0         XGE0/0/1
+                                            20/-
+------------------------------------------------------------------------------
+Total:5         Dynamic:2       Static:0     Interface:3
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display arp all"</p>
+<p><strong>Prompt:</strong>
+- huawei_vrp&gt;
+- huawei_vrp#</p>
+<h3 id="display-ip-routing-table-verbose">display ip routing-table verbose<a class="headerlink" href="#display-ip-routing-table-verbose" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>Routing Table : Public
+    Destinations : 1    Routes : 1
+
+ Destination  : ::1                             PrefixLength : 128
+ NextHop      : ::1                             Preference   : 0
+ Neighbour    : ::                              ProcessID    : 0
+ Label        : NULL                            Protocol     : Direct
+ State        : Active NoAdv                    Cost         : 0
+ Entry ID     : 2826122436                      EntryFlags   : 0x80010050
+ Reference Cnt: 2                               Tag          : 0
+ Priority     : high                            Age          : 93545sec
+ IndirectID   : 0x0                             
+ RelayNextHop : ::                              TunnelID     : 0x0
+ Interface    : InLoopBack0                     Flags        : D
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display ip routing-table verbose"</p>
+<p><strong>Prompt:</strong>
+- huawei_vrp&gt;
+- huawei_vrp#</p>
+<h3 id="display-ip-vpn-instance">display ip vpn-instance<a class="headerlink" href="#display-ip-vpn-instance" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code> Total VPN-Instances configured      : 1
+ Total IPv4 VPN-Instances configured : 1
+ Total IPv6 VPN-Instances configured : 1
+
+  VPN-Instance Name               RD                    Address-family
+  red                             1:2                   IPv4
+  red                             1:2                   IPv6
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display ip vpn-instance"</p>
+<p><strong>Prompt:</strong>
+- huawei_vrp&gt;
+- huawei_vrp#</p>
+<h3 id="display-lldp-neighbor">display lldp neighbor<a class="headerlink" href="#display-lldp-neighbor" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>XGigabitEthernet0/0/1 has 1 neighbor(s):
+
+Neighbor index :1
+Chassis type   :MAC address
+Chassis ID     :b8d6-f6ff-7390
+Port ID type   :Interface name
+Port ID        :XGigabitEthernet0/0/2
+Port description    :XGigabitEthernet0/0/2
+ System name         :ROUTER2
+System description  :Huawei Switch S6730-S24X6Q
+ Huawei Versatile Routing Platform Software
+VRP (R) software, Version 5.170 (S6730 V200R022C00SPC500)
+Copyright (C) 2000-2022 HUAWEI TECH Co., Ltd.
+System capabilities supported   :bridge router
+System capabilities enabled     :bridge router
+Management address type  :ipv4
+Management address value :169.254.1.2
+OID  :0.6.15.43.6.1.4.1.2011.5.25.41.1.2.1.1.1.
+Expired time   :95s
+
+Port VLAN ID(PVID)  :10
+VLAN name of VLAN  1:VLAN 0001
+
+Auto-negotiation supported    :Yes
+Auto-negotiation enabled      :Yes
+OperMau   :speed(1000)/duplex(Full)
+
+Power port class            :PD
+PSE power supported         :No
+PSE power enabled           :No
+PSE pairs control ability   :No
+Power pairs                 :Unknown
+Port power classification   :Unknown
+
+Link aggregation supported:Yes
+Link aggregation enabled :No
+Aggregation port ID      :0
+
+ Maximum frame Size       :9216
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display lldp neighbor"</p>
+<p><strong>Prompt:</strong>
+- huawei_vrp&gt;
+- huawei_vrp#</p>
+<h3 id="display-nat-server">display nat server<a class="headerlink" href="#display-nat-server" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>  Nat Server Information:
+  Interface  : Dialer1
+    Global IP/Port     : current-interface/8080 (Real IP : 192.214.198.156)
+    Inside IP/Port     : 192.168.1.24/80(www)
+    Protocol : 6(tcp)   
+    VPN instance-name  : ----                            
+    Acl number         : 2600
+    Vrrp id            : ----
+    Description : ----
+
+    Global IP/Port     : current-interface/8080 (Real IP : 192.214.198.156)
+    Inside IP/Port     : 192.168.1.24/80
+    Protocol : 17(udp)  
+    VPN instance-name  : ----                            
+    Acl number         : 2600
+    Vrrp id            : ----
+    Description : ----
+
+  Interface  : Vlanif300                                                                                                            
+    Global IP/Port     : current-interface/0(any) (Real IP : 2.2.2.2)
+    Inside IP/Port     : 10.1.1.1/0(any)
+    Protocol : 6(tcp)
+    VPN instance-name  : ----
+    Acl number         : ----
+    Vrrp id            : ----
+    Description : ----
+
+  Total :    3
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display nat server"</p>
+<p><strong>Prompt:</strong>
+- huawei_vrp&gt;
+- huawei_vrp#</p>
+<h3 id="display-isis-peer">display isis peer<a class="headerlink" href="#display-isis-peer" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>                          Peer information for ISIS(1)
+
+  System Id     Interface          Circuit Id        State HoldTime Type     PRI
+--------------------------------------------------------------------------------
+MA-JK4961-01H   Eth-Trunk2         0000000087         Up   25s      L2       --
+PAG-JK1401-01H  Eth-Trunk0         0000000146         Up   29s      L2       --
+
+Total Peer(s): 2
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display isis peer"</p>
+<p><strong>Prompt:</strong>
+- huawei_vrp&gt;
+- huawei_vrp#</p>
+<h3 id="display-temperature">display temperature<a class="headerlink" href="#display-temperature" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>SlotID2 :
+ Base-Board, Unit:C, Slot2
+PCB       I2C Addr Chl  Status  Minor Major Fatal Adj_speed Temp
+                                               TMin Tmax (C)
+---------------------------------------------------------------
+LPUF41A   0   0    0    NORMAL  68    76    83    55   65   38
+LPUF41A   0   1    0    NORMAL  63    71    78    50   60   36
+LPUF41A   0   2    0    NORMAL  69    77    85    56   66   28
+LPUF41A   7   175  0    NORMAL  89    94    105   76   86   55
+LPUF41A   7   175  1    NORMAL  89    94    105   76   86   37
+LPUF41A   7   175  2    NORMAL  89    94    105   76   86   41
+EFGF      2   73   0    NORMAL  77    83    92    64   74   30
+EFGF      3   73   0    NORMAL  77    83    92    64   74   36
+
+SlotID25 :
+
+SlotID26 :
+
+SlotID27 :
+ Base-Board, Unit:C, SlotID27
+PCB   I2C Addr Chl  Status  Minor Major Fatal Adj_speed Temp
+                                              TMin Tmax (C)
+-----------------------------------------------------------------
+FAN   1   0    0    NORMAL  70    80    95    32   45   25
+
+
+
+SlotID31 : No temp sensors.
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display temperature"</p>
+<p><strong>Prompt:</strong>
+- huawei_vrp&gt;
+- huawei_vrp#</p>
+<h3 id="display-sn-license">display sn license<a class="headerlink" href="#display-sn-license" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code> ESN of device: 21500104792SM8504636
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display sn license"</p>
+<p><strong>Prompt:</strong>
+- huawei_vrp&gt;
+- huawei_vrp#</p>
+<h3 id="display-service-set-all">display service-set all<a class="headerlink" href="#display-service-set-all" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>  ----------------------------------------------------------------------------
+  ID      Name                            SSID
+  0       Livebox_5ad8                    Livebox_5ad8                     
+  1       Livebox_5ad8__5G                Livebox_5ad8                     
+  2       Profile_my_guest_wifi           my_guest_wifi                    
+  ----------------------------------------------------------------------------
+  Total: 3
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display service-set all"</p>
+<p><strong>Prompt:</strong>
+- huawei_vrp&gt;
+- huawei_vrp#</p>
+<h3 id="display-startup">display startup<a class="headerlink" href="#display-startup" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>MainBoard: 
+  Startup system software:                   flash:/AR610-V300R021C00SPC200.cc
+  Next startup system software:              flash:/AR610-V300R021C00SPC200.cc
+  Backup system software for next startup:   null
+  Startup saved-configuration file:          flash:/vrpcfg.zip
+  Next startup saved-configuration file:     flash:/vrpcfg2.zip
+  Startup license file:                      null
+  Next startup license file:                 null
+  Startup patch package:                     flash:/AR610_V300R021SPH180.pat
+  Next startup patch package:                flash:/AR610_V300R021SPH180.pat
+  Startup voice-files:                       null
+  Next startup voice-files:                  null
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display startup"</p>
+<p><strong>Prompt:</strong>
+- huawei_vrp&gt;
+- huawei_vrp#</p>
+<h3 id="display-vlan">display vlan<a class="headerlink" href="#display-vlan" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>The total number of VLANs is: 3
+--------------------------------------------------------------------------------
+ U: Up;         D: Down;         TG: Tagged;         UT: Untagged;
+MP: Vlan-mapping;               ST: Vlan-stacking;
+#: ProtocolTransparent-vlan;    *: Management-vlan;
+--------------------------------------------------------------------------------
+
+VID  Type    Ports
+--------------------------------------------------------------------------------
+1    common  UT:XGE0/0/1(D)     XGE0/0/2(D)     XGE0/0/3(D)     XGE0/0/4(D)
+                XGE0/0/5(D)     XGE0/0/6(D)
+             TG:40GE0/0/1(D)    40GE0/0/2(D)    40GE0/0/3(D)    40GE0/0/4(D)
+                40GE0/0/5(D)    40GE0/0/6(D)
+10   common  UT:XGE0/0/7(D)     XGE0/0/8(D)     XGE0/0/9(D)     XGE0/0/10(D)
+                XGE0/0/11(D)    XGE0/0/12(D)
+20   common  TG:40GE0/0/1(D)    40GE0/0/2(D)    40GE0/0/3(D)    40GE0/0/4(D)
+                40GE0/0/5(D)    40GE0/0/6(D)
+30   common  UT:XGE0/0/13(D)    XGE0/0/142(D)   XGE0/0/15(D)    XGE0/0/16(D)
+                XGE0/0/17(D)    XGE0/0/18(D)
+             TG:40GE0/0/1(D)    40GE0/0/2(D)    40GE0/0/3(D)    40GE0/0/4(D)
+                40GE0/0/5(D)    40GE0/0/6(D)
+
+VID  Status  Property      MAC-LRN Statistics Description
+--------------------------------------------------------------------------------
+1    enable  default       enable  disable    VLAN 0001
+10   enable  default       enable  disable    VLAN 0010
+20   enable  default       enable  disable    VLAN 0020
+30   enable  default       enable  disable    VLAN 0030
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display vlan"</p>
+<p><strong>Prompt:</strong>
+- huawei_vrp&gt;
+- huawei_vrp#</p>
+<h3 id="display-interface">display interface<a class="headerlink" href="#display-interface" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>GigabitEthernet0/0/0 current state : DOWN
+Line protocol current state : DOWN
+Description:HUAWEI, AR Series, GigabitEthernet0/0/0 Interface
+Switch Port, PVID :    1, TPID : 8100(Hex), The Maximum Frame Length is 9596
+IP Sending Frames&#39; Format is PKTFMT_ETHNT_2, Hardware address is fc73-fb9e-601c
+Last physical up time   : -
+Last physical down time : 2022-10-13 09:35:55
+Current system time: 2022-10-13 13:12:02
+Port Mode: COMMON COPPER
+Speed :   10,  Loopback: NONE
+Duplex: FULL,  Negotiation: DISABLE
+Mdi   : AUTO,  Clock   : -
+Last 300 seconds input rate 0 bits/sec, 0 packets/sec
+Last 300 seconds output rate 0 bits/sec, 0 packets/sec
+Input peak rate 0 bits/sec,Record time: -
+Output peak rate 0 bits/sec,Record time: -
+
+Input:  0 packets, 0 bytes
+  Unicast:                  0,  Multicast:                   0
+  Broadcast:                0,  Jumbo:                       -
+  Discard:                  0,  Total Error:                 0
+
+  CRC:                      0,  Giants:                      0
+  Jabbers:                  0,  Throttles:                   0
+  Runts:                    0,  Symbols:                     0
+  Ignoreds:                 0,  Frames:                      0
+
+Output:  0 packets, 0 bytes
+  Unicast:                  0,  Multicast:                   0
+  Broadcast:                0,  Jumbo:                       -
+  Discard:                  0,  Total Error:                 0
+
+  Collisions:               0,  ExcessiveCollisions:         0
+  Late Collisions:          0,  Deferreds:                   0
+
+    Input bandwidth utilization threshold : 100.00%
+    Output bandwidth utilization threshold: 100.00%
+    Input bandwidth utilization  :    0%
+    Output bandwidth utilization :    0%
+
+GigabitEthernet0/0/1 current state : DOWN
+Line protocol current state : DOWN
+Description:HUAWEI, AR Series, GigabitEthernet0/0/1 Interface
+ Switch Port, PVID :    2, TPID : 8100(Hex), The Maximum Frame Length is 9596
+ IP Sending Frames&#39; Format is PKTFMT_ETHNT_2, Hardware address is fc73-fb9e-601c
+ Last physical up time   : -
+Last physical down time : 2022-10-13 09:35:55
+ Current system time: 2022-10-13 13:12:04
+Port Mode: COMMON COPPER
+Speed : 1000,  Loopback: NONE
+Duplex: FULL,  Negotiation: ENABLE        
+Mdi   : AUTO,  Clock   : -
+Last 300 seconds input rate 0 bits/sec, 0 packets/sec
+Last 300 seconds output rate 0 bits/sec, 0 packets/sec
+Input peak rate 0 bits/sec,Record time: -
+Output peak rate 0 bits/sec,Record time: -
+
+Input:  0 packets, 0 bytes
+  Unicast:                  0,  Multicast:                   0
+  Broadcast:                0,  Jumbo:                       -
+  Discard:                  0,  Total Error:                 0
+
+  CRC:                      0,  Giants:                      0
+  Jabbers:                  0,  Throttles:                   0
+  Runts:                    0,  Symbols:                     0
+  Ignoreds:                 0,  Frames:                      0
+
+Output:  0 packets, 0 bytes
+  Unicast:                  0,  Multicast:                   0
+  Broadcast:                0,  Jumbo:                       -
+  Discard:                  0,  Total Error:                 0
+
+  Collisions:               0,  ExcessiveCollisions:         0
+  Late Collisions:          0,  Deferreds:                   0
+
+    Input bandwidth utilization threshold : 100.00%
+    Output bandwidth utilization threshold: 100.00%
+    Input bandwidth utilization  :    0%
+    Output bandwidth utilization :    0%
+
+GigabitEthernet0/0/2 current state : UP
+Line protocol current state : UP
+Description:HUAWEI, AR Series, GigabitEthernet0/0/2 Interface
+Switch Port, PVID :  100, TPID : 8100(Hex), The Maximum Frame Length is 9596
+IP Sending Frames&#39; Format is PKTFMT_ETHNT_2, Hardware address is fc73-fb9e-601c
+Last physical up time   : 2022-10-13 09:37:04
+Last physical down time : 2022-10-13 09:37:03
+ Current system time: 2022-10-13 13:12:05
+Port Mode: COMMON COPPER
+Speed : 1000,  Loopback: PHY
+Duplex: FULL,  Negotiation: ENABLE
+Mdi   : AUTO,  Clock   : -
+Last 300 seconds input rate 488 bits/sec, 0 packets/sec
+Last 300 seconds output rate 488 bits/sec, 0 packets/sec
+Input peak rate 592 bits/sec,Record time: 2022-10-13 10:26:22
+Output peak rate 592 bits/sec,Record time: 2022-10-13 10:26:22
+
+Input:  6460 packets, 768740 bytes
+  Unicast:                  0,  Multicast:                6460
+  Broadcast:                0,  Jumbo:                       -
+  Discard:                  0,  Total Error:                 0
+
+  CRC:                      0,  Giants:                      0
+  Jabbers:                  0,  Throttles:                   0
+  Runts:                    0,  Symbols:                     0
+  Ignoreds:                 0,  Frames:                      0
+
+Output:  6460 packets, 768740 bytes
+  Unicast:                  0,  Multicast:                6460
+  Broadcast:                0,  Jumbo:                       -
+  Discard:                  0,  Total Error:                 0
+
+  Collisions:               0,  ExcessiveCollisions:         0
+  Late Collisions:          0,  Deferreds:                   0
+
+    Input bandwidth utilization threshold : 100.00%
+    Output bandwidth utilization threshold: 100.00%
+    Input bandwidth utilization  : 0.01%
+    Output bandwidth utilization : 0.01%
+
+GigabitEthernet0/0/3 current state : DOWN
+Line protocol current state : DOWN
+Description:HUAWEI, AR Series, GigabitEthernet0/0/3 Interface
+Switch Port, PVID :    1, TPID : 8100(Hex), The Maximum Frame Length is 9596
+IP Sending Frames&#39; Format is PKTFMT_ETHNT_2, Hardware address is fc73-fb9e-601c
+Last physical up time   : -               
+Last physical down time : 2022-10-13 09:35:55
+Current system time: 2022-10-13 13:12:06
+Port Mode: COMMON COPPER
+Speed : 1000,  Loopback: NONE
+Duplex: FULL,  Negotiation: ENABLE
+Mdi   : AUTO,  Clock   : -
+Last 300 seconds input rate 0 bits/sec, 0 packets/sec
+Last 300 seconds output rate 0 bits/sec, 0 packets/sec
+ Input peak rate 0 bits/sec,Record time: -
+Output peak rate 0 bits/sec,Record time: -
+
+Input:  0 packets, 0 bytes
+  Unicast:                  0,  Multicast:                   0
+  Broadcast:                0,  Jumbo:                       -
+  Discard:                  0,  Total Error:                 0
+
+  CRC:                      0,  Giants:                      0
+  Jabbers:                  0,  Throttles:                   0
+  Runts:                    0,  Symbols:                     0
+  Ignoreds:                 0,  Frames:                      0
+
+Output:  0 packets, 0 bytes
+  Unicast:                  0,  Multicast:                   0
+  Broadcast:                0,  Jumbo:                       -
+  Discard:                  0,  Total Error:                 0
+
+  Collisions:               0,  ExcessiveCollisions:         0
+  Late Collisions:          0,  Deferreds:                   0
+
+    Input bandwidth utilization threshold : 100.00%
+    Output bandwidth utilization threshold: 100.00%
+    Input bandwidth utilization  :    0%
+    Output bandwidth utilization :    0%
+
+GigabitEthernet0/0/4 current state : UP
+Line protocol current state : DOWN
+Description:HUAWEI, AR Series, GigabitEthernet0/0/4 Interface
+Route Port,The Maximum Transmit Unit is 1500
+Internet protocol processing : disabled
+IP Sending Frames&#39; Format is PKTFMT_ETHNT_2, Hardware address is fc73-fb9e-601d
+Last physical up time   : 2022-10-13 09:37:06
+Last physical down time : 2022-10-13 09:35:55
+Current system time: 2022-10-13 13:12:07
+ Port Mode: AUTO COPPER
+Speed : 1000,  Loopback: NONE
+Duplex: FULL,  Negotiation: ENABLE
+Mdi   : AUTO,  Clock   : -
+Last 300 seconds input rate 2112 bits/sec, 3 packets/sec
+Last 300 seconds output rate 1904 bits/sec, 2 packets/sec
+Input peak rate 19400 bits/sec,Record time: 2022-10-13 12:55:33
+Output peak rate 63040 bits/sec,Record time: 2022-10-13 12:55:33
+
+Input:  30464 packets, 2525068 bytes
+  Unicast:              21147,  Multicast:                6738
+  Broadcast:             2579,  Jumbo:                       -
+  Discard:                  0,  Total Error:                 0
+
+  CRC:                      0,  Giants:                      0
+  Jabbers:                  0,  Throttles:                   0
+  Runts:                    0,  Symbols:                     0
+  Ignoreds:                 0,  Frames:                      0
+
+Output:  20762 packets, 2116014 bytes
+  Unicast:              20761,  Multicast:                   0
+  Broadcast:                1,  Jumbo:                       -
+  Discard:                  0,  Total Error:                 0
+
+  Collisions:               0,  ExcessiveCollisions:         0
+  Late Collisions:          0,  Deferreds:                   0
+
+    Input bandwidth utilization threshold : 100.00%
+    Output bandwidth utilization threshold: 100.00%
+    Input bandwidth utilization  : 0.01%
+    Output bandwidth utilization : 0.01%
+
+GigabitEthernet0/0/5 current state : UP
+Line protocol current state : DOWN
+Description:VirtualPort
+Route Port,The Maximum Transmit Unit is 1500
+Internet protocol processing : disabled
+ IP Sending Frames&#39; Format is PKTFMT_ETHNT_2, Hardware address is fc73-fb9e-601e
+ Last physical up time   : 2022-10-13 09:37:05
+Last physical down time : 2022-10-13 09:35:55
+Current system time: 2022-10-13 13:12:08
+Port Mode: COMMON COPPER
+ Speed : 1000,  Loopback: NONE
+Duplex: FULL,  Negotiation: ENABLE
+Mdi   : AUTO,  Clock   : -
+Last 300 seconds input rate 36064 bits/sec, 13 packets/sec
+ Last 300 seconds output rate 0 bits/sec, 0 packets/sec
+Input peak rate 121600 bits/sec,Record time: 2022-10-13 10:50:03
+Output peak rate 0 bits/sec,Record time: -
+
+Input:  1832 packets, 619216 bytes
+  Unicast:                  0,  Multicast:                   0
+  Broadcast:             1832,  Jumbo:                       -
+  Discard:                  0,  Total Error:                 0
+
+  CRC:                      0,  Giants:                      0
+  Jabbers:                  0,  Throttles:                   0
+  Runts:                    0,  Symbols:                     0
+  Ignoreds:                 0,  Frames:                      0
+
+Output:  0 packets, 0 bytes
+  Unicast:                  0,  Multicast:                   0
+  Broadcast:                0,  Jumbo:                       -
+  Discard:                  0,  Total Error:                 0
+
+  Collisions:               0,  ExcessiveCollisions:         0
+  Late Collisions:          0,  Deferreds:                   0
+
+    Input bandwidth utilization threshold : 100.00%
+    Output bandwidth utilization threshold: 100.00%
+    Input bandwidth utilization  :    0%
+    Output bandwidth utilization :    0%
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display interface"</p>
+<p><strong>Prompt:</strong>
+- huawei_vrp&gt;
+- huawei_vrp#</p>
+<h3 id="display-snmp-agent-community-read">display snmp-agent community read<a class="headerlink" href="#display-snmp-agent-community-read" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>   Community name: %^%#K[&amp;`Jc~_4H-~.&gt;0:m%dK:*7s,{{(3i02`R$&gt;&amp;n}}+56Pb&#39;@]rd}}NT@o4.7RG&#39;8ScPW0=d%O&lt;1oU+7KHS[I%^%#
+   Group name: %^%#K[&amp;`Jc~_4H-~.&gt;0:m%dK:*7s,{{(3i02`R$&gt;&amp;n}}+56Pb&#39;@]rd}}NT@o4.7RG&#39;8ScPW0=d%O&lt;1oU+7KHS[I%^%#
+   Acl: 2001
+   Storage-type: nonVolatile
+
+   Total number is 1
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display snmp-agent community read"</p>
+<p><strong>Prompt:</strong>
+- huawei_vrp&gt;
+- huawei_vrp#</p>
+<h3 id="display-mac-address">display mac-address<a class="headerlink" href="#display-mac-address" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>-------------------------------------------------------------------------------
+ MAC Address    VLAN/VSI/BD                       Learned-From        Type
+ -------------------------------------------------------------------------------
+ b8d6-f6ff-7390 10/-/-                            XGE0/0/1            dynamic
+ b8d6-f6ff-739b 10/-/-                            XGE0/0/1            dynamic
+
+-------------------------------------------------------------------------------
+ Total items displayed = 2
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display mac-address"</p>
+<p><strong>Prompt:</strong>
+- huawei_vrp&gt;
+- huawei_vrp#</p>
+<h3 id="screen-length-0-temporary">screen-length 0 temporary<a class="headerlink" href="#screen-length-0-temporary" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong> None</p>
+<p><strong>Help:</strong> Execute the command screen-length 0 temporary. This automatically generated. Feel free to change it!</p>
+<p><strong>Prompt:</strong>
+- huawei_vrp&gt;
+- huawei_vrp#</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.instant", "navigation.instant.progress", "content.tabs.link", "content.footnote.tooltips"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiat al porta-retalls", "clipboard.copy": "C\u00f2pia al porta-retalls", "search.result.more.one": "1 m\u00e9s en aquesta p\u00e0gina", "search.result.more.other": "# m\u00e9s en aquesta p\u00e0gina", "search.result.none": "Cap document coincideix", "search.result.one": "1 document coincident", "search.result.other": "# documents coincidents", "search.result.placeholder": "Escriu per a comen\u00e7ar a cercar", "search.result.term.missing": "Desaparegut", "select.version": "Selecciona la versi\u00f3"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

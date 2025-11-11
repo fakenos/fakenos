@@ -1,0 +1,1611 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>https://fakenos.github.io/fakenos/collaborators/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/collaborators/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/collaborators/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/collaborators/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/development/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/development/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/development/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/development/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/examples/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/examples/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/examples/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/examples/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/api/builtin_plugins_api_reference/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/api/builtin_plugins_api_reference/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/api/builtin_plugins_api_reference/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/api/builtin_plugins_api_reference/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/api/core_api_reference/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/api/core_api_reference/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/api/core_api_reference/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/api/core_api_reference/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/development/conventions/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/development/conventions/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/development/conventions/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/development/conventions/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/development/creating_new_platforms/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/development/creating_new_platforms/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/development/creating_new_platforms/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/development/creating_new_platforms/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/development/creating_nos_plugin/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/development/creating_nos_plugin/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/development/creating_nos_plugin/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/development/creating_nos_plugin/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/development/documentation/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/development/documentation/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/development/documentation/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/development/documentation/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/development/extras/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/development/extras/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/development/extras/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/development/extras/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/development/github_actions/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/development/github_actions/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/development/github_actions/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/development/github_actions/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/development/tasks/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/development/tasks/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/development/tasks/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/development/tasks/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/examples/automatic_testing/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/examples/automatic_testing/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/examples/automatic_testing/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/examples/automatic_testing/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/examples/developing_scripts/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/examples/developing_scripts/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/examples/developing_scripts/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/examples/developing_scripts/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/overview/how/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/overview/how/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/overview/how/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/overview/how/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/overview/references/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/overview/references/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/overview/references/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/overview/references/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/overview/what/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/overview/what/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/overview/what/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/overview/what/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/overview/what_not/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/overview/what_not/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/overview/what_not/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/overview/what_not/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/overview/why/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/overview/why/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/overview/why/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/overview/why/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/alcatel_aos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/alcatel_aos/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/alcatel_aos/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/alcatel_aos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/alcatel_sros/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/alcatel_sros/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/alcatel_sros/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/alcatel_sros/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/allied_telesis_awplus/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/allied_telesis_awplus/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/allied_telesis_awplus/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/allied_telesis_awplus/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/arista_eos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/arista_eos/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/arista_eos/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/arista_eos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/aruba_os/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/aruba_os/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/aruba_os/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/aruba_os/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/avaya_ers/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/avaya_ers/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/avaya_ers/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/avaya_ers/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/avaya_vsp/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/avaya_vsp/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/avaya_vsp/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/avaya_vsp/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/broadcom_icos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/broadcom_icos/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/broadcom_icos/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/broadcom_icos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/brocade_fastiron/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/brocade_fastiron/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/brocade_fastiron/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/brocade_fastiron/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/brocade_netiron/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/brocade_netiron/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/brocade_netiron/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/brocade_netiron/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/checkpoint_gaia/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/checkpoint_gaia/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/checkpoint_gaia/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/checkpoint_gaia/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/ciena_saos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/ciena_saos/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/ciena_saos/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/ciena_saos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/cisco_asa/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/cisco_asa/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/cisco_asa/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/cisco_asa/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/cisco_ftd/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/cisco_ftd/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/cisco_ftd/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/cisco_ftd/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/cisco_ios/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/cisco_ios/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/cisco_ios/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/cisco_ios/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/cisco_nxos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/cisco_nxos/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/cisco_nxos/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/cisco_nxos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/cisco_s300/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/cisco_s300/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/cisco_s300/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/cisco_s300/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/cisco_xr/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/cisco_xr/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/cisco_xr/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/cisco_xr/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/dell_force10/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/dell_force10/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/dell_force10/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/dell_force10/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/dell_powerconnect/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/dell_powerconnect/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/dell_powerconnect/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/dell_powerconnect/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/dlink_ds/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/dlink_ds/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/dlink_ds/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/dlink_ds/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/eltex/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/eltex/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/eltex/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/eltex/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/ericsson_ipos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/ericsson_ipos/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/ericsson_ipos/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/ericsson_ipos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/extreme_exos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/extreme_exos/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/extreme_exos/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/extreme_exos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/fortinet/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/fortinet/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/fortinet/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/fortinet/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/hp_comware/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/hp_comware/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/hp_comware/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/hp_comware/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/hp_procurve/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/hp_procurve/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/hp_procurve/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/hp_procurve/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/huawei_smartax/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/huawei_smartax/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/huawei_smartax/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/huawei_smartax/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/huawei_vrp/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/huawei_vrp/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/huawei_vrp/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/huawei_vrp/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/ipinfusion_ocnos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/ipinfusion_ocnos/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/ipinfusion_ocnos/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/ipinfusion_ocnos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/juniper_junos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/juniper_junos/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/juniper_junos/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/juniper_junos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/juniper_screenos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/juniper_screenos/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/juniper_screenos/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/juniper_screenos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/linux/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/linux/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/linux/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/linux/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/mikrotik_routeros/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/mikrotik_routeros/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/mikrotik_routeros/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/mikrotik_routeros/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/paloalto_panos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/paloalto_panos/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/paloalto_panos/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/paloalto_panos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/ruckus_fastiron/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/ruckus_fastiron/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/ruckus_fastiron/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/ruckus_fastiron/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/ubiquiti_edgerouter/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/ubiquiti_edgerouter/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/ubiquiti_edgerouter/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/ubiquiti_edgerouter/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/ubiquiti_edgeswitch/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/ubiquiti_edgeswitch/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/ubiquiti_edgeswitch/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/ubiquiti_edgeswitch/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/vyatta_vyos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/vyatta_vyos/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/vyatta_vyos/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/vyatta_vyos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/yamaha/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/yamaha/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/yamaha/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/yamaha/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/platforms/zyxel_os/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/zyxel_os/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/zyxel_os/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/zyxel_os/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/usage/configurations/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/usage/configurations/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/usage/configurations/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/usage/configurations/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/usage/fakenos_inventory/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/usage/fakenos_inventory/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/usage/fakenos_inventory/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/usage/fakenos_inventory/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/usage/getting_started/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/usage/getting_started/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/usage/getting_started/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/usage/getting_started/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/usage/installation/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/usage/installation/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/usage/installation/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/usage/installation/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/usage/running_in_docker/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/usage/running_in_docker/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/usage/running_in_docker/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/usage/running_in_docker/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/collaborators/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/collaborators/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/collaborators/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/collaborators/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/development/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/development/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/development/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/development/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/examples/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/examples/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/examples/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/examples/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/api/builtin_plugins_api_reference/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/api/builtin_plugins_api_reference/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/api/builtin_plugins_api_reference/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/api/builtin_plugins_api_reference/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/api/core_api_reference/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/api/core_api_reference/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/api/core_api_reference/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/api/core_api_reference/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/development/conventions/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/development/conventions/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/development/conventions/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/development/conventions/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/development/creating_new_platforms/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/development/creating_new_platforms/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/development/creating_new_platforms/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/development/creating_new_platforms/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/development/creating_nos_plugin/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/development/creating_nos_plugin/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/development/creating_nos_plugin/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/development/creating_nos_plugin/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/development/documentation/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/development/documentation/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/development/documentation/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/development/documentation/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/development/extras/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/development/extras/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/development/extras/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/development/extras/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/development/github_actions/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/development/github_actions/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/development/github_actions/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/development/github_actions/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/development/tasks/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/development/tasks/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/development/tasks/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/development/tasks/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/examples/automatic_testing/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/examples/automatic_testing/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/examples/automatic_testing/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/examples/automatic_testing/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/examples/developing_scripts/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/examples/developing_scripts/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/examples/developing_scripts/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/examples/developing_scripts/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/overview/how/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/overview/how/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/overview/how/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/overview/how/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/overview/references/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/overview/references/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/overview/references/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/overview/references/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/overview/what/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/overview/what/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/overview/what/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/overview/what/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/overview/what_not/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/overview/what_not/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/overview/what_not/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/overview/what_not/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/overview/why/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/overview/why/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/overview/why/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/overview/why/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/alcatel_aos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/alcatel_aos/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/alcatel_aos/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/alcatel_aos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/alcatel_sros/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/alcatel_sros/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/alcatel_sros/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/alcatel_sros/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/allied_telesis_awplus/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/allied_telesis_awplus/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/allied_telesis_awplus/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/allied_telesis_awplus/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/arista_eos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/arista_eos/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/arista_eos/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/arista_eos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/aruba_os/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/aruba_os/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/aruba_os/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/aruba_os/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/avaya_ers/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/avaya_ers/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/avaya_ers/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/avaya_ers/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/avaya_vsp/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/avaya_vsp/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/avaya_vsp/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/avaya_vsp/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/broadcom_icos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/broadcom_icos/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/broadcom_icos/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/broadcom_icos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/brocade_fastiron/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/brocade_fastiron/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/brocade_fastiron/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/brocade_fastiron/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/brocade_netiron/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/brocade_netiron/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/brocade_netiron/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/brocade_netiron/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/checkpoint_gaia/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/checkpoint_gaia/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/checkpoint_gaia/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/checkpoint_gaia/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/ciena_saos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/ciena_saos/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/ciena_saos/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/ciena_saos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/cisco_asa/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/cisco_asa/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/cisco_asa/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/cisco_asa/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/cisco_ftd/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/cisco_ftd/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/cisco_ftd/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/cisco_ftd/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/cisco_ios/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/cisco_ios/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/cisco_ios/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/cisco_ios/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/cisco_nxos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/cisco_nxos/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/cisco_nxos/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/cisco_nxos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/cisco_s300/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/cisco_s300/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/cisco_s300/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/cisco_s300/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/cisco_xr/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/cisco_xr/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/cisco_xr/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/cisco_xr/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/dell_force10/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/dell_force10/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/dell_force10/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/dell_force10/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/dell_powerconnect/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/dell_powerconnect/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/dell_powerconnect/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/dell_powerconnect/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/dlink_ds/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/dlink_ds/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/dlink_ds/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/dlink_ds/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/eltex/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/eltex/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/eltex/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/eltex/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/ericsson_ipos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/ericsson_ipos/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/ericsson_ipos/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/ericsson_ipos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/extreme_exos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/extreme_exos/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/extreme_exos/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/extreme_exos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/fortinet/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/fortinet/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/fortinet/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/fortinet/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/hp_comware/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/hp_comware/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/hp_comware/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/hp_comware/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/hp_procurve/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/hp_procurve/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/hp_procurve/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/hp_procurve/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/huawei_smartax/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/huawei_smartax/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/huawei_smartax/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/huawei_smartax/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/huawei_vrp/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/huawei_vrp/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/huawei_vrp/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/huawei_vrp/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/ipinfusion_ocnos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/ipinfusion_ocnos/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/ipinfusion_ocnos/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/ipinfusion_ocnos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/juniper_junos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/juniper_junos/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/juniper_junos/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/juniper_junos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/juniper_screenos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/juniper_screenos/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/juniper_screenos/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/juniper_screenos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/linux/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/linux/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/linux/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/linux/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/mikrotik_routeros/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/mikrotik_routeros/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/mikrotik_routeros/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/mikrotik_routeros/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/paloalto_panos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/paloalto_panos/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/paloalto_panos/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/paloalto_panos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/ruckus_fastiron/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/ruckus_fastiron/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/ruckus_fastiron/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/ruckus_fastiron/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/ubiquiti_edgerouter/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/ubiquiti_edgerouter/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/ubiquiti_edgerouter/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/ubiquiti_edgerouter/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/ubiquiti_edgeswitch/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/ubiquiti_edgeswitch/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/ubiquiti_edgeswitch/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/ubiquiti_edgeswitch/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/vyatta_vyos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/vyatta_vyos/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/vyatta_vyos/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/vyatta_vyos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/yamaha/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/yamaha/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/yamaha/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/yamaha/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/platforms/zyxel_os/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/zyxel_os/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/zyxel_os/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/zyxel_os/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/usage/configurations/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/usage/configurations/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/usage/configurations/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/usage/configurations/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/usage/fakenos_inventory/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/usage/fakenos_inventory/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/usage/fakenos_inventory/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/usage/fakenos_inventory/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/usage/getting_started/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/usage/getting_started/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/usage/getting_started/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/usage/getting_started/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/usage/installation/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/usage/installation/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/usage/installation/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/usage/installation/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/es/usage/running_in_docker/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/usage/running_in_docker/"/>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/usage/running_in_docker/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/usage/running_in_docker/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/collaborators/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/collaborators/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/collaborators/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/collaborators/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/development/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/development/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/development/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/development/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/examples/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/examples/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/examples/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/examples/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/api/builtin_plugins_api_reference/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/api/builtin_plugins_api_reference/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/api/builtin_plugins_api_reference/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/api/builtin_plugins_api_reference/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/api/core_api_reference/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/api/core_api_reference/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/api/core_api_reference/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/api/core_api_reference/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/development/conventions/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/development/conventions/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/development/conventions/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/development/conventions/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/development/creating_new_platforms/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/development/creating_new_platforms/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/development/creating_new_platforms/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/development/creating_new_platforms/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/development/creating_nos_plugin/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/development/creating_nos_plugin/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/development/creating_nos_plugin/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/development/creating_nos_plugin/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/development/documentation/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/development/documentation/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/development/documentation/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/development/documentation/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/development/extras/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/development/extras/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/development/extras/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/development/extras/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/development/github_actions/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/development/github_actions/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/development/github_actions/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/development/github_actions/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/development/tasks/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/development/tasks/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/development/tasks/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/development/tasks/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/examples/automatic_testing/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/examples/automatic_testing/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/examples/automatic_testing/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/examples/automatic_testing/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/examples/developing_scripts/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/examples/developing_scripts/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/examples/developing_scripts/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/examples/developing_scripts/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/overview/how/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/overview/how/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/overview/how/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/overview/how/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/overview/references/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/overview/references/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/overview/references/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/overview/references/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/overview/what/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/overview/what/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/overview/what/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/overview/what/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/overview/what_not/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/overview/what_not/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/overview/what_not/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/overview/what_not/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/overview/why/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/overview/why/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/overview/why/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/overview/why/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/alcatel_aos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/alcatel_aos/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/alcatel_aos/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/alcatel_aos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/alcatel_sros/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/alcatel_sros/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/alcatel_sros/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/alcatel_sros/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/allied_telesis_awplus/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/allied_telesis_awplus/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/allied_telesis_awplus/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/allied_telesis_awplus/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/arista_eos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/arista_eos/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/arista_eos/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/arista_eos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/aruba_os/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/aruba_os/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/aruba_os/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/aruba_os/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/avaya_ers/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/avaya_ers/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/avaya_ers/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/avaya_ers/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/avaya_vsp/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/avaya_vsp/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/avaya_vsp/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/avaya_vsp/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/broadcom_icos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/broadcom_icos/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/broadcom_icos/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/broadcom_icos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/brocade_fastiron/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/brocade_fastiron/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/brocade_fastiron/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/brocade_fastiron/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/brocade_netiron/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/brocade_netiron/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/brocade_netiron/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/brocade_netiron/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/checkpoint_gaia/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/checkpoint_gaia/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/checkpoint_gaia/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/checkpoint_gaia/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/ciena_saos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/ciena_saos/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/ciena_saos/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/ciena_saos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/cisco_asa/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/cisco_asa/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/cisco_asa/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/cisco_asa/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/cisco_ftd/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/cisco_ftd/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/cisco_ftd/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/cisco_ftd/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/cisco_ios/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/cisco_ios/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/cisco_ios/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/cisco_ios/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/cisco_nxos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/cisco_nxos/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/cisco_nxos/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/cisco_nxos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/cisco_s300/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/cisco_s300/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/cisco_s300/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/cisco_s300/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/cisco_xr/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/cisco_xr/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/cisco_xr/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/cisco_xr/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/dell_force10/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/dell_force10/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/dell_force10/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/dell_force10/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/dell_powerconnect/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/dell_powerconnect/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/dell_powerconnect/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/dell_powerconnect/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/dlink_ds/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/dlink_ds/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/dlink_ds/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/dlink_ds/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/eltex/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/eltex/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/eltex/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/eltex/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/ericsson_ipos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/ericsson_ipos/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/ericsson_ipos/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/ericsson_ipos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/extreme_exos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/extreme_exos/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/extreme_exos/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/extreme_exos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/fortinet/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/fortinet/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/fortinet/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/fortinet/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/hp_comware/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/hp_comware/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/hp_comware/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/hp_comware/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/hp_procurve/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/hp_procurve/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/hp_procurve/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/hp_procurve/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/huawei_smartax/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/huawei_smartax/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/huawei_smartax/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/huawei_smartax/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/huawei_vrp/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/huawei_vrp/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/huawei_vrp/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/huawei_vrp/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/ipinfusion_ocnos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/ipinfusion_ocnos/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/ipinfusion_ocnos/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/ipinfusion_ocnos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/juniper_junos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/juniper_junos/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/juniper_junos/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/juniper_junos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/juniper_screenos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/juniper_screenos/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/juniper_screenos/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/juniper_screenos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/linux/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/linux/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/linux/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/linux/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/mikrotik_routeros/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/mikrotik_routeros/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/mikrotik_routeros/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/mikrotik_routeros/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/paloalto_panos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/paloalto_panos/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/paloalto_panos/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/paloalto_panos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/ruckus_fastiron/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/ruckus_fastiron/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/ruckus_fastiron/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/ruckus_fastiron/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/ubiquiti_edgerouter/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/ubiquiti_edgerouter/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/ubiquiti_edgerouter/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/ubiquiti_edgerouter/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/ubiquiti_edgeswitch/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/ubiquiti_edgeswitch/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/ubiquiti_edgeswitch/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/ubiquiti_edgeswitch/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/vyatta_vyos/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/vyatta_vyos/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/vyatta_vyos/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/vyatta_vyos/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/yamaha/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/yamaha/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/yamaha/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/yamaha/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/platforms/zyxel_os/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/platforms/zyxel_os/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/platforms/zyxel_os/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/platforms/zyxel_os/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/usage/configurations/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/usage/configurations/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/usage/configurations/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/usage/configurations/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/usage/fakenos_inventory/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/usage/fakenos_inventory/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/usage/fakenos_inventory/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/usage/fakenos_inventory/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/usage/getting_started/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/usage/getting_started/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/usage/getting_started/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/usage/getting_started/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/usage/installation/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/usage/installation/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/usage/installation/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/usage/installation/"/>
+    </url>
+    <url>
+        <loc>https://fakenos.github.io/fakenos/ca/usage/running_in_docker/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ca" href="https://fakenos.github.io/fakenos/ca/usage/running_in_docker/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://fakenos.github.io/fakenos/usage/running_in_docker/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://fakenos.github.io/fakenos/es/usage/running_in_docker/"/>
+    </url>
+</urlset>

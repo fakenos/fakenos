@@ -1,0 +1,2210 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="FakeNOS, Network, SSH">
+      
+      
+        <meta name="author" content="Denis Mulyalin">
+      
+      
+        <link rel="canonical" href="https://fakenos.github.io/fakenos/platforms/huawei_smartax/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>huawei_smartax - FakeNOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="brown" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#huawei_smartax" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="FakeNOS" class="md-header__button md-logo" aria-label="FakeNOS" data-md-component="logo">
+      
+  <img src="../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            FakeNOS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              huawei_smartax
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="brown" data-md-color-accent="deep-orange"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="brown" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../es/platforms/huawei_smartax/" hreflang="es" class="md-select__link">
+              Español
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../ca/platforms/huawei_smartax/" hreflang="ca" class="md-select__link">
+              Català
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/fakenos/fakenos" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    fakenos/fakenos
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Overview
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../examples/" class="md-tabs__link">
+          
+  
+  
+  Examples
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../usage/installation/" class="md-tabs__link">
+          
+  
+  
+  Usage
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Platforms
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../development/" class="md-tabs__link">
+          
+  
+  
+  Development
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../collaborators/" class="md-tabs__link">
+          
+  
+  
+  Collaborators
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api/core_api_reference/" class="md-tabs__link">
+          
+  
+  
+  API
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="FakeNOS" class="md-nav__button md-logo" aria-label="FakeNOS" data-md-component="logo">
+      
+  <img src="../../assets/logo.svg" alt="logo">
+
+    </a>
+    FakeNOS
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/fakenos/fakenos" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    fakenos/fakenos
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Overview
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/why/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Why?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/what/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    What?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/how/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    How?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/what_not/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    What not?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    References
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Examples
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Examples
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Examples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/developing_scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Script Development
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/automatic_testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Automatic testing - CI/CD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Usage
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Usage
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/getting_started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/fakenos_inventory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Inventory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/running_in_docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Running in Docker Container
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/configurations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configurations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Platforms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Development
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Development
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Main
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/conventions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Conventions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/tasks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tasks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/creating_new_platforms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Creating a new platform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/creating_nos_plugin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Creating NOS Plugin
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/github_actions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Github Actions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/extras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extras
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Collaborators
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Collaborators
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collaborators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Collaborators
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    API
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            API
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/core_api_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Core API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/builtin_plugins_api_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Built-in Plugins API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#specific-devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Specific devices
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable" class="md-nav__link">
+    <span class="md-ellipsis">
+      enable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#undo-smart" class="md-nav__link">
+    <span class="md-ellipsis">
+      undo smart
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scroll" class="md-nav__link">
+    <span class="md-ellipsis">
+      scroll
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-cpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      display cpu
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-board" class="md-nav__link">
+    <span class="md-ellipsis">
+      display board
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      display version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-sysman-service-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      display sysman service state
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-ont-info-summary-ont" class="md-nav__link">
+    <span class="md-ellipsis">
+      display ont info summary ont
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-port-info" class="md-nav__link">
+    <span class="md-ellipsis">
+      display port info
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-ont-autofind" class="md-nav__link">
+    <span class="md-ellipsis">
+      display ont autofind
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-ont-info-by-sn-sn" class="md-nav__link">
+    <span class="md-ellipsis">
+      display ont info by-sn sn
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-temperature" class="md-nav__link">
+    <span class="md-ellipsis">
+      display temperature
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-mem" class="md-nav__link">
+    <span class="md-ellipsis">
+      display mem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-board-serial-number" class="md-nav__link">
+    <span class="md-ellipsis">
+      display board serial-number
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-sysuptime" class="md-nav__link">
+    <span class="md-ellipsis">
+      display sysuptime
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-ont-info-fsp" class="md-nav__link">
+    <span class="md-ellipsis">
+      display ont info fsp
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="huawei_smartax">huawei_smartax<a class="headerlink" href="#huawei_smartax" title="Permanent link">#</a></h1>
+<p>Some commands have configurable outputs. This is indicated by the <img alt="⚙" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2699.svg" title=":gear:" /> emoji. You can modify the output of these commands by changing the values in the <code>configurations</code> file. If you want to see the defaults look at <code>fakenos/plugins/nos/platforms_py/configurations/huawei_smartax.yaml.j2</code>.</p>
+<h2 id="specific-devices">Specific devices<a class="headerlink" href="#specific-devices" title="Permanent link">#</a></h2>
+<ul>
+<li><a href="https://e.huawei.com/es/products/optical-access/ma5800">Huawei OptiXaccess MA5800</a></li>
+<li><a href="https://e.huawei.com/es/products/optical-access/ma5801-fl16">Huawei SmartAX MA5801-FL16</a></li>
+<li><a href="https://e.huawei.com/es/products/optical-access/optixaccess-ea5801s-fl16">Huawei OptiXaccess EA5801S-FL16</a></li>
+<li><a href="https://e.huawei.com/es/products/optical-access/optixaccess-ea5801e-fl16">Huawei OptiXaccess EA5801E-FL16</a></li>
+<li><a href="https://e.huawei.com/es/products/optical-access/optixaccess-ea5801e">Huawei OptiXaccess EA5801E-GP16</a></li>
+<li><a href="https://e.huawei.com/es/products/optical-access/optixaccess-ea5801e-gp04">Huawei OptiXaccess EA5801E-GP04</a></li>
+<li><a href="https://e.huawei.com/es/products/optical-access/optixaccess-ea5801e-gp08">Huawei OptiXaccess EA5801E-GP08</a></li>
+<li><a href="https://e.huawei.com/es/products/optical-access/ea5800">Huawei OptiXaccess EA5800</a></li>
+<li><a href="https://e.huawei.com/es/products/optical-access/optixaccess-s1016-l">Huawei OptiXaccess S1016-L</a></li>
+</ul>
+<h2 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">#</a></h2>
+<h3 id="enable">enable<a class="headerlink" href="#enable" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong> None</p>
+<p><strong>Help:</strong> enter enable mode</p>
+<p><strong>Prompt:</strong></p>
+<ul>
+<li>huawei_smartax&gt;</li>
+</ul>
+<h3 id="undo-smart">undo smart<a class="headerlink" href="#undo-smart" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong> None</p>
+<p><strong>Help:</strong> undo the command completion mode (smart mode)</p>
+<p><strong>Prompt:</strong></p>
+<ul>
+<li>huawei_smartax&gt;</li>
+<li>huawei_smartax#</li>
+</ul>
+<h3 id="scroll">scroll<a class="headerlink" href="#scroll" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong> None</p>
+<p><strong>Help:</strong> disables the paging so the output is complete always</p>
+<p><strong>Prompt:</strong></p>
+<ul>
+<li>huawei_smartax&gt;</li>
+<li>huawei_smartax#</li>
+</ul>
+<h3 id="display-cpu">display cpu<a class="headerlink" href="#display-cpu" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>  CPU occupancy: 17%
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display cpu"</p>
+<p><strong>Prompt:</strong></p>
+<ul>
+<li>huawei_smartax&gt;</li>
+<li>huawei_smartax#</li>
+</ul>
+<h3 id="display-board">display board <img alt="⚙" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2699.svg" title=":gear:" /><a class="headerlink" href="#display-board" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>  -------------------------------------------------------------------------
+  SlotID  BoardName  Status          SubType0 SubType1    Online/Offline
+  -------------------------------------------------------------------------
+  0       A123ABCD   Normal                           
+  1     
+  2       A123ABCDE  Normal                           
+  3       A123ABCDE  Active_normal   CPCF             
+  4       A123ABCDE  Standby_failed  CPCF                 Offline  
+  5     
+  -------------------------------------------------------------------------
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display board"</p>
+<p><strong>Prompt:</strong></p>
+<ul>
+<li>huawei_smartax&gt;</li>
+<li>huawei_smartax#</li>
+</ul>
+<h3 id="display-version">display version<a class="headerlink" href="#display-version" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>  VERSION : AB1234C342A123D23
+  PATCH   : QEF227
+  PRODUCT : MA5608T
+
+  Active Mainboard Running Area Information: 
+  --------------------------------------------------
+  Current Program Area : Area A 
+  Current Data Area : Area A
+
+  Program Area A Version : AB1234C342A123D23 
+  Program Area B Version : AB1234C342A123D23
+
+  Data Area A Version : AB1234C342A123D23 
+  Data Area B Version : AB1234C342A123D23 
+  --------------------------------------------------
+
+  Standby Mainboard Running Area Information: 
+  --------------------------------------------------
+  Current Program Area : Area A 
+  Current Data Area : Area A
+
+  Program Area A Version : AB1234C342A123D23 
+  Program Area B Version : AB1234C342A123D23
+
+  Data Area A Version : AB1234C342A123D23 
+  Data Area B Version : AB1234C342A123D23 
+  --------------------------------------------------
+
+  Uptime is 20 day(s), 23 hour(s), 19 minute(s), 16 second(s)
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display version"</p>
+<p><strong>Prompt:</strong></p>
+<ul>
+<li>huawei_smartax&gt;</li>
+<li>huawei_smartax#</li>
+</ul>
+<h3 id="display-sysman-service-state">display sysman service state<a class="headerlink" href="#display-sysman-service-state" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>  ---------------------------------------------------------------------------
+  Network service                                   Port           State
+  ---------------------------------------------------------------------------
+  telnet                                            23             disable
+  trace                                             1026           disable
+  ssh                                               22             enable
+  snmp                                              161            enable
+  ftp-client                                        ----           ----
+  sftp-client                                       ----           ----
+  ntp                                               123            enable
+  radius                                            ----           enable
+  dhcp-relay                                        67             disable
+  dhcpv6-relay                                      547            disable
+  ntp6                                              123            disable
+  ipdr                                              4737           enable
+  twamp                                             4294967295     enable
+  netconf                                           830            enable
+  telnetv6                                          23             disable
+  sshv6                                             22             disable
+  snmpv6                                            161            disable
+  web-proxy                                         8024           disable
+  portal                                            2000           disable
+  capwap                                            5246           disable
+  ---------------------------------------------------------------------------
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display sysman service state"</p>
+<p><strong>Prompt:</strong></p>
+<ul>
+<li>huawei_smartax&gt;</li>
+<li>huawei_smartax#</li>
+</ul>
+<h3 id="display-ont-info-summary-ont">display ont info summary ont<a class="headerlink" href="#display-ont-info-summary-ont" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>  ------------------------------------------------------------------------------
+  In port 0/1/0, the total of ONTs are: 23, online: 23
+  ------------------------------------------------------------------------------
+  ONT  Run     Last                Last                Last
+  ID   State   UpTime              DownTime            DownCause
+  ------------------------------------------------------------------------------
+  0    online  2000-01-01 00:00:00 2000-01-01 00:00:00 LOSi/LOBi
+  1    online  2000-01-01 00:00:00 2000-01-01 00:00:00 LOSi/LOBi
+  2    online  2000-01-01 00:00:00 2000-01-01 00:00:00 LOSi/LOBi
+  3    online  2000-01-01 00:00:00 2000-01-01 00:00:00 LOSi/LOBi
+  4    online  2000-01-01 00:00:00 2000-01-01 00:00:00 LOSi/LOBi
+  5    online  2000-01-01 00:00:00 2000-01-01 00:00:00 LOSi/LOBi
+  6    online  2000-01-01 00:00:00 2000-01-01 00:00:00 LOSi/LOBi
+  7    online  2000-01-01 00:00:00 2000-01-01 00:00:00 LOSi/LOBi
+  8    online  2000-01-01 00:00:00 2000-01-01 00:00:00 LOSi/LOBi
+  9    online  2000-01-01 00:00:00 2000-01-01 00:00:00 LOSi/LOBi
+  10   online  2000-01-01 00:00:00 2000-01-01 00:00:00 LOSi/LOBi
+  11   online  2000-01-01 00:00:00 2000-01-01 00:00:00 LOSi/LOBi
+  12   online  2000-01-01 00:00:00 2000-01-01 00:00:00 LOSi/LOBi
+  13   online  2000-01-01 00:00:00 2000-01-01 00:00:00 LOSi/LOBi
+  14   online  2000-01-01 00:00:00 2000-01-01 00:00:00 LOSi/LOBi
+  15   online  2000-01-01 00:00:00 2000-01-01 00:00:00 LOSi/LOBi
+  16   online  2000-01-01 00:00:00 2000-01-01 00:00:00 LOSi/LOBi
+  17   online  2000-01-01 00:00:00 2000-01-01 00:00:00 LOSi/LOBi
+  18   online  2000-01-01 00:00:00 2000-01-01 00:00:00 LOSi/LOBi
+  19   online  2000-01-01 00:00:00 2000-01-01 00:00:00 LOSi/LOBi
+  20   online  2000-01-01 00:00:00 2000-01-01 00:00:00 LOSi/LOBi
+  21   online  2000-01-01 00:00:00 2000-01-01 00:00:00 LOSi/LOBi
+  22   online  2000-01-01 00:00:00 2000-01-01 00:00:00 LOSi/LOBi
+  ------------------------------------------------------------------------------
+  ONT        SN        Type          Distance Rx/Tx power  Description
+  ID                                    (m)      (dBm)
+  ------------------------------------------------------------------------------
+  0   1234567890ABCDEF AB1234C5         100   -10.12/2.03  AB12
+  1   1234567890ABCDEF AB1234C5         100   -10.12/2.03  AB12
+  2   1234567890ABCDEF AB1234C5         100   -10.12/2.03  AB12
+  3   1234567890ABCDEF AB1234C5         100   -10.12/2.03  AB12
+  4   1234567890ABCDEF AB1234C5         100   -10.12/2.03  AB12
+  5   1234567890ABCDEF AB1234C5         100   -10.12/2.03  AB12
+  6   1234567890ABCDEF AB1234C5         100   -10.12/2.03  AB12
+  7   1234567890ABCDEF AB1234C5         100   -10.12/2.03  AB12
+  8   1234567890ABCDEF AB1234C5         100   -10.12/2.03  AB12
+  9   1234567890ABCDEF AB1234C5         100   -10.12/2.03  AB12
+  10  1234567890ABCDEF AB1234C5         100   -10.12/2.03  AB12
+  11  1234567890ABCDEF AB1234C5         100   -10.12/2.03  AB12
+  12  1234567890ABCDEF AB1234C5         100   -10.12/2.03  AB12
+  13  1234567890ABCDEF AB1234C5         100   -10.12/2.03  AB12
+  14  1234567890ABCDEF AB1234C5         100   -10.12/2.03  AB12
+  15  1234567890ABCDEF AB1234C5         100   -10.12/2.03  AB12
+  16  1234567890ABCDEF AB1234C5         100   -10.12/2.03  AB12
+  17  1234567890ABCDEF AB1234C5         100   -10.12/2.03  AB12
+  18  1234567890ABCDEF AB1234C5         100   -10.12/2.03  AB12
+  19  1234567890ABCDEF AB1234C5         100   -10.12/2.03  AB12
+  20  1234567890ABCDEF AB1234C5         100   -10.12/2.03  AB12
+  21  1234567890ABCDEF AB1234C5         100   -10.12/2.03  AB12
+  22  1234567890ABCDEF AB1234C5         100   -10.12/2.03  AB12
+  ------------------------------------------------------------------------------
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display ont info summary ont"</p>
+<p><strong>Prompt:</strong></p>
+<ul>
+<li>huawei_smartax&gt;</li>
+<li>huawei_smartax#</li>
+</ul>
+<h3 id="display-port-info">display port info<a class="headerlink" href="#display-port-info" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>  -----------------------------------------------------------
+  F/S/P                                      0/0/0
+  Min distance(km)                           0
+  Max distance(km)                           20
+  Max guaranteed bandwidth(kbps)             -
+  Left guaranteed bandwidth(kbps)            1000000
+  Number of T-CONTs                          0
+  Autofind                                   Enable
+  FEC check                                  Disable
+  Admin State                                On
+  ONT encryption key switching interval(m)   1440
+  PON-ID switch                              Disable
+  PON-ID identifier                          1
+  Jumbo frame switch                         Disable
+  Port MTU(bytes)                            1024
+  Surplus bandwidth assignment               Disable
+  Best-effort bandwidth assignment           -
+  Traffic alarm-profile ID                   -
+  ONT online power threshold(dBm)            -
+  Low-latency                                no
+  Multichannel low latency                   Disable
+  Optical module work mode                   Standard
+  -----------------------------------------------------------
+  Channel 0 Information              
+  -----------------------------------------------------------
+  Channel Type                               GPON
+  Online ONT number threshold                Disable
+  -----------------------------------------------------------
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display port info"</p>
+<p><strong>Prompt:</strong></p>
+<ul>
+<li>huawei_smartax&gt;</li>
+<li>huawei_smartax#</li>
+</ul>
+<h3 id="display-ont-autofind">display ont autofind<a class="headerlink" href="#display-ont-autofind" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>   ----------------------------------------------------------------------------
+   Number              : 1
+   F/S/P               : 0/0/0
+   Ont SN              : 12345678A12BC3AB (ABCD-A12BC3DE)
+   Password            : 0x00000000000000000000
+   Loid                :
+   Checkcode           :
+   VendorID            : HWTC
+   Ont Version         : 1234A.D
+   Ont SoftwareVersion : A1B123D12E123
+   Ont EquipmentID     : EG8145X6-10
+   Ont Customized Info : EUCOMMONEBG4
+   Ont MAC             : 1234-ABCD-1234
+   Ont Equipment SN    : 123456789ABCDEFGHIJK
+   Ont autofind time   : 2000-01-01 00:00:00+00:00
+   Multi channel       : -
+   ----------------------------------------------------------------------------
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display ont autofind"</p>
+<p><strong>Prompt:</strong></p>
+<ul>
+<li>huawei_smartax&gt;</li>
+<li>huawei_smartax#</li>
+</ul>
+<h3 id="display-ont-info-by-sn-sn">display ont info by-sn sn<a class="headerlink" href="#display-ont-info-by-sn-sn" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>  -----------------------------------------------------------------------------
+  F/S/P                   : 0/1/1
+  ONT-ID                  : 131
+  Control flag            : active
+  Run state               : online
+  Config state            : normal
+  Match state             : match
+  DBA type                : SR
+  ONT distance(m)         : 100
+  ONT last distance(m)    : 100
+  ONT battery state       : not support
+  ONT power type          : -
+  Memory occupation       : 23%
+  CPU occupation          : 30%
+  Temperature             : 70(C)
+  Authentic type          : SN-auth
+  SN                      : 123456789123AB12AB (HWTC-12AB12AB)
+  Management mode         : OMCI
+  Software work mode      : normal
+  Isolation state         : normal
+  ONT IP 0 address/mask   : 192.168.0.1/24
+  ONT IP 1 address/mask   : 192.168.0.1/24
+  Description             : ABCD
+  Last down cause         : dying-gasp
+  Last up time            : 09/02/2019 01:58:52+00:00
+  Last down time          : 22/01/2019 01:57:55+00:00
+  Last dying gasp time    : 22/01/2019 01:57:55+00:00
+  Last restart reason     : -
+  ONT online duration     : 22 day(s), 1 hour(s), 23 minute(s), 23 second(s) 
+  ONT system up duration  : 22 day(s), 1 hour(s), 23 minute(s), 23 second(s) 
+  Type C support          : Not support
+  Interoperability-mode   : ITU-T
+  Power reduction status  : -
+  FEC upstream state      : use-profile-config
+  VS-ID                   : 0
+  VS name                 : admin-vs
+  Global ONT-ID           : 131
+  -----------------------------------------------------------------------------
+  VoIP configure method   : Default
+  -----------------------------------------------------------------------------
+  Line profile ID      : 100
+  Line profile name    : ftth
+  -----------------------------------------------------------------------------
+  FEC upstream switch :Disable 
+  OMCC encrypt switch :On
+  Qos mode            :PQ
+  Mapping mode        :VLAN
+  TR069 management    :Enable        
+  TR069 IP index      :0
+  ------------------------------------------------------------------------------
+  Notes: * indicates Discrete TCONT(TCONT Unbound)
+  ------------------------------------------------------------------------------
+  &lt;T-CONT   0&gt;          DBA Profile-ID:1
+  &lt;T-CONT   1&gt;          DBA Profile-ID:100
+   &lt;Gem Index 1&gt;
+   --------------------------------------------------------------------
+   |Serv-Type:ETH |Encrypt:on  |Cascade:off |GEM-CAR:-            |
+   |Upstream-priority-queue:0  |Downstream-priority-queue:-       |
+   --------------------------------------------------------------------
+    Mapping VLAN  Priority Port    Port  Bundle  Flow  Transparent
+    index                  type    ID    ID      CAR   
+   --------------------------------------------------------------------
+    0       40    -        -       -     -       -     -          
+    1       41    -        -       -     -       -     -          
+   --------------------------------------------------------------------
+  &lt;T-CONT   2&gt;          DBA Profile-ID:101
+   &lt;Gem Index 2&gt;
+   --------------------------------------------------------------------
+   |Serv-Type:ETH |Encrypt:on  |Cascade:off |GEM-CAR:-            |
+   |Upstream-priority-queue:0  |Downstream-priority-queue:-       |
+   --------------------------------------------------------------------
+    Mapping VLAN  Priority Port    Port  Bundle  Flow  Transparent
+    index                  type    ID    ID      CAR   
+   --------------------------------------------------------------------
+    0       42    -        -       -     -       -     -          
+   --------------------------------------------------------------------
+  &lt;T-CONT   3&gt;          DBA Profile-ID:102
+   &lt;Gem Index 3&gt;
+   --------------------------------------------------------------------
+   |Serv-Type:ETH |Encrypt:on  |Cascade:off |GEM-CAR:-            |
+   |Upstream-priority-queue:0  |Downstream-priority-queue:-       |
+   --------------------------------------------------------------------
+    Mapping VLAN  Priority Port    Port  Bundle  Flow  Transparent
+    index                  type    ID    ID      CAR   
+   --------------------------------------------------------------------
+    0       1     -        -       -     -       -     -          
+    1       2     -        -       -     -       -     -          
+    2       3     -        -       -     -       -     -          
+    3       4     -        -       -     -       -     -          
+   --------------------------------------------------------------------
+  &lt;T-CONT   4&gt;          DBA Profile-ID:103
+   &lt;Gem Index 4&gt;
+   --------------------------------------------------------------------
+   |Serv-Type:ETH |Encrypt:on  |Cascade:off |GEM-CAR:-            |
+   |Upstream-priority-queue:0  |Downstream-priority-queue:-       |
+   --------------------------------------------------------------------
+    Mapping VLAN  Priority Port    Port  Bundle  Flow  Transparent
+    index                  type    ID    ID      CAR   
+   --------------------------------------------------------------------
+    0       8     -        -       -     -       -     -          
+   --------------------------------------------------------------------
+  &lt;T-CONT   5&gt;          DBA Profile-ID:104
+   &lt;Gem Index 5&gt;
+   --------------------------------------------------------------------
+   |Serv-Type:ETH |Encrypt:on  |Cascade:off |GEM-CAR:-            |
+   |Upstream-priority-queue:0  |Downstream-priority-queue:-       |
+   --------------------------------------------------------------------
+  ------------------------------------------------------------------------------
+  Notes: Run the display traffic table ip command to query 
+         traffic table configuration
+  -----------------------------------------------------------------------------
+  Service profile ID   : 100
+  Service profile name : ftth
+  -----------------------------------------------------------------------------
+  Port-type     Port-number     Max-adaptive-number
+  -----------------------------------------------------------------------------
+  POTS          adaptive        32
+  ETH           adaptive        8
+  VDSL          0               -
+  TDM           0               -    
+  MOCA          0               -
+  CATV          adaptive        8
+  -----------------------------------------------------------------------------
+  TDM port type                     : E1
+  TDM service type                  : TDMoGem
+  MAC learning function switch      : Enable
+  ONT transparent function switch   : Disable
+  Ring check switch                 : Enable
+  Ring port auto-shutdown           : Enable
+  Ring detect frequency             : 8 (pps)
+  Ring resume interval              : 240 (s)
+  Ring detect period                : 0 (s)
+  Multicast forward mode            : Unconcern
+  Multicast forward VLAN            : -
+  Multicast mode                    : Unconcern
+  Upstream IGMP packet forward mode : Unconcern
+  Upstream IGMP packet forward VLAN : -
+  Upstream IGMP packet priority     : -
+  Native VLAN option                : Concern
+  Upstream PQ color policy          : -
+  Downstream PQ color policy        : -
+  Monitor link                      : Unconcern
+  MTU(byte)                         : Unconcern
+  -----------------------------------------------------------------------------
+  Port-type Port-ID QinQmode  PriorityPolicy Inbound     Outbound
+  -----------------------------------------------------------------------------
+  ETH       1       unconcern unconcern      unconcern   unconcern
+  ETH       2       unconcern unconcern      unconcern   unconcern
+  ETH       3       unconcern unconcern      unconcern   unconcern
+  ETH       4       unconcern unconcern      unconcern   unconcern
+  ETH       5       unconcern unconcern      unconcern   unconcern
+  ETH       6       unconcern unconcern      unconcern   unconcern
+  ETH       7       unconcern unconcern      unconcern   unconcern
+  ETH       8       unconcern unconcern      unconcern   unconcern
+  IPHOST    1       unconcern unconcern      unconcern   unconcern
+  -----------------------------------------------------------------------------
+  Notes: * indicates the discretely configured traffic profile,
+         run the display traffic table ip command to query
+         traffic table configuration.
+  -----------------------------------------------------------------------------
+  Port-type Port-ID  DownstreamMode  MismatchPolicy
+  -----------------------------------------------------------------------------
+  ETH             1  operation       discard       
+  ETH             2  operation       discard       
+  ETH             3  operation       discard       
+  ETH             4  operation       discard       
+  ETH             5  operation       discard       
+  ETH             6  operation       discard       
+  ETH             7  operation       discard       
+  ETH             8  operation       discard       
+  -----------------------------------------------------------------------------
+  Port-type Port-ID Dscp-mapping-table-index Classification-profile-id
+  -----------------------------------------------------------------------------
+  ETH       1       0                        -        
+  ETH       2       0                        -        
+  ETH       3       0                        -        
+  ETH       4       0                        -        
+  ETH       5       0                        -        
+  ETH       6       0                        -        
+  ETH       7       0                        -        
+  ETH       8       0                        -        
+  IPHOST    1       0                        -
+  -----------------------------------------------------------------------------
+  Port-type  Port-ID    IGMP-mode         IGMP-VLAN  IGMP-PRI  Max-MAC-Count
+  -----------------------------------------------------------------------------
+  ETH              1    -                         -         -      Unlimited
+  ETH              2    -                         -         -      Unlimited
+  ETH              3    -                         -         -      Unlimited
+  ETH              4    -                         -         -      Unlimited
+  ETH              5    -                         -         -      Unlimited
+  ETH              6    -                         -         -      Unlimited
+  ETH              7    -                         -         -      Unlimited
+  ETH              8    -                         -         -      Unlimited
+  IPHOST           1    -                         -         -      Unlimited
+  -----------------------------------------------------------------------------
+  Port-type Port-ID   Traffic-suppress   Traffic-suppress   Traffic-suppress
+                      unicast(kbps)      multicast(kpbs)    broadcast(kbps)
+  -----------------------------------------------------------------------------
+  ETH             1   -                  -                  -               
+  ETH             2   -                  -                  -               
+  ETH             3   -                  -                  -               
+  ETH             4   -                  -                  -               
+  ETH             5   -                  -                  -               
+  ETH             6   -                  -                  -               
+  ETH             7   -                  -                  -               
+  ETH             8   -                  -                  -               
+  -----------------------------------------------------------------------------
+  Port-type  Port-ID  L2-isolate
+  -----------------------------------------------------------------------------
+  ETH              1  unconcern           
+  ETH              2  unconcern           
+  ETH              3  unconcern           
+  ETH              4  unconcern           
+  ETH              5  unconcern           
+  ETH              6  unconcern           
+  ETH              7  unconcern           
+  ETH              8  unconcern           
+  -----------------------------------------------------------------------------
+  Alarm policy profile ID      : 0
+  Alarm policy profile name    : alarm-policy_0
+  -----------------------------------------------------------------------------
+  TR069 server profile ID      : 1
+  TR069 server profile name    : tr069-server-profile_1
+  -----------------------------------------------------------------------------
+  -----------------------------------------------------------------------------
+  The number of required ONTs     : 1
+  -----------------------------------------------------------------------------
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display ont info by-sn sn"</p>
+<p><strong>Prompt:</strong></p>
+<ul>
+<li>huawei_smartax&gt;</li>
+<li>huawei_smartax#</li>
+</ul>
+<h3 id="display-temperature">display temperature<a class="headerlink" href="#display-temperature" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>  SlotID:  4      BoardName: H805GPFD       Temperature:   57C( 134F)
+
+  SlotID:  5      BoardName: H808EPSD       Temperature:   59C( 138F)
+
+  SlotID:  7      BoardName: H802SCUN       Temperature:   69C( 156F)
+
+  SlotID:  8      BoardName: H802SCUN       Temperature:   67C( 152F)
+
+  SlotID: 11      BoardName: H807GPBD       Temperature:   55C( 131F)
+
+  SlotID: 18      BoardName: H801X2CS       Temperature:   38C( 100F)
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display temperature"</p>
+<p><strong>Prompt:</strong></p>
+<ul>
+<li>huawei_smartax&gt;</li>
+<li>huawei_smartax#</li>
+</ul>
+<h3 id="display-mem">display mem<a class="headerlink" href="#display-mem" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>  Memory occupancy: 79%
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display mem"</p>
+<p><strong>Prompt:</strong></p>
+<ul>
+<li>huawei_smartax&gt;</li>
+<li>huawei_smartax#</li>
+</ul>
+<h3 id="display-board-serial-number">display board serial-number<a class="headerlink" href="#display-board-serial-number" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>  -------------------------------------------------------------------------
+  Solt ID        Board Name         Serial Number 
+  -------------------------------------------------------------------------
+  0              A123ABCD           123ABC45D6789012                
+  1                                                                 
+  2              A123ABCDE          123ABC45D6789012                
+  3              A123ABCDE          123456789123                    
+  4              A123ABCDE          --                              
+  5                                                                 
+  -------------------------------------------------------------------------
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display board serial-number"</p>
+<p><strong>Prompt:</strong></p>
+<ul>
+<li>huawei_smartax&gt;</li>
+<li>huawei_smartax#</li>
+</ul>
+<h3 id="display-sysuptime">display sysuptime<a class="headerlink" href="#display-sysuptime" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>  System up time: 11 day 22 hour 5 minute 17 second
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display sysuptime"</p>
+<p><strong>Prompt:</strong></p>
+<ul>
+<li>huawei_smartax&gt;</li>
+<li>huawei_smartax#</li>
+</ul>
+<h3 id="display-ont-info-fsp">display ont info fsp<a class="headerlink" href="#display-ont-info-fsp" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>  -----------------------------------------------------------------------------
+  F/S/P   ONT         SN         Control     Run      Config   Match    Protect
+          ID                     flag        state    state    state    side 
+  -----------------------------------------------------------------------------
+  0/ 1/0    0  1234567890ABCDEF  active      online   normal   match    no 
+  0/ 1/0    1  1234567890ABCDEF  active      online   normal   match    no 
+  0/ 1/0    2  1234567890ABCDEF  active      online   normal   match    no 
+  0/ 1/0    3  1234567890ABCDEF  active      online   normal   match    no 
+  0/ 1/0    4  1234567890ABCDEF  active      online   normal   match    no 
+  0/ 1/0    5  1234567890ABCDEF  active      online   normal   match    no 
+  0/ 1/0    6  1234567890ABCDEF  active      online   normal   match    no 
+  0/ 1/0    7  1234567890ABCDEF  active      online   normal   match    no 
+  0/ 1/0    8  1234567890ABCDEF  active      online   normal   match    no 
+  0/ 1/0    9  1234567890ABCDEF  active      online   normal   match    no 
+  0/ 1/0   10  1234567890ABCDEF  active      online   normal   match    no 
+  0/ 1/0   11  1234567890ABCDEF  active      online   normal   match    no 
+  0/ 1/0   12  1234567890ABCDEF  active      online   normal   match    no 
+  0/ 1/0   13  1234567890ABCDEF  active      online   normal   match    no 
+  0/ 1/0   14  1234567890ABCDEF  active      online   normal   match    no 
+  0/ 1/0   15  1234567890ABCDEF  active      online   normal   match    no 
+  0/ 1/0   16  1234567890ABCDEF  active      online   normal   match    no 
+  0/ 1/0   17  1234567890ABCDEF  active      online   normal   match    no 
+  0/ 1/0   18  1234567890ABCDEF  active      online   normal   match    no 
+  0/ 1/0   19  1234567890ABCDEF  active      online   normal   match    no 
+  0/ 1/0   20  1234567890ABCDEF  active      online   normal   match    no 
+  0/ 1/0   21  1234567890ABCDEF  active      online   normal   match    no 
+  0/ 1/0   22  1234567890ABCDEF  active      online   normal   match    no 
+  0/ 1/0   23  1234567890ABCDEF  active      online   normal   match    no 
+  0/ 1/0   24  1234567890ABCDEF  active      online   normal   match    no 
+  0/ 1/0   25  1234567890ABCDEF  active      online   normal   match    no 
+  0/ 1/0   26  1234567890ABCDEF  active      online   normal   match    no 
+  0/ 1/0   27  1234567890ABCDEF  active      online   normal   match    no 
+  0/ 1/0   28  1234567890ABCDEF  active      online   normal   match    no 
+  0/ 1/0   29  1234567890ABCDEF  active      online   normal   match    no 
+  0/ 1/0   30  1234567890ABCDEF  active      online   normal   match    no 
+  -----------------------------------------------------------------------------
+  F/S/P       ONT  Description  
+              ID  
+  -----------------------------------------------------------------------------
+  0/ 1/0       0   Generic_description
+  0/ 1/0       1   Generic_description
+  0/ 1/0       2   Generic_description
+  0/ 1/0       3   Generic_description
+  0/ 1/0       4   Generic_description
+  0/ 1/0       5   Generic_description
+  0/ 1/0       6   Generic_description
+  0/ 1/0       7   Generic_description
+  0/ 1/0       8   Generic_description
+  0/ 1/0       9   Generic_description
+  0/ 1/0      10   Generic_description
+  0/ 1/0      11   Generic_description
+  0/ 1/0      12   Generic_description
+  0/ 1/0      13   Generic_description
+  0/ 1/0      14   Generic_description
+  0/ 1/0      15   Generic_description
+  0/ 1/0      16   Generic_description
+  0/ 1/0      17   Generic_description
+  0/ 1/0      18   Generic_description
+  0/ 1/0      19   Generic_description
+  0/ 1/0      20   Generic_description
+  0/ 1/0      21   Generic_description
+  0/ 1/0      22   Generic_description
+  0/ 1/0      23   Generic_description
+  0/ 1/0      24   Generic_description
+  0/ 1/0      25   Generic_description
+  0/ 1/0      26   Generic_description
+  0/ 1/0      27   Generic_description
+  0/ 1/0      28   Generic_description
+  0/ 1/0      29   Generic_description
+  0/ 1/0      30   Generic_description
+  -----------------------------------------------------------------------------
+  In port 0/ 1/0 , the total of ONTs are: 31, online: 31
+  -----------------------------------------------------------------------------
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "display ont info fsp"</p>
+<p><strong>Prompt:</strong></p>
+<ul>
+<li>huawei_smartax&gt;</li>
+<li>huawei_smartax#</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.instant.progress", "content.tabs.link", "content.footnote.tooltips"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2460 @@
+
+<!doctype html>
+<html lang="ca" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="FakeNOS, Network, SSH">
+      
+      
+        <meta name="author" content="Denis Mulyalin">
+      
+      
+        <link rel="canonical" href="https://fakenos.github.io/fakenos/ca/usage/fakenos_inventory/">
+      
+      
+        <link rel="prev" href="../getting_started/">
+      
+      
+        <link rel="next" href="../running_in_docker/">
+      
+      
+      <link rel="icon" href="../../../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>Inventario - FakeNOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="brown" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#inventari" class="md-skip">
+          Salta el contingut
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Capçalera">
+    <a href="../../" title="FakeNOS" class="md-header__button md-logo" aria-label="FakeNOS" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            FakeNOS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Inventario
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="brown" data-md-color-accent="deep-orange"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="brown" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Selecciona la llengua">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../usage/fakenos_inventory/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../../es/usage/fakenos_inventory/" hreflang="es" class="md-select__link">
+              Español
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="ca" class="md-select__link">
+              Català
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Cerca" placeholder="Cerca" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Cerca">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Neteja" aria-label="Neteja" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicialitzant cerca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/fakenos/fakenos" title="Ves al repositori" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    fakenos/fakenos
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestanyes" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+  Resum
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../examples/" class="md-tabs__link">
+          
+  
+  
+  Exemples
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../installation/" class="md-tabs__link">
+          
+  
+  
+  Ús
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../platforms/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Plataformes
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../development/" class="md-tabs__link">
+          
+  
+  
+  Desenvolupament
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../collaborators/" class="md-tabs__link">
+          
+  
+  
+  Col·laboradors
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api/core_api_reference/" class="md-tabs__link">
+          
+  
+  
+  API
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegació" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="FakeNOS" class="md-nav__button md-logo" aria-label="FakeNOS" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    FakeNOS
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/fakenos/fakenos" title="Ves al repositori" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    fakenos/fakenos
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Resum
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Resum
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resum
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/why/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Per què?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/what/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Què?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/how/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Com?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/what_not/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Què no?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Referències
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Exemples
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Exemples
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Exemples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/developing_scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Desenvolupament de scripts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/automatic_testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Proves automàtiques - CI/CD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Ús
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Ús
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Instal·lació
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting_started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Començar
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Inventario
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Inventario
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Taula de continguts">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Taula de continguts
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#estructura-basica" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estructura bàsica
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Estructura bàsica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inventari-per-defecte" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inventari per defecte
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      YAML
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diccionari-de-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diccionari de Python
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#altres-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Altres examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Altres examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#repliques-de-hosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rèpliques de hosts
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generar-clau-privada-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generar clau privada SSH
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Generar clau privada SSH">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux-i-macos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linux i MacOS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Windows 10
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#esquema-de-linventari-en-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      Esquema de l'inventari en JSON
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opcions-de-linventari" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opcions de l'inventari
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Opcions de l&#39;inventari">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opcions-de-nivell-superior" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opcions de nivell superior
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opcions-del-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opcions del servidor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opcions-de-configuracio-del-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opcions de configuració del servidor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opcions-de-la-shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opcions de la shell
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opcions-del-nos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opcions del NOS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../running_in_docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Executar en contenidor Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configurations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuracions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../platforms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Plataformes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Desenvolupament
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Desenvolupament
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Principal
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/conventions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Convencions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/tasks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tasques
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/creating_new_platforms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Crear una nova plataforma
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/creating_nos_plugin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Crear un complement NOS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/github_actions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accions de Github
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/extras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extras
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Col·laboradors
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Col·laboradors
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collaborators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Col·laboradors
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    API
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            API
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/core_api_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Core API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/builtin_plugins_api_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Built-in Plugins API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Taula de continguts">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Taula de continguts
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#estructura-basica" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estructura bàsica
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Estructura bàsica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inventari-per-defecte" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inventari per defecte
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      YAML
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diccionari-de-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diccionari de Python
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#altres-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Altres examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Altres examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#repliques-de-hosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rèpliques de hosts
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generar-clau-privada-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generar clau privada SSH
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Generar clau privada SSH">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux-i-macos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linux i MacOS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Windows 10
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#esquema-de-linventari-en-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      Esquema de l'inventari en JSON
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opcions-de-linventari" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opcions de l'inventari
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Opcions de l&#39;inventari">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opcions-de-nivell-superior" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opcions de nivell superior
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opcions-del-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opcions del servidor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opcions-de-configuracio-del-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opcions de configuració del servidor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opcions-de-la-shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opcions de la shell
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opcions-del-nos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opcions del NOS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="inventari">Inventari<a class="headerlink" href="#inventari" title="Permanent link">#</a></h1>
+<p>FakeNOS utilitza un inventari per definir un conjunt d'amfitrions SSH i la seva configuració. És una part clau del projecte. L'inventari és un diccionari que conté dues seccions: <code>default</code> i <code>hosts</code>. La secció <code>default</code> conté paràmetres i configuració que FakeNOS utilitza per defecte per a cada amfitrió. La secció <code>hosts</code> és un diccionari indexat pels noms dels amfitrions que contenen la definició de l'amfitrió. Qualsevol paràmetre definit per amfitrió substitueix els paràmetres definits a la secció <code>default</code>.</p>
+<p>Hi ha dues maneres de proporcionar dades d'inventari a FakeNOS:</p>
+<ol>
+<li>Utilitzant un fitxer YAML</li>
+<li>Utilitzant un diccionari de Python</li>
+</ol>
+<h2 id="estructura-basica">Estructura bàsica<a class="headerlink" href="#estructura-basica" title="Permanent link">#</a></h2>
+<p>En tots els casos, les dades de l'inventari han de tenir la següent estructura, independentment del mètode utilitzat per proporcionar-les:</p>
+<ul>
+<li><strong>default</strong>: Un diccionari que conté paràmetres per defecte i configuració que FakeNOS utilitza per defecte per a cada amfitrió.</li>
+<li><strong>hosts</strong>: Un diccionari indexat pels noms dels amfitrions que contenen la definició de l'amfitrió. Qualsevol paràmetre definit per amfitrió substitueix els paràmetres definits a la secció <code>default</code>.</li>
+</ul>
+<p>Sempre és obligatori proporcionar la secció <code>hosts</code>. La secció <code>default</code> és opcional. Si no es proporciona, FakeNOS utilitza una configuració per defecte. Aquesta estructura funciona de manera jeràrquica, de manera que la secció <code>hosts</code> substitueix la secció <code>default</code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Tot i que pots canviar lliurement els paràmetres per defecte, es recomana mantenir-los com estan i substituir-los a través de la secció <code>hosts</code>. En cas que canvies la secció <code>default</code>, has de proporcionar tots els paràmetres que hi ha a la configuració per defecte.</p>
+</div>
+<h3 id="inventari-per-defecte">Inventari per defecte<a class="headerlink" href="#inventari-per-defecte" title="Permanent link">#</a></h3>
+<p>Si no es proporcionen dades d'inventari en la instanciació de l'objecte FakeNOS, FakeNOS utilitza la configuració d'inventari per defecte. Aquestes són les configuracions per defecte actuals<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">default_inventory</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;port&quot;</span><span class="p">:</span> <span class="mi">6000</span><span class="p">,</span>
+        <span class="s2">&quot;server&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;plugin&quot;</span><span class="p">:</span> <span class="s2">&quot;ParamikoSshServer&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;configuration&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;address&quot;</span><span class="p">:</span> <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;shell&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;plugin&quot;</span><span class="p">:</span> <span class="s2">&quot;CMDShell&quot;</span><span class="p">,</span> <span class="s2">&quot;configuration&quot;</span><span class="p">:</span> <span class="p">{}},</span>
+        <span class="s2">&quot;nos&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;plugin&quot;</span><span class="p">:</span> <span class="s2">&quot;cisco_ios&quot;</span><span class="p">,</span> <span class="s2">&quot;configuration&quot;</span><span class="p">:</span> <span class="p">{}},</span>
+    <span class="p">},</span>
+<span class="hll">    <span class="s2">&quot;hosts&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class="hll">        <span class="s2">&quot;router_cisco_ios&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;port&quot;</span><span class="p">:</span> <span class="mi">6000</span><span class="p">,</span> <span class="s2">&quot;platform&quot;</span><span class="p">:</span><span class="s2">&quot;cisco_ios&quot;</span><span class="p">},</span>
+</span><span class="hll">        <span class="s2">&quot;router_huawei_smartax&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;port&quot;</span><span class="p">:</span> <span class="mi">6001</span><span class="p">,</span> <span class="s2">&quot;platform&quot;</span><span class="p">:</span> <span class="s2">&quot;huawei_smartax&quot;</span><span class="p">}</span>
+</span><span class="hll">        <span class="s2">&quot;router_arista_eos&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;port&quot;</span><span class="p">:</span> <span class="mi">6002</span><span class="p">,</span> <span class="s2">&quot;platform&quot;</span><span class="p">:</span> <span class="s2">&quot;arista_eos&quot;</span><span class="p">}</span>
+</span>    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<h2 id="yaml">YAML<a class="headerlink" href="#yaml" title="Permanent link">#</a></h2>
+<p>Aquesta és la manera més senzilla de proporcionar dades d'inventari. En un senzill fitxer YAML, pots definir les dades de l'inventari. El fitxer YAML ha de tenir l'estructura següent:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">default</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">user</span>
+<span class="w">  </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">user</span>
+<span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6000</span>
+<span class="w">  </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cisco_ios</span>
+</code></pre></div>
+<p>En aquest cas, es crearà un amfitrió anomenat <code>router0</code> amb el nom d'usuari <code>user</code>, contrasenya <code>user</code> i port <code>6000</code>. La plataforma serà <code>cisco_ios</code>. Si vols crear més amfitrions, pots afegir-los a la secció <code>hosts</code>:
+<div class="highlight"><pre><span></span><code><span class="nt">hosts</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">router1</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6001</span>
+<span class="w">        </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">huawei_smartax</span>
+<span class="w">    </span><span class="nt">router2</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6002</span>
+<span class="w">        </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cisco_ios</span>
+</code></pre></div></p>
+<p>En aquest cas, es creen 2 amfitrions: <code>router1</code> i <code>router2</code>. <code>router1</code> tindrà el port <code>6001</code> i la plataforma <code>huawei_smartax</code>. <code>router2</code> tindrà el port <code>6002</code> i la plataforma <code>cisco_ios</code>. Com no s'han proporcionat les credencials a la secció <code>hosts</code>, FakeNOS utilitzarà les credencials per defecte.</p>
+<p>Per utilitzar el fitxer YAML, pots utilitzar l'eina CLI de FakeNOS:</p>
+<div class="highlight"><pre><span></span><code>fakenos<span class="w"> </span>-i<span class="w"> </span>path/to/inventory.yaml
+</code></pre></div>
+<h2 id="diccionari-de-python">Diccionari de Python<a class="headerlink" href="#diccionari-de-python" title="Permanent link">#</a></h2>
+<p>Tot i que YAML és la manera més senzilla de proporcionar dades d'inventari a FakeNOS, utilitzar un diccionari de Python és més flexible i permet estructures de dades d'inventari més complexes. De fet, els diccionaris de Python s'utilitzen internament per gestionar les dades d'inventari a FakeNOS.</p>
+<p>En cas que vulguis utilitzar el teu propi diccionari de Python, pots proporcionar-lo directament a FakeNOS. En el següent codi estem fent exactament el mateix que en el primer codi en YAML:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">fakenos</span><span class="w"> </span><span class="kn">import</span> <span class="n">FakeNOS</span>
+
+<span class="n">inventory_data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;hosts&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;port&quot;</span><span class="p">:</span> <span class="mi">6000</span><span class="p">,</span>
+        <span class="s2">&quot;platform&quot;</span><span class="p">:</span> <span class="s2">&quot;cisco_ios&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">network</span> <span class="o">=</span> <span class="n">FakeNOS</span><span class="p">(</span><span class="n">inventory</span><span class="o">=</span><span class="n">inventory_data</span><span class="p">)</span>
+</code></pre></div>
+<p>Com abans, en cas que vulguis crear més amfitrions, pots afegir-los a la secció <code>hosts</code>:
+<div class="highlight"><pre><span></span><code><span class="n">inventory_data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;hosts&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;router1&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;port&quot;</span><span class="p">:</span> <span class="mi">6001</span><span class="p">,</span> <span class="s2">&quot;platform&quot;</span><span class="p">:</span> <span class="s2">&quot;huawei_smartax&quot;</span><span class="p">},</span>
+        <span class="s2">&quot;router2&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;port&quot;</span><span class="p">:</span> <span class="mi">6002</span><span class="p">,</span> <span class="s2">&quot;platform&quot;</span><span class="p">:</span> <span class="s2">&quot;cisco_ios&quot;</span><span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h2 id="altres-examples">Altres examples<a class="headerlink" href="#altres-examples" title="Permanent link">#</a></h2>
+<p>Exemples d'inventari i codi per iniciar els servidors:</p>
+<div class="annotate highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">fakenos</span><span class="w"> </span><span class="kn">import</span> <span class="n">FakeNOS</span>
+
+<span class="n">fake_network</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="c1"># (4)</span>
+        <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;port&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">6000</span><span class="p">],</span>
+        <span class="s2">&quot;server&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;plugin&quot;</span><span class="p">:</span> <span class="s2">&quot;ParamikoSshServer&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;configuration&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;ssh_key_file&quot;</span><span class="p">:</span> <span class="s2">&quot;./ssh-keys/ssh_host_rsa_key&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="s2">&quot;address&quot;</span><span class="p">:</span> <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;shell&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;plugin&quot;</span><span class="p">:</span> <span class="s2">&quot;CMDShell&quot;</span><span class="p">,</span> <span class="s2">&quot;configuration&quot;</span><span class="p">:</span> <span class="p">{}},</span>
+        <span class="s2">&quot;nos&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;plugin&quot;</span><span class="p">:</span> <span class="s2">&quot;cisco_ios&quot;</span><span class="p">,</span> <span class="s2">&quot;configuration&quot;</span><span class="p">:</span> <span class="p">{}},</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;hosts&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;R1&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;port&quot;</span><span class="p">:</span> <span class="mi">5001</span><span class="p">,</span>
+            <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;fakenos&quot;</span><span class="p">,</span> <span class="c1"># (2)</span>
+            <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;fakenos&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;server&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;plugin&quot;</span><span class="p">:</span> <span class="s2">&quot;ParamikoSshServer&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;configuration&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;address&quot;</span><span class="p">:</span> <span class="s2">&quot;0.0.0.0&quot;</span><span class="p">},</span>  <span class="c1"># (1)</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;shell&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;plugin&quot;</span><span class="p">:</span> <span class="s2">&quot;CMDShell&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;configuration&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;intro&quot;</span><span class="p">:</span> <span class="s2">&quot;Custom SSH Shell&quot;</span><span class="p">},</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;R2&quot;</span><span class="p">:</span> <span class="p">{},</span>
+        <span class="s2">&quot;core-router&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;replicas&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;port&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">6000</span><span class="p">]},</span> <span class="c1"># (3)</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+
+<span class="n">network</span> <span class="o">=</span> <span class="n">FakeNOS</span><span class="p">(</span><span class="n">inventory</span><span class="o">=</span><span class="n">fake_network</span><span class="p">)</span>
+<span class="n">network</span><span class="o">.</span><span class="n">starts</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">network</span><span class="o">.</span><span class="n">list_hosts</span><span class="p">())</span>
+</code></pre></div>
+<ol>
+<li><code>0.0.0.0</code> - Escolta les connexions a totes les interfícies</li>
+<li>Sobreescriu <code>username</code> i <code>password</code> definits a la secció <code>default</code></li>
+<li>Inicia dos amfitrions <code>core-router1</code> i <code>core-router2</code> utilitzant el següent port disponible de la gamma proporcionada</li>
+<li>Configuració utilitzada per tots els amfitrions per defecte</li>
+</ol>
+<p>Alternativament, pots utilitzar l'eina CLI de FakeNOS per proporcionar un inventari personalitzat:</p>
+<div class="highlight"><pre><span></span><code>fakenos<span class="w"> </span>-i<span class="w"> </span>path/to/my_inventory.yaml
+</code></pre></div>
+<p>On <code>my_inventory.yaml</code> podria contenir l'equivalent al codi Python anterior en YAML:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">default</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">user</span>
+<span class="w">  </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">user</span>
+<span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">5000</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">6000</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">server</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">plugin</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ParamikoSshServer</span>
+<span class="w">    </span><span class="nt">configuration</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">127.0.0.1</span>
+<span class="w">      </span><span class="nt">ssh_key_file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./ssh-keys/ssh_host_rsa_key</span>
+<span class="w">      </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">  </span><span class="nt">shell</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">configuration</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+<span class="w">    </span><span class="nt">plugin</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CMDShell</span>
+<span class="w">  </span><span class="nt">nos</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">configuration</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+<span class="w">    </span><span class="nt">plugin</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cisco_ios</span>
+<span class="nt">hosts</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">R1</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fakenos</span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5001</span>
+<span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fakenos</span>
+<span class="w">    </span><span class="nt">server</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">plugin</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ParamikoSshServer</span>
+<span class="w">      </span><span class="nt">configuration</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0.0</span>
+<span class="w">    </span><span class="nt">shell</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">plugin</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CMDShell</span>
+<span class="w">      </span><span class="nt">configuration</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">intro</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Custom SSH Shell</span>
+<span class="w">  </span><span class="nt">R2</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+<span class="w">  </span><span class="nt">core-router</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">5000</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">6000</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+<p>O podria contenir un inventari encara més simplificat:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">default</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">user</span>
+<span class="w">  </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">user</span>
+<span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">5000</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">6000</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">server</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">plugin</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ParamikoSshServer</span>
+<span class="w">    </span><span class="nt">configuration</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0.0</span>
+<span class="nt">hosts</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">router</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">    </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cisco_ios</span>
+</code></pre></div>
+<h3 id="repliques-de-hosts">Rèpliques de hosts<a class="headerlink" href="#repliques-de-hosts" title="Permanent link">#</a></h3>
+<p>Pots veure abans que alguns amfitrions tenen el paràmetre de rèpliques establert. La definició de l'amfitrió pot contenir el paràmetre <code>replicas</code> per definir amfitrions en massa, per exemple, aquest inventari:
+<div class="highlight"><pre><span></span><code><span class="n">inventory_data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;hosts&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;router&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;replicas&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;port&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5001</span><span class="p">,</span> <span class="mi">6000</span><span class="p">]}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p>Aquesta configuració farà que FakeNOS executi 10 instàncies de servidors d'amfitrions anomenats <code>router1</code> a <code>router10</code> utilitzant els ports 5001 a 5010 respectivament. Això fa que sigui molt fàcil definir conjunts d'amfitrions que utilitzen la mateixa configuració per escalar el sistema.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Si les dades de l'inventari de l'amfitrió contenen el paràmetre <code>replicas</code>, el paràmetre <code>port</code> ha de ser una llista de dos enters que representen l'interval per assignar ports. Si l'amfitrió no conté el paràmetre <code>replicas</code>, el port ha de ser un enter positiu de l'interval de 1 a 65535.</p>
+</div>
+<h2 id="generar-clau-privada-ssh">Generar clau privada SSH<a class="headerlink" href="#generar-clau-privada-ssh" title="Permanent link">#</a></h2>
+<p>Per defecte, FakeNOS utilitza una clau privada SSH incrustada amb el paquet, fent que aquesta clau sigui pública, la qual cosa és insegura. En canvi, FakeNOS pot utilitzar una clau SSH generada localment.</p>
+<h3 id="linux-i-macos">Linux i MacOS<a class="headerlink" href="#linux-i-macos" title="Permanent link">#</a></h3>
+<p>Utilitza la comanda <code>ssh-keygen -A</code> al terminal per generar totes les claus SSH. Un cop s'hagi executat la comanda, pots trobar la clau RSA a la següent ubicació: <code>~/.ssh/id_rsa</code> a.k.a. <code>/home/&lt;username&gt;.ssh/id_rsa</code>. Proporciona la ruta anterior com a argument <code>ssh_key_file</code> a la configuració del servidor FakeNOS.</p>
+<p>Alternativament, pots utilitzar la comanda <code>ckeygen -t rsa -f ssh-keys/ssh_host_rsa_key</code> per generar la clau privada.</p>
+<h3 id="windows-10">Windows 10<a class="headerlink" href="#windows-10" title="Permanent link">#</a></h3>
+<p>Prem la tecla de Windows, escriu <code>Manage Optional Features</code>. Si OpenSSH Client &amp; Server està a la llista, ja estàs a punt. Si no ho està, fes clic a "Add a feature" i busca <code>OpenSSH</code>, fes clic-hi per instal·lar-lo. A continuació, obre l'ordre com a administrador. Introdueix la comanda <code>ssh-keygen</code> i segueix les instruccions que apareixen a la pantalla. La ubicació de la clau es mostrarà. Proporciona la ruta mostrada com a argument <code>ssh_key_file</code> a la configuració del servidor FakeNOS. Si poses una contrasenya, inclou-la com a paràmetre <code>ssh_key_file_password</code>.</p>
+<h2 id="esquema-de-linventari-en-json">Esquema de l'inventari en JSON<a class="headerlink" href="#esquema-de-linventari-en-json" title="Permanent link">#</a></h2>
+<p>FakeNOS utilitza internament models <a href="https://pydantic-docs.helpmanual.io/usage/models/">Pydantic</a> per validar les dades de l'inventari i llançar <code>ValidationError</code> si l'inventari no compleix l'esquema definit.</p>
+<p>Donat que l'inventari està modelat utilitzant Pydantic, l'esquema intern en format JSON seria el següent:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ModelFakenosInventory&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FakeNOS inventory data schema&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/InventoryDefaultSection&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;hosts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hosts&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;additionalProperties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/HostConfig&quot;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;hosts&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;additionalProperties&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;definitions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;ParamikoSshServerConfig&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ParamikoSshServerConfig&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;ssh_key_file&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ssh Key File&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;ssh_key_file_password&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ssh Key File Password&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;ssh_banner&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ssh Banner&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FakeNOS Paramiko SSH Server&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;timeout&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Timeout&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Address&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;anyOf&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                        </span><span class="p">{</span>
+<span class="w">                            </span><span class="nt">&quot;enum&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                                </span><span class="s2">&quot;localhost&quot;</span>
+<span class="w">                            </span><span class="p">],</span>
+<span class="w">                            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
+<span class="w">                        </span><span class="p">},</span>
+<span class="w">                        </span><span class="p">{</span>
+<span class="w">                            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ipvanyaddress&quot;</span>
+<span class="w">                        </span><span class="p">}</span>
+<span class="w">                    </span><span class="p">]</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;watchdog_interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Watchdog Interval&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;ParamikoSshServerPlugin&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ParamikoSshServerPlugin&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;plugin&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Plugin&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;enum&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                        </span><span class="s2">&quot;ParamikoSshServer&quot;</span>
+<span class="w">                    </span><span class="p">],</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/ParamikoSshServerConfig&quot;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;plugin&quot;</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;CMDShellConfig&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CMDShellConfig&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;intro&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Intro&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Custom SSH Shell&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;ruler&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ruler&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;completekey&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Completekey&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tab&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;newline&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Newline&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;\r\n&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;CMDShellPlugin&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CMDShellPlugin&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;plugin&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Plugin&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;enum&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                        </span><span class="s2">&quot;CMDShell&quot;</span>
+<span class="w">                    </span><span class="p">],</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/CMDShellConfig&quot;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;plugin&quot;</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;NosPlugin&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NosPlugin&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;plugin&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Plugin&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Configuration&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;plugin&quot;</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;InventoryDefaultSection&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;InventoryDefaultSection&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Username&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Password&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;port&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Port&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;anyOf&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                        </span><span class="p">{</span>
+<span class="w">                            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;exclusiveMinimum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;maximum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">65535</span>
+<span class="w">                        </span><span class="p">},</span>
+<span class="w">                        </span><span class="p">{</span>
+<span class="w">                            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;array&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span><span class="p">,</span>
+<span class="w">                                </span><span class="nt">&quot;exclusiveMinimum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                                </span><span class="nt">&quot;maximum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">65535</span>
+<span class="w">                            </span><span class="p">},</span>
+<span class="w">                            </span><span class="nt">&quot;minItems&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;maxItems&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;uniqueItems&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">                        </span><span class="p">}</span>
+<span class="w">                    </span><span class="p">]</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;server&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/ParamikoSshServerPlugin&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;shell&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/CMDShellPlugin&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;nos&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/NosPlugin&quot;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;HostConfig&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HostConfig&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Username&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Password&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;port&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Port&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;anyOf&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                        </span><span class="p">{</span>
+<span class="w">                            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;exclusiveMinimum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;maximum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">65535</span>
+<span class="w">                        </span><span class="p">},</span>
+<span class="w">                        </span><span class="p">{</span>
+<span class="w">                            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;array&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span><span class="p">,</span>
+<span class="w">                                </span><span class="nt">&quot;exclusiveMinimum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                                </span><span class="nt">&quot;maximum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">65535</span>
+<span class="w">                            </span><span class="p">},</span>
+<span class="w">                            </span><span class="nt">&quot;minItems&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;maxItems&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;uniqueItems&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">                        </span><span class="p">}</span>
+<span class="w">                    </span><span class="p">]</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;server&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/ParamikoSshServerPlugin&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;shell&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/CMDShellPlugin&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;nos&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;$ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#/definitions/NosPlugin&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Count&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;exclusiveMinimum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="opcions-de-linventari">Opcions de l'inventari<a class="headerlink" href="#opcions-de-linventari" title="Permanent link">#</a></h2>
+<p>Les següents opcions es poden utilitzar tant a la secció <code>default</code> com a la secció <code>hosts</code> per substituir els valors per defecte.</p>
+<h3 id="opcions-de-nivell-superior">Opcions de nivell superior<a class="headerlink" href="#opcions-de-nivell-superior" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Opció</th>
+<th>Emoji</th>
+<th>Descripció</th>
+<th>Exemple</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>username</code></td>
+<td><img alt="🧑" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f9d1.svg" title=":person:" /></td>
+<td>nom d'usuari del dispositiu</td>
+<td><code>username: admin</code></td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td><img alt="🔑" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f511.svg" title=":key:" /></td>
+<td>contrasenya del dispositiu</td>
+<td><code>password: admin</code></td>
+</tr>
+<tr>
+<td><code>platform</code></td>
+<td><img alt="🚉" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f689.svg" title=":station:" /></td>
+<td>sistema operatiu de xarxa utilitzat</td>
+<td><code>platform: cisco_ios</code></td>
+</tr>
+<tr>
+<td><code>port</code></td>
+<td><img alt="🚢" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f6a2.svg" title=":ship:" /></td>
+<td>port al qual connectar-se</td>
+<td><code>port: 6000</code></td>
+</tr>
+<tr>
+<td><code>replicas</code></td>
+<td><img alt="🔁" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f501.svg" title=":repeat:" /></td>
+<td>nombre d'amfitrions a crear</td>
+<td><code>replicas: 10</code></td>
+</tr>
+<tr>
+<td><code>server</code></td>
+<td><img alt="📡" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f4e1.svg" title=":satellite:" /></td>
+<td>configuració del servidor</td>
+<td>Veure la secció <a href="#opcions-del-servidor">Opcions del servidor</a></td>
+</tr>
+<tr>
+<td><code>shell</code></td>
+<td><img alt="🐚" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f41a.svg" title=":shell:" /></td>
+<td>configuració de la shell</td>
+<td>Veure la secció <a href="#opcions-de-la-shell">Opcions de la shell</a></td>
+</tr>
+<tr>
+<td><code>nos</code></td>
+<td><img alt="💻" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f4bb.svg" title=":computer:" /></td>
+<td>configuració del NOS</td>
+<td>Veure la secció <a href="#opcions-del-nos">Opcions del NOS</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="opcions-del-servidor">Opcions del servidor<a class="headerlink" href="#opcions-del-servidor" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Opció</th>
+<th>Emoji</th>
+<th>Descripció</th>
+<th>E.g.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>plugin</code></td>
+<td><img alt="🔌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f50c.svg" title=":electric_plug:" /></td>
+<td>plugin de servidor a utilitzar</td>
+<td><code>plugin: ParamikoSshServer</code></td>
+</tr>
+<tr>
+<td><code>configuration</code></td>
+<td><img alt="⚙" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2699.svg" title=":gear:" /></td>
+<td>configuració del servidor</td>
+<td>Mira secció <a href="#opcions-de-configuracio-del-servidor">Opcions de configuració del servidor</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="opcions-de-configuracio-del-servidor">Opcions de configuració del servidor<a class="headerlink" href="#opcions-de-configuracio-del-servidor" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Opció</th>
+<th>Emoji</th>
+<th>Descripció</th>
+<th>E.g.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ssh_key_file</code></td>
+<td><img alt="🔑" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f511.svg" title=":key:" /></td>
+<td>Ruta a la clau privada de SSH</td>
+<td><code>ssh_key_file: /path/to/ssh_key</code></td>
+</tr>
+<tr>
+<td><code>ssh_key_file_password</code></td>
+<td><img alt="🔑" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f511.svg" title=":key:" /></td>
+<td>Password de la clau privada de SSH</td>
+<td><code>ssh_key_file_password: password</code></td>
+</tr>
+<tr>
+<td><code>ssh_banner</code></td>
+<td><img alt="📜" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f4dc.svg" title=":scroll:" /></td>
+<td>Banner a mostrar per SSH</td>
+<td><code>ssh_banner: "Welcome to FakeNOS SSH Server"</code></td>
+</tr>
+<tr>
+<td><code>timeout</code></td>
+<td><img alt="⌛" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/231b.svg" title=":hourglass:" /></td>
+<td>timeout del servidor</td>
+<td><code>timeout: 1</code></td>
+</tr>
+<tr>
+<td><code>address</code></td>
+<td><img alt="🌐" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f310.svg" title=":globe_with_meridians:" /></td>
+<td>Adreça a la que el servidor escolta</td>
+<td><code>address: 127.0.0.1</code></td>
+</tr>
+<tr>
+<td><code>watchdog_interval</code></td>
+<td><img alt="🐶" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f436.svg" title=":dog:" /></td>
+<td>interval del watchdog</td>
+<td><code>watchdog_interval: 1</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="opcions-de-la-shell">Opcions de la shell<a class="headerlink" href="#opcions-de-la-shell" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Opció</th>
+<th>Emoji</th>
+<th>Descripció</th>
+<th>E.g.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>plugin</code></td>
+<td><img alt="🔌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f50c.svg" title=":electric_plug:" /></td>
+<td>plugin de shell a utilizar</td>
+<td><code>plugin: CMDShell</code></td>
+</tr>
+<tr>
+<td><code>configuration</code></td>
+<td><img alt="⚙" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2699.svg" title=":gear:" /></td>
+<td>configuració de la shell</td>
+<td>La configuració depén completament del plugin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="opcions-del-nos">Opcions del NOS<a class="headerlink" href="#opcions-del-nos" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Opció</th>
+<th>Emoji</th>
+<th>Descripció</th>
+<th>E.g.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>plugin</code></td>
+<td><img alt="🔌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f50c.svg" title=":electric_plug:" /></td>
+<td>plugin NOS a utilitzar</td>
+<td><code>plugin: cisco_ios</code></td>
+</tr>
+<tr>
+<td><code>configuration</code></td>
+<td><img alt="⚙" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2699.svg" title=":gear:" /></td>
+<td>configuració del NOS</td>
+<td>La configuració del plugin depén completament del plugin</td>
+</tr>
+</tbody>
+</table>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Per mirar els últims defaults correctament, mira al <a href="https://github.com/fakenos/fakenos/blob/master/fakenos/core/fakenos.py">codi font</a> de FakeNOS.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.instant", "navigation.instant.progress", "content.tabs.link", "content.footnote.tooltips"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiat al porta-retalls", "clipboard.copy": "C\u00f2pia al porta-retalls", "search.result.more.one": "1 m\u00e9s en aquesta p\u00e0gina", "search.result.more.other": "# m\u00e9s en aquesta p\u00e0gina", "search.result.none": "Cap document coincideix", "search.result.one": "1 document coincident", "search.result.other": "# documents coincidents", "search.result.placeholder": "Escriu per a comen\u00e7ar a cercar", "search.result.term.missing": "Desaparegut", "select.version": "Selecciona la versi\u00f3"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

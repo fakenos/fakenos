@@ -1,0 +1,1947 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="FakeNOS, Network, SSH">
+      
+      
+        <meta name="author" content="Denis Mulyalin">
+      
+      
+        <link rel="canonical" href="https://fakenos.github.io/fakenos/es/platforms/extreme_exos/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>extreme_exos - FakeNOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="brown" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#extreme_exos" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../" title="FakeNOS" class="md-header__button md-logo" aria-label="FakeNOS" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            FakeNOS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              extreme_exos
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="brown" data-md-color-accent="deep-orange"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="brown" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Seleccionar idioma">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../platforms/extreme_exos/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="es" class="md-select__link">
+              Español
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../../ca/platforms/extreme_exos/" hreflang="ca" class="md-select__link">
+              Català
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/fakenos/fakenos" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    fakenos/fakenos
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+  Resumen
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../examples/" class="md-tabs__link">
+          
+  
+  
+  Ejemplos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../usage/installation/" class="md-tabs__link">
+          
+  
+  
+  Uso
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Plataformas
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../development/" class="md-tabs__link">
+          
+  
+  
+  Desarrollo
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../collaborators/" class="md-tabs__link">
+          
+  
+  
+  Colaboradores
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api/core_api_reference/" class="md-tabs__link">
+          
+  
+  
+  API
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="FakeNOS" class="md-nav__button md-logo" aria-label="FakeNOS" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    FakeNOS
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/fakenos/fakenos" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    fakenos/fakenos
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Resumen
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Resumen
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resumen
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/why/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ¿Por qué?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/what/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ¿Qué?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/how/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ¿Cómo?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/what_not/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ¿Qué no?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Referencias
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Ejemplos
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Ejemplos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ejemplos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/developing_scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Desarrollo de scripts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/automatic_testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pruebas automáticas - CI/CD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Uso
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Uso
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Instalación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/getting_started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Empezar
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/fakenos_inventory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Inventario
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/running_in_docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ejecutar en contenedor Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/configurations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuraciones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Plataformas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Desarrollo
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Desarrollo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Principal
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/conventions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Convenciones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/tasks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tareas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/creating_new_platforms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Crear una nueva plataforma
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/creating_nos_plugin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Crear un complemento NOS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/github_actions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Acciones de Github
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/extras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extras
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Colaboradores
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Colaboradores
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collaborators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Colaboradores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    API
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            API
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/core_api_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Core API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/builtin_plugins_api_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Built-in Plugins API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#platforms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Platforms:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable" class="md-nav__link">
+    <span class="md-ellipsis">
+      enable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disable-cli-prompting" class="md-nav__link">
+    <span class="md-ellipsis">
+      disable cli prompting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ex" class="md-nav__link">
+    <span class="md-ellipsis">
+      ex
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-ipconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      show ipconfig
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-ports-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      show ports description
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-ports-information-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      show ports information detail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-ports-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      show ports information
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-sharing" class="md-nav__link">
+    <span class="md-ellipsis">
+      show sharing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-vlan-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      show vlan description
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disable-clipaging" class="md-nav__link">
+    <span class="md-ellipsis">
+      disable clipaging
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="extreme_exos">extreme_exos<a class="headerlink" href="#extreme_exos" title="Permanent link">#</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is automatically generated. In case of any issues, 
+please refer to the source code or, even better, 
+open an issue on the GitHub repository. Thanks! 🤗📖</p>
+</div>
+<h2 id="platforms">Platforms:<a class="headerlink" href="#platforms" title="Permanent link">#</a></h2>
+<h2 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">#</a></h2>
+<h3 id="enable">enable<a class="headerlink" href="#enable" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong> None</p>
+<p><strong>Help:</strong> enter enable mode</p>
+<p><strong>Prompt:</strong>
+- extreme_exos&gt;</p>
+<h3 id="disable-cli-prompting">disable cli prompting<a class="headerlink" href="#disable-cli-prompting" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong> None</p>
+<p><strong>Help:</strong> set the terminal width to maximum</p>
+<p><strong>Prompt:</strong>
+- extreme_exos&gt;
+- extreme_exos#</p>
+<h3 id="ex">ex<a class="headerlink" href="#ex" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>True
+</code></pre></div></p>
+<p><strong>Help:</strong> exit the terminal</p>
+<p><strong>Prompt:</strong>
+- extreme_exos&gt;
+- extreme_exos#</p>
+<h3 id="show-ipconfig">show ipconfig<a class="headerlink" href="#show-ipconfig" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>       Use Redirects : Disabled
+       IpOption LSRR : Enabled
+       IpOption SSRR : Enabled
+         IpOption RR : Enabled
+         IpOption TS : Enabled
+         IpOption RA : Enabled
+       Route Sharing : Disabled
+   Route Compression : Disabled
+  Originated Packets : Don&#39;t require ipforwarding
+ Max Shared Gateways : Current: 4  Configured: 4
+  Route Sharing Hash : CRC Lower
+
+      IRDP:
+         Advertisement Address: 255.255.255.255      Maximum Interval: 600
+         Minimum Interval: 450     Lifetime: 1800  Preference: 0
+
+Interface    IP Address          Flags                   nSIA
+VLAN0255     10.255.254.3    /16 EU----MPuRX---------    0
+VLAN2222     10.1.222.3      /24 EUf---MPuRX---------    0
+
+Flags: (A) Address Mask Reply Enabled (B) BOOTP Enabled
+       (b) Broadcast Forwarding Enabled
+       (D) Duplicate address detected on VLAN, (E) Interface Enabled
+       (f) Forwarding Enabled (g) Ignore IP Broadcast Enabled
+       (h) Directed Broadcast Forwarding by Hardware Enabled
+       (I) IRDP Advertisement Enabled, (M) Send Parameter Problem Enabled
+       (m) Multicast forwarding Enabled, (n) Multinetted VLAN
+       (nSIA ) Number of Secondary IP Addresses
+       (P) Send Port Unreachables Enabled, (R) Send Redirects Enabled
+       (r) Unicast Reverse Path Enabled on at least one port of the VLAN
+       (t) Tentative address, (T) Time Stamp Reply Enabled
+       (u) Send Unreachables Enabled, (U) Interface Up
+       (v) VRRP Enabled, (X) Send Time Exceeded Enabled
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show ipconfig"</p>
+<p><strong>Prompt:</strong>
+- extreme_exos&gt;
+- extreme_exos#</p>
+<h3 id="show-ports-description">show ports description<a class="headerlink" href="#show-ports-description" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>Port   Display String        Description String
+=====  ====================  ==================================================
+1                            AggregateLink
+2
+3
+4
+5                            MX5-2 - xe0/0/3
+6                            BLADE-3 - VC1-4
+7                            BLADE-3 - VC2-4
+8                            BGW-R1 - xe0/1/1 (LAG7)
+9                            FREE
+10                           SRV-R1 - xe-0/0/1 (LAG6)
+11                           3COM - Gi1/0/26 Link for PIM
+12                           C4948-1 - te1/49
+13                           Eltex3124-7 - te1/0/1
+14                           Eltex3124-6 - te1/0/1
+15                           Eltex3124-5 - te1/0/1
+16                           Eltex3124-4 - te1/0/1
+17                           MX5-1 - xe-0/0/3
+18                           MX5-1 - xe-0/0/1
+19                           CCR1036 - sfp1
+20
+21
+22                           RS-CORE-1 - Gi0/1
+23
+24                           Uplink-GARS
+25                           CRM-139204
+26                           FREE
+27                           FREE
+28                           FREE
+29                           N3K-2 - eth1/1 (LAG29)
+30                           3COM - Te1/1/1
+31                           FREE
+32
+33                           N9K-1 - eth1/46 (LAG33)
+34                           N3K-2 - eth1/2 (LAG29)
+35                           N9K-1 - eth1/47 (LAG33)
+36                           Carbon-Reductor-NetXtreme-1 MIRROR
+37                           VoipMonitor_Mirror
+38                           Eltex3324-1 - te1/0/1 (LAG38)
+39                           Eltex3324-1 - te1/0/2 (LAG38)
+40                           FREE
+41                           FREE
+42                           BLADE-2-VC2 - VC8
+43                           Storage-SMicro - eth0
+44                           SCST-SSD_Cache - eth1
+45                           Eltex5248-1 - Te1/0/1
+46                           VEEAM1 - eth1
+47                           BLADE-1-VC2 - VC1
+48                           BLADE-1-VC2 - VC8
+=====  ====================  ==================================================
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show ports description"</p>
+<p><strong>Prompt:</strong>
+- extreme_exos&gt;
+- extreme_exos#</p>
+<h3 id="show-ports-information-detail">show ports information detail<a class="headerlink" href="#show-ports-information-detail" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>Port:   1
+    Description String: &quot;AggregateLink&quot;
+    Virtual-router:  VR-Default
+    Type:       NONE
+    Random Early drop:  Unsupported
+    Admin state:     Disabled with  10G full-duplex
+    Link State: Ready (local fault)
+    Link Ups:       0        Last: Mon Apr 12 12:30:24 2021
+    Link Downs:     1        Last: Thu Jun 23 12:41:45 2022
+
+    VLAN cfg:
+         Name: Default, Internal Tag = 1, MAC-limit = No-limit, Virtual router:   VR-Default
+         Name: VLAN2222, 802.1Q Tag = 2222, MAC-limit = No-limit, Virtual router:   VR-Default
+               Port-specific VLAN ID: 2222
+         Name: VLAN1801, 802.1Q Tag = 1801, MAC-limit = No-limit, Virtual router:   VR-Default
+               Port-specific VLAN ID: 1801
+
+    STP cfg:
+        s1(enable), Tag=(none), Mode=802.1D, State=DISABLED
+
+    Protocol:
+         Name: Default      Protocol: ANY      Match all protocols.
+    Trunking:   Master port with 4 members using algorithm address based - L3_L4
+ algorithm
+    Members:    1-4
+
+    EDP:        Enabled
+
+    ELSM:       Disabled
+     Ethernet OAM:      Disabled
+    Learning:   Enabled
+    Unicast Flooding:   Enabled
+    Multicast Flooding: Enabled
+    Broadcast Flooding: Enabled
+    Jumbo:  Enabled, MTU= 9216
+    Flow Control:   Rx-Pause: Enabled   Tx-Pause: Disabled
+    Priority Flow Control: Disabled
+    Reflective Relay:   Disabled
+    Link up/down SNMP trap filter setting:  Enabled
+    Egress Port Rate:   No-limit
+    Broadcast Rate:     No-limit
+    Multicast Rate:     No-limit
+    Unknown Dest Mac Rate:  No-limit
+    QoS Profile:    None configured
+    Ingress Rate Shaping :      Unsupported
+    Ingress IPTOS Examination:  Disabled
+    Ingress 802.1p Examination:     Enabled
+    Ingress 802.1p Inner Exam:  Disabled
+    Egress IPTOS Replacement:   Disabled
+    Egress 802.1p Replacement:  Disabled
+    NetLogin:           Disabled
+    NetLogin port mode:         Port based VLANs
+    Smart redundancy:       Enabled
+    Software redundant port:    Disabled
+    IPFIX:   Disabled       Metering:  Ingress, All Packets, All Traffic
+        IPv4 Flow Key Mask: SIP: 255.255.255.255        DIP: 255.255.255.255
+        IPv6 Flow Key Mask: SIP: ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff
+                    DIP: ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff
+
+    Far-End-Fault-Indication:   Disabled
+    Shared packet buffer:       default
+    VMAN CEP egress filtering:   Disabled
+    Isolation:          Off
+    PTP Configured:             Disabled
+    Time-Stamping Mode:         None
+    Synchronous Ethernet:       Unsupported
+    Dynamic VLAN Uplink:            Disabled
+    VM Tracking Dynamic VLANs:      Disabled
+Port:   2
+    Virtual-router: VR-Default
+    Type:       NONE
+    Random Early drop:  Unsupported
+    Admin state:    Disabled with  10G full-duplex
+    Link State: Ready (local fault)
+    Link Ups:       1        Last: Mon Jun 13 19:21:19 2022
+    Link Downs:     2        Last: Thu Jun 23 12:41:37 2022
+
+    VLAN cfg:
+         Name: Default, Internal Tag = 1, MAC-limit = No-limit, Virtual router:   VR-Default
+         Name: VLAN2222, 802.1Q Tag = 2222, MAC-limit = No-limit, Virtual router:   VR-Default
+               Port-specific VLAN ID: 2222
+         Name: VLAN1802, 802.1Q Tag = 1802, MAC-limit = No-limit, Virtual router:   VR-Default
+               Port-specific VLAN ID: 1802
+
+    STP cfg:
+        s1(enable), Tag=(none), Mode=802.1D, State=DISABLED
+
+    Protocol:
+         Name: Default      Protocol: ANY      Match all protocols.
+    Trunking:   Master port with 4 members using algorithm address based - L3_L4
+ algorithm
+    Members:    1-4
+
+    EDP:        Enabled
+
+    ELSM:       Disabled
+     Ethernet OAM:      Disabled
+    Learning:   Enabled
+    Unicast Flooding:   Enabled
+    Multicast Flooding: Enabled
+    Broadcast Flooding: Enabled
+    Jumbo:  Enabled, MTU= 9216
+    Flow Control:   Rx-Pause: Enabled   Tx-Pause: Disabled
+    Priority Flow Control: Disabled
+    Reflective Relay:   Disabled
+    Link up/down SNMP trap filter setting:  Enabled
+    Egress Port Rate:   No-limit
+    Broadcast Rate:     No-limit
+    Multicast Rate:     No-limit
+    Unknown Dest Mac Rate:  No-limit
+    QoS Profile:    None configured
+    Ingress Rate Shaping :      Unsupported
+    Ingress IPTOS Examination:  Disabled
+    Ingress 802.1p Examination:     Enabled
+    Ingress 802.1p Inner Exam:  Disabled
+    Egress IPTOS Replacement:   Disabled
+    Egress 802.1p Replacement:  Disabled
+    NetLogin:           Disabled
+    NetLogin port mode:         Port based VLANs
+    Smart redundancy:       Enabled
+    Software redundant port:    Disabled
+    IPFIX:   Disabled       Metering:  Ingress, All Packets, All Traffic
+        IPv4 Flow Key Mask: SIP: 255.255.255.255        DIP: 255.255.255.255
+        IPv6 Flow Key Mask: SIP: ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff
+                    DIP: ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff
+
+    Far-End-Fault-Indication:   Disabled
+    Shared packet buffer:       default
+    VMAN CEP egress filtering:   Disabled
+    Isolation:          Off
+    PTP Configured:             Disabled
+    Time-Stamping Mode:         None
+    Synchronous Ethernet:       Unsupported
+    Dynamic VLAN Uplink:            Disabled
+    VM Tracking Dynamic VLANs:      Disabled
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show ports information detail"</p>
+<p><strong>Prompt:</strong>
+- extreme_exos&gt;
+- extreme_exos#</p>
+<h3 id="show-ports-information">show ports information<a class="headerlink" href="#show-ports-information" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>Port      Flags               Link      ELSM Link Num Num  Num   Jumbo QOS     Load
+                              State     /OAM UPS  STP VLAN Proto Size  profile Master
+=====================================================================================
+1         Dmjla---e--fMB---x- ready     - / -  0    1 3288   1   9216  none    1 a
+2         Dmjla---e--fMB---x- ready     - / -  1    1 3288   1   9216  none    1 a
+3         Dmjla---e--fMB---x- ready     - / -  7    1 3288   1   9216  none    1 a
+4         Dmjla---e--fMB---x- ready     - / -  0    1 3288   1   9216  none    1 a
+5         Emj-----e--fMB---x- active    - / -  1    0    1   0   9216  none
+6         Emj-----e--fMB---x- active    - / -  2    0   74   0   9216  none
+7         Emj-----e--fMB---x- active    - / -  2    0   74   0   9216  none
+8         Emj-----e--fMB---x- ready     - / -  0    0    0   0   9216  none
+9         Dmj-----e--fMB---x- ready     - / -  0    0    0   0   9216  none
+10        Emj-----e--fMB---x- ready     - / -  0    0    0   0   9216  none
+11        Emj-----e--fMB---x- ready     - / -  0    0    1   1   9216  none
+12        Emj-----e--fMB---x- active    - / -  0    0   97   0   9216  none
+13        Emj-----e--fMB---x- active    - / -  1    1   55   1   9216  none
+14        Emj-----e--fMB---x- active    - / - 10    1  130   1   9216  none
+15        Emj-----e--fMB---x- active    - / -  0    1  191   1   9216  none
+16        Emj-----e--fMB---x- active    - / -  1    1  312   1   9216  none
+17        Emj-----e--fMB---x- ready     - / -  0    0 3289   0   9216  none
+18        Emj-----e--fMB---x- ready     - / -  0    0    0   0   9216  none
+19        Emj-----e--fMB---x- active    - / - 22    0  176   0   9216  none
+20        Emj-----e--fMB---x- ready     - / -  0    1    7   1   9216  none
+21        Dmj-----e--fMB---x- ready     - / -  4    0    1   1   9216  none
+22        Emj-----e--fMB---x- ready     - / -  0    1   11   1   9216  none
+23        Emj-----e--fMB---x- active    - / -  2    1 3324   1   9216  none
+24        Emj-----e--fMB---x- ready     - / -  2    0    1   0   9216  none
+25        Dmj-----e--fMB---x- ready     - / -  3    0    5   0   9216  none
+26        Emj-----e--fMB---x- ready     - / -  4    0    5   0   9216  none
+27        Emj-----e--fMB---x- ready     - / - 11    0    5   0   9216  none
+28        Emj-----e--fMB---x- ready     - / -  0    0    5   0   9216  none
+29        Emjla---e--fMB---x- ready     - / - 12    0   72   0   9216  none    29 a
+30        Dmj-----e--fMB---x- ready     - / -  2    1  532   1   9216  none
+31        Emj-----e--fMB---x- ready     - / -  0    0    0   0   9216  none
+32        Emj-----e--fMB---x- ready     - / -  0    0    0   0   9216  none
+33        Emjla---e--fMB---x- active    - / -  2    0  856   0   9216  none    33 a
+34        Emjla---e--fMB---x- ready     - / -  7    0   72   0   9216  none    29 a
+35        Emjla---e--fMB---x- active    - / -  1    0  856   0   9216  none    33 a
+36        Emj-----e--fMB---x- active    - / - 10    0    0   0   9216  none
+37        Emj-----e--fMB---x- active    - / -  0    0    0   0   9216  none
+38        Emjla---e--fMB---x- ready     - / -  0    0   26   0   9216  none    38 a
+39        Emjla---e--fMB---x- ready     - / -  0    0   26   0   9216  none    38 a
+40        Emj-----e--fMB---x- ready     - / -  0    0    7   0   9216  none
+41        Emj-----e--fMB---x- ready     - / -  0    1  118   1   9216  none
+42        Emj-----e--fMB---x- ready     - / -  0    1  317   1   9216  none
+43        Emj-----e--fMB---x- ready     - / -  5    1    2   1   9216  none
+44        Emj-----e--fMB---x- active    - / -  2    0    1   1   9216  none
+45        Emj-----e--fMB----- active    - / -  1    0  388   0   9216  none
+46        Emj-----e--fMB----- active    - / - 17    0    6   0   9216  none
+47        Emj-----e--fMB----- active    - / -  0    0  261   0   9216  none
+48        Emj-----e--fMB----- active    - / -  0    0  265   0   9216  none
+=====================================================================================
+ &gt; indicates Port Display Name truncated past 8 characters
+Flags : a - Load Sharing Algorithm address-based, D - Port Disabled,
+        e - Extreme Discovery Protocol Enabled, E - Port Enabled,
+        g - Egress TOS Enabled, i - Isolation, j - Jumbo Frame Enabled,
+        l - Load Sharing Enabled, m - MACLearning Enabled,
+        n - Ingress TOS Enabled, o - Dot1p Replacement Enabled,
+        P - Software redundant port(Primary),
+        R - Software redundant port(Redundant),
+        q - Background QOS Monitoring Enabled,
+        s - diffserv Replacement Enabled,
+        v - Vman Enabled, f - Unicast Flooding Enabled,
+        M - Multicast Flooding Enabled, B - Broadcast Flooding Enabled
+        L - Extreme Link Status Monitoring Enabled
+        O - Ethernet OAM Enabled
+        w - MACLearning Disabled with Forwarding
+        b - Rx and Tx Flow Control Enabled, x - Rx Flow Control Enabled
+        p - Priority Flow Control Enabled
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show ports information"</p>
+<p><strong>Prompt:</strong>
+- extreme_exos&gt;
+- extreme_exos#</p>
+<h3 id="show-sharing">show sharing<a class="headerlink" href="#show-sharing" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>Load Sharing Monitor
+Config    Current    Agg       Ld Share    Ld Share  Agg   Link    Link Up
+Master    Master     Control   Algorithm   Group     Mbr   State   Transitions
+==============================================================================
+     1               LACP      L3_L4       1          -      R        0
+                               L3_L4       2          -      R        1
+                               L3_L4       3          -      R        7
+                               L3_L4       4          -      R        0
+    29               LACP      L3_L4       29         -      R       12
+                               L3_L4       34         -      R        7
+    33     33        LACP      L2          33         Y      A        2
+                               L2          35         Y      A        1
+    38               LACP      L3_L4       38         -      R        0
+                               L3_L4       39         -      R        0
+==============================================================================
+ Link State: A-Active, D-Disabled, R-Ready, NP-Port not present, L-Loopback
+ Load Sharing Algorithm: (L2) Layer 2 address based, (L3) Layer 3 address based
+                        (L3_L4) Layer 3 address and Layer 4 port based
+                        (custom) User-selected address-based configuration
+ Custom Algorithm Configuration: ipv4 L3-and-L4, xor
+Number of load sharing trunks: 4
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show sharing"</p>
+<p><strong>Prompt:</strong>
+- extreme_exos&gt;
+- extreme_exos#</p>
+<h3 id="show-vlan-description">show vlan description<a class="headerlink" href="#show-vlan-description" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>-------------------------------------------------------------------------------
+Name            VID  Description
+-------------------------------------------------------------------------------
+Default         1
+Mgmt            4095 Management VLAN
+VLAN0002        2    sw-3
+VLAN0003        3    VLAN0003
+VLAN0004        4    VLAN0004
+VLAN0005        5    tech
+VLAN0006        6    zr
+VLAN0007        7
+VLAN0008        8    VLAN0008
+VLAN0009        9    VGWsubnet1
+VLAN0010        10   LAN
+VLAN0011        11   dsl-Internet
+VLAN0012        12   VLAN0012
+VLAN0013        13   VLAN0013
+VLAN0014        14   VLAN0014
+VLAN0015        15   l3-sw-3
+VLAN0016        16   l3sw-2-6
+VLAN0017        17   VLAN0017
+VLAN0018        18   VLAN0018
+VLAN0019        19   VLAN0019
+VLAN0020        20   NNI-TEST-QnQ
+VLAN0021        21   VLAN0021
+VLAN0022        22   VLAN0022
+VLAN0023        23   TEST_EXFO
+VLAN0024        24   VLAN0024
+VLAN0025        25   VLAN0025
+VLAN0026        26   VLAN0026
+VLAN0027        27   VLAN0027
+VLAN0028        28   VLAN0028
+VLAN0029        29   VLAN0029
+VLAN0030        30   VLAN0030
+VLAN0031        31   VLAN0031
+VLAN0032        32   user VOIP
+VLAN0033        33   VLAN0033
+VLAN0034        34   VLAN0034
+VLAN0035        35   VLAN0035
+VLAN0036        36   VLAN0036
+VLAN0037        37   VLAN0037
+VLAN0038        38   SS_voip
+VLAN0248        248
+-------------------------------------------------------------------------------
+
+&gt; Indicates description string truncated past 57 characters
+
+Total number of VLAN(s) : 3469
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show vlan description"</p>
+<p><strong>Prompt:</strong>
+- extreme_exos&gt;
+- extreme_exos#</p>
+<h3 id="disable-clipaging">disable clipaging<a class="headerlink" href="#disable-clipaging" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong> None</p>
+<p><strong>Help:</strong> Execute the command disable clipaging. This automatically generated. Feel free to change it!</p>
+<p><strong>Prompt:</strong>
+- extreme_exos&gt;
+- extreme_exos#</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.instant", "navigation.instant.progress", "content.tabs.link", "content.footnote.tooltips"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

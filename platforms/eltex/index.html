@@ -1,0 +1,3716 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="FakeNOS, Network, SSH">
+      
+      
+        <meta name="author" content="Denis Mulyalin">
+      
+      
+        <link rel="canonical" href="https://fakenos.github.io/fakenos/platforms/eltex/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>eltex - FakeNOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="brown" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#eltex" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="FakeNOS" class="md-header__button md-logo" aria-label="FakeNOS" data-md-component="logo">
+      
+  <img src="../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            FakeNOS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              eltex
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="brown" data-md-color-accent="deep-orange"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="brown" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../es/platforms/eltex/" hreflang="es" class="md-select__link">
+              Español
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../ca/platforms/eltex/" hreflang="ca" class="md-select__link">
+              Català
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/fakenos/fakenos" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    fakenos/fakenos
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Overview
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../examples/" class="md-tabs__link">
+          
+  
+  
+  Examples
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../usage/installation/" class="md-tabs__link">
+          
+  
+  
+  Usage
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Platforms
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../development/" class="md-tabs__link">
+          
+  
+  
+  Development
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../collaborators/" class="md-tabs__link">
+          
+  
+  
+  Collaborators
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api/core_api_reference/" class="md-tabs__link">
+          
+  
+  
+  API
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="FakeNOS" class="md-nav__button md-logo" aria-label="FakeNOS" data-md-component="logo">
+      
+  <img src="../../assets/logo.svg" alt="logo">
+
+    </a>
+    FakeNOS
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/fakenos/fakenos" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    fakenos/fakenos
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Overview
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/why/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Why?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/what/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    What?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/how/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    How?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/what_not/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    What not?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    References
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Examples
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Examples
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Examples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/developing_scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Script Development
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/automatic_testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Automatic testing - CI/CD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Usage
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Usage
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/getting_started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/fakenos_inventory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Inventory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/running_in_docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Running in Docker Container
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/configurations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configurations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Platforms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Development
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Development
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Main
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/conventions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Conventions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/tasks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tasks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/creating_new_platforms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Creating a new platform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/creating_nos_plugin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Creating NOS Plugin
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/github_actions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Github Actions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/extras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extras
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Collaborators
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Collaborators
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collaborators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Collaborators
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    API
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            API
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/core_api_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Core API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/builtin_plugins_api_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Built-in Plugins API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#platforms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Platforms:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable" class="md-nav__link">
+    <span class="md-ellipsis">
+      enable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terminal-datadump" class="md-nav__link">
+    <span class="md-ellipsis">
+      terminal datadump
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ex" class="md-nav__link">
+    <span class="md-ellipsis">
+      ex
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-vlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      show vlan
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-system-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      show system id
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-interfaces-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      show interfaces status
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      show system
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      show interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-ip-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      show ip interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-interfaces-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      show interfaces description
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-interfaces-switchport" class="md-nav__link">
+    <span class="md-ellipsis">
+      show interfaces switchport
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="eltex">eltex<a class="headerlink" href="#eltex" title="Permanent link">#</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is automatically generated. In case of any issues, 
+please refer to the source code or, even better, 
+open an issue on the GitHub repository. Thanks! 🤗📖</p>
+</div>
+<h2 id="platforms">Platforms:<a class="headerlink" href="#platforms" title="Permanent link">#</a></h2>
+<h2 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">#</a></h2>
+<h3 id="enable">enable<a class="headerlink" href="#enable" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong> None</p>
+<p><strong>Help:</strong> enter enable mode</p>
+<p><strong>Prompt:</strong>
+- eltex&gt;</p>
+<h3 id="terminal-datadump">terminal datadump<a class="headerlink" href="#terminal-datadump" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong> None</p>
+<p><strong>Help:</strong> set terminal width to maximum</p>
+<p><strong>Prompt:</strong>
+- eltex&gt;
+- eltex#</p>
+<h3 id="ex">ex<a class="headerlink" href="#ex" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>True
+</code></pre></div></p>
+<p><strong>Help:</strong> exit the terminal</p>
+<p><strong>Prompt:</strong>
+- eltex&gt;
+- eltex#</p>
+<h3 id="show-vlan">show vlan<a class="headerlink" href="#show-vlan" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>Vlan            Name                    Tagged ports               Untagged ports            Type     Authorization
+---- --------------------------- --------------------------- --------------------------- ------------ -------------
+ 1                -                           -              gi1/0/2,gi1/0/4-23,te1/0/1,   Default      Required
+                                                             te1/0/3-4,Po1-12
+ 2          Telia-Sonera               te1/0/1,te1/0/4                    -               permanent     Required
+111               -                    te1/0/1,te1/0/4                    -               permanent     Required
+237           managment                te1/0/1,te1/0/4                 gi1/0/3            permanent     Required
+255              NMS                   te1/0/1,te1/0/3-4                  -               permanent     Required
+693  SS_1234567890-KOO-Y10-Golgo       te1/0/1,te1/0/4                    -               permanent     Required
+     fa
+914               -                       te1/0/3-4                       -               permanent     Required
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show vlan"</p>
+<p><strong>Prompt:</strong>
+- eltex&gt;
+- eltex#</p>
+<h3 id="show-system-id">show system id<a class="headerlink" href="#show-system-id" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>Serial number : ES12345678
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show system id"</p>
+<p><strong>Prompt:</strong>
+- eltex&gt;
+- eltex#</p>
+<h3 id="show-interfaces-status">show interfaces status<a class="headerlink" href="#show-interfaces-status" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>                                             Flow Link           Uptime       Back   Mdix
+Port     Type         Duplex  Speed Neg      ctrl State         (d,h:m:s)   Pressure Mode    Port Mode (VLAN)
+-------- ------------ ------  ----- -------- ---- ----------- ------------- -------- ------- ------------------------
+gi1/0/1  1G-Copper    Full    1000  Enabled  Off  Up          183,19:35:02  Disabled Off     Trunk
+gi1/0/2  1G-Copper    Full    1000  Enabled  Off  Up          183,19:34:59  Disabled On      Trunk
+gi1/0/3  1G-Copper    Full    1000  Enabled  Off  Up          183,19:35:00  Disabled On      Trunk
+gi1/0/4  1G-Copper    Full    1000  Enabled  Off  Up          183,19:34:59  Disabled Off     Trunk
+gi1/0/5  1G-Copper      --      --     --     --  Down (nc)         --         --     --     Trunk
+gi1/0/6  1G-Copper    Full    1000  Enabled  Off  Up          183,19:34:56  Disabled On      Trunk
+gi1/0/7  1G-Copper    Full    1000  Enabled  Off  Up          181,20:48:48  Disabled On      Trunk
+gi1/0/8  1G-Copper    Full    1000  Enabled  Off  Up          183,19:35:00  Disabled On      Trunk
+gi1/0/9  1G-Copper    Full    1000  Enabled  Off  Up          183,19:34:56  Disabled On      Trunk
+ gi1/0/10 1G-Copper    Full    1000  Enabled  Off  Up          183,19:34:50  Disabled On      Trunk
+gi1/0/11 1G-Copper    Full    1000  Enabled  Off  Up          183,19:34:50  Disabled On      Trunk
+gi1/0/12 1G-Copper    Full    1000  Enabled  Off  Up          183,19:34:50  Disabled Off     Trunk
+ gi1/0/13 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Trunk
+gi1/0/14 1G-Copper    Full    1000  Enabled  Off  Up          183,19:34:51  Disabled Off     Trunk
+gi1/0/15 1G-Copper    Full    1000  Enabled  Off  Up                --      Disabled Off     Trunk
+ gi1/0/16 1G-Copper    Full    1000  Enabled  Off  Up          183,19:34:51  Disabled Off     Trunk
+gi1/0/17 1G-Copper    Full    1000  Enabled  Off  Up                --      Disabled Off     Access (1610)
+gi1/0/18 1G-Copper    Full    1000  Enabled  Off  Up          00,07:41:23   Disabled On      Access (1)
+gi1/0/19 1G-Copper      --      --     --     --  Down (adm)        --         --     --     Access (1609)
+gi1/0/20 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+ gi1/0/21 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Trunk
+gi1/0/22 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Trunk
+gi1/0/23 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi1/0/24 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi1/0/25 1G-Copper    Full    100   Enabled  Off  Up          01,05:52:26   Disabled On      Access (1)
+gi1/0/26 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi1/0/27 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi1/0/28 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+ gi1/0/29 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi1/0/30 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi1/0/31 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi1/0/32 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi1/0/33 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+ gi1/0/34 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi1/0/35 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi1/0/36 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi1/0/37 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi1/0/38 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+ gi1/0/39 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (355)
+gi1/0/40 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi1/0/41 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1609)
+gi1/0/42 1G-Copper    Full    100   Enabled  Off  Up          183,19:35:23  Disabled Off     Access (1609)
+gi1/0/43 1G-Copper    Full    1000  Enabled  Off  Up          31,05:07:01   Disabled Off     Access (1609)
+ gi1/0/44 1G-Copper    Full    1000  Enabled  Off  Up          31,05:07:01   Disabled On      Access (3800)
+gi1/0/45 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (355)
+gi1/0/46 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (130)
+gi1/0/47 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1609)
+gi1/0/48 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1609)
+te1/0/1  10G-Fiber    Full    10000 Disabled Off  Up          183,19:35:22  Disabled Off     Trunk
+te1/0/2  10G-Fiber      --      --     --     --  Down (nc)         --         --     --     Trunk
+gi2/0/1  1G-Copper      --      --     --     --  Down (nc)         --         --     --     Trunk
+gi2/0/2  1G-Copper      --      --     --     --  Down (nc)         --         --     --     Trunk
+gi2/0/3  1G-Copper      --      --     --     --  Down (nc)         --         --     --     Trunk
+gi2/0/4  1G-Copper      --      --     --     --  Down (nc)         --         --     --     Trunk
+gi2/0/5  1G-Copper      --      --     --     --  Down (nc)         --         --     --     Trunk
+gi2/0/6  1G-Copper      --      --     --     --  Down (nc)         --         --     --     Trunk
+gi2/0/7  1G-Copper      --      --     --     --  Down (nc)         --         --     --     Trunk
+gi2/0/8  1G-Copper      --      --     --     --  Down (nc)         --         --     --     Trunk
+gi2/0/9  1G-Copper      --      --     --     --  Down (nc)         --         --     --     Trunk
+gi2/0/10 1G-Copper    Full    1000  Enabled  Off  Up                --      Disabled On      Trunk
+ gi2/0/11 1G-Copper    Full    1000  Enabled  Off  Up                --      Disabled On      Trunk
+gi2/0/12 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Trunk
+gi2/0/13 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Trunk
+ gi2/0/14 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Trunk
+gi2/0/15 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Trunk
+gi2/0/16 1G-Copper    Full    1000  Enabled  Off  Up                --      Disabled On      Trunk
+ gi2/0/17 1G-Copper    Full    1000  Enabled  Off  Up                --      Disabled Off     Access (1610)
+gi2/0/18 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi2/0/19 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi2/0/20 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi2/0/21 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+ gi2/0/22 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi2/0/23 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi2/0/24 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1609)
+gi2/0/25 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi2/0/26 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+ gi2/0/27 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi2/0/28 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi2/0/29 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi2/0/30 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1609)
+gi2/0/31 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+ gi2/0/32 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi2/0/33 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi2/0/34 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi2/0/35 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi2/0/36 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+ gi2/0/37 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi2/0/38 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi2/0/39 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi2/0/40 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi2/0/41 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+ gi2/0/42 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi2/0/43 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi2/0/44 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi2/0/45 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1)
+gi2/0/46 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (130)
+ gi2/0/47 1G-Copper    Full    1000  Enabled  Off  Up          183,19:37:01  Disabled Off     Access (1609)
+gi2/0/48 1G-Copper      --      --     --     --  Down (nc)         --         --     --     Access (1609)
+te2/0/1  10G-Fiber      --      --     --     --  Down (nc)         --         --     --     Access (1)
+te2/0/2  10G-Fiber      --      --     --     --  Down (nc)         --         --     --     Trunk
+
+                                          Flow    Link
+Ch       Type    Duplex  Speed  Neg      control  State         Port Mode (VLAN)
+-------- ------- ------  -----  -------- -------  ------------- ------------------------
+Po1         --     --      --      --       --    Not Present   Trunk
+Po2         --     --      --      --       --    Not Present   Trunk
+Po3         --     --      --      --       --    Not Present   Trunk
+Po4         --     --      --      --       --    Not Present   Trunk
+Po5         --     --      --      --       --    Not Present   Trunk
+Po6         --     --      --      --       --    Not Present   Trunk
+Po7         --     --      --      --       --    Not Present   Trunk
+Po8         --     --      --      --       --    Not Present   Trunk
+Po9         --     --      --      --       --    Not Present   Trunk
+Po10        --     --      --      --       --    Not Present   Trunk
+Po11        --     --      --      --       --    Not Present   Trunk
+Po12        --     --      --      --       --    Not Present   Trunk
+Po13        --     --      --      --       --    Not Present   Trunk
+Po14        --     --      --      --       --    Not Present   Trunk
+Po15        --     --      --      --       --    Not Present   Trunk
+Po16        --     --      --      --       --    Not Present   Trunk
+Po17        --     --      --      --       --    Not Present   Access (1)
+Po18        --     --      --      --       --    Not Present   Access (1)
+Po19        --     --      --      --       --    Not Present   Access (1)
+Po20        --     --      --      --       --    Not Present   Access (1)
+Po21        --     --      --      --       --    Not Present   Access (1)
+Po22        --     --      --      --       --    Not Present   Access (1)
+Po23        --     --      --      --       --    Not Present   Access (1)
+Po24        --     --      --      --       --    Not Present   Access (1)
+Po25        --     --      --      --       --    Not Present   Access (1)
+Po26        --     --      --      --       --    Not Present   Access (1)
+Po27        --     --      --      --       --    Not Present   Access (1)
+Po28        --     --      --      --       --    Not Present   Access (1)
+Po29        --     --      --      --       --    Not Present   Access (1)
+Po30        --     --      --      --       --    Not Present   Access (1)
+Po31        --     --      --      --       --    Not Present   Access (1)
+Po32        --     --      --      --       --    Not Present   Access (1)
+Po33        --     --      --      --       --    Not Present   Access (1)
+Po34        --     --      --      --       --    Not Present   Access (1)
+Po35        --     --      --      --       --    Not Present   Access (1)
+Po36        --     --      --      --       --    Not Present   Access (1)
+Po37        --     --      --      --       --    Not Present   Access (1)
+Po38        --     --      --      --       --    Not Present   Access (1)
+Po39        --     --      --      --       --    Not Present   Access (1)
+Po40        --     --      --      --       --    Not Present   Access (1)
+Po41        --     --      --      --       --    Not Present   Access (1)
+Po42        --     --      --      --       --    Not Present   Access (1)
+Po43        --     --      --      --       --    Not Present   Access (1)
+Po44        --     --      --      --       --    Not Present   Access (1)
+Po45        --     --      --      --       --    Not Present   Access (1)
+Po46        --     --      --      --       --    Not Present   Access (1)
+Po47        --     --      --      --       --    Not Present   Access (1)
+Po48        --     --      --      --       --    Not Present   Access (1)
+
+                                              Link
+Oob       Type         Duplex  Speed Neg      State
+--------  ------------ ------  ----- -------- -----------
+oob       1G-Copper      --      --     --    Down
+
+nc (not connected): The interface is not connected.
+err (error-disabled): The interface was suspended by the system.
+adm (admin.shutdown): The interface was suspended by administrator.
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show interfaces status"</p>
+<p><strong>Prompt:</strong>
+- eltex&gt;
+- eltex#</p>
+<h3 id="show-system">show system<a class="headerlink" href="#show-system" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>System Description:                       MES3124 28-port 1G/10G Managed Switch
+System Up Time (days,hour:min:sec):       67,08:57:53
+System Contact:                           email@email.com
+System Name:                              Eltex3124-3
+System Location:                          Elm street, 1428
+System MAC Address:                       12:34:56:78:90:00
+System Object ID:                         1.3.6.1.4.1.35265.1.24
+
+Main Power Supply Status [AC]:            OK
+Redundant Power Supply Status [DC]:       OK
+Fan 1 Status:                             OK
+Fan 2 Status:                             OK
+Fan 3 Status:                             OK
+Fan 4 Status:                             OK
+
+ Sensor Index            Temperature (Celsius)           Status
+---------------------  --------------------------  -------------------
+      1                       29                          OK
+      2                       43                          OK
+      3                       45                          OK
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show system"</p>
+<p><strong>Prompt:</strong>
+- eltex&gt;
+- eltex#</p>
+<h3 id="show-interface">show interface<a class="headerlink" href="#show-interface" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>------------------ show interfaces gi1/0/1 ------------------
+gigabitethernet1/0/1 is up (connected)
+  Interface index is 49
+  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:41
+  Description: link_to_MGTS_ADSL
+  Interface MTU is 1500
+  Full-duplex, 1000Mbps, link type is auto, media type is 1G-Fiber
+  Link is up for 0 days, 0 hours, 0 minutes and -40760306 seconds
+  Advertised link modes: 1000baseT/Full
+  Flow control is off, MDIX mode is normal
+  FEC is disabled
+  15 second input rate is 1321 Kbit/s
+  15 second output rate is 1315 Kbit/s
+      108873837739 packets input, 7385782387851 bytes received
+      73700287 broadcasts, 4537873 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      109055618146 packets output, 7350024234403 bytes sent
+      108034 broadcasts, 1439641 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+  Output queues: (queue #: packets passed/packets dropped)
+      1: 0/0
+      2: 0/0
+      3: 0/0
+      4: 0/0
+      5: 0/0
+      6: 0/0
+      7: 0/0
+      8: 0/0
+------------------ show interfaces gi1/0/2 ------------------
+gigabitethernet1/0/2 is up (connected)
+  Interface index is 50
+  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:42
+  Description: LAN (Office)
+  Interface MTU is 1500
+  Full-duplex, 1000Mbps, link type is auto, media type is 1G-Fiber
+  Link is up for 2 days, 18 hours, 37 minutes and 5 seconds
+  Advertised link modes: 1000baseT/Full
+  Flow control is off, MDIX mode is normal
+  FEC is disabled
+  15 second input rate is 168706 Kbit/s
+  15 second output rate is 51870 Kbit/s
+      396190779063 packets input, 476968058054193 bytes received
+      2824380 broadcasts, 25865641 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      330426396743 packets output, 227106169368911 bytes sent
+      38634166 broadcasts, 132202046940 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+  Output queues: (queue #: packets passed/packets dropped)
+      1: 0/0
+      2: 0/0
+      3: 0/0
+      4: 0/0
+      5: 0/0
+      6: 0/0
+      7: 0/0
+      8: 0/0
+------------------ show interfaces gi1/0/3 ------------------
+ gigabitethernet1/0/3 is up (connected)
+  Interface index is 51
+  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:43
+  Description: Eltex1124M - gi1/0/1
+  Interface MTU is 1500
+  Full-duplex, 1000Mbps, link type is auto, media type is 1G-Fiber
+  Link is up for 0 days, 0 hours, 0 minutes and -12007484 seconds
+  Advertised link modes: 1000baseT/Full
+  Flow control is off, MDIX mode is normal
+  FEC is disabled
+  15 second input rate is 21 Kbit/s
+  15 second output rate is 28 Kbit/s
+      1127701000 packets input, 330048141411 bytes received
+      5798212 broadcasts, 3596982 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      2248533117 packets output, 2498371279437 bytes sent
+      84020339 broadcasts, 19047121 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+  Output queues: (queue #: packets passed/packets dropped)
+      1: 0/0
+      2: 0/0
+      3: 0/0
+      4: 0/0
+      5: 0/0
+      6: 0/0
+      7: 0/0
+      8: 0/0
+------------------ show interfaces gi1/0/4 ------------------
+gigabitethernet1/0/4 is up (connected)
+  Interface index is 52
+  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:44
+  Description: L2_OST_M9
+  Interface MTU is 1500
+  Full-duplex, 1000Mbps, link type is auto, media type is 1G-Fiber
+  Link is up for 0 days, 0 hours, 0 minutes and -39131125 seconds
+  Advertised link modes: 1000baseT/Full
+  Flow control is off, MDIX mode is normal
+  FEC is disabled
+  15 second input rate is 674910 Kbit/s
+  15 second output rate is 34908 Kbit/s
+      324252795264 packets input, 441557871273045 bytes received
+      670821 broadcasts, 324194976402 multicasts
+      1 input errors, 0 FCS, 0 alignment
+      0 oversize, 1 internal MAC
+      0 pause frames received
+      14199838076 packets output, 19261838800370 bytes sent
+      262737 broadcasts, 14142282124 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+  Output queues: (queue #: packets passed/packets dropped)
+      1: 0/0
+      2: 0/0
+      3: 0/0
+      4: 0/0
+      5: 0/0
+      6: 0/0
+      7: 0/0
+      8: 0/0
+------------------ show interfaces gi1/0/5 ------------------
+ gigabitethernet1/0/5 is down (admin.shutdown)
+  Interface index is 53
+  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:45
+  Interface MTU is 1500
+  Link is down for 2 days, 18 hours, 37 minutes and 33 seconds
+  Flow control is off, MDIX mode is normal
+  FEC is disabled
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+  Output queues: (queue #: packets passed/packets dropped)
+      1: 0/0
+      2: 0/0
+      3: 0/0
+      4: 0/0
+      5: 0/0
+      6: 0/0
+      7: 0/0
+      8: 0/0
+------------------ show interfaces gi1/0/6 ------------------
+gigabitethernet1/0/6 is down (admin.shutdown)
+  Interface index is 54
+  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:46
+  Interface MTU is 1500
+  Link is down for 2 days, 18 hours, 37 minutes and 33 seconds
+  Flow control is off, MDIX mode is normal
+  FEC is disabled
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+  Output queues: (queue #: packets passed/packets dropped)
+      1: 0/0
+      2: 0/0
+      3: 0/0
+      4: 0/0
+      5: 0/0
+      6: 0/0
+      7: 0/0
+      8: 0/0
+------------------ show interfaces gi1/0/7 ------------------
+gigabitethernet1/0/7 is down (admin.shutdown)
+  Interface index is 55
+  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:47
+  Interface MTU is 1500
+  Link is down for 2 days, 18 hours, 37 minutes and 34 seconds
+  Flow control is off, MDIX mode is normal
+  FEC is disabled
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+  Output queues: (queue #: packets passed/packets dropped)
+      1: 0/0
+      2: 0/0
+      3: 0/0
+      4: 0/0
+      5: 0/0
+      6: 0/0
+      7: 0/0
+      8: 0/0
+------------------ show interfaces gi1/0/8 ------------------
+gigabitethernet1/0/8 is down (admin.shutdown)
+  Interface index is 56
+  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:48
+  Interface MTU is 1500
+  Link is down for 2 days, 18 hours, 37 minutes and 35 seconds
+  Flow control is off, MDIX mode is normal
+  FEC is disabled
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+  Output queues: (queue #: packets passed/packets dropped)
+      1: 0/0
+      2: 0/0
+      3: 0/0
+      4: 0/0
+      5: 0/0
+      6: 0/0
+      7: 0/0
+      8: 0/0
+------------------ show interfaces gi1/0/9 ------------------
+gigabitethernet1/0/9 is down (admin.shutdown)
+  Interface index is 57
+  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:49
+  Interface MTU is 1500
+  Link is down for 2 days, 18 hours, 37 minutes and 36 seconds
+  Flow control is off, MDIX mode is normal
+  FEC is disabled
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+  Output queues: (queue #: packets passed/packets dropped)
+      1: 0/0
+      2: 0/0
+      3: 0/0
+      4: 0/0
+      5: 0/0
+      6: 0/0
+      7: 0/0
+      8: 0/0
+------------------ show interfaces gi1/0/10 ------------------
+gigabitethernet1/0/10 is down (admin.shutdown)
+  Interface index is 58
+  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:4a
+  Interface MTU is 1500
+  Link is down for 2 days, 18 hours, 37 minutes and 37 seconds
+  Flow control is off, MDIX mode is normal
+  FEC is disabled
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+  Output queues: (queue #: packets passed/packets dropped)
+      1: 0/0
+      2: 0/0
+      3: 0/0
+      4: 0/0
+      5: 0/0
+      6: 0/0
+      7: 0/0
+      8: 0/0
+------------------ show interfaces gi1/0/11 ------------------
+gigabitethernet1/0/11 is up (connected)
+  Interface index is 59
+  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:4b
+  Description: ASR920-1 - Gi0 (MGMT_BSH2)
+  Interface MTU is 1500
+  Full-duplex, 1000Mbps, link type is auto, media type is 1G-Combo-C
+  Link is up for 0 days, 0 hours, 0 minutes and -31270588 seconds
+  Advertised link modes: 1000baseT/Full 100baseT/Full
+                         100baseT/Half 10baseT/Full
+                         10baseT/Half
+  Flow control is off, MDIX mode is cross
+  FEC is disabled
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      36368707 packets input, 8017641772 bytes received
+      12 broadcasts, 11854 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      41766075 packets output, 4693865203 bytes sent
+      15107491 broadcasts, 1511338 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+  Output queues: (queue #: packets passed/packets dropped)
+      1: 0/0
+      2: 0/0
+      3: 0/0
+      4: 0/0
+      5: 0/0
+      6: 0/0
+      7: 0/0
+      8: 0/0
+------------------ show interfaces gi1/0/12 ------------------
+ gigabitethernet1/0/12 is up (connected)
+  Interface index is 60
+  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:4c
+  Description: ASR920-2 - Gi0 (MGMT_BSH2)
+  Interface MTU is 1500
+  Full-duplex, 1000Mbps, link type is auto, media type is 1G-Combo-C
+  Link is up for 0 days, 0 hours, 0 minutes and -31274488 seconds
+  Advertised link modes: 1000baseT/Full 100baseT/Full
+                         100baseT/Half 10baseT/Full
+                         10baseT/Half
+  Flow control is off, MDIX mode is normal
+  FEC is disabled
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      36635681 packets input, 8790158609 bytes received
+      12 broadcasts, 11833 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      41798808 packets output, 4773894689 bytes sent
+      15107508 broadcasts, 1511357 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+  Output queues: (queue #: packets passed/packets dropped)
+      1: 0/0
+      2: 0/0
+      3: 0/0
+      4: 0/0
+      5: 0/0
+      6: 0/0
+      7: 0/0
+      8: 0/0
+------------------ show interfaces gi1/0/13 ------------------
+ gigabitethernet1/0/13 is down (admin.shutdown)
+  Interface index is 61
+  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:4d
+  Interface MTU is 1500
+  Link is down for 2 days, 18 hours, 37 minutes and 40 seconds
+  Flow control is off, MDIX mode is normal
+  FEC is disabled
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+  Output queues: (queue #: packets passed/packets dropped)
+      1: 0/0
+      2: 0/0
+      3: 0/0
+      4: 0/0
+      5: 0/0
+      6: 0/0
+      7: 0/0
+      8: 0/0
+------------------ show interfaces gi1/0/14 ------------------
+ gigabitethernet1/0/14 is down (admin.shutdown)
+  Interface index is 62
+  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:4e
+  Interface MTU is 1500
+  Link is down for 2 days, 18 hours, 37 minutes and 41 seconds
+  Flow control is off, MDIX mode is normal
+  FEC is disabled
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+  Output queues: (queue #: packets passed/packets dropped)
+      1: 0/0
+      2: 0/0
+      3: 0/0
+      4: 0/0
+      5: 0/0
+      6: 0/0
+      7: 0/0
+      8: 0/0
+------------------ show interfaces gi1/0/15 ------------------
+ gigabitethernet1/0/15 is down (admin.shutdown)
+  Interface index is 63
+  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:4f
+  Interface MTU is 1500
+  Link is down for 2 days, 18 hours, 37 minutes and 43 seconds
+  Flow control is off, MDIX mode is normal
+  FEC is disabled
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+  Output queues: (queue #: packets passed/packets dropped)
+      1: 0/0
+      2: 0/0
+      3: 0/0
+      4: 0/0
+      5: 0/0
+      6: 0/0
+      7: 0/0
+      8: 0/0
+------------------ show interfaces gi1/0/16 ------------------
+ gigabitethernet1/0/16 is down (admin.shutdown)
+  Interface index is 64
+  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:50
+  Interface MTU is 1500
+  Link is down for 2 days, 18 hours, 37 minutes and 45 seconds
+  Flow control is off, MDIX mode is normal
+  FEC is disabled
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+  Output queues: (queue #: packets passed/packets dropped)
+      1: 0/0
+      2: 0/0
+      3: 0/0
+      4: 0/0
+      5: 0/0
+      6: 0/0
+      7: 0/0
+      8: 0/0
+------------------ show interfaces gi1/0/17 ------------------
+ gigabitethernet1/0/17 is down (admin.shutdown)
+  Interface index is 65
+  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:51
+  Interface MTU is 1500
+  Link is down for 2 days, 18 hours, 37 minutes and 46 seconds
+  Flow control is off, MDIX mode is normal
+  FEC is disabled
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+  Output queues: (queue #: packets passed/packets dropped)
+      1: 0/0
+      2: 0/0
+      3: 0/0
+      4: 0/0
+      5: 0/0
+      6: 0/0
+      7: 0/0
+      8: 0/0
+------------------ show interfaces gi1/0/18 ------------------
+ gigabitethernet1/0/18 is down (admin.shutdown)
+  Interface index is 66
+  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:52
+  Interface MTU is 1500
+  Link is down for 2 days, 18 hours, 37 minutes and 47 seconds
+  Flow control is off, MDIX mode is normal
+  FEC is disabled
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+  Output queues: (queue #: packets passed/packets dropped)
+      1: 0/0
+      2: 0/0
+      3: 0/0
+      4: 0/0
+      5: 0/0
+      6: 0/0
+      7: 0/0
+      8: 0/0
+------------------ show interfaces gi1/0/19 ------------------
+ gigabitethernet1/0/19 is down (admin.shutdown)
+  Interface index is 67
+  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:53
+  Interface MTU is 1500
+  Link is down for 2 days, 18 hours, 37 minutes and 48 seconds
+  Flow control is off, MDIX mode is normal
+  FEC is disabled
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+  Output queues: (queue #: packets passed/packets dropped)
+      1: 0/0
+      2: 0/0
+      3: 0/0
+      4: 0/0
+      5: 0/0
+      6: 0/0
+      7: 0/0
+      8: 0/0
+------------------ show interfaces gi1/0/20 ------------------
+ gigabitethernet1/0/20 is down (admin.shutdown)
+  Interface index is 68
+  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:54
+  Interface MTU is 1500
+  Link is down for 2 days, 18 hours, 37 minutes and 50 seconds
+  Flow control is off, MDIX mode is normal
+  FEC is disabled
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+  Output queues: (queue #: packets passed/packets dropped)
+      1: 0/0
+      2: 0/0
+      3: 0/0
+      4: 0/0
+      5: 0/0
+      6: 0/0
+      7: 0/0
+      8: 0/0
+------------------ show interfaces gi1/0/21 ------------------
+ gigabitethernet1/0/21 is down (admin.shutdown)
+  Interface index is 69
+  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:55
+  Interface MTU is 1500
+  Link is down for 2 days, 18 hours, 37 minutes and 51 seconds
+  Flow control is off, MDIX mode is normal
+  FEC is disabled
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+  Output queues: (queue #: packets passed/packets dropped)
+      1: 0/0
+      2: 0/0
+      3: 0/0
+      4: 0/0
+      5: 0/0
+      6: 0/0
+      7: 0/0
+      8: 0/0
+------------------ show interfaces gi1/0/22 ------------------
+ gigabitethernet1/0/22 is down (admin.shutdown)
+  Interface index is 70
+  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:56
+  Interface MTU is 1500
+  Link is down for 2 days, 18 hours, 37 minutes and 52 seconds
+  Flow control is off, MDIX mode is normal
+  FEC is disabled
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+  Output queues: (queue #: packets passed/packets dropped)
+      1: 0/0
+      2: 0/0
+      3: 0/0
+      4: 0/0
+      5: 0/0
+      6: 0/0
+      7: 0/0
+      8: 0/0
+------------------ show interfaces gi1/0/23 ------------------
+ gigabitethernet1/0/23 is down (admin.shutdown)
+  Interface index is 71
+  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:57
+  Interface MTU is 1500
+  Link is down for 2 days, 18 hours, 37 minutes and 53 seconds
+  Flow control is off, MDIX mode is unknown
+  FEC is disabled
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+  Output queues: (queue #: packets passed/packets dropped)
+      1: 0/0
+      2: 0/0
+      3: 0/0
+      4: 0/0
+      5: 0/0
+      6: 0/0
+      7: 0/0
+      8: 0/0
+------------------ show interfaces gi1/0/24 ------------------
+ gigabitethernet1/0/24 is down (admin.shutdown)
+  Interface index is 72
+  Hardware is gigabitethernet, MAC address is e8:28:c1:5c:02:58
+  Interface MTU is 1500
+  Link is down for 2 days, 18 hours, 38 minutes and 0 seconds
+  Flow control is off, MDIX mode is unknown
+  FEC is disabled
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+  Output queues: (queue #: packets passed/packets dropped)
+      1: 0/0
+      2: 0/0
+      3: 0/0
+      4: 0/0
+      5: 0/0
+      6: 0/0
+      7: 0/0
+      8: 0/0
+------------------ show interfaces te1/0/1 ------------------
+tengigabitethernet1/0/1 is up (connected)
+  Interface index is 105
+  Hardware is tengigabitethernet, MAC address is e8:28:c1:5c:02:59
+  Description: N9K-1 - eth1/18 (Po1)
+  Interface MTU is 1500
+  Full-duplex, 10000Mbps, link type is 10000Mbps full-duplex, media type is 10G-Fiber
+  Link is up for 2 days, 18 hours, 38 minutes and 0 seconds
+  Flow control is off, MDIX mode is normal
+  FEC is disabled
+  5 second input rate is 51910 Kbit/s
+  5 second output rate is 344782 Kbit/s
+      274085380822 packets input, 164119962658503 bytes received
+      243661784 broadcasts, 105648246049 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      346719236719 packets output, 371416643096885 bytes sent
+      9147208 broadcasts, 123471943176 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+  Output queues: (queue #: packets passed/packets dropped)
+      1: 0/0
+      2: 0/0
+      3: 0/0
+      4: 0/0
+      5: 0/0
+      6: 0/0
+      7: 0/0
+      8: 0/0
+------------------ show interfaces te1/0/2 ------------------
+ tengigabitethernet1/0/2 is up (connected)
+  Interface index is 106
+  Hardware is tengigabitethernet, MAC address is e8:28:c1:5c:02:5a
+  Description: N9K-1 - eth1/19 (Po1)
+  Interface MTU is 1500
+  Full-duplex, 10000Mbps, link type is 10000Mbps full-duplex, media type is 10G-Fiber
+  Link is up for 0 days, 0 hours, 0 minutes and -36668287 seconds
+  Flow control is off, MDIX mode is normal
+  FEC is disabled
+  5 second input rate is 36277 Kbit/s
+  5 second output rate is 499662 Kbit/s
+      93081707442 packets input, 51410670602855 bytes received
+      90432414 broadcasts, 25421955562 multicasts
+      56 input errors, 38 FCS, 0 alignment
+      0 oversize, 16 internal MAC
+      0 pause frames received
+      314234071944 packets output, 371471867677116 bytes sent
+      3345667 broadcasts, 200541023323 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+  Output queues: (queue #: packets passed/packets dropped)
+      1: 0/0
+      2: 0/0
+      3: 0/0
+      4: 0/0
+      5: 0/0
+      6: 0/0
+      7: 0/0
+      8: 0/0
+------------------ show interfaces te1/0/3 ------------------
+ tengigabitethernet1/0/3 is down (admin.shutdown)
+  Interface index is 107
+  Hardware is tengigabitethernet, MAC address is e8:28:c1:5c:02:5b
+  Interface MTU is 1500
+  Link is down for 2 days, 18 hours, 38 minutes and 3 seconds
+  Flow control is off, MDIX mode is normal
+  FEC is disabled
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+  Output queues: (queue #: packets passed/packets dropped)
+      1: 0/0
+      2: 0/0
+      3: 0/0
+      4: 0/0
+      5: 0/0
+      6: 0/0
+      7: 0/0
+      8: 0/0
+------------------ show interfaces te1/0/4 ------------------
+ tengigabitethernet1/0/4 is up (connected)
+  Interface index is 108
+  Hardware is tengigabitethernet, MAC address is e8:28:c1:5c:02:5c
+  Description: Eltex3124-2 - te1/0/1
+  Interface MTU is 1500
+  Full-duplex, 10000Mbps, link type is 10000Mbps full-duplex, media type is 10G-Fiber
+  Link is up for 2 days, 18 hours, 38 minutes and 3 seconds
+  Flow control is off, MDIX mode is normal
+  FEC is disabled
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 1 Kbit/s
+      49640783 packets input, 4437603028 bytes received
+      1454 broadcasts, 23188937 multicasts
+      2 input errors, 1 FCS, 0 alignment
+      0 oversize, 1 internal MAC
+      0 pause frames received
+      73595762 packets output, 9744002055 bytes sent
+      26740544 broadcasts, 20413128 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+  Output queues: (queue #: packets passed/packets dropped)
+      1: 0/0
+      2: 0/0
+      3: 0/0
+      4: 0/0
+      5: 0/0
+      6: 0/0
+      7: 0/0
+      8: 0/0
+------------------ show interfaces Po1 ------------------
+ Po1 is up (connected)
+  Interface index is 1000
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:41
+  Description: N9K-1 - po25
+  Interface MTU is 1500
+  Link is up for 2 days, 18 hours, 38 minutes and 0 seconds
+    Link aggregation type is LACP
+    No. of members in this port-channel: 2 (active 2)
+      tengigabitethernet1/0/1, full-duplex, LACP active, 10000Mbps (active)
+      tengigabitethernet1/0/2, full-duplex, LACP active, 10000Mbps (active)
+    Active bandwidth is 20000Mbps
+  15 second input rate is 88280 Kbit/s
+  15 second output rate is 848490 Kbit/s
+      367167172559 packets input, 215530683039427 bytes received
+      334094237 broadcasts, 131070234700 multicasts
+      56 input errors, 38 FCS, 0 alignment
+      0 oversize, 16 internal MAC
+      0 pause frames received
+      660953658224 packets output, 742888970320949 bytes sent
+      12492875 broadcasts, 324013229657 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po2 ------------------
+Po2 is down (not connected)
+  Interface index is 1001
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po3 ------------------
+ Po3 is down (not connected)
+  Interface index is 1002
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po4 ------------------
+Po4 is down (not connected)
+  Interface index is 1003
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po5 ------------------
+Po5 is down (not connected)
+  Interface index is 1004
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po6 ------------------
+Po6 is down (not connected)
+  Interface index is 1005
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po7 ------------------
+Po7 is down (not connected)
+  Interface index is 1006
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po8 ------------------
+Po8 is down (not connected)
+  Interface index is 1007
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po9 ------------------
+Po9 is down (not connected)
+  Interface index is 1008
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po10 ------------------
+Po10 is down (not connected)
+  Interface index is 1009
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po11 ------------------
+Po11 is down (not connected)
+  Interface index is 1010
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po12 ------------------
+Po12 is down (not connected)
+  Interface index is 1011
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po13 ------------------
+Po13 is down (not connected)
+  Interface index is 1012
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po14 ------------------
+Po14 is down (not connected)
+  Interface index is 1013
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po15 ------------------
+Po15 is down (not connected)
+  Interface index is 1014
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po16 ------------------
+Po16 is down (not connected)
+  Interface index is 1015
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po17 ------------------
+Po17 is down (not connected)
+  Interface index is 1016
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po18 ------------------
+Po18 is down (not connected)
+  Interface index is 1017
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po19 ------------------
+Po19 is down (not connected)
+  Interface index is 1018
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po20 ------------------
+Po20 is down (not connected)
+  Interface index is 1019
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po21 ------------------
+Po21 is down (not connected)
+  Interface index is 1020
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po22 ------------------
+Po22 is down (not connected)
+  Interface index is 1021
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po23 ------------------
+Po23 is down (not connected)
+  Interface index is 1022
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po24 ------------------
+Po24 is down (not connected)
+  Interface index is 1023
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po25 ------------------
+Po25 is down (not connected)
+  Interface index is 1024
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po26 ------------------
+Po26 is down (not connected)
+  Interface index is 1025
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po27 ------------------
+Po27 is down (not connected)
+  Interface index is 1026
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po28 ------------------
+Po28 is down (not connected)
+  Interface index is 1027
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po29 ------------------
+Po29 is down (not connected)
+  Interface index is 1028
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po30 ------------------
+Po30 is down (not connected)
+  Interface index is 1029
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po31 ------------------
+Po31 is down (not connected)
+  Interface index is 1030
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po32 ------------------
+Po32 is down (not connected)
+  Interface index is 1031
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po33 ------------------
+Po33 is down (not connected)
+  Interface index is 1032
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po34 ------------------
+Po34 is down (not connected)
+  Interface index is 1033
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po35 ------------------
+Po35 is down (not connected)
+  Interface index is 1034
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po36 ------------------
+Po36 is down (not connected)
+  Interface index is 1035
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po37 ------------------
+Po37 is down (not connected)
+  Interface index is 1036
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po38 ------------------
+Po38 is down (not connected)
+  Interface index is 1037
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po39 ------------------
+Po39 is down (not connected)
+  Interface index is 1038
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po40 ------------------
+Po40 is down (not connected)
+  Interface index is 1039
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po41 ------------------
+Po41 is down (not connected)
+  Interface index is 1040
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po42 ------------------
+Po42 is down (not connected)
+  Interface index is 1041
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po43 ------------------
+Po43 is down (not connected)
+  Interface index is 1042
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po44 ------------------
+Po44 is down (not connected)
+  Interface index is 1043
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po45 ------------------
+Po45 is down (not connected)
+  Interface index is 1044
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po46 ------------------
+Po46 is down (not connected)
+  Interface index is 1045
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po47 ------------------
+Po47 is down (not connected)
+  Interface index is 1046
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces Po48 ------------------
+Po48 is down (not connected)
+  Interface index is 1047
+  Hardware is aggregated ethernet interface(s), MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1500
+  15 second input rate is 0 Kbit/s
+  15 second output rate is 0 Kbit/s
+      0 packets input, 0 bytes received
+      0 broadcasts, 0 multicasts
+      0 input errors, 0 FCS, 0 alignment
+      0 oversize, 0 internal MAC
+      0 pause frames received
+      0 packets output, 0 bytes sent
+      0 broadcasts, 0 multicasts
+      0 output errors, 0 collisions
+      0 excessive collisions, 0 late collisions
+      0 pause frames transmitted
+      0 symbol errors, 0 carrier, 0 SQE test error
+------------------ show interfaces tunnel1 ------------------
+tunnel1 is down (not connected)
+  Interface index is 3000
+  Hardware is tunnel, MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1476
+------------------ show interfaces tunnel2 ------------------
+ tunnel2 is down (not connected)
+  Interface index is 3001
+  Hardware is tunnel, MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1476
+------------------ show interfaces tunnel3 ------------------
+tunnel3 is down (not connected)
+  Interface index is 3002
+  Hardware is tunnel, MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1476
+------------------ show interfaces tunnel4 ------------------
+ tunnel4 is down (not connected)
+  Interface index is 3003
+  Hardware is tunnel, MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1476
+------------------ show interfaces tunnel5 ------------------
+tunnel5 is down (not connected)
+  Interface index is 3004
+  Hardware is tunnel, MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1476
+------------------ show interfaces tunnel6 ------------------
+ tunnel6 is down (not connected)
+  Interface index is 3005
+  Hardware is tunnel, MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1476
+------------------ show interfaces tunnel7 ------------------
+tunnel7 is down (not connected)
+  Interface index is 3006
+  Hardware is tunnel, MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1476
+------------------ show interfaces tunnel8 ------------------
+ tunnel8 is down (not connected)
+  Interface index is 3007
+  Hardware is tunnel, MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1476
+------------------ show interfaces tunnel9 ------------------
+tunnel9 is down (not connected)
+  Interface index is 3008
+  Hardware is , MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1476
+------------------ show interfaces tunnel10 ------------------
+ tunnel10 is down (not connected)
+  Interface index is 3009
+  Hardware is tunnel, MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1476
+------------------ show interfaces tunnel11 ------------------
+tunnel11 is down (not connected)
+  Interface index is 3010
+  Hardware is tunnel, MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1476
+------------------ show interfaces tunnel12 ------------------
+ tunnel12 is down (not connected)
+  Interface index is 3011
+  Hardware is tunnel, MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1476
+------------------ show interfaces tunnel13 ------------------
+tunnel13 is down (not connected)
+  Interface index is 3012
+  Hardware is tunnel, MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1476
+------------------ show interfaces tunnel14 ------------------
+ tunnel14 is down (not connected)
+  Interface index is 3013
+  Hardware is tunnel, MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1476
+------------------ show interfaces tunnel15 ------------------
+tunnel15 is down (not connected)
+  Interface index is 3014
+  Hardware is tunnel, MAC address is e8:28:c1:5c:02:40
+  Interface MTU is 1476
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show interface"</p>
+<p><strong>Prompt:</strong>
+- eltex&gt;
+- eltex#</p>
+<h3 id="show-ip-interface">show ip interface<a class="headerlink" href="#show-ip-interface" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>  Gateway IP Address        Activity status       Type
+----------------------- ----------------------- --------
+10.150.0.101            Active                  static
+
+
+    IP Address         I/F       Type       Status
+------------------- --------- ----------- -----------
+0.0.0.0/32          vlan 1    DHCP        Not
+                                          received
+10.150.0.9/24       vlan 150  Static      Valid
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show ip interface"</p>
+<p><strong>Prompt:</strong>
+- eltex&gt;
+- eltex#</p>
+<h3 id="show-interfaces-description">show interfaces description<a class="headerlink" href="#show-interfaces-description" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>                                  Admin Link
+Port     Port Mode (VLAN)         State State       Description
+-------- ------------------------ ----- ----------- -----------
+gi1/0/1  Trunk                    Up    Up          link_to_MGTS_ADSL
+gi1/0/2  Trunk                    Up    Up          BS12700_-LAN (Office)
+gi1/0/3  Trunk                    Up    Up          Eltex1124M - gi1/0/1
+gi1/0/4  Trunk                    Up    Up          L2_OST_M9
+gi1/0/5  Access (1)               Down  Down
+gi1/0/6  Access (1)               Down  Down
+gi1/0/7  Access (1)               Down  Down
+gi1/0/8  Access (1)               Down  Down
+gi1/0/9  Access (1)               Down  Down
+gi1/0/10 Access (1)               Down  Down
+gi1/0/11 Access (111)             Up    Up          ASR920-1 - Gi0
+gi1/0/12 Access (111)             Up    Up          ASR920-2 - Gi0
+gi1/0/13 Access (1)               Down  Down
+gi1/0/14 Access (1)               Down  Down
+gi1/0/15 Access (1)               Down  Down
+ gi1/0/16 Access (1)               Down  Down
+gi1/0/17 Access (1)               Down  Down
+gi1/0/18 Access (1)               Down  Down
+gi1/0/19 Access (1)               Down  Down
+gi1/0/20 Access (1)               Down  Down
+ gi1/0/21 Access (1)               Down  Down
+gi1/0/22 Access (1)               Down  Down
+gi1/0/23 Access (1)               Down  Down
+gi1/0/24 Access (1)               Down  Down
+te1/0/1  Trunk                    Up    Up          N9K-1 - eth1/18 (Po1)
+te1/0/2  Trunk                    Up    Up          N9K-1 - eth1/19 (Po1)
+te1/0/3  Access (1)               Down  Down
+te1/0/4  Trunk                    Up    Up          Eltex3124-2 - te1/0/1
+
+                                  Admin Link
+Ch       Port Mode (VLAN)         State State       Description
+-------- ------------------------ ----- ----------- -----------
+Po1      Trunk                    Up    Up          N9K-1 - po25
+Po2      Access (1)               Up    Not Present
+Po3      Access (1)               Up    Not Present
+Po4      Access (1)               Up    Not Present
+Po5      Access (1)               Up    Not Present
+Po6      Access (1)               Up    Not Present
+Po7      Access (1)               Up    Not Present
+Po8      Access (1)               Up    Not Present
+Po9      Access (1)               Up    Not Present
+Po10     Access (1)               Up    Not Present
+Po11     Access (1)               Up    Not Present
+Po12     Access (1)               Up    Not Present
+
+Vlan Admin State Link State           Description
+---- ----------- ---------- --------------------------------
+1    Up          Up         -
+4    Up          Up         SW_MGMT
+634  Up          Up         Multicast Office
+
+
+         Admin Link
+Oob-eth  State State       Description
+-------- ----- ----------- -----------
+oob      Up    Up          ASR920-1 - Gi0/0/0
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show interfaces description"</p>
+<p><strong>Prompt:</strong>
+- eltex&gt;
+- eltex#</p>
+<h3 id="show-interfaces-switchport">show interfaces switchport<a class="headerlink" href="#show-interfaces-switchport" title="Permanent link">#</a></h3>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>Added by: D-Default, S-Static, G-GVRP, R-Radius Assigned VLAN, T-Guest VLAN, V-Voice VLAN
+Port : gi1/0/1
+Port Mode: Trunk
+Gvrp Status: disabled
+ Ingress Filtering: true
+Acceptable Frame Type: admitAll
+Ingress UnTagged VLAN ( NATIVE ): 4094
+Protected: Disabled
+
+Port is member in:
+
+Vlan               Name               Egress rule     Added by
+---- -------------------------------- ----------- ----------------
+130             Servers_OS              Tagged           S
+4094               NULL                Untagged          S
+
+
+Forbidden VLANS:
+Vlan               Name
+---- --------------------------------
+
+
+Classification rules:
+
+Protocol based VLANs:
+  Group ID   Vlan ID
+------------ -------
+
+
+Mac based VLANs:
+  Group ID   Vlan ID
+------------ -------
+</code></pre></div></p>
+<p><strong>Help:</strong> execute the command "show interfaces switchport"</p>
+<p><strong>Prompt:</strong>
+- eltex&gt;
+- eltex#</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.instant.progress", "content.tabs.link", "content.footnote.tooltips"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
