@@ -1,10 +1,11 @@
+# Fake Network Operating Systems - FakeNOS
+
 [![PyPI versions][pypi-pyversion-badge]][pypi-pyversion-link]
 [![PyPI][pypi-latest-release-badge]][pypi-latest-release-link]
 [![GitHub Discussion][github-discussions-badge]][github-discussions-link]
 [![Tests][github-tests-badge]][github-tests-link]
 [![Downloads][pepy-downloads-badge]][pepy-downloads-link]
 
-# Fake Network Operating Systems - FakeNOS
 
 > "Reality is merely an illusion, albeit a very persistent one."
 >

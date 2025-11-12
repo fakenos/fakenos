@@ -1,32 +1,30 @@
-name: docs
+name: Documentation
 on:
   push:
     branches:
       - master
       - dev
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 jobs:
-  docs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/configure-pages@v5
       - uses: actions/checkout@v5
-      - name: Configure Git Credentials
-        run: |
-            git config user.name github-actions[bot]
-            git config user.email 41898282+github-actions[bot]@users.noreply.github.com
       - name: "Install uv"
         uses: "astral-sh/setup-uv@v7"
         with:
           version: "0.9.8"
           activate-environment: true
           python-version: "3.13"
-      - name: "Cache"
-        uses: "actions/cache@v4"
-        id: "cached-uv"
+      - run: zensical build --clean 
+      - uses: actions/upload-pages-artifact@v4
         with:
-          key: mkdocs-material-${{ env.cache_id }}
-          path: ".cache"
-          restore-keys: |
-            mkdocs-material-
-      - run: uv run mkdocs gh-deploy --force
+          path: site
+      - uses: actions/deploy-pages@v4

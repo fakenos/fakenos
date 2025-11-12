@@ -31,7 +31,6 @@ classifiers = [
     "Operating System :: MacOS",
     "Topic :: Utilities",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
@@ -40,11 +39,13 @@ classifiers = [
 ]
 requires-python = ">=3.11,<3.14"
 dependencies = [
-    "paramiko<4.0",
+    "paramiko<=4.0",
     "pyyaml<7.0",
     "pydantic<3.0",
-    "detect==2020.12.*",
     "jinja2>=3.1.6",
+
+
+    "detect==2020.12.*",
     "tomli>=2.3.0",
 ]
 
@@ -135,12 +136,12 @@ build-backend = "uv_build"
 
 [dependency-groups]
 dev = [
-    "ruff>=0.14.4",  # Linter
-    "ruamel-yaml",  # YAML parser
-    "ty>=0.0.1a26",  # Type checkers
-    "pytest",  # Testing framework
-    "pytest-repeat",  # Pytest: Repeat tests
-    "pytest-timeout",  # Pytest: Timeout tests
+    "ruff>=0.14.4", # Linter
+    "ruamel-yaml", # YAML parser
+    "ty>=0.0.1a26", # Type checkers
+    "pytest", # Testing framework
+    "pytest-repeat", # Pytest: Repeat tests
+    "pytest-timeout", # Pytest: Timeout tests
     "bandit",
     "coverage",
     "invoke",
@@ -153,6 +154,7 @@ dev = [
     "mkdocs-material",
     "mkdocs-static-i18n",
     "pymdown-extensions",
-    "toml",  # Toml parser (only upto 3.10)
-    "yamllint",  # YAML linter
+    "toml", # Toml parser (only upto 3.10)
+    "yamllint", # YAML linter
+    "zensical>=0.0.6",
 ]

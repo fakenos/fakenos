@@ -1,0 +1,141 @@
+[project]
+site_name = "FakeNOS Docs"
+site_url = "https://docs.fakenos.com/"
+site_description = "FakeNOS (Fake Network Operating System) is a network device simulator designed for testing and development of network automation tools and scripts."
+site_author = "Denis Mulyalin, Enric Perpinyà Pitarch"
+copyright = "&copy; 2025 FakeNOS Authors"
+docs_dir = "docs"
+dev_addr = "localhost:8000"
+repo_url = "https://github.com/fakenos/fakenos"
+repo_name = "fakenos/fakenos"
+edit_uri = "docs"
+nav = [
+    {"Overview" = [
+        {"Overview" = "index.md"},
+        {"Why?" = "overview/why.md"},
+        {"What?" = "overview/what.md"},
+        {"How?" = "overview/how.md"},
+        {"What not?" = "overview/what_not.md"},
+        {"References" = "overview/references.md"},
+    ]},
+    {"Example" = [
+        {"Overview" = "examples/index.md"},
+        {"Script Development" = "examples/developing_scripts.md"},
+        {"Automatic testing - CI/CD" = "examples/automatic_testing.md"},
+    ]},
+    {"Usage" = [
+        {"Installation" = "usage/installation.md"},
+        {"Getting Started" = "usage/getting_started.md"},
+        {"Inventory" = "usage/fakenos_inventory.md"},
+        {"Running in Docker Container" = "usage/running_in_docker.md"},
+        {"Configurations" = "usage/configurations.md"},
+    ]},
+    {"Platforms" = [
+        {"Index" =  "platforms/index.md"},
+        {"Alcatel AOS" = "platforms/alcatel_aos.md"},
+        {"Alcatel SROS" = "platforms/alcatel_sros.md"},
+        {"Allied Telesis Awplus" = "platforms/allied_telesis_awplus.md"},
+        {"Arista EOS" = "platforms/arista_eos.md"},
+        {"Aruba OS" = "platforms/aruba_os.md"},
+        {"Avaya ERS" = "platforms/avaya_ers.md"},
+        {"Broadcom ICOS" = "platforms/broadcom_icos.md"},
+        {"Brocade Fastiron" = "platforms/brocade_fastiron.md"},
+        {"Brocade Netiron" = "platforms/brocade_netiron.md"},
+        {"Checkpoint Gaia" = "platforms/checkpoint_gaia.md"},
+        {"Ciena SAOS" = "platforms/ciena_saos.md"},
+        {"Cisco ASA" = "platforms/cisco_asa.md"},
+        {"Cisco FTD" = "platforms/cisco_ftd.md"},
+        {"Cisco IOS" = "platforms/cisco_ios.md"},
+        {"Cisco NXOS" = "platforms/cisco_nxos.md"},
+        {"Cisco S300" = "platforms/cisco_s300.md"},
+        {"Cisco XR" = "platforms/cisco_xr.md"},
+        {"Dell Force 10" = "platforms/dell_force_10.md"},
+        {"Dell PowerConnect" = "platforms/dell_powerconnect.md"},
+        {"DLink DS" = "platforms/dlink_ds.md"},
+        {"Eltex" = "platforms/eltex.md"},
+        {"Ericsson IPOS" = "platforms/ericsson_ipos.md"},
+        {"Extreme EXOS" = "platforms/extreme_exos.md"},
+        {"Fortinet" = "platforms/fortinet.md"},
+        {"HP Comware" = "platforms/hp_comware.md"},
+        {"HP Procurve" = "platforms/hp_procurve.md"},
+        {"Huawei SmartAX" = "platforms/huawei_smartax.md"},
+        {"Huawei VRP" = "platforms/huawei_vrp.md"},
+        {"Ipfusion Ocnos" = "platforms/ipfusion_ocnos.md"},
+        {"Juniper JunOS" = "platforms/juniper_junos.md"},
+        {"Juniper ScreenOS" = "platforms/juniper_screensos.md"},
+        {"Linux" = "platforms/linux.md"},
+        {"Mikrotik RouterOS" = "platforms/mikrotik_routeros.md"},
+        {"PaloAlto PanOS" = "platforms/paloalto_panos.md"},
+        {"Ruckus Fastiron" = "platforms/ruckus_fastiron.md"},
+        {"Ubiquiti EdgeRouter" = "platforms/ubiquiti_edgerouter.md"},
+        {"Ubiquiti EdgeSwitch" = "platforms/ubiquiti_edgeswitch.md"},
+        {"Vyatta VyOS" = "platforms/vyatta_vyos.md"},
+        {"Yamaha" = "platforms/yamaha.md"},
+        {"Zyxel OS" = "platforms/zyxel_os.md"},
+    ]},
+    {"Development" = [
+        {"Index" = "development/index.md"},
+        {"Conventions" = "development/conventions.md"},
+        {"Creating a new platform" = "development/creating_new_platforms.md"},
+        {"Creating a NOS Plugin" = "development/creating_nos_plugin.md"},
+        {"Github Actions" = "development/github_actions.md"},
+        {"Extras" = "development/extras.md"},
+    ]},
+    {"Colaborators" = "collaborators.md"},
+    {"API" = [
+        {"Core API" = "api/core_api_reference.md"},
+        {"Built-in Plugins API" = "api/builtin_plugins_api_reference.md"},
+    ]}
+]
+
+[project.theme]
+font.text = "Inter"
+font.code = "JetBrains Mono"
+language = "en"
+logo = "assets/logo.svg"
+favicon = "assets/logo.svg"
+features = [
+    "navigation.instant",
+    "navigation.instant.prefetch",
+    "navigation.instant.progress",
+    "navigation.tracking",
+    "navigation.tabs",
+    "navigation.tabs.sticky",
+    "navigation.path",
+    "navigation.prune",
+    "navigation.indexes",
+    "search.highlight",
+    "header.autohide",
+    "content.action.edit", # Edit this page
+    "content.action.view"  # View source of this page
+]
+
+[project.theme.icon]
+edit = "material/pencil"
+view = "material/eye"
+repo = "fontawesome/brands/github"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/github"
+link = "https://github.com/fakenos/fakenos/"
+
+
+# Palette toggle for automatic mode
+[[project.theme.palette]]
+media = "(prefers-color-scheme)"
+toggle.icon = "lucide/sun-moon"
+toggle.name = "Switch to light mode"
+
+# Palette toggle for light mode
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+# Palette toggle for dark mode
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to system preference"
