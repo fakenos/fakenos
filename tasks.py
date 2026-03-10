@@ -66,7 +66,7 @@ TOOL_CONFIG = PYPROJECT_CONFIG["project"]
 
 # Can be set to a separate Python version to be used
 # for launching or building image
-PYTHON_VER = os.getenv("PYTHON_VER", "3.13")
+PYTHON_VER = os.getenv("PYTHON_VER", "3.14")
 # Name of the docker image/image
 IMAGE_NAME = os.getenv("IMAGE_NAME", TOOL_CONFIG["name"])
 # Tag for the image
