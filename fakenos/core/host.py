@@ -17,7 +17,7 @@ class Host:
     Host class to build host instances to use with FakeNOS.
     """
 
-    # pylint: disable=too-many-arguments
+    # pylint: disable=too-many-arguments,too-many-positional-arguments
     # pylint: disable=too-many-instance-attributes
     def __init__(
         self,

@@ -35,7 +35,7 @@ include = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.8,<3.13"
+python = ">=3.10,<3.13"
 paramiko = "<4.0"
 pyyaml = "<7.0"
 pydantic = "<3.0"
@@ -66,7 +66,7 @@ pytest-repeat = "*"
 
 [tool.black]
 line-length = 120
-target-version = ['py38']
+target-version = ['py312']
 include = '\.pyi?$'
 exclude = '''
 (
