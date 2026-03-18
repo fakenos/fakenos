@@ -37,7 +37,7 @@ classifiers = [
     "Programming Language :: Python :: 3.14",
     "License :: OSI Approved :: MIT License",
 ]
-requires-python = ">=3.11,<3.14"
+requires-python = ">=3.11,<3.15"
 dependencies = [
     "paramiko<=4.0",
     "pyyaml<7.0",
@@ -95,7 +95,7 @@ ignore = [
     "S108",  # Probably insecure usage of temp file/directory - this is a script
     "S603",  # Use of subprocess without shell=True - this is a script
     "S607",  # Starting a process with a partial executable path - this is a script
-    
+
 ]
 
 [tool.ruff.lint.isort]
