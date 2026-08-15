@@ -1,6 +1,6 @@
 [project]
 name = "fakenos"
-version = "1.2.0"
+version = "1.2.1"
 description = "Fake Network Operating System"
 authors = [
     { name = "Denis Mulyalin", email = "d.mulyalin@gmail.com" },
