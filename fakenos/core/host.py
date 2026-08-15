@@ -51,7 +51,7 @@ class Host:
         self.platform: str = platform
         self.configuration_file: str = configuration_file
 
-        if self.platform:
+        if self.platform and not self.nos_inventory.get("plugin"):
             self.nos_inventory["plugin"] = self.platform
 
         self._validate()
@@ -60,8 +60,6 @@ class Host:
         """Method to start server instance for this hosts"""
         self.server_plugin = self.fakenos.servers_plugins[self.server_inventory["plugin"]]
         self.shell_plugin = self.fakenos.shell_plugins[self.shell_inventory["plugin"]]
-        if self.platform:
-            self.nos_inventory["plugin"] = self.platform
         self.nos_plugin = self.fakenos.nos_plugins.get(self.nos_inventory["plugin"], self.nos_inventory["plugin"])
         self.nos = (
             Nos(filename=self.nos_plugin, configuration_file=self.configuration_file)
@@ -89,7 +87,7 @@ class Host:
 
     def _validate(self):
         """Validate that the host has the required attributes using pydantic"""
-        if self.platform:
+        if self.platform is not None:
             self._check_if_platform_is_supported(self.platform)
         ModelHost(**self.__dict__)
 

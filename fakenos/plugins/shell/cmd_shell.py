@@ -189,9 +189,7 @@ class CMDShell(Cmd):
         if ret is True or not self.is_running.is_set():
             return True
         if ret is not None:
-            try:
-                ret = ret.format(base_prompt=self.base_prompt)
-            except KeyError:
-                log.error("Error in formatting output")
+            if isinstance(ret, str):
+                ret = ret.replace("{base_prompt}", self.base_prompt)
             self.writeline(ret)
         return False

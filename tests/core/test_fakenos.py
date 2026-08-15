@@ -6,7 +6,7 @@ The file can be found in fakenos/core/fakenos.py
 # pylint: disable=protected-access
 import platform
 import threading
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 import detect
 import pytest
@@ -14,7 +14,8 @@ import yaml
 
 from fakenos.core.fakenos import FakeNOS, fakenos
 from fakenos.core.host import Host
-from fakenos.core.nos import available_platforms
+from fakenos.core.nos import available_platforms, Nos
+from fakenos.plugins.nos import nos_plugins
 from tests.utils import get_platforms_from_md, get_running_hosts
 
 
@@ -463,6 +464,122 @@ class TestFakeNOS:
         inventory = {"hosts": {"R1": {"port": 5001, "platform": "cisco_ios"}}}
         net = FakeNOS(inventory)
         assert len(net.nos_plugins["cisco_ios"]) == 2, "Not all files detected"
+
+
+class TestCustomNosPlugins:
+    """Regression tests for custom NOS plugin registration and selection."""
+
+    @pytest.fixture(autouse=True)
+    def isolate_nos_plugins(self, monkeypatch):
+        """Keep custom plugin registration local to each test."""
+        monkeypatch.setattr("fakenos.core.fakenos.nos_plugins", nos_plugins.copy())
+
+    @pytest.fixture
+    def custom_nos_plugin(self):
+        """Return a custom NOS plugin accepted by FakeNOS."""
+        return {
+            "name": "NFIOSXR",
+            "initial_prompt": "{base_prompt}>",
+            "commands": {},
+        }
+
+    def test_custom_nos_plugin_is_registered_before_hosts(self, monkeypatch, custom_nos_plugin):
+        """Custom plugins must be available while host objects are constructed."""
+        original_host = Host
+
+        def build_host(*args, **kwargs):
+            assert "NFIOSXR" in kwargs["fakenos"].nos_plugins
+            return original_host(*args, **kwargs)
+
+        monkeypatch.setattr("fakenos.core.fakenos.Host", build_host)
+        net = FakeNOS(
+            inventory={"hosts": {"xr1": {"port": 7001, "nos": {"plugin": "NFIOSXR"}}}},
+            plugins=[custom_nos_plugin],
+        )
+
+        assert net.nos_plugins["NFIOSXR"].name == "NFIOSXR"
+
+    def test_custom_nos_plugin_with_platform_is_used_at_runtime(self, custom_nos_plugin):
+        """Platform metadata must not replace an explicit custom NOS plugin."""
+        net = FakeNOS(
+            inventory={
+                "hosts": {
+                    "xr1": {
+                        "port": 7001,
+                        "platform": "cisco_xr",
+                        "nos": {"plugin": "NFIOSXR"},
+                    }
+                }
+            },
+            plugins=[custom_nos_plugin],
+        )
+        server = Mock()
+        server_plugin = Mock(return_value=server)
+        net.servers_plugins = {**net.servers_plugins, "ParamikoSshServer": server_plugin}
+
+        host = net.hosts["xr1"]
+        host.start()
+
+        assert host.platform == "cisco_xr"
+        assert host.nos_inventory["plugin"] == "NFIOSXR"
+        assert host.nos is net.nos_plugins["NFIOSXR"]
+        assert server_plugin.call_args.kwargs["nos"] is net.nos_plugins["NFIOSXR"]
+
+        host.stop()
+
+    def test_custom_nos_plugin_without_platform_is_supported(self, custom_nos_plugin):
+        """An explicit custom NOS plugin does not require platform metadata."""
+        net = FakeNOS(
+            inventory={"hosts": {"xr1": {"port": 7001, "nos": {"plugin": "NFIOSXR"}}}},
+            plugins=[custom_nos_plugin],
+        )
+
+        assert net.hosts["xr1"].platform is None
+        assert net.hosts["xr1"].nos_inventory["plugin"] == "NFIOSXR"
+
+    def test_custom_nos_instance_is_registered(self):
+        """FakeNOS accepts an already constructed Nos plugin instance."""
+        plugin = Nos(name="CustomNos", initial_prompt="{base_prompt}>")
+        net = FakeNOS(
+            inventory={"hosts": {"router": {"port": 7001, "nos": {"plugin": "CustomNos"}}}},
+            plugins=[plugin],
+        )
+
+        assert net.nos_plugins["CustomNos"] is plugin
+        assert net.hosts["router"].nos_inventory["plugin"] == "CustomNos"
+
+    def test_explicit_default_custom_nos_plugin_takes_precedence(self, custom_nos_plugin):
+        """An explicit default NOS plugin takes precedence over host platform."""
+        net = FakeNOS(
+            inventory={
+                "default": {"nos": {"plugin": "NFIOSXR"}},
+                "hosts": {"xr1": {"port": 7001, "platform": "cisco_xr"}},
+            },
+            plugins=[custom_nos_plugin],
+        )
+
+        assert net.hosts["xr1"].nos_inventory["plugin"] == "NFIOSXR"
+
+    def test_platform_only_inventory_derives_nos_plugin(self):
+        """Platform-only inventories retain their legacy plugin selection."""
+        net = FakeNOS(inventory={"hosts": {"xr1": {"port": 7001, "platform": "cisco_xr"}}})
+
+        assert net.hosts["xr1"].nos_inventory["plugin"] == "cisco_xr"
+
+    def test_custom_nos_plugin_name_is_not_valid_platform(self, custom_nos_plugin):
+        """Registering a plugin must not also register platform metadata."""
+        inventory = {
+            "hosts": {
+                "xr1": {
+                    "port": 7001,
+                    "platform": "NFIOSXR",
+                    "nos": {"plugin": "NFIOSXR"},
+                }
+            }
+        }
+
+        with pytest.raises(ValueError, match="Platform NFIOSXR is not supported"):
+            FakeNOS(inventory=inventory, plugins=[custom_nos_plugin])
 
 
 class TestPlatforms:

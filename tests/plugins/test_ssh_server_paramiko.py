@@ -733,6 +733,16 @@ class ParamikoSshServerTest(unittest.TestCase):
         paramiko_server.watchdog(mock_is_running, mock_run_srv, mock_session, mock_shell)
         mock_shell.stop.assert_called_once()
 
+    def test_join_connection_helper_threads(self):
+        """Check that connection helper threads are joined with a bounded timeout."""
+        paramiko_server = ParamikoSshServer(**self.arguments, timeout=2, watchdog_interval=3)
+        helper_threads = [Mock(), Mock(), Mock()]
+
+        paramiko_server._join_connection_helper_threads(helper_threads)
+
+        for helper_thread in helper_threads:
+            helper_thread.join.assert_called_once_with(timeout=3)
+
     # pylint: disable=unused-argument
     @mock.patch("fakenos.plugins.servers.ssh_server_paramiko.channel_to_shell_tap")
     @mock.patch("fakenos.plugins.servers.ssh_server_paramiko.shell_to_channel_tap")

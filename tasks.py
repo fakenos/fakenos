@@ -76,6 +76,8 @@ PWD = os.getcwd()
 # Local or Docker execution provide "local" to
 # run locally without docker execution
 INVOKE_LOCAL = is_truthy(os.getenv("INVOKE_LOCAL", "False"))
+# Windows does not provide the Python pty module used by Invoke.
+USE_PTY = sys.platform != "win32"
 
 
 def run_cmd(context, exec_cmd, local=INVOKE_LOCAL, port=None):
@@ -91,7 +93,7 @@ def run_cmd(context, exec_cmd, local=INVOKE_LOCAL, port=None):
     """
     if is_truthy(local):
         print(f"LOCAL - Running command: {exec_cmd}")
-        result = context.run(exec_cmd, pty=True)
+        result = context.run(exec_cmd, pty=USE_PTY)
     else:
         print(
             f"DOCKER - Running command: {exec_cmd} \
@@ -101,13 +103,13 @@ def run_cmd(context, exec_cmd, local=INVOKE_LOCAL, port=None):
             result = context.run(
                 f"docker run -it -p {port} -v {PWD}:/local \
                     {IMAGE_NAME}:{IMAGE_VER} sh -c '{exec_cmd}'",
-                pty=True,
+                pty=USE_PTY,
             )
         else:
             result = context.run(
                 f"docker run -it -v {PWD}:/local \
                     {IMAGE_NAME}:{IMAGE_VER} sh -c '{exec_cmd}'",
-                pty=True,
+                pty=USE_PTY,
             )
     return result
 
@@ -187,7 +189,7 @@ def bandit(context, local=INVOKE_LOCAL):
 def cli(context):
     """Enter the image to perform troubleshooting or dev work."""
     dev = f"docker run -it -v {PWD}:/local {IMAGE_NAME}:{IMAGE_VER} /bin/bash"
-    context.run(dev, pty=True)
+    context.run(dev, pty=USE_PTY)
 
 
 @task(help={"local": "Run locally or within the Docker container"})

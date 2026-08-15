@@ -277,67 +277,78 @@ class ParamikoSshServer(TCPServerBase):
         shell_replied_event = threading.Event()
         run_srv = threading.Event()
         run_srv.set()
+        helper_threads: list[threading.Thread] = []
 
         # create the SSH transport object
         session = paramiko.Transport(client)
-        session.add_server_key(self._ssh_server_key)
+        try:
+            session.add_server_key(self._ssh_server_key)
 
-        # create the server
-        server = ParamikoSshServerInterface(
-            ssh_banner=self.ssh_banner,
-            username=self.username,
-            password=self.password,
-        )
+            # create the server
+            server = ParamikoSshServerInterface(
+                ssh_banner=self.ssh_banner,
+                username=self.username,
+                password=self.password,
+            )
 
-        # start the SSH server
-        session.start_server(server=server)
+            # start the SSH server
+            session.start_server(server=server)
 
-        # create the channel and get the stdio
-        channel = session.accept()
-        channel_stdio = channel.makefile("rw")
+            # create the channel and get the stdio
+            channel = session.accept()
+            channel_stdio = channel.makefile("rw")
 
-        # create stdio for the shell
-        shell_stdin, shell_stdout = TapIO(run_srv), TapIO(run_srv)
+            # create stdio for the shell
+            shell_stdin, shell_stdout = TapIO(run_srv), TapIO(run_srv)
 
-        # start intermediate thread to tap into
-        # the channel_stdio->shell_stdin bytes stream
-        channel_to_shell_tapper = threading.Thread(
-            target=channel_to_shell_tap,
-            args=(channel_stdio, shell_stdin, shell_replied_event, run_srv),
-        )
-        channel_to_shell_tapper.start()
+            # start intermediate thread to tap into
+            # the channel_stdio->shell_stdin bytes stream
+            channel_to_shell_tapper = threading.Thread(
+                target=channel_to_shell_tap,
+                args=(channel_stdio, shell_stdin, shell_replied_event, run_srv),
+            )
+            channel_to_shell_tapper.start()
+            helper_threads.append(channel_to_shell_tapper)
 
-        # start intermediate thread to tap into
-        # the shell_stdout->channel_stdio bytes stream
-        shell_to_channel_tapper = threading.Thread(
-            target=shell_to_channel_tap,
-            args=(channel_stdio, shell_stdout, shell_replied_event, run_srv),
-        )
-        shell_to_channel_tapper.start()
+            # start intermediate thread to tap into
+            # the shell_stdout->channel_stdio bytes stream
+            shell_to_channel_tapper = threading.Thread(
+                target=shell_to_channel_tap,
+                args=(channel_stdio, shell_stdout, shell_replied_event, run_srv),
+            )
+            shell_to_channel_tapper.start()
+            helper_threads.append(shell_to_channel_tapper)
 
-        # create the client shell
-        client_shell = self.shell(
-            stdin=shell_stdin,
-            stdout=shell_stdout,
-            nos=self.nos,
-            nos_inventory_config=self.nos_inventory_config,
-            is_running=is_running,
-            **self.shell_configuration,
-        )
+            # create the client shell
+            client_shell = self.shell(
+                stdin=shell_stdin,
+                stdout=shell_stdout,
+                nos=self.nos,
+                nos_inventory_config=self.nos_inventory_config,
+                is_running=is_running,
+                **self.shell_configuration,
+            )
 
-        # start watchdog thread
-        watchdog_thread = threading.Thread(target=self.watchdog, args=(is_running, run_srv, session, client_shell))
-        watchdog_thread.start()
+            # start watchdog thread
+            watchdog_thread = threading.Thread(
+                target=self.watchdog,
+                args=(is_running, run_srv, session, client_shell),
+            )
+            watchdog_thread.start()
+            helper_threads.append(watchdog_thread)
 
-        # running this command will block this function until shell exits
-        client_shell.start()
-        log.debug("ParamikoSshServer.connection_function stopped shell thread")
+            # running this command will block this function until shell exits
+            client_shell.start()
+            log.debug("ParamikoSshServer.connection_function stopped shell thread")
+        finally:
+            run_srv.clear()
+            log.debug("ParamikoSshServer.connection_function stopped server threads")
+            session.close()
+            log.debug("ParamikoSshServer.connection_function closed transport %s", session)
+            self._join_connection_helper_threads(helper_threads)
 
-        # kill this server threads - watchdog, TapIO,
-        # shell_to_channel_tapper and channel_to_shell_tapper
-        run_srv.clear()
-        log.debug("ParamikoSshServer.connection_function stopped server threads")
-
-        # After execution continues, we can close the session
-        session.close()
-        log.debug("ParamikoSshServer.connection_function closed transport %s", session)
+    def _join_connection_helper_threads(self, helper_threads: list[threading.Thread]) -> None:
+        """Bounded-join threads owned by a Paramiko connection."""
+        join_timeout = max(self.timeout or 1, self.watchdog_interval or 1)
+        for helper_thread in helper_threads:
+            helper_thread.join(timeout=join_timeout)

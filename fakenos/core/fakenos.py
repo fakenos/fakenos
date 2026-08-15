@@ -7,8 +7,6 @@ import copy
 import logging
 import platform
 import socket
-import threading
-import time
 from typing import Dict, List, Optional, Set, Union
 
 import detect
@@ -77,6 +75,8 @@ class FakeNOS:
         inventory: Optional[dict] = None,
         plugins: Optional[list] = None,
     ) -> None:
+        self._using_default_inventory = not inventory
+        self._default_nos_plugin_configured = False
         self.inventory: dict = inventory or default_inventory
         self.plugins: list = plugins or []
 
@@ -88,8 +88,8 @@ class FakeNOS:
         self.servers_plugins = servers_plugins
 
         self._load_inventory()
-        self._init()
         self._register_nos_plugins()
+        self._init()
 
     def __enter__(self):
         """
@@ -120,6 +120,10 @@ class FakeNOS:
         if self._is_inventory_in_yaml():
             self._load_inventory_yaml()
 
+        if not self._using_default_inventory:
+            default_nos = self.inventory.get("default", {}).get("nos") or {}
+            self._default_nos_plugin_configured = bool(default_nos.get("plugin"))
+
         self.inventory["default"] = {
             **default_inventory["default"],
             **self.inventory.get("default", {}),
@@ -140,8 +144,20 @@ class FakeNOS:
             }
             port: Union[int, list] = params.pop("port")
             replicas: int = params.pop("replicas", None)
+            self._set_platform_as_nos_plugin(host_config, params)
             self._check_ports_and_replicas_are_okey(port, replicas)
             self._instantiate_host_object(host_name, port, replicas, params)
+
+    def _set_platform_as_nos_plugin(self, host_config: dict, params: dict) -> None:
+        """Derive the NOS plugin from platform unless one was configured explicitly."""
+        host_nos = host_config.get("nos") or {}
+        host_nos_plugin_configured = bool(host_nos.get("plugin"))
+        if (
+            params.get("platform")
+            and not host_nos_plugin_configured
+            and not self._default_nos_plugin_configured
+        ):
+            params["nos"]["plugin"] = params["platform"]
 
     def _check_ports_and_replicas_are_okey(self, port, replicas):
         """
@@ -190,16 +206,12 @@ class FakeNOS:
         :param port: integer or list of two integers - port to allocate
         :param replicas: integer - number of hosts to create
         """
-        hosts_name: Set[str] = {}
-        ports: Set[int] = {}
-
         if replicas:
-            hosts_name = {f"{host_name}{i}" for i in range(replicas)}
-            ports = set(range(port[0], port[1] + 1))
-        else:
-            hosts_name = {host_name}
-            ports = {port}
-        return hosts_name, ports
+            return (
+                [f"{host_name}{i}" for i in range(replicas)],
+                list(range(port[0], port[1] + 1)),
+            )
+        return [host_name], [port]
 
     def _instantiate_single_host_object(self, host, port, params):
         """
@@ -270,27 +282,12 @@ class FakeNOS:
 
     def stop(self, hosts: Optional[Union[str, List[str]]] = None) -> None:
         """
-        Function to stop NOS servers instances. It waits 2 seconds
-        just in case that there is any thread doing something.
+        Function to stop NOS server instances.
 
         :param hosts: single or list of hosts to stop by their name.
         """
         hosts: List[str] = self._get_hosts_as_list(hosts)
         self._execute_function_over_hosts(hosts, "stop", host_running=True)
-        if hosts == list(self.hosts.values()):
-            self._join_threads()
-
-    def _join_threads(self) -> None:
-        """
-        Method to join threads in case that all hosts are stopped.
-        """
-        all_threads = threading.enumerate()
-        for thread in all_threads:
-            if thread is not threading.main_thread() and "pytest_timeout" not in thread.name:
-                thread.join()
-        n_threads: int = 2 if detect.windows else 1
-        while threading.active_count() > n_threads:
-            time.sleep(0.01)
 
     def _execute_function_over_hosts(self, hosts: List[Host], func: str, host_running: bool = True):
         """

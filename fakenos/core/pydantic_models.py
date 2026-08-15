@@ -9,6 +9,7 @@ from typing import Callable, Dict, List, Optional, Union
 
 from pydantic import (
     BaseModel,
+    ConfigDict,
     IPvAnyAddress,
     model_validator,
     StrictBool,
@@ -172,11 +173,7 @@ class HostConfig(InventoryDefaultSection):
 class ModelFakenosInventory(BaseModel):
     """FakeNOS inventory data schema"""
 
+    model_config = ConfigDict(extra="forbid")
+
     default: Optional[InventoryDefaultSection] = None
     hosts: Dict[StrictStr, HostConfig]
-
-    # pylint: disable=too-few-public-methods
-    class ConfigDict:
-        """Pydantic model configuration"""
-
-        extra = "forbid"
