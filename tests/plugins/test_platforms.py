@@ -6,6 +6,7 @@ in the yaml and python files.
 
 from importlib import import_module
 import os
+from pathlib import Path
 import re
 import types
 from typing import Any, List
@@ -117,6 +118,15 @@ class TestPlatforms:
         assert hasattr(module, module.DEVICE_NAME)
 
     @pytest.mark.parametrize("platform", get_py_nos_modules())
+    def test_platform_default_configuration_is_package_relative(self, platform: str):
+        """Bundled configuration files resolve independently of the working directory."""
+        module = import_module(f"fakenos.plugins.nos.platforms_py.{platform}")
+        configuration_file = Path(module.DEFAULT_CONFIGURATION)
+
+        assert configuration_file.is_absolute()
+        assert configuration_file.is_file()
+
+    @pytest.mark.parametrize("platform", get_py_nos_modules())
     def test_platforms_py_commands_has_correct_format(self, platform: str):
         """
         It checks if the platform has the commands correctly set.
@@ -174,7 +184,6 @@ class TestPlatforms:
                 }
             }
         }
-        initial_commands, enable_commands, config_commands = [], [], []
         initial_commands: List[str] = []
         enable_commands: List[str] = []
         config_commands: List[str] = []

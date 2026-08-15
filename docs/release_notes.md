@@ -1,5 +1,11 @@
 # Release Notes
 
+## 1.2.1
+
+### Bug Fixes
+
+- Bundled Python platform configurations now resolve from the installed package instead of failing outside the repository root.
+
 ## 1.2.0
 
 ### Features
