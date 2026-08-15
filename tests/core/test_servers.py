@@ -1,7 +1,4 @@
-"""
-Test moudle for fakenos.core.servers.
-The file can be found under fakenos/core/servers.py
-"""
+"""Tests for fakenos.core.servers."""
 
 # pylint: disable=protected-access, attribute-defined-outside-init
 import socket
@@ -85,6 +82,19 @@ class ServersTest(unittest.TestCase):
         servers.start()
 
         mock_thread_event().set.assert_not_called()
+
+    @patch("socket.socket")
+    def test_start_closes_socket_when_binding_fails(self, mock_socket):
+        """A bind failure must not leak a socket or mark the server as running."""
+        mock_socket.return_value.bind.side_effect = OSError("address in use")
+        servers = FakeServer()
+
+        with pytest.raises(OSError, match="address in use"):
+            servers.start()
+
+        mock_socket.return_value.close.assert_called_once_with()
+        assert servers._socket is None
+        assert not servers._is_running.is_set()
 
     @pytest.mark.skipif(sys.platform == "win32", reason="Test only works in Linux")
     @patch("socket.socket")
@@ -258,7 +268,7 @@ class ServersTest(unittest.TestCase):
         servers._socket = mock_socket()
         servers._socket.accept.return_value = (MagicMock(), MagicMock())
         servers._listen()
-        self.assertEqual(mock_socket().listen.call_count, 100)
+        mock_socket().listen.assert_called_once_with()
         self.assertEqual(mock_socket().accept.call_count, 100)
         self.assertEqual(mock_thread.call_count, 100)
         self.assertEqual(mock_thread().start.call_count, 100)

@@ -2,6 +2,7 @@
 This module contains utility functions for the tests.
 """
 
+from pathlib import Path
 import random
 import socket
 import string
@@ -36,14 +37,22 @@ def get_random_available_platform():
     return random.choice(platforms)
 
 
-def get_platforms_from_md() -> List[str]:
+def get_platforms_from_md(include_unsupported: bool = False) -> List[str]:
     """Get the platforms in the platforms.md file."""
     platforms = []
-    with open("docs/platforms.en.md", "r", encoding="utf-8") as file:
+    docs_path = next(
+        path
+        for path in (
+            Path("docs/platforms/index.md"),
+            Path("docs/platforms.en.md"),
+        )
+        if path.exists()
+    )
+    with docs_path.open("r", encoding="utf-8") as file:
         for line in file:
             if line.startswith("- ["):
                 platform = line[1:].strip()  # Remove the dash and whitespace
-                if "❌" in platform:
+                if "❌" in platform and not include_unsupported:
                     continue
                 # Get the word in between brackets, eg. "aruba_eos" from "[aruba_eos]"
                 platform = platform.split("[")[1].split("]")[0]

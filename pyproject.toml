@@ -1,6 +1,6 @@
 [project]
 name = "fakenos"
-version = "1.1.0"
+version = "1.2.0"
 description = "Fake Network Operating System"
 authors = [
     { name = "Denis Mulyalin", email = "d.mulyalin@gmail.com" },
@@ -10,7 +10,8 @@ maintainers = [
     { name = "Denis Mulyalin", email = "d.mulyalin@gmail.com" },
     { name = "Enric Perpinyà Pitarch", email = "eperpinyapitarch@gmail.com" }
 ]
-license = { text = "MIT" }
+license = "MIT"
+license-files = ["LICENSE"]
 readme = "README.md"
 keywords = [
     "NetworkAutomation",
@@ -35,7 +36,6 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
-    "License :: OSI Approved :: MIT License",
 ]
 requires-python = ">=3.11,<3.15"
 dependencies = [
@@ -46,7 +46,6 @@ dependencies = [
 
 
     "detect==2020.12.*",
-    "tomli>=2.3.0",
 ]
 
 
@@ -59,7 +58,7 @@ fakenos = "fakenos.plugins.utils.cli:run_cli"
 
 [tool.ruff]
 line-length = 120
-target-version = "py313"
+target-version = "py311"
 extend-exclude = [
     # Intentionally malformed files
 ]
@@ -131,7 +130,7 @@ module-name = "fakenos"
 module-root = ""
 
 [build-system]
-requires = ["uv_build>=0.9.6,<0.10.0"]
+requires = ["uv_build>=0.9.6,<0.13.0"]
 build-backend = "uv_build"
 
 [dependency-groups]
@@ -145,7 +144,7 @@ dev = [
     "bandit",
     "coverage",
     "invoke",
-    "pre-commit==2.15.*",
+    "pre-commit>=4.6.1,<5",
     "pyenchant",
     "netmiko",
     "requests",
@@ -154,7 +153,6 @@ dev = [
     "mkdocs-material",
     "mkdocs-static-i18n",
     "pymdown-extensions",
-    "toml", # Toml parser (only upto 3.10)
     "yamllint", # YAML linter
     "zensical>=0.0.6",
 ]

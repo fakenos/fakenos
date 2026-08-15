@@ -59,7 +59,7 @@ class TestHost:
     def test_stop(self, host):
         """
         It test that when the host is called the stop,
-        the server is correctly stoped and called
+        the server is correctly stopped and called
         its stop function.
         """
         host.start()

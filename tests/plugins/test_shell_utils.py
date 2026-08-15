@@ -1,6 +1,4 @@
-"""
-Test module fpr the tests of the shell utils
-"""
+"""Tests for shell utility functions."""
 
 import os
 import random
@@ -8,6 +6,7 @@ import time
 from unittest import TestCase
 from unittest.mock import patch
 
+from fakenos.plugins.shell import utils as shell_utils
 from fakenos.plugins.shell.utils import (
     change_jinja_to_corresponding_py,
     get_files_changed,
@@ -61,8 +60,7 @@ class ShellUtilsTest(TestCase):
         We want to avoid side-effect as get_files_changed
         it is stateful.
         """
-        if hasattr(get_files_changed, "files_lasttime_changed_old"):
-            del get_files_changed.files_lasttime_changed_old
+        shell_utils._files_lasttime_changed_by_directory.clear()
 
     def test_get_files_under_directory(self):
         """
@@ -76,7 +74,7 @@ class ShellUtilsTest(TestCase):
     def test_get_files_lasttime_changed(self):
         """
         Test to check if we get the last time
-        that the files has been changed correctly.
+        that the files have been changed correctly.
         """
         files = get_files_under_directory("fakenos/plugins/nos")
         files_lasttime_changed = get_files_lasttime_changed(files)

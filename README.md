@@ -2,7 +2,7 @@
 [![PyPI][pypi-latest-release-badge]][pypi-latest-release-link]
 [![PyPI versions][pypi-pyversion-badge]][pypi-pyversion-link]
 [![GitHub Discussion][github-discussions-badge]][github-discussions-link]
-[![Code style: black][black-badge]][black-link]
+[![Code style: Ruff][ruff-badge]][ruff-link]
 [![Tests][github-tests-badge]][github-tests-link]
 
 # Fake Network Operating Systems - FakeNOS
@@ -13,15 +13,15 @@
 
 FakeNOS created to simulate Network Operating Systems interactions.
 
-[Documentation](https://fakenos.github.io/fakenos/)
+[Documentation](https://docs.fakenos.com/)
 
 ## Why?
 
-Crucial aspect of writing applications or scripts for Network Automation is 
+Crucial aspect of writing applications or scripts for Network Automation is
 testing, often testing done using physical or virtual instances of network
 appliances running certain version of Network Operating System (NOS). That
 approach, while gives best integration results, in many cases carries a lot
-of overhead to setup, run and tear down as well as putting significant burden
+of overhead to set up, run and tear down as well as putting significant burden
 on compute and storage resource utilization.
 
 Other approach is to mock underlying libraries methods to fool applications
@@ -31,7 +31,7 @@ as connection establishment and handling.
 
 FakeNOS positions itself somewhere in the middle between full integration testing
 and testing that mocks device interactions. FakeNOS allows to create NOS plugins
-to produce pre-defined output to test applications behavior while running servers 
+to produce pre-defined output to test applications behavior while running servers
 to establish connections with.
 
 ## What?
@@ -43,17 +43,17 @@ FakeNOS can:
 - Provide high-level API to create custom NOS plugins
 - Run in docker container to simplify integration with your infrastructure
 - Make use of FakeNOS CLI tool for quick run and prototype simulations
-- Works on Windows, MAC and Linux under major Python version
+- Work on Windows, macOS, and Linux across supported Python versions
 
 ## How?
 
-Send input and get the output - this is how we interact with many 
-Network Operating Systems, FakeNOS allows to pre-define the output 
+Send input and get the output - this is how we interact with many
+Network Operating Systems, FakeNOS allows to pre-define the output
 to sent in response to certain input commands, making it ideal for
 isolated feature testing.
 
-FakeNOS is a micro-kernel framework that can be extended using plugins. 
-The core is kept small and optimized while most of the functionality 
+FakeNOS is a micro-kernel framework that can be extended using plugins.
+The core is kept small and optimized while most of the functionality
 offloaded to plugins.
 
 FakeNOS has these pluggable systems:
@@ -64,7 +64,7 @@ FakeNOS has these pluggable systems:
 
 ## What not?
 
-FakeNOS is a simulator, it does not emulate any of Network Control, Data 
+FakeNOS is a simulator, it does not emulate any of Network Control, Data
 or Management planes, it merely takes the commands as input and responds
 with predefined output.
 
@@ -80,8 +80,8 @@ with predefined output.
 
 [github-discussions-link]:     https://github.com/fakenos/fakenos/discussions
 [github-discussions-badge]:    https://img.shields.io/static/v1?label=Discussions&message=Ask&color=blue&logo=github
-[black-badge]:                 https://img.shields.io/badge/code%20style-black-000000.svg
-[black-link]:                  https://github.com/psf/black
+[ruff-badge]:                  https://img.shields.io/badge/code%20style-Ruff-D7FF64.svg
+[ruff-link]:                   https://docs.astral.sh/ruff/
 [pypi-pyversion-link]:         https://pypi.python.org/pypi/fakenos/
 [pypi-pyversion-badge]:        https://img.shields.io/pypi/pyversions/fakenos.svg?logo=python
 [pepy-downloads-link]:         https://pepy.tech/project/fakenos

@@ -253,12 +253,16 @@ class TestCmdShell(TestCase):
         shell.writeline.assert_called_once_with("*21:01:33.000 AET 01 01 01 2022")
 
     def test_default_command_with_alias(self):
-        """Test that the default method does nothing."""
+        """Test that aliases remain reusable and do not mutate command data."""
         self.arguments["is_running"].set()
         shell = CMDShell(**self.arguments)
         shell.writeline = Mock()
         shell.default("sh clock")
-        shell.writeline.assert_called_once_with("*21:01:33.000 AET 01 01 01 2022")
+        shell.default("sh clock")
+
+        self.assertEqual(shell.writeline.call_count, 2)
+        shell.writeline.assert_called_with("*21:01:33.000 AET 01 01 01 2022")
+        self.assertEqual(shell.commands["sh clock"]["alias"], "show clock")
 
     def test_default_command_is_function(self):
         """Test that the default method does nothing."""
@@ -320,7 +324,7 @@ class HotReloadTest(TestCase):
         if "FAKENOS_RELOAD_COMMANDS" in os.environ:
             os.environ.pop("FAKENOS_RELOAD_COMMANDS")
 
-    def test_hot_reload_not_activated_doesnt_enter(self):
+    def test_hot_reload_not_activated_does_not_enter(self):
         """Test that the if is not set  hot_reload method does nothing."""
         os.environ.pop("FAKENOS_RELOAD_COMMANDS")
         mock_get_files_changed = Mock()

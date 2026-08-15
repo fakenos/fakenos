@@ -10,7 +10,8 @@ import sys
 import time
 import tomllib
 
-from invoke import task
+from invoke import Context, task
+from invoke.runners import Result
 from netmiko import ConnectHandler
 import yaml
 
@@ -76,9 +77,16 @@ PWD = os.getcwd()
 # Local or Docker execution provide "local" to
 # run locally without docker execution
 INVOKE_LOCAL = is_truthy(os.getenv("INVOKE_LOCAL", "False"))
+# Windows does not provide the Python pty module used by Invoke.
+USE_PTY = sys.platform != "win32"
 
 
-def run_cmd(context, exec_cmd, local=INVOKE_LOCAL, port=None):
+def run_cmd(
+    context: Context,
+    exec_cmd: str,
+    local: str | bool = INVOKE_LOCAL,
+    port: str | None = None,
+) -> Result:
     """Wrapper to run the invoke task commands.
 
     Args:
@@ -91,7 +99,7 @@ def run_cmd(context, exec_cmd, local=INVOKE_LOCAL, port=None):
     """
     if is_truthy(local):
         print(f"LOCAL - Running command: {exec_cmd}")
-        result = context.run(exec_cmd, pty=True)
+        result = context.run(exec_cmd, pty=USE_PTY)
     else:
         print(
             f"DOCKER - Running command: {exec_cmd} \
@@ -101,14 +109,16 @@ def run_cmd(context, exec_cmd, local=INVOKE_LOCAL, port=None):
             result = context.run(
                 f"docker run -it -p {port} -v {PWD}:/local \
                     {IMAGE_NAME}:{IMAGE_VER} sh -c '{exec_cmd}'",
-                pty=True,
+                pty=USE_PTY,
             )
         else:
             result = context.run(
                 f"docker run -it -v {PWD}:/local \
                     {IMAGE_NAME}:{IMAGE_VER} sh -c '{exec_cmd}'",
-                pty=True,
+                pty=USE_PTY,
             )
+    if result is None:
+        raise RuntimeError(f"Command did not return a result: {exec_cmd}")
     return result
 
 
@@ -117,10 +127,10 @@ def run_cmd(context, exec_cmd, local=INVOKE_LOCAL, port=None):
         "cache": "Whether to use Docker's cache \
             with building images (default enabled)",
         "force_rm": "Always remove intermediate images",
-        "hide": "Supress output from Docker",
+        "hide": "Suppress output from Docker",
     }
 )
-def build(context, cache=True, force_rm=False, hide=False):
+def build(context: Context, cache: bool = True, force_rm: bool = False, hide: bool = False) -> None:
     """Build a Docker image."""
     print(f"Building image {IMAGE_NAME}:{IMAGE_VER}")
     command = f"docker build --tag {IMAGE_NAME}:{IMAGE_VER} --build-arg PYTHON_VER={PYTHON_VER} -f Dockerfile ."
@@ -131,6 +141,8 @@ def build(context, cache=True, force_rm=False, hide=False):
         command += " --force-rm"
 
     result = context.run(command, hide=hide)
+    if result is None:
+        raise RuntimeError("Docker build did not return a result")
     if result.exited != 0:
         print(
             f"Failed to build image \
@@ -139,7 +151,7 @@ def build(context, cache=True, force_rm=False, hide=False):
 
 
 @task
-def clean(context):
+def clean(context: Context) -> None:
     """Remove the project specific image."""
     print(f"Attempting to forcefully remove image {IMAGE_NAME}:{IMAGE_VER}")
     context.run(f"docker rmi {IMAGE_NAME}:{IMAGE_VER} --force")
@@ -147,51 +159,51 @@ def clean(context):
 
 
 @task
-def rebuild(context):
+def rebuild(context: Context) -> None:
     """Clean the Docker image and then rebuild without using cache."""
     clean(context)
     build(context, cache=False)
 
 
 @task(help={"local": "Run locally or within the Docker container"})
-def pytest(context, local=INVOKE_LOCAL):
+def pytest(context: Context, local: str | bool = INVOKE_LOCAL) -> None:
     """Run pytest test cases."""
     exec_cmd = "pytest"
     run_cmd(context, exec_cmd, local=local)
 
 
 @task(help={"local": "Run locally or within the Docker container"})
-def ruff(context, local=INVOKE_LOCAL):
+def ruff(context: Context, local: str | bool = INVOKE_LOCAL) -> None:
     """Run ruff to check that Python files adherence to ruff standards."""
-    exec_cmd = "ruff check --diff"
+    exec_cmd = "ruff check ."
     run_cmd(context, exec_cmd, local=local)
-    exec_cmd = "ruff format --diff"
+    exec_cmd = "ruff format --check"
     run_cmd(context, exec_cmd, local=local)
 
 
 @task(help={"local": "Run locally or within the Docker container"})
-def yamllint(context, local=INVOKE_LOCAL):
+def yamllint(context: Context, local: str | bool = INVOKE_LOCAL) -> None:
     """Run yamllint to check YAML files."""
     exec_cmd = "yamllint ."
     run_cmd(context, exec_cmd, local=local)
 
 
 @task(help={"local": "Run locally or within the Docker container"})
-def bandit(context, local=INVOKE_LOCAL):
+def bandit(context: Context, local: str | bool = INVOKE_LOCAL) -> None:
     """Run bandit to validate basic static code security analysis."""
     exec_cmd = "bandit -c pyproject.toml --recursive ./"
     run_cmd(context, exec_cmd, local=local)
 
 
 @task
-def cli(context):
+def cli(context: Context) -> None:
     """Enter the image to perform troubleshooting or dev work."""
     dev = f"docker run -it -v {PWD}:/local {IMAGE_NAME}:{IMAGE_VER} /bin/bash"
-    context.run(dev, pty=True)
+    context.run(dev, pty=USE_PTY)
 
 
 @task(help={"local": "Run locally or within the Docker container"})
-def tests(context, local=INVOKE_LOCAL):
+def tests(context: Context, local: str | bool = INVOKE_LOCAL) -> None:
     """Run all tests."""
     ruff(context, local=local)
     # yamllint(context, local=local)
@@ -202,9 +214,9 @@ def tests(context, local=INVOKE_LOCAL):
 
 
 @task
-def docs(context, local=INVOKE_LOCAL):
+def docs(context: Context, local: str | bool = INVOKE_LOCAL) -> None:
     """Build and serve docs locally for development."""
-    exec_cmd = "mkdocs serve -v --dev-addr=0.0.0.0:8001"
+    exec_cmd = "zensical serve --dev-addr=0.0.0.0:8001"
     run_cmd(context, exec_cmd, local=local, port="8001:8001")
 
 
@@ -218,11 +230,11 @@ WARNING_MESSAGE = """
 
 # pylint: disable=unused-argument
 @task
-def gen_docs_platform_commands(ctx):
+def gen_docs_platform_commands(ctx: Context) -> None:
     """
     Generate platform specific commands in the docs.
     """
-    platforms_folder: str = "fakenos/plugins/nos/platforms"
+    platforms_folder: str = "fakenos/plugins/nos/platforms_yaml"
     files: list[str] = os.listdir(platforms_folder)
     platforms: list[str] = [platform.split(".yaml")[0] for platform in files]
 
@@ -256,7 +268,7 @@ def gen_docs_platform_commands(ctx):
 
 # pylint: disable=unused-argument
 @task(help={"device_type": "The device type to connect to."})
-def netmiko_check(ctx, device_type: str):
+def netmiko_check(ctx: Context, device_type: str) -> None:
     """
     This is a task for debugging possible problems with Netmiko logins.
     """

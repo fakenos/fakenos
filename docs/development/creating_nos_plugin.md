@@ -58,7 +58,7 @@ hostname {base_prompt} # (12)
 boot-start-marker
 boot-end-marker
         """,
-        "help": "Current operating configuration", 
+        "help": "Current operating configuration",
         "prompt": "{base_prompt}#",
     },
     "show version": {
@@ -79,9 +79,9 @@ Configuration register is 0x2102
     "terminal width 511": {
         "output": "", # (8)
         "help": "Set terminal width to 511"
-    }, 
+    },
     "terminal length 0": {
-        "output": "", 
+        "output": "",
         "help": "Set terminal length to 0"
     },
     "exit": {"output": True, "help": "Exit commands shell"} # (7)
@@ -95,7 +95,7 @@ Configuration register is 0x2102
 5. Help message to show for this command if `?` or `help` is entered in the shell
 6. Returning `None` as command output will not produce a response
 7. Returning True as command output will close the shell
-8. Returning an empty output with produce a response containing only newline characters
+8. Returning an empty output will produce a response containing only newline characters
 9. The returned output can contain the `base_prompt` formatter
 10. The only prompt where this command is valid
 11. Default response content used for undefined commands
@@ -109,7 +109,7 @@ Attributes supported by the commands dictionary:
 | `help`         | :material-help-box:              | Command help message content                              |
 | `prompt`       | :simple-powershell:              | Indicator or list of indicators where this command is valid |
 | `new_prompt`   | :simple-nushell:                | New prompt to show after the command output is returned   |
-| `alias`        | :material-drama-masks:              | Command output as a callable function                      |
+| `alias`        | :material-drama-masks:              | Name of another command whose behavior should be reused    |
 
 
 The value of the `output` attribute of the commands dictionary can be of these types:
@@ -260,7 +260,7 @@ First, we have the attributes NAME, INITIAL_PROMPT, ENABLE_PROMPT (optional), CO
 
 Second, we have the dictionary of commands. This dictionary is a Python dictionary that contains the commands that the NOS plugin is capable of returning the output. Each command is a dictionary with the following attributes: "output", "help", and "prompt". The output can be a string or a function that returns a string. The help is the help that will be shown to the user if the `?` or `help` command is entered. The prompt is the shell indicator in which the command is valid.
 
-Lastly, we have a class that inherits from BaseDevice. This class is necessary for FakeNOS to be able to load the module correctly. Internally, it already initializes the module with an attribute `self.configurations` where the data from the [configuration](usage/configurations.md) file defined in the `DEFAULT_CONFIGURATION` attribute by default will be loaded as a dictionary. It also includes a method `render(self, template: str, **kwargs) -> str` that allows rendering a Jinja2 template under the `fakenos/plugins/nos/platforms_py/templates/` directory. Having this class with these attributes helps to standardize the modules. At the same time, having it in a class instead of separate functions allows you to share variables between commands or even modify the state of the device. For example, if I create a command to modify the IP of the device, I can modify the state of the device in the class and have the rest of the commands take this change into account, returning the string with the new IP.
+Lastly, we have a class that inherits from BaseDevice. This class is necessary for FakeNOS to be able to load the module correctly. Internally, it initializes an attribute named `self.configurations`, where the data from the default [configuration](../usage/configurations.md) file named by `DEFAULT_CONFIGURATION` is loaded as a dictionary. It also includes a method `render(self, template: str, **kwargs) -> str` that renders a Jinja2 template under `fakenos/plugins/nos/platforms_py/templates/`. Using a class allows commands to share variables and device state. For example, a command can change an interface address and later commands can reflect that change.
 
 Obviously, you can also create your own Python module with your own commands and logic. Just make sure it has the correct structure and can be loaded correctly. You have to indicate it in the FakeNOS inventory and FakeNOS will take care of loading it and registering the commands.
 
@@ -347,4 +347,3 @@ inventory = {
 
 !!! note
     If two commands match the same name, the last command loaded will be used.
-

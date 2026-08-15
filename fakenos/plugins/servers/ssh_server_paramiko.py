@@ -8,7 +8,7 @@ import logging
 import socket
 import threading
 import time
-from typing import Optional
+from typing import Any, Optional
 
 import paramiko
 import paramiko.channel
@@ -220,27 +220,29 @@ class ParamikoSshServer(TCPServerBase):
         port: int,
         username: str,
         password: str,
-        ssh_key_file: Optional[paramiko.rsakey.RSAKey] = None,
+        ssh_key_file: Optional[str] = None,
         ssh_key_file_password: Optional[str] = None,
         ssh_banner: str = "FakeNOS Paramiko SSH Server",
         shell_configuration: Optional[dict] = None,
         address: str = "127.0.0.1",
         timeout: int = 1,
         watchdog_interval: float = 1,
-    ):
+    ) -> None:
         super().__init__()
 
         self.nos: Nos = nos
         self.nos_inventory_config: dict = nos_inventory_config
         self.shell: type = shell
-        self.shell_configuration: Optional[dict] = shell_configuration or {}
+        self.shell_configuration: dict = shell_configuration or {}
         self.ssh_banner: str = ssh_banner
         self.username: str = username
         self.password: str = password
         self.port: int = port
         self.address: str = address
         self.timeout: int = timeout
-        self.watchdog_interval: int = watchdog_interval
+        self.watchdog_interval: float = watchdog_interval
+        self._active_sessions: set[paramiko.Transport] = set()
+        self._active_sessions_lock = threading.Lock()
 
         if ssh_key_file:
             self._ssh_server_key: paramiko.rsakey.RSAKey = paramiko.RSAKey.from_private_key_file(
@@ -254,8 +256,8 @@ class ParamikoSshServer(TCPServerBase):
         is_running: threading.Event,
         run_srv: threading.Event,
         session: paramiko.Transport,
-        shell: any,
-    ):
+        shell: Any,
+    ) -> None:
         """
         Method to monitor server liveness and recover where possible.
         """
@@ -273,71 +275,102 @@ class ParamikoSshServer(TCPServerBase):
 
             time.sleep(self.watchdog_interval)
 
-    def connection_function(self, client: socket.socket, is_running: threading.Event):
+    def _get_shutdown_timeout(self) -> float:
+        """Allow one helper interval plus time for its connection worker to exit."""
+        return max(float(self.timeout or 1), float(self.watchdog_interval or 1), 1.0) + 1.0
+
+    def _close_active_connections(self) -> None:
+        """Close active transports so blocked connection workers can finish."""
+        with self._active_sessions_lock:
+            sessions = list(self._active_sessions)
+        for session in sessions:
+            try:
+                session.close()
+            except Exception:
+                log.exception("Failed to close Paramiko transport %s", session)
+
+    def connection_function(self, client: socket.socket, is_running: threading.Event) -> None:
         shell_replied_event = threading.Event()
         run_srv = threading.Event()
         run_srv.set()
+        helper_threads: list[threading.Thread] = []
 
         # create the SSH transport object
         session = paramiko.Transport(client)
-        session.add_server_key(self._ssh_server_key)
+        with self._active_sessions_lock:
+            self._active_sessions.add(session)
+        try:
+            session.add_server_key(self._ssh_server_key)
 
-        # create the server
-        server = ParamikoSshServerInterface(
-            ssh_banner=self.ssh_banner,
-            username=self.username,
-            password=self.password,
-        )
+            # create the server
+            server = ParamikoSshServerInterface(
+                ssh_banner=self.ssh_banner,
+                username=self.username,
+                password=self.password,
+            )
 
-        # start the SSH server
-        session.start_server(server=server)
+            # start the SSH server
+            session.start_server(server=server)
 
-        # create the channel and get the stdio
-        channel = session.accept()
-        channel_stdio = channel.makefile("rw")
+            # create the channel and get the stdio
+            channel = session.accept()
+            channel_stdio = channel.makefile("rw")
 
-        # create stdio for the shell
-        shell_stdin, shell_stdout = TapIO(run_srv), TapIO(run_srv)
+            # create stdio for the shell
+            shell_stdin, shell_stdout = TapIO(run_srv), TapIO(run_srv)
 
-        # start intermediate thread to tap into
-        # the channel_stdio->shell_stdin bytes stream
-        channel_to_shell_tapper = threading.Thread(
-            target=channel_to_shell_tap,
-            args=(channel_stdio, shell_stdin, shell_replied_event, run_srv),
-        )
-        channel_to_shell_tapper.start()
+            # start intermediate thread to tap into
+            # the channel_stdio->shell_stdin bytes stream
+            channel_to_shell_tapper = threading.Thread(
+                target=channel_to_shell_tap,
+                args=(channel_stdio, shell_stdin, shell_replied_event, run_srv),
+            )
+            channel_to_shell_tapper.start()
+            helper_threads.append(channel_to_shell_tapper)
 
-        # start intermediate thread to tap into
-        # the shell_stdout->channel_stdio bytes stream
-        shell_to_channel_tapper = threading.Thread(
-            target=shell_to_channel_tap,
-            args=(channel_stdio, shell_stdout, shell_replied_event, run_srv),
-        )
-        shell_to_channel_tapper.start()
+            # start intermediate thread to tap into
+            # the shell_stdout->channel_stdio bytes stream
+            shell_to_channel_tapper = threading.Thread(
+                target=shell_to_channel_tap,
+                args=(channel_stdio, shell_stdout, shell_replied_event, run_srv),
+            )
+            shell_to_channel_tapper.start()
+            helper_threads.append(shell_to_channel_tapper)
 
-        # create the client shell
-        client_shell = self.shell(
-            stdin=shell_stdin,
-            stdout=shell_stdout,
-            nos=self.nos,
-            nos_inventory_config=self.nos_inventory_config,
-            is_running=is_running,
-            **self.shell_configuration,
-        )
+            # create the client shell
+            client_shell = self.shell(
+                stdin=shell_stdin,
+                stdout=shell_stdout,
+                nos=self.nos,
+                nos_inventory_config=self.nos_inventory_config,
+                is_running=is_running,
+                **self.shell_configuration,
+            )
 
-        # start watchdog thread
-        watchdog_thread = threading.Thread(target=self.watchdog, args=(is_running, run_srv, session, client_shell))
-        watchdog_thread.start()
+            # start watchdog thread
+            watchdog_thread = threading.Thread(
+                target=self.watchdog,
+                args=(is_running, run_srv, session, client_shell),
+            )
+            watchdog_thread.start()
+            helper_threads.append(watchdog_thread)
 
-        # running this command will block this function until shell exits
-        client_shell.start()
-        log.debug("ParamikoSshServer.connection_function stopped shell thread")
+            # running this command will block this function until shell exits
+            client_shell.start()
+            log.debug("ParamikoSshServer.connection_function stopped shell thread")
+        finally:
+            run_srv.clear()
+            log.debug("ParamikoSshServer.connection_function stopped server threads")
+            try:
+                session.close()
+            finally:
+                with self._active_sessions_lock:
+                    self._active_sessions.discard(session)
+                log.debug("ParamikoSshServer.connection_function closed transport %s", session)
+                self._join_connection_helper_threads(helper_threads)
 
-        # kill this server threads - watchdog, TapIO,
-        # shell_to_channel_tapper and channel_to_shell_tapper
-        run_srv.clear()
-        log.debug("ParamikoSshServer.connection_function stopped server threads")
-
-        # After execution continues, we can close the session
-        session.close()
-        log.debug("ParamikoSshServer.connection_function closed transport %s", session)
+    def _join_connection_helper_threads(self, helper_threads: list[threading.Thread]) -> None:
+        """Bounded-join threads owned by a Paramiko connection."""
+        join_deadline = time.monotonic() + max(float(self.timeout or 1), float(self.watchdog_interval or 1), 1.0)
+        for helper_thread in helper_threads:
+            helper_thread.join(timeout=max(0.0, join_deadline - time.monotonic()))

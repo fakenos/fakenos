@@ -12,7 +12,7 @@ In all cases the inventory data must have the following structure independently 
 - **default**: A dictionary containing default parameters and configuration that FakeNOS uses by default for each host.
 - **hosts**: A dictionary keyed by hosts' names containing host definition. Any parameter defined per-host overrides parameters defined in the `default` section.
 
-It is mandatory always to provide the `hosts` section. The `default` section is optional. If not provided, FakeNOS uses a default configuration. This stucture works in hierarchical way, so the `hosts` section will override the `default` section.
+The `hosts` section is always required. The `default` section is optional; when omitted, FakeNOS uses its built-in defaults. This structure is hierarchical, so values in each host override values from the `default` section.
 
 !!! warning
     Even though you can freely change the default parameters, it is recommended to keep them as they are and override them through the `hosts` section. In case you change the `default` section, you must provide all the parameters that are in the default configuration.
@@ -166,7 +166,7 @@ FakeNOS CLI tool:
 fakenos -i path/to/my_inventory.yaml
 ```
 
-Where `my_inventory.yaml` could contain equivalent to above Python code 
+Where `my_inventory.yaml` could contain equivalent to above Python code
 YAML structured inventory:
 
 ```yaml
@@ -560,7 +560,7 @@ The following options can be used either in the `default` section or in the `hos
 ### NOS options
 
 | Option                    | Emoji                     | Description                           | E.g.                                                                    |
-| ------------------------- | ------------------------- | ------------------------------------- | ----------------------------------------------------------------------- | 
+| ------------------------- | ------------------------- | ------------------------------------- | ----------------------------------------------------------------------- |
 | `plugin`                  | :electric_plug:           | NOS plugin to use                     | `plugin: cisco_ios`                                                     |
 | `configuration`           | :gear:                    | NOS configuration                     | The configuration entirely rely on the plugin                           |
 

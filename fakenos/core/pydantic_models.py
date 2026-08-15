@@ -4,22 +4,17 @@ File to contain pydantic models for plugins input/output data validation
 
 from __future__ import annotations
 
-import sys
-from typing import Callable, Dict, List, Optional, Union
+from ipaddress import IPv4Address, IPv6Address
+from typing import Callable, Dict, List, Literal, Optional, Union
 
 from pydantic import (
     BaseModel,
-    IPvAnyAddress,
+    ConfigDict,
     model_validator,
     StrictBool,
     StrictInt,
     StrictStr,
 )
-
-if sys.version_info >= (3, 8):
-    from typing import Literal  # works with >=py3.8
-else:
-    from typing_extensions import Literal  # works with <py3.8I
 
 # ---------------------------------------------------------------------------------------
 # NOS plugin commands model
@@ -91,7 +86,7 @@ class ParamikoSshServerConfig(BaseModel):
     ssh_key_file_password: Optional[StrictStr] = None
     ssh_banner: Optional[StrictStr] = "FakeNOS Paramiko SSH Server"
     timeout: Optional[StrictInt] = 1
-    address: Optional[Union[Literal["localhost"], IPvAnyAddress]] = None
+    address: Optional[Union[Literal["localhost"], IPv4Address, IPv6Address]] = None
     watchdog_interval: Optional[StrictInt] = 1
 
 
@@ -131,11 +126,6 @@ class InventoryDefaultSection(BaseModel):
 
     username: Optional[StrictStr] = None
     password: Optional[StrictStr] = None
-    # port: Optional[Union[conint(strict=True, gt=0, le=65535),
-    # conlist(conint(strict=True, gt=0, le=65535),
-    # min_items=2, max_items=2, unique_items=True)]]
-    # use this for now, mkdocstring having issue with pydantic
-    # https://github.com/mkdocstrings/griffe/issues/66
     port: Optional[Union[StrictInt, List[StrictInt]]] = None
     configuration_file: Optional[StrictStr] = None
     server: Optional[Union[ParamikoSshServerPlugin]] = None
@@ -148,14 +138,11 @@ class HostConfig(InventoryDefaultSection):
     Pydantic model for FakeNOS inventory host configuration.
     """
 
-    # count: Optional[conint(strict=True, gt=0)]
-    # use this for now, mkdocstring having issue with pydantic
-    # https://github.com/mkdocstrings/griffe/issues/66
     replicas: Optional[StrictInt] = None
 
     @model_validator(mode="before")
     @classmethod
-    def check_port_value(cls, values):
+    def check_port_value(cls, values: dict) -> dict:
         """
         Method to validate port value based on 'replicas' value.
         """
@@ -172,11 +159,7 @@ class HostConfig(InventoryDefaultSection):
 class ModelFakenosInventory(BaseModel):
     """FakeNOS inventory data schema"""
 
+    model_config = ConfigDict(extra="forbid")
+
     default: Optional[InventoryDefaultSection] = None
     hosts: Dict[StrictStr, HostConfig]
-
-    # pylint: disable=too-few-public-methods
-    class ConfigDict:
-        """Pydantic model configuration"""
-
-        extra = "forbid"

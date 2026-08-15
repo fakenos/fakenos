@@ -67,10 +67,8 @@ class TestNetmiko:
         """
         This test tries to connect to device as Netmiko would
         do. It ensures that the current implemented devices are
-        ready to used with Netmiko. We only look if any error
-        has raised.
+        ready to use with Netmiko. The test fails if the connection raises an error.
         """
-        print("HOLAAA")
         try:
             free_port = get_free_port()
             inventory = {

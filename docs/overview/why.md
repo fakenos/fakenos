@@ -1,26 +1,26 @@
 # Why?
 
-Testing is a crucial aspect of modern software engineering and therefore it is 
+Testing is a crucial aspect of modern software engineering and therefore it is
 important in Network Automation. FakeNOS solves the problem of testing scripts
 in a lightweight and easy to use manner. It allows to create a test environment
 with multiple devices running different Network Operating Systems (NOS) in a
 matter of minutes.
 
 ## Problem with integration testing
-A crucial aspect of writing applications or scripts  for Network Automation is 
+A crucial aspect of writing applications or scripts  for Network Automation is
 testing. Often testing is done using physical or virtual instances of network
 appliances running certain version of Network Operating System (NOS). That
 approach, while gives best integration results, in many cases carries a lot
-of overhead to setup, run and tear down as well as putting significant burden
+of overhead to set up, run and tear down as well as putting significant burden
 on compute and storage resource utilization.
 
-As well, many times it happens that the vendor does not give access to the 
-device for testing purposes or that you do not have the image to run in a 
+As well, many times it happens that the vendor does not give access to the
+device for testing purposes or that you do not have the image to run in a
 virtual environment. In such cases, it is very difficult to test the application
 or script that you have written.
 
 As well, in case that we want to create a test environment with multiple devices
-running different NOS, it is very difficult to setup and run such environment. Even 
+running different NOS, it is very difficult to setup and run such environment. Even
 though tools like [GNS3](https://www.gns3.com/) or [EVE-NG](https://www.eve-ng.net/)
 exist, they are not always the best solution for testing purposes.
 
@@ -37,7 +37,7 @@ the best solution.
 ## Our approach
 FakeNOS positions itself somewhere in the middle between full integration testing
 and testing that mocks device interactions. FakeNOS allows to create NOS plugins
-to produce pre-defined output to test applications behavior while running servers 
+to produce pre-defined output to test applications behavior while running servers
 to establish connections with.
 
 It does so in a lightweight and easy to use manner. You can create a test environment

@@ -22,10 +22,10 @@ available_platforms: List[str] = [
     "avaya_ers",
     "avaya_vsp",
     "broadcom_icos",
-    # "brocade_fastiron",
+    "brocade_fastiron",
     "brocade_netiron",
     "checkpoint_gaia",
-    # "ciena_saos",
+    "ciena_saos",
     "cisco_asa",
     "cisco_ftd",
     "cisco_ios",
@@ -33,23 +33,23 @@ available_platforms: List[str] = [
     "cisco_s300",
     "cisco_xr",
     "dell_force10",
-    # "dell_powerconnect",
+    "dell_powerconnect",
     "dlink_ds",
     "eltex",
     "ericsson_ipos",
     "extreme_exos",
-    # "fortinet",
+    "fortinet",
     "hp_comware",
     "hp_procurve",
     "huawei_smartax",
     "huawei_vrp",
     "ipinfusion_ocnos",
     "juniper_junos",
-    # "juniper_screenos",
+    "juniper_screenos",
     "linux",
-    # "mikrotik_routeros",
-    # "paloalto_panos",
-    # "ruckus_fastiron",
+    "mikrotik_routeros",
+    "paloalto_panos",
+    "ruckus_fastiron",
     "ubiquiti_edgerouter",
     "ubiquiti_edgeswitch",
     "vyatta_vyos",
@@ -204,6 +204,8 @@ class Nos:
         :param data: OS path string to Python .py file
         """
         spec = importlib.util.spec_from_file_location("module.name", filename)
+        if spec is None or spec.loader is None:
+            raise ImportError(f"Unable to create an import specification for {filename}")
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
         self.name = getattr(module, "NAME", self.name)
@@ -212,10 +214,15 @@ class Nos:
         self.enable_prompt = getattr(module, "ENABLE_PROMPT", None)
         self.config_prompt = getattr(module, "CONFIG_PROMPT", None)
         classname = getattr(module, "DEVICE_NAME", None)
+        if not classname:
+            raise ValueError(f"Python NOS plugin {filename} must define DEVICE_NAME")
         configuration_file = self.configuration_file
         if not self.configuration_file:
             configuration_file = getattr(module, "DEFAULT_CONFIGURATION", None)
-        self.device = getattr(module, classname)(configuration_file=configuration_file)
+        device_class = getattr(module, classname, None)
+        if device_class is None:
+            raise ValueError(f"Python NOS plugin {filename} does not define device class {classname}")
+        self.device = device_class(configuration_file=configuration_file)
 
     def from_file(self, filename: str) -> None:
         """
@@ -235,7 +242,7 @@ class Nos:
         elif filename.endswith(".py"):
             self._from_module(filename)
 
-    def is_file_ending_correct(self, filename: str) -> None:
+    def is_file_ending_correct(self, filename: str) -> bool:
         """
         Method to check if file extension is correct and load NOS data.
         Correct types are: .yaml, .yml and .py
