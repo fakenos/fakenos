@@ -1,6 +1,6 @@
 # What not?
 
-FakeNOS is a simulator, it does not emulate any of Network Control, Data or Management planes, it merely takes the commands as input and responds with predefined output. Althought there are plans to add some dynamic output, there are no plans to emulate the underlying protocol behavior.
+FakeNOS is a simulator. It does not emulate any network control, data, or management planes; it takes commands as input and responds with predefined output. Although there are plans to add some dynamic output, there are no plans to emulate the underlying protocol behavior.
 
 In case you are looking for a network emulator which do emulate the underlying protocols like BGP, LLDP, etc here are some which you may find interesting:
 

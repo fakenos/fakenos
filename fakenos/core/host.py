@@ -5,10 +5,13 @@ It also validates the host object using pydantic.
 """
 
 import logging
-from typing import Optional
+from typing import Optional, TYPE_CHECKING
 
 from fakenos.core.nos import available_platforms, Nos
 from fakenos.core.pydantic_models import ModelHost
+
+if TYPE_CHECKING:
+    from fakenos.core.fakenos import FakeNOS
 
 log = logging.getLogger(__name__)
 
@@ -29,7 +32,7 @@ class Host:
         server: dict,
         shell: dict,
         nos: dict,
-        fakenos,
+        fakenos: "FakeNOS",
         platform: Optional[str] = None,
         configuration_file: Optional[str] = None,
     ) -> None:
@@ -37,6 +40,9 @@ class Host:
         self.server_inventory: dict = server
         self.shell_inventory: dict = shell
         self.nos_inventory: dict = nos
+        self.server_inventory["configuration"] = self.server_inventory.get("configuration") or {}
+        self.shell_inventory["configuration"] = self.shell_inventory.get("configuration") or {}
+        self.nos_inventory["configuration"] = self.nos_inventory.get("configuration") or {}
         self.username: str = username
         self.password: str = password
         self.port: int = port
@@ -48,16 +54,16 @@ class Host:
         self.shell_plugin = None
         self.nos_plugin = None
         self.nos = None
-        self.platform: str = platform
-        self.configuration_file: str = configuration_file
+        self.platform: Optional[str] = platform
+        self.configuration_file: Optional[str] = configuration_file
 
         if self.platform and not self.nos_inventory.get("plugin"):
             self.nos_inventory["plugin"] = self.platform
 
         self._validate()
 
-    def start(self):
-        """Method to start server instance for this hosts"""
+    def start(self) -> None:
+        """Start the server instance for this host."""
         self.server_plugin = self.fakenos.servers_plugins[self.server_inventory["plugin"]]
         self.shell_plugin = self.fakenos.shell_plugins[self.shell_inventory["plugin"]]
         self.nos_plugin = self.fakenos.nos_plugins.get(self.nos_inventory["plugin"], self.nos_inventory["plugin"])
@@ -79,19 +85,21 @@ class Host:
         self.server.start()
         self.running = True
 
-    def stop(self):
-        """Method to stop server instance of this host"""
+    def stop(self) -> None:
+        """Stop the server instance for this host."""
+        if self.server is None:
+            return
         self.server.stop()
         self.server = None
         self.running = False
 
-    def _validate(self):
+    def _validate(self) -> None:
         """Validate that the host has the required attributes using pydantic"""
         if self.platform is not None:
             self._check_if_platform_is_supported(self.platform)
         ModelHost(**self.__dict__)
 
-    def _check_if_platform_is_supported(self, platform: str):
+    def _check_if_platform_is_supported(self, platform: str) -> None:
         """Check if the platform is supported"""
         if platform not in available_platforms:
             raise ValueError(

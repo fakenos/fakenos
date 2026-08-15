@@ -733,15 +733,27 @@ class ParamikoSshServerTest(unittest.TestCase):
         paramiko_server.watchdog(mock_is_running, mock_run_srv, mock_session, mock_shell)
         mock_shell.stop.assert_called_once()
 
-    def test_join_connection_helper_threads(self):
+    @mock.patch("fakenos.plugins.servers.ssh_server_paramiko.time.monotonic", side_effect=[0, 0, 1, 2])
+    def test_join_connection_helper_threads(self, mock_monotonic):
         """Check that connection helper threads are joined with a bounded timeout."""
         paramiko_server = ParamikoSshServer(**self.arguments, timeout=2, watchdog_interval=3)
         helper_threads = [Mock(), Mock(), Mock()]
 
         paramiko_server._join_connection_helper_threads(helper_threads)
 
-        for helper_thread in helper_threads:
-            helper_thread.join.assert_called_once_with(timeout=3)
+        assert [thread.join.call_args.kwargs["timeout"] for thread in helper_threads] == [3, 2, 1]
+        assert mock_monotonic.call_count == 4
+
+    def test_close_active_connections_closes_registered_transports(self):
+        """Shutdown closes transports before waiting on connection workers."""
+        paramiko_server = ParamikoSshServer(**self.arguments)
+        sessions = {Mock(), Mock()}
+        paramiko_server._active_sessions.update(sessions)
+
+        paramiko_server._close_active_connections()
+
+        for session in sessions:
+            session.close.assert_called_once_with()
 
     # pylint: disable=unused-argument
     @mock.patch("fakenos.plugins.servers.ssh_server_paramiko.channel_to_shell_tap")
@@ -762,3 +774,4 @@ class ParamikoSshServerTest(unittest.TestCase):
         mock_transport.assert_called_once()
         mock_shell_to_channel_tap.assert_called_once()
         mock_channel_to_shell_tap.assert_called_once()
+        self.assertFalse(paramiko_server._active_sessions)

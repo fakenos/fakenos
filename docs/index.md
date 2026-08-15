@@ -11,12 +11,12 @@
 >
 > ~ Albert Einstein
 
-FakeNOS simulates Network Operating Systems interactions. You can simulate 
+FakeNOS simulates Network Operating Systems interactions. You can simulate
 network devices like Cisco IOS or Huawei SmartAX interactions over
-SSH with little effort. This project it is mainly intented for testing 
+SSH with little effort. This project is mainly intended for testing
 and development purposes.
 
-[Installation](usage/installation.en.md) | [Examples](examples.en.md) | [Platforms](platforms.en.md)
+[Installation](usage/installation.md) | [Examples](examples/index.md) | [Platforms](platforms/index.md)
 
 
 ## Installation
@@ -29,7 +29,7 @@ pip install fakenos
 
 
 ## Usage
-This is sample example in which we simulate two devices, one running Cisco IOS 
+This example simulates two devices, one running Cisco IOS
 and another running Huawei SmartAX. To run it, create `inventory.yaml` file with
 the following content:
 ```yaml
@@ -44,7 +44,7 @@ hosts:
     password: admin
     platform: huawei_smartax
     port: 6001
-``` 
+```
 
 Then create `main.py` file with the following content:
 ```python
@@ -58,7 +58,7 @@ Run the script:
 python main.py
 ```
 
-And Voila! :dizzy: You have two devices running, one with Cisco IOS and another with Huawei SmartAX.
+You now have two devices running, one with Cisco IOS and another with Huawei SmartAX.
 In case you want to connect to them, you can use any SSH client, like `ssh`:
 ```bash
 # To connect to Cisco IOS

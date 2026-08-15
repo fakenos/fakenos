@@ -11,6 +11,6 @@ fakenos --reload-commands
 ```
 
 !!! warning
-    Changes are additive. This means that if you introduce a new command, you will see the change reflected and the same if you modify the commmand. But if you delete a command, it will not be removed from the application until the server is restarted.
+    Changes are additive. This means that if you introduce a new command, you will see the change reflected and the same if you modify the command. But if you delete a command, it will not be removed from the application until the server is restarted.
 
 This is achieved by setting an environment variable called "FAKENOS_RELOAD_COMMANDS". If this is found, then hot-reload will be activated. If it is not found, then it will not be activated. At the end of the CLI, the variable will be removed.

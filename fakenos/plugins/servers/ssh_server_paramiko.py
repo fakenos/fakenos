@@ -8,7 +8,7 @@ import logging
 import socket
 import threading
 import time
-from typing import Optional
+from typing import Any, Optional
 
 import paramiko
 import paramiko.channel
@@ -220,27 +220,29 @@ class ParamikoSshServer(TCPServerBase):
         port: int,
         username: str,
         password: str,
-        ssh_key_file: Optional[paramiko.rsakey.RSAKey] = None,
+        ssh_key_file: Optional[str] = None,
         ssh_key_file_password: Optional[str] = None,
         ssh_banner: str = "FakeNOS Paramiko SSH Server",
         shell_configuration: Optional[dict] = None,
         address: str = "127.0.0.1",
         timeout: int = 1,
         watchdog_interval: float = 1,
-    ):
+    ) -> None:
         super().__init__()
 
         self.nos: Nos = nos
         self.nos_inventory_config: dict = nos_inventory_config
         self.shell: type = shell
-        self.shell_configuration: Optional[dict] = shell_configuration or {}
+        self.shell_configuration: dict = shell_configuration or {}
         self.ssh_banner: str = ssh_banner
         self.username: str = username
         self.password: str = password
         self.port: int = port
         self.address: str = address
         self.timeout: int = timeout
-        self.watchdog_interval: int = watchdog_interval
+        self.watchdog_interval: float = watchdog_interval
+        self._active_sessions: set[paramiko.Transport] = set()
+        self._active_sessions_lock = threading.Lock()
 
         if ssh_key_file:
             self._ssh_server_key: paramiko.rsakey.RSAKey = paramiko.RSAKey.from_private_key_file(
@@ -254,8 +256,8 @@ class ParamikoSshServer(TCPServerBase):
         is_running: threading.Event,
         run_srv: threading.Event,
         session: paramiko.Transport,
-        shell: any,
-    ):
+        shell: Any,
+    ) -> None:
         """
         Method to monitor server liveness and recover where possible.
         """
@@ -273,7 +275,21 @@ class ParamikoSshServer(TCPServerBase):
 
             time.sleep(self.watchdog_interval)
 
-    def connection_function(self, client: socket.socket, is_running: threading.Event):
+    def _get_shutdown_timeout(self) -> float:
+        """Allow one helper interval plus time for its connection worker to exit."""
+        return max(float(self.timeout or 1), float(self.watchdog_interval or 1), 1.0) + 1.0
+
+    def _close_active_connections(self) -> None:
+        """Close active transports so blocked connection workers can finish."""
+        with self._active_sessions_lock:
+            sessions = list(self._active_sessions)
+        for session in sessions:
+            try:
+                session.close()
+            except Exception:
+                log.exception("Failed to close Paramiko transport %s", session)
+
+    def connection_function(self, client: socket.socket, is_running: threading.Event) -> None:
         shell_replied_event = threading.Event()
         run_srv = threading.Event()
         run_srv.set()
@@ -281,6 +297,8 @@ class ParamikoSshServer(TCPServerBase):
 
         # create the SSH transport object
         session = paramiko.Transport(client)
+        with self._active_sessions_lock:
+            self._active_sessions.add(session)
         try:
             session.add_server_key(self._ssh_server_key)
 
@@ -343,12 +361,16 @@ class ParamikoSshServer(TCPServerBase):
         finally:
             run_srv.clear()
             log.debug("ParamikoSshServer.connection_function stopped server threads")
-            session.close()
-            log.debug("ParamikoSshServer.connection_function closed transport %s", session)
-            self._join_connection_helper_threads(helper_threads)
+            try:
+                session.close()
+            finally:
+                with self._active_sessions_lock:
+                    self._active_sessions.discard(session)
+                log.debug("ParamikoSshServer.connection_function closed transport %s", session)
+                self._join_connection_helper_threads(helper_threads)
 
     def _join_connection_helper_threads(self, helper_threads: list[threading.Thread]) -> None:
         """Bounded-join threads owned by a Paramiko connection."""
-        join_timeout = max(self.timeout or 1, self.watchdog_interval or 1)
+        join_deadline = time.monotonic() + max(float(self.timeout or 1), float(self.watchdog_interval or 1), 1.0)
         for helper_thread in helper_threads:
-            helper_thread.join(timeout=join_timeout)
+            helper_thread.join(timeout=max(0.0, join_deadline - time.monotonic()))

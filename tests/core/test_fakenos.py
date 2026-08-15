@@ -9,6 +9,7 @@ import threading
 from unittest.mock import Mock, patch
 
 import detect
+from pydantic import ValidationError
 import pytest
 import yaml
 
@@ -190,6 +191,12 @@ class TestFakeNOS:
         net._load_inventory()
         assert isinstance(net.inventory, dict)
 
+    def test_null_default_section_uses_internal_defaults(self):
+        """A null default section is treated as an empty mapping."""
+        net = FakeNOS(inventory={"default": None, "hosts": {"R1": {"port": 5001}}})
+
+        assert net.hosts["R1"].nos_inventory["plugin"] == "cisco_ios"
+
     def test_load_inventory_unit_wrong_dict(self):
         """
         Test that the function _load_inventory raises an exception
@@ -240,7 +247,7 @@ class TestFakeNOS:
 
     def test_replicas_not_set_and_port_list(self):
         """
-        Test that the function _check_ports_and_replicas_are_okey raises an exception
+        Test that _check_ports_and_replicas_are_valid raises an exception
         when replicas is not set.
         """
         inventory = {"default": {"port": [5000, 5001]}, "hosts": {"R1": {}}}
@@ -249,7 +256,7 @@ class TestFakeNOS:
 
     def test_replicas_set_and_port_int(self):
         """
-        Test that the function _check_ports_and_replicas_are_okey raises an exception
+        Test that _check_ports_and_replicas_are_valid raises an exception
         when replicas is set and port is an int.
         """
         inventory = {"default": {"port": 5000, "replicas": 2}, "hosts": {"R1": {}}}
@@ -258,7 +265,7 @@ class TestFakeNOS:
 
     def test_replicas_set_and_port_list_not_enough_ports(self):
         """
-        Test that the function _check_ports_and_replicas_are_okey raises an exception
+        Test that _check_ports_and_replicas_are_valid raises an exception
         when replicas is set and there are not enough ports.
         """
         inventory = {"default": {"port": [5000], "replicas": 2}, "hosts": {"R1": {}}}
@@ -267,7 +274,7 @@ class TestFakeNOS:
 
     def test_replicas_set_and_port_list_too_many_ports(self):
         """
-        Test that the function _check_ports_and_replicas_are_okey raises an exception
+        Test that _check_ports_and_replicas_are_valid raises an exception
         when replicas is set and there are too many ports.
         """
         inventory = {
@@ -279,7 +286,7 @@ class TestFakeNOS:
 
     def test_replicas_set_and_port_1_larger_than_port_2(self):
         """
-        Test that the function _check_ports_and_replicas_are_okey raises an exception
+        Test that _check_ports_and_replicas_are_valid raises an exception
         when replicas is set and the first port is larger than the second port.
         """
         inventory = {
@@ -291,7 +298,7 @@ class TestFakeNOS:
 
     def test_replicas_set_and_replicas_less_than_1(self):
         """
-        Test that the function _check_ports_and_replicas_are_okey raises an exception
+        Test that _check_ports_and_replicas_are_valid raises an exception
         when replicas is set and the replicas are less than 1.
         """
         inventory = {
@@ -303,7 +310,7 @@ class TestFakeNOS:
 
     def test_replicas_set_and_ports_set_not_same_length(self):
         """
-        Test that the function _check_ports_and_replicas_are_okey raises an exception
+        Test that _check_ports_and_replicas_are_valid raises an exception
         when replicas is set and the ports are not the same length.
         """
         inventory = {
@@ -469,11 +476,6 @@ class TestFakeNOS:
 class TestCustomNosPlugins:
     """Regression tests for custom NOS plugin registration and selection."""
 
-    @pytest.fixture(autouse=True)
-    def isolate_nos_plugins(self, monkeypatch):
-        """Keep custom plugin registration local to each test."""
-        monkeypatch.setattr("fakenos.core.fakenos.nos_plugins", nos_plugins.copy())
-
     @pytest.fixture
     def custom_nos_plugin(self):
         """Return a custom NOS plugin accepted by FakeNOS."""
@@ -581,6 +583,78 @@ class TestCustomNosPlugins:
         with pytest.raises(ValueError, match="Platform NFIOSXR is not supported"):
             FakeNOS(inventory=inventory, plugins=[custom_nos_plugin])
 
+    def test_custom_nos_plugin_registration_is_instance_local(self, custom_nos_plugin):
+        """A custom plugin must not mutate the bundled module-level registry."""
+        custom_net = FakeNOS(
+            inventory={"hosts": {"xr1": {"port": 7001, "nos": {"plugin": "NFIOSXR"}}}},
+            plugins=[custom_nos_plugin],
+        )
+        other_net = FakeNOS(inventory={"hosts": {"router": {"port": 7002, "platform": "cisco_ios"}}})
+
+        assert "NFIOSXR" in custom_net.nos_plugins
+        assert "NFIOSXR" not in other_net.nos_plugins
+        assert "NFIOSXR" not in nos_plugins
+
+    def test_custom_nos_plugin_is_validated_after_loading(self):
+        """Dictionary plugins use the same validation as directly constructed plugins."""
+        invalid_plugin = {
+            "name": "InvalidPlugin",
+            "initial_prompt": "{base_prompt}>",
+            "commands": {"show invalid": {"output": 123}},
+        }
+
+        with pytest.raises(ValidationError):
+            FakeNOS(
+                inventory={"hosts": {"router": {"port": 7001, "nos": {"plugin": "InvalidPlugin"}}}},
+                plugins=[invalid_plugin],
+            )
+
+
+class TestInventoryEdgeCases:
+    """Regression tests for inventory normalization and validation."""
+
+    def test_partial_nested_plugin_configuration_inherits_defaults(self):
+        inventory = {
+            "hosts": {
+                "router": {
+                    "port": 7001,
+                    "shell": {"plugin": "CMDShell"},
+                    "server": {"plugin": "ParamikoSshServer"},
+                }
+            }
+        }
+
+        net = FakeNOS(inventory=inventory)
+        host = net.hosts["router"]
+
+        assert host.shell_inventory["configuration"]["base_prompt"] == "router"
+        assert host.server_inventory["configuration"]["address"] == "127.0.0.1"
+        assert host.server_inventory["configuration"]["timeout"] == 1
+
+    def test_inventory_yml_extension_is_supported(self, tmp_path):
+        inventory_file = tmp_path / "inventory.yml"
+        inventory_file.write_text("hosts:\n  router:\n    port: 7001\n", encoding="utf-8")
+
+        net = FakeNOS(inventory=inventory_file)
+
+        assert "router" in net.hosts
+
+    def test_empty_inventory_does_not_enable_internal_default(self):
+        with pytest.raises(ValidationError):
+            FakeNOS(inventory={})
+
+    @pytest.mark.parametrize("port", [0, 65536])
+    def test_port_must_be_in_tcp_range(self, port):
+        with pytest.raises(ValueError, match="between 1 and 65535"):
+            FakeNOS(inventory={"hosts": {"router": {"port": port}}})
+
+    def test_input_inventory_is_not_mutated(self):
+        inventory = {"hosts": {"router": {"port": 7001}}}
+
+        FakeNOS(inventory=inventory)
+
+        assert inventory == {"hosts": {"router": {"port": 7001}}}
+
 
 class TestPlatforms:
     """
@@ -593,7 +667,7 @@ class TestPlatforms:
         Test if the available platforms are correct set
         in the platforms.md and platforms.py file.
         """
-        assert sorted(available_platforms) == sorted(get_platforms_from_md())
+        assert sorted(available_platforms) == sorted(get_platforms_from_md(include_unsupported=True))
 
     def test_available_platforms_in_py_file_are_ordered(self):
         """
@@ -607,7 +681,7 @@ class TestPlatforms:
         Test if the available platforms in the platforms.md file
         are ordered alphabetically.
         """
-        platforms = get_platforms_from_md()
+        platforms = get_platforms_from_md(include_unsupported=True)
         assert platforms == sorted(platforms)
 
     def test_with_works(self):

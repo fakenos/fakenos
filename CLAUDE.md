@@ -16,7 +16,7 @@ Package metadata is in `pyproject.toml`:
 - Current version: `1.1.0`
 - Python support: `>=3.11,<3.15`
 - Build backend: `uv_build`
-- Core dependencies: `paramiko`, `pyyaml`, `pydantic`, `jinja2`, `detect`, `tomli`
+- Core dependencies: `paramiko`, `pyyaml`, `pydantic`, `jinja2`, and `detect`
 - Dev dependencies include `pytest`, `pytest-timeout`, `pytest-repeat`, `ruff`, `bandit`, `coverage`, `invoke`, `netmiko`, docs tooling, and YAML tooling
 
 ## Repository Layout
@@ -52,7 +52,7 @@ Then run commands through `uv run`, for example:
 uv run pytest
 ```
 
-This repository also contains `poetry.lock`, and older docs mention Poetry. Treat Poetry as a legacy-compatible workflow unless you are specifically maintaining those docs. The current CI and build backend are `uv`-oriented.
+This repository also contains a legacy `poetry.lock`, but the current CI, documentation, and build backend use `uv`.
 
 ## Running Tests
 
@@ -144,13 +144,13 @@ Available tasks:
 - `clean`: force-removes the project Docker image for the current `IMAGE_NAME:IMAGE_VER`.
 - `rebuild`: runs `clean`, then rebuilds the Docker image without cache.
 - `pytest`: runs `pytest`.
-- `ruff`: runs `ruff check --diff`, then `ruff format --diff`.
+- `ruff`: runs `ruff check .`, then `ruff format --check`.
 - `yamllint`: runs `yamllint .`. This exists, but it is not part of the combined `tests` task right now.
 - `bandit`: runs `bandit -c pyproject.toml --recursive ./`.
 - `cli`: opens an interactive Bash shell inside the project Docker image with the repo mounted at `/local`.
 - `tests`: runs the standard local quality gate: `ruff`, `bandit`, then `pytest`. It prints a success message after all pass.
-- `docs`: serves docs with `mkdocs serve -v --dev-addr=0.0.0.0:8001`; in Docker mode it maps host port `8001` to container port `8001`.
-- `gen-docs-platform-commands`: generates per-platform docs from platform YAML command definitions. Check this before using it: the current task points at `fakenos/plugins/nos/platforms`, while this repo currently stores YAML platforms in `fakenos/plugins/nos/platforms_yaml`.
+- `docs`: serves docs with `zensical serve --dev-addr=0.0.0.0:8001`; in Docker mode it maps host port `8001` to container port `8001`.
+- `gen-docs-platform-commands`: generates missing per-platform docs from YAML definitions in `fakenos/plugins/nos/platforms_yaml`.
 - `netmiko-check`: starts one FakeNOS host for a supplied Netmiko `device_type`, connects with Netmiko to `localhost:6000`, waits briefly, stops FakeNOS, and prints success plus elapsed time. Example:
 
 ```bash
@@ -162,7 +162,7 @@ uv run invoke netmiko-check --device-type cisco_ios
 - Several tests start local TCP/SSH servers and use free or fixed localhost ports. Avoid running multiple full test suites in parallel on the same machine.
 - Netmiko compatibility tests start FakeNOS instances and connect through SSH. These depend on `netmiko`, `paramiko`, and the platform definitions matching Netmiko expectations.
 - Docker tests use `docker/docker-compose.yaml` and are skipped when Docker is unavailable. Locally, if Docker is running, those tests may build/start containers.
-- Thread cleanup is important. `FakeNOS.stop()` joins non-main threads, and tests assert expected thread counts. Always stop networks in tests, preferably with `with FakeNOS(...)`.
+- Thread cleanup is important. `FakeNOS.stop()` delegates to each host; each server closes and joins only the listener, connection workers, and helper threads it owns. Always stop networks in tests, preferably with `with FakeNOS(...)`.
 - Default hosts are `router_cisco_ios` on port `6000`, `router_huawei_smartax` on port `6001`, and `router_arista_eos` on port `6002`, using username/password `user`/`user`.
 
 ## Linting And Formatting
@@ -170,11 +170,11 @@ uv run invoke netmiko-check --device-type cisco_ios
 Primary lint configuration is in `pyproject.toml` under Ruff:
 
 ```bash
-uv run ruff check --diff
-uv run ruff format --diff
+uv run ruff check .
+uv run ruff format --check
 ```
 
-The Invoke task runs those same diff-only checks:
+The Invoke task runs those same checks:
 
 ```bash
 uv run invoke ruff --local
@@ -186,7 +186,7 @@ Bandit security checks:
 uv run bandit -c pyproject.toml --recursive ./
 ```
 
-Pre-commit config exists, but it contains older Black/Flake8/Pylint local hooks. Prefer the current CI path unless the task specifically involves pre-commit maintenance.
+Pre-commit runs Ruff linting and formatting, ty, Bandit, and basic repository hygiene hooks. Run it with `uv run pre-commit run --all-files`.
 
 ## Platform Plugin Guidance
 
@@ -240,7 +240,7 @@ The Invoke docs task serves docs locally:
 uv run invoke docs --local
 ```
 
-Docs have multilingual support through filename suffixes. For example, a Spanish translation should use `.es.md`; the docs plugin selects localized files based on the suffix. Keep English source files as the baseline unless intentionally adding a translated variant.
+When adding or moving documentation, update `zensical.toml` and keep Markdown links relative to the page containing them.
 
 Project overview docs define the mental model:
 
@@ -285,4 +285,4 @@ This sets `FAKENOS_RELOAD_COMMANDS` and reloads changed files under `fakenos/plu
 
 ## Current Local Verification Note
 
-On this machine, `uv` was not installed when this file was created. A direct `python -m pytest --collect-only -q` was attempted with Python 3.11.9 and failed during collection because project dependencies such as `detect`, `paramiko`, and `netmiko` were not installed in the active global environment. Install the project dev dependencies first, then rerun tests.
+The repository uses its local `.venv` through `uv run`. Avoid relying on packages from a global Python environment when running checks.

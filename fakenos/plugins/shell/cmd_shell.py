@@ -6,8 +6,9 @@ from cmd import Cmd
 import copy
 import logging
 import os
+import threading
 import traceback
-from typing import List, Union
+from typing import Any, List, Optional, Union
 
 from fakenos.core.nos import Nos
 from fakenos.plugins import nos
@@ -35,17 +36,17 @@ class CMDShell(Cmd):
     # pylint: disable=too-many-arguments
     def __init__(
         self,
-        stdin,
-        stdout,
-        nos,
-        nos_inventory_config,
-        base_prompt,
-        is_running,
-        intro="Custom SSH Shell",
-        ruler="",
-        completekey="tab",
-        newline="\r\n",
-    ):
+        stdin: Any,
+        stdout: Any,
+        nos: Nos,
+        nos_inventory_config: dict,
+        base_prompt: str,
+        is_running: threading.Event,
+        intro: str = "Custom SSH Shell",
+        ruler: str = "",
+        completekey: str = "tab",
+        newline: str = "\r\n",
+    ) -> None:
         self.nos: Nos = nos
         self.ruler = ruler
         self.intro = intro
@@ -67,29 +68,29 @@ class CMDShell(Cmd):
             stdout=stdout,
         )
 
-    def start(self):
+    def start(self) -> None:
         """Method to start the shell"""
         self.cmdloop()
 
-    def stop(self):
+    def stop(self) -> None:
         """Method to stop the shell"""
         self.stdin.write("exit" + self.newline)
 
-    def writeline(self, value):
+    def writeline(self, value: Any) -> None:
         """Method to write a line to stdout with newline at the end"""
         for line in str(value).splitlines():
             self.stdout.write(line + self.newline)
 
-    def emptyline(self):
+    def emptyline(self) -> None:
         """This method to do nothing if empty line entered"""
 
-    def reload_commands(self, changed_files: list):
+    def reload_commands(self, changed_files: List[str]) -> None:
         """Method to reload commands"""
         for file in changed_files:
             self.nos.from_file(file)
             self.commands.update(self.nos.commands)
 
-    def precmd(self, line):
+    def precmd(self, line: str) -> str:
         """Method to return line before processing the command"""
         if os.environ.get("FAKENOS_RELOAD_COMMANDS"):
             changed_files = get_files_changed(nos.__path__[0])
@@ -99,12 +100,12 @@ class CMDShell(Cmd):
         return line
 
     # pylint: disable=unused-argument
-    def postcmd(self, stop, line):
+    def postcmd(self, stop: bool, line: str) -> bool:
         """Method to return stop value to stop the shell"""
         return stop
 
     # pylint: disable=unused-argument
-    def do_help(self, arg):
+    def do_help(self, arg: str) -> None:
         """Method to return help for commands"""
         lines = {}  # dict of {cmd: cmd_help}
         width = 0  # record longest command width for padding
@@ -125,7 +126,7 @@ class CMDShell(Cmd):
             help_msg.append(f"{k}{padding}{v}")
         self.writeline(self.newline.join(help_msg))
 
-    def _check_prompt(self, prompt_: Union[str, List[str]]):
+    def _check_prompt(self, prompt_: Optional[Union[str, List[str]]]) -> bool:
         """
         Helper method to check if prompt_ matches current prompt
 
@@ -139,14 +140,15 @@ class CMDShell(Cmd):
         return any(self.prompt == i.format(base_prompt=self.base_prompt) for i in prompt_)
 
     # pylint: disable=too-many-branches
-    def default(self, line):
+    def default(self, line: str) -> bool:
         """Method called if no do_xyz methods found"""
         log.debug("shell.default '%s' running command '%s'", self.base_prompt, [line])
         ret = self.commands["_default_"]["output"]
         try:
             cmd_data = self.commands[line]
-            if "alias" in cmd_data:
-                cmd_data = {**self.commands[cmd_data.pop("alias")], **cmd_data}
+            alias = cmd_data.get("alias")
+            if alias:
+                cmd_data = {**self.commands[alias], **cmd_data}
             if self._check_prompt(cmd_data.get("prompt")):
                 ret = cmd_data["output"]
                 if callable(ret):

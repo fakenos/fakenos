@@ -3,13 +3,18 @@ FakeNOS Command Line Tool for running fake servers.
 """
 
 import argparse
+from importlib.metadata import PackageNotFoundError, version
 import logging
 import os
 import time
+from typing import Optional, Sequence
 
 from fakenos import FakeNOS
 
-__version__ = "1.0.0"
+try:
+    __version__ = version("fakenos")
+except PackageNotFoundError:
+    __version__ = "unknown"
 
 log = logging.getLogger(__name__)
 
@@ -51,28 +56,28 @@ opts.add_argument(
     help="Dev mode: Reload commands",
 )
 
-args = argparser.parse_args()
 
-logging.basicConfig(level=args.LOG_LEVEL.upper())
-
-if args.RELOAD_COMMANDS:
-    os.environ["FAKENOS_RELOAD_COMMANDS"] = "ON"
-
-
-def run_cli():
+def run_cli(argv: Optional[Sequence[str]] = None) -> None:
     """Function to start FakeNOS CLI"""
-    fakenet = FakeNOS(inventory=args.INVENTORY)
-    log.info("Initiating FakeNOS")
-    fakenet.start()
+    args = argparser.parse_args(argv)
+    logging.basicConfig(level=args.LOG_LEVEL.upper())
+    if args.RELOAD_COMMANDS:
+        os.environ["FAKENOS_RELOAD_COMMANDS"] = "ON"
 
+    fakenet = None
     try:
+        fakenet = FakeNOS(inventory=args.INVENTORY)
+        log.info("Initiating FakeNOS")
+        fakenet.start()
         while True:
             time.sleep(1)
     except KeyboardInterrupt:
         log.info("Shutting down FakeNOS")
-        fakenet.stop()
+    finally:
+        if fakenet is not None:
+            fakenet.stop()
         if args.RELOAD_COMMANDS:
-            os.environ.pop("FAKENOS_RELOAD_COMMANDS")
+            os.environ.pop("FAKENOS_RELOAD_COMMANDS", None)
 
 
 if __name__ == "__main__":

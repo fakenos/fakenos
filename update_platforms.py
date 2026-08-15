@@ -1,20 +1,16 @@
 """
-This script is used to update and fulfill all the possible platforms in
-an automatic way. It extracts the information from NTC-Templates tests
-commands, which are the output from the real devices. The script works
-with the following steps:
+This script updates bundled platform YAML files from NTC Templates test
+fixtures. It performs the following steps when executed directly:
 1. Download the NTC-Templates repository.
 2. Extract all the available platforms which are in the tests files.
-3. For each platform, it will create a new .yaml file which have the commands
-and the output for each device.
-4. The script will update the platforms.yaml file with the new platforms.
-5. The script will update the tests/core/test_fakenos.py file with the
-   new tests.
+3. For each platform, create a new .yaml file containing the commands
+   and the output for each device.
 """
 
 import os
 import re
 import subprocess
+import tempfile
 from typing import Dict, List, Tuple
 
 import requests
@@ -22,37 +18,31 @@ import requests
 # pylint: disable=import-error
 from ruamel.yaml import YAML
 
-tmp_ntc_templates_dir: str = "/tmp/ntc-templates"
+tmp_ntc_templates_dir: str = os.path.join(tempfile.gettempdir(), "ntc-templates")
 netmiko_platforms_url: str = "https://raw.githubusercontent.com/ktbyers/netmiko/develop/PLATFORMS.md"
-platforms_folder: str = "fakenos/plugins/nos/platforms"
+platforms_folder: str = "fakenos/plugins/nos/platforms_yaml"
 
 
-def clone_or_update_repository(repo_url, target_dir):
+def clone_or_update_repository(repo_url: str, target_dir: str) -> None:
     """
     Clone or update a git repository into a target directory.
     If the directory exists, the repository will be updated.
     If the directory doesn't exist, the repository will be cloned.
     """
     if os.path.exists(target_dir):
-        try:
-            subprocess.check_call(["git", "-C", target_dir, "pull"])
-            print(f"Repository updated successfully in {target_dir}")
-        except subprocess.CalledProcessError as e:
-            print(f"Failed to update the repository. Error: {e}")
+        subprocess.check_call(["git", "-C", target_dir, "pull"])
+        print(f"Repository updated successfully in {target_dir}")
     else:
-        try:
-            subprocess.check_call(["git", "clone", repo_url, target_dir])
-            print(f"Repository cloned successfully into {target_dir}")
-        except subprocess.CalledProcessError as e:
-            print(f"Failed to clone the repository. Error: {e}")
+        subprocess.check_call(["git", "clone", repo_url, target_dir])
+        print(f"Repository cloned successfully into {target_dir}")
 
 
-def get_directories_in_folder(folder_path):
+def get_directories_in_folder(folder_path: str) -> List[str]:
     """Get the name of all the directories in a folder."""
     return [name for name in os.listdir(folder_path) if os.path.isdir(os.path.join(folder_path, name))]
 
 
-def get_files_with_extension_in_folder(folder_path, extension, fulldir=True):
+def get_files_with_extension_in_folder(folder_path: str, extension: str, fulldir: bool = True) -> List[str]:
     """Get the name of all the files with a certain extension in a folder."""
     files = [
         name
@@ -64,7 +54,7 @@ def get_files_with_extension_in_folder(folder_path, extension, fulldir=True):
     return files
 
 
-def check_platforms_in_md(md_file):
+def check_platforms_in_md(md_file: str) -> List[str]:
     """
     Check which platforms from the given list are also
     mentioned in the specified markdown file.
@@ -88,6 +78,7 @@ def download_and_extract_platforms(url: str, local_path: str) -> List[str]:
     under "Supported SSH device_type values".
     """
     response = requests.get(url, timeout=30)
+    response.raise_for_status()
     with open(local_path, "w", encoding="utf-8") as file:
         file.write(response.text)
     return check_platforms_in_md(local_path)
@@ -142,7 +133,7 @@ def get_commands_parsed(platform_name: str, commands: dict) -> dict:
     return {**base_commands, **extra_commands}
 
 
-def generate_platform_yaml(platform_name: str, commands: dict):
+def generate_platform_yaml(platform_name: str, commands: dict) -> None:
     """
     Generate a YAML file for a platform with the given commands and outputs.
     """
@@ -157,22 +148,18 @@ def generate_platform_yaml(platform_name: str, commands: dict):
         yaml.dump(yaml_content, file)
 
 
-clone_or_update_repository("https://github.com/networktocode/ntc-templates", tmp_ntc_templates_dir)
+def main() -> None:
+    """Update platform YAML files from shared Netmiko and NTC Templates data."""
+    clone_or_update_repository("https://github.com/networktocode/ntc-templates", tmp_ntc_templates_dir)
+    platforms = get_directories_in_folder(os.path.join(tmp_ntc_templates_dir, "tests"))
+    netmiko_platforms_file = os.path.join(tempfile.gettempdir(), "netmiko-platforms.md")
+    available_netmiko_platforms = download_and_extract_platforms(netmiko_platforms_url, netmiko_platforms_file)
+    common_platforms = sorted(set(platforms) & set(available_netmiko_platforms))
+    print(f"Available platforms in Netmiko & NTC-Templates: {common_platforms}")
 
-platforms: List[str] = get_directories_in_folder(f"{tmp_ntc_templates_dir}/tests")
-
-available_netmiko_platforms = download_and_extract_platforms(netmiko_platforms_url, "/tmp/PLATFORMS.md")
-common_platforms = set(platforms) & set(available_netmiko_platforms)
-print(f"Available platforms in Netmiko & NTC-Templates: {common_platforms}")
-
-with open("docs/platforms.md", "w", encoding="utf-8") as file:
-    file.write("## Available Platforms\n\n")
     for platform in common_platforms:
-        file.write(f"- {platform}\n")
+        generate_platform_yaml(platform, get_commands(platform))
 
-commands: dict = {}
-for platform in common_platforms:
-    commands[platform] = get_commands(platform)
 
-for platform, commands in commands.items():
-    generate_platform_yaml(platform, commands)
+if __name__ == "__main__":
+    main()

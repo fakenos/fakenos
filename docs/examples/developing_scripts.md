@@ -17,7 +17,7 @@ You can call this file `inventory.yaml` 📕, but any other name is fine. Always
 we need to put our devices with the `hosts:`. In the *hosts* we can add as many devices as we want
 as long as they each device has its own port. To add a devices we just put whichever name we want.
 
-For each device, we can set a `username`, `password`, `port` and `platform`. All the available platforms can be found [here](../platforms.md). In this case we have selected the platform `huawei_smartax` and credentials are username `admin` and password `admin`.
+For each device, we can set a `username`, `password`, `port` and `platform`. All available platforms are listed in the [platform index](../platforms/index.md). In this case we selected `huawei_smartax` with username `admin` and password `admin`.
 
 Then, create a Python script with the following content:
 ```python
@@ -31,7 +31,7 @@ try:
 except KeyboardInterrupt:
     network_os.stop()
 ```
-This script will spin up the fake device that we defined in `inventory.yaml`. It will keep running until we do `Ctrl+C`. Whenever we press that it will stop all the processes. Usually, it takes roughly a few seconds because we need to close all the threads used.
+This script starts the fake device defined in `inventory.yaml`. Press `Ctrl+C` to stop the server and its owned threads.
 
 To run the python :snake: script we can use the following command :
 ```bash
@@ -50,14 +50,14 @@ And here are some commands you can try:
 -  `display board`
 -  `display sysman service state`
 
-**And that's all!** 💅 We that we have create a fake network device that emulates the Huawei SmartAX and to which we can connect to using SSH.
+**And that's all!** We have created a fake Huawei SmartAX device that accepts SSH connections.
 
 If you want to try more, we want to encourage you to try more platforms, change the credentials and the ports so you can get familiar.
 
 ## Using the dict
 As well, it is possible to use a dictionary instead of a `.yaml` file in the cases that you may want to have a programmatic way to define the variables. It is fairly similar to the other method described before, but in this case instead of having 2 files, we will keep all in 1 file.
 
-Imagine you want to be able to specify the platform using the CLI. The following script allows you to do the same,. but defining the `platform`:
+Imagine you want to specify the platform using the CLI. The following script accepts `platform` as a command-line argument:
 
 ```python
 import argparse
@@ -68,8 +68,8 @@ parser = argparse.ArgumentParser(
     )
 
 parser.add_argument(
-    "platform", 
-    type=str, 
+    "platform",
+    type=str,
     help="fake device network operating system"
     )
 
@@ -122,8 +122,8 @@ serial_number: str = ''
 with ConnectHandler(**credentials) as conn:
     output = conn.send_command("display ont info summary ont")
     parsed_output = parse_output(
-        platform="huawei_smartax", 
-        command="display ont info summary 0/1/0", 
+        platform="huawei_smartax",
+        command="display ont info summary 0/1/0",
         data=output
     )
     serial_number = parsed_output[0]['serial_number']

@@ -1,58 +1,35 @@
-# to run pre-commit on demand using below configuration:
-# pre-commit run --all-files
+# Run all hooks with: uv run pre-commit run --all-files
 
 default_language_version:
-    python: python3.7
+  python: python3.11
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.3.0
+    rev: v6.0.0
     hooks:
       - id: check-ast
-      - id: end-of-file-fixer
-      - id: requirements-txt-fixer
-      - id: trailing-whitespace
       - id: check-added-large-files
-        args: ['--maxkb=1000']
-  # black
+        args: ["--maxkb=1000"]
+
   - repo: local
     hooks:
-      - id: black
-        name: black
-        exclude: ^docs/|gitignore|LICENSE|requirements|pre-commit-config|pylintrc|.*\.png$|README.md|pyproject.toml|poetry.lock|\.github/.*
-        entry: black fakenos
+      - id: ruff-check
+        name: Ruff lint
+        entry: ruff check --fix
         language: system
-        args:
-          - "--line-length=88"
-  # flake8
-  - repo: local
-    hooks:
-      - id: flake8
-        name: flake8
+        types: [python]
+      - id: ruff-format
+        name: Ruff format
+        entry: ruff format
         language: system
-        entry: flake8
-        exclude: ^tests/|^docs/|gitignore|LICENSE|requirements|pre-commit-config|pylintrc|.*\.png$|README.md|pyproject.toml|poetry.lock|\.github/.*
-        args:
-          - "--max-line-length=88"
-          - "--max-complexity=19"
-          - "--select=B,C,E,F,W,T4,B9"
-          - "--ignore=F403,E402,E722,E203,W503,C901,E501"
-  # bandit security checks
-  - repo: local
-    hooks:
+        types: [python]
+      - id: ty
+        name: ty
+        entry: ty check fakenos tasks.py update_platforms.py
+        language: system
+        pass_filenames: false
       - id: bandit
-        name: bandit
+        name: Bandit
+        entry: bandit -q -c pyproject.toml -r fakenos tasks.py update_platforms.py
         language: system
-        entry: bandit
-        exclude: ^tests/|^docs/
-  # pylint, to run it directly use: python3 -m pylint . --rcfile=pylintrc
-  # enabled only spelling checks for docstrings
-  - repo: local
-    hooks:
-      - id: pylint
-        name: pylint
-        language: system
-        entry: pylint .
-        args:
-          - "--rcfile=pylintrc"
-        exclude: ^tests/|gitignore|LICENSE|requirements|pre-commit-config|pylintrc|.*\.png$
+        pass_filenames: false

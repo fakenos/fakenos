@@ -2,10 +2,10 @@
 This module contains utility functions for the tests.
 """
 
+from pathlib import Path
 import random
 import socket
 import string
-from pathlib import Path
 from typing import Dict, List, Tuple
 
 from fakenos.core.host import Host
@@ -37,7 +37,7 @@ def get_random_available_platform():
     return random.choice(platforms)
 
 
-def get_platforms_from_md() -> List[str]:
+def get_platforms_from_md(include_unsupported: bool = False) -> List[str]:
     """Get the platforms in the platforms.md file."""
     platforms = []
     docs_path = next(
@@ -52,7 +52,7 @@ def get_platforms_from_md() -> List[str]:
         for line in file:
             if line.startswith("- ["):
                 platform = line[1:].strip()  # Remove the dash and whitespace
-                if "❌" in platform:
+                if "❌" in platform and not include_unsupported:
                     continue
                 # Get the word in between brackets, eg. "aruba_eos" from "[aruba_eos]"
                 platform = platform.split("[")[1].split("]")[0]

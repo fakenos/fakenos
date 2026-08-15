@@ -5,8 +5,8 @@ A really nice feature to have always is a fully automated platform which tests t
 ## Current workflows
 Currently, there are 2 workflows:
 
-- `docs.yml`: It deploys automatically a newly updated documentation to the `gh-pages` branch.
-- ``main.yml`: It ensures the correctness of the code. It runs the full test suite in multiple platforms (Linux, MacOS, and Windows) and also checks the code style.
+- `docs.yml`: Builds the documentation and deploys it with GitHub Pages.
+- `main.yml`: Runs the full test suite on Linux, macOS, and Windows and checks code quality.
 
 ## Testing workflows locally
 In the case that you want to change any of the workflows, instead of doing 1000 pull-requests or commits to try it out, it is possible (and recommended) to run the workflows locally. To do so, you need to install the `act` package. Refer to their [official documentation](https://nektosact.com/) for more information. With the command `act` you can run the workflows locally. That's all!

@@ -94,7 +94,7 @@ This test will perform the following steps:
 2. Perform the action to be tested
 3. Close the fake devices
 
-In case of automatic testing, always needs to be followed the same structure. This sandwitch is needed. In case that you don't call the `net.stop()` the test suites will hang up as some underlying thread will be still wait for new connections.
+Automatic tests must always stop the network so its listener and connection threads can finish. A context manager is the simplest way to guarantee cleanup when an assertion fails.
 
 !!! note
     There are plans to make with a decorator like `@fakenos(platform="cisco_ios")`, but for now
@@ -130,7 +130,7 @@ def test_get_serial_number():
     assert result == "1234567890ABCDEF"
 ```
 
-The decorator handles the start and stop of the fake devices, creating the inventory before starts and stopping it after the test. This decorator is perfectly suited for only test over one platform. But also, over many platforms using your custom inventory. 
+The decorator handles the start and stop of the fake devices, creating the inventory before starts and stopping it after the test. This decorator is perfectly suited for only test over one platform. But also, over many platforms using your custom inventory.
 
 ```python
 from fakenos import fakenos
@@ -148,12 +148,12 @@ def test_get_serial_number():
 Finally, just in case you want to access the fake devices, you can do it adding the `return_instance` parameter to the decorator. This will return the instance of the fake devices to the test. This is useful when you want to do some extra testing over the fake devices or connecting directly to them.
 
 ```python
-from fakenos import fakenos
+from fakenos import FakeNOS, fakenos
 
 @fakenos(platform="huawei_smartax", return_instance=True)
-def get_ports_used_in_decorator():
+def get_ports_used_in_decorator(net: FakeNOS):
     """ We want to see the ports of the fake device """
-    host_ports = [host.port for hosts in net.hosts.values()]
+    host_ports = [host.port for host in net.hosts.values()]
     print(host_ports)
 ```
 
