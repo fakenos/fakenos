@@ -135,9 +135,30 @@ class TapIO(io.StringIO):
 
 def channel_to_shell_tap(channel_stdio, shell_stdin, shell_replied_event, run_srv):
     """
-    Method to tap into the channel_stdio and send it to the shell
+    Method to tap into the channel_stdio and send it to the shell.
+
+    Provides minimal line editing so the interactive shell behaves like a real
+    terminal:
+
+    * Backspace / Delete (``\\x08`` / ``\\x7f``) removes the last character from
+      the current line and erases it on screen (``\\b \\b``). When the line is
+      empty the keystroke is ignored, so the cursor can never move left of the
+      prompt.
+    * Escape sequences (arrow keys and other ``\\x1b[...`` CSI / ``\\x1bO...``
+      SS3 sequences) are swallowed without being echoed or buffered, which would
+      otherwise let the cursor wander and corrupt the command buffer. Swallowing
+      is done with a small non-blocking state machine so a lone ESC keypress
+      cannot hang the session and multi-byte sequences (Home/End/PageUp, etc.)
+      are fully consumed.
+
+    Every other byte (including punctuation such as ``:``, ``.`` and ``/`` used
+    heavily by network CLIs) is buffered verbatim; no character whitelist is
+    applied.
     """
-    buffer: io.BytesIO = io.BytesIO()
+    buffer: bytearray = bytearray()
+    # State machine for swallowing terminal escape (CSI/SS3) sequences.
+    in_escape: bool = False
+    escape_pending_introducer: bool = False
     while run_srv.is_set():
         byte: bytes = channel_stdio.read(1)
         log.debug("ssh_server.channel_to_shell_tap received from channel: %s", [byte])
@@ -146,47 +167,51 @@ def channel_to_shell_tap(channel_stdio, shell_stdin, shell_replied_event, run_sr
             log.error("SSH channel is not active. Exiting.")
             break
         try:
+            # Swallow escape sequences: ESC, then '[' (CSI) or 'O' (SS3),
+            # then params up to a final byte in 0x40-0x7e.
+            if in_escape:
+                if escape_pending_introducer:
+                    escape_pending_introducer = False
+                    if byte in (b"[", b"O"):
+                        # Continue consuming until the CSI/SS3 final byte.
+                        continue
+                    # Not an introducer: this byte terminates the escape and is
+                    # otherwise ignored (bare ESC + key).
+                    in_escape = False
+                    continue
+                # Within CSI/SS3 params; final byte is in 0x40-0x7e.
+                if byte and 0x40 <= byte[0] <= 0x7E:
+                    in_escape = False
+                continue
+
             match byte:
-                case b"\x1b":  # arrows
-                    channel_stdio.read(2)
+                case b"\x1b":  # start of an escape sequence (arrows, etc.)
+                    in_escape = True
+                    escape_pending_introducer = True
                 case b"\r" | b"\n":
                     channel_stdio.write(b"\r\n")
                     log.debug("ssh_server.channel_to_shell_tap echoing new line to channel: %s", [b"\r\n"])
-                    buffer.write(byte)
-                    buffer.seek(0)
-                    line = buffer.read().decode(encoding="utf-8")
-                    buffer.seek(0)
-                    buffer.truncate()
+                    buffer.extend(byte)
+                    line = buffer.decode(encoding="utf-8")
+                    buffer.clear()
                     log.debug("ssh_server.channel_to_shell_tap sending line to shell: %s", [line])
                     shell_stdin.write(line)
                     shell_replied_event.clear()
-                case b"\x7f":  # backspace
-                    if buffer.tell() > 0:
+                case b"\x7f" | b"\x08":  # backspace / delete
+                    if buffer:
                         channel_stdio.write(b"\b \b")
                         log.debug("ssh_server.channel_to_shell_tap echoing backspace to channel: %s", [b"\b \b"])
-                        buffer.seek(buffer.tell() - 1)
-                        buffer.truncate()
+                        del buffer[-1]
+                    # Empty buffer: ignore so we never back over the prompt.
                 case _:
                     channel_stdio.write(byte)
                     log.debug("ssh_server.channel_to_shell_tap echoing byte to channel: %s", [byte])
-                    if __is_byte_permitted(byte):
-                        buffer.write(byte)
+                    if byte not in (b"\x00", b""):
+                        buffer.extend(byte)
             time.sleep(0.01)
         except (OSError, EOFError) as e:
             log.error("ssh_server.channel_to_shell_tap channel write error: %s", e)
             break
-
-
-def __is_byte_permitted(byte: bytes) -> bool:
-    """
-    Method to return the list of permitted bytes
-    """
-    permitted_bytes = []
-    permitted_bytes += [bytes([i]) for i in range(48, 58)]  # b'0' to b'9'
-    permitted_bytes += [bytes([i]) for i in range(65, 91)]  # b'A' to b'Z'
-    permitted_bytes += [bytes([i]) for i in range(97, 123)]  # b'a' to b'z'
-    permitted_bytes += [b"-", b" ", b"_", b"/", b"?"]
-    return byte in permitted_bytes
 
 
 def shell_to_channel_tap(

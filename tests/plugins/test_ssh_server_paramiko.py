@@ -319,18 +319,72 @@ class ChannelToShellTapTest(unittest.TestCase):
         self.mock_channel_stdio.write.assert_called_with(b"\x08 \x08")
 
     def test_arrow_keys_does_not_work(self):
-        """Check that when pressing any arrow key, the cursor does not move."""
-        self.mock_run_srv.is_set.side_effect = [True] * 4 + [False]
-        self.mock_channel_stdio.read.side_effect = [b"\x1b", b"[A", b"\x1b", b"[B", b"\x1b", b"[C", b"\x1b", b"[D"]
+        """Arrow-key escape sequences are swallowed byte-by-byte and never
+        echoed, buffered, or forwarded to the shell."""
+        # Up/Down/Right/Left as ESC '[' <final>, fed one byte at a time.
+        self.mock_run_srv.is_set.side_effect = [True] * 12 + [False]
+        self.mock_channel_stdio.read.side_effect = [
+            b"\x1b", b"[", b"A",
+            b"\x1b", b"[", b"B",
+            b"\x1b", b"[", b"C",
+            b"\x1b", b"[", b"D",
+        ]
         channel_to_shell_tap(
             channel_stdio=self.mock_channel_stdio,
             shell_stdin=self.mock_shell_stdin,
             shell_replied_event=self.mock_shell_replied_event,
             run_srv=self.mock_run_srv,
         )
-        self.mock_channel_stdio.read.assert_has_calls([mock.call(1), mock.call(2)] * 4)
+        # Input is read one byte at a time (no blocking multi-byte read).
+        self.mock_channel_stdio.read.assert_called_with(1)
+        # Nothing from the escape sequences reaches the shell or the screen.
         self.mock_shell_stdin.write.assert_not_called()
         self.mock_channel_stdio.write.assert_not_called()
+
+    def test_lone_escape_does_not_block_or_corrupt(self):
+        """A bare ESC followed by a normal key must not block on a multi-byte
+        read nor inject the key into an escape it does not belong to."""
+        self.mock_run_srv.is_set.side_effect = [True] * 3 + [False]
+        # ESC, then 'a' (not an introducer), then Enter -> line is "a\n".
+        self.mock_channel_stdio.read.side_effect = [b"\x1b", b"a", b"\n"]
+        channel_to_shell_tap(
+            channel_stdio=self.mock_channel_stdio,
+            shell_stdin=self.mock_shell_stdin,
+            shell_replied_event=self.mock_shell_replied_event,
+            run_srv=self.mock_run_srv,
+        )
+        # 'a' after a bare ESC terminates the escape and is ignored; only the
+        # newline forms the (empty) line delivered to the shell.
+        self.mock_shell_stdin.write.assert_called_once_with("\n")
+
+    def test_delete_key_x08_removes_last_char(self):
+        """The ``\\x08`` backspace variant behaves like ``\\x7f``."""
+        self.mock_run_srv.is_set.side_effect = [True] * 3 + [False]
+        self.mock_channel_stdio.read.side_effect = [b"a", b"\x08", b"\n"]
+        channel_to_shell_tap(
+            channel_stdio=self.mock_channel_stdio,
+            shell_stdin=self.mock_shell_stdin,
+            shell_replied_event=self.mock_shell_replied_event,
+            run_srv=self.mock_run_srv,
+        )
+        self.mock_channel_stdio.write.assert_any_call(b"\b \b")
+        self.mock_shell_stdin.write.assert_called_once_with("\n")
+
+    def test_punctuation_is_buffered_verbatim(self):
+        """Punctuation used by network CLIs (':', '.', '/') is buffered, not
+        dropped by a character whitelist."""
+        self.mock_run_srv.is_set.side_effect = [True] * 7 + [False]
+        # e.g. a Nokia-style token: "1/1:2.3"
+        self.mock_channel_stdio.read.side_effect = [
+            b"1", b"/", b"1", b":", b"2", b".", b"\n",
+        ]
+        channel_to_shell_tap(
+            channel_stdio=self.mock_channel_stdio,
+            shell_stdin=self.mock_shell_stdin,
+            shell_replied_event=self.mock_shell_replied_event,
+            run_srv=self.mock_run_srv,
+        )
+        self.mock_shell_stdin.write.assert_called_once_with("1/1:2.\n")
 
     def test_help_or_question_mark_goes_to_help(self):
         """Check that when pressing 'help' or '?' the shell goes to the help command."""
