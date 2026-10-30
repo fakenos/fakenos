@@ -43,6 +43,7 @@ The following list of platforms are supported by FakeNOS. All the platforms list
 - [ipinfusion_ocnos](ipinfusion_ocnos.md) ✅
 - [juniper_junos](juniper_junos.md) ✅
 - [juniper_screenos](juniper_screenos.md) ❌ [See issue](https://github.com/fakenos/fakenos/issues/6)
+- [lantronix_itmgos](lantronix_itmgos.md) ❌ [Needs a Netmiko release with the driver](https://github.com/ktbyers/netmiko/pull/3909)
 - [linux](linux.md) ✅
 - [mikrotik_routeros](mikrotik_routeros.md) ❌ [See issue](https://github.com/fakenos/fakenos/issues/9)
 - [paloalto_panos](paloalto_panos.md) ❌ [See issue](https://github.com/fakenos/fakenos/issues/7)

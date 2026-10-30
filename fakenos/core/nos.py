@@ -46,6 +46,7 @@ available_platforms: List[str] = [
     "ipinfusion_ocnos",
     "juniper_junos",
     "juniper_screenos",
+    "lantronix_itmgos",
     "linux",
     "mikrotik_routeros",
     "paloalto_panos",
